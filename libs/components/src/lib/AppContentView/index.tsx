@@ -4,9 +4,11 @@ import AppFooter from '../AppLayout/components/AppFooter';
 import AppErrorBoundary from '../AppErrorBoundary';
 import Box from '@mui/material/Box';
 import AppContentViewWrapper from './AppContentViewWrapper';
+import { CSSProperties } from '@mui/styles/withStyles';
 
 type AppContentViewProps = {
   children: ReactNode;
+  sxStyle?: CSSProperties;
 };
 
 const AppContentView: React.FC<AppContentViewProps> = ({

@@ -30,7 +30,7 @@ const TaskListItem = ({
 }: Props) => {
   const router = useRouter();
   const { query } = router;
-  const { all }: { all: string | string[] } = query;
+  const all = query.all as string[];
 
   let folder: string;
   let label: string;

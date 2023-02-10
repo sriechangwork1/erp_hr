@@ -22,8 +22,7 @@ const TaskCalender = ({ taskList }: Props) => {
   const { query } = router;
   const [selectedDate, setSelectedDate] = useState<SlotInfo>();
 
-  const { all }: { all: string | string[] } = query;
-
+  const all = query.all as string[];
   let folder: string;
   let label: string;
   if (all.length === 2 && !+all[1]) {

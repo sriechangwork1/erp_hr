@@ -64,7 +64,7 @@ type Props = {
 
 const TaskListItemMobile = ({ task, checkedTasks, onChangeStarred }: Props) => {
   const router = useRouter();
-  const { all }: { all: string | string[] } = router.query;
+  const all = router.query.all as string[];
 
   let folder: string;
   let label: string;

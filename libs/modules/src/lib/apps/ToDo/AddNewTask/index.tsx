@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {Formik} from 'formik';
+import React, { useState } from 'react';
+import { Formik } from 'formik';
 import * as yup from 'yup';
-import {SlotInfo} from 'react-big-calendar';
+import { SlotInfo } from 'react-big-calendar';
 import moment from 'moment';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import AddTaskForm from './AddTaskForm';
 import AppDialog from '@crema/components/AppDialog';
-import {useAuthUser} from '@crema/hooks/AuthHooks';
-import {postDataApi} from '@crema/hooks/APIHooks';
-import {useInfoViewActionsContext} from '@crema/context/InfoViewContextProvider';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { postDataApi } from '@crema/hooks/APIHooks';
+import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 
-import {useIntl} from 'react-intl';
+import { useIntl } from 'react-intl';
 
 type Props = {
   isAddTaskOpen: boolean;
@@ -50,7 +50,7 @@ const AddNewTask = ({
           label: [],
           priority: 3,
           date: selectedDate
-            ? moment(selectedDate).format('MM/DD/YYYY')
+            ? moment(selectedDate.start).format('MM/DD/YYYY')
             : moment().format('MM/DD/YYYY'),
           content: '',
         }}

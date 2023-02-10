@@ -1,16 +1,18 @@
-import React from 'react';
-import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
+import React, {ReactNode} from 'react';
+import {useInfoViewActionsContext} from '@crema/context/InfoViewContextProvider';
 import FirebaseAuthProvider from '@crema/services/auth/FirebaseAuthProvider';
 
-const AppAuthProvider = ({ children }) => {
-  const { fetchStart, fetchSuccess, fetchError,showMessage } = useInfoViewActionsContext();
+type Props ={
+  children: ReactNode;
+}
+const AppAuthProvider = ({ children }:Props) => {
+  const { fetchStart, fetchSuccess, fetchError } = useInfoViewActionsContext();
 
   return (
     <FirebaseAuthProvider
       fetchStart={fetchStart}
       fetchError={fetchError}
       fetchSuccess={fetchSuccess}
-      showMessage={showMessage}
     >
       {children}
     </FirebaseAuthProvider>
