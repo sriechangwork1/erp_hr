@@ -7,7 +7,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '80.00',
-    mrp: '120',
+    mrp: 120,
     discount: '25',
     rating: 5,
     reviews: 2000,
@@ -36,7 +36,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '100.00',
-    mrp: '125',
+    mrp: 125,
     discount: '20',
     rating: 4.7,
     reviews: 4356,
@@ -65,7 +65,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '70.00',
-    mrp: '100',
+    mrp: 100,
     discount: '30',
     rating: 4.2,
     reviews: 235,
@@ -94,7 +94,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '65.00',
-    mrp: '100',
+    mrp: 100,
     discount: '35',
     rating: 4.6,
     reviews: 4323,
@@ -123,7 +123,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '80.00',
-    mrp: '120',
+    mrp: 120,
     discount: '25',
     rating: 5,
     reviews: 2000,
@@ -152,7 +152,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '100.00',
-    mrp: '125',
+    mrp: 125,
     discount: '20',
     rating: 4.7,
     reviews: 4356,
@@ -181,7 +181,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '70.00',
-    mrp: '100',
+    mrp: 100,
     discount: '30',
     rating: 4.2,
     reviews: 235,
@@ -210,7 +210,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '65.00',
-    mrp: '100',
+    mrp: 100,
     discount: '35',
     rating: 4.6,
     reviews: 4323,
@@ -239,7 +239,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '80.00',
-    mrp: '120',
+    mrp: 120,
     discount: '25',
     rating: 5,
     reviews: 2000,
@@ -268,7 +268,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '100.00',
-    mrp: '125',
+    mrp: 125,
     discount: '20',
     rating: 4.7,
     reviews: 4356,
@@ -297,7 +297,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '70.00',
-    mrp: '100',
+    mrp: 100,
     discount: '30',
     rating: 4.2,
     reviews: 235,
@@ -326,7 +326,7 @@ export const ecommerceData: ProductDataType[] = [
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     price: '65.00',
-    mrp: '100',
+    mrp: 100,
     discount: '35',
     rating: 4.6,
     reviews: 4323,

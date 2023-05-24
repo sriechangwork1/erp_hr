@@ -3,11 +3,10 @@ import AppCard from '@crema/components/AppCard';
 import AppList from '@crema/components/AppList';
 import Box from '@mui/material/Box';
 import AppLinearProgress from '@crema/components/AppLinearProgress';
-import { useIntl } from 'react-intl';
 
-import { Fonts } from '@crema/constants/AppEnums';
-
-import { LatestResultDataType } from '@crema/models/dashboards/Academy';
+import {Fonts} from '@crema/constants/AppEnums';
+import {LatestResultType} from "@crema/models/dashboards/Academy";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
 const getColor = (percentage: number) => {
   if (percentage < 50) {
@@ -16,11 +15,11 @@ const getColor = (percentage: number) => {
   return '#0A8FDC';
 };
 
-type ResultItemProps= {
-  result: LatestResultDataType;
+type Props={
+  result: LatestResultType;
 }
 
-const ResultItem: React.FC<ResultItemProps> = ({ result }) => {
+const ResultItem = ({ result }: Props) => {
   return (
     <Box
       className="item-hover"
@@ -93,20 +92,19 @@ const ResultItem: React.FC<ResultItemProps> = ({ result }) => {
   );
 };
 
-type LatestResultsProps= {
-  latestResults: LatestResultDataType[];
+
+type ResultProps={
+  latestResults: LatestResultType[];
 }
+const LatestResults = ({ latestResults }: ResultProps) => {
 
-const LatestResults: React.FC<LatestResultsProps> = ({ latestResults }) => {
-  const { messages } = useIntl();
-
-  const getData = (data: LatestResultDataType[]) => {
+  const getData = (data: LatestResultType[]) => {
     return data;
   };
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['academy.latestResults'] as string}
+      title={<IntlMessages id='academy.latestResults'/>}
       contentStyle={{ px: 0 }}
     >
       <AppList

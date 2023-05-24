@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import StatsGraph from './StatsGraph';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import AppSelect from '@crema/components/AppSelect';
 import AppCard from '@crema/components/AppCard';
-import { Box } from '@mui/material';
-import { StatsGraphType } from '@crema/models/dashboards/Metrics';
+import {Box} from '@mui/material';
+import type {StatsGraphType} from "@crema/models/dashboards/Metrics";
 
 type StatsProps = {
   data: StatsGraphType;
 };
 
-const Stats: React.FC<StatsProps> = ({ data }) => {
+const Stats: React.FC<StatsProps> = ({data}) => {
   const [graphData, setGraphData] = useState(data.dataOne);
 
   const handleYearChange = (value: number) => {

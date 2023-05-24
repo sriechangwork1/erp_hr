@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "extends": ["plugin:@nx/react", "../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -8,7 +8,7 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "rules": { "import/no-webpack-loader-syntax": "off"}
+      "rules": { "import/no-webpack-loader-syntax": "off" }
     },
     {
       "files": ["*.js", "*.jsx"],

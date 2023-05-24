@@ -1,24 +1,23 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
 import AppCard from '@crema/components/AppCard';
-
 import AppSelect from '@crema/components/AppSelect';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import AppList from '@crema/components/AppList';
 import Avatar from '@mui/material/Avatar';
 import MixBarChart from './MixBarChart';
-import { ChartDataType, SalesStateType } from '@crema/models/dashboards/Analytics';
+import {SalesChartDaumType, SalesStateType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type SalesStateProps = {
+type Props={
   salesState: SalesStateType[];
-  chartData: ChartDataType[];
-};
-
-const SalesState: React.FC<SalesStateProps> = ({ salesState, chartData }) => {
-  const handleSelectionType = (data: any) => {
+  chartData:SalesChartDaumType[];
+}
+const SalesState = ({ salesState=[], chartData }: Props) => {
+  const handleSelectionType = (data: SalesStateType) => {
     console.log('data: ', data);
   };
   const getData = (data: SalesStateType[]) => {
@@ -27,7 +26,7 @@ const SalesState: React.FC<SalesStateProps> = ({ salesState, chartData }) => {
   const { messages } = useIntl();
   return (
     <AppCard
-      title={messages['dashboard.analytics.salesState'] as string}
+      title={<IntlMessages id='dashboard.analytics.salesState'/>}
       sxStyle={{ height: 1 }}
       action={
         <AppSelect
@@ -57,7 +56,7 @@ const SalesState: React.FC<SalesStateProps> = ({ salesState, chartData }) => {
             mb: 2,
           }}
         >
-          1343 {messages['dashboard.analytics.salesThisWeek'] as string}
+         <> 1343 {messages['dashboard.analytics.salesThisWeek']}</>
         </Box>
 
         <Box
@@ -159,4 +158,4 @@ const SalesState: React.FC<SalesStateProps> = ({ salesState, chartData }) => {
     </AppCard>
   );
 };
-export default SalesState;
+export default SalesState

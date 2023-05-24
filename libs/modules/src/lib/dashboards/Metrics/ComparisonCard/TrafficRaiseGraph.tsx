@@ -1,29 +1,29 @@
-import React from "react";
-import { Line, LineChart, ResponsiveContainer } from "recharts";
-import Box from "@mui/material/Box";
+import React from 'react';
+import {Line, LineChart, ResponsiveContainer} from 'recharts';
+import Box from '@mui/material/Box';
 
-type TrafficRaiseGraphProps= {
+type TrafficRaiseGraphProps = {
   data: any[];
 }
 
-const TrafficRaiseGraph: React.FC<TrafficRaiseGraphProps> = ({ data }) => {
+const TrafficRaiseGraph: React.FC<TrafficRaiseGraphProps> = ({data}) => {
   return (
     <Box
       sx={{
-        position: "relative",
-        "& .containerGraph": {
-          width: "100%",
+        position: 'relative',
+        '& .containerGraph': {
+          width: '100%',
         },
       }}
     >
-      <ResponsiveContainer height={200} className="containerGraph">
+      <ResponsiveContainer height={200} className='containerGraph'>
         <LineChart data={data}>
           <Line
-            type="monotone"
-            dataKey="traffic"
-            stroke="#4299E1"
-            strokeWidth={4}
-            dot={{ r: 4 }}
+            type='monotone'
+            dataKey='traffic'
+            stroke='#4299E1'
+            strokeWidth={2}
+            dot={{r: 0}}
           />
         </LineChart>
       </ResponsiveContainer>

@@ -2,17 +2,15 @@ import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
+import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import AppList from '@crema/components/AppList';
-import { NewsDataType } from '@crema/models/dashboards/Crypto';
 
-type LatestNewsProps ={
-  newsData: NewsDataType[];
-}
+const NewsList = (props) => {
+  const { newsData } = props;
 
-const NewsList: React.FC<LatestNewsProps> = ({ newsData }) => {
   return (
     <AppScrollbar>
       <List>
@@ -96,3 +94,11 @@ const NewsList: React.FC<LatestNewsProps> = ({ newsData }) => {
 };
 
 export default NewsList;
+
+NewsList.defaultProps = {
+  newsData: [],
+};
+
+NewsList.propTypes = {
+  newsData: PropTypes.array,
+};

@@ -18,7 +18,6 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={["year", "month"]}
@@ -29,7 +28,6 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           openTo="year"
@@ -39,7 +37,6 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={["day", "month", "year"]}
@@ -48,7 +45,6 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
         <DatePicker
           views={["day"]}
@@ -57,7 +53,6 @@ export default function ViewsDatePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
         />
       </Stack>
     </LocalizationProvider>

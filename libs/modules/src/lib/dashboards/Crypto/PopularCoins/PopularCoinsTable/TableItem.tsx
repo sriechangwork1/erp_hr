@@ -4,15 +4,13 @@ import { Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
 import { green, red } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
-import { PopularCoinsType } from '@crema/models/dashboards/Crypto';
 
-type TableItemProps ={
-  row: PopularCoinsType;
-}
+const TableItem = (props) => {
+  const { row } = props;
 
-const TableItem: React.FC<TableItemProps> = ({ row }) => {
   return (
     <TableRow
       sx={{
@@ -48,21 +46,22 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
           >
             {row.image ? (
               <Avatar
-                src={row.image}
                 sx={{
                   width: { xs: 40, xl: 50 },
                   height: { xs: 40, xl: 50 },
                   padding: 3,
-                  backgroundColor: row.color as string,
+                  backgroundColor: row.image ? row.color : red[500],
                 }}
-              />
+              >
+                <img src={row.image} alt="" />
+              </Avatar>
             ) : (
               <Avatar
                 sx={{
                   width: { xs: 40, xl: 50 },
                   height: { xs: 40, xl: 50 },
                   padding: 3,
-                  backgroundColor: red[500],
+                  backgroundColor: row.image ? row.color : red[500],
                 }}
               >
                 <PageviewIcon />
@@ -108,3 +107,7 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
 };
 
 export default TableItem;
+
+TableItem.propTypes = {
+  row: PropTypes.object.isRequired,
+};

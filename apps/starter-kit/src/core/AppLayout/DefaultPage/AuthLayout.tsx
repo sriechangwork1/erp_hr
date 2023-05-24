@@ -1,16 +1,20 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import PropTypes from 'prop-types';
+import AuthWrapper from "@crema/modules/auth/AuthWrapper";
 
-export default function AuthLayout({ children }) {
+type Props = {
+  children: any;
+}
+
+export const AuthLayout: React.FC<Props> = ({ children }) => {
   return (
+    <AuthWrapper>
     <Box
       sx={{
         flex: 1,
         display: 'flex',
         position: 'relative',
         height: '100vh',
-        backgroundColor: '#f3f4f6',
         backgroundSize: 'cover',
 
         '& .scrollbar-container': {
@@ -29,8 +33,7 @@ export default function AuthLayout({ children }) {
     >
       {children}
     </Box>
+  </AuthWrapper>
   );
 }
-AuthLayout.propTypes = {
-  children: PropTypes.node,
-};
+export default AuthLayout;

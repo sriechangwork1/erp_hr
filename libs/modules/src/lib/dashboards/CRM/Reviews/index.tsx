@@ -2,16 +2,12 @@ import React from 'react';
 import ReviewsGraph from './ReviewsGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { green, teal } from '@mui/material/colors';
-import { Fonts } from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {green, teal} from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { ReviewGraphType } from '@crema/models/dashboards/CRM';
 
-type ReviewsProps= {
-  reviewGraphData: ReviewGraphType[];
-}
-
-const Reviews: React.FC<ReviewsProps> = ({ reviewGraphData }) => {
+const Reviews = ({ reviewGraphData }) => {
   return (
     <AppCard sxStyle={{ backgroundColor: teal[600], color: 'white' }}>
       <Box
@@ -63,3 +59,11 @@ const Reviews: React.FC<ReviewsProps> = ({ reviewGraphData }) => {
 };
 
 export default Reviews;
+
+Reviews.defaultProps = {
+  reviewGraphData: [],
+};
+
+Reviews.propTypes = {
+  reviewGraphData: PropTypes.array,
+};

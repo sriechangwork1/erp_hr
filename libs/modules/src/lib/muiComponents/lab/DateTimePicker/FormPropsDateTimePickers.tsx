@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Dayjs } from 'dayjs';
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import {Dayjs} from 'dayjs';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
 import Stack from '@mui/material/Stack';
 
 export default function FormPropsDateTimePickers() {
@@ -19,7 +18,7 @@ export default function FormPropsDateTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
         <DateTimePicker
           label="read-only"
@@ -28,7 +27,7 @@ export default function FormPropsDateTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
       </Stack>
     </LocalizationProvider>

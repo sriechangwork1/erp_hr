@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { EarningInMonthType } from '@crema/models/dashboards/Metrics';
+import {EarningInMonthType} from "@crema/models/dashboards/Metrics";
 
 type CategoriesProps = {
   data: EarningInMonthType[];
@@ -13,7 +13,7 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
         display: 'flex',
         justifyContent: 'space-around',
         flexWrap: 'wrap',
-        pl: { xl: 5 },
+        pl: {xl: 5},
       }}
     >
       {data.map((item) => {
@@ -31,8 +31,8 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
             <Box
               component="span"
               sx={{
-                height: { xs: 12, xl: 16 },
-                width: { xs: 12, xl: 16 },
+                height: {xs: 12, xl: 16},
+                width: {xs: 12, xl: 16},
                 p: 1,
                 display: 'block',
                 borderRadius: '50%',

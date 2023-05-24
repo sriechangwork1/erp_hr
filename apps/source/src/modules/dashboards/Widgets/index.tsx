@@ -1,14 +1,14 @@
 import React from 'react';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
-import { FiFacebook, FiTwitter } from 'react-icons/fi';
+import {FiFacebook, FiTwitter} from 'react-icons/fi';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { blue, indigo } from '@mui/material/colors';
-import { Fonts } from '@crema/constants/AppEnums';
+import {blue, indigo} from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppLoader from '@crema/components/AppLoader';
-import { useGetDataApi } from '@crema/hooks/APIHooks';
+import {useGetDataApi} from '@crema/hooks/APIHooks';
 import {
   AddTags,
   BirthdayCard,
@@ -33,7 +33,7 @@ import {
   VisitorAnalysis,
   WallPaper,
 } from '@crema/modules/dashboards/Widgets';
-import type { WidgetsType } from '@crema/models/dashboards/Widgets';
+import type {WidgetsType} from "@crema/models/dashboards/Widgets";
 
 const Widgets = () => {
   const [{ apiData: widgetsData, loading }] =
@@ -44,18 +44,18 @@ const Widgets = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <>
             <Box
-              component="h3"
+              component='h3'
               sx={{
                 color: 'text.primary',
-                mb: { xs: 4, sm: 4, xl: 6 },
+                mb: {xs: 4, sm: 4, xl: 6},
                 fontSize: 16,
                 fontWeight: Fonts.BOLD,
               }}
             >
-              <IntlMessages id="dashboard.widgets" />
+              <IntlMessages id='dashboard.widgets'/>
             </Box>
 
             <AppGridContainer>
@@ -65,30 +65,6 @@ const Widgets = () => {
 
               <Grid item xs={12} md={6}>
                 <HollywoodMovie />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <TemperatureCard temperatures={widgetsData.temperatures} />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <DateSelector />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <VisitorAnalysis />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <BirthdayCard />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <CountryMap />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <RecentActivity data={widgetsData.recentActivity} />
               </Grid>
 
               <Grid item xs={12} md={4}>
@@ -147,7 +123,7 @@ const Widgets = () => {
                 <CremaCard
                   data={widgetsData.mateInfo.facebookInfo}
                   bgColor={indigo[600]}
-                  color="white"
+                  color='white'
                   icon={
                     <Box
                       sx={{
@@ -157,7 +133,7 @@ const Widgets = () => {
                         },
                       }}
                     >
-                      <FiFacebook />
+                      <FiFacebook/>
                     </Box>
                   }
                 />
@@ -167,7 +143,7 @@ const Widgets = () => {
                 <CremaCard
                   data={widgetsData.mateInfo.twitterInfo}
                   bgColor={blue[600]}
-                  color="white"
+                  color='white'
                   icon={
                     <Box
                       sx={{
@@ -177,14 +153,37 @@ const Widgets = () => {
                         },
                       }}
                     >
-                      <FiTwitter />
+                      <FiTwitter/>
                     </Box>
                   }
                 />
               </Grid>
 
               <Grid item xs={12} md={4}>
-                <Formats data={widgetsData.formatList} />
+                <Formats data={widgetsData.formatList}/>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <TemperatureCard temperatures={widgetsData.temperatures}/>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <DateSelector/>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <VisitorAnalysis/>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <BirthdayCard/>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <CountryMap/>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <RecentActivity data={widgetsData.recentActivity}/>
               </Grid>
             </AppGridContainer>
           </>

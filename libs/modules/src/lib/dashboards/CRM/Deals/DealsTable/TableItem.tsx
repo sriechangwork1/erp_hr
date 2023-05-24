@@ -5,9 +5,9 @@ import Avatar from '@mui/material/Avatar';
 import TableRow from '@mui/material/TableRow';
 import { blue, green, red } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
-import { DealsTableType } from '@crema/models/dashboards/CRM';
+import { DealsTableDaumType } from '@crema/models/dashboards/CRM';
 
-const getProgressColor = (progress: string) => {
+const getProgressColor = (progress) => {
   switch (progress) {
     case 'Pending':
       return `${red[600]}`;
@@ -22,12 +22,12 @@ const getProgressColor = (progress: string) => {
       return `${red[600]}`;
   }
 };
+type Props = {
+  row: DealsTableDaumType;
+};
+const TableItem = (props) => {
+  const { row } = props;
 
-type TableItemProps ={
-  row: DealsTableType;
-}
-
-const TableItem: React.FC<TableItemProps> = ({ row }) => {
   return (
     <TableRow
       key={row.name}
@@ -53,14 +53,13 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
       <TableCell
         align="left"
         sx={{
-          whiteSpace: 'nowrap',
+          whiteSpace: 'no-wrap',
         }}
         className="tableCell"
       >
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center',
           }}
         >
           {row.logo ? (
@@ -98,19 +97,13 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
       <TableCell align="left" className="tableCell">
         {row.type}
       </TableCell>
-      <TableCell
-        align="left"
-        className="tableCell"
-        sx={{
-          fontWeight: Fonts.MEDIUM,
-        }}
-      >
+      <TableCell align="left" className="tableCell" fontWeight={Fonts.MEDIUM}>
         {row.amount}
       </TableCell>
       <TableCell
         align="left"
         sx={{
-          whiteSpace: 'nowrap',
+          whiteSpace: 'no-wrap',
         }}
         className="tableCell"
       >

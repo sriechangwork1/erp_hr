@@ -1,17 +1,17 @@
 import React from 'react';
-import AppCard from '@crema/components/AppCard';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
 import PackageCard from './PackageCard';
-import { PricingObj } from '@crema/fakedb/extraPages';
+import AppCard from '@crema/components/AppCard';
+import type {PricingTwoType} from "@crema/models/extrapages/Pricing";
 
-type PackageTwoProps = {
-  pricing: PricingObj[];
-};
+type Props = {
+  pricing: PricingTwoType[]
+}
 
-const PackageTwo: React.FC<PackageTwoProps> = ({ pricing }) => {
+const PackageTwo = ({pricing}: Props) => {
   return (
-    <AppCard title="Pricing Package Style 2" sxStyle={{ alignItems: 'center' }}>
+    <AppCard title="Pricing Package Style 2" sxStyle={{alignItems: 'center'}}>
       <AppGridContainer
         sx={{
           maxWidth: 1000,
@@ -20,7 +20,7 @@ const PackageTwo: React.FC<PackageTwoProps> = ({ pricing }) => {
       >
         {pricing.map((data, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <PackageCard pricing={data} />
+            <PackageCard pricing={data}/>
           </Grid>
         ))}
       </AppGridContainer>

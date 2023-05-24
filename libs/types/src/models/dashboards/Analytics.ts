@@ -1,3 +1,19 @@
+export type AnalyticsType = {
+  welcomeCard: WelcomeCardType[];
+  revenueCards: RevenueCardType[];
+  salesState: SalesStateType[];
+  salesChartData: SalesChartDaumType[];
+  visitorsPageView: VisitorsPageViewType[];
+  activeVisitors: ActiveVisitorsType;
+  topSellingProduct: TopSellingProductType[];
+  earningData: EarningDaumType[];
+  tickets: TicketType[];
+  pageVisits: PageVisitType[];
+  transactionData: TransactionDaumType[];
+  infoWidgets: InfoWidgetType[];
+  trafficData: TrafficDaumType[];
+};
+
 export type WelcomeCardType = {
   id: number;
   type: string;
@@ -5,14 +21,19 @@ export type WelcomeCardType = {
   icon: string;
 };
 
-export type RevenueCardsType = {
+export type RevenueCardType = {
   id: number;
   type: string;
   value: string;
   growth: number;
   icon: string;
   strokeColor: string;
-  graphData: { month: string; number: number }[];
+  graphData: GraphDaumType[];
+};
+
+export type GraphDaumType = {
+  month: string;
+  number: number;
 };
 
 export type SalesStateType = {
@@ -22,7 +43,7 @@ export type SalesStateType = {
   icon: string;
 };
 
-export type ChartDataType = {
+export type SalesChartDaumType = {
   name: string;
   AS: number;
   Rev: number;
@@ -39,7 +60,12 @@ export type ActiveVisitorsType = {
   growth: number;
   value: number;
   slug: string;
-  graphData: { time: string; value: number }[];
+  graphData: GraphDaum2Type[];
+};
+
+export type GraphDaum2Type = {
+  time: string;
+  value: number;
 };
 
 export type TopSellingProductType = {
@@ -52,22 +78,24 @@ export type TopSellingProductType = {
   color: string;
 };
 
-export type EarningDataType = {
+export type EarningDaumType = {
   id: number;
   color: string;
   amount: number;
   country: string;
 };
 
-export type TicketsType = {
+export type TicketType = {
   id: number;
   name: string;
   opened: number;
-  overAllPercentage: {
-    open: number;
-    close: number;
-    hold: number;
-  };
+  overAllPercentage: OverAllPercentageType;
+};
+
+export type OverAllPercentageType = {
+  open: number;
+  close: number;
+  hold: number;
 };
 
 export type PageVisitType = {
@@ -77,7 +105,7 @@ export type PageVisitType = {
   visitors: number;
 };
 
-export type TransactionDataType = {
+export type TransactionDaumType = {
   id: string;
   customer: string;
   date: string;
@@ -85,33 +113,17 @@ export type TransactionDataType = {
   status: string;
 };
 
-export type InfoWidgetsType = {
+export type InfoWidgetType = {
   id: number;
   icon: string;
-  count: number | string;
+  count: string;
   details: string;
   bgColor?: string;
 };
 
-export type TrafficDataType = {
+export type TrafficDaumType = {
   id: number;
   title: string;
   value: number;
   session: number;
-};
-
-export type AnalyticsType = {
-  welcomeCard: WelcomeCardType[];
-  revenueCards: RevenueCardsType[];
-  salesState: SalesStateType[];
-  salesChartData: ChartDataType[];
-  visitorsPageView: VisitorsPageViewType[];
-  activeVisitors: ActiveVisitorsType;
-  topSellingProduct: TopSellingProductType[];
-  earningData: EarningDataType[];
-  tickets: TicketsType[];
-  pageVisits: PageVisitType[];
-  transactionData: TransactionDataType[];
-  infoWidgets: InfoWidgetsType[];
-  trafficData: TrafficDataType[];
 };

@@ -1,5 +1,5 @@
-import sanitizeHtml from "sanitize-html";
-import moment from "moment";
+import sanitizeHtml from 'sanitize-html';
+import dayjs from 'dayjs';
 
 /**
  * Sanitize Content
@@ -32,7 +32,7 @@ const sanitizeArrayObject = (arrayOrObject: any) => {
     } else if (
       typeof item === 'object' &&
       item !== null &&
-      moment.isMoment(item)
+      dayjs.isDayjs(item)
     ) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -83,4 +83,14 @@ export const sanitizeData = (inputVal: any) => {
 
 export const isRequestSuccessful = (code: number) => {
   return code >= 200 && code <= 204;
+};
+
+export const isEmptyObject = (obj = {}) => {
+  for (const key in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj?.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+  return true;
 };

@@ -3,24 +3,18 @@ import EarningGraph from './EarningGraph';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 import Categories from './Categories';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { EarningGraphType } from '@crema/models/dashboards/CRM';
+import {useIntl} from 'react-intl';
 
-type MonthlyEarningProps ={
-  earningGraphData: EarningGraphType[];
-}
-
-export const MonthlyEarning: React.FC<MonthlyEarningProps> = ({
-  earningGraphData,
-}) => {
+export const MonthlyEarning = ({ earningGraphData }) => {
   const { messages } = useIntl();
 
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['dashboard.earningInMonth'] as string}
+      title={messages['dashboard.earningInMonth']}
     >
       <Box
         sx={{
@@ -51,3 +45,11 @@ export const MonthlyEarning: React.FC<MonthlyEarningProps> = ({
 };
 
 export default MonthlyEarning;
+
+MonthlyEarning.defaultProps = {
+  earningGraphData: [],
+};
+
+MonthlyEarning.propTypes = {
+  earningGraphData: PropTypes.array,
+};

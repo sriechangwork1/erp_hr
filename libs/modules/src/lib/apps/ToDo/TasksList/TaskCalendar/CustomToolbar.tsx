@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
 import ViewAgendaOutlinedIcon from '@mui/icons-material/ViewAgendaOutlined';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -135,7 +135,7 @@ const CustomToolbar = (props: ToolbarProps) => {
         </Stack>
 
         <Box sx={{ fontWeight: Fonts.SEMI_BOLD }}>
-          {moment(props.date).format('DD/MM/YYYY')}
+          {dayjs(props.date).format('DD/MM/YYYY')}
         </Box>
 
         <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>

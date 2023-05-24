@@ -2,19 +2,19 @@ import AppCard from '@crema/components/AppCard';
 import AppList from '@crema/components/AppList';
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppLinearProgress from '@crema/components/AppLinearProgress';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 
-import { alpha } from '@mui/material';
+import {alpha} from '@mui/material';
+import {ClassDaumType} from "@crema/models/dashboards/Academy";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-import { ClassDataType } from '@crema/models/dashboards/Academy';
+type Props={
+  item: ClassDaumType;
 
-type ClassItemProps ={
-  item: ClassDataType;
 }
-
-const ClassItem: React.FC<ClassItemProps> = ({ item }) => {
+const ClassItem = ({ item }: Props) => {
   return (
     <Box
       key={item.id}
@@ -85,16 +85,17 @@ const ClassItem: React.FC<ClassItemProps> = ({ item }) => {
   );
 };
 
-type MyClassProps= {
-  classData: ClassDataType[];
+type MyClassProps={
+  classData: ClassDaumType[]
+
 }
 
-const MyClass: React.FC<MyClassProps> = ({ classData }) => {
+const MyClass = ({ classData }: MyClassProps) => {
   const { messages } = useIntl();
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['academy.myClass'] as string}
+      title={<IntlMessages id='academy.myClass'/>}
       contentStyle={{ px: 0 }}
     >
       <AppList

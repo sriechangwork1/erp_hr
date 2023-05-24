@@ -1,17 +1,17 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Fonts } from '@crema/constants/AppEnums';
 import { NewCustomersType } from '@crema/models/dashboards/Ecommerce';
 
-type CustomerItemProps = {
-  listStyle: string;
+type Props = {
   item: NewCustomersType;
 };
 
-const CustomerItem: React.FC<CustomerItemProps> = ({ item }) => {
+const CustomerItem = ({ item }: Props) => {
   const getStatusColor = () => {
     if (item.orders === 0) {
       return '#F84E4E';
@@ -35,63 +35,77 @@ const CustomerItem: React.FC<CustomerItemProps> = ({ item }) => {
       <Avatar
         sx={{
           mr: 4,
-          width: 48,
-          height: 48,
+          width: 42,
+          height: 42,
         }}
         src={item.image}
       />
       <Box
         sx={{
-          fontSize: 14,
+          flex: 1,
+          display: 'flex',
+          alignItems: { sm: 'center' },
+          flexDirection: { xs: 'column', sm: 'row' },
         }}
       >
-        <Box
-          sx={{
-            mb: 0.5,
-            fontWeight: Fonts.MEDIUM,
-          }}
-        >
-          {item.name}
-        </Box>
         <Box
           sx={{
             fontSize: 14,
-            color: 'text.secondary',
+            flex: 1,
+            mr: 2,
           }}
         >
-          {item.message}
+          <Box
+            sx={{
+              mb: 0.5,
+              fontWeight: Fonts.MEDIUM,
+            }}
+          >
+            {item.name}
+          </Box>
+          <Box
+            sx={{
+              fontSize: 14,
+              color: 'text.secondary',
+            }}
+          >
+            {item.message}
+          </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          ml: 'auto',
-        }}
-      >
         <Box
           sx={{
-            color: getStatusColor(),
-            backgroundColor: getStatusColor() + '44',
-            padding: '3px 10px',
-            borderRadius: '15px',
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          {item.orders} orders
+          <Box
+            sx={{
+              color: getStatusColor(),
+              backgroundColor: getStatusColor() + '44',
+              padding: '3px 10px',
+              borderRadius: '15px',
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {item.orders} orders
+          </Box>
+          <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={() => {}}
+          >
+            <MoreVertIcon />
+          </IconButton>
         </Box>
-        <IconButton
-          aria-label="more"
-          aria-controls="long-menu"
-          aria-haspopup="true"
-          // onClick={null}
-        >
-          <MoreVertIcon />
-        </IconButton>
       </Box>
     </Box>
   );
 };
 
 export default CustomerItem;
+
+CustomerItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};

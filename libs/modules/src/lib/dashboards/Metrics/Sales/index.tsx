@@ -2,10 +2,10 @@ import React from 'react';
 import SalesGraph from './SalesGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { SalesDataType } from '@crema/models/dashboards/Metrics';
+import {useIntl} from 'react-intl';
+import {SalesDataType} from "@crema/models/dashboards/Metrics";
 
 type SalesProps = {
   data: SalesDataType;
@@ -16,7 +16,7 @@ const Sales: React.FC<SalesProps> = ({ data }) => {
   return (
     <AppCard
       title={messages['dashboard.salesToday'] as string}
-      sxStyle={{ height: 1 }}
+      sxStyle={{height: 1}}
       contentStyle={{ display: 'flex', flexDirection: 'column' }}
     >
       <Box

@@ -1,12 +1,8 @@
 import React from 'react';
-import { Bar, BarChart, ResponsiveContainer, XAxis } from 'recharts';
-import { WebsiteTrafficType } from '@crema/models/dashboards/CRM';
+import {Bar, BarChart, ResponsiveContainer, XAxis} from 'recharts';
+import PropTypes from 'prop-types';
 
-type WebTrafficProps= {
-  websiteTrafficData: WebsiteTrafficType[];
-}
-
-const WebTrafficGraph: React.FC<WebTrafficProps> = ({ websiteTrafficData }) => {
+const WebTrafficGraph = ({ websiteTrafficData }) => {
   return (
     <ResponsiveContainer width="100%" height={170}>
       <BarChart barSize={7} data={websiteTrafficData}>
@@ -18,3 +14,11 @@ const WebTrafficGraph: React.FC<WebTrafficProps> = ({ websiteTrafficData }) => {
 };
 
 export default WebTrafficGraph;
+
+WebTrafficGraph.defaultProps = {
+  websiteTrafficData: [],
+};
+
+WebTrafficGraph.propTypes = {
+  websiteTrafficData: PropTypes.array,
+};

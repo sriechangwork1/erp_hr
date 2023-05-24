@@ -8,6 +8,7 @@ import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
 import { ContactObjType } from '@crema/models/apps/Contact';
 import { useIntl } from 'react-intl';
 import { useContactActionsContext } from '../../context/ContactContextProvider';
+import { getDateObject, getFormattedDate } from '@crema/helpers';
 
 type Props = {
   isAddContact: boolean;
@@ -54,7 +55,13 @@ const CreateContact = (props: Props) => {
 
   return (
     <AppDialog
-      fullHeight
+      sxStyle={{
+        '& .MuiDialog-paperWidthSm': {
+          maxWidth: 900,
+          height: 600,
+        },
+      }}
+      maxScrollHeight={600}
       open={isAddContact}
       onClose={() => handleAddContactClose()}
     >
@@ -66,8 +73,8 @@ const CreateContact = (props: Props) => {
           contact: selectContact ? selectContact.contact : '',
           birthday:
             selectContact && selectContact.birthday
-              ? selectContact.birthday
-              : null,
+              ? getDateObject(selectContact.birthday as string)
+              : getDateObject(),
           website:
             selectContact && selectContact.website ? selectContact.website : '',
           company:
@@ -92,11 +99,12 @@ const CreateContact = (props: Props) => {
           setSubmitting(true);
           if (selectContact) {
             const newContact = {
+              ...data,
               id: selectContact.id,
               isStarred: selectContact.isStarred,
               isFrequent: selectContact.isFrequent,
               image: userImage,
-              ...data,
+              birthday: getFormattedDate(data.birthday),
             } as ContactObjType;
             putDataApi('/api/contactApp/contact/', infoViewActionsContext, {
               contact: newContact,
@@ -113,11 +121,12 @@ const CreateContact = (props: Props) => {
             onUpdateContact!(newContact);
           } else {
             const newContact = {
+              ...data,
               id: Math.floor(Math.random() * 1000),
               isStarred: false,
               isFrequent: Math.random() > 0.5,
               image: userImage,
-              ...data,
+              birthday: getFormattedDate(data.birthday),
             };
             postDataApi('/api/contactApp/compose', infoViewActionsContext, {
               contact: newContact,

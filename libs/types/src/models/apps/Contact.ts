@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs';
 export type ContactType = { data: ContactObjType[]; count: number };
 
 export type ContactObjType = {
@@ -15,7 +16,7 @@ export type ContactObjType = {
   twitterId?: string;
   notes?: string;
   website?: string;
-  birthday?: string;
+  birthday?: string | Dayjs;
 };
 
 export type FolderType = {

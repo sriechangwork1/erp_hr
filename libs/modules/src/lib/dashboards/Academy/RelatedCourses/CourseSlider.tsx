@@ -1,35 +1,33 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
+import React from 'react';
+import Box from '@mui/material/Box';
 
-type CourseSliderProps ={
-  children: any;
+type Props={
+  children: React.ReactNode;
 }
-
-const CourseSlider: React.FC<CourseSliderProps> = ({ children }) => {
+const CourseSlider = ({ children }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
-        "& .slideRoot": {
+        position: 'relative',
+        '& .slideRoot': {
           paddingBottom: 0,
           mx: { sm: -3 },
-          "& .slick-slide": {
-            "&  img": {
-              height: "auto",
+          '& .slick-slide': {
+            '&  img': {
+              height: 'auto',
             },
           },
-          "& .slick-prev, & .slick-next": {
+          '& .slick-prev, & .slick-next': {
             top: -25,
-            "&:before": {
+            '&:before': {
               color: (theme) => theme.palette.text.primary,
             },
           },
-          "& .slick-prev": {
+          '& .slick-prev': {
             right: 32,
-            left: "auto",
+            left: 'auto',
           },
-          "& .slick-next": {
+          '& .slick-next': {
             right: 10,
           },
         },
@@ -41,7 +39,3 @@ const CourseSlider: React.FC<CourseSliderProps> = ({ children }) => {
 };
 
 export default CourseSlider;
-
-CourseSlider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

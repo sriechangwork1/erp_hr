@@ -2,8 +2,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppGridContainer from '@crema/components/AppGridContainer';
-import { Grid } from '@mui/material';
-import { useGetDataApi } from '@crema/hooks/APIHooks';
+import {Grid} from '@mui/material';
+import {useGetDataApi} from '@crema/hooks/APIHooks';
 import {
   AverageGrades,
   CourseCategories,
@@ -21,7 +21,7 @@ import {
   VideoPromo,
 } from '@crema/modules/dashboards/Academy';
 import AppLoader from '@crema/components/AppLoader';
-import type { AcademyType } from '@crema/models/dashboards/Academy';
+import type {AcademyType} from '@crema/models/dashboards/Academy';
 
 const Academy = () => {
   const [{ apiData: academyData, loading }] =
@@ -32,7 +32,7 @@ const Academy = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <Box>
             <Box
               sx={{

@@ -2,15 +2,15 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import TransactionTable from './TransactionTable';
 import AppSelect from '@crema/components/AppSelect';
-import { useIntl } from 'react-intl';
-import { TransactionDataType } from '@crema/models/dashboards/Analytics';
+import {useIntl} from 'react-intl';
+import {TransactionDaumType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type Props = {
-  transactionData: TransactionDataType[];
-};
-
+type Props={
+  transactionData: TransactionDaumType[]
+}
 const OrderNTransaction = ({ transactionData }: Props) => {
-  const handleSelectionType = (data: string) => {
+  const handleSelectionType = (data: TransactionDaumType) => {
     console.log('data: ', data);
   };
   const { messages } = useIntl();
@@ -18,7 +18,7 @@ const OrderNTransaction = ({ transactionData }: Props) => {
     <AppCard
       sxStyle={{ height: 1 }}
       contentStyle={{ px: 0 }}
-      title={messages['dashboard.analytics.ordersTransaction'] as string}
+      title={<IntlMessages id='dashboard.analytics.ordersTransaction'/>}
       action={
         <AppSelect
           menus={[

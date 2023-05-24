@@ -10,25 +10,46 @@ import { ProductDataType } from '@crema/models/ecommerce/EcommerceApp';
 import { multiPropsFilter } from '@crema/helpers';
 
 let cartItemsData = cartItems;
+let ecommerceListingData = ecommerceData;
 
 mock.onGet('/api/ecommerce/list').reply((request: AxiosRequestConfig) => {
   const { filterData, page } = request.params;
-  const data = multiPropsFilter(ecommerceData, filterData);
+  const data = multiPropsFilter(ecommerceListingData, filterData);
   const index = page * 10;
   const total = data.length;
   const list = data.length > 10 ? data.slice(index, index + 10) : data;
   return [200, { list, total }];
 });
 
+mock.onPost('/api/ecommerce/list/add').reply((request) => {
+  const { product } = JSON.parse(request.data);
+  ecommerceListingData = ecommerceListingData.concat({
+    id: ecommerceListingData.length + 1,
+    ...product,
+  });
+  return [200, ecommerceListingData];
+});
+
+mock.onPut('/api/ecommerce/list/update').reply((request) => {
+  const { product } = JSON.parse(request.data);
+  ecommerceListingData = ecommerceListingData.map((item) => {
+    if (item.id === product.id) {
+      return product;
+    }
+    return item;
+  });
+  return [200, ecommerceListingData];
+});
+
 mock.onGet('/api/ecommerce/get').reply((request: AxiosRequestConfig) => {
   const { id } = request.params;
-  if (id >= 1 && id <= 12) {
-    const data = ecommerceData.filter(
+  if (+id >= 1) {
+    const data = ecommerceListingData.filter(
       (item: ProductDataType) => +item.id === +id
     );
     if (data.length > 0) return [200, data[0]];
   }
-  return [200, ecommerceData[0]];
+  return [200, ecommerceListingData[0]];
 });
 
 mock.onGet('/api/ecommerce/orders').reply((request: AxiosRequestConfig) => {

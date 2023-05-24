@@ -1,6 +1,6 @@
 import { blue, green, red } from '@mui/material/colors';
 import { TodoType } from '@crema/models/apps/Todo';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const todoList: TodoType[] = [
   {
@@ -21,7 +21,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 29, YYYY'),
+    startDate: dayjs().format('MMM 29, YYYY'),
     scheduleMobile: '5:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -34,7 +34,7 @@ const todoList: TodoType[] = [
       name: 'Billy Bowden',
       image: '/assets/images/avatar/A22.jpg',
     },
-    createdOn: moment().format('MMM 26, YYYY'),
+    createdOn: dayjs().format('MMM 26, YYYY'),
     status: 3,
     comments: [
       {
@@ -42,7 +42,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rohit Sharma',
         image: '/assets/images/avatar/A22.jpg',
-        date: moment().format('MMM 30, YYYY'),
+        date: dayjs().format('MMM 30, YYYY'),
         time: '2:05am',
       },
     ],
@@ -67,7 +67,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 19, YYYY'),
+    startDate: dayjs().format('MMM 19, YYYY'),
     scheduleMobile: '8:30 PM',
     folderValue: 124,
     image: '/assets/images/dummy2.jpg',
@@ -80,7 +80,7 @@ const todoList: TodoType[] = [
       name: 'Mark Johnson',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 18, YYYY'),
+    createdOn: dayjs().format('MMM 18, YYYY'),
     status: 2,
     comments: [
       {
@@ -121,7 +121,7 @@ const todoList: TodoType[] = [
     isAttachment: false,
     sentAt: '10.30am',
     folderValue: 121,
-    startDate: moment().format('MMM 18, YYYY'),
+    startDate: dayjs().format('MMM 18, YYYY'),
     scheduleMobile: '8:30 PM',
     image: '/assets/images/dummy2.jpg',
     assignedTo: {
@@ -133,7 +133,7 @@ const todoList: TodoType[] = [
       name: 'John David',
       image: '/assets/images/avatar/A25.jpg',
     },
-    createdOn: moment().format('MMM 12, YYYY'),
+    createdOn: dayjs().format('MMM 12, YYYY'),
     status: 1,
     comments: [
       {
@@ -141,7 +141,7 @@ const todoList: TodoType[] = [
           'The Task is very important, try to complete it so that we have time for testing.',
         name: 'K L Sharma',
         image: '/assets/images/avatar/A21.jpg',
-        date: moment().format('MMM 20, YYYY'),
+        date: dayjs().format('MMM 20, YYYY'),
       },
     ],
     content:
@@ -173,7 +173,7 @@ const todoList: TodoType[] = [
     isAttachment: false,
     sentAt: '10.30am',
     folderValue: 121,
-    startDate: moment().format('MMM 31, YYYY'),
+    startDate: dayjs().format('MMM 31, YYYY'),
     scheduleMobile: '8:30 PM',
     image: '/assets/images/dummy2.jpg',
     assignedTo: {
@@ -185,7 +185,7 @@ const todoList: TodoType[] = [
       name: 'John David',
       image: '/assets/images/avatar/A25.jpg',
     },
-    createdOn: moment().format('MMM 26, YYYY'),
+    createdOn: dayjs().format('MMM 26, YYYY'),
     status: 1,
     comments: [
       {
@@ -193,7 +193,7 @@ const todoList: TodoType[] = [
           'The Task is very important, try to complete it so that we have time for testing.',
         name: 'K L Sharma',
         image: '/assets/images/avatar/A21.jpg',
-        date: moment().format('MMM 28, YYYY'),
+        date: dayjs().format('MMM 28, YYYY'),
         time: '2:05am',
       },
     ],
@@ -226,7 +226,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 19, YYYY'),
+    startDate: dayjs().format('MMM 19, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 123,
     image: '/assets/images/dummy2.jpg',
@@ -239,7 +239,7 @@ const todoList: TodoType[] = [
       name: 'John Guetta',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 10, YYYY'),
+    createdOn: dayjs().format('MMM 10, YYYY'),
     status: 2,
     comments: [
       {
@@ -247,7 +247,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'M S Dhoni',
         image: '/assets/images/avatar/A1.jpg',
-        date: moment().format('MMM 25, YYYY'),
+        date: dayjs().format('MMM 25, YYYY'),
         time: '2:05am',
       },
     ],
@@ -280,7 +280,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 29, YYYY'),
+    startDate: dayjs().format('MMM 29, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 123,
     image: '/assets/images/dummy2.jpg',
@@ -293,7 +293,7 @@ const todoList: TodoType[] = [
       name: 'John Guetta',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 26, YYYY'),
+    createdOn: dayjs().format('MMM 26, YYYY'),
     status: 2,
     comments: [
       {
@@ -301,7 +301,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'M S Dhoni',
         image: '/assets/images/avatar/A1.jpg',
-        date: moment().format('MMM 28, YYYY'),
+        date: dayjs().format('MMM 28, YYYY'),
         time: '2:05am',
       },
     ],
@@ -326,7 +326,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 19, YYYY'),
+    startDate: dayjs().format('MMM 19, YYYY'),
     scheduleMobile: '6:30 PM',
     isRead: true,
     folderValue: 124,
@@ -340,7 +340,7 @@ const todoList: TodoType[] = [
       name: 'Nathan David',
       image: '/assets/images/avatar/A27.jpg',
     },
-    createdOn: moment().format('MMM 19, YYYY'),
+    createdOn: dayjs().format('MMM 19, YYYY'),
     status: 3,
     comments: [
       {
@@ -348,7 +348,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Nikit Sharma',
         image: '/assets/images/avatar/A2.jpg',
-        date: moment().format('MMM 21, YYYY'),
+        date: dayjs().format('MMM 21, YYYY'),
         time: '2:15am',
       },
     ],
@@ -373,7 +373,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 26, YYYY'),
+    startDate: dayjs().format('MMM 26, YYYY'),
     scheduleMobile: '4:30 PM',
     isRead: true,
     folderValue: 124,
@@ -387,7 +387,7 @@ const todoList: TodoType[] = [
       name: 'Nathan David',
       image: '/assets/images/avatar/A27.jpg',
     },
-    createdOn: moment().format('MMM 25, YYYY'),
+    createdOn: dayjs().format('MMM 25, YYYY'),
     status: 3,
     comments: [
       {
@@ -395,7 +395,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Nikit Sharma',
         image: '/assets/images/avatar/A2.jpg',
-        date: moment().format('MMM 27, YYYY'),
+        date: dayjs().format('MMM 27, YYYY'),
         time: '2:05am',
       },
     ],
@@ -428,7 +428,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 15, YYYY'),
+    startDate: dayjs().format('MMM 15, YYYY'),
     scheduleMobile: '5:30 PM',
     folderValue: 211,
     image: '/assets/images/dummy2.jpg',
@@ -441,7 +441,7 @@ const todoList: TodoType[] = [
       name: 'Nathon Lyon',
       image: '/assets/images/avatar/A27.jpg',
     },
-    createdOn: moment().format('MMM 12, YYYY'),
+    createdOn: dayjs().format('MMM 12, YYYY'),
     status: 1,
     comments: [
       {
@@ -449,7 +449,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Ravindra Jadeja',
         image: '/assets/images/avatar/A4.jpg',
-        date: moment().format('MMM 22, YYYY'),
+        date: dayjs().format('MMM 22, YYYY'),
         time: '2:35am',
       },
     ],
@@ -482,7 +482,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 28, YYYY'),
+    startDate: dayjs().format('MMM 28, YYYY'),
     scheduleMobile: '8:30 PM',
     folderValue: 211,
     image: '/assets/images/dummy2.jpg',
@@ -495,7 +495,7 @@ const todoList: TodoType[] = [
       name: 'Nathon Lyon',
       image: '/assets/images/avatar/A27.jpg',
     },
-    createdOn: moment().format('MMM 22, YYYY'),
+    createdOn: dayjs().format('MMM 22, YYYY'),
     status: 1,
     comments: [
       {
@@ -503,7 +503,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Ravindra Jadeja',
         image: '/assets/images/avatar/A4.jpg',
-        date: moment().format('MMM 28, YYYY'),
+        date: dayjs().format('MMM 28, YYYY'),
         time: '4:18am',
       },
     ],
@@ -536,7 +536,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 14, YYYY'),
+    startDate: dayjs().format('MMM 14, YYYY'),
     scheduleMobile: '9:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -549,7 +549,7 @@ const todoList: TodoType[] = [
       name: 'Ross Taylor',
       image: '/assets/images/avatar/A28.jpg',
     },
-    createdOn: moment().format('MMM 09, YYYY'),
+    createdOn: dayjs().format('MMM 09, YYYY'),
     status: 2,
     comments: [
       {
@@ -557,7 +557,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Krishna Kumar',
         image: '/assets/images/avatar/A5.jpg',
-        date: moment().format('MMM 19, YYYY'),
+        date: dayjs().format('MMM 19, YYYY'),
         time: '2:45am',
       },
     ],
@@ -590,7 +590,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 13, YYYY'),
+    startDate: dayjs().format('MMM 13, YYYY'),
     scheduleMobile: '8:30 PM',
     folderValue: 126,
     image: '/assets/images/dummy2.jpg',
@@ -603,7 +603,7 @@ const todoList: TodoType[] = [
       name: 'Mark Williamson',
       image: '/assets/images/avatar/A29.jpg',
     },
-    createdOn: moment().format('MMM 08, YYYY'),
+    createdOn: dayjs().format('MMM 08, YYYY'),
     status: 3,
     comments: [
       {
@@ -611,7 +611,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rehan Kant',
         image: '/assets/images/avatar/A6.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '10:05am',
       },
     ],
@@ -644,7 +644,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 24, YYYY'),
+    startDate: dayjs().format('MMM 24, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -657,7 +657,7 @@ const todoList: TodoType[] = [
       name: 'Ross Taylor',
       image: '/assets/images/avatar/A28.jpg',
     },
-    createdOn: moment().format('MMM 22, YYYY'),
+    createdOn: dayjs().format('MMM 22, YYYY'),
     status: 2,
     comments: [
       {
@@ -665,7 +665,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Krishna Kumar',
         image: '/assets/images/avatar/A5.jpg',
-        date: moment().format('MMM 26, YYYY'),
+        date: dayjs().format('MMM 26, YYYY'),
         time: '4:18am',
       },
     ],
@@ -698,7 +698,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 12, YYYY'),
+    startDate: dayjs().format('MMM 12, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 124,
     image: '/assets/images/dummy2.jpg',
@@ -711,7 +711,7 @@ const todoList: TodoType[] = [
       name: 'Rober Twose',
       image: '/assets/images/avatar/A1.jpg',
     },
-    createdOn: moment().format('MMM 07, YYYY'),
+    createdOn: dayjs().format('MMM 07, YYYY'),
     status: 1,
     comments: [
       {
@@ -719,7 +719,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rahul Rajan',
         image: '/assets/images/avatar/A7.jpg',
-        date: moment().format('MMM 21, YYYY'),
+        date: dayjs().format('MMM 21, YYYY'),
         time: '7:05am',
       },
     ],
@@ -744,7 +744,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 11, YYYY'),
+    startDate: dayjs().format('MMM 11, YYYY'),
     scheduleMobile: '5:30 PM',
     folderValue: 125,
     image: '/assets/images/dummy2.jpg',
@@ -757,7 +757,7 @@ const todoList: TodoType[] = [
       name: 'Jessy Ryder',
       image: '/assets/images/avatar/A22.jpg',
     },
-    createdOn: moment().format('MMM 07, YYYY'),
+    createdOn: dayjs().format('MMM 07, YYYY'),
     status: 2,
     comments: [
       {
@@ -765,7 +765,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Shikhar Dhawan',
         image: '/assets/images/avatar/A8.jpg',
-        date: moment().format('MMM 22, YYYY'),
+        date: dayjs().format('MMM 22, YYYY'),
         time: '2:12am',
       },
     ],
@@ -798,7 +798,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 24, YYYY'),
+    startDate: dayjs().format('MMM 24, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 126,
     image: '/assets/images/dummy2.jpg',
@@ -811,7 +811,7 @@ const todoList: TodoType[] = [
       name: 'Mark Williamson',
       image: '/assets/images/avatar/A29.jpg',
     },
-    createdOn: moment().format('MMM 22, YYYY'),
+    createdOn: dayjs().format('MMM 22, YYYY'),
     status: 3,
     comments: [
       {
@@ -819,7 +819,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rehan Kant',
         image: '/assets/images/avatar/A6.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '4:18am',
       },
     ],
@@ -852,7 +852,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 10, YYYY'),
+    startDate: dayjs().format('MMM 10, YYYY'),
     scheduleMobile: '4:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -865,7 +865,7 @@ const todoList: TodoType[] = [
       name: 'Shane Bond',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 06, YYYY'),
+    createdOn: dayjs().format('MMM 06, YYYY'),
     status: 3,
     comments: [
       {
@@ -873,7 +873,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'shreyas Iyer',
         image: '/assets/images/avatar/A9.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '2:05am',
       },
     ],
@@ -907,7 +907,7 @@ const todoList: TodoType[] = [
     isAttachment: false,
     sentAt: '10.30am',
     folderValue: 125,
-    startDate: moment().format('MMM 09, YYYY'),
+    startDate: dayjs().format('MMM 09, YYYY'),
     scheduleMobile: '8:30 PM',
     image: '/assets/images/dummy2.jpg',
     assignedTo: {
@@ -919,7 +919,7 @@ const todoList: TodoType[] = [
       name: 'Martin Fergusen',
       image: '/assets/images/avatar/A24.jpg',
     },
-    createdOn: moment().format('MMM 01, YYYY'),
+    createdOn: dayjs().format('MMM 01, YYYY'),
     status: 1,
     comments: [
       {
@@ -927,7 +927,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Bhuvneshwar Kumar',
         image: '/assets/images/avatar/A10.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '2:55am',
       },
     ],
@@ -960,7 +960,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 23, YYYY'),
+    startDate: dayjs().format('MMM 23, YYYY'),
     scheduleMobile: '6:30 PM',
     folderValue: 124,
     image: '/assets/images/dummy2.jpg',
@@ -973,7 +973,7 @@ const todoList: TodoType[] = [
       name: 'Rober Twose',
       image: '/assets/images/avatar/A1.jpg',
     },
-    createdOn: moment().format('MMM 18, YYYY'),
+    createdOn: dayjs().format('MMM 18, YYYY'),
     status: 1,
     comments: [
       {
@@ -981,7 +981,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rahul Rajan',
         image: '/assets/images/avatar/A7.jpg',
-        date: moment().format('MMM 24, YYYY'),
+        date: dayjs().format('MMM 24, YYYY'),
         time: '4:18am',
       },
     ],
@@ -1006,7 +1006,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 08, YYYY'),
+    startDate: dayjs().format('MMM 08, YYYY'),
     scheduleMobile: '6:30 PM',
     folderValue: 124,
     image: '/assets/images/dummy2.jpg',
@@ -1019,7 +1019,7 @@ const todoList: TodoType[] = [
       name: 'Mark Johnson',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 05, YYYY'),
+    createdOn: dayjs().format('MMM 05, YYYY'),
     status: 2,
     comments: [
       {
@@ -1027,7 +1027,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Narendra Kumar',
         image: '/assets/images/avatar/A11.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '2:05am',
       },
     ],
@@ -1043,7 +1043,7 @@ const todoList: TodoType[] = [
     label: [],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 07, YYYY'),
+    startDate: dayjs().format('MMM 07, YYYY'),
     scheduleMobile: '6:30 PM',
     folderValue: 123,
     image: '/assets/images/dummy2.jpg',
@@ -1056,7 +1056,7 @@ const todoList: TodoType[] = [
       name: 'Nathan David',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 02, YYYY'),
+    createdOn: dayjs().format('MMM 02, YYYY'),
     status: 3,
     comments: [
       {
@@ -1064,7 +1064,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Baichang Bhutia',
         image: '/assets/images/avatar/A13.jpg',
-        date: moment().format('MMM 22, YYYY'),
+        date: dayjs().format('MMM 22, YYYY'),
         time: '2:05am',
       },
     ],
@@ -1089,7 +1089,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 22, YYYY'),
+    startDate: dayjs().format('MMM 22, YYYY'),
     scheduleMobile: '5:30 PM',
     folderValue: 125,
     image: '/assets/images/dummy2.jpg',
@@ -1102,7 +1102,7 @@ const todoList: TodoType[] = [
       name: 'Jessy Ryder',
       image: '/assets/images/avatar/A22.jpg',
     },
-    createdOn: moment().format('MMM 21, YYYY'),
+    createdOn: dayjs().format('MMM 21, YYYY'),
     status: 2,
     comments: [
       {
@@ -1110,7 +1110,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Shikhar Dhawan',
         image: '/assets/images/avatar/A8.jpg',
-        date: moment().format('MMM 25, YYYY'),
+        date: dayjs().format('MMM 25, YYYY'),
         time: '4:18am',
       },
     ],
@@ -1143,7 +1143,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 06, YYYY'),
+    startDate: dayjs().format('MMM 06, YYYY'),
     scheduleMobile: '8:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1156,7 +1156,7 @@ const todoList: TodoType[] = [
       name: 'Michael Holding',
       image: '/assets/images/avatar/A21.jpg',
     },
-    createdOn: moment().format('MMM 01, YYYY'),
+    createdOn: dayjs().format('MMM 01, YYYY'),
     status: 1,
     comments: [
       {
@@ -1164,7 +1164,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rameshwar Sharma',
         image: '/assets/images/avatar/A13.jpg',
-        date: moment().format('MMM 17, YYYY'),
+        date: dayjs().format('MMM 17, YYYY'),
         time: '2:05am',
       },
     ],
@@ -1180,7 +1180,7 @@ const todoList: TodoType[] = [
     label: [],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 05, YYYY'),
+    startDate: dayjs().format('MMM 05, YYYY'),
     scheduleMobile: '9:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1193,7 +1193,7 @@ const todoList: TodoType[] = [
       name: 'Shane Warne',
       image: '/assets/images/avatar/A24.jpg',
     },
-    createdOn: moment().format('MMM 02, YYYY'),
+    createdOn: dayjs().format('MMM 02, YYYY'),
     status: 2,
     comments: [
       {
@@ -1201,7 +1201,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Tushar Sharma',
         image: '/assets/images/avatar/A15.jpg',
-        date: moment().format('MMM 24, YYYY'),
+        date: dayjs().format('MMM 24, YYYY'),
         time: '2:05am',
       },
     ],
@@ -1234,7 +1234,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 20, YYYY'),
+    startDate: dayjs().format('MMM 20, YYYY'),
     scheduleMobile: '3:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1247,7 +1247,7 @@ const todoList: TodoType[] = [
       name: 'Shane Bond',
       image: '/assets/images/avatar/A26.jpg',
     },
-    createdOn: moment().format('MMM 18, YYYY'),
+    createdOn: dayjs().format('MMM 18, YYYY'),
     status: 3,
     comments: [
       {
@@ -1255,7 +1255,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'shreyas Iyer',
         image: '/assets/images/avatar/A9.jpg',
-        date: moment().format('MMM 22, YYYY'),
+        date: dayjs().format('MMM 22, YYYY'),
         time: '4:18am',
       },
     ],
@@ -1280,7 +1280,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: true,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 04, YYYY'),
+    startDate: dayjs().format('MMM 04, YYYY'),
     scheduleMobile: '7:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1293,7 +1293,7 @@ const todoList: TodoType[] = [
       name: 'Billy Bowden',
       image: '/assets/images/avatar/A22.jpg',
     },
-    createdOn: moment().format('MMM 01, YYYY'),
+    createdOn: dayjs().format('MMM 01, YYYY'),
     status: 3,
     comments: [
       {
@@ -1301,7 +1301,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rohit Sharma',
         image: '/assets/images/avatar/A22.jpg',
-        date: moment().format('MMM 25, YYYY'),
+        date: dayjs().format('MMM 25, YYYY'),
         time: '4:05am',
       },
     ],
@@ -1334,7 +1334,7 @@ const todoList: TodoType[] = [
     ],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 03, YYYY'),
+    startDate: dayjs().format('MMM 03, YYYY'),
     scheduleMobile: '8:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1347,7 +1347,7 @@ const todoList: TodoType[] = [
       name: 'Michael Holding',
       image: '/assets/images/avatar/A21.jpg',
     },
-    createdOn: moment().format('MMM 02, YYYY'),
+    createdOn: dayjs().format('MMM 02, YYYY'),
     status: 1,
     comments: [
       {
@@ -1355,7 +1355,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Rameshwar Sharma',
         image: '/assets/images/avatar/A13.jpg',
-        date: moment().format('MMM 17, YYYY'),
+        date: dayjs().format('MMM 17, YYYY'),
         time: '2:05am',
       },
     ],
@@ -1389,7 +1389,7 @@ const todoList: TodoType[] = [
     isAttachment: false,
     sentAt: '10.30am',
     folderValue: 125,
-    startDate: moment().format('MMM 20, YYYY'),
+    startDate: dayjs().format('MMM 20, YYYY'),
     scheduleMobile: '5:30 PM',
     image: '/assets/images/dummy2.jpg',
     assignedTo: {
@@ -1401,7 +1401,7 @@ const todoList: TodoType[] = [
       name: 'Martin Fergusen',
       image: '/assets/images/avatar/A24.jpg',
     },
-    createdOn: moment().format('MMM 18, YYYY'),
+    createdOn: dayjs().format('MMM 18, YYYY'),
     status: 1,
     comments: [
       {
@@ -1409,7 +1409,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Bhuvneshwar Kumar',
         image: '/assets/images/avatar/A10.jpg',
-        date: moment().format('MMM 18, YYYY'),
+        date: dayjs().format('MMM 18, YYYY'),
         time: '4:18am',
       },
     ],
@@ -1425,7 +1425,7 @@ const todoList: TodoType[] = [
     label: [],
     isAttachment: false,
     sentAt: '10.30am',
-    startDate: moment().format('MMM 02, YYYY'),
+    startDate: dayjs().format('MMM 02, YYYY'),
     scheduleMobile: '6:30 PM',
     folderValue: 121,
     image: '/assets/images/dummy2.jpg',
@@ -1438,7 +1438,7 @@ const todoList: TodoType[] = [
       name: 'Shane Warne',
       image: '/assets/images/avatar/A24.jpg',
     },
-    createdOn: moment().format('MMM 01, YYYY'),
+    createdOn: dayjs().format('MMM 01, YYYY'),
     status: 2,
     comments: [
       {
@@ -1446,7 +1446,7 @@ const todoList: TodoType[] = [
           'Call John at 8:00 PM to cross check the things and get a feedback too.',
         name: 'Tushar Sharma',
         image: '/assets/images/avatar/A15.jpg',
-        date: moment().format('MMM 24, YYYY'),
+        date: dayjs().format('MMM 24, YYYY'),
         time: '2:05am',
       },
     ],

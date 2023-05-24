@@ -10,6 +10,8 @@ import { TaskActions } from './Todo.action';
 import { WallActions } from './Wall.actions';
 import { ScrumboardActions } from './Scrumboard.actions';
 import { UserListActions } from './UserList.actions';
+import { InvoiceActionTypes } from './Invoice.action';
+import { BlogActionTypes } from './Blogs.action';
 
 export type AppActions =
   | CommonActionTypes
@@ -23,4 +25,6 @@ export type AppActions =
   | WallActions
   | ScrumboardActions
   | ContactActions
+  | InvoiceActionTypes
+  | BlogActionTypes
   | UserListActions;

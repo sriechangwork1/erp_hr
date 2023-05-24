@@ -1,24 +1,19 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 
-type StatsCardProps ={
-  icon: string;
-  bgColor?: string;
-  heading: any;
-  data: {
-    count: string;
-  };
-}
+const StatsCard = (props) => {
+  const { icon, data, heading } = props;
 
-const StatsCard: React.FC<StatsCardProps> = ({ icon, data, heading }) => {
   return (
     <AppCard
       className="card-hover"
       sxStyle={{
-        borderRadius: 4,
+        borderRadius: (theme) =>
+          theme.components.MuiCard.styleOverrides.root.borderRadius / 4,
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -62,3 +57,15 @@ const StatsCard: React.FC<StatsCardProps> = ({ icon, data, heading }) => {
 };
 
 export default StatsCard;
+
+StatsCard.defaultProps = {
+  data: {
+    count: '',
+  },
+};
+
+StatsCard.propTypes = {
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  data: PropTypes.object,
+  heading: PropTypes.any.isRequired,
+};

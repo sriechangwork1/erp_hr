@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
-import { grey } from '@mui/material/colors/index';
+import { grey } from '@mui/material/colors';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppTextField from '@crema/components/AppTextField';
 import { useIntl } from 'react-intl';

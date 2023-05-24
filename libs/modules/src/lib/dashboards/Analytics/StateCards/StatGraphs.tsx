@@ -1,12 +1,13 @@
 import React from 'react';
-import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
+import {Area, AreaChart, ResponsiveContainer, Tooltip} from 'recharts';
+import {GraphDaumType} from "@crema/models/dashboards/Analytics";
 
-type StatGraphsProps = {
-  data: { month: string; number: number }[];
-  strokeColor: string;
+type Props = {
+  data: GraphDaumType[],
+  strokeColor: string,
 };
 
-const StatGraphs: React.FC<StatGraphsProps> = ({ data, strokeColor }) => {
+const StatGraphs = ({ data=[], strokeColor }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={80}>
       <AreaChart data={data} margin={{ top: 25, right: 0, left: 0, bottom: 0 }}>

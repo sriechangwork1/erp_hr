@@ -3,17 +3,18 @@ import AppCard from '@crema/components/AppCard';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
-import { useIntl } from 'react-intl';
-import { Fonts } from '@crema/constants/AppEnums';
-import { ProfileType } from '@crema/models/dashboards/Academy';
+import {useIntl} from 'react-intl';
+import {Fonts} from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {ProfileType} from "@crema/models/dashboards/Academy";
 
-type MyProfileProps= {
-  profile: ProfileType;
+type Props = {
+  profile: ProfileType
 }
 
-const MyProfile: React.FC<MyProfileProps> = ({ profile }) => {
-  const { profile_pic, name, designation, achievements, friends } = profile;
-  const { messages } = useIntl();
+const MyProfile = ({profile}: Props) => {
+  const {profile_pic, name, designation, achievements, friends} = profile;
+  const {messages} = useIntl();
 
   return (
     <AppCard
@@ -172,3 +173,7 @@ const MyProfile: React.FC<MyProfileProps> = ({ profile }) => {
 };
 
 export default MyProfile;
+
+MyProfile.propTypes = {
+  profile: PropTypes.object,
+};

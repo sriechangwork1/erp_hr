@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Collapse, Icon, IconButton, ListItemText } from '@mui/material';
-import { useRouter } from 'next/router';
+import {useRouter} from "next/router";
 import clsx from 'clsx';
 import VerticalItem from '../VerticalItem';
 import Box from '@mui/material/Box';
@@ -64,8 +64,8 @@ const VerticalCollapse: React.FC<VerticalCollapseProps> = ({ item, level }) => {
 
   const { user } = useAuthUser();
   const hasPermission = useMemo(
-    () => checkPermission(item.permittedRole, user?.role),
-    [item.permittedRole, user?.role]
+    () => checkPermission(item.permittedRole, user.role),
+    [item.permittedRole, user.role]
   );
 
   if (!hasPermission) {

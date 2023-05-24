@@ -1,27 +1,28 @@
-import React from "react";
-import { Line, LineChart, ResponsiveContainer } from "recharts";
-import Box from "@mui/material/Box";
+import React from 'react';
+import {Line, LineChart, ResponsiveContainer} from 'recharts';
+import Box from '@mui/material/Box';
 
-type WorkViewsGraphPorps ={
+type WorkViewsGraphPorps = {
   data: { name: string; value: number }[];
 }
 
-const WorkViewsGraph: React.FC<WorkViewsGraphPorps> = ({ data }) => {
+const WorkViewsGraph: React.FC<WorkViewsGraphPorps> = ({data}) => {
   return (
     <Box
       sx={{
         p: 0,
-        mt: "auto",
-        objectPosition: "bottom",
+        mt: 'auto',
+        flexDirection: 'auto',
+        objectPosition: 'bottom',
       }}
     >
-      <ResponsiveContainer height={100} width="100%">
+      <ResponsiveContainer height={100} width='100%'>
         <LineChart data={data}>
           <Line
-            type="monotone"
-            dataKey="value"
-            stroke="#E2E8F0"
-            strokeWidth={3}
+            type='monotone'
+            dataKey='value'
+            stroke='#F04F47'
+            strokeWidth={2}
             dot={false}
           />
         </LineChart>

@@ -1,13 +1,9 @@
 import React from 'react';
-import { Line, LineChart, ResponsiveContainer } from 'recharts';
-import { Box } from '@mui/material';
-import { ReviewGraphType } from '@crema/models/dashboards/CRM';
+import {Line, LineChart, ResponsiveContainer} from 'recharts';
+import PropTypes from 'prop-types';
+import {Box} from '@mui/material';
 
-type ReviewsGraphProps= {
-  reviewGraphData: ReviewGraphType[];
-}
-
-const ReviewsGraph: React.FC<ReviewsGraphProps> = ({ reviewGraphData }) => {
+const ReviewsGraph = ({ reviewGraphData }) => {
   return (
     <Box
       sx={{
@@ -32,3 +28,11 @@ const ReviewsGraph: React.FC<ReviewsGraphProps> = ({ reviewGraphData }) => {
 };
 
 export default ReviewsGraph;
+
+ReviewsGraph.defaultProps = {
+  reviewGraphData: [],
+};
+
+ReviewsGraph.propTypes = {
+  reviewGraphData: PropTypes.array,
+};

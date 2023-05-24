@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import {Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -7,15 +7,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import CardWrapper from './CardWrapper';
-import { PricingObj } from '@crema/fakedb/extraPages';
+import type {PricingFourType} from "@crema/models/extrapages/Pricing";
 
-type PackageCardProps = {
-  pricing: PricingObj;
-};
+type Props = {
+  pricing: PricingFourType
+}
 
-const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
+const PackageCard = ({pricing}: Props) => {
   return (
     <CardWrapper>
       <Box

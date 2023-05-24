@@ -1,20 +1,9 @@
 import React from 'react';
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-} from 'recharts';
-import { useThemeContext } from '@crema/context/ThemeContextProvider';
-import { StatisticType } from '@crema/models/dashboards/CRM';
+import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis,} from 'recharts';
+import PropTypes from 'prop-types';
+import {useThemeContext} from '@crema/context/ThemeContextProvider';
 
-type StatGraphsProps= {
-  data: StatisticType[];
-}
-
-const StatGraphs: React.FC<StatGraphsProps> = ({ data }) => {
+const StatGraphs = ({ data }) => {
   const { theme } = useThemeContext();
 
   return (
@@ -60,3 +49,11 @@ const StatGraphs: React.FC<StatGraphsProps> = ({ data }) => {
 };
 
 export default StatGraphs;
+
+StatGraphs.defaultProps = {
+  data: [],
+};
+
+StatGraphs.propTypes = {
+  data: PropTypes.array,
+};

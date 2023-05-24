@@ -1,17 +1,12 @@
-import React from 'react';
+// import React from 'react';
 import Grid from '@mui/material/Grid/index';
 import StatsCard from './StatsCard';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { QuickStatsType } from '@crema/models/dashboards/CRM';
+import PropTypes from 'prop-types';
+import {Fonts} from '@crema/constants/AppEnums';
 
-type QuickStatsProps ={
-  quickStatsData: QuickStatsType;
-}
-
-const QuickStats: React.FC<QuickStatsProps> = ({ quickStatsData }) => {
-  console.log('quickStatsData', quickStatsData);
+const QuickStats = ({ quickStatsData }) => {
   return (
     <>
       <Box
@@ -64,3 +59,11 @@ const QuickStats: React.FC<QuickStatsProps> = ({ quickStatsData }) => {
 };
 
 export default QuickStats;
+
+QuickStats.defaultProps = {
+  quickStatsData: null,
+};
+
+QuickStats.propTypes = {
+  quickStatsData: PropTypes.object,
+};

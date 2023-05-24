@@ -5,13 +5,14 @@ import TableBody from '@mui/material/TableBody';
 import TableHeading from './TableHeading';
 import TableItem from './TableItem';
 import AppTableContainer from '@crema/components/AppTableContainer';
-import { DealsTableType } from '@crema/models/dashboards/CRM';
+import {DealsTableDaumType} from "@crema/models/dashboards/CRM";
 
-type DealsTableProps ={
-  dealsTableData: DealsTableType[];
+type Props={
+  dealsTableData: DealsTableDaumType[]
+
 }
+const DealsTable = ({ dealsTableData } : Props) => {
 
-const DealsTable: React.FC<DealsTableProps> = ({ dealsTableData }) => {
   return (
     <AppTableContainer>
       <Table className="table">

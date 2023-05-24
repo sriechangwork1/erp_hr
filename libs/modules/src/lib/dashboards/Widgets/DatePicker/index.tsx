@@ -1,12 +1,9 @@
 import React from 'react';
-import { TextField } from '@mui/material';
 import AppCard from '@crema/components/AppCard';
 import CalendarWrapper from './CalendarWrapper';
-import StaticDatePicker from '@mui/lab/StaticDatePicker';
+import { StaticDatePicker } from '@mui/lab';
 
-type DateSelectorProps = {};
-
-const DateSelector: React.FC<DateSelectorProps> = () => {
+const DateSelector = () => {
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
@@ -19,7 +16,6 @@ const DateSelector: React.FC<DateSelectorProps> = () => {
           onChange={(newValue: Date | null) => {
             setValue(newValue);
           }}
-          renderInput={(params: any) => <TextField {...params} />}
         />
       </CalendarWrapper>
     </AppCard>

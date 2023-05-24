@@ -1,7 +1,6 @@
 import React from 'react';
 
 import DatePicker from './DatePicker';
-import DateRangePicker from './DateRangePicker';
 import DateTimePicker from './DateTimePicker';
 import Masonry from './Masonry';
 import Timeline from './Timeline';
@@ -16,6 +15,5 @@ export {
   TrapFocus,
   TreeView,
   DatePicker,
-  DateRangePicker,
   DateTimePicker,
 };

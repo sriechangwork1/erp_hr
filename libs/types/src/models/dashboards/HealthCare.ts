@@ -2,7 +2,7 @@ export type DrStateType = {
   id: number;
   category: string;
   name: string;
-  bgColor: string;
+  bgColor?: string;
   time: string;
   icon: string;
 };
@@ -71,8 +71,8 @@ export type RecentPatientType = {
 
 export type HospitalActivityType = {
   name: string;
-  consultations: number;
-  patients: number;
+  Consultations: number;
+  Patients: number;
 };
 
 export type BloodCardType = {
@@ -119,11 +119,18 @@ export type DosesType = {
 
 export type YourActivityType = {
   day: string;
-  visits: number;
+  Visits: number;
+};
+
+export type ActivityType = {
+  id: number;
+  srcImg: string;
+  name: string;
+  value: any;
 };
 
 export type HealthCareType = {
-  drState: DrStateType[];
+  salesState: DrStateType[];
   heathStatics: HeathStaticsType;
   newPatients: NewpatientsType[];
   cancelVisits: CancelVisitType[];
@@ -139,4 +146,5 @@ export type HealthCareType = {
   temperatureCard: HeartCardType;
   doses: DosesType[];
   yourActivity: YourActivityType[];
+  activities: ActivityType[];
 };

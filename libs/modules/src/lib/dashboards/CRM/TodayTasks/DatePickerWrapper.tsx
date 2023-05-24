@@ -1,57 +1,59 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Box} from '@mui/material';
 
-type DatePickerWrapperProps ={
-  children: any;
-}
-
-const DatePickerWrapper: React.FC<DatePickerWrapperProps> = ({ children }) => {
+const DatePickerWrapper = ({ children }) => {
   return (
     <Box
       sx={{
-        height: "100%",
-        width: "100%",
-        position: "relative",
-        "& .PrivatePickersToolbar-root": {
-          display: "none",
-        },
-        "& > div": {
-          minWidth: 100,
-          height: "100%",
-          "& > div": {
-            height: "100%",
-            "& > div, & .MuiCalendarPicker-root": {
-              height: "100%",
-              maxHeight: 450,
-              width: "100%",
-            },
+        height: '100%',
+        width: '100%',
+        position: 'relative',
+        '& .MuiPickersToolbar-root': {
+          '& > .MuiTypography-root': {
+            display: 'none',
           },
         },
-        "& .PrivatePickersFadeTransitionGroup-root": {
-          height: "100%",
-          "& > div": {
-            height: "100%",
-            "& > div": {
-              justifyContent: "space-around",
-            },
-          },
+        '& .MuiPickersToolbar-content': {
+          display: 'none',
         },
-        "& .PrivatePickersSlideTransition-root": {
-          height: "calc(100% - 40px)",
-          "& > div": {
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-around",
-            "& > div": {
-              justifyContent: "space-around",
-            },
-          },
-        },
-        "& .MuiButtonBase-root": {
-          padding: "3px",
-          color: "text.primary",
-        },
+        // '& > div': {
+        //   minWidth: 100,
+        //   height: '100%',
+        //   '& > div': {
+        //     height: '100%',
+        //     '& > div, & .MuiCalendarPicker-root': {
+        //       height: '100%',
+        //       maxHeight: 450,
+        //       width: '100%',
+        //     },
+        //   },
+        // },
+        // '& .PrivatePickersFadeTransitionGroup-root': {
+        //   height: '100%',
+        //   '& > div': {
+        //     height: '100%',
+        //     '& > div': {
+        //       justifyContent: 'space-around',
+        //     },
+        //   },
+        // },
+        // '& .PrivatePickersSlideTransition-root': {
+        //   height: 'calc(100% - 40px)',
+        //   '& > div': {
+        //     height: '100%',
+        //     display: 'flex',
+        //     flexDirection: 'column',
+        //     justifyContent: 'space-around',
+        //     '& > div': {
+        //       justifyContent: 'space-around',
+        //     },
+        //   },
+        // },
+        // '& .MuiButtonBase-root': {
+        //   padding: '3px',
+        //   color: 'text.primary',
+        // },
       }}
     >
       {children}
@@ -60,3 +62,7 @@ const DatePickerWrapper: React.FC<DatePickerWrapperProps> = ({ children }) => {
 };
 
 export default DatePickerWrapper;
+
+DatePickerWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+};

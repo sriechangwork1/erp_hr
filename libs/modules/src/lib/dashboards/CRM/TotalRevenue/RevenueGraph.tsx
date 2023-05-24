@@ -1,12 +1,10 @@
 import React from 'react';
-import { Line, LineChart, ResponsiveContainer } from 'recharts';
-import { ReviewGraphType } from '@crema/models/dashboards/CRM';
+import {Line, LineChart, ResponsiveContainer} from 'recharts';
+import PropTypes from 'prop-types';
 
-type RevenueGraphProps ={
-  data: ReviewGraphType[];
-}
+const RevenueGraph = (props) => {
+  const { data } = props;
 
-const RevenueGraph: React.FC<RevenueGraphProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={200}>
       <LineChart data={data} margin={{ left: 10, right: 10, top: 20 }}>
@@ -30,3 +28,11 @@ const RevenueGraph: React.FC<RevenueGraphProps> = ({ data }) => {
 };
 
 export default RevenueGraph;
+
+RevenueGraph.defaultProps = {
+  data: [],
+};
+
+RevenueGraph.propTypes = {
+  data: PropTypes.array,
+};

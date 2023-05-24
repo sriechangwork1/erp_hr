@@ -17,6 +17,7 @@ import {
   CardType,
 } from '@crema/models/apps/ScrumbBoard';
 import { useIntl } from 'react-intl';
+import { getDateObject } from '@crema/helpers';
 
 type AddCardProps = {
   isAddCardOpen: boolean;
@@ -134,7 +135,10 @@ const AddCard: React.FC<AddCardProps> = ({
           label: selectedCard && selectedCard.label ? selectedCard.label : [],
           members:
             selectedCard && selectedCard.members ? selectedCard.members : [],
-          date: selectedCard && selectedCard.date ? selectedCard.date : null,
+          date:
+            selectedCard && selectedCard.date
+              ? getDateObject(selectedCard.date)
+              : getDateObject(),
         }}
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {

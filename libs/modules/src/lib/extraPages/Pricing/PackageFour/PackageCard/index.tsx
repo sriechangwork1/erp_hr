@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import {Typography, useTheme} from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -7,15 +7,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import Card from '@mui/material/Card';
-import { PricingObj } from '@crema/fakedb/extraPages';
+import {PricingFourType} from "@crema/models/extrapages/Pricing";
 
-type PackageCardProps = {
-  pricing: PricingObj;
-};
+type Props = {
+  pricing: PricingFourType
+}
 
-const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
+const PackageCard = ({pricing}: Props) => {
+  const theme = useTheme();
+
   return (
     <Card
       sx={{
@@ -43,7 +45,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
               p: 2.5,
               backgroundColor: pricing.priceColor,
               borderRadius: '50%',
-              color: (theme) => theme.palette.common.white,
+              color: theme.palette.common.white,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -85,7 +87,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
         <List
           sx={{
             py: 0,
-            borderTop: (theme) => `solid 1px ${theme.palette.divider}`,
+            borderTop: `solid 1px ${theme.palette.divider}`,
           }}
         >
           {pricing.pricingList.map((data, index) => (
@@ -94,7 +96,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
               sx={{
                 px: 0,
                 py: 2.75,
-                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+                borderBottom: `solid 1px ${theme.palette.divider}`,
               }}
             >
               <ListItemIcon sx={{ minWidth: 10, mr: 3.5 }}>
@@ -102,7 +104,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
                   sx={{
                     fontSize: 16,
                     mt: 1,
-                    color: (theme) => theme.palette.success.main,
+                    color: theme.palette.success.main,
                   }}
                 />
               </ListItemIcon>
@@ -117,7 +119,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
           sx={{
             width: '100%',
             fontWeight: Fonts.BOLD,
-            color: (theme) => theme.palette.common.white,
+            color: theme.palette.common.white,
             minHeight: 46,
             borderRadius: 0,
             boxShadow: 'none',

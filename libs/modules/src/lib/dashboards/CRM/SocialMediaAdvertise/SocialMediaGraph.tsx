@@ -1,24 +1,13 @@
 import React from 'react';
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import {Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, XAxis, YAxis,} from 'recharts';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { SocialMediaType } from '@crema/models/dashboards/CRM';
+import {Fonts} from '@crema/constants/AppEnums';
+import {SocialMediaDaumType} from "@crema/models/dashboards/CRM";
 
-type SocialMediaAdvertiseProps ={
-  socialMediaData: SocialMediaType[];
+type Props={
+  socialMediaData: SocialMediaDaumType[]
 }
-
-const SocialMediaGraph: React.FC<SocialMediaAdvertiseProps> = ({
-  socialMediaData,
-}) => {
+const SocialMediaGraph = ({ socialMediaData=[] }: Props) => {
   return (
     <Box
       sx={{
@@ -29,7 +18,7 @@ const SocialMediaGraph: React.FC<SocialMediaAdvertiseProps> = ({
         },
       }}
     >
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={235}>
         <BarChart
           barSize={8}
           data={socialMediaData}
@@ -43,7 +32,6 @@ const SocialMediaGraph: React.FC<SocialMediaAdvertiseProps> = ({
               <Cell
                 key={`cell-${index}`}
                 fill={entry.color}
-                // radius={[10, 10, 0, 0]}
               />
             ))}
           </Bar>

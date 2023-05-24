@@ -4,13 +4,13 @@ import IntlMessages from '@crema/helpers/IntlMessages';
 import { Form } from 'formik';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import { useIntl } from 'react-intl';
 import Divider from '@mui/material/Divider';
-import moment from 'moment';
-import { Autocomplete, DatePicker } from '@mui/lab';
+import dayjs from 'dayjs';
+import { Autocomplete } from '@mui/lab';
 import AppTextField from '@crema/components/AppTextField';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import {
@@ -29,6 +29,7 @@ import {
   MemberType,
 } from '@crema/models/apps/ScrumbBoard';
 import { AuthUserType } from '@crema/models/AuthUser';
+import { DatePicker } from '@mui/x-date-pickers';
 
 type Props = {
   board: BoardType;
@@ -110,7 +111,7 @@ const AddCardForm = (props: Props) => {
           name: authUser!.displayName ? authUser!.displayName : 'User',
           image: authUser!.photoURL,
         },
-        date: moment().format('ll'),
+        date: dayjs().format('ll'),
       })
     );
   };
@@ -176,17 +177,17 @@ const AddCardForm = (props: Props) => {
             }}
           >
             <DatePicker
-              autoOk
-              format="YYYY/MM/DD"
-              variant="outlined"
-              inputVariant="outlined"
+              // autoOk
+              // format="YYYY/MM/DD"
+              // variant="outlined"
+              // inputVariant="outlined"
               label={<IntlMessages id="common.date" />}
-              name="date"
+              // name="date"
               value={values.date}
               onChange={(value: any) => setFieldValue('date', value)}
-              renderInput={(params: TextFieldProps) => (
-                <TextField {...params} />
-              )}
+              // renderInput={(params: TextFieldProps) => (
+              //   <TextField {...params} />
+              // )}
             />
           </Box>
         </Box>
@@ -219,9 +220,11 @@ const AddCardForm = (props: Props) => {
                 multiple
                 id="tags-outlined"
                 options={labelList}
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(option: LabelType) => option.name}
                 value={selectedLabels}
-                onChange={(event, value) => setSelectedLabels(value)}
+                onChange={(event, value) =>
+                  setSelectedLabels(value as LabelType[])
+                }
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
@@ -240,9 +243,11 @@ const AddCardForm = (props: Props) => {
                 id="tags-outlined"
                 options={memberList}
                 autoHighlight
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(option: MemberType) => option.name}
                 value={selectedMembers}
-                onChange={(event, value) => setMembersList(value)}
+                onChange={(event, value) =>
+                  setMembersList(value as MemberType[])
+                }
                 renderOption={(props, option) => (
                   <Box
                     component="li"

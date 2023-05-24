@@ -1,22 +1,14 @@
 import React from 'react';
-import {
-  Bar,
-  BarChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import {Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from 'recharts';
 import Box from '@mui/material/Box';
-import { ProgressGraphType } from '@crema/models/dashboards/CRM';
+import {ProgressGraphDaumType} from "@crema/models/dashboards/CRM";
 
-type GoalProgressGraphProps= {
-  progressGraphData: ProgressGraphType[];
+type Props={
+  progressGraphData: ProgressGraphDaumType[];
+
 }
+const GoalProgressGraph = ({ progressGraphData=[] } : Props) => {
 
-const GoalProgressGraph: React.FC<GoalProgressGraphProps> = ({
-  progressGraphData,
-}) => {
   return (
     <Box
       sx={{

@@ -5,8 +5,9 @@ import ecommerceData, {
   customersData,
   discountList,
   idealFor,
-  productColors,
+  ProductColors,
   recentOrders,
+  productCategory,
 } from './ecommerceData';
 
 export {
@@ -17,6 +18,7 @@ export {
   customersData,
   discountList,
   idealFor,
-  productColors,
+  ProductColors,
   recentOrders,
+  productCategory,
 };

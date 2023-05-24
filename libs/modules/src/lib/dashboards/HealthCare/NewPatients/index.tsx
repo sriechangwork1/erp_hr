@@ -1,23 +1,23 @@
 import React from 'react';
-import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
+import AppCard from "@crema/components/AppCard";
+import {useIntl} from 'react-intl';
 import PatientGraph from './PatientGraph';
-import { Box } from '@mui/material';
-import AppMenu from '@crema/components/AppMenu';
-import { Fonts } from '@crema/constants/AppEnums';
-import { NewpatientsType } from '@crema/models/dashboards/HealthCare';
+import {Box} from '@mui/material';
+import PropTypes from 'prop-types';
+import {NewpatientsType} from "@crema/models/dashboards/HealthCare";
+import {Fonts} from "@crema/constants/AppEnums";
 
-type NewPatientsProps = {
-  data: NewpatientsType[];
-};
+type Props = {
+  data: NewpatientsType[]
+}
 
-const Newpatients: React.FC<NewPatientsProps> = ({ data }) => {
-  const { messages } = useIntl();
+const NewPatients = ({data}: Props) => {
+  const {messages} = useIntl();
 
   return (
     <AppCard
       title={messages['healthCare.newPatient'] as string}
-      action={<AppMenu />}
+      action={messages['common.viewAll'] as string}
     >
       <Box>
         <Box
@@ -28,7 +28,7 @@ const Newpatients: React.FC<NewPatientsProps> = ({ data }) => {
           }}
         >
           <Box
-            component="span"
+            component='span'
             sx={{
               mr: 2,
               fontSize: 20,
@@ -37,16 +37,11 @@ const Newpatients: React.FC<NewPatientsProps> = ({ data }) => {
           >
             214
           </Box>
-          <Box
-            sx={{
-              '& img': {
-                height: 12,
-              },
-            }}
-          >
+          <Box>
             <img
-              src={'/assets/images/dashboard/metrics_icon_active.png'}
-              alt="down"
+              src={'/assets/images/dashboard/growth_icon.svg'}
+              alt='down'
+              style={{height: 12}}
             />
           </Box>
         </Box>
@@ -63,4 +58,8 @@ const Newpatients: React.FC<NewPatientsProps> = ({ data }) => {
   );
 };
 
-export default Newpatients;
+export default NewPatients;
+
+NewPatients.propTypes = {
+  data: PropTypes.array,
+};

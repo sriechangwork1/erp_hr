@@ -1,26 +1,22 @@
 import React from 'react';
 import MarketGraph from './MarketGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { Box } from '@mui/material';
-import { indigo, red, teal } from '@mui/material/colors';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Box} from '@mui/material';
+import PropTypes from 'prop-types';
+import {indigo, red, teal} from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { MarketGraphType } from '@crema/models/dashboards/Crypto';
+import {useIntl} from 'react-intl';
 
-type CryptoMarketActivityProps= {
-  marketGraphData: MarketGraphType[];
-}
+const CryptoMarketActivity = (props) => {
+  const { marketGraphData } = props;
 
-const CryptoMarketActivity: React.FC<CryptoMarketActivityProps> = ({
-  marketGraphData,
-}) => {
   const { messages } = useIntl();
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['dashboard.cryptoMarketActivity'] as string}
-      action={messages['common.viewAll'] as string}
+      title={<IntlMessages id='dashboard.cryptoMarketActivity'/>}
+      action={<IntlMessages id='common.viewAll'/>}
       contentStyle={{
         display: 'flex',
         flexDirection: 'column',
@@ -131,7 +127,8 @@ const CryptoMarketActivity: React.FC<CryptoMarketActivityProps> = ({
           </Box>
           <Box
             sx={{
-              mt: 2,
+              mt: { xs: 8, sm: 5, md: 2 },
+              width: '100%',
               fontSize: 14,
               display: 'flex',
               alignItems: 'center',
@@ -188,3 +185,11 @@ const CryptoMarketActivity: React.FC<CryptoMarketActivityProps> = ({
 };
 
 export default CryptoMarketActivity;
+
+CryptoMarketActivity.defaultProps = {
+  marketGraphData: [],
+};
+
+CryptoMarketActivity.propTypes = {
+  marketGraphData: PropTypes.array,
+};

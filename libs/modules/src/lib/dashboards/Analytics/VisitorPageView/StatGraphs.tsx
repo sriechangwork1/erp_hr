@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-} from 'recharts';
-import { VisitorsPageViewType } from '@crema/models/dashboards/Analytics';
+import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis,} from 'recharts';
+import {VisitorsPageViewType} from "@crema/models/dashboards/Analytics";
 
-type StatGraphsProps = {
+type Props= {
   data: VisitorsPageViewType[];
-};
-
-const StatGraphs: React.FC<StatGraphsProps> = ({ data }) => {
+}
+const StatGraphs = ({ data=[] }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <LineChart

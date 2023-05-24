@@ -1,16 +1,14 @@
-import React from "react";
-import { Area, AreaChart, ResponsiveContainer } from "recharts";
+import React from 'react';
+import { Area, AreaChart } from 'recharts';
+import { GraphDaumType } from '@crema/models/dashboards/Academy';
+import { Box } from '@mui/material';
 
-type CourseGraphProps ={
-  data: {
-    month: string;
-    duration: number;
-  }[];
-}
-
-const CourseGraph: React.FC<CourseGraphProps> = ({ data }) => {
+type Props = {
+  data: GraphDaumType[];
+};
+const CourseGraph = ({ data }: Props) => {
   return (
-    <ResponsiveContainer width={50} height={112}>
+    <Box sx={{ width: 50, height: 112 }}>
       <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
         <defs>
           <linearGradient id="color10" x1="0" y1="0" x2="0" y2="1">
@@ -27,7 +25,7 @@ const CourseGraph: React.FC<CourseGraphProps> = ({ data }) => {
           fillOpacity={1}
         />
       </AreaChart>
-    </ResponsiveContainer>
+    </Box>
   );
 };
 

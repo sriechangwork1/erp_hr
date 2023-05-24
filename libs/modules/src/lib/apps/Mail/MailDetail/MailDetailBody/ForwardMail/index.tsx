@@ -6,16 +6,17 @@ import * as yup from 'yup';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
 import { Box } from '@mui/material';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppTextField from '@crema/components/AppTextField';
-import ReactQuill from 'react-quill';
 import { Fonts } from '@crema/constants/AppEnums';
 
 import { styled } from '@mui/material/styles';
 import { MessageType } from '@crema/models/apps/Mail';
 import { generateUniqueID } from '@crema/helpers';
 
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const ReactQuillWrapper = styled(ReactQuill)(() => {
   return {
     '& .ql-toolbar': {
@@ -95,7 +96,7 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
             bcc: [],
             description: data.content ? data.content : 'No Message',
             isStarred: false,
-            sentOn: moment().format('llll'),
+            sentOn: dayjs().format('llll'),
           } as MessageType;
           onSubmitForwardedMail(mail);
           setSubmitting(false);

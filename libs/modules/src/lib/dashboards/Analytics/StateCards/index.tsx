@@ -1,17 +1,16 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { green, red } from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
+import {green, red} from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import StatGraphs from './StatGraphs';
 import AppCard from '@crema/components/AppCard';
-import { RevenueCardsType } from '@crema/models/dashboards/Analytics';
+import {RevenueCardType} from "@crema/models/dashboards/Analytics";
 
-type StateCardProps = {
-  data: RevenueCardsType;
-};
-
-const StateCard: React.FC<StateCardProps> = ({ data }) => {
+type Props={
+  data: RevenueCardType
+}
+const StateCard = ({ data }: Props) => {
   return (
     <AppCard>
       <Box

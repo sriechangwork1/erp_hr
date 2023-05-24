@@ -1,13 +1,8 @@
-import React, { memo } from 'react';
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  ZoomableGroup,
-} from 'react-simple-maps';
+import React, {memo} from 'react';
+import {ComposableMap, Geographies, Geography, ZoomableGroup,} from 'react-simple-maps';
+import PropTypes from 'prop-types';
+import data from "./features";
 
-const geoUrl =
-  'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 
 const rounded = (num: number) => {
   if (num > 1000000000) {
@@ -19,51 +14,54 @@ const rounded = (num: number) => {
   }
 };
 
-type GeographiesType = {
-  geographies: {
-    rsmKey: number;
-    properties: {
-      NAME: string;
-      POP_EST: number;
-    };
-  }[];
-};
+type Props = {
+  setTooltipContent: React.Dispatch<React.SetStateAction<string>>
+}
 
-const MapChart = () => {
+const MapChart = ({setTooltipContent}: Props) => {
   return (
-    <ComposableMap
-      data-tip=""
-      id="chart-element"
-      projectionConfig={{ scale: 200 }}
-    >
-      <ZoomableGroup>
-        <Geographies geography={geoUrl}>
-          {({ geographies }: GeographiesType) =>
-            geographies.map((geo) => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                style={{
-                  default: {
-                    fill: '#D6D6DA',
-                    outline: 'none',
-                  },
-                  hover: {
-                    fill: '#0A8FDC',
-                    outline: 'none',
-                  },
-                  pressed: {
-                    fill: '#0A8FDC',
-                    outline: 'none',
-                  },
-                }}
-              />
-            ))
-          }
-        </Geographies>
-      </ZoomableGroup>
-    </ComposableMap>
+    <>
+      <ComposableMap data-tip="" projectionConfig={{scale: 200}}>
+        <ZoomableGroup>
+          <Geographies geography={data}>
+            {({geographies}) =>
+              geographies.map((geo) => (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  onMouseEnter={() => {
+                    const {NAME, POP_EST} = geo.properties;
+                    setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent('');
+                  }}
+                  style={{
+                    default: {
+                      fill: '#D6D6DA',
+                      outline: 'none',
+                    },
+                    hover: {
+                      fill: '#0A8FDC',
+                      outline: 'none',
+                    },
+                    pressed: {
+                      fill: '#0A8FDC',
+                      outline: 'none',
+                    },
+                  }}
+                />
+              ))
+            }
+          </Geographies>
+        </ZoomableGroup>
+      </ComposableMap>
+    </>
   );
 };
 
 export default memo(MapChart);
+
+MapChart.propTypes = {
+  setTooltipContent: PropTypes.func,
+};

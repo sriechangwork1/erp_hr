@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { Fonts } from '@crema/constants/AppEnums';
 import { alpha, IconButton } from '@mui/material';
@@ -161,7 +161,7 @@ const CardAttachments = (props: Props) => {
                         mr: 1,
                       }}
                     >
-                      {moment(file.lastModified).format('ll').split(',')[0]}
+                      {dayjs(file.lastModified).format('ll').split(',')[0]}
                     </Box>
                     <Box
                       component="span"
@@ -172,7 +172,7 @@ const CardAttachments = (props: Props) => {
                       <IntlMessages id="common.at" />
                     </Box>
                     <Box component="span">
-                      {moment(file.lastModified).format('LT')}
+                      {dayjs(file.lastModified).format('LT')}
                     </Box>
                   </Box>
                 </Box>

@@ -114,11 +114,11 @@ const PersonalDetails = (props: Props) => {
               ml: 3.5,
             }}
           >
-            {contact.birthday ? (
-              contact.birthday
-            ) : (
+            {contact.birthday ?
+              contact.birthday.toString()
+             :
               <IntlMessages id="common.na" />
-            )}
+            }
           </Box>
         </Box>
       </div>

@@ -30,10 +30,33 @@ export type DiscountListType = {
   name: string;
 };
 
+export type ProductCartItemsType = {
+  id: number;
+  title: string;
+  mrp: number;
+  discount: string;
+  brand?: number | string;
+  image: string;
+  count: number;
+  createdAt?: string;
+  description: string;
+  price?: string;
+  rating?: number;
+  ideaFor?: number;
+  color?: string;
+  reviews?: number;
+  inStock?: boolean;
+  category?: number;
+  SKU?: string;
+  productInfo?: ProductInfoType[];
+  productSpec?: ProductSpecType[];
+  tag?: TagType[];
+};
+
 export type CartItemsType = {
   id: number;
   title: string;
-  mrp: string;
+  mrp: number;
   discount: string;
   brand?: number | string;
   image: string;
@@ -42,20 +65,24 @@ export type CartItemsType = {
 
 export type ProductDataType = {
   id: number;
+  createdAt?: string;
   title: string;
-  description?: string;
+  description: string;
   price?: string;
-  mrp: string;
+  mrp: number;
   discount: string;
   rating?: number;
   ideaFor?: number;
   brand?: number | string;
   color?: string;
   reviews?: number;
-  image: {
-    id: number;
-    src: string;
-  }[];
+  image: FileType[];
+  inStock?: boolean;
+  category?: number;
+  SKU?: string;
+  productInfo?: ProductInfoType[];
+  productSpec?: ProductSpecType[];
+  tag?: TagType[];
 };
 
 export type RecentOrdersType = {
@@ -94,3 +121,34 @@ export enum VIEW_TYPE {
   LIST = 1,
   GRID = 2,
 }
+
+export type ProductInfoType = {
+  id: number;
+  title: string;
+  desc: string;
+};
+
+export type ProductSpecType = {
+  id: number;
+  title: string;
+  desc: string;
+};
+
+export type FilterType = {
+  title: string;
+  inStock: boolean[];
+  mrp: { start: number; end: number };
+  createdAt?: { start?: string; end?: string };
+};
+
+export type TagType = {
+  id: number;
+  name: string;
+};
+
+export type FileType = Partial<File> & {
+  preview?: string;
+  path?: string;
+  src?: string;
+  id?: number;
+};

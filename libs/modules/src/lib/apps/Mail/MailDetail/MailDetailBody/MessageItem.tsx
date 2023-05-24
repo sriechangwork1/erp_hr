@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { IoArrowUndoOutline } from 'react-icons/io5';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ForwardMail from './ForwardMail';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { BiChevronDown } from 'react-icons/bi';
 import '../../../../../types/react-render-html.d';
 import renderHTML from 'react-render-html';
@@ -89,11 +89,11 @@ const MessageItem = ({
   };
 
   const onGetMailDate = (date: string) => {
-    return moment(date).format('ddd, MMM DD, YYYY');
+    return dayjs(date).format('ddd, MMM DD, YYYY');
   };
 
   const onGetMailTime = (date: string) => {
-    return moment(date).format('LT');
+    return dayjs(date).format('LT');
   };
 
   const getSenderName = () => {

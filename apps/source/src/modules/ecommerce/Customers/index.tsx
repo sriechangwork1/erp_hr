@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AppsContainer from '@crema/components/AppsContainer';
 import { useIntl } from 'react-intl';
-import { Button, Hidden } from '@mui/material';
+import { Hidden } from '@mui/material';
 import AppsHeader from '@crema/components/AppsHeader';
 import AppsContent from '@crema/components/AppsContent';
 import AppsPagination from '@crema/components/AppsPagination';
@@ -74,10 +74,6 @@ const Customers = () => {
               ml: 'auto',
             }}
           >
-            <Button variant="contained" color="primary">
-              Add Customer
-            </Button>
-
             <Hidden smDown>
               <AppsPagination
                 rowsPerPage={10}

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import VisitsGraph from './VisitsGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppSelect from '@crema/components/AppSelect';
 import AppCard from '@crema/components/AppCard';
-import { VisitsType } from '@crema/models/dashboards/Metrics';
+import type { VisitsType } from '@crema/models/dashboards/Metrics';
 
 type VisitsProps = {
   data: VisitsType;

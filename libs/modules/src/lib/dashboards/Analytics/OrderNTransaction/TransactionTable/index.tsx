@@ -5,13 +5,12 @@ import TableBody from '@mui/material/TableBody';
 import TableHeading from './TableHeading';
 import TableItem from './TableItem';
 import AppTableContainer from '@crema/components/AppTableContainer';
-import { TransactionDataType } from '@crema/models/dashboards/Analytics';
+import {TransactionDaumType} from "@crema/models/dashboards/Analytics";
 
-type Props = {
-  transactionData: TransactionDataType[];
-};
-
-const TransactionTable = ({ transactionData }: Props) => {
+type Props={
+  transactionData: TransactionDaumType[];
+}
+const TransactionTable = ({ transactionData=[] }: Props) => {
   return (
     <AppTableContainer>
       <Table className="table">
@@ -19,7 +18,7 @@ const TransactionTable = ({ transactionData }: Props) => {
           <TableHeading />
         </TableHead>
         <TableBody>
-          {transactionData.map((data: any) => (
+          {transactionData.map((data) => (
             <TableItem data={data} key={data.id} />
           ))}
         </TableBody>

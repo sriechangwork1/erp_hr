@@ -1,14 +1,19 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { Box, Grid } from '@mui/material';
-import { useIntl } from 'react-intl';
-import AppGridContainer from '@crema/components/AppGridContainer';
+import {Box, Grid} from '@mui/material';
+import {useIntl} from 'react-intl';
 import MapView from './MapView';
 import AppList from '@crema/components/AppList';
-import { Fonts } from '@crema/constants/AppEnums';
-import { SiteVisitorType } from '@crema/models/dashboards/Ecommerce';
+import {Fonts} from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import {SiteVisitorType} from "@crema/models/dashboards/Ecommerce";
 
-const CountryCell = ({ data }: { data: SiteVisitorType }) => (
+type CountryCellProps = {
+  data: SiteVisitorType
+}
+
+const CountryCell = ({data}: CountryCellProps) => (
   <Box
     sx={{
       display: 'flex',
@@ -30,7 +35,7 @@ const CountryCell = ({ data }: { data: SiteVisitorType }) => (
         },
       }}
     >
-      <img src={data.icon} alt="icon" />
+      <img src={data.icon} alt="icon"/>
     </Box>
     <Box
       component="h6"
@@ -56,17 +61,21 @@ const CountryCell = ({ data }: { data: SiteVisitorType }) => (
   </Box>
 );
 
-type SiteVisitorsProps = {
-  siteVisitorsData: SiteVisitorType[];
+CountryCell.propTypes = {
+  data: PropTypes.object,
 };
 
-const SiteVisitors: React.FC<SiteVisitorsProps> = ({ siteVisitorsData }) => {
-  const { messages } = useIntl();
+type SiteVisitorsProps = {
+  siteVisitorsData: SiteVisitorType[];
+}
+
+const SiteVisitors = ({siteVisitorsData}: SiteVisitorsProps) => {
+  const {messages} = useIntl();
   return (
     <AppCard
-      sxStyle={{ height: 1 }}
+      sxStyle={{height: 1}}
       title={messages['eCommerce.siteVisitorsStatistics'] as string}
-      contentStyle={{ px: 0 }}
+      contentStyle={{px: 0}}
     >
       <AppGridContainer>
         <Grid item xs={12} md={3}>
@@ -83,11 +92,11 @@ const SiteVisitors: React.FC<SiteVisitorsProps> = ({ siteVisitorsData }) => {
           </Box>
           <AppList
             data={siteVisitorsData}
-            renderRow={(data: any) => <CountryCell key={data.id} data={data} />}
+            renderRow={(data) => <CountryCell key={data.id} data={data}/>}
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <MapView />
+          <MapView/>
         </Grid>
         <Grid item xs={12} md={3}>
           <Box
@@ -103,8 +112,8 @@ const SiteVisitors: React.FC<SiteVisitorsProps> = ({ siteVisitorsData }) => {
           </Box>
           <AppList
             data={siteVisitorsData}
-            renderRow={(data: any) => (
-              <CountryCell key={'sec-c-' + data.id} data={data} />
+            renderRow={(data) => (
+              <CountryCell key={'sec-c-' + data.id} data={data}/>
             )}
           />
         </Grid>
@@ -114,3 +123,7 @@ const SiteVisitors: React.FC<SiteVisitorsProps> = ({ siteVisitorsData }) => {
 };
 
 export default SiteVisitors;
+
+SiteVisitors.propTypes = {
+  siteVisitorsData: PropTypes.array,
+};

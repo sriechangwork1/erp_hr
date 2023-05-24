@@ -1,4 +1,20 @@
-export type AcademicStatsType = {
+export type AcademyType = {
+  academicStats: AcademicStatType[];
+  courseCategories: CourseCategoryType[];
+  profile: ProfileType;
+  courses: CoursesType;
+  notifications: NotificationType[];
+  courseDetails: CourseDetailType[];
+  learningData: LearningDaumType[];
+  latestResults: LatestResultType[];
+  classData: ClassDaumType[];
+  studentRankings: StudentRankingType[];
+  grades: GradeType[];
+  relatedCourses: RelatedCourseType[];
+  videoPromo: VideoPromoType;
+};
+
+export type AcademicStatType = {
   id: number;
   title: string;
   count: string;
@@ -14,10 +30,12 @@ export type CourseCategoryType = {
   desc: string;
   lessons: number;
   xp: number;
-  images: {
-    image: string;
-    title: string;
-  }[];
+  images: ImageType[];
+};
+
+export type ImageType = {
+  image: string;
+  title: string;
 };
 
 export type ProfileType = {
@@ -30,31 +48,35 @@ export type ProfileType = {
 };
 
 export type CoursesType = {
-  categories: {
-    id: number;
-    title: string;
-    slug: string;
-  }[];
-  courses: {
-    id: number;
-    title: string;
-    duration: string;
-    rating: number;
-    isCompleted: boolean;
-    thumb: string;
-  }[];
+  categories: CategoryType[];
+  courses: CourseType[];
 };
 
-export type NotificationDataType = {
+export type CategoryType = {
+  id: number;
+  title: string;
+  slug: string;
+};
+
+export type CourseType = {
+  id: number;
+  title: string;
+  duration: string;
+  rating: number;
+  isCompleted: boolean;
+  thumb: string;
+};
+
+export type NotificationType = {
   id: number;
   bgcolor: string;
   color: string;
   letter: string;
   content: string;
-  date: any;
+  date: string;
 };
 
-export type CourseDetailsType = {
+export type CourseDetailType = {
   id: number;
   title: string;
   thumb: string;
@@ -63,13 +85,15 @@ export type CourseDetailsType = {
   totalDuration: string;
   coveredPractice: string;
   totalPractice: string;
-  graphData: {
-    month: string;
-    duration: number;
-  }[];
+  graphData: GraphDaumType[];
 };
 
-export type LearningDataType = {
+export type GraphDaumType = {
+  month: string;
+  duration: number;
+};
+
+export type LearningDaumType = {
   id: number;
   icon: string;
   title: string;
@@ -77,21 +101,21 @@ export type LearningDataType = {
   percentage: number;
 };
 
-export type LatestResultDataType = {
+export type LatestResultType = {
   id: number;
   chapter: string;
   topic: string;
   percentage: number;
 };
 
-export type ClassDataType = {
+export type ClassDaumType = {
   id: number;
   name: string;
   percent: number;
   icon: string;
 };
 
-export type StudentRankingDataType = {
+export type StudentRankingType = {
   id: number;
   name: string;
   profile_pic: string;
@@ -102,12 +126,12 @@ export type StudentRankingDataType = {
   category: string;
 };
 
-export type GradesType = {
+export type GradeType = {
   month: string;
   grades: number;
 };
 
-export type RelatedCoursesDataType = {
+export type RelatedCourseType = {
   id: number;
   image: string;
   title: string;
@@ -115,32 +139,17 @@ export type RelatedCoursesDataType = {
   views: string;
 };
 
-export type VideoPromoDataType = {
+export type VideoPromoType = {
   title: string;
   owner: string;
   category: string;
-  assignments: {
-    id: number;
-    title: string;
-
-    desc: string;
-    students: number;
-    daysLeft: number;
-  }[];
+  assignments: AssignmentType[];
 };
 
-export type AcademyType = {
-  academicStats: AcademicStatsType[];
-  courseCategories: CourseCategoryType[];
-  profile: ProfileType;
-  courses: CoursesType;
-  notifications: NotificationDataType[];
-  courseDetails: CourseDetailsType[];
-  learningData: LearningDataType[];
-  latestResults: LatestResultDataType[];
-  classData: ClassDataType[];
-  studentRankings: StudentRankingDataType[];
-  grades: GradesType[];
-  relatedCourses: RelatedCoursesDataType[];
-  videoPromo: VideoPromoDataType;
+export type AssignmentType = {
+  id: number;
+  title: string;
+  desc: string;
+  students: number;
+  daysLeft: number;
 };

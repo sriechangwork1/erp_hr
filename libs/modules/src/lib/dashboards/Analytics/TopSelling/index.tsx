@@ -1,21 +1,21 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import ProductCell from './ProductCell';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import AppList from '@crema/components/AppList';
-import { TopSellingProductType } from '@crema/models/dashboards/Analytics';
+import {TopSellingProductType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type TopSellingProps = {
-  products: TopSellingProductType[];
-};
-
-const TopSelling: React.FC<TopSellingProps> = ({ products }) => {
+type Props={
+  products: TopSellingProductType[]
+}
+const TopSelling = ({ products }: Props) => {
   const { messages } = useIntl();
   return (
     <AppCard
       contentStyle={{ px: 0 }}
       sxStyle={{ height: 1 }}
-      title={messages['dashboard.analytics.topSellingProducts'] as string}
+      title={<IntlMessages id='dashboard.analytics.topSellingProducts'/>}
       footer={'+12 ' + messages['common.more']}
     >
       <AppList

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { BtcChartDataType } from '@crema/models/dashboards/Crypto';
 
-const renderActiveShape = (props: any) => {
+const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -66,14 +66,12 @@ const renderActiveShape = (props: any) => {
   );
 };
 
-type BtcGraphProps ={
-  data: BtcChartDataType[];
-}
+const BtcGraph = (props) => {
+  const { data } = props;
 
-const BtcGraph: React.FC<BtcGraphProps> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onPieEnter = (data: any, index: number) => {
+  const onPieEnter = (data, index) => {
     setActiveIndex(index);
   };
 
@@ -121,3 +119,11 @@ const BtcGraph: React.FC<BtcGraphProps> = ({ data }) => {
 };
 
 export default BtcGraph;
+
+BtcGraph.defaultProps = {
+  data: [],
+};
+
+BtcGraph.propTypes = {
+  data: PropTypes.array,
+};

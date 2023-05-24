@@ -4,10 +4,10 @@ import IntlMessages from '@crema/helpers/IntlMessages';
 import KBItem from './KBItem';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import { Fonts } from '@crema/constants/AppEnums';
-import { InstallationData } from '@crema/fakedb/extraPages';
+import { InstallationDataType } from '@crema/models/extrapages/Portfolio';
 
 type InstallationProps = {
-  installationQueries: InstallationData[];
+  installationQueries: InstallationDataType[];
 };
 
 const Installation: React.FC<InstallationProps> = ({ installationQueries }) => {

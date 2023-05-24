@@ -1,40 +1,14 @@
-import { PaletteColorOptions } from '@mui/material';
-
-export type CoinGraphType = {
-  bitcoin: {
-    yearlyData: { month: string; amount: number }[];
-    monthlyData: { date: string; amount: number }[];
-    weeklyData: { day: string; amount: number }[];
-    dailyData: { time: string; amount: number }[];
-  };
-  litecoin: {
-    yearlyData: { month: string; amount: number }[];
-    monthlyData: { date: string; amount: number }[];
-    weeklyData: { day: string; amount: number }[];
-    dailyData: { time: string; amount: number }[];
-  };
-  ripple: {
-    yearlyData: { month: string; amount: number }[];
-    monthlyData: { date: string; amount: number }[];
-    weeklyData: { day: string; amount: number }[];
-    dailyData: { time: string; amount: number }[];
-  };
-};
-
-export type BuySellDataType = {
-  value: string;
-  price: string;
-  amount: string;
-};
-
-export type BuySellType = {
-  buyData: BuySellDataType;
-  sellData: BuySellDataType;
-};
-
-export type CoinType = {
-  price: string;
-  increment: number;
+export type CryptoPropsType = {
+  coinsData: CoinsDataType;
+  popularCoins: PopularCoinType[];
+  totalBalanceData: TotalBalanceDataType;
+  stories: StoryType[];
+  ordersActivities: OrdersActivityType[];
+  buySell: BuySellType;
+  gainerLooser: GainerLooserType[];
+  atcStatics: AtcStaticType[];
+  cardDetails: CardDetailsType;
+  quickTransfer: QuickTransferType;
 };
 
 export type CoinsDataType = {
@@ -44,23 +18,12 @@ export type CoinsDataType = {
   ripple: CoinType;
 };
 
-export type MarketGraphType = {
-  month: string;
-  medium: number;
-  low: number;
-  high: number;
-  amt: number;
+export type CoinType = {
+  price: string;
+  increment: number;
 };
 
-export type NewsDataType = {
-  id: number;
-  news: string;
-  created: string;
-  image: string;
-  by: string;
-};
-
-export type PopularCoinsType = {
+export type PopularCoinType = {
   id: number;
   name: string;
   shortName: string;
@@ -68,34 +31,108 @@ export type PopularCoinsType = {
   volume: string;
   h: string;
   image: string;
-  color: PaletteColorOptions | string;
-};
-
-export type BalanceCoinsType = {
-  id: number;
-  name: string;
-  value: number;
+  color: string;
 };
 
 export type TotalBalanceDataType = {
   balance: string;
-  coins: BalanceCoinsType[];
+  coins: CoinInfoDataType[];
 };
 
-export type BtcChartDataType = {
+export type CoinInfoDataType = {
   id: number;
   name: string;
   value: number;
-  color: string;
 };
 
-export type CryptoPropsType = {
-  coinGraphData: CoinGraphType;
-  buySell: BuySellType;
-  coinsData: CoinsDataType;
-  marketGraphData: MarketGraphType[];
-  newsData: NewsDataType[];
-  popularCoins: PopularCoinsType[];
-  totalBalanceData: TotalBalanceDataType;
-  btcChartData: BtcChartDataType[];
+export type StoryType = {
+  id: number;
+  srcImg: string;
+  title: string;
+  tag: string;
+  time: string;
+};
+
+export type OrdersActivityType = {
+  id: number;
+  transactionID: string;
+  type: OrderType[];
+  description: string;
+  date: string;
+  usdAmount: string;
+  amount: string;
+  name?: string;
+};
+
+export type OrderType = {
+  id: number;
+  icon: string;
+  title: string;
+};
+
+export type BuySellType = {
+  coinList: CoinListType[];
+};
+
+export type CoinListType = {
+  coinName?: string;
+  id: number;
+  icon: string;
+  name: string;
+  shortName: string;
+  coinColor: string;
+  usdPrice: number;
+};
+
+export type GainerLooserType = {
+  id: number;
+  icon: string;
+  name: string;
+  type: string;
+  percentage: string;
+  amount: string;
+};
+
+export type AtcStaticType = {
+  name: string;
+  Buy: number;
+  Sell: number;
+};
+
+export type CardDetailsType = {
+  cardDetail: CardDetailType[];
+  monthlyLimit: MonthlyLimitType[];
+};
+
+export type CardDetailType = {
+  id: number;
+  title: string;
+  name: string;
+};
+
+export type MonthlyLimitType = {
+  id: number;
+  value: number;
+  activeColor: string;
+  title: string;
+  income: string;
+};
+
+export type QuickTransferType = {
+  recentContact: RecentContactType[];
+  coinList: CoinList2Type[];
+};
+
+export type RecentContactType = {
+  id: number;
+  image: string;
+  name: string;
+};
+
+export type CoinList2Type = {
+  id: number;
+  icon: string;
+  value: number;
+  shortName: string;
+  name?: string;
 };

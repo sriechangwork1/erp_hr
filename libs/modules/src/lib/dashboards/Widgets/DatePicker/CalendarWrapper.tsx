@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import {Box} from '@mui/material';
 
 type CalendarWrapperProp = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const CalendarWrapper: React.FC<CalendarWrapperProp> = ({ children }) => {
@@ -15,18 +15,18 @@ const CalendarWrapper: React.FC<CalendarWrapperProp> = ({ children }) => {
         '& .PrivatePickersToolbar-root': {
           display: 'none',
         },
-        '& > div': {
-          minWidth: 100,
-          height: '100%',
-          '& > div': {
-            height: '100%',
-            '& > div, & .MuiCalendarPicker-root': {
-              height: '100%',
-              maxHeight: 360,
-              width: '100%',
-            },
-          },
-        },
+        // '& > div': {
+        //   minWidth: 100,
+        //   height: '100%',
+        //   '& > div': {
+        //     height: '100%',
+        //     '& > div, & .MuiCalendarPicker-root': {
+        //       height: '100%',
+        //       maxHeight: 360,
+        //       width: '100%',
+        //     },
+        //   },
+        // },
         '& .PrivatePickersFadeTransitionGroup-root': {
           height: '100%',
           '& > div': {

@@ -2,9 +2,9 @@ import React from 'react';
 import ProfileViewsGraph from './ProfileViewsGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { ProfileViewsType } from '@crema/models/dashboards/Metrics';
+import type { ProfileViewsType } from '@crema/models/dashboards/Metrics';
 
 type ProfileViewsProps = {
   data: ProfileViewsType;

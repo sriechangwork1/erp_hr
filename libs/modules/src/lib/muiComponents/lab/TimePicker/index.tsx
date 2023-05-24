@@ -25,9 +25,6 @@ import TimeValidationTimePickerSource from 'raw-loader!./TimeValidationTimePicke
 import StaticTimePickerLandscape from './StaticTimePickerLandscape';
 
 import StaticTimePickerLandscapeSource from 'raw-loader!./StaticTimePickerLandscape';
-import SubComponentsTimePickers from './SubComponentsTimePickers';
-
-import SubComponentsTimePickersSource from 'raw-loader!./SubComponentsTimePickers';
 import SecondsTimePicker from './SecondsTimePicker';
 
 import SecondsTimePickerSource from 'raw-loader!./SecondsTimePicker';
@@ -102,15 +99,6 @@ const TimePicker = () => {
             component={StaticTimePickerLandscape}
             source={StaticTimePickerLandscapeSource}
             noScrollbar
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Sub-components"
-            component={SubComponentsTimePickers}
-            source={SubComponentsTimePickersSource}
-            noScrollbar
-            description="Some lower-level sub-components (ClockPicker) are also exported. These are rendered without a wrapper or outer logic (masked input, date values parsing and validation, etc.)."
           />
         </Grid>
         <Grid item xs={12} md={6}>

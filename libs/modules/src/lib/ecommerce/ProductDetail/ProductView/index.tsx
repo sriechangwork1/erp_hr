@@ -44,7 +44,7 @@ const ProductView: React.FC<ProductViewProps> = ({ product }) => {
           mb: 4,
         }}
       >
-        In stoke
+        In stock
       </Box>
       <Box
         component="p"

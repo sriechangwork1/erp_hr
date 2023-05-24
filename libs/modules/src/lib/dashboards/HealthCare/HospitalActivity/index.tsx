@@ -1,22 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StatGraphs from './StatGraphs';
-import AppCard from '@crema/components/AppCard';
-import AppSelect from '@crema/components/AppSelect';
-import { useIntl } from 'react-intl';
-import { HospitalActivityType } from '@crema/models/dashboards/HealthCare';
+import AppCard from "@crema/components/AppCard";
+import AppSelect from "@crema/components/AppSelect";
+import {useIntl} from 'react-intl';
+import {HospitalActivityType} from "@crema/models/dashboards/HealthCare";
 
-type HospitalActivityProps = {
-  data: HospitalActivityType[];
-};
+type Props = {
+  data: HospitalActivityType[]
+}
 
-const HospitalActivity: React.FC<HospitalActivityProps> = ({ data }) => {
-  const handleSelectionType = (data: unknown) => {
+const HospitalActivity = ({data}: Props) => {
+  const handleSelectionType = (data: string) => {
     console.log('data: ', data);
   };
-  const { messages } = useIntl();
+  const {messages} = useIntl();
   return (
     <AppCard
-      sxStyle={{ height: 1 }}
+      sxStyle={{height: 1}}
       title={messages['healthCare.hospitalActivity'] as string}
       action={
         <AppSelect
@@ -35,3 +36,11 @@ const HospitalActivity: React.FC<HospitalActivityProps> = ({ data }) => {
   );
 };
 export default HospitalActivity;
+
+HospitalActivity.defaultProps = {
+  data: [],
+};
+
+HospitalActivity.propTypes = {
+  data: PropTypes.array,
+};

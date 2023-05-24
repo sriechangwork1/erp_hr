@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '@mui/material/Checkbox/index';
+import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';

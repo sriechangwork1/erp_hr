@@ -158,6 +158,63 @@ export type ShareDataType = {
   value: number;
 };
 
+export type MetricStatsType = {
+  id: number;
+  title: string;
+  count: string;
+  new: string;
+  badgeColor: string;
+  bgcolor: string;
+  icon: string;
+};
+
+export type StateDataType = {
+  id: number;
+  name: string;
+  duration: string;
+  value: string;
+  percentageChange: number;
+  iconImg: string;
+  color: string;
+};
+
+export type ReportDataType = {
+  id: number;
+  value: string;
+  percentageChange: number;
+  type: string;
+  changes: string;
+  icon: string;
+  color: string;
+  graphData: {
+    number: number;
+    month: string;
+  }[];
+};
+
+export type VisitorsPageViewType = {
+  name: string;
+  Page: number;
+  Visitor: number;
+};
+
+export type HeartCardType = {
+  id: number;
+  title: string;
+  measurement: string;
+  unit: string;
+  color: string;
+  graphData: {
+    rate: number;
+    name: string;
+  }[];
+};
+
+export type YourActivityType = {
+  day: string;
+  Visits: number;
+};
+
 export type MetricsType = {
   ordersThisYear: string;
   queryIcon: string;
@@ -186,4 +243,10 @@ export type MetricsType = {
   socialVisitorsData: SocialVisitorsType[];
   accountData: AccountDataType[];
   shareData: ShareDataType[];
+  metricsStats: MetricStatsType[];
+  stateData: StateDataType[];
+  reportData: ReportDataType[];
+  visitorsPageView: VisitorsPageViewType[];
+  heartCard: HeartCardType;
+  yourActivity: YourActivityType[];
 };

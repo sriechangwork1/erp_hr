@@ -47,12 +47,6 @@ import DisabledOptions from './DisabledOptions';
 
 import DisabledOptionsSource from 'raw-loader!./DisabledOptions';
 
-import UseAutocomplete from './UseAutocomplete';
-
-import UseAutocompleteSource from 'raw-loader!./UseAutocomplete';
-import CustomizedHook from './CustomizedHook';
-
-import CustomizedHookSource from 'raw-loader!./CustomizedHook';
 import FixedTags from './FixedTags';
 
 import FixedTagsSource from 'raw-loader!./FixedTags';
@@ -180,22 +174,6 @@ const AutoComplete = () => {
             component={DisabledOptions}
             source={DisabledOptionsSource}
             description=""
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Use Auto complete"
-            component={UseAutocomplete}
-            source={UseAutocompleteSource}
-            description="The useAutocomplete hook is also reexported from @mui/material for convenience and backward compatibility."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Customized Hook"
-            component={CustomizedHook}
-            source={CustomizedHookSource}
-            description="Head to the customization section for an example with the Autocomplete component instead of the hook."
           />
         </Grid>
         <Grid item xs={12} md={6}>

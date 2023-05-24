@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-import moment from 'moment';
 import { alpha, SelectChangeEvent } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useIntl } from 'react-intl';
@@ -27,6 +26,7 @@ import {
 } from '@crema/modules/apps/ToDo';
 import { useTodoContext } from '../../../context/TodoContextProvider';
 import { TodoType } from '@crema/models/apps/Todo';
+import { getDateObject, getFormattedDate } from '@crema/helpers';
 
 type Props = {
   selectedTask: TodoType;
@@ -47,7 +47,7 @@ const TaskDetailBody = (props: Props) => {
   const [comment, setComment] = useState('');
 
   const [scheduleDate, setScheduleDate] = useState(
-    moment(selectedTask.startDate).format('YYYY/MM/DD')
+    getDateObject(selectedTask.startDate)
   );
 
   const [selectedStaff, setStaff] = useState(selectedTask.assignedTo);
@@ -59,7 +59,7 @@ const TaskDetailBody = (props: Props) => {
   const onDoneEditing = () => {
     const task = selectedTask;
     task.content = content;
-    task.startDate = scheduleDate;
+    task.startDate = getFormattedDate(scheduleDate);
     task.assignedTo = selectedStaff;
     putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
       task,
@@ -80,7 +80,7 @@ const TaskDetailBody = (props: Props) => {
       comment: comment,
       name: user.displayName ? user.displayName : 'User',
       image: user.photoURL,
-      date: moment().format('ll'),
+      date: getDateObject().format('ll'),
     });
     putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
       task,
@@ -298,7 +298,8 @@ const TaskDetailBody = (props: Props) => {
               padding: '10px 15px',
             },
           }}
-          rows="1"
+          minRows={2}
+          maxRows={4}
           variant="outlined"
           placeholder={messages['common.writeComment'] as string}
           value={comment}

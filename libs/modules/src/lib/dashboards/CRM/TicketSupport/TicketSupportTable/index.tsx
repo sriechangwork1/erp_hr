@@ -5,17 +5,15 @@ import TableBody from '@mui/material/TableBody';
 import TableHeading from './TableHeading';
 import TableItem from './TableItem';
 import AppTableContainer from '@crema/components/AppTableContainer';
-import { TicketSupportDataType } from '@crema/models/dashboards/CRM';
+import {TicketSupportDaumType} from "@crema/models/dashboards/CRM";
 
-type TicketSupportTableProps= {
-  ticketSupportData: TicketSupportDataType[];
-}
+type Props={
+  ticketSupportData: TicketSupportDaumType[]
 
-const TicketSupportTable: React.FC<TicketSupportTableProps> = ({
-  ticketSupportData,
-}) => {
+};
+const TicketSupportTable = ({ ticketSupportData=[] }: Props) => {
   return (
-    <AppTableContainer sxStyle={{ maxHeight: 480 }}>
+    <AppTableContainer sxStyle={{ maxHeight: 380 }}>
       <Table>
         <TableHead
           sx={{

@@ -5,19 +5,17 @@ import Tab from '@mui/material/Tab';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
 import { Box } from '@mui/material';
+import PropTypes from 'prop-types';
 import { green, indigo } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import AppSelect from '@crema/components/AppSelect';
-import { CoinGraphType } from '@crema/models/dashboards/Crypto';
 
-type BitcoinProps ={
-  coinGraphData: CoinGraphType;
-}
+const Bitcoin = (props) => {
+  const { coinGraphData } = props;
 
-const Bitcoin: React.FC<BitcoinProps> = ({ coinGraphData }) => {
   const onGetCoinData = useCallback(
-    (coin: string) => {
+    (coin) => {
       switch (coin) {
         case 'Bitcoin': {
           return coinGraphData.bitcoin;
@@ -43,18 +41,13 @@ const Bitcoin: React.FC<BitcoinProps> = ({ coinGraphData }) => {
     setCoinData(onGetCoinData(coinType));
   }, [coinType, onGetCoinData]);
 
-  const handleChange = (
-    e: React.SyntheticEvent<Element, Event>,
-    newValue: number
-  ) => {
+  const handleChange = (event, newValue) => {
     setGraphType(newValue);
   };
 
   const { messages } = useIntl();
-  const handleSelectionType = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
-    setCoinType(event.target.value as string);
+  const handleSelectionType = (data) => {
+    setCoinType(data);
   };
 
   return (
@@ -86,7 +79,6 @@ const Bitcoin: React.FC<BitcoinProps> = ({ coinGraphData }) => {
                 messages['dashboard.litecoin'],
                 messages['dashboard.ripple'],
               ]}
-              selectionKey=""
               defaultValue={messages['dashboard.bitcoin']}
               onChange={handleSelectionType}
             />
@@ -185,3 +177,30 @@ const Bitcoin: React.FC<BitcoinProps> = ({ coinGraphData }) => {
 };
 
 export default Bitcoin;
+
+Bitcoin.defaultProps = {
+  coinGraphData: {
+    bitcoin: {
+      yearlyData: [],
+      monthlyData: [],
+      weeklyData: [],
+      dailyData: [],
+    },
+    litecoin: {
+      yearlyData: [],
+      monthlyData: [],
+      weeklyData: [],
+      dailyData: [],
+    },
+    ripple: {
+      yearlyData: [],
+      monthlyData: [],
+      weeklyData: [],
+      dailyData: [],
+    },
+  },
+};
+
+Bitcoin.propTypes = {
+  coinGraphData: PropTypes.object,
+};

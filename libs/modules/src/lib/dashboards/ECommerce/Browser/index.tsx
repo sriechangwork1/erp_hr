@@ -1,12 +1,17 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppList from '@crema/components/AppList';
-import { BrowserDataType } from '@crema/models/dashboards/Ecommerce';
+import PropTypes from 'prop-types';
+import {BrowserDataType} from "@crema/models/dashboards/Ecommerce";
 
-const BrowserCell = ({ item }: { item: BrowserDataType }) => {
+type BrowserCellProps = {
+  item: BrowserDataType
+}
+
+const BrowserCell = ({item}: BrowserCellProps) => {
   return (
     <Box
       sx={{
@@ -58,23 +63,28 @@ const BrowserCell = ({ item }: { item: BrowserDataType }) => {
   );
 };
 
-type BrowserProps = {
-  browserData: BrowserDataType[];
+BrowserCell.propTypes = {
+  item: PropTypes.object,
 };
 
-const Browser: React.FC<BrowserProps> = ({ browserData }) => {
-  const { messages } = useIntl();
+type BrowserProps = {
+  browserData: BrowserDataType[]
+}
+
+const Browser = ({browserData}: BrowserProps) => {
+  const {messages} = useIntl();
   return (
-    <AppCard
-      title={messages['eCommerce.browser'] as string}
-      contentStyle={{ px: 0 }}
-    >
+    <AppCard title={messages['eCommerce.browser'] as string} contentStyle={{px: 0}}>
       <AppList
         data={browserData}
-        renderRow={(item, index) => <BrowserCell item={item} key={index} />}
+        renderRow={(item, index) => <BrowserCell item={item} key={index}/>}
       />
     </AppCard>
   );
 };
 
 export default Browser;
+
+Browser.propTypes = {
+  browserData: PropTypes.array,
+};

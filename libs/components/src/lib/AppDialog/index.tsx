@@ -30,6 +30,7 @@ type AppDialogProps = {
   hideClose?: boolean;
   fullHeight?: boolean;
   actionTitle?: string;
+  maxScrollHeight?: number;
   sxStyle?: SxProps<Theme>;
 };
 
@@ -44,6 +45,7 @@ const AppDialog: React.FC<AppDialogProps> = ({
   title,
   actionTitle,
   fullHeight = false,
+  maxScrollHeight,
 }) => {
   return (
     <Dialog
@@ -93,7 +95,7 @@ const AppDialog: React.FC<AppDialogProps> = ({
             paddingTop: 1,
             height: fullHeight ? '70vh' : '100%',
             minHeight: '300px',
-            maxHeight: '400px',
+            maxHeight: maxScrollHeight ? maxScrollHeight : '400px',
             paddingRight: 6,
             paddingLeft: 6,
           }}

@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 
 type SlideContentWrapperProp = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const SlideContentWrapper: React.FC<SlideContentWrapperProp> = ({

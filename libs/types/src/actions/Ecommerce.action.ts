@@ -2,11 +2,14 @@ import {
   CartItemsType,
   CustomersDataType,
   FilterDataType,
+  ProductCartItemsType,
   ProductDataType,
   RecentOrdersType,
   VIEW_TYPE,
 } from '../models/ecommerce/EcommerceApp';
 
+export const ADD_PRODUCT_ITEM = 'ADD_PRODUCT_ITEM';
+export const UPDATE_PRODUCT_ITEM = 'UPDATE_PRODUCT_ITEM';
 export const GET_CART_ITEM = 'GET_CART_ITEM';
 export const ADD_CART_ITEM = 'ADD_CART_ITEM';
 export const GET_CUSTOMERS = 'GET_CUSTOMERS';
@@ -46,9 +49,18 @@ export type GetCartItemsAction = {
   payload: CartItemsType[];
 };
 
+export type AddProductItemsAction = {
+  type: typeof ADD_PRODUCT_ITEM;
+  payload: ProductDataType;
+};
+export type UpdateProductItemsAction = {
+  type: typeof UPDATE_PRODUCT_ITEM;
+  payload: ProductDataType;
+};
+
 export type AddCartItemsAction = {
   type: typeof ADD_CART_ITEM;
-  payload: ProductDataType;
+  payload: ProductCartItemsType;
 };
 
 export type RemoveCartItemsAction = {
@@ -73,6 +85,8 @@ export type SetFilterDataAction = {
 
 export type EcommerceActionTypes =
   | GetEcommerceAction
+  | AddProductItemsAction
+  | UpdateProductItemsAction
   | SetProductDetailAction
   | GetRecentOrdersAction
   | GetCustomersAction

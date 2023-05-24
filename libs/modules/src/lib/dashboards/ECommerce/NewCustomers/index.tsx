@@ -1,27 +1,28 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import CustomerItem from './CustomerItem';
 import AppList from '@crema/components/AppList';
 import AppScrollbar from '@crema/components/AppScrollbar';
-import { NewCustomersType } from '@crema/models/dashboards/Ecommerce';
+import PropTypes from 'prop-types';
+import {NewCustomersType} from "@crema/models/dashboards/Ecommerce";
 
-type NewCustomersProps = {
-  newCustomers: NewCustomersType[];
-};
+type Props = {
+  newCustomers: NewCustomersType[]
+}
 
-const NewCustomers: React.FC<NewCustomersProps> = ({ newCustomers }) => {
-  const { messages } = useIntl();
+const NewCustomers = (props: Props) => {
+  const {messages} = useIntl();
   return (
     <AppCard
       title={messages['eCommerce.newCustomers'] as string}
-      contentStyle={{ px: 0 }}
+      contentStyle={{px: 0}}
     >
-      <AppScrollbar sx={{ maxHeight: 280 }}>
+      <AppScrollbar sx={{maxHeight: 300}}>
         <AppList
-          data={newCustomers}
+          data={props.newCustomers}
           renderRow={(item) => (
-            <CustomerItem listStyle="paddingX" key={item.id} item={item} />
+            <CustomerItem key={item.id} item={item}/>
           )}
         />
       </AppScrollbar>
@@ -30,3 +31,7 @@ const NewCustomers: React.FC<NewCustomersProps> = ({ newCustomers }) => {
 };
 
 export default NewCustomers;
+
+NewCustomers.propTypes = {
+  newCustomers: PropTypes.array,
+};

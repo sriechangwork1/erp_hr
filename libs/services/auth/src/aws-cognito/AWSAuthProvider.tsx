@@ -102,13 +102,13 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
         isLoading: false,
         isAuthenticated: true,
       });
-    } catch ({ message }) {
+    } catch (data:any) {
       setAwsCognitoData({
         user: null,
         isLoading: false,
         isAuthenticated: false,
       });
-      infoViewActionsContext.fetchError(message as string);
+      infoViewActionsContext.fetchError(data?.message as string);
     }
   };
   const signUpCognitoUser = async ({ email, password, name }: SignUpProps) => {
@@ -122,18 +122,18 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
         },
       });
       infoViewActionsContext.fetchSuccess();
-      router.push('/confirm-signup', { state: { email } });
+      router.push('/confirm-signup', { email: email } as any);
 
       infoViewActionsContext.showMessage(
         'A code has been sent to your registered email address, Enter the code to complete the signup process!'
       );
-    } catch ({ message }) {
+    } catch (data:any) {
       setAwsCognitoData({
         user: null,
         isLoading: false,
         isAuthenticated: false,
       });
-      infoViewActionsContext.fetchError(message as string);
+      infoViewActionsContext.fetchError(data?.message as string);
     }
   };
   const confirmCognitoUserSignup = async (username: string, code: string) => {
@@ -146,13 +146,13 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       infoViewActionsContext.showMessage(
         'Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!'
       );
-    } catch ({ message }) {
+    } catch (data:any) {
       setAwsCognitoData({
         user: null,
         isLoading: false,
         isAuthenticated: false,
       });
-      infoViewActionsContext.fetchError(message as string);
+      infoViewActionsContext.fetchError(data?.message as string);
     }
   };
   const forgotPassword = async (username: string, code: string) => {
@@ -165,13 +165,13 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       infoViewActionsContext.showMessage(
         'Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!'
       );
-    } catch ({ message }) {
+    } catch (data:any) {
       setAwsCognitoData({
         user: null,
         isLoading: false,
         isAuthenticated: false,
       });
-      infoViewActionsContext.fetchError(message as string);
+      infoViewActionsContext.fetchError(data?.message as string);
     }
   };
 

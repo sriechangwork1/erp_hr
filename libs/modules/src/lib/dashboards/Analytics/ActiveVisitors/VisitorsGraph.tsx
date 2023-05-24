@@ -1,15 +1,15 @@
 import React from 'react';
-import { Bar, BarChart, ResponsiveContainer } from 'recharts';
+import {Bar, BarChart, ResponsiveContainer} from 'recharts';
+import {GraphDaum2Type} from "@crema/models/dashboards/Analytics";
 
-type Props = {
-  data: any;
-};
-
-const VisitorsGraph = ({ data }: Props) => {
+type Props={
+  data: GraphDaum2Type[];
+}
+const VisitorsGraph = ({ data=[] }: Props) => {
   return (
-    <ResponsiveContainer width="100%" height={240}>
+    <ResponsiveContainer width='100%' height={240}>
       <BarChart barSize={3} data={data}>
-        <Bar dataKey="value" fill="#3335" />
+        <Bar dataKey='value' fill='#49bd65' />
       </BarChart>
     </ResponsiveContainer>
   );

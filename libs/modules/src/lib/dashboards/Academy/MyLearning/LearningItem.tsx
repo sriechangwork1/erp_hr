@@ -1,15 +1,14 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCircularProgress from '@crema/components/AppCircularProgress';
-import { alpha, useTheme } from '@mui/material';
-import { LearningDataType } from '@crema/models/dashboards/Academy';
+import {alpha, useTheme} from '@mui/material';
+import {LearningDaumType} from "@crema/models/dashboards/Academy";
 
-type LearningItemProps= {
-  course: LearningDataType;
+type Props={
+  course: LearningDaumType;
 }
-
-const LearningItem: React.FC<LearningItemProps> = ({ course }) => {
+const LearningItem = ({ course }: Props) => {
   const theme = useTheme();
   return (
     <Box

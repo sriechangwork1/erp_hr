@@ -1,15 +1,14 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { NotificationType } from '@crema/models/dashboards/HealthCare';
+import PropTypes from 'prop-types';
+import {NotificationType} from "@crema/models/dashboards/HealthCare";
+import {Fonts} from "@crema/constants/AppEnums";
 
-type NotificationCellProps = {
-  notification: NotificationType;
-};
+type Props = {
+  notification:NotificationType
+}
 
-const NotificationCell: React.FC<NotificationCellProps> = ({
-  notification,
-}) => {
+const NotificationCell = ({notification}:Props) => {
   return (
     <Box
       sx={{
@@ -17,25 +16,21 @@ const NotificationCell: React.FC<NotificationCellProps> = ({
         alignItems: 'flex-start',
         padding: '12px 20px',
       }}
-      className="item-hover"
+      className='item-hover'
     >
       <Box
         sx={{
+          mr: 4,
+          mt: 1.5,
           height: 10,
           minWidth: 10,
           borderRadius: '50%',
           backgroundColor: notification.color,
-          mr: 4,
-          mt: 1.5,
         }}
       />
-      <Box
-        sx={{
-          fontSize: 14,
-        }}
-      >
+      <Box sx={{fontSize: 14}}>
         <Box
-          component="h5"
+          component='h5'
           sx={{
             fontWeight: Fonts.MEDIUM,
             mb: 0.5,
@@ -44,7 +39,7 @@ const NotificationCell: React.FC<NotificationCellProps> = ({
           {notification.title}
         </Box>
         <Box
-          component="span"
+          component='span'
           sx={{
             color: 'text.secondary',
           }}
@@ -57,3 +52,7 @@ const NotificationCell: React.FC<NotificationCellProps> = ({
 };
 
 export default NotificationCell;
+
+NotificationCell.propTypes = {
+  notification: PropTypes.object.isRequired,
+};

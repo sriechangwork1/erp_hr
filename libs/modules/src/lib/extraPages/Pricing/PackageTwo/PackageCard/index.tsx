@@ -1,5 +1,6 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import {Typography} from '@mui/material';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
@@ -7,15 +8,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import Card from '@mui/material/Card';
-import { PricingObj } from '@crema/fakedb/extraPages';
+import type {PricingTwoType} from "@crema/models/extrapages/Pricing";
 
-type PackageCardProps = {
-  pricing: PricingObj;
-};
+type Props = {
+  pricing: PricingTwoType
+}
 
-const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
+const PackageCard = ({pricing}: Props) => {
   return (
     <Card
       sx={{
@@ -147,3 +148,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pricing }) => {
 };
 
 export default PackageCard;
+
+PackageCard.propTypes = {
+  pricing: PropTypes.object,
+};

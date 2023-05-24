@@ -2,9 +2,9 @@ import React from 'react';
 import WorkViewsGraph from './WorkViewsGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { WorkViewsType } from '@crema/models/dashboards/Metrics';
+import {WorkViewsType} from '@crema/models/dashboards/Metrics';
 
 type WorkViewsProps = {
   data: WorkViewsType;

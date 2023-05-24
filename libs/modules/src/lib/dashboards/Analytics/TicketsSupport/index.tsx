@@ -9,18 +9,18 @@ import { Fonts } from '@crema/constants/AppEnums';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AppLinearProgress from '@crema/components/AppLinearProgress';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
-import { TicketsType } from '@crema/models/dashboards/Analytics';
+import { TicketType } from '@crema/models/dashboards/Analytics';
 
-type TicketsSupportPorps = {
-  tickets: TicketsType[];
+type Props = {
+  tickets: TicketType[];
 };
+const TicketsSupport = ({ tickets }: Props) => {
+  const [expanded, setExpanded] = React.useState(1);
 
-const TicketsSupport: React.FC<TicketsSupportPorps> = ({ tickets }) => {
-  const [expanded, setExpanded] = React.useState<number>(1);
-
-  const handleChange = (panel: number) => {
-    setExpanded(panel);
-  };
+  const handleChange =
+    (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : 0);
+    };
   return (
     <AppCard
       sxStyle={{
@@ -47,7 +47,7 @@ const TicketsSupport: React.FC<TicketsSupportPorps> = ({ tickets }) => {
         </Box>
       }
     >
-      {tickets.map((data: any) => (
+      {tickets.map((data) => (
         <Accordion
           sx={{
             position: 'relative',
@@ -60,7 +60,7 @@ const TicketsSupport: React.FC<TicketsSupportPorps> = ({ tickets }) => {
           }}
           key={data.id}
           expanded={expanded === data.id}
-          onChange={() => handleChange(data.id)}
+          onChange={handleChange(data.id)}
         >
           <AccordionSummary
             sx={{

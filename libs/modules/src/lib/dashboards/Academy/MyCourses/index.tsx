@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import AppCard from '@crema/components/AppCard';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import AppList from '@crema/components/AppList';
 import CourseCell from './CourseCell';
-import { useIntl } from 'react-intl';
+import {CoursesType} from "@crema/models/dashboards/Academy";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-import { CoursesType } from '@crema/models/dashboards/Academy';
-
-type MyCoursesProps ={
+type Props={
   courses: CoursesType;
 }
-
-const MyCourses: React.FC<MyCoursesProps> = ({ courses }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(
+const MyCourses = ({ courses }: Props) => {
+  const [selectedCategory, setSelectedCategory] = useState(
     courses.categories[0].slug
   );
 
@@ -21,12 +19,11 @@ const MyCourses: React.FC<MyCoursesProps> = ({ courses }) => {
     setSelectedCategory(category);
   };
 
-  const { messages } = useIntl();
 
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['academy.myCourses'] as string}
+      title={<IntlMessages id='academy.myCourses'/>}
       contentStyle={{ px: 0 }}
     >
       <Box

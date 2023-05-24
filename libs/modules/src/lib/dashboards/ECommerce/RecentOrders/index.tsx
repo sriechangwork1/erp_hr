@@ -1,27 +1,27 @@
 import React from 'react';
-import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import AppSelect from '@crema/components/AppSelect';
+import AppCard from "@crema/components/AppCard";
+import {useIntl} from 'react-intl';
+import AppSelect from "@crema/components/AppSelect";
+
 import OrderTable from './OrderTable';
-import { RecentOrderType } from '@crema/models/dashboards/Ecommerce';
-import { SelectChangeEvent } from '@mui/material/Select';
+import PropTypes from 'prop-types';
+import {RecentOrderType} from "@crema/models/dashboards/Ecommerce";
 
-type RecentOrdersProps = {
+type Props = {
   recentOrders: RecentOrderType[];
-};
+}
 
-const RecentOrders: React.FC<RecentOrdersProps> = ({ recentOrders }) => {
-  const { messages } = useIntl();
-  const handleSelectionType = (data: SelectChangeEvent) => {
+const RecentOrders = ({recentOrders}: Props) => {
+  const {messages} = useIntl();
+  const handleSelectionType = (data:string) => {
     console.log('data: ', data);
   };
   return (
     <AppCard
-      contentStyle={{ px: 0 }}
+      contentStyle={{paddingLeft: 0, paddingRight: 0}}
       title={messages['eCommerce.recentOrders'] as string}
       action={
         <AppSelect
-          selectionKey=""
           menus={[
             messages['dashboard.thisWeek'],
             messages['dashboard.lastWeeks'],
@@ -38,3 +38,6 @@ const RecentOrders: React.FC<RecentOrdersProps> = ({ recentOrders }) => {
 };
 
 export default RecentOrders;
+RecentOrders.propTypes = {
+  recentOrders: PropTypes.array,
+};

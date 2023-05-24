@@ -1,30 +1,27 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import DealsTable from './DealsTable';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import AppSelect from '@crema/components/AppSelect';
-import { DealsTableType } from '@crema/models/dashboards/CRM';
 
-type DealsProps= {
-  dealsTableData: DealsTableType[];
-}
-
-const Deals: React.FC<DealsProps> = ({ dealsTableData }) => {
+const Deals = (props) => {
+  const { dealsTableData } = props;
   const [tableData, setTableData] = useState(dealsTableData);
 
-  const handleChange = (value: string) => {
+  const handleChange = (value) => {
     if (value === messages['dashboard.allDeals']) {
       setTableData(dealsTableData);
     } else if (value === messages['todo.completed']) {
       setTableData(
-        dealsTableData.filter((data: any) => data.progress === 'Approved')
+        dealsTableData.filter((data) => data.progress === 'Approved')
       );
     } else {
       setTableData(
-        dealsTableData.filter((data: any) => data.progress === 'Pending')
+        dealsTableData.filter((data) => data.progress === 'Pending')
       );
     }
   };
@@ -62,7 +59,7 @@ const Deals: React.FC<DealsProps> = ({ dealsTableData }) => {
         </Box>
       }
       contentStyle={{ px: 0 }}
-      action={messages['common.viewAll'] as string}
+      action={messages['common.viewAll']}
       sxStyle={{ height: 1 }}
     >
       <DealsTable dealsTableData={tableData} />
@@ -71,3 +68,11 @@ const Deals: React.FC<DealsProps> = ({ dealsTableData }) => {
 };
 
 export default Deals;
+
+Deals.defaultProps = {
+  dealsTableData: [],
+};
+
+Deals.propTypes = {
+  dealsTableData: PropTypes.array,
+};

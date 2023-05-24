@@ -1,17 +1,16 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import AppSelect from '@crema/components/AppSelect';
-import AppGridContainer from '@crema/components/AppGridContainer';
-import { Box, Grid } from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import Typography from '@mui/material/Typography';
 import AppCircularProgress from '@crema/components/AppCircularProgress';
 import SaleStaticChart from './SaleStaticChart';
-import { SelectChangeEvent } from '@mui/material/Select';
+import AppGridContainer from '@crema/components/AppGridContainer';
 
 const SaleStatics = () => {
-  const { messages } = useIntl();
-  const handleSelectionType = (data: SelectChangeEvent) => {
+  const {messages} = useIntl();
+  const handleSelectionType = (data: string) => {
     console.log('data: ', data);
   };
 
@@ -25,7 +24,6 @@ const SaleStatics = () => {
             messages['dashboard.lastWeeks'],
             messages['dashboard.lastMonth'],
           ]}
-          selectionKey=""
           defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />

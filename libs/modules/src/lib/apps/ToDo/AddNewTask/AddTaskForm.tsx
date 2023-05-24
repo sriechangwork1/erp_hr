@@ -166,7 +166,6 @@ const AddTaskForm = (props: Props) => {
                   label={<IntlMessages id="common.startDate" />}
                   // name="date"
                   value={values.date}
-                  renderInput={(params) => <TextField {...params} />}
                   onChange={(value) => setFieldValue('date', value)}
                 />
               </Box>

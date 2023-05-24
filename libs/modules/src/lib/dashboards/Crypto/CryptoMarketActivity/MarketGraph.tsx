@@ -7,16 +7,10 @@ import {
   YAxis,
 } from 'recharts';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { MarketGraphType } from '@crema/models/dashboards/Crypto';
 
-type CryptoMarketActivityProps ={
-  marketGraphData: MarketGraphType[];
-}
-
-const MarketGraph: React.FC<CryptoMarketActivityProps> = ({
-  marketGraphData,
-}) => {
+const MarketGraph = ({ marketGraphData }) => {
   return (
     <Box
       sx={{
@@ -38,3 +32,11 @@ const MarketGraph: React.FC<CryptoMarketActivityProps> = ({
 };
 
 export default MarketGraph;
+
+MarketGraph.defaultProps = {
+  marketGraphData: [],
+};
+
+MarketGraph.propTypes = {
+  marketGraphData: PropTypes.array,
+};

@@ -1,20 +1,24 @@
-import React, { ReactNode } from 'react';
-import { Box } from '@mui/material';
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Box, useTheme} from '@mui/material';
+import {ThemeStyleRadius} from "@crema/constants/AppEnums";
 
-type CardWrapperProps = {
-  children: ReactNode;
+type Props = {
+  children: React.ReactNode
+}
 
-  [x: string]: any;
-};
+const CardWrapper = ({children, ...rest}: Props) => {
 
-const CardWrapper: React.FC<CardWrapperProps> = ({ children, ...rest }) => {
+  const theme = useTheme();
+  const cardRadius = ThemeStyleRadius.STANDARD;
+
   return (
     <Box
       sx={{
         px: 7.5,
         py: 5,
-        borderRadius: 4,
-        border: (theme) => `solid 1px ${theme.palette.divider}`,
+        borderRadius: cardRadius / 4,
+        border: `solid 1px ${theme.palette.divider}`,
         position: 'relative',
         overflow: 'hidden',
         '& .popular': {
@@ -33,7 +37,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ children, ...rest }) => {
             width: 200,
             height: 200,
             borderRadius: '50%',
-            backgroundColor: (theme) => theme.palette.background.default,
+            backgroundColor: theme.palette.background.default,
           },
         },
       }}
@@ -45,3 +49,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ children, ...rest }) => {
 };
 
 export default CardWrapper;
+
+CardWrapper.propTypes = {
+  children: PropTypes.node,
+};

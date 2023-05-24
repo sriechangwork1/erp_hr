@@ -7,19 +7,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import MenuItem from '@mui/material/MenuItem';
+import { CourseType } from '@crema/models/dashboards/Academy';
 
-type CourseCellProps ={
-  course: {
-    id: number;
-    title: string;
-    duration: string;
-    rating: number;
-    isCompleted: boolean;
-    thumb: string;
-  };
-}
-
-const CourseCell: React.FC<CourseCellProps> = ({ course }) => {
+type Props = {
+  course: CourseType;
+};
+const CourseCell = ({ course }: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
@@ -59,7 +52,7 @@ const CourseCell: React.FC<CourseCellProps> = ({ course }) => {
             '& .logo': {
               height: 60,
               width: 60,
-              //borderRadius: theme.overrides.MuiCard.root.borderRadius,
+              borderRadius: 2,
               overflow: 'hidden',
               display: 'block',
             },

@@ -1,22 +1,20 @@
 import React from 'react';
 import NewsList from './NewsList';
+import PropTypes from 'prop-types';
 import AppCard from '@crema/components/AppCard';
 import { useIntl } from 'react-intl';
-import { NewsDataType } from '@crema/models/dashboards/Crypto';
 
-type LatestNewsProps ={
-  newsData: NewsDataType[];
-}
+const LatestNews = (props) => {
+  const { newsData } = props;
 
-const LatestNews: React.FC<LatestNewsProps> = ({ newsData }) => {
   const { messages } = useIntl();
 
   return (
     <AppCard
       sxStyle={{ height: 1 }}
       contentStyle={{ px: 0 }}
-      title={messages['dashboard.latestNews'] as string}
-      action={messages['common.viewAll'] as string}
+      title={messages['dashboard.latestNews']}
+      action={messages['common.viewAll']}
     >
       <NewsList newsData={newsData} />
     </AppCard>
@@ -24,3 +22,11 @@ const LatestNews: React.FC<LatestNewsProps> = ({ newsData }) => {
 };
 
 export default LatestNews;
+
+LatestNews.defaultProps = {
+  newsData: [],
+};
+
+LatestNews.propTypes = {
+  newsData: PropTypes.array,
+};

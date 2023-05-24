@@ -1,15 +1,16 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import { Button } from '@mui/material';
-import { Fonts } from '@crema/constants/AppEnums';
-import { TopDoctorType } from '@crema/models/dashboards/HealthCare';
+import PropTypes from 'prop-types';
+import {Button} from '@mui/material';
+import {TopDoctorType} from "@crema/models/dashboards/HealthCare";
+import {Fonts} from "@crema/constants/AppEnums";
 
-type DoctorCellProps = {
-  doctor: TopDoctorType;
-};
+type Props = {
+  doctor: TopDoctorType
+}
 
-const DoctorCell: React.FC<DoctorCellProps> = ({ doctor }) => {
+const DoctorCell = ({doctor}: Props) => {
   return (
     <Box
       sx={{
@@ -17,27 +18,28 @@ const DoctorCell: React.FC<DoctorCellProps> = ({ doctor }) => {
         alignItems: 'center',
         padding: '8px 20px',
       }}
-      className="item-hover"
+      className='item-hover'
     >
-      <Avatar
-        sx={{
-          mr: 4,
-          width: 48,
-          height: 48,
-        }}
-        src={doctor.profile_pic}
-      />
+      <Box sx={{mr: 4}}>
+        <Avatar
+          sx={{
+            width: 48,
+            height: 48,
+          }}
+          src={doctor.profile_pic}
+        />
+      </Box>
       <Box
         sx={{
           fontSize: 14,
         }}
       >
         <Box
-          component="h5"
           sx={{
             fontWeight: Fonts.MEDIUM,
             mb: 0.5,
           }}
+          component='h5'
         >
           {doctor.name}
         </Box>
@@ -45,7 +47,7 @@ const DoctorCell: React.FC<DoctorCellProps> = ({ doctor }) => {
           sx={{
             color: 'text.secondary',
           }}
-          component="p"
+          component='p'
         >
           {doctor.speciality}
         </Box>
@@ -55,14 +57,18 @@ const DoctorCell: React.FC<DoctorCellProps> = ({ doctor }) => {
           display: 'flex',
           alignItems: 'center',
           ml: 'auto',
+          '@media only screen and (min-width: 1200px) and (max-width: 1399px)':
+            {
+              display: 'none',
+            },
         }}
       >
         {doctor.scheduled ? (
-          <Button color="secondary" variant="outlined">
+          <Button color='secondary' variant='outlined'>
             Remove
           </Button>
         ) : (
-          <Button color="primary" variant="outlined">
+          <Button color='primary' variant='outlined'>
             Schedule
           </Button>
         )}
@@ -72,3 +78,7 @@ const DoctorCell: React.FC<DoctorCellProps> = ({ doctor }) => {
 };
 
 export default DoctorCell;
+
+DoctorCell.propTypes = {
+  doctor: PropTypes.object.isRequired,
+};

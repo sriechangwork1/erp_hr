@@ -1,19 +1,20 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import AppCard from '@crema/components/AppCard';
-import { SalesStateType } from '@crema/models/dashboards/Ecommerce';
+import PropTypes from 'prop-types';
+import {StateDataType} from "@crema/models/dashboards/Ecommerce";
 
-type SalesStateProps = {
-  state: SalesStateType;
-};
+type Props = {
+  state: StateDataType;
+}
 
-const SalesState: React.FC<SalesStateProps> = (props) => {
-  const { bgColor, icon, type, value } = props.state;
+const SalesState = (props: Props) => {
+  const {color, icon, title, value} = props.state;
 
   return (
     <AppCard
       sxStyle={{
-        backgroundColor: bgColor,
+        backgroundColor: color,
         height: 1,
       }}
       className="card-hover"
@@ -57,7 +58,7 @@ const SalesState: React.FC<SalesStateProps> = (props) => {
             }}
             component="p"
           >
-            {type}
+            {title}
           </Box>
         </Box>
       </Box>
@@ -66,3 +67,7 @@ const SalesState: React.FC<SalesStateProps> = (props) => {
 };
 
 export default SalesState;
+
+SalesState.propTypes = {
+  state: PropTypes.object,
+};

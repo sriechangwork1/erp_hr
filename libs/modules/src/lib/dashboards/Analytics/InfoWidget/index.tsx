@@ -1,13 +1,12 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { Box } from '@mui/material';
-import { Fonts } from '@crema/constants/AppEnums';
-import { InfoWidgetsType } from '@crema/models/dashboards/Analytics';
+import {Box} from '@mui/material';
+import {Fonts} from '@crema/constants/AppEnums';
+import {InfoWidgetType} from "@crema/models/dashboards/Analytics";
 
-type Props = {
-  data: InfoWidgetsType;
-};
-
+type Props={
+  data: InfoWidgetType;
+}
 const InfoWidget = ({ data }: Props) => {
   return (
     <AppCard

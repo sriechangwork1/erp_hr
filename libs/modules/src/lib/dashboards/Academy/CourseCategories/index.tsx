@@ -14,11 +14,11 @@ const settings = {
   slidesToScroll: 1,
 };
 
-type CourseCategoriesProps= {
+type Props = {
   course: CourseCategoryType;
-}
+};
 
-const CourseCategories: React.FC<CourseCategoriesProps> = ({ course }) => {
+const CourseCategories = ({ course }: Props) => {
   const { images, title, desc, lessons, xp } = course;
   return (
     <AppCard sxStyle={{ height: 1 }} contentStyle={{ padding: 0 }}>
@@ -100,7 +100,7 @@ const CourseCategories: React.FC<CourseCategoriesProps> = ({ course }) => {
               },
             }}
           >
-            <img src={'/assets/images/dashboard/academy/xp.svg'} alt="xp" />{' '}
+            <img src={'/assets/images/dashboard/academy/xp.svg'} alt="xp" />
             {xp} XP
           </Box>
         </Box>

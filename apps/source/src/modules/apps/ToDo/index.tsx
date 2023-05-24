@@ -11,16 +11,16 @@ import TodoContextProvider from '../context/TodoContextProvider';
 
 const ToDo = () => {
   const { query } = useRouter();
-  console.log(query.all[query.all.length - 1])
   const { messages } = useIntl();
-  const id = parseInt(query.all[query.all.length - 1]) || 0;
+  const id = parseInt(query?.all?.[query?.all?.length || 0 - 1] || '') || 0;
+
   return (
     <TodoContextProvider>
       <AppsContainer
         title={messages['todo.todoApp'] as string}
         sidebarContent={<TaskSideBar />}
       >
-        {id>0 ? (
+        {id > 0 ? (
           <Box
             sx={{
               transition: 'all 0.5s ease',
@@ -41,7 +41,7 @@ const ToDo = () => {
               },
             }}
             className={clsx({
-              show: id>0,
+              show: id > 0,
             })}
           >
             <TaskDetail />

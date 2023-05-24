@@ -2,16 +2,15 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { TiFolderOpen } from 'react-icons/ti';
 import { useThemeContext } from '@crema/context/ThemeContextProvider';
+import { DropzoneState } from 'react-dropzone';
 
-interface UploadModernProps {
-  uploadText: string;
-  dropzone: any;
-}
+type Props = {
+  uploadText?: string;
+  dropzone: DropzoneState;
+  customContent?: React.ReactNode;
+};
 
-const UploadModern: React.FC<UploadModernProps> = ({
-  uploadText,
-  dropzone,
-}) => {
+const UploadModern = ({ customContent, uploadText, dropzone }: Props) => {
   const { theme } = useThemeContext();
   return (
     <Box
@@ -37,14 +36,20 @@ const UploadModern: React.FC<UploadModernProps> = ({
         }}
       >
         <input {...dropzone.getInputProps()} />
-        <TiFolderOpen
-          style={{
-            fontSize: 40,
-            marginBottom: 4,
-            color: theme.palette.primary.main,
-          }}
-        />
-        <p>{uploadText}</p>
+        {customContent ? (
+          customContent
+        ) : (
+          <>
+            <TiFolderOpen
+              style={{
+                fontSize: 40,
+                marginBottom: 4,
+                color: theme.palette.primary.main,
+              }}
+            />
+            <p>{uploadText}</p>
+          </>
+        )}
       </Box>
     </Box>
   );

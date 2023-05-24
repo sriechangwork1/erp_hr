@@ -1,24 +1,19 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import AppCard from '@crema/components/AppCard';
-import { Box, darken } from '@mui/material';
+import {Box, darken} from '@mui/material';
 import AppLinearProgress from '@crema/components/AppLinearProgress';
-import { Fonts } from '@crema/constants/AppEnums';
-import { useIntl } from 'react-intl';
-import { styled } from '@mui/material/styles';
+import {Fonts} from '@crema/constants/AppEnums';
+import {useIntl} from 'react-intl';
+import {styled} from '@mui/material/styles';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import { TrafficDataType } from '@crema/models/dashboards/Analytics';
+import {TrafficDaumType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type Props = {
-  children: any;
-
-  [x: string]: any;
-};
-
-const Accordion = styled((props: Props) => (
+const Accordion = styled((props: any) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
+))(({theme}) => ({
   '&:before': {
     display: 'none',
   },
@@ -27,48 +22,47 @@ const Accordion = styled((props: Props) => (
   },
 }));
 
-const AccordionSummary = styled((props: Props) => (
-  <MuiAccordionSummary {...props} />
-))(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-  flexDirection: 'row-reverse',
-  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-    transform: 'rotate(90deg)',
-  },
-  '& .MuiLinearProgress-root': {
-    backgroundColor: darken(theme.palette.background.paper, 0.1),
-  },
-  '&.Mui-expanded': {
-    backgroundColor: theme.palette.background.default,
-  },
-}));
+const AccordionSummary = styled((props: any) => <MuiAccordionSummary {...props} />)(
+  ({theme}) => ({
+    backgroundColor: theme.palette.background.paper,
+    flexDirection: 'row-reverse',
+    '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+      transform: 'rotate(90deg)',
+    },
+    '& .MuiLinearProgress-root': {
+      backgroundColor: darken(theme.palette.background.paper, 0.1),
+    },
+    '&.Mui-expanded': {
+      backgroundColor: theme.palette.background.default,
+    },
+  })
+);
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-type TrafficSourceProps = {
-  trafficData: TrafficDataType[];
-};
+type Props={
+  trafficData: TrafficDaumType[];
+}
+const TrafficSource = ({ trafficData }: Props) => {
+  const [expanded, setExpanded] = React.useState(1);
 
-const TrafficSource: React.FC<TrafficSourceProps> = ({ trafficData }) => {
-  const [expanded, setExpanded] = React.useState<number>(1);
-
-  const handleChange = (panel: number) => {
-    setExpanded(panel);
+  const handleChange = (panel: number) => (event: ChangeEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : 0);
   };
   const { messages } = useIntl();
   return (
-    <AppCard title={messages['dashboard.analytics.trafficSource'] as string}>
-      {trafficData.map((data: any) => (
+    <AppCard title={<IntlMessages id='dashboard.analytics.trafficSource'/>}>
+      {trafficData.map((data) => (
         <Accordion
           key={data.id}
           expanded={expanded === data.id}
-          onChange={() => handleChange(data.id)}
+          onChange={handleChange(data.id)}
         >
           <AccordionSummary
-            expanded={expanded === data.id}
+            expanded={expanded === data.id ? 'selected' : ''}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >

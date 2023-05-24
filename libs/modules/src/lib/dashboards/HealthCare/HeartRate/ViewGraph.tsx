@@ -1,27 +1,23 @@
 import React from 'react';
-import { Line, LineChart, ResponsiveContainer } from 'recharts';
+import {Line, LineChart, ResponsiveContainer} from 'recharts';
+import PropTypes from 'prop-types';
 
-type ViewGraphProps = {
-  data: {
-    name: string;
-    rate: number;
-  }[];
-};
+type Props = {
+  data: { name: string, rate: number }[]
+  color: string
+}
 
-const ViewGraph: React.FC<ViewGraphProps> = ({ data }) => {
+const ViewGraph = ({data, color}: Props) => {
   return (
-    <ResponsiveContainer width="100%" height={178}>
-      <LineChart
-        data={data}
-        margin={{ top: 30, right: 0, left: 0, bottom: 20 }}
-      >
+    <ResponsiveContainer width='100%' height={178}>
+      <LineChart data={data} margin={{top: 30, right: 0, left: 0, bottom: 20}}>
         <Line
-          type="monotone"
-          dataKey="rate"
-          stroke="#ffffff"
+          type='monotone'
+          dataKey='rate'
+          stroke={color}
           dot={false}
           strokeWidth={2}
-          activeDot={{ r: 4 }}
+          activeDot={{r: 4}}
         />
       </LineChart>
     </ResponsiveContainer>
@@ -29,3 +25,8 @@ const ViewGraph: React.FC<ViewGraphProps> = ({ data }) => {
 };
 
 export default ViewGraph;
+
+ViewGraph.propTypes = {
+  data: PropTypes.array,
+  color: PropTypes.string,
+};

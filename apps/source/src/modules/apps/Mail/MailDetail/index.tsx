@@ -16,10 +16,10 @@ const MailDetail = () => {
   const { all } = router.query;
 
   const [{ apiData: selectedMail }, { setQueryParams, setData }] =
-    useGetDataApi('/api/mailApp/mail/', undefined, {}, false);
+    useGetDataApi<MailType>('/api/mailApp/mail/', undefined, {}, false);
 
   useEffect(() => {
-      setQueryParams({ id: all.slice(-1)[0] });
+    setQueryParams({ id: all?.slice(-1)[0] });
   }, [all]);
 
   const onUpdateSelectedMail = (data: MailType) => {

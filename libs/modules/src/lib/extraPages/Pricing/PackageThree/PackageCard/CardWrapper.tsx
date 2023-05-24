@@ -1,15 +1,12 @@
-import React, { ReactNode } from 'react';
-import { alpha } from '@mui/material';
+import React from 'react';
+import {alpha, lighten} from '@mui/material';
 import Card from '@mui/material/Card';
-import { lighten } from '@mui/system';
 
-type CardWrapperProps = {
-  children: ReactNode;
+type Props = {
+  children: React.ReactNode
+}
 
-  [x: string]: any;
-};
-
-const CardWrapper: React.FC<CardWrapperProps> = ({ children, ...rest }) => {
+const CardWrapper = ({children, ...rest}: Props) => {
   return (
     <Card
       sx={{

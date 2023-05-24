@@ -8,21 +8,18 @@ import TableBody from '@mui/material/TableBody';
 import AppTableContainer from '@crema/components/AppTableContainer';
 import TableHeading from './TableHeading';
 import TableItem from './TableItem';
-import { useIntl } from 'react-intl';
-import { StudentRankingDataType } from '@crema/models/dashboards/Academy';
+import {StudentRankingType} from "@crema/models/dashboards/Academy";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type StudentRankingsProps= {
-  studentRankings: StudentRankingDataType[];
+type Props={
+  studentRankings: StudentRankingType[];
+
 }
-
-const StudentRankings: React.FC<StudentRankingsProps> = ({
-  studentRankings,
-}) => {
-  const { messages } = useIntl();
+const StudentRankings = ({ studentRankings }: Props) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['academy.studentRankings'] as string}
+      title={<IntlMessages id='academy.studentRankings'/>}
       contentStyle={{ px: 0 }}
       action={
         <IconButton
@@ -33,7 +30,6 @@ const StudentRankings: React.FC<StudentRankingsProps> = ({
           aria-label="more"
           aria-controls="long-menu"
           aria-haspopup="true"
-          // onClick={null}
         >
           <MoreVertIcon />
         </IconButton>
@@ -45,7 +41,7 @@ const StudentRankings: React.FC<StudentRankingsProps> = ({
             <TableHeading />
           </TableHead>
           <TableBody>
-            {studentRankings.map((data: any) => (
+            {studentRankings.map((data) => (
               <TableItem data={data} key={data.id} />
             ))}
           </TableBody>

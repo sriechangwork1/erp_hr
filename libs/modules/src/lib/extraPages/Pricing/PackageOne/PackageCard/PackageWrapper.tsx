@@ -1,18 +1,16 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Box } from '@mui/material';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Box, useTheme} from '@mui/material';
+import {Fonts, ThemeStyleRadius} from '@crema/constants/AppEnums';
 
-type PackageWrapperProps = {
-  children: ReactNode;
+type Props = {
+  children: React.ReactNode
+}
 
-  [x: string]: any;
-};
+const PackageWrapper = ({children, ...rest}: Props) => {
+  const cardRadius = ThemeStyleRadius.STANDARD;
+  const theme = useTheme();
 
-const PackageWrapper: React.FC<PackageWrapperProps> = ({
-  children,
-  ...rest
-}) => {
   return (
     <Box
       sx={{
@@ -28,9 +26,9 @@ const PackageWrapper: React.FC<PackageWrapperProps> = ({
           fontSize: 12,
           fontWeight: Fonts.BOLD,
           textTransform: 'uppercase',
-          color: (theme) => theme.palette.common.white,
+          color: theme.palette.common.white,
           textAlign: 'center',
-          borderRadius: 4,
+          borderRadius: cardRadius / 16,
         },
       }}
       {...rest}

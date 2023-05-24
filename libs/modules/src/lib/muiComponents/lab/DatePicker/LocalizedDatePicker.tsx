@@ -1,14 +1,13 @@
-import * as React from "react";
-import frLocale from "date-fns/locale/fr";
-import ruLocale from "date-fns/locale/ru";
-import deLocale from "date-fns/locale/de";
-import enLocale from "date-fns/locale/en-US";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import TextField from "@mui/material/TextField";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import * as React from 'react';
+import frLocale from 'date-fns/locale/fr';
+import ruLocale from 'date-fns/locale/ru';
+import deLocale from 'date-fns/locale/de';
+import enLocale from 'date-fns/locale/en-US';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 const localeMap = {
   en: enLocale,
@@ -18,14 +17,14 @@ const localeMap = {
 };
 
 const maskMap = {
-  fr: "__/__/____",
-  en: "__/__/____",
-  ru: "__.__.____",
-  de: "__.__.____",
+  fr: '__/__/____',
+  en: '__/__/____',
+  ru: '__.__.____',
+  de: '__.__.____',
 };
 
 export default function LocalizedDatePicker() {
-  const [locale, setLocale] = React.useState<keyof typeof maskMap>("ru");
+  const [locale, setLocale] = React.useState<keyof typeof maskMap>('ru');
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const selectLocale = (newLocale: any) => {
@@ -41,7 +40,7 @@ export default function LocalizedDatePicker() {
         <ToggleButtonGroup
           value={locale}
           exclusive
-          sx={{ mb: 2, display: "block" }}
+          sx={{ mb: 2, display: 'block' }}
         >
           {Object.keys(localeMap).map((localeItem) => (
             <ToggleButton
@@ -54,10 +53,9 @@ export default function LocalizedDatePicker() {
           ))}
         </ToggleButtonGroup>
         <DatePicker
-          mask={maskMap[locale]}
+          // mask={maskMap[locale]}
           value={value}
           onChange={(newValue) => setValue(newValue)}
-          renderInput={(params) => <TextField {...params} />}
         />
       </div>
     </LocalizationProvider>

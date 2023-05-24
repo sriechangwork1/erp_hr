@@ -17,7 +17,6 @@ export default function StaticDatePickerDemo() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>
   );

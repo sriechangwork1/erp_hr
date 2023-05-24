@@ -3,16 +3,16 @@ import MailsList from './MailsList';
 import MailDetail from './MailDetail';
 import AppsContainer from '@crema/components/AppsContainer';
 import MailSidebar from './MailSideBar';
-import {useIntl} from 'react-intl';
-import {useRouter} from 'next/router';
+import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import {MailDetailViewWrapper} from './index.styled';
+import { MailDetailViewWrapper } from './index.styled';
 import MailContextProvider from '../context/MailContextProvider';
 
 const Mail = () => {
   const { query } = useRouter();
   const { messages } = useIntl();
-  const id = parseInt(query.all[query.all.length - 1]) || 0;
+  const id = parseInt(query?.all?.[query?.all?.length || 0 - 1] || '') || 0;
 
   return (
     <MailContextProvider>

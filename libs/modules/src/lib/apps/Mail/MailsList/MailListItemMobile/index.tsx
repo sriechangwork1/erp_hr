@@ -1,7 +1,7 @@
 import React from 'react';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -36,10 +36,10 @@ const MailListItemMobile = (props: Props) => {
   const messages = mail.messages!.length;
   const onGetMailDate = (date: string) => {
     if (
-      moment(date, 'ddd, MMM DD, YYYY').format() ===
-      moment('ddd, MMM DD, YYYY').format()
+      dayjs(date, 'ddd, MMM DD, YYYY').format() ===
+      dayjs('ddd, MMM DD, YYYY').format()
     ) {
-      return moment(date).format('LT');
+      return dayjs(date).format('LT');
     } else {
       return date.split(',')[1];
     }

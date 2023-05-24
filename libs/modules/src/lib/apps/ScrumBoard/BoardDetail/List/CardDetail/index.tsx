@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Box } from '@mui/material';
 import Members from './Members';
 import Labels from './Labels';
@@ -97,7 +97,7 @@ const CardDetail = ({
               color: 'text.secondary',
             }}
           >
-            {date ? moment(date).format('ll').split(',')[0] : null}
+            {date ? dayjs(date).format('ll').split(',')[0] : null}
           </Box>
           {comments && comments.length > 0 ? (
             <Box

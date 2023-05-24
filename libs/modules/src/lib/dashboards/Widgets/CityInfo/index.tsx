@@ -2,11 +2,11 @@ import React from 'react';
 import Slider from 'react-slick';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import SlideContentWrapper from './SlideContentWrapper';
 import ImageCardSlideWrapper from './ImageCardSlideWrapper';
-import { CityDataType } from '@crema/models/dashboards/Widgets';
+import type {CityDataType} from "@crema/models/dashboards/Widgets";
 
 const settings = {
   dots: true,
@@ -22,7 +22,10 @@ type CityInfoProps = {
 
 const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
   return (
-    <AppCard sxStyle={{ height: 1 }} contentStyle={{ p: 0, pb: 0 }}>
+    <AppCard
+      sxStyle={{height: 1}}
+      contentStyle={{p: 0, pb: '0 !important'}}
+    >
       <ImageCardSlideWrapper>
         <Slider className="imageCardSlide" {...settings}>
           {cityData.map((city) => {
@@ -32,7 +35,7 @@ const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
                 sx={{
                   position: 'relative',
                   textAlign: 'center',
-                  fontSize: { xs: 20, xl: 24 },
+                  fontSize: {xs: 20, xl: 24},
                   height: '100%',
                 }}
               >
@@ -43,9 +46,9 @@ const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
                       left: 0,
                       top: 0,
                       zIndex: -1,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
+                      width: '100% !important',
+                      height: '100% !important',
+                      objectFit: 'cover !important',
                     },
                   }}
                 >

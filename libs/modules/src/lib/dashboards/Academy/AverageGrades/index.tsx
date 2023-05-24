@@ -4,13 +4,14 @@ import AppSelect from '@crema/components/AppSelect';
 import AppCard from '@crema/components/AppCard';
 import GradeGraph from './GradeGraph';
 import { useIntl } from 'react-intl';
-import { GradesType } from '@crema/models/dashboards/Academy';
+import PropTypes from 'prop-types';
+import { GradeType } from '@crema/models/dashboards/Academy';
 
-type AverageGradesProps= {
-  grades: GradesType[];
-}
+type Props = {
+  grades: GradeType[];
+};
 
-const AverageGrades: React.FC<AverageGradesProps> = ({ grades }) => {
+const AverageGrades = ({ grades }: Props) => {
   const { messages } = useIntl();
   return (
     <AppCard
@@ -54,3 +55,7 @@ const AverageGrades: React.FC<AverageGradesProps> = ({ grades }) => {
 };
 
 export default AverageGrades;
+
+AverageGrades.propTypes = {
+  grades: PropTypes.array,
+};

@@ -1,22 +1,23 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import VisitsTable from './VisitsTable';
-import { useIntl } from 'react-intl';
-import { PageVisitType } from '@crema/models/dashboards/Analytics';
+import {PageVisitType} from "@crema/models/dashboards/Analytics";
+import {useIntl} from "react-intl";
 
-type PageVisitsProps = {
-  pageVisits: PageVisitType[];
-};
+type Props={
+  pageVisits: PageVisitType[]
 
-const PageVisits: React.FC<PageVisitsProps> = ({ pageVisits }) => {
-  const { messages } = useIntl();
+}
+const PageVisits = ({ pageVisits }: Props) => {
+  const {messages} = useIntl();
+
   return (
     <AppCard
-      contentStyle={{ px: 0 }}
+      contentStyle={{px: 0}}
       title={messages['dashboard.analytics.pageVisits'] as string}
       action={messages['common.viewAll'] as string}
     >
-      <VisitsTable visitsData={pageVisits} />
+      <VisitsTable visitsData={pageVisits}/>
     </AppCard>
   );
 };

@@ -3,11 +3,10 @@ import { Card } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CodeIcon from '@mui/icons-material/Code';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import { Highlight, themes } from "prism-react-renderer"
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import AppScrollbar from '../AppScrollbar';
-import { highlightTheme } from './highlightTheme';
 import Box from '@mui/material/Box';
 import AppAnimate from '../AppAnimate';
 import { Fonts } from '@crema/constants/AppEnums';
@@ -90,10 +89,9 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
                 }}
               >
                 <Highlight
-                  {...defaultProps}
                   code={source}
                   language="jsx"
-                  theme={highlightTheme}
+                  theme={themes.shadesOfPurple}
                 >
                   {({ style, tokens, getLineProps, getTokenProps }) => (
                     <pre

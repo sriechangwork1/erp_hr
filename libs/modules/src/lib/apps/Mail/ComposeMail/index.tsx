@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Chip from '@mui/material/Chip';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppTextField from '@crema/components/AppTextField';
 import AppDialog from '@crema/components/AppDialog';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { blue } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
@@ -21,6 +20,8 @@ import AppInfoView from '@crema/components/AppInfoView';
 import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const ReactQuillWrapper = styled(ReactQuill)(() => {
   return {
     '& .ql-toolbar': {
@@ -132,7 +133,7 @@ const ComposeMail = (props: Props) => {
             hasAttachments: false,
             isRead: true,
             folderValue: 122,
-            sentOn: moment().format('llll'),
+            sentOn: dayjs().format('llll'),
             messages: [
               {
                 messageId: 1,

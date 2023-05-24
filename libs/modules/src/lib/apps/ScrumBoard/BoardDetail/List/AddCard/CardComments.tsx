@@ -139,10 +139,16 @@ const CardComments = (props: Props) => {
           multiline
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              onAddComment();
+              setComment('');
+            }
+          }}
           sx={{
             width: '100%',
           }}
-          rows="1"
+          maxRows={1}
           variant="outlined"
           placeholder={messages['common.pressEnter'] as string}
         />

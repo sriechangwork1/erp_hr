@@ -76,14 +76,6 @@ import AccessibleTabs2 from './AccessibleTabs2';
 
 import AccessibleTabs2Source from 'raw-loader!./AccessibleTabs2';
 
-import UnstyledTabsBasic from './UnstyledTabsBasic';
-
-import UnstyledTabsBasicSource from 'raw-loader!./UnstyledTabsBasic';
-
-import UnstyledTabsCustomized from './UnstyledTabsCustomized';
-
-import UnstyledTabsCustomizedSource from 'raw-loader!./UnstyledTabsCustomized';
-
 const Tabs = () => {
   return (
     <>
@@ -126,15 +118,6 @@ const Tabs = () => {
             title="Color Tabs"
             component={ColorTabs}
             source={ColorTabsSource}
-            noScrollbar
-            description="A basic example with tab panels."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Unstyled Tabs Customized"
-            component={UnstyledTabsCustomized}
-            source={UnstyledTabsCustomizedSource}
             noScrollbar
             description="A basic example with tab panels."
           />
@@ -246,15 +229,6 @@ const Tabs = () => {
             title="Accessible Tabs2"
             component={AccessibleTabs2}
             source={AccessibleTabs2Source}
-            noScrollbar
-            description="A basic example with tab panels."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Unstyled Tabs Basic"
-            component={UnstyledTabsBasic}
-            source={UnstyledTabsBasicSource}
             noScrollbar
             description="A basic example with tab panels."
           />

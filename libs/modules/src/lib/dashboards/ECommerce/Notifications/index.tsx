@@ -1,23 +1,24 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import NotificationCell from './NotificationCell';
 import AppList from '@crema/components/AppList';
-import { NotificationsType } from '@crema/models/dashboards/Ecommerce';
+import PropTypes from 'prop-types';
+import {NotificationsType} from "@crema/models/dashboards/Ecommerce";
 
-type NotificationsProps = {
-  notifications: NotificationsType[];
-};
+type Props = {
+  notifications: NotificationsType[]
+}
 
-const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
-  const { messages } = useIntl();
+const Notifications = (props: Props) => {
+  const {messages} = useIntl();
 
   return (
     <AppCard
-      contentStyle={{ px: 0 }}
+      contentStyle={{px: 0}}
       title={messages['eCommerce.notifications'] as string}
       action={
         <IconButton
@@ -28,9 +29,10 @@ const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
           aria-label="more"
           aria-controls="long-menu"
           aria-haspopup="true"
-          // onClick={null}
+          onClick={() => {
+          }}
         >
-          <MoreVertIcon />
+          <MoreVertIcon/>
         </IconButton>
       }
     >
@@ -40,7 +42,7 @@ const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
         }}
       >
         <AppList
-          data={notifications}
+          data={props.notifications}
           renderRow={(item) => <NotificationCell key={item.id} item={item} />}
         />
       </AppScrollbar>
@@ -49,3 +51,7 @@ const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
 };
 
 export default Notifications;
+
+Notifications.propTypes = {
+  notifications: PropTypes.array,
+};

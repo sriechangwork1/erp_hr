@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import moment from 'moment';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import AddTaskForm from './AddTaskForm';
 import AppDialog from '@crema/components/AppDialog';
@@ -10,6 +9,7 @@ import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 import { useTodoActionsContext } from '../../context/TodoContextProvider';
 import { useIntl } from 'react-intl';
+import { getDateObject, getFormattedDate } from '@crema/helpers';
 
 type Props = {
   isAddTaskOpen: boolean;
@@ -43,9 +43,9 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
           assignedTo: '',
           label: [],
           priority: 3,
-          date: selectedDate
-            ? moment(selectedDate).format('MM/DD/YYYY')
-            : moment().format('MM/DD/YYYY'),
+          startDate: selectedDate
+            ? getDateObject(selectedDate)
+            : getDateObject(),
           content: '',
         }}
         validationSchema={validationSchema}
@@ -61,12 +61,12 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
               name: user.displayName ? user.displayName : 'User',
               image: user.photoURL,
             },
-            startDate: moment(data.date).format('lll'),
             image: '/assets/images/dummy2.jpg',
-            createdOn: moment().format('ll'),
             status: 1,
             comments: [],
             ...data,
+            startDate: getFormattedDate(data.startDate),
+            createdOn: getFormattedDate(undefined),
             label: taskLabels,
           };
           console.log('newTask:***********', newTask);

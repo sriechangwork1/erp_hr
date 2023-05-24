@@ -1,14 +1,14 @@
 import React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { TransactionDataType } from '@crema/models/dashboards/Analytics';
+import { TransactionDaumType } from '@crema/models/dashboards/Analytics';
 
 type Props = {
-  data: TransactionDataType;
+  data: TransactionDaumType;
 };
-
 const TableItem = ({ data }: Props) => {
   const getPaymentTypeColor = () => {
     switch (data.paymentType) {
@@ -99,3 +99,7 @@ const TableItem = ({ data }: Props) => {
 };
 
 export default TableItem;
+
+TableItem.propTypes = {
+  data: PropTypes.object.isRequired,
+};

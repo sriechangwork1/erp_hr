@@ -5,17 +5,17 @@ import { alpha, Box } from '@mui/material';
 import CoinsInfo from './CoinsInfo';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { TotalBalanceDataType } from '@crema/models/dashboards/Crypto';
+import type {TotalBalanceDataType} from "@crema/models/dashboards/Crypto";
 
-type TotalBalanceProps ={
-  totalBalanceData: TotalBalanceDataType;
+type Props={
+  totalBalanceData:TotalBalanceDataType;
 }
 
-const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
+const TotalBalance = ({ totalBalanceData }: Props) => {
   return (
     <Box>
       <Box
-        component="h2"
+        component='h2'
         sx={{
           color: 'text.primary',
           fontSize: 16,
@@ -24,12 +24,12 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
           fontWeight: Fonts.BOLD,
         }}
       >
-        <IntlMessages id="dashboard.totalBalance" />
+        <IntlMessages id='dashboard.totalBalance' />
       </Box>
       <AppCard sxStyle={{}}>
         <Box
           sx={{
-            mb: { xs: 3, md: 6, xl: 8 },
+            mb: { xs: 3, md: 6 },
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
@@ -41,7 +41,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
             }}
           >
             <Box
-              component="h3"
+              component='h3'
               sx={{
                 fontWeight: Fonts.MEDIUM,
                 fontSize: 20,
@@ -50,7 +50,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
               ${totalBalanceData.balance}
             </Box>
             <Box
-              component="p"
+              component='p'
               sx={{
                 color: 'text.secondary',
                 fontSize: 14,
@@ -58,7 +58,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
                 mb: 1,
               }}
             >
-              <IntlMessages id="dashboard.avlBalance" />
+              <IntlMessages id='dashboard.avlBalance' />
             </Box>
           </Box>
           <Box
@@ -84,7 +84,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
                   lineHeight: { xs: '16px', sm: '20px', xl: '26px' },
                 }}
               >
-                <IntlMessages id="common.send" />
+                <IntlMessages id='common.send' />
               </Button>
             </Box>
             <Box
@@ -93,7 +93,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
               }}
             >
               <Button
-                variant="contained"
+                variant='contained'
                 sx={{
                   fontWeight: Fonts.LIGHT,
                   textTransform: 'capitalize',
@@ -102,20 +102,19 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({ totalBalanceData }) => {
                   lineHeight: { xs: '16px', sm: '20px', xl: '26px' },
                 }}
               >
-                <IntlMessages id="common.receive" />
+                <IntlMessages id='common.receive' />
               </Button>
             </Box>
           </Box>
         </Box>
         <Box
-          component="p"
+          component='p'
           sx={{
-            mb: { xs: 3.5, md: 4 },
             fontSize: 16,
             color: 'text.secondary',
           }}
         >
-          <IntlMessages id="dashboard.buyCurrency" />
+          <IntlMessages id='dashboard.buyCurrency' />
         </Box>
         <Box
           sx={{

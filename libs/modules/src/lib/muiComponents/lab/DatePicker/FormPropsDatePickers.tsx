@@ -18,7 +18,6 @@ export default function FormPropsDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
         />
         <DatePicker
           label="read-only"
@@ -27,7 +26,6 @@ export default function FormPropsDatePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
         />
       </Stack>
     </LocalizationProvider>

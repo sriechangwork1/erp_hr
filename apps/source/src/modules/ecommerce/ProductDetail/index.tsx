@@ -18,17 +18,22 @@ import { ProductDataType } from '@crema/models/ecommerce/EcommerceApp';
 const ProductDetail = () => {
   const { query } = useRouter();
   const [{ apiData: currentProduct, loading }, { setQueryParams }] =
-    useGetDataApi<ProductDataType>('/api/ecommerce/get');
+    useGetDataApi<ProductDataType>(
+      '/api/ecommerce/get',
+      {} as ProductDataType,
+      { id: query?.all?.[0] },
+      false
+    );
 
   useEffect(() => {
-    setQueryParams({ id: query.id });
-  }, [query.id]);
+    setQueryParams({ id: query?.all?.[0] });
+  }, [query?.all?.[0]]);
 
   return (
     <>
       {loading ? (
         <AppLoader />
-      ) : (
+      ) : currentProduct ? (
         <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppCard>
             <Header product={currentProduct} />
@@ -39,7 +44,7 @@ const ProductDetail = () => {
             <SimilarProduct />
           </AppCard>
         </AppAnimate>
-      )}
+      ) : null}
       <AppInfoView />
     </>
   );

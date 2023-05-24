@@ -20,19 +20,20 @@ const TaskCalender = ({ taskList }: Props) => {
   const [isAddTaskOpen, setAddTaskOpen] = useState(false);
   const router = useRouter();
   const { query } = router;
-  const [selectedDate, setSelectedDate] = useState<SlotInfo>();
+  const [selectedDate, setSelectedDate] = useState<string | undefined>();
 
-  const all = query.all as string[];
+  const { all } = query;
+
   let folder: string;
   let label: string;
-  if (all.length === 2 && !+all[1]) {
+  if (all?.length === 2) {
     label = all[1];
-  } else if (all.length === 1) {
+  } else if (all?.length === 1) {
     folder = all[0];
   }
 
   const onSelectDate = (info: SlotInfo) => {
-    setSelectedDate(info);
+    setSelectedDate(String(info.start));
     setAddTaskOpen(true);
   };
 

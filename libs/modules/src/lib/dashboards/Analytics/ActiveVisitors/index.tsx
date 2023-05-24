@@ -1,25 +1,22 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import VisitorsGraph from './VisitorsGraph';
-import { green, red } from '@mui/material/colors';
-import Link from '@mui/material/Link';
-import { useIntl } from 'react-intl';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { ActiveVisitorsType } from '@crema/models/dashboards/Analytics';
+import VisitorsGraph from './VisitorsGraph';
+import Link from '@mui/material/Link';
+import {green, red} from '@mui/material/colors';
+import {ActiveVisitorsType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type Props = {
+type Props={
   data: ActiveVisitorsType;
-};
-
-const ActiveVisitors = ({ data }: Props) => {
-  const { messages } = useIntl();
+}
+const ActiveVisitors = ({ data={} as ActiveVisitorsType }: Props) => {
   return (
     <AppCard contentStyle={{ padding: 0 }}>
       <Box
         sx={{
           pt: { xs: 5, sm: 5, xl: 5 },
-          backgroundColor: '#49bd65',
         }}
       >
         <Box
@@ -29,21 +26,21 @@ const ActiveVisitors = ({ data }: Props) => {
         >
           <Box
             sx={{
-              color: '#FFFFFF',
-              mb: 2,
+              color: '#49bd65',
+              mb: 1,
               fontWeight: Fonts.BOLD,
               fontSize: 16,
             }}
-            component="h3"
+            component='h3'
           >
-            {messages['dashboard.analytics.activeVisitors'] as string}
+            {<IntlMessages id='dashboard.analytics.activeVisitors'/>}
           </Box>
           <Box
             sx={{
-              color: '#FFF8',
+              color: '#49bd65AA',
             }}
           >
-            {messages['dashboard.analytics.pageViewPerMinutes'] as string}
+            {<IntlMessages id='dashboard.analytics.pageViewPerMinutes'/>}
           </Box>
         </Box>
         <Box
@@ -77,7 +74,7 @@ const ActiveVisitors = ({ data }: Props) => {
                 fontWeight: Fonts.MEDIUM,
                 fontSize: 18,
               }}
-              component="h3"
+              component='h3'
             >
               {data.value}
             </Box>
@@ -88,13 +85,13 @@ const ActiveVisitors = ({ data }: Props) => {
                 fontWeight: Fonts.MEDIUM,
                 color: data.growth > 0.0 ? green[500] : red[500],
               }}
-              component="span"
+              component='span'
             >
               {data.growth}% Then yesterday
             </Box>
           </Box>
           <Box
-            component="p"
+            component='p'
             sx={{
               fontSize: 14,
               color: 'text.secondary',
@@ -110,9 +107,9 @@ const ActiveVisitors = ({ data }: Props) => {
           }}
         >
           <Link
-            component="button"
+            component='button'
             sx={{
-              color: (theme) => theme.palette.secondary.main,
+              color: 'secondary.main',
               fontSize: 16,
               marginTop: { xs: 1.5, xl: 4 },
               textDecoration: 'none',

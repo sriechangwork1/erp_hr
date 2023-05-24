@@ -1,16 +1,15 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCircularProgress from '@crema/components/AppCircularProgress';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Hidden from '@mui/material/Hidden';
-import { TopSellingProductType } from '@crema/models/dashboards/Analytics';
+import {TopSellingProductType} from "@crema/models/dashboards/Analytics";
 
-type ProductCellProps = {
-  data: TopSellingProductType;
-};
-
-const ProductCell: React.FC<ProductCellProps> = ({ data }) => {
+type Props={
+  data: TopSellingProductType
+}
+const ProductCell = ({ data }: Props) => {
   return (
     <Box
       key={data.id}

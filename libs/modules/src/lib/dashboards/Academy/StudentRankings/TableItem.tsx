@@ -4,13 +4,12 @@ import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { Fonts } from '@crema/constants/AppEnums';
-import { StudentRankingDataType } from '@crema/models/dashboards/Academy';
+import { StudentRankingType } from '@crema/models/dashboards/Academy';
 
-type TableItemProps ={
-  data: StudentRankingDataType;
-}
-
-const TableItem: React.FC<TableItemProps> = ({ data }) => {
+type Props = {
+  data: StudentRankingType;
+};
+const TableItem = ({ data }: Props) => {
   return (
     <TableRow
       key={data.name}

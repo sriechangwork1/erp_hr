@@ -6,20 +6,18 @@ import DateSelector from './DateSelector';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Hidden from '@mui/material/Hidden';
 import Box from '@mui/material/Box';
-import { grey } from '@mui/material/colors';
+import PropTypes from 'prop-types';
+import {grey} from '@mui/material/colors';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { TodayTaskType } from '@crema/models/dashboards/CRM';
+import {useIntl} from 'react-intl';
 
-type TodayTasksProps= {
-  todayTaskData: TodayTaskType[];
-}
+const TodayTasks = (props) => {
+  const { todayTaskData } = props;
 
-const TodayTasks: React.FC<TodayTasksProps> = ({ todayTaskData }) => {
   const { messages } = useIntl();
   return (
     <AppCard
-      title={messages['dashboard.todayTasks'] as string}
+      title={messages['dashboard.todayTasks']}
       sxStyle={{ height: 1 }}
       action={
         <Box>
@@ -64,3 +62,11 @@ const TodayTasks: React.FC<TodayTasksProps> = ({ todayTaskData }) => {
 };
 
 export default TodayTasks;
+
+TodayTasks.defaultProps = {
+  todayTaskData: [],
+};
+
+TodayTasks.propTypes = {
+  todayTaskData: PropTypes.array,
+};

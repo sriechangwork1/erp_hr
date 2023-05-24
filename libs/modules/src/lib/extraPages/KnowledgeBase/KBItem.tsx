@@ -5,10 +5,10 @@ import Box from '@mui/material/Box';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { InstallationData } from '@crema/fakedb/extraPages';
+import { InstallationDataType } from '@crema/models/extrapages/Portfolio';
 
 type KbItemProps = {
-  data: InstallationData;
+  data: InstallationDataType;
 };
 
 const KbItem: React.FC<KbItemProps> = ({ data }) => {

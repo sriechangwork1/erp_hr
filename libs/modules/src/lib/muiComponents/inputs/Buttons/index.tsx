@@ -53,12 +53,6 @@ import LoadingButtonsTransitionSource from 'raw-loader!./LoadingButtonsTransitio
 import ButtonBases from './ButtonBases';
 
 import ButtonBasesSource from 'raw-loader!./ButtonBases';
-import UseButton from './UseButton';
-
-import UseButtonSource from 'raw-loader!./UseButton';
-import ComplexCustomization from './ComplexCustomization';
-
-import ComplexCustomizationSource from 'raw-loader!./ComplexCustomization';
 
 const Buttons = () => {
   return (
@@ -212,24 +206,6 @@ const Buttons = () => {
             source={ButtonBasesSource}
             noScrollbar
             description="The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the ButtonBase. You can take advantage of this lower-level component to build custom interactions."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Use Button"
-            component={UseButton}
-            source={UseButtonSource}
-            noScrollbar
-            description="The useButton hook requires the ref of the element itll be used on."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Complex Customization"
-            component={ComplexCustomization}
-            source={ComplexCustomizationSource}
-            noScrollbar
-            description="You are not limited to using HTML elements for the button structure. SVG elements, even with complex structure, are equally acceptable."
           />
         </Grid>
       </AppGridContainer>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MapChart from './MapChart';
-import { Box } from '@mui/material';
+import { Tooltip as ReactTooltip } from 'react-tooltip'
+import {Box} from '@mui/material';
 
 const MapView = () => {
+  const [content, setContent] = useState('');
   return (
     <Box
       sx={{
@@ -10,7 +12,8 @@ const MapView = () => {
         height: 200,
       }}
     >
-      <MapChart />
+      <MapChart setTooltipContent={setContent} />
+      <ReactTooltip>{content}</ReactTooltip>
     </Box>
   );
 };

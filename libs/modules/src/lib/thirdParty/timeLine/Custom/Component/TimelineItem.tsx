@@ -2,7 +2,7 @@ import React from 'react';
 import { Fonts } from '@crema/constants/AppEnums';
 import TimelineItemWrapper from './TimelineItemWrapper';
 import TimelineItemContentWrapper from './TimelineItemContentWrapper';
-import grey from '@mui/material/colors/grey';
+import {grey} from '@mui/material/colors';
 import CircleWrapper from './CircleWrapper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

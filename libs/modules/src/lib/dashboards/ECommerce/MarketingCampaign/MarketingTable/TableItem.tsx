@@ -1,34 +1,35 @@
 import React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
-import { Fonts } from '@crema/constants/AppEnums';
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import { MarketingCampaignType } from '@crema/models/dashboards/Ecommerce';
 
-type TableItemProps = {
+const TableRowWrapper = styled(TableRow)(() => {
+  return {
+    '& td': {
+      fontSize: 14,
+      padding: 8,
+      '&:first-of-type': {
+        paddingLeft: 20,
+      },
+      '&:last-of-type': {
+        paddingRight: 20,
+      },
+    },
+  };
+});
+
+type Props = {
   data: MarketingCampaignType;
 };
 
-const TableItem: React.FC<TableItemProps> = (props) => {
+const TableItem = (props: Props) => {
   return (
-    <TableRow
-      key={props.data.name}
-      sx={{
-        '& td': {
-          borderBottomColor: '#E5E4EA',
-          fontSize: 13,
-          padding: 2,
-          '&:first-of-type': {
-            pl: 5,
-          },
-          '&:last-of-type': {
-            pr: 5,
-          },
-        },
-      }}
-      className="item-hover"
-    >
+    <TableRowWrapper key={props.data.name} className="item-hover">
       <TableCell>
         <Box
           sx={{
@@ -38,6 +39,8 @@ const TableItem: React.FC<TableItemProps> = (props) => {
         >
           <Avatar
             sx={{
+              width: 36,
+              height: 36,
               mr: 3.5,
             }}
             src={props.data.icon}
@@ -46,28 +49,26 @@ const TableItem: React.FC<TableItemProps> = (props) => {
             sx={{
               fontSize: 14,
               flex: 1,
+              color: (theme) => theme.palette.text.secondary,
             }}
           >
-            <Box
+            <Typography
               sx={{
                 mb: 0.5,
-                fontWeight: Fonts.MEDIUM,
+                color: (theme) => theme.palette.text.primary,
               }}
+              variant="h5"
+              component="h5"
             >
               {props.data.name}
-            </Box>
-            <Box
-              component="p"
-              sx={{
-                color: 'text.secondary',
-              }}
-            >
-              {props.data.description}
-            </Box>
+            </Typography>
+            <Typography>{props.data.description}</Typography>
           </Box>
         </Box>
       </TableCell>
+      <TableCell>{props.data.duration}</TableCell>
       <TableCell>{props.data.spent}</TableCell>
+      <TableCell>{props.data.budget}</TableCell>
       <TableCell>
         {props.data.growth ? (
           <img
@@ -83,7 +84,8 @@ const TableItem: React.FC<TableItemProps> = (props) => {
         <Box
           component="span"
           sx={{
-            mx: 2,
+            display: 'inline-block',
+            ml: 2,
             color: props.data.growth ? '#0A8FDC' : '#F44D50',
           }}
         >
@@ -92,14 +94,20 @@ const TableItem: React.FC<TableItemProps> = (props) => {
         <Box
           component="span"
           sx={{
-            color: 'text.secondary',
+            display: 'inline-block',
+            color: (theme) => theme.palette.text.secondary,
+            ml: 2,
           }}
         >
           {props.data.growth ? 'Up' : 'Down'}
         </Box>
       </TableCell>
-    </TableRow>
+    </TableRowWrapper>
   );
 };
 
 export default TableItem;
+
+TableItem.propTypes = {
+  data: PropTypes.object.isRequired,
+};

@@ -2,16 +2,15 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import CourseGraph from './CourseGraph';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { CourseDetailsType } from '@crema/models/dashboards/Academy';
+import {CourseDetailType} from "@crema/models/dashboards/Academy";
 
-type CourseDetailProps ={
-  course: CourseDetailsType;
+type Props={
+  course: CourseDetailType;
 }
-
-const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
+const CourseDetail = ({ course }: Props) => {
   const getTitle = () => (
     <Box
       sx={{
@@ -25,12 +24,12 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
           '& .logo': {
             height: 60,
             width: 60,
-            //borderRadius: theme.overrides.MuiCard.root.borderRadius,
+            borderRadius: 2,
             overflow: 'hidden',
           },
         }}
       >
-        <img className="logo" alt="" src={course.thumb} />
+        <img className='logo' alt='' src={course.thumb} />
       </Box>
       <Box
         sx={{
@@ -38,7 +37,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
         }}
       >
         <Box
-          component="h3"
+          component='h3'
           sx={{
             fontWeight: Fonts.BOLD,
             mb: 0.5,
@@ -48,7 +47,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
           {course.title}
         </Box>
         <Box
-          component="p"
+          component='p'
           sx={{
             fontSize: 14,
             color: 'text.secondary',
@@ -66,10 +65,9 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
       action={
         <Box>
           <IconButton
-            aria-label="more"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            // onClick={null}
+            aria-label='more'
+            aria-controls='long-menu'
+            aria-haspopup='true'
           >
             <MoreHorizIcon />
           </IconButton>
@@ -90,12 +88,12 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
               fontWeight: Fonts.MEDIUM,
               mb: 3,
             }}
-            component="p"
+            component='p'
           >
             {course.coveredDuration}
           </Box>
           <Box
-            component="p"
+            component='p'
             sx={{
               mb: 1,
               color: 'text.secondary',
@@ -104,7 +102,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
             Lecture of
           </Box>
           <Box
-            component="p"
+            component='p'
             sx={{
               color: 'text.secondary',
             }}
@@ -119,12 +117,12 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
               fontWeight: Fonts.MEDIUM,
               mb: 3,
             }}
-            component="p"
+            component='p'
           >
             {course.coveredPractice}
           </Box>
           <Box
-            component="p"
+            component='p'
             sx={{
               mb: 1,
               color: 'text.secondary',
@@ -133,7 +131,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course }) => {
             Practice of
           </Box>
           <Box
-            component="p"
+            component='p'
             sx={{
               color: 'text.secondary',
             }}

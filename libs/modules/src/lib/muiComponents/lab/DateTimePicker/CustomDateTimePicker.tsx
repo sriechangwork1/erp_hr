@@ -1,13 +1,12 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import AlarmIcon from '@mui/icons-material/Alarm';
 import SnoozeIcon from '@mui/icons-material/Snooze';
-import TextField from '@mui/material/TextField';
 import ClockIcon from '@mui/icons-material/AccessTime';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
+import {MobileDateTimePicker} from '@mui/x-date-pickers/MobileDateTimePicker';
 import Stack from '@mui/material/Stack';
 
 export default function CustomDateTimePicker() {
@@ -21,7 +20,6 @@ export default function CustomDateTimePicker() {
       <Stack spacing={3}>
         <DateTimePicker
           disableFuture
-          hideTabs
           openTo="hours"
           value={dateWithInitialValue}
           onChange={(newValue) => {
@@ -35,9 +33,6 @@ export default function CustomDateTimePicker() {
           }}
           minTime={dayjs('2018-01-01T09:00')}
           maxTime={dayjs('2018-01-01T20:00')}
-          renderInput={(params) => (
-            <TextField {...params} helperText="Hardcoded helper text" />
-          )}
         />
         <MobileDateTimePicker
           value={dateWithInitialValue}
@@ -47,16 +42,11 @@ export default function CustomDateTimePicker() {
           label="With error handler"
           onError={console.log}
           minDate={dayjs('2018-01-01T00:00')}
-          inputFormat="YYYY/MM/DD hh:mm a"
-          mask="____/__/__ __:__ _M"
-          renderInput={(params) => <TextField {...params} />}
+
         />
         <DateTimePicker
           value={dateWithNoInitialValue}
           onChange={(newValue) => setDateWithNoInitialValue(newValue)}
-          renderInput={(params) => (
-            <TextField {...params} helperText="Clear Initial State" />
-          )}
         />
       </Stack>
     </LocalizationProvider>

@@ -11,7 +11,7 @@ import {
   brandData,
   discountList,
   idealFor,
-  productColors,
+  ProductColors,
 } from '@crema/fakedb/data';
 import AppGrid from '@crema/components/AppGrid';
 import ColorCell from './ColorCell';
@@ -222,7 +222,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
           <Box sx={{ mb: 3 }}>COLOR</Box>
 
           <AppGrid
-            data={Object.values(productColors)}
+            data={Object.values(ProductColors)}
             column={6}
             itemPadding={10}
             renderRow={(data, index) => (

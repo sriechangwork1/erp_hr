@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import AppCard from '@crema/components/AppCard';
-import AppSelect from '@crema/components/AppSelect';
-import { useIntl } from 'react-intl';
+import React, {useState} from 'react';
+import AppCard from "@crema/components/AppCard";
+import AppSelect from "@crema/components/AppSelect";
+import {useIntl} from 'react-intl';
 import StaticsGraph from './StaticsGraph';
-import { Box } from '@mui/material';
-import { HeathStaticsType } from '@crema/models/dashboards/HealthCare';
+import {Box} from '@mui/material';
+import PropTypes from 'prop-types';
+import {HeathStaticsType} from "@crema/models/dashboards/HealthCare";
 
-type HealthStaticsProps = {
-  data: HeathStaticsType;
-};
+type Props = {
+  data: HeathStaticsType
+}
 
-const HealthStatics: React.FC<HealthStaticsProps> = ({ data }) => {
+const HealthStatics = ({data}: Props) => {
   const [graphData, setGraphData] = useState(data.dataOne);
-  const handleYearChange = (value: unknown) => {
+  const handleYearChange = (value: number) => {
     switch (value) {
       case 2017:
         setGraphData(data.dataTwo);
@@ -44,7 +45,7 @@ const HealthStatics: React.FC<HealthStaticsProps> = ({ data }) => {
     }
   };
 
-  const { messages } = useIntl();
+  const {messages} = useIntl();
   return (
     <AppCard
       title={messages['healthCare.staticsHealthCare'] as string}
@@ -73,9 +74,20 @@ const HealthStatics: React.FC<HealthStaticsProps> = ({ data }) => {
         </Box>
       }
     >
-      <StaticsGraph data={graphData} />
+      <Box
+        sx={{
+          position: 'relative',
+          height: {xs: 245, xl: 155},
+        }}
+      >
+        <StaticsGraph data={graphData} />
+      </Box>
     </AppCard>
   );
 };
 
 export default HealthStatics;
+
+HealthStatics.propTypes = {
+  data: PropTypes.object,
+};

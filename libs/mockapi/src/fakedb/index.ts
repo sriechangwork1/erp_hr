@@ -11,9 +11,10 @@ import ecommerce, {
   customersData,
   discountList,
   idealFor,
-  productColors,
+  ProductColors,
   recentOrders,
 } from './ecommerce/ecommerceData';
+import cryptoData from './dashboard/crypto';
 import reactSlickData from './thirdParty/reactSlick';
 
 export {
@@ -26,11 +27,12 @@ export {
   aboutUsData,
   addresses,
   brandData,
-  productColors,
+  ProductColors,
   idealFor,
   discountList,
   cartItems,
   recentOrders,
   customersData,
   ecommerce,
+  cryptoData,
 };

@@ -1,32 +1,24 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import StatGraphs from './StatGraphs';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppSelect from '@crema/components/AppSelect';
-import { StatisticType } from '@crema/models/dashboards/CRM';
 
-type StatisticsProps = {
-  projectData: StatisticType[];
-  clientsData: StatisticType[];
-  incomeData: StatisticType[];
-};
+const GraphTabs = (props) => {
+  const { clientsData, incomeData, projectData } = props;
 
-const GraphTabs: React.FC<StatisticsProps> = ({
-  clientsData,
-  incomeData,
-  projectData,
-}) => {
   const [value, setValue] = useState(0);
 
   const [projectGraphData, setProjectGraphData] = useState(projectData);
   const [clientsGraphData, setClientsGraphData] = useState(clientsData);
   const [incomeGraphData, setIncomeGraphData] = useState(incomeData);
 
-  const onSetGraphValue = (data: StatisticType[]) => {
+  const onSetGraphValue = (data) => {
     switch (value) {
       case 0: {
         setProjectGraphData(data);
@@ -45,14 +37,11 @@ const GraphTabs: React.FC<StatisticsProps> = ({
     }
   };
 
-  const handleChange = (
-    event: React.SyntheticEvent<Element, Event>,
-    newValue: number
-  ) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleYearChange = (value: number) => {
+  const handleYearChange = (value) => {
     switch (value) {
       case 2017:
         onSetGraphValue(incomeData);
@@ -68,7 +57,7 @@ const GraphTabs: React.FC<StatisticsProps> = ({
     }
   };
 
-  const handleMonthChange = (value: string) => {
+  const handleMonthChange = (value) => {
     switch (value) {
       case 'June':
         onSetGraphValue(incomeData);
@@ -84,7 +73,7 @@ const GraphTabs: React.FC<StatisticsProps> = ({
     }
   };
 
-  const a11yProps = (index: any) => {
+  const a11yProps = (index) => {
     return {
       id: `simple-tab-${index}`,
       'aria-controls': `simple-tabpanel-${index}`,
@@ -198,3 +187,15 @@ const GraphTabs: React.FC<StatisticsProps> = ({
 };
 
 export default GraphTabs;
+
+GraphTabs.defaultProps = {
+  clientsData: [],
+  incomeData: [],
+  projectData: [],
+};
+
+GraphTabs.propTypes = {
+  clientsData: PropTypes.array,
+  incomeData: PropTypes.array,
+  projectData: PropTypes.array,
+};

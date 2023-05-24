@@ -25,9 +25,9 @@ export default function InputSlider() {
   };
 
   const handleBlur = () => {
-    if (value < 0) {
+    if (+value < 0) {
       setValue(0);
-    } else if (value > 100) {
+    } else if (+value > 100) {
       setValue(100);
     }
   };

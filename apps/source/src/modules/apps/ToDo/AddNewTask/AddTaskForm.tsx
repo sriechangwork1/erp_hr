@@ -20,6 +20,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { styled } from '@mui/material/styles';
 import { useTodoContext } from '../../context/TodoContextProvider';
 import { LabelType } from '@crema/models/apps/Todo';
+import dayjs from 'dayjs';
 
 const StyledDivider = styled(Divider)(({ theme }) => ({
   marginTop: 20,
@@ -36,7 +37,7 @@ type Props = {
     assignedTo: string;
     label: LabelType[];
     priority: number;
-    date: string;
+    startDate: dayjs.Dayjs;
     content: string;
   };
   setFieldValue: (
@@ -58,6 +59,8 @@ const AddTaskForm = (props: Props) => {
   const inputLabel = React.useRef(null);
 
   const { messages } = useIntl();
+
+  console.log('AddTaskFormvalues', values);
 
   return (
     <Form
@@ -150,15 +153,9 @@ const AddTaskForm = (props: Props) => {
             <Grid item xs={12} sm={6} md={3}>
               <Box width={1}>
                 <DatePicker
-                  // autoOk
-                  // format="YYYY/MM/DD"
-                  // variant="inline"
-                  // inputVariant="outlined"
                   label={<IntlMessages id="common.startDate" />}
-                  // name="date"
-                  value={values.date}
-                  renderInput={(params) => <TextField {...params} />}
-                  onChange={(value) => setFieldValue('date', value)}
+                  value={values.startDate}
+                  onChange={(value) => setFieldValue('startDate', value)}
                 />
               </Box>
             </Grid>

@@ -1,22 +1,23 @@
 import React from 'react';
-import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import AppSelect from '@crema/components/AppSelect';
+import AppCard from "@crema/components/AppCard";
+import {useIntl} from 'react-intl';
+import AppSelect from "@crema/components/AppSelect";
 import PatientsTable from './PatientsTable';
-import { RecentPatientType } from '@crema/models/dashboards/HealthCare';
+import PropTypes from 'prop-types';
+import {RecentPatientType} from "@crema/models/dashboards/HealthCare";
 
-type RecentPatientsProps = {
-  recentPatients: RecentPatientType[];
-};
+type Props = {
+  recentPatients: RecentPatientType[]
+}
 
-const RecentPatients: React.FC<RecentPatientsProps> = ({ recentPatients }) => {
-  const { messages } = useIntl();
-  const handleSelectionType = (data: unknown) => {
+const RecentPatients = ({recentPatients}:Props) => {
+  const {messages} = useIntl();
+  const handleSelectionType = (data:string) => {
     console.log('data: ', data);
   };
   return (
     <AppCard
-      contentStyle={{ px: 0 }}
+      contentStyle={{paddingLeft: 0, paddingRight: 0, paddingBottom: 8}}
       title={messages['healthCare.recentPatient'] as string}
       action={
         <AppSelect
@@ -36,3 +37,7 @@ const RecentPatients: React.FC<RecentPatientsProps> = ({ recentPatients }) => {
 };
 
 export default RecentPatients;
+
+RecentPatients.propTypes = {
+  recentPatients: PropTypes.array.isRequired,
+};

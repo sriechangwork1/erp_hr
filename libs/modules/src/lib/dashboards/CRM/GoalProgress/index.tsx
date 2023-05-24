@@ -3,20 +3,15 @@ import GoalProgressGraph from './GoalProgressGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { ProgressGraphType } from '@crema/models/dashboards/CRM';
+import {ProgressGraphDaumType} from "@crema/models/dashboards/CRM";
 
-type GoalProgressProps= {
-  progressGraphData: ProgressGraphType[];
+type Props={
+  progressGraphData: ProgressGraphDaumType[]
+
 }
-
-const GoalProgress: React.FC<GoalProgressProps> = ({ progressGraphData }) => {
-  const { messages } = useIntl();
+const GoalProgress = ({ progressGraphData=[] }: Props) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={messages['dashboard.goalProgress'] as string}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={<IntlMessages id='dashboard.goalProgress'/>}>
       <GoalProgressGraph progressGraphData={progressGraphData} />
       <Box
         sx={{

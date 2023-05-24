@@ -5,13 +5,14 @@ import Avatar from '@mui/material/Avatar';
 import TableRow from '@mui/material/TableRow';
 import { red } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
-import { TicketSupportDataType } from '@crema/models/dashboards/CRM';
+import { TicketSupportDaumType } from '@crema/models/dashboards/CRM';
 
-type TableItemProps ={
-  row: TicketSupportDataType;
-}
+type Props = {
+  row: TicketSupportDaumType;
+};
+const TableItem = (props: Props) => {
+  const { row } = props;
 
-const TableItem: React.FC<TableItemProps> = ({ row }) => {
   return (
     <TableRow
       sx={{
@@ -38,8 +39,8 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
           {row.image ? (
             <Avatar
               sx={{
-                width: { xs: 40, xl: 50 },
-                height: { xs: 40, xl: 50 },
+                width: { xs: 30, xl: 40 },
+                height: { xs: 30, xl: 40 },
                 backgroundColor: red[500],
               }}
               src={row.image}
@@ -47,8 +48,8 @@ const TableItem: React.FC<TableItemProps> = ({ row }) => {
           ) : (
             <Avatar
               sx={{
-                width: { xs: 40, xl: 50 },
-                height: { xs: 40, xl: 50 },
+                width: { xs: 30, xl: 40 },
+                height: { xs: 30, xl: 40 },
                 backgroundColor: red[500],
               }}
             >

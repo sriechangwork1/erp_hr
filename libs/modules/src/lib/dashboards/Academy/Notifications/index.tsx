@@ -2,18 +2,14 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import AppList from '@crema/components/AppList';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-//import {timeFromNow} from '@crema/utility/utils';
-import { useIntl } from 'react-intl';
-import { NotificationDataType } from '@crema/models/dashboards/Academy';
+import {Fonts} from '@crema/constants/AppEnums';
+import {NotificationType} from "@crema/models/dashboards/Academy";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type NotificationItemProps= {
-  notification: NotificationDataType;
+type Props={
+  notification: NotificationType;
 }
-
-const NotificationItem: React.FC<NotificationItemProps> = ({
-  notification,
-}) => {
+const NotificationItem = ({ notification }: Props) => {
   return (
     <Box
       sx={{
@@ -76,16 +72,14 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   );
 };
 
-type NotificationsProps ={
-  notifications: NotificationDataType[];
+type NotificationsProps={
+  notifications: NotificationType[];
 }
-
-const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
-  const { messages } = useIntl();
+const Notifications = ({ notifications }: NotificationsProps) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['academy.notifications'] as string}
+      title={<IntlMessages id='academy.notifications'/>}
       contentStyle={{ px: 0 }}
     >
       <AppList
@@ -100,3 +94,4 @@ const Notifications: React.FC<NotificationsProps> = ({ notifications }) => {
 };
 
 export default Notifications;
+

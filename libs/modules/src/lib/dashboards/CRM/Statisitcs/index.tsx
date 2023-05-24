@@ -1,19 +1,9 @@
 import React from 'react';
 import GraphTabs from './GraphTabs';
+import PropTypes from 'prop-types';
 import AppCard from '@crema/components/AppCard';
-import { StatisticType } from '@crema/models/dashboards/CRM';
 
-type StatisticsProps ={
-  projectData: StatisticType[];
-  clientsData: StatisticType[];
-  incomeData: StatisticType[];
-}
-
-export const Statistics: React.FC<StatisticsProps> = ({
-  clientsData,
-  incomeData,
-  projectData,
-}) => {
+export const Statistics = ({ clientsData, incomeData, projectData }) => {
   return (
     <AppCard sxStyle={{ height: 1 }}>
       <GraphTabs
@@ -26,3 +16,15 @@ export const Statistics: React.FC<StatisticsProps> = ({
 };
 
 export default Statistics;
+
+Statistics.defaultProps = {
+  clientsData: [],
+  incomeData: [],
+  projectData: [],
+};
+
+Statistics.propTypes = {
+  clientsData: PropTypes.array,
+  incomeData: PropTypes.array,
+  projectData: PropTypes.array,
+};

@@ -4,14 +4,3 @@ import asyncComponent from '@crema/components/AppAsyncComponent';
 
 const SignIn = asyncComponent(() => import('../modules/auth/Signin'));
 export default AppPage(() => <SignIn />);
-// import React from 'react';
-//
-// const Index = () => {
-//   return (
-//     <div>
-//       hi
-//     </div>
-//   );
-// };
-//
-// export default Index;

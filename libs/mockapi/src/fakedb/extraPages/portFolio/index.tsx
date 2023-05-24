@@ -1,54 +1,6 @@
-export type PortfolioData = {
-  portfolio: Portfolio;
-  portfolioDetail: PortfolioDetail;
-};
+import {PortfolioDataType} from "@crema/models/extrapages/Portfolio";
 
-export type Portfolio = {
-  all: PremiumBrand[];
-  branding: PremiumBrand[];
-  graphics: PremiumBrand[];
-  logos: PremiumBrand[];
-};
-
-export type PremiumBrand = {
-  id?: number;
-  srcImg?: string;
-  title: string;
-  subTitle: string;
-};
-
-export type PortfolioDetail = {
-  product: Product[];
-  premiumBrand: PremiumBrand;
-  innovation: Innovation;
-  slide: Product[];
-  projectDescription: ProjectDescription;
-};
-
-export type Innovation = {
-  srcImg: string;
-  brandSubTitle: string;
-  brandTitle: string;
-  title: string;
-  description: string;
-};
-
-export type Product = {
-  id: number;
-  srcImg: string;
-};
-
-export type ProjectDescription = {
-  service: PremiumBrand[];
-  content: Content[];
-};
-
-export type Content = {
-  id: number;
-  line: string;
-};
-
-const portfolioData: PortfolioData = {
+export const portfolioData: PortfolioDataType = {
   portfolio: {
     all: [
       {

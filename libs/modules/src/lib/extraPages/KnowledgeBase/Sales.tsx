@@ -4,10 +4,10 @@ import IntlMessages from '@crema/helpers/IntlMessages';
 import KBItem from './KBItem';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import { Fonts } from '@crema/constants/AppEnums';
-import { SalesData } from '@crema/fakedb/extraPages';
+import { SalesDataType } from '@crema/models/extrapages/Portfolio';
 
 type SalesDataProps = {
-  saleQueries: SalesData[];
+  saleQueries: SalesDataType[];
 };
 
 const Sales: React.FC<SalesDataProps> = ({ saleQueries }) => {

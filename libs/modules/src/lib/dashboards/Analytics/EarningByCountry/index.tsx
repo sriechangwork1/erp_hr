@@ -1,18 +1,18 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import MapChart from '../../Widgets/CountryMap/MapChart';
-import { Box } from '@mui/material';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Box} from '@mui/material';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppSelect from '@crema/components/AppSelect';
-import { useIntl } from 'react-intl';
-import { EarningDataType } from '@crema/models/dashboards/Analytics';
+import {useIntl} from 'react-intl';
+import {EarningDaumType} from "@crema/models/dashboards/Analytics";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type Props = {
-  earningData: EarningDataType[];
-};
-
+type Props={
+  earningData: EarningDaumType[];
+}
 const EarningByCountry = ({ earningData }: Props) => {
-  const handleSelectionType = (data: string) => {
+  const handleSelectionType = (data: EarningDaumType) => {
     console.log('data: ', data);
   };
 
@@ -20,7 +20,7 @@ const EarningByCountry = ({ earningData }: Props) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages['dashboard.analytics.earningByCountries'] as string}
+      title={<IntlMessages id='dashboard.analytics.earningByCountries'/>}
       action={
         <AppSelect
           menus={[
@@ -53,7 +53,7 @@ const EarningByCountry = ({ earningData }: Props) => {
           justifyContent: 'space-between',
         }}
       >
-        {earningData.map((data: any) => (
+        {earningData.map((data) => (
           <Box
             sx={{
               px: 4.5,

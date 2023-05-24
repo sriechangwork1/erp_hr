@@ -3,13 +3,11 @@ import Box from '@mui/material/Box';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItem from '@mui/material/ListItem';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 
-type CategoriesProps ={
-  category: any;
-}
+const Categories = (props) => {
+  const { category } = props;
 
-const Categories: React.FC<CategoriesProps> = ({ category }) => {
   return (
     <ListItem
       sx={{

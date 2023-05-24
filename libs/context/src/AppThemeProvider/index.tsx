@@ -7,8 +7,8 @@ import {
 import AppLocale from '@crema/services/localization';
 import { useThemeContext } from '../AppContextProvider/ThemeContextProvider';
 import { useLocaleContext } from '../AppContextProvider/LocaleContextProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 interface AppThemeProviderProps {
   children: ReactElement;
@@ -22,7 +22,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = (props) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={createTheme(theme, muiLocale)}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           {props.children}
         </LocalizationProvider>
       </ThemeProvider>

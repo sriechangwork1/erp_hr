@@ -1,11 +1,10 @@
 import React from 'react';
 import DatePickerWrapper from './DatePickerWrapper';
 import TextField from '@mui/material/TextField';
-import StaticDatePicker from '@mui/lab/StaticDatePicker';
-import { TextFieldProps } from '@mui/material/TextField/TextField';
+import {StaticDatePicker} from '@mui/x-date-pickers';
 
 const DateSelector = () => {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState(new Date());
 
   return (
     <DatePickerWrapper>
@@ -13,10 +12,10 @@ const DateSelector = () => {
         orientation="landscape"
         openTo="day"
         value={value}
-        onChange={(newValue:Date) => {
+        onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params:TextFieldProps) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} />}
       />
     </DatePickerWrapper>
   );

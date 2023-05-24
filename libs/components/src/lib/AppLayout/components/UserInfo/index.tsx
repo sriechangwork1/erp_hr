@@ -29,10 +29,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
   };
 
   const getUserAvatar = () => {
-    if (user?.displayName) {
-      return user?.displayName.charAt(0).toUpperCase();
+    if (user.displayName) {
+      return user.displayName.charAt(0).toUpperCase();
     }
-    if (user?.email) {
+    if (user.email) {
       return user.email.charAt(0).toUpperCase();
     }
   };
@@ -59,7 +59,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
                 fontSize: 24,
                 backgroundColor: orange[500],
               }}
-              src={user?.photoURL}
+              src={user.photoURL}
             />
           ) : (
             <Avatar
@@ -101,7 +101,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
               }}
               component="span"
             >
-              {user?.displayName ? user.displayName : 'Admin User '}
+              {user.displayName ? user.displayName : 'Admin User '}
             </Box>
             <Box
               sx={{
@@ -143,7 +143,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
         <MenuItem
           onClick={() => {
             handleClose();
-            router.push('/my-account');
+            router.push('/my-profile');
           }}
         >
           My account

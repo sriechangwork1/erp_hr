@@ -8,7 +8,7 @@ import Tab from '@mui/material/Tab';
 import Button from '@mui/material/Button';
 import ReactPlayer from 'react-player';
 import { Fonts } from '@crema/constants/AppEnums';
-import { VideoPromoDataType } from '@crema/models/dashboards/Academy';
+import { VideoPromoType } from '@crema/models/dashboards/Academy';
 
 const tabs = [
   { id: 1, title: 'Class Detail', slug: 'class' },
@@ -16,18 +16,13 @@ const tabs = [
   { id: 3, title: 'Projects', slug: 'projects' },
   { id: 4, title: 'Exams', slug: 'exams' },
 ];
-
-type VideoPromoProps = {
-  videoPromo: VideoPromoDataType;
+type Props = {
+  videoPromo: VideoPromoType;
 };
+const VideoPromo = ({ videoPromo }: Props) => {
+  const [tabValue, setTabValue] = useState('assignments');
 
-const VideoPromo: React.FC<VideoPromoProps> = ({ videoPromo }) => {
-  const [tabValue, setTabValue] = useState<string>('assignments');
-
-  const handleTabChange = (
-    event: React.SyntheticEvent<Element, Event>,
-    newValue: string
-  ) => {
+  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);
   };
 

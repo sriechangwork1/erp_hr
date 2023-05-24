@@ -2,24 +2,20 @@ import React from 'react';
 import WebTrafficGraph from './WebTrafficGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { blue, red } from '@mui/material/colors';
-import { Fonts } from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {blue, red} from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { WebsiteTrafficType } from '@crema/models/dashboards/CRM';
+import {useIntl} from 'react-intl';
 
-type WebTrafficProps ={
-  websiteTrafficData: WebsiteTrafficType[];
-}
-
-const WebTraffic: React.FC<WebTrafficProps> = ({ websiteTrafficData }) => {
+const WebTraffic = ({ websiteTrafficData }) => {
   const { messages } = useIntl();
   return (
     <AppCard
       sxStyle={{
         mb: { xs: 5, md: 8 },
       }}
-      title={messages['dashboard.websiteTraffic'] as string}
+      title={messages['dashboard.websiteTraffic']}
     >
       <WebTrafficGraph websiteTrafficData={websiteTrafficData} />
       <Box
@@ -90,3 +86,11 @@ const WebTraffic: React.FC<WebTrafficProps> = ({ websiteTrafficData }) => {
 };
 
 export default WebTraffic;
+
+WebTraffic.defaultProps = {
+  websiteTrafficData: [],
+};
+
+WebTraffic.propTypes = {
+  websiteTrafficData: PropTypes.array,
+};

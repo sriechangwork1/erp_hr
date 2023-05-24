@@ -3,19 +3,19 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import GraphFile from './GraphFile';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { green } from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
+import {green} from '@mui/material/colors';
 import AppCard from '@crema/components/AppCard';
-import { MetricsFloatingChildType } from '@crema/models/dashboards/Metrics';
+import {MetricsFloatingChildType} from "@crema/models/dashboards/Metrics";
 
 type FloatingGraphsProps = {
   data: MetricsFloatingChildType;
   title: any;
 };
 
-const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
+const FloatingGraphs: React.FC<FloatingGraphsProps> = ({data, title}) => {
   return (
-    <AppCard sxStyle={{ height: 1, textAlign: 'center' }}>
+    <AppCard sxStyle={{height: 1, textAlign: 'center'}}>
       <Box
         component="p"
         sx={{

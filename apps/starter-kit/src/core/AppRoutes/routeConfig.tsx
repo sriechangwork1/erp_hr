@@ -1,6 +1,6 @@
-import { BiAlignLeft } from 'react-icons/bi';
+import {BiAlignLeft} from 'react-icons/bi';
 
-const routesConfig = [
+const routesConfig =[
   {
     id: 'app',
     title: 'Sample',

@@ -15,9 +15,6 @@ export default function HelperText() {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => (
-          <TextField {...params} helperText={params?.inputProps?.placeholder} />
-        )}
       />
     </LocalizationProvider>
   );

@@ -1,20 +1,11 @@
 import React from 'react';
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import { GradesType } from '@crema/models/dashboards/Academy';
+import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,} from 'recharts';
+import {GradeType} from "@crema/models/dashboards/Academy";
 
-type GradeGraphProps= {
-  grades: GradesType[];
+type Props={
+  grades: GradeType[]
 }
-
-const GradeGraph: React.FC<GradeGraphProps> = ({ grades }) => {
+const GradeGraph = ({ grades }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={220}>
       <AreaChart

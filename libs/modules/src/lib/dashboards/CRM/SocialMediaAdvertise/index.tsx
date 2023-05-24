@@ -1,24 +1,18 @@
 import React from 'react';
 import SocialMediaGraph from './SocialMediaGraph';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { SocialMediaType } from '@crema/models/dashboards/CRM';
+import {SocialMediaDaumType} from "@crema/models/dashboards/CRM";
+import IntlMessages from "@crema/helpers/IntlMessages";
 
-type SocialMediaAdvertiseProps ={
-  socialMediaData: SocialMediaType[];
+type Props={
+  socialMediaData: SocialMediaDaumType[]
 }
+const SocialMediaAdvertise = ({ socialMediaData=[] }: Props) => {
 
-const SocialMediaAdvertise: React.FC<SocialMediaAdvertiseProps> = ({
-  socialMediaData,
-}) => {
-  const { messages } = useIntl();
   return (
-    <AppCard
-      title={messages['dashboard.socialMedia'] as string}
-      sxStyle={{ height: 1 }}
-    >
+    <AppCard title={<IntlMessages id='dashboard.socialMedia'/>} sxStyle={{ height: 1 }}>
       <SocialMediaGraph socialMediaData={socialMediaData} />
       <Box
         sx={{

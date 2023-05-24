@@ -8,10 +8,6 @@ import BasicModal from './BasicModal';
 
 import BasicModalSource from 'raw-loader!./BasicModal';
 
-import ModalUnstyledDemo from './ModalUnstyledDemo';
-
-import ModalUnstyledDemoSource from 'raw-loader!./ModalUnstyledDemo';
-
 import NestedModal from './NestedModal';
 
 import NestedModalSource from 'raw-loader!./NestedModal';
@@ -39,15 +35,6 @@ const Modal = () => {
             title="Basic Modal"
             component={BasicModal}
             source={BasicModalSource}
-            noScrollbar
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="ModalUnstyledDemo"
-            component={ModalUnstyledDemo}
-            source={ModalUnstyledDemoSource}
-            description="The modal also comes with an unstyled version. Its ideal for doing heavy customizations and minimizing bundle size."
             noScrollbar
           />
         </Grid>

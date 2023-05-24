@@ -1,11 +1,6 @@
-export type InstallationData = {
-  id: number;
-  ques: string;
-  ans: string;
-  tags: string[];
-};
+import {InstallationDataType} from "@crema/models/extrapages/Portfolio";
 
-export const installationData: InstallationData[] = [
+export const installationData: InstallationDataType[] = [
   {
     id: 2001,
     ques: 'Approximately how many people work in your company?',

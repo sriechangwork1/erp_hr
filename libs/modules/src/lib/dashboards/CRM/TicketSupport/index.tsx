@@ -1,14 +1,15 @@
 import React from 'react';
 import TicketSupportTable from './TicketSupportTable';
 import AppCard from '@crema/components/AppCard';
-import { useIntl } from 'react-intl';
-import { TicketSupportDataType } from '@crema/models/dashboards/CRM';
+import {TicketSupportDaumType} from "@crema/models/dashboards/CRM";
+import IntlMessages from "@crema/helpers/IntlMessages";
+import {useIntl} from "react-intl";
 
-type TicketSupportProps= {
-  ticketSupportData: TicketSupportDataType[];
-}
+type Props={
+  ticketSupportData: TicketSupportDaumType[]
 
-const TicketSupport: React.FC<TicketSupportProps> = ({ ticketSupportData }) => {
+};
+const TicketSupport = ({ ticketSupportData=[] } : Props) => {
   const { messages } = useIntl();
 
   return (

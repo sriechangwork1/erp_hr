@@ -10,9 +10,6 @@ import BasicDatePickerSource from 'raw-loader!./BasicDatePicker';
 import StaticDatePickerDemo from './StaticDatePickerDemo';
 
 import StaticDatePickerDemoSource from 'raw-loader!./StaticDatePickerDemo';
-// import ResponsiveDatePickers from './ResponsiveDatePickers';
-//
-// import ResponsiveDatePickersSource from 'raw-loader!./ResponsiveDatePickers';
 import FormPropsDatePickers from './FormPropsDatePickers';
 
 import FormPropsDatePickersSource from 'raw-loader!./FormPropsDatePickers';
@@ -28,18 +25,6 @@ import ViewsDatePickerSource from 'raw-loader!./ViewsDatePicker';
 import StaticDatePickerLandscape from './StaticDatePickerLandscape';
 
 import StaticDatePickerLandscapeSource from 'raw-loader!./StaticDatePickerLandscape';
-import SubComponentsPickers from './SubComponentsPickers';
-
-import SubComponentsPickersSource from 'raw-loader!./SubComponentsPickers';
-import CustomInput from './CustomInput';
-
-import CustomInputSource from 'raw-loader!./CustomInput';
-import CustomDay from './CustomDay';
-
-import CustomDaySource from 'raw-loader!./CustomDay';
-import ServerRequestDatePicker from './ServerRequestDatePicker';
-
-import ServerRequestDatePickerSource from 'raw-loader!./ServerRequestDatePicker';
 import HelperText from './HelperText';
 
 import HelperTextSource from 'raw-loader!./HelperText';
@@ -92,24 +77,6 @@ const DatePicker = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <AppComponentCard
-            title="Custom input component"
-            component={CustomInput}
-            source={CustomInputSource}
-            noScrollbar
-            description="You can customize the rendering of the input with the renderInput prop. Make sure to spread ref and inputProps correctly to the custom input component."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Dynamic data"
-            component={ServerRequestDatePicker}
-            source={ServerRequestDatePickerSource}
-            noScrollbar
-            description="Sometimes it may be necessary to display additional info right in the calendar."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
             title="Jalali Calendar System"
             component={JalaliCalendarSystem}
             source={JalaliCalendarSystemSource}
@@ -117,15 +84,6 @@ const DatePicker = () => {
             description="Install date-fns-jalali and use @date-io/date-fns-jalali adapter to support Jalali calendar."
           />
         </Grid>
-        {/*<Grid item xs={12} md={6}>*/}
-        {/*  <AppComponentCard*/}
-        {/*    title="Static mode"*/}
-        {/*    component={ResponsiveDatePickers}*/}
-        {/*    source={ResponsiveDatePickersSource}*/}
-        {/*    noScrollbar*/}
-        {/*    description="The date picker component is designed and optimized for the device it runs on."*/}
-        {/*  />*/}
-        {/*</Grid>*/}
         <Grid item xs={12} md={6}>
           <AppComponentCard
             title="Static mode"
@@ -146,29 +104,11 @@ const DatePicker = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <AppComponentCard
-            title="Customized day rendering"
-            component={CustomDay}
-            source={CustomDaySource}
-            noScrollbar
-            description="The displayed days are customizable with the renderDay function prop. You can take advantage of the PickersDay component."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
             title="Landscape orientation"
             component={StaticDatePickerLandscape}
             source={StaticDatePickerLandscapeSource}
             noScrollbar
             description="For ease of use, the date picker will automatically change the layout between portrait and landscape by subscription to the window.orientation change."
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <AppComponentCard
-            title="Sub-components"
-            component={SubComponentsPickers}
-            source={SubComponentsPickersSource}
-            noScrollbar
-            description="Some lower-level sub-components (CalendarPicker, MonthPicker, and YearPicker) are also exported. These are rendered without a wrapper or outer logic (masked input, date values parsing and validation, etc.)."
           />
         </Grid>
       </AppGridContainer>

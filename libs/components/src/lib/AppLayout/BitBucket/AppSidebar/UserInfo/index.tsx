@@ -140,7 +140,7 @@ const UserInfo = () => {
         <MenuItem
           onClick={() => {
             handleClose();
-            router.push('/my-account');
+            router.push('/my-profile');
           }}
           sx={{
             px: 6,

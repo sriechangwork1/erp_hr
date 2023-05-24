@@ -57,7 +57,7 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
   const [value, setValue] = useState(0);
   const infoViewActionsContext = useInfoViewActionsContext();
   const router = useRouter();
-  const slides = product.image.map((data: any) => (
+  const slides = product?.image?.map((data: any) => (
     <img src={data.src} alt="" key={data.src} />
   ));
   const onChange = (value: number) => {
@@ -97,7 +97,7 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
           thumbnails={slides}
           value={value}
           onChange={onChange}
-          number={slides.length}
+          number={slides?.length}
         />
         <Carousel value={value} slides={slides} onChange={onChange} />
 

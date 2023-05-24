@@ -6,11 +6,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { PageVisitType } from '@crema/models/dashboards/Analytics';
 
-type TableItemProps = {
+type Props = {
   data: PageVisitType;
 };
-
-const TableItem: React.FC<TableItemProps> = ({ data }) => {
+const TableItem = ({ data }: Props) => {
   return (
     <TableRow
       sx={{

@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Dayjs } from 'dayjs';
-import TextField from '@mui/material/TextField';
+import {Dayjs} from 'dayjs';
 import Stack from '@mui/material/Stack';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {TimePicker} from '@mui/x-date-pickers/TimePicker';
 
 export default function FormPropsTimePickers() {
   const [value, setValue] = React.useState<Dayjs | null>(null);
@@ -19,7 +18,7 @@ export default function FormPropsTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
         <TimePicker
           label="read-only"
@@ -28,7 +27,7 @@ export default function FormPropsTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
       </Stack>
     </LocalizationProvider>

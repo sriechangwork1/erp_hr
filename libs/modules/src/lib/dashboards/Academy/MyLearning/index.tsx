@@ -2,18 +2,16 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import AppList from '@crema/components/AppList';
 import LearningItem from './LearningItem';
-import { useIntl } from 'react-intl';
-import { LearningDataType } from '@crema/models/dashboards/Academy';
+import { LearningDaumType } from '@crema/models/dashboards/Academy';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
-type MyLearningProps= {
-  learningData: LearningDataType[];
-}
-
-const MyLearning: React.FC<MyLearningProps> = ({ learningData }) => {
-  const { messages } = useIntl();
+type Props = {
+  learningData: LearningDaumType[];
+};
+const MyLearning = ({ learningData }: Props) => {
   return (
     <AppCard
-      title={messages['academy.myLearning'] as string}
+      title={<IntlMessages id="academy.myLearning" />}
       contentStyle={{ px: 0 }}
     >
       <AppList

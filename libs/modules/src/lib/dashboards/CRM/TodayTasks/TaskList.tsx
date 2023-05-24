@@ -1,27 +1,20 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import PropTypes from 'prop-types';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 
 import AppList from '@crema/components/AppList';
-import { TodayTaskType } from '@crema/models/dashboards/CRM';
 
-type TaskListProps ={
-  todayTaskData: TodayTaskType[];
-}
-
-const TaskList: React.FC<TaskListProps> = ({ todayTaskData }) => {
+const TaskList = ({ todayTaskData }) => {
   const [taskList, handleList] = useState(todayTaskData);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    task: TodayTaskType
-  ) => {
+  const handleChange = (e, task) => {
     task.isChecked = e.target.checked;
     const list = taskList.map((item) => (item.id === task.id ? task : item));
     handleList(list);
@@ -94,3 +87,11 @@ const TaskList: React.FC<TaskListProps> = ({ todayTaskData }) => {
 };
 
 export default TaskList;
+
+TaskList.defaultProps = {
+  todayTaskData: [],
+};
+
+TaskList.propTypes = {
+  todayTaskData: PropTypes.array,
+};

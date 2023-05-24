@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Area,
   AreaChart,
@@ -7,33 +7,32 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 
-const onGetDataKey = (value: any) => {
+const onGetDataKey = (value) => {
   switch (value) {
     case 0:
-      return "month";
+      return 'month';
 
     case 1:
-      return "date";
+      return 'date';
 
     case 2:
-      return "day";
+      return 'day';
 
     case 3:
-      return "time";
+      return 'time';
 
     default:
-      return "month";
+      return 'month';
   }
 };
 
-type BitcoinGraphProps ={
-  data: any;
-  value: any;
+type Props={
+
 }
 
-const BitcoinGraph: React.FC<BitcoinGraphProps> = ({ data, value }) => {
+const BitcoinGraph = ({ data, value }) => {
   return (
     <ResponsiveContainer width="100%" height={360}>
       <AreaChart data={data} margin={{ top: 50, right: 0, left: 0, bottom: 0 }}>
@@ -43,7 +42,7 @@ const BitcoinGraph: React.FC<BitcoinGraphProps> = ({ data, value }) => {
           axisLine={false}
           padding={{ left: 20, right: 20 }}
         />
-        <Tooltip labelStyle={{ color: "black" }} />
+        <Tooltip labelStyle={{ color: 'black' }} />
         <YAxis
           tickLine={false}
           axisLine={false}
@@ -75,3 +74,8 @@ const BitcoinGraph: React.FC<BitcoinGraphProps> = ({ data, value }) => {
 };
 
 export default BitcoinGraph;
+
+BitcoinGraph.defaultProps = {
+  data: [],
+};
+

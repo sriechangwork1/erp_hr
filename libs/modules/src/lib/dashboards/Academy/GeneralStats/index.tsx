@@ -5,15 +5,14 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { Fonts } from '@crema/constants/AppEnums';
 
-import { BiBasket } from 'react-icons/bi';
-import { FcGraduationCap, FcReading } from 'react-icons/fc';
+import { FcGraduationCap, FcReading, FcViewDetails } from 'react-icons/fc';
 import { GiBookshelf } from 'react-icons/gi';
-import { AcademicStatsType } from '@crema/models/dashboards/Academy';
+import { AcademicStatType } from '@crema/models/dashboards/Academy';
 
-const getIcon: React.FC<any> = (iconType) => {
+const getIcon = (iconType: string) => {
   switch (iconType) {
     case 'BiBasket':
-      return <BiBasket color="#9E49E6" className="icon" />;
+      return <FcViewDetails color="#9E49E6" className="icon" />;
     case 'FcGraduationCap':
       return <FcGraduationCap color="#0A8FDC" className="icon" />;
     case 'GiBookshelf':
@@ -23,17 +22,27 @@ const getIcon: React.FC<any> = (iconType) => {
   }
 };
 
-type GeneralStatsProps= {
-  stats: AcademicStatsType;
-}
-
-const GeneralStats: React.FC<GeneralStatsProps> = ({ stats }) => {
+type Props = {
+  stats: AcademicStatType;
+};
+const GeneralStats = ({ stats }: Props) => {
   return (
-    <AppCard sxStyle={{ height: 1 }} className="card-hover">
+    <AppCard
+      sxStyle={{ height: 1 }}
+      className="card-hover"
+      contentStyle={{
+        p: 0,
+        '&:last-of-type': {
+          pb: '0px !important',
+        },
+        mb: 0,
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
+          padding: 4,
         }}
       >
         <Box
@@ -43,13 +52,14 @@ const GeneralStats: React.FC<GeneralStatsProps> = ({ stats }) => {
         >
           <Avatar
             sx={{
-              width: { xs: 46, lg: 54, xl: 60 },
-              height: { xs: 46, lg: 54, xl: 60 },
+              width: 46,
+              height: 46,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              fontSize: 32,
               backgroundColor: stats.bgcolor,
-              padding: 2.5,
+              padding: 2,
             }}
           >
             {getIcon(stats.icon)}

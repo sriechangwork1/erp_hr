@@ -1,16 +1,12 @@
 import React from 'react';
 import RevenueGraph from './RevenueGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { alpha, Box } from '@mui/material';
-import { Fonts } from '@crema/constants/AppEnums';
+import {alpha, Box} from '@mui/material';
+import PropTypes from 'prop-types';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
-import { RevenueType } from '@crema/models/dashboards/CRM';
 
-type TotalRevenueProps ={
-  revenueData: RevenueType;
-}
-
-const TotalRevenue: React.FC<TotalRevenueProps> = ({ revenueData }) => {
+const TotalRevenue = ({ revenueData }) => {
   return (
     <>
       <Box
@@ -147,3 +143,16 @@ const TotalRevenue: React.FC<TotalRevenueProps> = ({ revenueData }) => {
 };
 
 export default TotalRevenue;
+
+TotalRevenue.defaultProps = {
+  revenueData: {
+    ytdRevenue: '',
+    clients: 0,
+    countries: '',
+    revenueGraphData: [],
+  },
+};
+
+TotalRevenue.propTypes = {
+  revenueData: PropTypes.object,
+};

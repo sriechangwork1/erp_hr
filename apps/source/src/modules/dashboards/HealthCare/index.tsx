@@ -4,6 +4,7 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 import AppAnimate from '@crema/components/AppAnimate';
 import { useGetDataApi } from '@crema/hooks/APIHooks';
 import {
+  Activities,
   AppointmentCard,
   CancelVisits,
   DrCard,
@@ -35,7 +36,7 @@ const HealthCarePage = () => {
       ) : (
         <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppGridContainer>
-            {healthCare.drState.map((data, index) => (
+            {healthCare.salesState.map((data, index) => (
               <Grid item xs={12} sm={6} lg={3} key={index}>
                 <DrCard data={data} />
               </Grid>
@@ -56,6 +57,15 @@ const HealthCarePage = () => {
                 ))}
               </AppGridContainer>
             </Grid>
+            <Grid item xs={12} sm={12} lg={4}>
+              <TopDoctors data={healthCare.topDoctors} />
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <UpcomingAppointments data={healthCare.upcomingAppointment} />
+            </Grid>
+            <Grid item xs={12} sm={6} lg={4}>
+              <Notifications data={healthCare.notifications} />
+            </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <HeartRate data={healthCare.heartCard} />
             </Grid>
@@ -74,24 +84,18 @@ const HealthCarePage = () => {
                 ))}
               </AppGridContainer>
             </Grid>
-            <Grid item xs={12} sm={12} lg={4}>
-              <TopDoctors data={healthCare.topDoctors} />
-            </Grid>
-            <Grid item xs={12} sm={6} lg={4}>
-              <UpcomingAppointments data={healthCare.upcomingAppointment} />
-            </Grid>
-            <Grid item xs={12} sm={6} lg={4}>
-              <Notifications data={healthCare.notifications} />
-            </Grid>
             <Grid item xs={12} md={6}>
               <HealthStatics data={healthCare.heathStatics} />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <NewPatients data={healthCare.newPatients} />
+            <Grid item xs={12} md={6}>
+              <Activities activities={healthCare.activities} />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <CancelVisits data={healthCare.cancelVisits} />
-            </Grid>
+            {/*<Grid item xs={12} sm={6} md={3}>*/}
+            {/*  <NewPatients data={healthCare.newPatients} />*/}
+            {/*</Grid>*/}
+            {/*<Grid item xs={12} sm={6} md={3}>*/}
+            {/*  <CancelVisits data={healthCare.cancelVisits} />*/}
+            {/*</Grid>*/}
 
             {healthCare.hospitalStatics.map((data, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>

@@ -39,6 +39,9 @@
       "@crema/components/AppCard": [
         "libs/components/src/lib/AppCard/index.tsx"
       ],
+      "@crema/components/AppCardMedia": [
+        "libs/components/src/lib/AppCard/AppCardMedia.tsx"
+      ],
       "@crema/components/AppCircularProgress": [
         "libs/components/src/lib/AppCircularProgress/index.tsx"
       ],
@@ -253,10 +256,11 @@
       "@crema/context/ThemeContextProvider": [
         "libs/context/src/AppContextProvider/ThemeContextProvider.tsx"
       ],
-      "@crema/fakedb": ["libs/fakedb/src/index.ts"],
+      "@crema/db/dashboard": ["libs/mockapi/src/fakedb/dashboard/*"],
       "@crema/fakedb/chat/connectionList": [
         "libs/mockapi/src/fakedb/apps/chat/connectionList.ts"
       ],
+      "@crema/fakedb/dashboard/*": ["libs/mockapi/src/fakedb/dashboard/*"],
       "@crema/fakedb/data": ["libs/mockapi/src/fakedb/index.ts"],
       "@crema/fakedb/ecommerceData": [
         "libs/mockapi/src/fakedb/ecommerce/index.tsx"
@@ -280,6 +284,10 @@
       "@crema/mockapi": ["libs/mockapi/src/index.ts"],
       "@crema/models/*": ["libs/types/src/models/*"],
       "@crema/modules": ["libs/modules/src/index.ts"],
+
+      "@crema/modules/auth/*": [
+        "libs/modules/src/lib/auth/*"
+      ],
       "@crema/modules/ErrorPages/ComingSoon": [
         "libs/modules/src/lib/errorPages/ComingSoon/index.tsx"
       ],
@@ -303,6 +311,9 @@
       ],
       "@crema/modules/MyProfile": [
         "libs/modules/src/lib/account/MyProfile/index.tsx"
+      ],
+      "@crema/modules/apps/Calendar": [
+        "libs/modules/src/lib/apps/Calendar/index.tsx"
       ],
       "@crema/modules/apps/Chat": ["libs/modules/src/lib/apps/Chat/index.tsx"],
       "@crema/modules/apps/Contact": [
@@ -362,6 +373,9 @@
       "@crema/modules/dashboards/CRM": [
         "libs/modules/src/lib/dashboards/CRM/index.tsx"
       ],
+      "@crema/modules/dashboards/CommonComponents": [
+        "libs/modules/src/lib/dashboards/CommonComponents/index.tsx"
+      ],
       "@crema/modules/dashboards/Crypto": [
         "libs/modules/src/lib/dashboards/Crypto/index.tsx"
       ],
@@ -376,6 +390,9 @@
       ],
       "@crema/modules/dashboards/Widgets": [
         "libs/modules/src/lib/dashboards/Widgets/index.tsx"
+      ],
+      "@crema/modules/ecommerce/Admin": [
+        "libs/modules/src/lib/ecommerce/Admin/index.tsx"
       ],
       "@crema/modules/ecommerce/Carts": [
         "libs/modules/src/lib/ecommerce/Carts/index.tsx"
@@ -413,6 +430,9 @@
       "@crema/modules/extraPages/AboutUs": [
         "libs/modules/src/lib/extraPages/AboutUs/index.tsx"
       ],
+      "@crema/modules/extraPages/Blog": [
+        "libs/modules/src/lib/extraPages/Blog/index.tsx"
+      ],
       "@crema/modules/extraPages/ContactUs": [
         "libs/modules/src/lib/extraPages/ContactUs/index.tsx"
       ],
@@ -428,9 +448,17 @@
       "@crema/modules/extraPages/Pricing": [
         "libs/modules/src/lib/extraPages/Pricing/index.tsx"
       ],
+      "@crema/modules/invoice": ["libs/modules/src/lib/invoice/index.tsx"],
       "@crema/modules/thirdParty": [
         "libs/modules/src/lib/thirdParty/index.tsx"
       ],
+      "@crema/modules/thirdParty/reactDropzone/components/PreviewThumb": [
+        "libs/modules/src/lib/thirdParty/reactDropzone/components/PreviewThumb/index.tsx"
+      ],
+      "@crema/modules/thirdParty/reactDropzone/components/UploadModern": [
+        "libs/modules/src/lib/thirdParty/reactDropzone/components/UploadModern/index.tsx"
+      ],
+      "@crema/modules/types/*": ["libs/modules/src/types/*"],
       "@crema/modules/userList/Flat": [
         "libs/modules/src/lib/userList/Flat/index.tsx"
       ],

@@ -4,7 +4,7 @@ import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 
-import moment from 'moment';
+import dayjs from 'dayjs';
 import clsx from 'clsx';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -49,10 +49,10 @@ const MailListItem = (props: Props) => {
   const messages = mail.messages!.length;
   const onGetMailDate = (date: string) => {
     if (
-      moment(date, 'ddd, MMM DD, YYYY').format() ===
-      moment('ddd, MMM DD, YYYY').format()
+      dayjs(date, 'ddd, MMM DD, YYYY').format() ===
+      dayjs('ddd, MMM DD, YYYY').format()
     ) {
-      return moment(date).format('LT');
+      return dayjs(date).format('LT');
     } else {
       return date.split(',')[1];
     }
@@ -149,15 +149,11 @@ const MailListItem = (props: Props) => {
 
   const getSenderImage = () => {
     if (messages === 1) {
-      return mail.messages![0].sender.profilePic;
+      return mail.messages[0].sender.profilePic;
     } else if (messages === 2) {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![1].sender.name
-      }(2)`;
+      return mail.messages[1].sender.profilePic;
     } else {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![messages - 2].sender.name
-      }, ${mail.messages![messages - 1].sender.name}(${messages})`;
+      return mail.messages[2].sender.profilePic;
     }
   };
 

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import CssBaseline from '@mui/material/CssBaseline';
 import {CacheProvider} from '@emotion/react';
 import AppContextProvider from '@crema/context/AppContextProvider';
@@ -9,19 +8,21 @@ import AppLocaleProvider from '@crema/context/AppLocaleProvider';
 import AppAuthProvider from '../core/AppAuthProvider';
 import AuthRoutes from '@crema/components/AuthRoutes';
 
+import '@crema/mockapi';
 import '../../public/styles/vendors/index.css';
 import AppPageMeta from '@crema/components/AppPageMeta';
 import InfoViewContextProvider from '@crema/context/InfoViewContextProvider';
 import createEmotionCache from "../../createEmotionCache";
+import {AppProps} from 'next/app';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+export default function MyApp(props:AppProps) {
+  const { Component, pageProps } = props;
 
   return (
-    <CacheProvider value={emotionCache}>
+    <CacheProvider value={clientSideEmotionCache}>
       <AppContextProvider>
         <AppThemeProvider>
           <AppStyleProvider>
@@ -42,9 +43,3 @@ export default function MyApp(props) {
     </CacheProvider>
   );
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired,
-};

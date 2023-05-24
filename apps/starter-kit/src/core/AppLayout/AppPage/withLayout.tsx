@@ -6,7 +6,7 @@ import {useSidebarActionsContext} from "@crema/context/SidebarContextProvider";
 import {useRouter} from "next/router";
 
 // eslint-disable-next-line react/display-name
-const withLayout = (ComposedComponent) => (props) => {
+const withLayout = (ComposedComponent:any) => (props:any) => {
   const { navStyle } = useLayoutContext();
   const AppLayout = Layouts[navStyle];
 

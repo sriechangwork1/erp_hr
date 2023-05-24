@@ -1,11 +1,6 @@
-export type SalesData = {
-  id: number;
-  ques: string;
-  ans: string;
-  tags: string[];
-};
+import {SalesDataType} from "@crema/models/extrapages/Portfolio";
 
-export const salesData: SalesData[] = [
+export const salesData: SalesDataType[] = [
   {
     id: 2001,
     ques: 'How much one could earn using your products?',

@@ -1,13 +1,12 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
-import { BalanceCoinsType } from '@crema/models/dashboards/Crypto';
+import {Fonts} from '@crema/constants/AppEnums';
+import {CoinInfoDataType} from "@crema/models/dashboards/Crypto";
 
-type CoinsInfoProps ={
-  coins: BalanceCoinsType[];
+type Props={
+  coins: CoinInfoDataType[];
 }
-
-const CoinsInfo: React.FC<CoinsInfoProps> = ({ coins }) => {
+const CoinsInfo = ({ coins =[] }: Props) => {
   return (
     <Box
       sx={{
@@ -18,7 +17,7 @@ const CoinsInfo: React.FC<CoinsInfoProps> = ({ coins }) => {
         justifyContent: 'space-between',
       }}
     >
-      {coins.map((coin) => {
+      {coins.map((coin: CoinInfoDataType) => {
         return (
           <Box
             sx={{

@@ -2,21 +2,22 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Fonts } from '@crema/constants/AppEnums';
-import { NotificationsType } from '@crema/models/dashboards/Ecommerce';
+import {Fonts} from '@crema/constants/AppEnums';
+import {NotificationsType} from "@crema/models/dashboards/Ecommerce";
 
-type NotificationCellProps = {
-  item: NotificationsType;
-};
+type Props = {
+  item: NotificationsType
+}
 
-const NotificationCell: React.FC<NotificationCellProps> = ({ item }) => {
+const NotificationCell = ({item}: Props) => {
   return (
     <ListItem
       disableGutters
       className="item-hover"
-      sx={{ paddingLeft: 5, paddingRight: 5 }}
+      sx={{paddingLeft: 5, paddingRight: 5}}
     >
       <ListItemAvatar
         sx={{
@@ -57,7 +58,6 @@ const NotificationCell: React.FC<NotificationCellProps> = ({ item }) => {
               color: 'primary.main',
             }}
           >
-            {' '}
             <Box
               component="span"
               sx={{
@@ -84,3 +84,7 @@ const NotificationCell: React.FC<NotificationCellProps> = ({ item }) => {
 };
 
 export default NotificationCell;
+
+NotificationCell.propTypes = {
+  item: PropTypes.object.isRequired,
+};

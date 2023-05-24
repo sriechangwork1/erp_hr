@@ -5,7 +5,7 @@ import {useLayoutActionsContext} from '@crema/context/LayoutContextProvider';
 import {useSidebarActionsContext} from '@crema/context/SidebarContextProvider';
 
 // eslint-disable-next-line react/display-name
-const withLayout = (ComposedComponent) => (props) => {
+const withLayout = (ComposedComponent:any) => (props:any) => {
   const { updateNavStyle } = useLayoutActionsContext();
   const { updateMenuStyle, setSidebarBgImage } = useSidebarActionsContext();
   const router = useRouter();

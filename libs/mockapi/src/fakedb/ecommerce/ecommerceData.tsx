@@ -7,8 +7,33 @@ import {
   IdealForType,
   ProductColorsType,
   ProductDataType,
+  ProductInfoType,
+  ProductSpecType,
   RecentOrdersType,
 } from '@crema/models/ecommerce/EcommerceApp';
+
+export const productCategory = [
+  {
+    id: 1,
+    name: 'Laptop',
+  },
+  {
+    id: 2,
+    name: 'Camera',
+  },
+  {
+    id: 3,
+    name: 'Headphone',
+  },
+  {
+    id: 4,
+    name: 'Watch',
+  },
+  {
+    id: 5,
+    name: 'Mobile',
+  },
+];
 
 export const brandData: BrandDataType[] = [
   {
@@ -28,7 +53,7 @@ export const brandData: BrandDataType[] = [
     name: 'Sonata',
   },
 ];
-export const productColors: ProductColorsType = {
+export const ProductColors: ProductColorsType = {
   BLUE: '#0A8FDC',
   GREY: '#8781BD',
   PARROT: '#A3D39C',
@@ -113,7 +138,7 @@ export const cartItems: CartItemsType[] = [
   {
     id: 1,
     title: "Mens's Exclusive Watch",
-    mrp: '120',
+    mrp: 120,
     discount: '25',
     brand: 'FastTrack',
     image: '/assets/images/ecommerce/watch1.png',
@@ -121,36 +146,448 @@ export const cartItems: CartItemsType[] = [
   },
   {
     id: 2,
-    title: "Limited Edition Men's Watch",
-    mrp: '125',
+    title: 'HP Pavilion Gaming Ryzen 7 Octa Core 4800H',
+    mrp: 1250,
     discount: '20',
     brand: 'FastTrack',
-    image: '/assets/images/ecommerce/watch2.png',
+    image: '/assets/images/ecommerce/item-2.png',
     count: 1,
   },
   {
     id: 3,
-    title: 'Unisex Special Watch',
-    mrp: '100',
+    title: 'NIKON Z6 II Body Mirrorless Camera with 64GB SD Card',
+    mrp: 1199,
     discount: '30',
     brand: 'FastTrack',
-    image: '/assets/images/ecommerce/watch3.png',
+    image: '/assets/images/ecommerce/item-4.png',
     count: 1,
+  },
+];
+
+const productInfo: ProductInfoType[] = [
+  {
+    id: 1,
+    title: 'Sweat Proof',
+    desc: 'Yes',
+  },
+  {
+    id: 2,
+    title: 'Deep Bass',
+    desc: 'Yes',
+  },
+  {
+    id: 3,
+    title: 'Water Resistant',
+    desc: 'Yes',
+  },
+  {
+    id: 4,
+    title: 'Designed For',
+    desc: 'MOBILE, iPHONE, LAPTOP, ALL ANDRIOD PHONE',
+  },
+  {
+    id: 5,
+    title: 'Series',
+    desc: 'SH12',
+  },
+  {
+    id: 6,
+    title: 'System Requirements',
+    desc: 'BLUETOOTH',
+  },
+  {
+    id: 7,
+    title: 'Circumaural/ Supraaural',
+    desc: 'Circumaural',
+  },
+  {
+    id: 8,
+    title: 'Open/Closed Back',
+    desc: 'OPEN',
+  },
+  {
+    id: 9,
+    title: 'indicators',
+    desc: 'Connection Indicator, Power Indicator',
+  },
+  {
+    id: 10,
+    title: 'Controls',
+    desc: 'PLAY/PAUSE',
+  },
+  {
+    id: 11,
+    title: 'Theme',
+    desc: 'NA',
+  },
+  {
+    id: 12,
+    title: 'Total Harmonic Distortion',
+    desc: '0.%',
+  },
+  {
+    id: 13,
+    title: 'Number of Pins',
+    desc: '1',
+  },
+  {
+    id: 14,
+    title: 'With Microphone',
+    desc: 'Yes',
+  },
+];
+
+const productSpec: ProductSpecType[] = [
+  {
+    id: 1,
+    title: 'Brand',
+    desc: 'JBL',
+  },
+  {
+    id: 2,
+    title: 'Model Number',
+    desc: 'SH12',
+  },
+  {
+    id: 3,
+    title: 'Color',
+    desc: 'Red',
+  },
+  {
+    id: 4,
+    title: 'Headphone Type',
+    desc: 'Wireless over the head',
+  },
+  {
+    id: 5,
+    title: 'Inline Remote',
+    desc: 'No',
+  },
+  {
+    id: 6,
+    title: 'Sales Package',
+    desc: '1 SH12 HEADPHONE',
+  },
+  {
+    id: 7,
+    title: 'Connectivity',
+    desc: 'Bluetooth',
   },
 ];
 
 const ecommerceData: ProductDataType[] = [
   {
+    id: 2,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 1,
+    title: 'HP Pavilion Gaming Ryzen 7 Octa Core 4800H',
+    description:
+      'Microsoft Office 2019 Home and Student, HP Documentation, HP e-service, HP BIOS Recovery, HP SSRM, HP Smart, HP Jumpstarts, Dropbox, HP Audio Switch, HP Audio Boost',
+    mrp: 1250,
+    brand: 4,
+    ideaFor: 3,
+    discount: '20',
+    rating: 4,
+    color: ProductColors.PINK,
+    reviews: 4356,
+    image: [
+      {
+        id: 3,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 43,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 23,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 54,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 3,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 2,
+    title: 'NIKON Z6 II Body Mirrorless Camera with 64GB SD Card',
+    description:
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+    mrp: 1199,
+    ideaFor: 4,
+    brand: 1,
+    discount: '30',
+    rating: 4,
+    color: ProductColors.BLUE,
+    reviews: 235,
+    image: [
+      {
+        id: 4343,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 323243,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 325432,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 653323,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 4,
+    title:
+      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
+    description:
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+    mrp: 100,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 3,
+    discount: '35',
+    rating: 4,
+    ideaFor: 2,
+    brand: 4,
+    color: ProductColors.PINK,
+    reviews: 4323,
+    image: [
+      {
+        id: 4343443,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 324324,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 655434,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 243443,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 5,
+    title: 'APPLE iPhone 12 (Blue, 64 GB)',
+    description:
+      'Super Retina XDR Display, 6.1 inch (Diagonal) All Screen OLED Display, HDR Display, True Tone, Wide Colour (P3), Haptic Touch, 2000000:1 Contrast Ratio (Typical)',
+    mrp: 820,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 5,
+    ideaFor: 1,
+    brand: 1,
+    discount: '25',
+    rating: 3,
+    color: ProductColors.GREY,
+    reviews: 2000,
+    image: [
+      {
+        id: 43434345,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 44343,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 5654443,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 433343,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 6,
+    title: 'HP Pavilion Gaming Ryzen 7 Octa Core 4800H',
+    description:
+      'Microsoft Office 2019 Home and Student, HP Documentation, HP e-service, HP BIOS Recovery, HP SSRM, HP Smart, HP Jumpstarts, Dropbox, HP Audio Switch, HP Audio Boost',
+    mrp: 1250,
+    createdAt: '19 Dec 2022',
+    inStock: false,
+    category: 1,
+    discount: '20',
+    ideaFor: 3,
+    brand: 3,
+    rating: 3,
+    color: ProductColors.LIGHT_PINK,
+    reviews: 4356,
+    image: [
+      {
+        id: 4354,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 2343,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 233,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+      {
+        id: 544,
+        src: '/assets/images/ecommerce/item-2.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 7,
+    title: 'NIKON Z6 II Body Mirrorless Camera with 64GB SD Card',
+    description:
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+    mrp: 1199,
+    ideaFor: 4,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 2,
+    brand: 2,
+    discount: '30',
+    rating: 4,
+    color: ProductColors.PINK,
+    reviews: 235,
+    image: [
+      {
+        id: 4344343,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 32443243,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 32544432,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+      {
+        id: 654333323,
+        src: '/assets/images/ecommerce/item-4.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 8,
+    title:
+      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
+    description:
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
+    mrp: 100,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 3,
+    discount: '35',
+    ideaFor: 2,
+    brand: 1,
+    rating: 2,
+    color: ProductColors.PARROT,
+    reviews: 4323,
+    image: [
+      {
+        id: 344,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 4342,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 7654,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+      {
+        id: 3232,
+        src: '/assets/images/ecommerce/item-3.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
+    id: 9,
+    title: 'APPLE iPhone 12 (Blue, 64 GB)',
+    description:
+      'Super Retina XDR Display, 6.1 inch (Diagonal) All Screen OLED Display, HDR Display, True Tone, Wide Colour (P3), Haptic Touch, 2000000:1 Contrast Ratio (Typical)',
+    mrp: 820,
+    discount: '25',
+    createdAt: '19 Dec 2022',
+    inStock: false,
+    category: 5,
+    brand: 2,
+    ideaFor: 1,
+    rating: 5,
+    color: ProductColors.PINK,
+    reviews: 2000,
+    image: [
+      {
+        id: 34332,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 432121554,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 42334324,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+      {
+        id: 333245,
+        src: '/assets/images/ecommerce/item-1.png',
+      },
+    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
+  },
+  {
     id: 1,
     title: "Mens's Exclusive Watch",
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '120',
+    mrp: 120,
     discount: '25',
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 4,
     rating: 5,
     ideaFor: 1,
     brand: 1,
-    color: productColors.BLUE,
+    color: ProductColors.BLUE,
     reviews: 2000,
     image: [
       {
@@ -170,357 +607,131 @@ const ecommerceData: ProductDataType[] = [
         src: '/assets/images/ecommerce/watch1.png',
       },
     ],
-  },
-  {
-    id: 2,
-    title: "Limited Edition Men's Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '125',
-    brand: 4,
-    ideaFor: 3,
-    discount: '20',
-    rating: 4,
-    color: productColors.PINK,
-    reviews: 4356,
-    image: [
-      {
-        id: 3,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 43,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 23,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 54,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'Unisex Special Watch',
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
-    ideaFor: 4,
-    brand: 1,
-    discount: '30',
-    rating: 4,
-    color: productColors.BLUE,
-    reviews: 235,
-    image: [
-      {
-        id: 4343,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 323243,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 325432,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 653323,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Special Female's Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
-    discount: '35',
-    rating: 4,
-    ideaFor: 2,
-    brand: 4,
-    color: productColors.PINK,
-    reviews: 4323,
-    image: [
-      {
-        id: 4343443,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 324324,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 655434,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 243443,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Mens's Exclusive Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '120',
-    ideaFor: 1,
-    brand: 1,
-    discount: '25',
-    rating: 3,
-    color: productColors.GREY,
-    reviews: 2000,
-    image: [
-      {
-        id: 43434345,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 44343,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 5654443,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 433343,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "Limited Edition Men's Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '125',
-    discount: '20',
-    ideaFor: 3,
-    brand: 3,
-    rating: 3,
-    color: productColors.LIGHT_PINK,
-    reviews: 4356,
-    image: [
-      {
-        id: 4354,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 2343,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 233,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-      {
-        id: 544,
-        src: '/assets/images/ecommerce/watch2.png',
-      },
-    ],
-  },
-  {
-    id: 7,
-    title: 'Unisex Special Watch',
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
-    ideaFor: 4,
-    brand: 2,
-    discount: '30',
-    rating: 4,
-    color: productColors.PINK,
-    reviews: 235,
-    image: [
-      {
-        id: 4344343,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 32443243,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 32544432,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-      {
-        id: 654333323,
-        src: '/assets/images/ecommerce/watch3.png',
-      },
-    ],
-  },
-  {
-    id: 8,
-    title: "Special Female's Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
-    discount: '35',
-    ideaFor: 2,
-    brand: 1,
-    rating: 2,
-    color: productColors.PARROT,
-    reviews: 4323,
-    image: [
-      {
-        id: 344,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 4342,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 7654,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-      {
-        id: 3232,
-        src: '/assets/images/ecommerce/watch4.png',
-      },
-    ],
-  },
-  {
-    id: 9,
-    title: "Mens's Exclusive Watch",
-    description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '120',
-    discount: '25',
-    brand: 2,
-    ideaFor: 1,
-    rating: 5,
-    color: productColors.PINK,
-    reviews: 2000,
-    image: [
-      {
-        id: 34332,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 432121554,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 42334324,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-      {
-        id: 333245,
-        src: '/assets/images/ecommerce/watch1.png',
-      },
-    ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
   },
   {
     id: 10,
-    title: "Limited Edition Men's Watch",
+    title: 'HP Pavilion Gaming Ryzen 7 Octa Core 4800H',
     description:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '125',
+      'Microsoft Office 2019 Home and Student, HP Documentation, HP e-service, HP BIOS Recovery, HP SSRM, HP Smart, HP Jumpstarts, Dropbox, HP Audio Switch, HP Audio Boost',
+    mrp: 1250,
     discount: '20',
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 1,
     ideaFor: 2,
     brand: 3,
     rating: 4,
-    color: productColors.LIGHT_PINK,
+    color: ProductColors.LIGHT_PINK,
     reviews: 4356,
     image: [
       {
         id: 32222,
-        src: '/assets/images/ecommerce/watch2.png',
+        src: '/assets/images/ecommerce/item-2.png',
       },
       {
         id: 3333,
-        src: '/assets/images/ecommerce/watch2.png',
+        src: '/assets/images/ecommerce/item-2.png',
       },
       {
         id: 4444,
-        src: '/assets/images/ecommerce/watch2.png',
+        src: '/assets/images/ecommerce/item-2.png',
       },
       {
         id: 5555,
-        src: '/assets/images/ecommerce/watch2.png',
+        src: '/assets/images/ecommerce/item-2.png',
       },
     ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
   },
   {
     id: 11,
-    title: 'Unisex Special Watch',
+    title: 'NIKON Z6 II Body Mirrorless Camera with 64GB SD Card',
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
+    mrp: 1199,
     discount: '30',
+    createdAt: '19 Dec 2022',
+    inStock: false,
+    category: 2,
     rating: 3,
     ideaFor: 3,
     brand: 2,
-    color: productColors.PARROT,
+    color: ProductColors.PARROT,
     reviews: 235,
     image: [
       {
         id: 43333332343,
-        src: '/assets/images/ecommerce/watch3.png',
+        src: '/assets/images/ecommerce/item-4.png',
       },
       {
         id: 323232,
-        src: '/assets/images/ecommerce/watch3.png',
+        src: '/assets/images/ecommerce/item-4.png',
       },
       {
         id: 54554,
-        src: '/assets/images/ecommerce/watch3.png',
+        src: '/assets/images/ecommerce/item-4.png',
       },
       {
         id: 4343232,
-        src: '/assets/images/ecommerce/watch3.png',
+        src: '/assets/images/ecommerce/item-4.png',
       },
     ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
   },
   {
     id: 12,
-    title: "Special Female's Watch",
+    title:
+      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
-    mrp: '100',
+    mrp: 100,
+    createdAt: '19 Dec 2022',
+    inStock: true,
+    category: 3,
     discount: '35',
     rating: 4,
     ideaFor: 2,
-    color: productColors.GREY,
+    color: ProductColors.GREY,
     reviews: 4323,
     brand: 3,
     image: [
       {
         id: 43343443,
-        src: '/assets/images/ecommerce/watch4.png',
+        src: '/assets/images/ecommerce/item-3.png',
       },
       {
         id: 333224324,
-        src: '/assets/images/ecommerce/watch4.png',
+        src: '/assets/images/ecommerce/item-3.png',
       },
       {
         id: 5545454,
-        src: '/assets/images/ecommerce/watch4.png',
+        src: '/assets/images/ecommerce/item-3.png',
       },
       {
         id: 42332323,
-        src: '/assets/images/ecommerce/watch4.png',
+        src: '/assets/images/ecommerce/item-3.png',
       },
     ],
+    SKU: 'MB023',
+    productInfo,
+    productSpec,
   },
 ];
 export const recentOrders: RecentOrdersType[] = [
   {
     id: '#SK231',
     customer: 'Ina Hughes',
-    product: "Limited Edition Men's Watch",
+    product: 'HP Pavilion Gaming Ryzen 7 Octa Core 4800H',
     date: '08-21-2020',
     paymentType: 'COD',
-    price: '$125',
+    price: '$1250',
     status: 'Cancelled',
   },
   {
@@ -681,20 +892,20 @@ export const recentOrders: RecentOrdersType[] = [
 export const customersData: CustomersDataType[] = [
   {
     id: 1,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Johnny Herrera',
+    email: 'johnny.herrera@exmaple.com',
+    lastItem: 'Sleeve Jacket',
     lastOrder: '26 Aug',
     rating: '4.6',
-    balance: '$125',
+    balance: '$1,020',
     address: '675 Grove Street Bethpage, NY 11714',
     joinDate: '23 Jan, 2015',
   },
   {
     id: 2,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -703,9 +914,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 3,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -725,12 +936,12 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 5,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Johnny Herrera',
+    email: 'johnny.herrera@exmaple.com',
+    lastItem: 'Sleeve Jacket',
     lastOrder: '26 Aug',
     rating: '4.6',
-    balance: '$125',
+    balance: '$1,020',
     address: '675 Grove Street Bethpage, NY 11714',
     joinDate: '23 Jan, 2015',
   },
@@ -747,9 +958,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 7,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -769,20 +980,20 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 9,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Johnny Herrera',
+    email: 'johnny.herrera@exmaple.com',
+    lastItem: 'Sleeve Jacket',
     lastOrder: '26 Aug',
     rating: '4.6',
-    balance: '$125',
+    balance: '$1,020',
     address: '675 Grove Street Bethpage, NY 11714',
     joinDate: '23 Jan, 2015',
   },
   {
     id: 10,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -802,9 +1013,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 12,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -813,9 +1024,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 13,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -835,9 +1046,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 15,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -857,9 +1068,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 17,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -890,9 +1101,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 20,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -912,9 +1123,9 @@ export const customersData: CustomersDataType[] = [
   },
   {
     id: 22,
-    name: 'Josh Rash',
-    email: 'josh@exmaple.com',
-    lastItem: 'Apple Watch',
+    name: 'Myrtie Ferguson',
+    email: 'myrtie.ferguson@exmaple.com',
+    lastItem: 'Addida Shoes',
     lastOrder: '26 Aug',
     rating: '4.6',
     balance: '$125',
@@ -933,4 +1144,6 @@ export const customersData: CustomersDataType[] = [
     joinDate: '23 Jan, 2015',
   },
 ];
+
 export default ecommerceData;
+

@@ -25,6 +25,7 @@ const ConfirmSignupAwsCognito = (props: any) => {
 
   const handleSubmit = () => {
     const { email } = props.location.state || {};
+    console.log('email', email)
     if (email && pin.length === 6) {
       confirmCognitoUserSignup(email, pin);
     } else if (!email) {

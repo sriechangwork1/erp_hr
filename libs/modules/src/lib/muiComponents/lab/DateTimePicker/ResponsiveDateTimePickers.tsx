@@ -1,11 +1,10 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import { DesktopDateTimePicker } from '@mui/x-date-pickers/DesktopDateTimePicker';
+import dayjs, {Dayjs} from 'dayjs';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {DateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
+import {MobileDateTimePicker} from '@mui/x-date-pickers/MobileDateTimePicker';
+import {DesktopDateTimePicker} from '@mui/x-date-pickers/DesktopDateTimePicker';
 import Stack from '@mui/material/Stack';
 
 export default function ResponsiveDateTimePickers() {
@@ -22,7 +21,7 @@ export default function ResponsiveDateTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
         <DesktopDateTimePicker
           label="For desktop"
@@ -30,11 +29,11 @@ export default function ResponsiveDateTimePickers() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => <TextField {...params} />}
+
         />
         <DateTimePicker
           label="Responsive"
-          renderInput={(params) => <TextField {...params} />}
+
           value={value}
           onChange={(newValue) => {
             setValue(newValue);

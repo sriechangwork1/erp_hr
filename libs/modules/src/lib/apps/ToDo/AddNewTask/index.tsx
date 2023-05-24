@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { SlotInfo } from 'react-big-calendar';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import AddTaskForm from './AddTaskForm';
 import AppDialog from '@crema/components/AppDialog';
@@ -16,7 +15,7 @@ type Props = {
   isAddTaskOpen: boolean;
   onCloseAddTask: () => void;
   reCallAPI?: () => void;
-  selectedDate?: SlotInfo;
+  selectedDate?: string;
 };
 
 const AddNewTask = ({
@@ -50,8 +49,8 @@ const AddNewTask = ({
           label: [],
           priority: 3,
           date: selectedDate
-            ? moment(selectedDate.start).format('MM/DD/YYYY')
-            : moment().format('MM/DD/YYYY'),
+            ? dayjs(selectedDate).format('MM/DD/YYYY')
+            : dayjs().format('MM/DD/YYYY'),
           content: '',
         }}
         validationSchema={validationSchema}
@@ -67,9 +66,9 @@ const AddNewTask = ({
               name: user.displayName ? user.displayName : 'User',
               image: user.photoURL,
             },
-            startDate: moment(data.date).format('lll'),
+            startDate: dayjs(data.date).format('lll'),
             image: '/assets/images/dummy2.jpg',
-            createdOn: moment().format('ll'),
+            createdOn: dayjs().format('ll'),
             status: 1,
             comments: [],
             ...data,

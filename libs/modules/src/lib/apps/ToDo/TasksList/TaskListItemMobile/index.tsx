@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { TodoType } from '@crema/models/apps/Todo';
 
 const StyledListItem = styled(ListItem)(({ theme }) => ({
@@ -64,13 +64,14 @@ type Props = {
 
 const TaskListItemMobile = ({ task, checkedTasks, onChangeStarred }: Props) => {
   const router = useRouter();
-  const all = router.query.all as string[];
+
+  const { all } = router.query;
 
   let folder: string;
   let label: string;
-  if (all.length === 2 && !+all[1]) {
+  if (all?.length === 2) {
     label = all[1];
-  } else if (all.length === 1) {
+  } else if (all?.length === 1) {
     folder = all[0];
   }
 
@@ -148,7 +149,7 @@ const TaskListItemMobile = ({ task, checkedTasks, onChangeStarred }: Props) => {
             transition: 'all 0.5s ease',
           }}
         >
-          {moment(task.startDate).format('HH:mm A')}
+          {dayjs(task.startDate).format('HH:mm A')}
         </Box>
         <Box
           mt="auto"

@@ -45,7 +45,6 @@ const InfoForm: React.FC<InfoFormProps> = ({ values, setFieldValue }) => {
               onChange={(newValue) => {
                 setFieldValue('dob', newValue);
               }}
-              renderInput={(params) => <TextField {...params} />}
             />
           </Box>
         </Grid>

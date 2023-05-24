@@ -1,49 +1,49 @@
-import React, { ReactNode } from "react";
-import Box from "@mui/material/Box";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
 
-type CourseSliderProps ={
-  children: ReactNode;
-}
-
-const CourseSlider: React.FC<CourseSliderProps> = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+const CourseSlider = ({ children }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
         pb: 5,
-        "& .slick-slide img": {
-          height: "auto",
-          width: "100%",
+        '& .slick-slide img': {
+          height: 'auto',
+          width: '100%',
         },
-        "& .slick-dots": {
-          padding: "0 16px",
+        '& .slick-dots': {
+          padding: '0 16px',
         },
-        "& .slick-dots li": {
-          width: "33%",
-          height: "auto",
+        '& .slick-dots li': {
+          width: '33%',
+          height: 'auto',
           margin: 0,
         },
-        "& .slick-dots li button": {
-          width: "90%",
+        '& .slick-dots li button': {
+          width: '90%',
           height: 4,
-          position: "relative",
-          "&:before": {
-            width: "100%",
+          position: 'relative',
+          '&:before': {
+            width: '100%',
             height: 4,
             content: '""',
             fontSize: 0,
-            backgroundColor: "primary.main",
+            backgroundColor: 'primary.main',
             borderRadius: 30,
             opacity: 0.15,
           },
-          "&:hover, &:focus": {
-            "&:before": {
+          '&:hover, &:focus': {
+            '&:before': {
               opacity: 0.8,
             },
           },
         },
-        "& .slick-dots li.slick-active button": {
-          "&:before": {
+        '& .slick-dots li.slick-active button': {
+          '&:before': {
             opacity: 0.8,
           },
         },
@@ -55,3 +55,7 @@ const CourseSlider: React.FC<CourseSliderProps> = ({ children }) => {
 };
 
 export default CourseSlider;
+
+CourseSlider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { Zoom } from '@mui/material';
 import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
@@ -36,8 +36,8 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
       );
     }
     chatsList?.sort((a: ConnectionType, b: ConnectionType) => {
-      const momentA: any = moment(a.lastMessage!.time).format('X');
-      const momentB: any = moment(b.lastMessage!.time).format('X');
+      const momentA: any = dayjs(a.lastMessage!.time).format('X');
+      const momentB: any = dayjs(b.lastMessage!.time).format('X');
       return momentB - momentA;
     });
     return chatsList;

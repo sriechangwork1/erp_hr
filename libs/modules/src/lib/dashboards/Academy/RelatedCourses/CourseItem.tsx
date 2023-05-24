@@ -1,14 +1,14 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Fonts } from '@crema/constants/AppEnums';
-import { RelatedCoursesDataType } from '@crema/models/dashboards/Academy';
+import {Fonts} from '@crema/constants/AppEnums';
+import PropTypes from 'prop-types';
+import {RelatedCourseType} from "@crema/models/dashboards/Academy";
 
-type CourseItemProps ={
-  data: RelatedCoursesDataType;
+type Props={
+  data: RelatedCourseType;
 }
-
-const CourseItem: React.FC<CourseItemProps> = ({ data }) => {
+const CourseItem = ({ data }: Props) => {
   return (
     <Box
       sx={{
@@ -69,3 +69,7 @@ const CourseItem: React.FC<CourseItemProps> = ({ data }) => {
 };
 
 export default CourseItem;
+
+CourseItem.propTypes = {
+  data: PropTypes.object,
+};
