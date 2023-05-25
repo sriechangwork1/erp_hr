@@ -1,6 +1,5 @@
 import React from 'react';
 import SimpleFunnel from './Components/SimpleFunnel';
-import SimpleFunnelSource from 'raw-loader!./Components/SimpleFunnel';
 import Grid from '@mui/material/Grid';
 
 import AppComponentCard from '@crema/components/AppComponentCard';
@@ -20,7 +19,6 @@ const FunnelChart = () => {
           <AppComponentCard
             title="Simple FunnelChart"
             component={SimpleFunnel}
-            source={SimpleFunnelSource}
           />
         </Grid>
       </AppGridContainer>

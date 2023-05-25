@@ -1,10 +1,8 @@
 import React from 'react';
 
 import Custom from './Custom';
-import CustomSource from 'raw-loader!./Custom';
 
 import ReactImageTimeline from './ReactImageTimeline';
-import ReactImageTimelineSource from 'raw-loader!./ReactImageTimeline';
 import AppComponentHeader from '@crema/components/AppComponentHeader';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
@@ -21,19 +19,13 @@ const Timeline = () => {
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Custom"
-            maxHeight={700}
-            component={Custom}
-            source={CustomSource}
-          />
+          <AppComponentCard title="Custom" maxHeight={700} component={Custom} />
         </Grid>
         <Grid item xs={12}>
           <AppComponentCard
             title="React Image Timeline"
             maxHeight={700}
             component={ReactImageTimeline}
-            source={ReactImageTimelineSource}
           />
         </Grid>
       </AppGridContainer>

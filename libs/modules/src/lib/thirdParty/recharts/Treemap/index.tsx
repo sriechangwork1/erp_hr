@@ -1,8 +1,6 @@
 import React from 'react';
 import SimpleTreemap from './Components/SimpleTreemap';
-import SimpleTreemapSource from 'raw-loader!./Components/SimpleTreemap';
 import CustomContentTreemap from './Components/CustomContentTreemap';
-import CustomContentTreemapSource from 'raw-loader!./Components/CustomContentTreemap';
 import Grid from '@mui/material/Grid';
 
 import AppComponentCard from '@crema/components/AppComponentCard';
@@ -19,17 +17,12 @@ const Treemap = () => {
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title="Simple Tree map"
-            component={SimpleTreemap}
-            source={SimpleTreemapSource}
-          />
+          <AppComponentCard title="Simple Tree map" component={SimpleTreemap} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <AppComponentCard
             title="Custom Content Treemap"
             component={CustomContentTreemap}
-            source={CustomContentTreemapSource}
           />
         </Grid>
       </AppGridContainer>

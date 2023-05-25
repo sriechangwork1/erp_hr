@@ -1,6 +1,5 @@
 import React from 'react';
 import SimpleRadialBarChart from './Components/SimpleRadialBarChart';
-import SimpleRadialBarChartSource from 'raw-loader!./Components/SimpleRadialBarChart.tsx';
 import Grid from '@mui/material/Grid';
 
 import AppComponentCard from '@crema/components/AppComponentCard';
@@ -20,7 +19,6 @@ const Radial = () => {
           <AppComponentCard
             title="Simple Radial Bar Chart"
             component={SimpleRadialBarChart}
-            source={SimpleRadialBarChartSource}
           />
         </Grid>
       </AppGridContainer>

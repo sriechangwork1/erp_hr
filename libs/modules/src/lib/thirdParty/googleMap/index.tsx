@@ -4,7 +4,6 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
 import AppComponentCard from '@crema/components/AppComponentCard';
 import SimpleMap from './Simple';
-import SimpleMapSource from 'raw-loader!././Simple';
 
 const GoogleMap = () => {
   return (
@@ -17,11 +16,7 @@ const GoogleMap = () => {
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Simple Map"
-            component={SimpleMap}
-            source={SimpleMapSource}
-          />
+          <AppComponentCard title="Simple Map" component={SimpleMap} />
         </Grid>
       </AppGridContainer>
     </>

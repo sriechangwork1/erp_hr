@@ -6,16 +6,11 @@ import AppComponentHeader from '@crema/components/AppComponentHeader';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Basic from './Basic';
 
-import BasicSource from 'raw-loader!./Basic';
 import StylingDropzone from './StylingDropzone';
 
-import StylingDropzoneSource from 'raw-loader!./StylingDropzone';
 import DialogProgrammatically from './DialogProgrammatically';
 
-import DialogProgrammaticallySource from 'raw-loader!./DialogProgrammatically';
 import Previews from './Previews';
-
-import PreviewsSource from 'raw-loader!./Previews';
 
 const ReactDropzone = () => {
   return (
@@ -28,31 +23,21 @@ const ReactDropzone = () => {
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title="Basic"
-            component={Basic}
-            source={BasicSource}
-          />
+          <AppComponentCard title="Basic" component={Basic} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <AppComponentCard
             title="Styling Dropzone"
             component={StylingDropzone}
-            source={StylingDropzoneSource}
           />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title="Previews"
-            component={Previews}
-            source={PreviewsSource}
-          />
+          <AppComponentCard title="Previews" component={Previews} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <AppComponentCard
             title="Dialog Programmatically"
             component={DialogProgrammatically}
-            source={DialogProgrammaticallySource}
           />
         </Grid>
       </AppGridContainer>

@@ -10,8 +10,6 @@ import {
 
 import Basic from './Basic';
 
-import BasicSource from 'raw-loader!./Basic';
-
 import AppComponentCard from '@crema/components/AppComponentCard';
 import AppComponentHeader from '@crema/components/AppComponentHeader';
 import AppGridContainer from '@crema/components/AppGridContainer';
@@ -48,11 +46,7 @@ const ColorPicker = () => {
         <Grid item xs={12} lg={6}>
           <AppGridContainer>
             <Grid item xs={12}>
-              <AppComponentCard
-                title="Basic Picker"
-                component={Basic}
-                source={BasicSource}
-              />
+              <AppComponentCard title="Basic Picker" component={Basic} />
             </Grid>
           </AppGridContainer>
         </Grid>

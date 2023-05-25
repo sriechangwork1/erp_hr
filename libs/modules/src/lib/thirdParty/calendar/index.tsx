@@ -6,21 +6,9 @@ import AppComponentHeader from '@crema/components/AppComponentHeader';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import Basic from './Basic';
 
-import BasicSource from 'raw-loader!./Basic';
-
 import Timeslots from './Timeslots';
-
-import TimeslotsSource from 'raw-loader!./Timeslots';
 import Popup from './Popup';
-
-// @ts-ignore
-import PopupSource from 'raw-loader!./Popup';
 import Selectable from './Selectable';
-
-import SelectableSource from 'raw-loader!./Selectable';
-// import Dnd from './Dnd';
-//
-// import DndSource from 'raw-loader!./Dnd';
 
 const Calendar = () => {
   return (
@@ -32,39 +20,19 @@ const Calendar = () => {
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Basic Calendar"
-            component={Basic}
-            source={BasicSource}
-          />
+          <AppComponentCard title="Basic Calendar" component={Basic} />
         </Grid>
-        {/*<Grid item xs={12}>*/}
-        {/*  <AppComponentCard*/}
-        {/*    title="Dnd Calendar"*/}
-        {/*    component={Dnd}*/}
-        {/*    source={DndSource}*/}
-        {/*  />*/}
-        {/*</Grid>*/}
 
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Timeslots Calendar"
-            component={Timeslots}
-            source={TimeslotsSource}
-          />
+          <AppComponentCard title="Timeslots Calendar" component={Timeslots} />
         </Grid>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Popup Calendar"
-            component={Popup}
-            source={PopupSource}
-          />
+          <AppComponentCard title="Popup Calendar" component={Popup} />
         </Grid>
         <Grid item xs={12}>
           <AppComponentCard
             title="Selectable Calendar"
             component={Selectable}
-            source={SelectableSource}
           />
         </Grid>
       </AppGridContainer>

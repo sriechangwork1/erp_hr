@@ -1,8 +1,6 @@
 import React from 'react';
 import SimpleRadarChart from './Components/SimpleRadarChart';
-import SimpleRadarChartSource from 'raw-loader!./Components/SimpleRadarChart';
 import SpecifiedDomainRadarChart from './Components/SpecifiedDomainRadarChart';
-import SpecifiedDomainRadarChartSource from 'raw-loader!./Components/SpecifiedDomainRadarChart';
 import Grid from '@mui/material/Grid';
 
 import AppComponentCard from '@crema/components/AppComponentCard';
@@ -22,14 +20,12 @@ const Radar = () => {
           <AppComponentCard
             title="Simple Radar Chart"
             component={SimpleRadarChart}
-            source={SimpleRadarChartSource}
           />
         </Grid>
         <Grid item xs={12} lg={6}>
           <AppComponentCard
             title="Specified Domain Radar Chart"
             component={SpecifiedDomainRadarChart}
-            source={SpecifiedDomainRadarChartSource}
           />
         </Grid>
       </AppGridContainer>

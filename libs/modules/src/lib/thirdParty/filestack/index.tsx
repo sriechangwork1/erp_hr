@@ -4,8 +4,6 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 import Grid from '@mui/material/Grid';
 import AppComponentCard from '@crema/components/AppComponentCard';
 import InlinePicker from './Inline';
-import InlinePickerSource from 'raw-loader!./Inline';
-import InlineSource from 'raw-loader!./Inline';
 import DNDPicker from './DNDPicker';
 
 const FileStack = () => {
@@ -19,18 +17,10 @@ const FileStack = () => {
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Inline Picker"
-            component={InlinePicker}
-            source={InlinePickerSource}
-          />
+          <AppComponentCard title="Inline Picker" component={InlinePicker} />
         </Grid>
         <Grid item xs={12}>
-          <AppComponentCard
-            title="Drop Pane Picker"
-            component={DNDPicker}
-            source={InlineSource}
-          />
+          <AppComponentCard title="Drop Pane Picker" component={DNDPicker} />
         </Grid>
       </AppGridContainer>
     </>
