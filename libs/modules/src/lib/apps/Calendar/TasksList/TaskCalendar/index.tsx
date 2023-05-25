@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { momentLocalizer, stringOrDate } from 'react-big-calendar';
 import moment from 'moment';
 import { StyledCalendar } from './Calendar.style';
-// import './calendar.css';
 import CustomToolbar from './CustomToolbar';
 import TaskItem from './TaskItem';
-// import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import { TodoType } from '@crema/models/apps/Todo';
+import { useRouter } from 'next/router';
 
 const DragAndDropCalendar = withDragAndDrop(StyledCalendar as any);
 
@@ -21,6 +20,17 @@ type Props = {
 const TaskCalender = ({ taskList, onUpdateTask, onSetFilterText }: Props) => {
   const [isAddTaskOpen, setAddTaskOpen] = useState(false);
 
+  const router = useRouter();
+  const { all } = router.query;
+
+  let folder: any;
+  let label: any;
+  if ((all as string[]).length === 2) {
+    label = (all as string[])[1];
+  } else if ((all as string[]).length === 1) {
+    folder = (all as string[])[0];
+  }
+
   const [selectedDate, setSelectedDate] = useState(null);
 
   const onSelectDate = ({ start }: { start: any }) => {
@@ -29,11 +39,20 @@ const TaskCalender = ({ taskList, onUpdateTask, onSetFilterText }: Props) => {
     setAddTaskOpen(true);
   };
 
-  const onOpenAddTask = () => {
-    if (selectedDate) {
-      setAddTaskOpen(true);
+  const onViewTaskDetail = (task: TodoType) => {
+    if (folder) router.push(`/apps/calender/${folder}/${task.id}`);
+    if (label) router.push(`/apps/calender/label/${label}/${task.id}`);
+  };
+
+  const onOpenAddTask = (data: any) => {
+    if (data) {
+      onViewTaskDetail(data);
     } else {
-      setAddTaskOpen(false);
+      if (selectedDate) {
+        setAddTaskOpen(true);
+      } else {
+        setAddTaskOpen(false);
+      }
     }
   };
   const resizeEvent = ({
