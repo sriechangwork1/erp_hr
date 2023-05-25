@@ -1,10 +1,11 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import CalendarWrapper from './CalendarWrapper';
-import { StaticDatePicker } from '@mui/lab';
+import { StaticDatePicker } from '@mui/x-date-pickers';
+import dayjs, { Dayjs } from 'dayjs';
 
 const DateSelector = () => {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Dayjs>(dayjs());
 
   return (
     <AppCard sxStyle={{ height: 1 }} contentStyle={{ padding: 0 }}>
@@ -13,8 +14,8 @@ const DateSelector = () => {
           orientation="landscape"
           openTo="day"
           value={value}
-          onChange={(newValue: Date | null) => {
-            setValue(newValue);
+          onChange={(newValue) => {
+            setValue(newValue as Dayjs);
           }}
         />
       </CalendarWrapper>

@@ -12,7 +12,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ForwardMail from './ForwardMail';
 import dayjs from 'dayjs';
 import { BiChevronDown } from 'react-icons/bi';
-import '../../../../../types/react-render-html.d';
+// import '../../../../../types/react-render-html.d';
 import renderHTML from 'react-render-html';
 import clsx from 'clsx';
 

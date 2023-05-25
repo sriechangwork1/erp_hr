@@ -9,12 +9,13 @@ import { useAuthMethod, useAuthUser } from '@crema/hooks/AuthHooks';
 import { useSidebarContext } from '@crema/context/SidebarContextProvider';
 import { Fonts } from '@crema/constants/AppEnums';
 import Status from './Status';
-import {useRouter} from "next/router";
+import { useRouter } from 'next/router';
+import AppLoader from '@crema/components/AppLoader';
 
 const SidebarUserInfo = () => {
   const { borderColor, sidebarTextColor } = useSidebarContext();
   const { user } = useAuthUser();
-    const router = useRouter();
+  const router = useRouter();
   const { logout } = useAuthMethod();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -35,6 +36,10 @@ const SidebarUserInfo = () => {
       return user.email.charAt(0).toUpperCase();
     }
   };
+
+  if (!user || !user.email) {
+    return <AppLoader />;
+  }
 
   return (
     <Box

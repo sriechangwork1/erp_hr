@@ -12,7 +12,7 @@ import MailContextProvider from '../context/MailContextProvider';
 const Mail = () => {
   const { query } = useRouter();
   const { messages } = useIntl();
-  const id = parseInt(query?.all?.[query?.all?.length || 0 - 1] || '') || 0;
+  const id = parseInt(query?.all?.[query?.all?.length - 1] || '') || 0;
 
   return (
     <MailContextProvider>

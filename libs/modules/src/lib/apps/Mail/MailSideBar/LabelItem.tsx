@@ -50,11 +50,11 @@ const LabelItemWrapper = styled(ListItem)(({ theme }) => {
 });
 
 const LabelItem = ({ label }: { label: LabelType }) => {
-  const { pathname, asPath } = useRouter();
+  const { asPath } = useRouter();
   return (
     <Link
       href={`/apps/mail/label/${label.alias}`}
-      style={{ textDecoration: 'none' }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <LabelItemWrapper
         key={label.id}

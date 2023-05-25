@@ -3,7 +3,7 @@ import { Card } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CodeIcon from '@mui/icons-material/Code';
-import { Highlight, themes } from "prism-react-renderer"
+import { Highlight, themes } from 'prism-react-renderer';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import AppScrollbar from '../AppScrollbar';
@@ -11,18 +11,18 @@ import Box from '@mui/material/Box';
 import AppAnimate from '../AppAnimate';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type AppComponentCardProps= {
+type AppComponentCardProps = {
   title: ReactNode;
   component: any;
   source?: any;
   maxHeight?: number;
   description?: ReactNode;
   noScrollbar?: boolean;
-}
+};
 
 const AppComponentCard: React.FC<AppComponentCardProps> = ({
   title,
-  maxHeight,
+  maxHeight = 500,
   description,
   component: Component,
   source,
@@ -128,7 +128,8 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                pt: 6,
+                p: 4,
+                backgroundColor: (theme) => theme.palette.background.default,
               }}
             >
               <Component />
@@ -140,6 +141,8 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
                 p: 4,
                 borderRadius: 3,
                 maxHeight: maxHeight,
+                backgroundColor: (theme: any) =>
+                  theme.palette.background.default,
               }}
             >
               <Box

@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 export const MailMobileItemWrapper = styled(ListItem)((props: any) => {
   return {
     display: 'flex',
-    backgroundColor: props.mail.isRead
+    backgroundColor: props?.mail?.isRead
       ? alpha(props.theme.palette.background.default, 0.8)
       : props.theme.palette.background.paper,
     alignItems: 'flex-start',

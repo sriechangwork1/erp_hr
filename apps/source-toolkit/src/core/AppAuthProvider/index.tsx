@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { useDispatch } from 'react-redux';
 
 import FirebaseAuthProvider from '@crema/services/auth/FirebaseAuthProvider';
 import {
@@ -8,13 +7,14 @@ import {
   FETCH_SUCCESS,
   SHOW_MESSAGE,
 } from '@crema/constants/ActionTypes';
+import { useAppDispatch } from '../../toolkit/hooks';
 
 type Props = {
   children: ReactNode;
 };
 
 const AppAuthProvider = ({ children }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const fetchStart = () => {
     dispatch({ type: FETCH_START });

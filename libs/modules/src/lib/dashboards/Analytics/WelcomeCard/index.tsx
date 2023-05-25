@@ -1,30 +1,29 @@
 import React from 'react';
-import {alpha, Box} from '@mui/material';
-import {Fonts} from '@crema/constants/AppEnums';
-import {useIntl} from 'react-intl';
+import { alpha, Box } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import { useIntl } from 'react-intl';
 import AppCard from '@crema/components/AppCard';
 
-import {HiOutlineMailOpen} from 'react-icons/hi';
-import {BiMessageDetail} from 'react-icons/bi';
-import {CgFileDocument} from 'react-icons/cg';
+import { HiOutlineMailOpen } from 'react-icons/hi';
+import { BiMessageDetail } from 'react-icons/bi';
+import { CgFileDocument } from 'react-icons/cg';
 import AppScrollbar from '@crema/components/AppScrollbar';
-import {WelcomeCardType} from "@crema/models/dashboards/Analytics";
+import { WelcomeCardType } from '@crema/models/dashboards/Analytics';
 
 const getWelcomeIcon = (iconType: string) => {
   switch (iconType) {
     case 'HiOutlineMailOpen':
-      return <HiOutlineMailOpen color="#0A8FDC" className="icon"/>;
+      return <HiOutlineMailOpen color="#0A8FDC" className="icon" />;
     case 'BiMessageDetail':
-      return <BiMessageDetail color="#0A8FDC" className="icon"/>;
+      return <BiMessageDetail color="#0A8FDC" className="icon" />;
     default:
-      return <CgFileDocument color="#0A8FDC" className="icon"/>;
+      return <CgFileDocument color="#0A8FDC" className="icon" />;
   }
 };
 
-type Props={
+type Props = {
   data: WelcomeCardType[];
-
-}
+};
 const WelcomeCard = ({ data }: Props) => {
   const { messages } = useIntl();
   return (
@@ -84,7 +83,7 @@ const WelcomeCard = ({ data }: Props) => {
           >
             <AppScrollbar
               sx={{
-                maxWidth: '100%',
+                width: 500,
                 px: 3,
               }}
             >

@@ -141,7 +141,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }) {
+    } catch ({ message }: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,
@@ -164,7 +164,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }) {
+    } catch ({ message }: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,
@@ -198,7 +198,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }) {
+    } catch ({ message }: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,

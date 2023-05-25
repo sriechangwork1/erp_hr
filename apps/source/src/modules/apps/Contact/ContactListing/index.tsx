@@ -23,7 +23,7 @@ const ContactListing = () => {
   const { page, contactList } = useContactContext();
   const { setContactData, onPageChange } = useContactActionsContext();
 
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
   const infoViewActionsContext = useInfoViewActionsContext();
 
   const [filterText, onSetFilterText] = useState('');
@@ -137,7 +137,8 @@ const ContactListing = () => {
   };
 
   const onDeleteSelectedContacts = () => {
-    const path = pathname.split('/');
+    const path = asPath.split('/');
+
     postDataApi<ContactType>(
       '/api/contactApp/delete/contact',
       infoViewActionsContext,

@@ -99,7 +99,7 @@ const StateCard = ({ data }: Props) => {
         flexDirection: 'column',
         p: 0,
         '&:last-of-type': {
-          pb: 0,
+          pb: '0 !important',
         },
       }}
     >

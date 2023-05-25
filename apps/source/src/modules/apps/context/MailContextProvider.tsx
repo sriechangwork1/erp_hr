@@ -1,8 +1,19 @@
-import React, {createContext, ReactNode, useContext, useEffect, useState,} from 'react';
-import {useGetDataApi} from '@crema/hooks/APIHooks';
-import type {ConnectionType, FolderType, LabelType, MailType,} from '@crema/models/apps/Mail';
-import {APIDataProps} from '@crema/models/APIDataProps';
-import {useRouter} from "next/router";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import type {
+  ConnectionType,
+  FolderType,
+  LabelType,
+  MailType,
+} from '@crema/models/apps/Mail';
+import { APIDataProps } from '@crema/models/APIDataProps';
+import { useRouter } from 'next/router';
 
 export type MailContextType = {
   labelList: LabelType[];
@@ -12,8 +23,8 @@ export type MailContextType = {
   loading: boolean;
   page: number;
   all?: string | string[];
-  folder?:string,
-  label?:string,
+  folder?: string;
+  label?: string;
 };
 
 export type MailActionContextType = {
@@ -22,6 +33,7 @@ export type MailActionContextType = {
     event: React.MouseEvent<HTMLButtonElement> | null,
     data: number
   ) => void;
+  reCallAPI: () => void;
 };
 
 const ContextState: MailContextType = {
@@ -32,8 +44,8 @@ const ContextState: MailContextType = {
   loading: false,
   page: 0,
   all: undefined,
-  folder:undefined,
-  label:undefined,
+  folder: undefined,
+  label: undefined,
 };
 
 const MailContext = createContext<MailContextType>(ContextState);
@@ -43,6 +55,7 @@ const MailActionsContext = createContext<MailActionContextType>({
     event: React.MouseEvent<HTMLButtonElement> | null,
     data: number
   ) => {},
+  reCallAPI: () => {},
 });
 
 export const useMailContext = () => useContext(MailContext);
@@ -76,7 +89,7 @@ export const MailContextProvider = ({ children }: Props) => {
 
   const [
     { apiData: mailList, loading },
-    { setQueryParams, setData: setMailData },
+    { setQueryParams, setData: setMailData, reCallAPI },
   ] = useGetDataApi<APIDataProps<MailType[]>>(
     '/api/mailApp/folder/mail/List',
     undefined,
@@ -87,7 +100,7 @@ export const MailContextProvider = ({ children }: Props) => {
     },
     false
   );
-  console.log()
+  console.log();
 
   useEffect(() => {
     setPage(0);
@@ -126,6 +139,7 @@ export const MailContextProvider = ({ children }: Props) => {
         value={{
           setMailData,
           onPageChange,
+          reCallAPI,
         }}
       >
         {children}

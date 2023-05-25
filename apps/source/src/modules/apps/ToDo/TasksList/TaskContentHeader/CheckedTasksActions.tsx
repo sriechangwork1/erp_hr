@@ -5,7 +5,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import AppsDeleteIcon from '@crema/components/AppsDeleteIcon';
-import { useRouter } from 'next/router';
 import IconButton from '@mui/material/IconButton';
 import AppTooltip from '@crema/components/AppTooltip';
 import { StyledBox } from './index.style';

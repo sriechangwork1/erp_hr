@@ -4,7 +4,6 @@ import ListItem from '@mui/material/ListItem';
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
 import { alpha, styled } from '@mui/material/styles';
 import { Fonts } from '@crema/constants/AppEnums';
-import AppNavLink from '@crema/components/AppNavLink';
 import { LabelType } from '@crema/models/apps/Todo';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -65,7 +64,7 @@ const LabelItem = ({ label }: Props) => {
   return (
     <Link
       href={`/apps/calender/label/${label.alias}`}
-      style={{ textDecoration: 'none' }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <StyledListItem
         key={label.id}

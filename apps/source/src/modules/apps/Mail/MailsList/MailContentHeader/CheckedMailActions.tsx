@@ -17,7 +17,6 @@ import {
   useMailContext,
 } from '../../../context/MailContextProvider';
 import { MailType } from '@crema/models/apps/Mail';
-import { APIDataProps } from '@crema/models/APIDataProps';
 
 type Props = {
   checkedMails: number[];
@@ -28,7 +27,7 @@ const CheckedMailActions = (props: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const { checkedMails, setCheckedMails } = props;
   const { labelList, folderList } = useMailContext();
-  const { setMailData } = useMailActionsContext();
+  const { setMailData, reCallAPI } = useMailActionsContext();
 
   const [isLabelOpen, onOpenLabel] = useState<null | HTMLElement>(null);
 
@@ -51,7 +50,7 @@ const CheckedMailActions = (props: Props) => {
   };
 
   const onChangeMailFolder = (type: number) => {
-    putDataApi<APIDataProps<MailType[]>>(
+    putDataApi<MailType[]>(
       '/api/mailApp/update/folder',
       infoViewActionsContext,
       {
@@ -60,7 +59,9 @@ const CheckedMailActions = (props: Props) => {
       }
     )
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
+        reCallAPI();
+
         infoViewActionsContext.showMessage('Mail moved to folder successfully');
         setCheckedMails([]);
       })
@@ -73,7 +74,7 @@ const CheckedMailActions = (props: Props) => {
     const labelType = labelList.find(
       (label) => label.id === event.target.value
     );
-    putDataApi<APIDataProps<MailType[]>>(
+    putDataApi<MailType[]>(
       '/api/mailApp/update/label',
       infoViewActionsContext,
       {
@@ -82,7 +83,8 @@ const CheckedMailActions = (props: Props) => {
       }
     )
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
+        reCallAPI();
         setCheckedMails([]);
         onOpenLabel(null);
         infoViewActionsContext.showMessage('Mail moved to folder successfully');

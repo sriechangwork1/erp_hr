@@ -8,6 +8,7 @@
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "dependsOn": [],
       "options": {
         "root": "apps/source-toolkit",
         "outputPath": "dist/apps/source-toolkit"

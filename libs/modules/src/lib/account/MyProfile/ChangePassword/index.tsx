@@ -19,7 +19,7 @@ const validationSchema = yup.object({
     .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
   retypeNewPassword: yup
     .string()
-    .oneOf([yup.ref('newPassword'), null], 'Passwords must match'),
+    .oneOf([yup.ref('newPassword'), undefined], 'Passwords must match'),
 });
 
 const ChangePassword = () => {

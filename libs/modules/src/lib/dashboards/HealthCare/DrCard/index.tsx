@@ -39,8 +39,9 @@ const DrCard = ({ data }: Props) => {
       contentStyle={{
         p: 0,
         '&:last-of-type': {
-          pb: 0,
+          pb: '0 !important',
         },
+
         mb: 0,
       }}
     >

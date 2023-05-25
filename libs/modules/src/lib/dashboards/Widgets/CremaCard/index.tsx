@@ -40,13 +40,15 @@ const CremaCard: React.FC<CremaCardProps> = ({
             width: 'calc(100% - 35px)',
           }}
         >
-          <Box
-            sx={{
-              minWidth: 40,
-              width: 40,
-            }}
-          >
-            <img alt="logo" src={data.image} />
+          <Box>
+            <img
+              style={{
+                minWidth: 40,
+                width: 40,
+              }}
+              alt="logo"
+              src={data.image}
+            />
           </Box>
           <Box
             sx={{

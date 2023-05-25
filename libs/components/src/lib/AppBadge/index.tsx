@@ -8,7 +8,10 @@ type BadgeProps = {
   color?: string;
 };
 
-const AppBadge: React.FC<BadgeProps> = ({ count, color = 'secondary' }) => {
+const AppBadge: React.FC<BadgeProps> = ({
+  count,
+  color = 'secondary.main',
+}) => {
   if (color === 'primary') {
     color = 'primary.main';
   } else if (color === 'v') {

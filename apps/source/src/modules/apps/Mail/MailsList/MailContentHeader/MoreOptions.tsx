@@ -56,16 +56,12 @@ const MoreOptions = (props: Props) => {
 
   const onChangeReadStatus = (statusValue: number) => {
     const status = !!statusValue;
-    putDataApi<APIDataProps<MailType[]>>(
-      '/api/mailApp/update/read',
-      infoViewActionsContext,
-      {
-        mailIds: checkedMails,
-        status: status,
-      }
-    )
+    putDataApi<MailType[]>('/api/mailApp/update/read', infoViewActionsContext, {
+      mailIds: checkedMails,
+      status: status,
+    })
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(
@@ -80,16 +76,12 @@ const MoreOptions = (props: Props) => {
   const onChangeAllReadStatus = (statusValue: number) => {
     const status = !!statusValue;
     const allMails = mailList.map((mail) => mail.id);
-    putDataApi<APIDataProps<MailType[]>>(
-      '/api/mailApp/update/read',
-      infoViewActionsContext,
-      {
-        mailIds: allMails,
-        status: status,
-      }
-    )
+    putDataApi<MailType[]>('/api/mailApp/update/read', infoViewActionsContext, {
+      mailIds: allMails,
+      status: status,
+    })
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
         onOpenMoreIcon(null);
         setCheckedMails([]);
         infoViewActionsContext.showMessage(
@@ -103,7 +95,7 @@ const MoreOptions = (props: Props) => {
 
   const onChangeAllStarred = (status: number) => {
     const allMails = mailList.map((mail) => mail.id);
-    putDataApi<APIDataProps<MailType[]>>(
+    putDataApi<MailType[]>(
       '/api/mailApp/update/starred',
       infoViewActionsContext,
       {
@@ -112,7 +104,7 @@ const MoreOptions = (props: Props) => {
       }
     )
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(
@@ -125,7 +117,7 @@ const MoreOptions = (props: Props) => {
   };
 
   const onChangeStarredStatus = (status: number) => {
-    putDataApi<APIDataProps<MailType[]>>(
+    putDataApi<MailType[]>(
       '/api/mailApp/update/starred',
       infoViewActionsContext,
       {
@@ -134,7 +126,7 @@ const MoreOptions = (props: Props) => {
       }
     )
       .then((data) => {
-        setMailData(data);
+        setMailData({ data, count: data.length });
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(

@@ -12,31 +12,31 @@ export const senders: SenderType[] = [
     id: 1,
     name: 'Crema',
     email: 'info@cremawork.com',
-    profilePic: './assets/images/logo/vcs.png',
+    profilePic: '/assets/images/logo/vcs.png',
   },
   {
     id: 2,
     name: 'Paytm',
     email: 'support@paytm.com',
-    profilePic: './assets/images/logo/paytm.png',
+    profilePic: '/assets/images/logo/paytm.png',
   },
   {
     id: 3,
     name: 'Bitcoins Support',
     email: 'support@bitcoin.com',
-    profilePic: './assets/images/logo/bitcoin.png',
+    profilePic: '/assets/images/logo/bitcoin.png',
   },
   {
     id: 4,
     name: 'Symu Freebies',
     email: 'noReply@flipkart.com',
-    profilePic: './assets/images/logo/flipkart.jpg',
+    profilePic: '/assets/images/logo/flipkart.jpg',
   },
   {
     id: 5,
     name: 'Dribbble',
     email: 'support@dribbble.com',
-    profilePic: './assets/images/logo/dribble.png',
+    profilePic: '/assets/images/logo/dribble.png',
   },
   {
     id: 6,
@@ -54,13 +54,13 @@ export const senders: SenderType[] = [
     id: 8,
     name: 'Naukri.com',
     email: 'noreply@nokri.com',
-    profilePic: './assets/images/logo/bitcoin.png',
+    profilePic: '/assets/images/logo/bitcoin.png',
   },
   {
     id: 9,
     name: 'Dribble',
     email: 'support@dribbble.com',
-    profilePic: './assets/images/logo/dribble.png',
+    profilePic: '/assets/images/logo/dribble.png',
   },
 ];
 

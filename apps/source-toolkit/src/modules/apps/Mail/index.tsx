@@ -40,7 +40,7 @@ const MailDetailViewWrapper = styled(Box)(({ theme }) => {
 const Mail = () => {
   const dispatch = useAppDispatch();
   const { query } = useRouter();
-  const id = parseInt(query?.all?.[query?.all?.length || 0 - 1] || '') || 0;
+  const id = parseInt(query?.all?.[query?.all?.length - 1] || '') || 0;
 
   useEffect(() => {
     dispatch(onGetMailLabelList());

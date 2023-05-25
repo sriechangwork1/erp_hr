@@ -1,8 +1,21 @@
-import React, {createContext, ReactNode, useContext, useEffect, useState,} from 'react';
-import {useGetDataApi} from '@crema/hooks/APIHooks';
-import {FolderType, LabelType, PriorityType, StaffType, StatusType, TodoType,} from '@crema/models/apps/Todo';
-import {APIDataProps} from '@crema/models/APIDataProps';
-import {useRouter} from "next/router";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import {
+  FolderType,
+  LabelType,
+  PriorityType,
+  StaffType,
+  StatusType,
+  TodoType,
+} from '@crema/models/apps/Todo';
+import { APIDataProps } from '@crema/models/APIDataProps';
+import { useRouter } from 'next/router';
 
 export const ViewMode = {
   List: 'list',
@@ -20,8 +33,8 @@ export type TodoContextType = {
   page: number;
   viewMode: string;
   all?: string | string[];
-  folder?:string,
-  label?:string,
+  folder: string;
+  label: string;
 };
 
 export type TodoActionContextType = {
@@ -48,8 +61,8 @@ const ContextState: TodoContextType = {
   page: 0,
   viewMode: 'list',
   all: undefined,
-  folder:undefined,
-  label:undefined,
+  folder: undefined,
+  label: undefined,
 };
 
 const TodoContext = createContext<TodoContextType>(ContextState);
@@ -135,6 +148,8 @@ export const TodoContextProvider = ({ children }: Props) => {
   return (
     <TodoContext.Provider
       value={{
+        folder,
+        label,
         labelList,
         priorityList,
         staffList,

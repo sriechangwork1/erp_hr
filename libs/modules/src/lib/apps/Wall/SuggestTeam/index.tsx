@@ -24,7 +24,7 @@ const SuggestTeam = ({ data }: Props) => {
       contentStyle={{
         p: 0,
         '&:last-of-type': {
-          pb: 0,
+          pb: '0 !important',
         },
       }}
       title={messages['wall.suggestTeams'] as string}

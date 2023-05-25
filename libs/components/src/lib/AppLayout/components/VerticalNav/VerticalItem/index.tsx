@@ -20,20 +20,25 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
   const { user } = useAuthUser();
   const { pathname, asPath } = useRouter();
   const hasPermission = useMemo(
-    () => checkPermission(item.permittedRole, user.role),
-    [item.permittedRole, user.role]
+    () => checkPermission(item.permittedRole, user?.role),
+    [item.permittedRole, user?.role]
   );
+
   useEffect(() => {
-    if (process.browser) {
-      if (pathname === item.url && document.getElementById(pathname)) {
-        setTimeout(() => {
-          if (document.getElementById(pathname)) {
-            document
-              .getElementById(pathname)
-              .scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 1);
-      }
+    if (
+      // @ts-ignore
+      process.browser &&
+      pathname === item.url &&
+      document.getElementById(pathname)
+    ) {
+      setTimeout(() => {
+        if (document.getElementById(pathname)) {
+          // @ts-ignore
+          document
+            .getElementById(pathname)
+            .scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 1);
     }
   }, [pathname]);
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import {CacheProvider} from '@emotion/react';
+import { CacheProvider } from '@emotion/react';
 import AppContextProvider from '@crema/context/AppContextProvider';
 import AppThemeProvider from '@crema/context/AppThemeProvider';
 import AppStyleProvider from '@crema/context/AppStyleProvider';
@@ -11,23 +11,24 @@ import AuthRoutes from '@crema/components/AuthRoutes';
 import '@crema/mockapi';
 import '../../public/styles/vendors/index.css';
 import AppPageMeta from '@crema/components/AppPageMeta';
-import InfoViewContextProvider from '@crema/context/InfoViewContextProvider';
-import createEmotionCache from "../../createEmotionCache";
-import {AppProps} from 'next/app';
+import createEmotionCache from '../../createEmotionCache';
+import { AppProps } from 'next/app';
+import { store } from '../toolkit/store';
+import { Provider } from 'react-redux';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props:AppProps) {
+export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
 
   return (
     <CacheProvider value={clientSideEmotionCache}>
-      <AppContextProvider>
-        <AppThemeProvider>
-          <AppStyleProvider>
-            <AppLocaleProvider>
-              <InfoViewContextProvider>
+      <Provider store={store}>
+        <AppContextProvider>
+          <AppThemeProvider>
+            <AppStyleProvider>
+              <AppLocaleProvider>
                 <AppAuthProvider>
                   <AuthRoutes>
                     <CssBaseline />
@@ -35,11 +36,11 @@ export default function MyApp(props:AppProps) {
                     <Component {...pageProps} />
                   </AuthRoutes>
                 </AppAuthProvider>
-              </InfoViewContextProvider>
-            </AppLocaleProvider>
-          </AppStyleProvider>
-        </AppThemeProvider>
-      </AppContextProvider>
+              </AppLocaleProvider>
+            </AppStyleProvider>
+          </AppThemeProvider>
+        </AppContextProvider>
+      </Provider>
     </CacheProvider>
   );
 }

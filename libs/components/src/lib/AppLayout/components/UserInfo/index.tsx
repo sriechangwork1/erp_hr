@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Fonts } from '@crema/constants/AppEnums';
 import { useRouter } from 'next/router';
 import { orange } from '@mui/material/colors';
+import AppLoader from '@crema/components/AppLoader';
 
 type UserInfoProps = {
   color?: string;
@@ -36,6 +37,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
       return user.email.charAt(0).toUpperCase();
     }
   };
+
+  if (!user || !user.email) {
+    return <AppLoader />;
+  }
 
   return (
     <>

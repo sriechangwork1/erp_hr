@@ -3,22 +3,25 @@ import AppCard from '@crema/components/AppCard';
 import Categories from './Categories';
 import List from '@mui/material/List';
 import ChartView from './ChartView';
-import {Box} from '@mui/material';
-import {EmailMarketingType} from "@crema/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import { Box } from '@mui/material';
+import { EmailMarketingType } from '@crema/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
-type Props={
-  emailMarketing: EmailMarketingType[]
-}
-export const EmailMarking = ({ emailMarketing=[] }: Props) => {
+type Props = {
+  emailMarketing: EmailMarketingType[];
+};
+export const EmailMarking = ({ emailMarketing = [] }: Props) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={<IntlMessages id='dashboard.crm.emailMarketing'/>}
+      title={<IntlMessages id="dashboard.crm.emailMarketing" />}
       contentStyle={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        '&:last-of-type': {
+          pb: '0 !important',
+        },
       }}
     >
       <Box
