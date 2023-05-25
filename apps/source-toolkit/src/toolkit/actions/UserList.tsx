@@ -11,7 +11,7 @@ export const onGetUserList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/user/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_USER_LIST, payload: data.data });
@@ -19,7 +19,7 @@ export const onGetUserList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

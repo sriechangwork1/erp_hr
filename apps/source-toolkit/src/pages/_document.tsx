@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import createEmotionCache from '../../../source/createEmotionCache';
+import { CacheProvider } from '@emotion/react';
+import createEmotionCache from '../../createEmotionCache';
 
 export default class MyDocument extends Document {
   render() {
@@ -24,9 +25,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Main />
-          <div id="root" />
-          <NextScript />
+        <Main />
+        <div id="root" />
+        <NextScript />
         </body>
       </Html>
     );
@@ -67,7 +68,12 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
+      enhanceApp: (App) => (props) =>
+        (
+          <CacheProvider value={cache}>
+            <App {...props} />
+          </CacheProvider>
+        ),
     });
 
   const initialProps = await Document.getInitialProps(ctx);

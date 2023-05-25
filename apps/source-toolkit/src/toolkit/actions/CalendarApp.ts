@@ -30,7 +30,7 @@ export const onGetCalTaskList = (
           page: page,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TASK_LIST, payload: data.data });
@@ -38,7 +38,7 @@ export const onGetCalTaskList = (
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {});
+      .catch((error: any) => {});
   };
 };
 
@@ -48,7 +48,7 @@ export const onGetCalPriorityList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/calendar/priority/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_PRIORITY_LIST, payload: data.data });
@@ -56,7 +56,7 @@ export const onGetCalPriorityList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -68,7 +68,7 @@ export const onGetCalStatusList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/calendar/status/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_STATUS_LIST, payload: data.data });
@@ -76,7 +76,7 @@ export const onGetCalStatusList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -88,7 +88,7 @@ export const onCreateCalTask = (task: TodoType | any) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/calendar/compose', { task })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: CREATE_NEW_TASK, payload: data.data });
@@ -97,7 +97,7 @@ export const onCreateCalTask = (task: TodoType | any) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -113,7 +113,7 @@ export const onGetSelectedCalTask = (id: number) => {
           id: id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TASK_DETAIL, payload: data.data });
@@ -121,7 +121,7 @@ export const onGetSelectedCalTask = (id: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -133,7 +133,7 @@ export const onUpdateSelectedCalTask = (task: TodoType | any) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/calendar/task/', { task })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -151,7 +151,7 @@ export const onUpdateSelectedCalTask = (task: TodoType | any) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };

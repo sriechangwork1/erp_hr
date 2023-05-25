@@ -17,7 +17,7 @@ export const onGetWallData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/wall')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_WALL_DATA, payload: data.data });
@@ -25,7 +25,7 @@ export const onGetWallData = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -37,7 +37,7 @@ export const onGetPostsList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/wall/posts')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_FEED_POSTS, payload: data.data });
@@ -45,7 +45,7 @@ export const onGetPostsList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -57,7 +57,7 @@ export const onCreateNewPost = (post: PostObjType) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/wall/posts', { post })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: CREATE_NEW_POST, payload: data.data });
@@ -65,7 +65,7 @@ export const onCreateNewPost = (post: PostObjType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -77,7 +77,7 @@ export const onUpdatePostStatus = (postId: number, status: boolean) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/wall/posts', { postId, status })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -88,7 +88,7 @@ export const onUpdatePostStatus = (postId: number, status: boolean) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -100,7 +100,7 @@ export const onAddNewComment = (postId: number, comment: CommentType) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/wall/posts/comments', { postId, comment })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_POST, payload: data.data });
@@ -108,7 +108,7 @@ export const onAddNewComment = (postId: number, comment: CommentType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

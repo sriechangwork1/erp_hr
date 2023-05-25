@@ -17,7 +17,7 @@ export const getBlogList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/pages/blogs')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_BLOGS_LIST, payload: data.data });
@@ -25,7 +25,7 @@ export const getBlogList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -40,7 +40,7 @@ export const getBlogDetail = (id: number) => {
           id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_BLOGS_DETAIL, payload: data.data });
@@ -48,7 +48,7 @@ export const getBlogDetail = (id: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -59,7 +59,7 @@ export const onAddBlog = (blog: BlogContentType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .post('/pages/blogs', { blog })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -70,7 +70,7 @@ export const onAddBlog = (blog: BlogContentType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };
@@ -81,7 +81,7 @@ export const onEditBlog = (blog: BlogContentType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .put('/pages/blogs', { blog })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -92,7 +92,7 @@ export const onEditBlog = (blog: BlogContentType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(String(messages['message.somethingWentWrong'])));
       });
   };

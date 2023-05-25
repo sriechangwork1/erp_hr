@@ -4,7 +4,8 @@ import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppLoader from '@crema/components/AppLoader';
 import { initialUrl } from '@crema/constants/AppConst';
 
-const withData = (ComposedComponent) => (props) => {
+// eslint-disable-next-line react/display-name
+const withData = (ComposedComponent:any) => (props:any) => {
   const { user, isLoading } = useAuthUser();
   const { asPath } = useRouter();
   const queryParams = asPath.split('?')[1];

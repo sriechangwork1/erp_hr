@@ -21,7 +21,7 @@ export const getConnectionList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/chatApp/connections')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CONNECTIONS_LIST, payload: data.data });
@@ -29,7 +29,7 @@ export const getConnectionList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -45,7 +45,7 @@ export const getConnectionMessages = (id: number) => {
           id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_USER_MESSAGES, payload: data.data });
@@ -53,7 +53,7 @@ export const getConnectionMessages = (id: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -64,7 +64,7 @@ export const onSendMessage = (channelId: number, message: MessageDataType) => {
   return (dispatch: Dispatch<AppActions>, getState: any) => {
     jwtAxios
       .post('/api/chatApp/message', { channelId, message })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           console.log('response', data.data);
@@ -101,7 +101,7 @@ export const onSendMessage = (channelId: number, message: MessageDataType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -112,7 +112,7 @@ export const onEditMessage = (channelId: number, message: MessageDataType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .put('/api/chatApp/message', { channelId, message })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -123,7 +123,7 @@ export const onEditMessage = (channelId: number, message: MessageDataType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -134,7 +134,7 @@ export const onDeleteMessage = (channelId: number, messageId: number) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .post('/api/chatApp/delete/message', { channelId, messageId })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: DELETE_MESSAGE, payload: data.data });
@@ -142,7 +142,7 @@ export const onDeleteMessage = (channelId: number, messageId: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -154,7 +154,7 @@ export const onDeleteConversation = (channelId: number) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/chatApp/delete/user/messages', { channelId })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: DELETE_USER_MESSAGES, payload: data.data });
@@ -162,7 +162,7 @@ export const onDeleteConversation = (channelId: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

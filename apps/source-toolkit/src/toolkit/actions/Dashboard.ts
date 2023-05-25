@@ -19,7 +19,7 @@ export const onGetAcademyData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/academy')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_ACADEMY_DATA, payload: data.data });
@@ -27,7 +27,7 @@ export const onGetAcademyData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -37,7 +37,7 @@ export const onGetHCData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/health_care')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_HEALTH_CARE_DATA, payload: data.data });
@@ -45,7 +45,7 @@ export const onGetHCData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -55,7 +55,7 @@ export const onGetECommerceData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/ecommerce')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_ECOMMERCE_DATA, payload: data.data });
@@ -63,7 +63,7 @@ export const onGetECommerceData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -74,7 +74,7 @@ export const onGetAnalyticsData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/analytics')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_ANALYTICS_DATA, payload: data.data });
@@ -82,7 +82,7 @@ export const onGetAnalyticsData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -93,7 +93,7 @@ export const onGetCrmData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/crm')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CRM_DATA, payload: data.data });
@@ -101,7 +101,7 @@ export const onGetCrmData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -112,7 +112,7 @@ export const onGetCryptoData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/crypto')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CRYPTO_DATA, payload: data.data });
@@ -120,7 +120,7 @@ export const onGetCryptoData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -131,7 +131,7 @@ export const onGetMetricsData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/metrics')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_METRICS_DATA, payload: data.data });
@@ -139,7 +139,7 @@ export const onGetMetricsData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -150,7 +150,7 @@ export const onGetWidgetsData = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/dashboard/widgets')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_WIDGETS_DATA, payload: data.data });
@@ -158,7 +158,7 @@ export const onGetWidgetsData = () => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

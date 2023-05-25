@@ -33,7 +33,7 @@ export const onGetContactList = (
           page: page,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CONTACT_LIST, payload: data.data });
@@ -43,7 +43,7 @@ export const onGetContactList = (
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -55,7 +55,7 @@ export const onGetLabelList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/contactApp/labels/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CONTACT_LABEL_LIST, payload: data.data });
@@ -65,7 +65,7 @@ export const onGetLabelList = () => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -77,7 +77,7 @@ export const onGetFolderList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/contactApp/folders/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CONTACT_FOLDER_LIST, payload: data.data });
@@ -87,7 +87,7 @@ export const onGetFolderList = () => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -109,7 +109,7 @@ export const onUpdateContactLabel = (
     dispatch(fetchStart());
     jwtAxios
       .put('/api/contactApp/update/label', { contactIds, type })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -123,7 +123,7 @@ export const onUpdateContactLabel = (
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -139,7 +139,7 @@ export const onUpdateStarredStatus = (
     dispatch(fetchStart());
     jwtAxios
       .put('/api/contactApp/update/starred', { contactIds, status })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -153,7 +153,7 @@ export const onUpdateStarredStatus = (
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -170,7 +170,7 @@ export const onDeleteContacts = (
     dispatch(fetchStart());
     jwtAxios
       .post('/api/contactApp/delete/contact', { type, name, contactIds, page })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: DELETE_CONTACT, payload: data.data });
@@ -181,7 +181,7 @@ export const onDeleteContacts = (
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -193,7 +193,7 @@ export const onUpdateSelectedContact = (contact: ContactObjType) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/contactApp/contact/', { contact })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_CONTACT_DETAIL, payload: data.data });
@@ -204,7 +204,7 @@ export const onUpdateSelectedContact = (contact: ContactObjType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -216,7 +216,7 @@ export const onCreateContact = (contact: ContactObjType) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/contactApp/compose', { contact })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: CREATE_NEW_CONTACT, payload: data.data });
@@ -227,7 +227,7 @@ export const onCreateContact = (contact: ContactObjType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

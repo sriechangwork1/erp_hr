@@ -36,7 +36,7 @@ export const onGetInvoiceList = ({
       .get('/api/invoice/list', {
         params: { folder, page },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_INVOICE_LIST, payload: data.data });
@@ -46,7 +46,7 @@ export const onGetInvoiceList = ({
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -58,7 +58,7 @@ export const onGetInvoiceFolderList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/invoice/folders/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_INVOICE_FOLDER_LIST, payload: data.data });
@@ -68,7 +68,7 @@ export const onGetInvoiceFolderList = () => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -80,7 +80,7 @@ export const onGetInvoiceSettings = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/invoice/settings')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_INVOICE_SETTINGS, payload: data.data });
@@ -90,7 +90,7 @@ export const onGetInvoiceSettings = () => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -101,7 +101,7 @@ export const onGetClientList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/invoice/clients')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CLIENT_LIST, payload: data.data });
@@ -111,7 +111,7 @@ export const onGetClientList = () => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -127,7 +127,7 @@ export const onGetInvoiceDetail = (id: number) => {
           id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_INVOICE_DETAIL, payload: data.data });
@@ -137,7 +137,7 @@ export const onGetInvoiceDetail = (id: number) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -152,7 +152,7 @@ export const onGetClientDetail = (id: number) => {
           id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CLIENT_DETAIL, payload: data.data });
@@ -162,7 +162,7 @@ export const onGetClientDetail = (id: number) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -173,7 +173,7 @@ export const onAddInvoice = (invoice: InvoiceType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .post('/api/invoice/list/add', { invoice })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch({
             type: ADD_NEW_INVOICE,
@@ -185,7 +185,7 @@ export const onAddInvoice = (invoice: InvoiceType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -196,7 +196,7 @@ export const onAddClient = (client: ClientType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .post('/api/invoice/clients/add', { client })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch({
             type: ADD_NEW_CLIENTS,
@@ -208,7 +208,7 @@ export const onAddClient = (client: ClientType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -219,7 +219,7 @@ export const onUpdateInvoice = (invoice: InvoiceType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .put('/api/invoice/list/update', { invoice })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -232,7 +232,7 @@ export const onUpdateInvoice = (invoice: InvoiceType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -243,7 +243,7 @@ export const onUpdateClient = (client: ClientType) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .put('/api/invoice/clients/update', { client })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -256,7 +256,7 @@ export const onUpdateClient = (client: ClientType) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -267,7 +267,7 @@ export const onUpdateSettings = (settings: Partial<InvoiceSettingType>) => {
   return (dispatch: Dispatch<AppActions>) => {
     jwtAxios
       .put('/api/invoice/settings/update', settings)
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -280,7 +280,7 @@ export const onUpdateSettings = (settings: Partial<InvoiceSettingType>) => {
           );
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

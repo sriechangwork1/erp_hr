@@ -37,7 +37,7 @@ export const onGetTaskList = (
           page: page,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TASK_LIST, payload: data.data });
@@ -63,7 +63,7 @@ export const onGetToDoLabelList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/todo/labels/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_LABEL_LIST, payload: data.data });
@@ -83,7 +83,7 @@ export const onGetToDoStaffList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/todo/staff/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_STAFF_LIST, payload: data.data });
@@ -103,7 +103,7 @@ export const onGetToDoPriorityList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/todo/priority/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_PRIORITY_LIST, payload: data.data });
@@ -123,7 +123,7 @@ export const onGetToDoFolderList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/todo/folders/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_FOLDER_LIST, payload: data.data });
@@ -143,7 +143,7 @@ export const onGetToDoStatusList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/todo/status/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TODO_STATUS_LIST, payload: data.data });
@@ -163,7 +163,7 @@ export const onUpdateTaskLabels = (taskIds: number[], type: string) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/todo/update/label', { taskIds, type })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_TASK_LABEL, payload: data.data });
@@ -188,7 +188,7 @@ export const onUpdateTaskStarredStatus = (
     dispatch(fetchStart());
     jwtAxios
       .put('/api/todo/update/starred', { taskIds, status })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -217,7 +217,7 @@ export const onDeleteSelectedTasks = (
     dispatch(fetchStart());
     jwtAxios
       .put('/api/todo/update/folder', { taskIds, type, name, page })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_TASK_FOLDER, payload: data.data });
@@ -238,7 +238,7 @@ export const onCreateTask = (task: TodoType | any) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/todoApp/compose', { task })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: CREATE_NEW_TASK, payload: data.data });
@@ -263,7 +263,7 @@ export const onGetSelectedTask = (id: number) => {
           id: id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_TASK_DETAIL, payload: data.data });
@@ -283,7 +283,7 @@ export const onUpdateSelectedTask = (task: TodoType) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/todoApp/task/', { task })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_TASK_DETAIL, payload: data.data });

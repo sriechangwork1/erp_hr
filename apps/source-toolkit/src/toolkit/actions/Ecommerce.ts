@@ -37,7 +37,7 @@ export const onGetEcommerceData = ({
       .get('/api/ecommerce/list', {
         params: { filterData, page },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_ECOMMERCE_LIST, payload: data.data.list });
@@ -45,7 +45,7 @@ export const onGetEcommerceData = ({
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -57,7 +57,7 @@ export const getProductDetail = (id: number | string) => {
       .get('/api/ecommerce/get', {
         params: { id: id },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: SET_PRODUCT_DATA, payload: data.data });
@@ -65,7 +65,7 @@ export const getProductDetail = (id: number | string) => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -77,7 +77,7 @@ export const getRecentOrders = (search: string, page: number) => {
       .get('/api/ecommerce/orders', {
         params: { search, page },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_RECENT_ORDER, payload: data.data });
@@ -85,7 +85,7 @@ export const getRecentOrders = (search: string, page: number) => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -97,7 +97,7 @@ export const getCustomers = (search: string, page: number) => {
       .get('/api/ecommerce/customers', {
         params: { search, page },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CUSTOMERS, payload: data.data });
@@ -105,7 +105,7 @@ export const getCustomers = (search: string, page: number) => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -115,7 +115,7 @@ export const getCartItems = () => {
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(fetchStart());
     //   jwtAxios.get('/api/cart/get')
-    //     .then((data) => {
+    //     .then((data:any) => {
     //       if (data.status === 200) {
     dispatch(fetchSuccess());
     //         dispatch({type: SET_CART_ITEMS, payload: data.data});
@@ -126,7 +126,7 @@ export const getCartItems = () => {
     //         });
     //       }
     //     })
-    //     .catch((error) => {
+    //     .catch((error:any) => {
     //         dispatch(fetchError(error.message));
     //     });
   };
@@ -137,7 +137,7 @@ export const onCreateProduct = (product: ProductDataType) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/ecommerce/list/add', { product })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           console.log('onCreateProduct', data.data);
           dispatch(fetchSuccess());
@@ -146,7 +146,7 @@ export const onCreateProduct = (product: ProductDataType) => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -157,7 +157,7 @@ export const onUpdateProduct = (product: ProductDataType) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/ecommerce/list/update', { product })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_PRODUCT_ITEM, payload: data.data });
@@ -165,7 +165,7 @@ export const onUpdateProduct = (product: ProductDataType) => {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };

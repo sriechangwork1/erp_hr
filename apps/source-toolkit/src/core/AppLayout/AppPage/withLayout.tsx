@@ -9,7 +9,7 @@ import {
 import routesConfig from '../../AppRoutes/routeConfig';
 
 // eslint-disable-next-line react/display-name
-const withLayout = (ComposedComponent) => (props) => {
+const withLayout = (ComposedComponent:any) => (props:any) => {
   const { navStyle } = useLayoutContext();
   const AppLayout = Layouts[navStyle];
 

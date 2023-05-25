@@ -7,7 +7,7 @@ const HealthCare = asyncComponent(() =>
   import('../../modules/dashboards/HealthCare')
 );
 
-export default AppPage((props) => {
+export default AppPage(() => {
   return (
     <React.Fragment>
       <AppPageMeta title="Health Care | Crema " />

@@ -38,7 +38,7 @@ export const onGetMailList = (
           page: page,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_MAIL_LIST, payload: data.data });
@@ -46,7 +46,7 @@ export const onGetMailList = (
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -58,7 +58,7 @@ export const onGetMailLabelList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/mailApp/labels/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_LABEL_LIST, payload: data.data });
@@ -66,7 +66,7 @@ export const onGetMailLabelList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -84,7 +84,7 @@ export const onGetMailFolderList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/mailApp/folders/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_FOLDER_LIST, payload: data.data });
@@ -92,7 +92,7 @@ export const onGetMailFolderList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -104,7 +104,7 @@ export const onGetConnectionList = () => {
     dispatch(fetchStart());
     jwtAxios
       .get('/api/mailApp/connection/list')
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_CONNECTION_LIST, payload: data.data });
@@ -112,7 +112,7 @@ export const onGetConnectionList = () => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -124,7 +124,7 @@ export const onUpdateMailLabels = (mailIds: number[], type: LabelType) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/mailApp/update/label', { mailIds, type })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_MAIL_LABEL, payload: data.data });
@@ -133,7 +133,7 @@ export const onUpdateMailLabels = (mailIds: number[], type: LabelType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -149,7 +149,7 @@ export const onUpdateMailStarredStatus = (
     dispatch(fetchStart());
     jwtAxios
       .put('/api/mailApp/update/starred', { mailIds, status })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -161,7 +161,7 @@ export const onUpdateMailStarredStatus = (
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -173,7 +173,7 @@ export const onUpdateMailFolders = (mailIds: number[], type: number) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/mailApp/update/folder', { mailIds, type })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATE_MAIL_FOLDER, payload: data.data });
@@ -182,7 +182,7 @@ export const onUpdateMailFolders = (mailIds: number[], type: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -194,7 +194,7 @@ export const onUpdateMailReadStatus = (mailIds: number[], status: boolean) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/mailApp/update/read', { mailIds, status })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: CHANGE_READ_STATUS, payload: data.data });
@@ -203,7 +203,7 @@ export const onUpdateMailReadStatus = (mailIds: number[], status: boolean) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -219,7 +219,7 @@ export const onGetSelectedMail = (id: number) => {
           id: id,
         },
       })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: GET_MAIL_DETAIL, payload: data.data });
@@ -227,7 +227,7 @@ export const onGetSelectedMail = (id: number) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -239,7 +239,7 @@ export const onUpdateSelectedMail = (mail: MailType) => {
     dispatch(fetchStart());
     jwtAxios
       .put('/api/mailApp/mail/', { mail })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({ type: UPDATED_MAIL_DETAIL, payload: data.data });
@@ -248,7 +248,7 @@ export const onUpdateSelectedMail = (mail: MailType) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
@@ -260,7 +260,7 @@ export const onComposeMail = (mail: any, pathname: string) => {
     dispatch(fetchStart());
     jwtAxios
       .post('/api/mailApp/compose', { mail })
-      .then((data) => {
+      .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
           dispatch({
@@ -272,7 +272,7 @@ export const onComposeMail = (mail: any, pathname: string) => {
           dispatch(fetchError(String(messages['message.somethingWentWrong'])));
         }
       })
-      .catch((error) => {
+      .catch((error: any) => {
         dispatch(fetchError(error.message));
       });
   };
