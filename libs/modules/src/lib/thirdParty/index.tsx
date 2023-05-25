@@ -1,4 +1,3 @@
-import "../../types/raw-loader.d"
 import {
   AreaChart,
   BarChart,

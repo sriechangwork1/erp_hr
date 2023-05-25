@@ -28,6 +28,7 @@
     "@mui/x-date-pickers-pro": "^6.4.0",
     "@nx/next": "16.2.1",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-color": "^3.0.6",
     "@types/sanitize-html": "^2.9.0",
     "apexcharts": "^3.40.0",
     "autosuggest-highlight": "^3.3.4",
