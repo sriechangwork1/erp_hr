@@ -5,9 +5,7 @@ import { blue } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 
-type BirthdayCardProps = {};
-
-const BirthdayCard: React.FC<BirthdayCardProps> = () => {
+const BirthdayCard = () => {
   return (
     <AppCard
       sxStyle={{

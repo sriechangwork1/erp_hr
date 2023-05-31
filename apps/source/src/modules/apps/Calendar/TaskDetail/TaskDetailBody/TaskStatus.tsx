@@ -21,7 +21,7 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const onChangeStatus = (event: SelectChangeEvent<number>) => {
     const task = selectedTask;
     task.status = event.target.value as number;
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task: selectedTask,
     })
       .then((data) => {
@@ -71,4 +71,3 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
 };
 
 export default TaskStatus;
-

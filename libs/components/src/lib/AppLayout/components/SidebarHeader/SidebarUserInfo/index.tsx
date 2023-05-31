@@ -10,7 +10,7 @@ import { useSidebarContext } from '@crema/context/SidebarContextProvider';
 import { Fonts } from '@crema/constants/AppEnums';
 import Status from './Status';
 import { useRouter } from 'next/router';
-import AppLoader from '@crema/components/AppLoader';
+import AppLoader from '../../../../AppLoader';
 
 const SidebarUserInfo = () => {
   const { borderColor, sidebarTextColor } = useSidebarContext();

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '../../createEmotionCache';
+import { CacheProvider } from '@emotion/react';
 
 export default class MyDocument extends Document {
   render() {
@@ -25,9 +25,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-        <Main />
-        <div id="root" />
-        <NextScript />
+          <Main />
+          <div id="root" />
+          <NextScript />
         </body>
       </Html>
     );

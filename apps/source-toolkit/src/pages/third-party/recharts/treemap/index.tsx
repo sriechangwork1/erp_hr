@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const Treemap = asyncComponent(() =>
-  import('../../../../modules/thirdParty/recharts/Treemap'),
-  { ssr: false }
+const Treemap = dynamic(
+  () => import('../../../../modules/thirdParty/recharts/Treemap'),
+  { loading: () => <AppLoader />, ssr: false }
 );
 export default AppPage(() => <Treemap />);

@@ -1,6 +1,10 @@
 import React from 'react';
 import AppPage from '../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const Calendar = asyncComponent(() => import('../../../modules/apps/Calendar'),{ssr:false});
+const Calendar = dynamic(() => import('../../../modules/apps/Calendar'), {
+  loading: () => <AppLoader />,
+  ssr: false,
+});
 export default AppPage(() => <Calendar />);

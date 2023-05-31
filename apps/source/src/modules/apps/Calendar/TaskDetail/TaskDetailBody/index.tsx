@@ -49,6 +49,9 @@ const TaskDetailBody = (props: Props) => {
   const [scheduleDate, setScheduleDate] = useState(
     getDateObject(selectedTask.startDate)
   );
+  const [scheduleEndDate, setScheduleEndDate] = useState(
+    getDateObject(selectedTask.endDate)
+  );
 
   const [selectedStaff, setStaff] = useState(selectedTask.assignedTo);
 
@@ -60,12 +63,13 @@ const TaskDetailBody = (props: Props) => {
     const task = selectedTask;
     task.content = content;
     task.startDate = getFormattedDate(scheduleDate);
+    task.endDate = getFormattedDate(scheduleEndDate);
     task.assignedTo = selectedStaff;
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
+        onUpdateSelectedTask(data);
         setEdit(!isEdit);
         infoViewActionsContext.showMessage('Task Updated Successfully');
       })
@@ -82,7 +86,7 @@ const TaskDetailBody = (props: Props) => {
       image: user.photoURL,
       date: getDateObject().format('ll'),
     });
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {
@@ -180,6 +184,11 @@ const TaskDetailBody = (props: Props) => {
                 />
               </Box>
               <TodoDatePicker date={scheduleDate} setDate={setScheduleDate} />
+              <TodoDatePicker
+                date={scheduleEndDate}
+                setDate={setScheduleEndDate}
+                isEndDate
+              />
             </>
           ) : (
             <AssignedStaff assignedStaff={selectedTask.assignedTo} />

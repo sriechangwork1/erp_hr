@@ -20,8 +20,7 @@ type Props = {
 
 const MapChart = ({setTooltipContent}: Props) => {
   return (
-    <>
-      <ComposableMap data-tip="" projectionConfig={{scale: 200}}>
+    <ComposableMap data-tip="" projectionConfig={{scale: 200}}>
         <ZoomableGroup>
           <Geographies geography={data}>
             {({geographies}) =>
@@ -56,7 +55,6 @@ const MapChart = ({setTooltipContent}: Props) => {
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
-    </>
   );
 };
 

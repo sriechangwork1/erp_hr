@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const ScrumBoard = asyncComponent(
-  () => import('../../../modules/apps/ScrumBoard'),
-  { ssr: false }
-);
+const ScrumBoard = dynamic(() => import('../../../modules/apps/ScrumBoard'), {
+  loading: () => <AppLoader />,
+  ssr: false,
+});
 export default AppPage(() => <ScrumBoard />);

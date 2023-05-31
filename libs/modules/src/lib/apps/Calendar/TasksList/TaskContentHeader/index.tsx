@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import PropTypes from 'prop-types';
 import SelectTasksDropdown from './SelectTasksDropdown';
-import CheckedTasksActions from './CheckedTasksActions';``
+import CheckedTasksActions from './CheckedTasksActions';
 import AppsPagination from '@crema/components/AppsPagination';
 import Hidden from '@mui/material/Hidden';
 import { TodoType, TodoDataType } from '@crema/models/apps/Todo';

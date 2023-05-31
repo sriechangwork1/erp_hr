@@ -51,7 +51,7 @@ const TaskDetailHeader = (props: Props) => {
   const onDeleteTask = () => {
     const task = selectedTask;
     task.folderValue = 126;
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {

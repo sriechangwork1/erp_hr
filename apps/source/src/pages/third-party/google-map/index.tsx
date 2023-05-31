@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const GoogleMap = asyncComponent(() =>
-  import('../../../modules/thirdParty/googleMap'),
-  { ssr: false }
+const GoogleMap = dynamic(
+  () => import('../../../modules/thirdParty/googleMap'),
+  { loading: () => <AppLoader />, ssr: false }
 );
 export default AppPage(() => <GoogleMap />);

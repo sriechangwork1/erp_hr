@@ -29,7 +29,7 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
     console.log('priority: ', priority, event.target.value);
     const task = selectedTask;
     task.priority = priority as PriorityType;
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task: selectedTask,
     })
       .then((data) => {

@@ -1,9 +1,9 @@
 // import React from 'react';
-import {authRole} from "@crema/constants/AppConst";
-import {RoutePermittedRole} from "@crema/constants/AppEnums";
-import {Navigate} from "react-router-dom";
-import {RouteObject} from "react-router";
-import {checkPermission} from "./RouteHelper";
+import { authRole } from '@crema/constants/AppConst';
+import { RoutePermittedRole } from '@crema/constants/AppEnums';
+import { Navigate } from 'react-router-dom';
+import { RouteObject } from 'react-router';
+import { checkPermission } from './RouteHelper';
 
 /**
  * @param {Object} structure - The passed object that defines the routes.
@@ -102,28 +102,28 @@ const routesGenerator = (
                 : !isAuthenticated;
 
               if (Array.isArray(route.path)) {
-                route.path.map((path: string) => {
+                route.path.forEach((path: string) => {
                   generatedRoutes.push(
                     renderCondition
                       ? checkPermission(permittedRole, userRole)
                         ? {
-                          element: route.element,
-                          path: path,
-                          permittedRole: route.permittedRole,
-                        }
+                            element: route.element,
+                            path: path,
+                            permittedRole: route.permittedRole,
+                          }
                         : {
-                          path: path,
-                          element: routeSet.unAuthorizedComponent,
-                        }
+                            path: path,
+                            element: routeSet.unAuthorizedComponent,
+                          }
                       : {
-                        path: path,
-                        element: (
-                          <Navigate
-                            to={redirectPath || fallbackPath}
-                            replace
-                          />
-                        ),
-                      }
+                          path: path,
+                          element: (
+                            <Navigate
+                              to={redirectPath || fallbackPath}
+                              replace
+                            />
+                          ),
+                        }
                   );
                 });
               } else {
@@ -132,15 +132,15 @@ const routesGenerator = (
                     ? checkPermission(permittedRole, userRole)
                       ? route
                       : {
-                        path: route.path,
-                        element: routeSet.unAuthorizedComponent,
-                      }
+                          path: route.path,
+                          element: routeSet.unAuthorizedComponent,
+                        }
                     : {
-                      path: route.path,
-                      element: (
-                        <Navigate to={redirectPath || fallbackPath} replace />
-                      ),
-                    }
+                        path: route.path,
+                        element: (
+                          <Navigate to={redirectPath || fallbackPath} replace />
+                        ),
+                      }
                 );
               }
               return generatedRoutes;
@@ -149,20 +149,20 @@ const routesGenerator = (
               ? isAuthenticated
               : !isAuthenticated;
             if (Array.isArray(route.path)) {
-              route.path.map((path:string) => {
+              route.path.forEach((path: string) => {
                 generatedRoutes.push(
                   renderCondition
                     ? {
-                      element: route.element,
-                      path: path,
-                      permittedRole: route.permittedRole,
-                    }
+                        element: route.element,
+                        path: path,
+                        permittedRole: route.permittedRole,
+                      }
                     : {
-                      path: path,
-                      element: (
-                        <Navigate to={redirectPath || fallbackPath} replace />
-                      ),
-                    }
+                        path: path,
+                        element: (
+                          <Navigate to={redirectPath || fallbackPath} replace />
+                        ),
+                      }
                 );
               });
             } else {
@@ -170,11 +170,11 @@ const routesGenerator = (
                 renderCondition
                   ? route
                   : {
-                    path: route.path,
-                    element: (
-                      <Navigate to={redirectPath || fallbackPath} replace />
-                    ),
-                  }
+                      path: route.path,
+                      element: (
+                        <Navigate to={redirectPath || fallbackPath} replace />
+                      ),
+                    }
               );
             }
             return generatedRoutes;

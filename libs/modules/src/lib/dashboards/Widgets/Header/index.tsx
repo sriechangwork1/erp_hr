@@ -6,9 +6,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import { useIntl } from 'react-intl';
 
-type HeaderProps = {};
-
-const Header: React.FC<HeaderProps> = () => {
+const Header = () => {
   const { messages } = useIntl();
   return (
     <AppCard

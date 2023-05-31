@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Fonts } from '@crema/constants/AppEnums';
 import { useRouter } from 'next/router';
 import { orange } from '@mui/material/colors';
-import AppLoader from '@crema/components/AppLoader';
+import AppLoader from '../../../AppLoader';
 
 type UserInfoProps = {
   color?: string;

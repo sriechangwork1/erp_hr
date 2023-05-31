@@ -24,9 +24,9 @@ import {
   TaskCreatedByInfo,
   TaskLabels,
   TodoDatePicker,
-} from '@crema/modules/apps/ToDo';
+} from '@crema/modules/apps/Calendar';
 import { TodoType } from '@crema/models/apps/Todo';
-import { getDateObject } from '@crema/helpers';
+import { getDateObject, getFormattedDate } from '@crema/helpers';
 
 type Props = {
   selectedTask: TodoType;
@@ -50,6 +50,9 @@ const TaskDetailBody = (props: Props) => {
   const [scheduleDate, setScheduleDate] = useState(
     getDateObject(selectedTask.startDate)
   );
+  const [scheduleEndDate, setScheduleEndDate] = useState(
+    getDateObject(selectedTask.endDate)
+  );
 
   const [selectedStaff, setStaff] = useState(selectedTask.assignedTo);
 
@@ -62,7 +65,8 @@ const TaskDetailBody = (props: Props) => {
       onUpdateSelectedCalTask({
         ...selectedTask,
         content,
-        startDate: scheduleDate,
+        startDate: getFormattedDate(scheduleDate),
+        endDate: getFormattedDate(scheduleEndDate),
         assignedTo: selectedStaff,
       })
     );
@@ -166,6 +170,11 @@ const TaskDetailBody = (props: Props) => {
                 />
               </Box>
               <TodoDatePicker date={scheduleDate} setDate={setScheduleDate} />
+              <TodoDatePicker
+                date={scheduleEndDate}
+                setDate={setScheduleEndDate}
+                isEndDate
+              />
             </>
           ) : (
             <AssignedStaff assignedStaff={selectedTask.assignedTo} />

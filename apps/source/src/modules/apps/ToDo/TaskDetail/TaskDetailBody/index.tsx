@@ -61,11 +61,11 @@ const TaskDetailBody = (props: Props) => {
     task.content = content;
     task.startDate = getFormattedDate(scheduleDate);
     task.assignedTo = selectedStaff;
-    putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/todoApp/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
+        onUpdateSelectedTask(data);
         setEdit(!isEdit);
         infoViewActionsContext.showMessage('Task Updated Successfully');
       })
@@ -82,11 +82,11 @@ const TaskDetailBody = (props: Props) => {
       image: user.photoURL,
       date: getDateObject().format('ll'),
     });
-    putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/todoApp/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
+        onUpdateSelectedTask(data);
         infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {

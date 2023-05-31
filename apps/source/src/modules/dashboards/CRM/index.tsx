@@ -1,8 +1,8 @@
 import React from 'react';
-import {Grid} from '@mui/material';
+import { Grid } from '@mui/material';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import AppAnimate from '@crema/components/AppAnimate';
-import {useGetDataApi} from '@crema/hooks/APIHooks';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
 import {
   DealsNew,
   EmailMarketing,
@@ -20,8 +20,8 @@ import {
   VisitorsPageViews,
 } from '@crema/modules/dashboards/CRM';
 import AppLoader from '@crema/components/AppLoader';
-import type {CRMType} from '@crema/models/dashboards/CRM';
-import {StatsDirCard} from "../../../../../../libs/modules/src/lib/dashboards/CommonComponents";
+import type { CRMType } from '@crema/models/dashboards/CRM';
+import { StatsDirCard } from '@crema/modules/dashboards/CommonComponents';
 
 const CRM = () => {
   const [{ apiData: crmData, loading }] =
@@ -32,7 +32,7 @@ const CRM = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppGridContainer>
             {crmData.stateData.map((data) => (
               <Grid key={data.id} item xs={12} sm={6} lg={3}>

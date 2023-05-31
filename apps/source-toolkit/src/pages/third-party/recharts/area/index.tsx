@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const Area = asyncComponent(
+const Area = dynamic(
   () => import('../../../../modules/thirdParty/recharts/Area'),
-  { ssr: false }
+  { loading: () => <AppLoader />, ssr: false }
 );
 export default AppPage(() => <Area />);

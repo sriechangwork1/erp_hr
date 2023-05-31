@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 
-type HollywoodMovieProps = {};
-
-const HollywoodMovie: React.FC<HollywoodMovieProps> = () => {
+const HollywoodMovie = () => {
   return (
     <AppCard
       sxStyle={{

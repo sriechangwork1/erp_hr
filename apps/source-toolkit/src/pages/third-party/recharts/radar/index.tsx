@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const Radar = asyncComponent(() =>
-  import('../../../../modules/thirdParty/recharts/Radar'),
-  { ssr: false }
+const Radar = dynamic(
+  () => import('../../../../modules/thirdParty/recharts/Radar'),
+  { loading: () => <AppLoader />, ssr: false }
 );
 export default AppPage(() => <Radar />);

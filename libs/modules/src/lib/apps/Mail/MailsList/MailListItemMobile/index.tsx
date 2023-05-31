@@ -76,11 +76,11 @@ const MailListItemMobile = (props: Props) => {
   };
   const getSenderImage = () => {
     if (messages === 1) {
-      return mail.messages[0].sender.profilePic;
+      return mail.messages![0].sender.profilePic;
     } else if (messages === 2) {
-      return mail.messages[1].sender.profilePic;
+      return mail.messages![1].sender.profilePic;
     } else {
-      return mail.messages[2].sender.profilePic;
+      return mail.messages![2].sender.profilePic;
     }
   };
 

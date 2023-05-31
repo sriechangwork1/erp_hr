@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const TimeLine = asyncComponent(() =>
-  import('../../../modules/thirdParty/reactSlick'),
-  { ssr: false }
+const TimeLine = dynamic(
+  () => import('../../../modules/thirdParty/reactSlick'),
+  { loading: () => <AppLoader />, ssr: false }
 );
 export default AppPage(() => <TimeLine />);

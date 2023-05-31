@@ -27,6 +27,9 @@
       "@crema/components/AppAsyncComponent": [
         "libs/components/src/lib/AppAsyncComponent/index.tsx"
       ],
+      "@crema/components/AsyncLoaderComponent": [
+        "libs/components/src/lib/AppAsyncComponent/AsyncLoaderComponent.tsx"
+      ],
       "@crema/components/AppAutoComplete": [
         "libs/components/src/lib/AppFormComponents/AppAutoComplete/index.tsx"
       ],
@@ -269,7 +272,7 @@
         "libs/mockapi/src/fakedb/extraPages/index.tsx"
       ],
       "@crema/fakedb/mail/folderList": [
-        "libs/mockapi/src/fakedb/apps/mail/folderList.ts"
+        "libs/mockapi/src/fakedb/apps/mail/folderList.tsx"
       ],
       "@crema/fakedb/navigationStyle": [
         "libs/mockapi/src/fakedb/navigationStyle.ts"
@@ -285,9 +288,7 @@
       "@crema/models/*": ["libs/types/src/models/*"],
       "@crema/modules": ["libs/modules/src/index.ts"],
 
-      "@crema/modules/auth/*": [
-        "libs/modules/src/lib/auth/*"
-      ],
+      "@crema/modules/auth/*": ["libs/modules/src/lib/auth/*"],
       "@crema/modules/ErrorPages/ComingSoon": [
         "libs/modules/src/lib/errorPages/ComingSoon/index.tsx"
       ],

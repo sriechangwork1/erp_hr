@@ -18,7 +18,7 @@ type Props = {
   routesConfig: RouterConfigData[];
 };
 const Standard = ({ children, routesConfig }: Props) => {
-  const { footer, layoutType, headerType, footerType } = useLayoutContext();
+  const { footer, layoutType, footerType } = useLayoutContext();
   const { pathname } = useRouter();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {

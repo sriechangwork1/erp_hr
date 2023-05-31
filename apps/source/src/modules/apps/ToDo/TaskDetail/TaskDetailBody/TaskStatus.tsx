@@ -21,11 +21,11 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const onChangeStatus = (event: SelectChangeEvent<number>) => {
     const task = selectedTask;
     task.status = event.target.value as number;
-    putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/todoApp/task/', infoViewActionsContext, {
       task: selectedTask,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
+        onUpdateSelectedTask(data);
         infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {

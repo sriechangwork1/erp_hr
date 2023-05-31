@@ -1,10 +1,10 @@
 import React from 'react';
 import AppPage from '../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import asyncComponent from '@crema/components/AsyncLoaderComponent';
 import AppPageMeta from '@crema/components/AppPageMeta';
 
-const HealthCare = asyncComponent(() =>
-  import('../../modules/dashboards/HealthCare')
+const HealthCare = asyncComponent(
+  () => import('../../modules/dashboards/HealthCare')
 );
 
 export default AppPage(() => {
@@ -15,4 +15,3 @@ export default AppPage(() => {
     </React.Fragment>
   );
 });
-

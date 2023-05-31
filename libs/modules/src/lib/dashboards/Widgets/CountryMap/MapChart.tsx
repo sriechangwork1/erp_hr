@@ -85,9 +85,7 @@ const offsets = {
   DC: [49, 21],
 };
 
-type MapChartProps = {};
-
-const MapChart: React.FC<MapChartProps> = () => {
+const MapChart = () => {
   return (
     <ComposableMap className="map-chart" projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>

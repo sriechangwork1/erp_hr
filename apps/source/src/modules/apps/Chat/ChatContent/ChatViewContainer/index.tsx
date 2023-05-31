@@ -49,13 +49,14 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
     useState<MessageDataType | null>(null);
   const { user } = useAuthUser();
 
-  let _scrollBarRef = useRef<any>(null);
+  const _scrollBarRef = useRef<any>(null);
   const [{ apiData: userMessages }, { setQueryParams, setData }] =
     useGetDataApi<MessageObjType>('/api/chatApp/connection/messages');
 
   useEffect(() => {
-    setQueryParams({ id: selectedUser?.channelId! });
-  }, [selectedUser?.channelId!]);
+    if (selectedUser?.channelId)
+      setQueryParams({ id: selectedUser?.channelId });
+  }, [selectedUser?.channelId]);
 
   useEffect(() => {
     if (
@@ -81,12 +82,12 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
       time: dayjs().format('llll'),
     };
     postDataApi<Props>('/api/chatApp/message', infoViewActionsContext, {
-      channelId: selectedUser?.channelId!,
+      channelId: selectedUser?.channelId,
       message: data,
     })
       .then((data) => {
         setData(data?.userMessages);
-        setConnectionData(data?.connectionData!);
+        setConnectionData(data?.connectionData);
         infoViewActionsContext.showMessage('Message Added Successfully!');
       })
       .catch((error) => {

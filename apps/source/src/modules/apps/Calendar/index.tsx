@@ -2,7 +2,6 @@ import React from 'react';
 import TaskSideBar from './TaskSideBar/index';
 import TasksList from './TasksList';
 import TaskDetail from './TaskDetail';
-import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import AppsContainer from '@crema/components/AppsContainer';
 import clsx from 'clsx';
@@ -54,7 +53,3 @@ const ToDo = () => {
 };
 
 export default ToDo;
-
-ToDo.propTypes = {
-  match: PropTypes.object,
-};

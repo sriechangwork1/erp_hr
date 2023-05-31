@@ -6,10 +6,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import defaultConfig, {
-  defaultTheme,
-  SidebarData,
-} from '@crema/constants/defaultConfig';
+import defaultConfig, { SidebarData } from '@crema/constants/defaultConfig';
 
 export interface SidebarContextData {
   menuStyle?: string;

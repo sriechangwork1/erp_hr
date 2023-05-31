@@ -1,7 +1,10 @@
 import React from 'react';
 import AppPage from '../../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const TimeLine = asyncComponent(() => import("../../../modules/thirdParty/timeLine"),
-  { ssr: false });
-export default AppPage(() => <TimeLine/>);
+const TimeLine = dynamic(() => import('../../../modules/thirdParty/timeLine'), {
+  loading: () => <AppLoader />,
+  ssr: false,
+});
+export default AppPage(() => <TimeLine />);

@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import Index from '../pages/index';
+import Index from '../src/pages';
+import { customTestRender } from '../custom-test-render';
 
 describe('Index', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Index />);
+    const { baseElement } = customTestRender(<Index />);
     expect(baseElement).toBeTruthy();
   });
 });

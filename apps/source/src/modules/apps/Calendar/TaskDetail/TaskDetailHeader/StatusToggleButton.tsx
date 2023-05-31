@@ -31,10 +31,10 @@ type Props = {
 const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
 
-  const onChangeTaskStatus = (status:number) => {
+  const onChangeTaskStatus = (status: number) => {
     const task = selectedTask;
     task.status = status;
-    putDataApi<TodoType[]>('/api/calendar/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/calendar/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {
@@ -50,21 +50,21 @@ const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
     <>
       {selectedTask.status === 3 ? (
         <StatusButton
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           startIcon={<StyledDoneIcon />}
           onClick={() => onChangeTaskStatus(1)}
         >
-          <IntlMessages id='todo.completed' />
+          <IntlMessages id="todo.completed" />
         </StatusButton>
       ) : (
         <StatusButton
-          variant='outlined'
-          color='primary'
+          variant="outlined"
+          color="primary"
           startIcon={<StyledDoneIcon />}
           onClick={() => onChangeTaskStatus(3)}
         >
-          <IntlMessages id='todo.markAsCompleted' />
+          <IntlMessages id="todo.markAsCompleted" />
         </StatusButton>
       )}
     </>
@@ -72,4 +72,3 @@ const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
 };
 
 export default StatusToggleButton;
-

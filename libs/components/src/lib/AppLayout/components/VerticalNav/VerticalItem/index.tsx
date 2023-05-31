@@ -26,15 +26,13 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
 
   useEffect(() => {
     if (
-      // @ts-ignore
-      process.browser &&
+      (process as any).browser &&
       pathname === item.url &&
       document.getElementById(pathname)
     ) {
       setTimeout(() => {
         if (document.getElementById(pathname)) {
-          // @ts-ignore
-          document
+          (document as any)
             .getElementById(pathname)
             .scrollIntoView({ behavior: 'smooth', block: 'center' });
         }

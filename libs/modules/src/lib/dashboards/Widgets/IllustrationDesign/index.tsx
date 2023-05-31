@@ -9,9 +9,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
-type IllustrationDesignProps = {};
-
-const IllustrationDesign: React.FC<IllustrationDesignProps> = () => {
+const IllustrationDesign = () => {
   return (
     <AppCard
       sxStyle={{

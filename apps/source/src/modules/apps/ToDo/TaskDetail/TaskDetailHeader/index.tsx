@@ -47,7 +47,7 @@ const TaskDetailHeader = (props: Props) => {
   const onDeleteTask = () => {
     const task = selectedTask;
     task.folderValue = 126;
-    putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/todoApp/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {

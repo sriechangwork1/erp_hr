@@ -1,9 +1,10 @@
 import React from 'react';
 import AppPage from '../../core/AppLayout/AppPage';
-import asyncComponent from '@crema/components/AppAsyncComponent';
+import AppLoader from '@crema/components/AppLoader';
+import dynamic from 'next/dynamic';
 
-const Metrics = asyncComponent(
-  () => import('../../modules/dashboards/Metrics'),
-  { ssr: false }
-);
+const Metrics = dynamic(() => import('../../modules/dashboards/Metrics'), {
+  loading: () => <AppLoader />,
+  ssr: false,
+});
 export default AppPage(() => <Metrics />);

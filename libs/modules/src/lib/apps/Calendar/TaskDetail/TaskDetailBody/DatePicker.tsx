@@ -7,9 +7,10 @@ import { Dayjs } from 'dayjs';
 type Props = {
   date: Dayjs;
   setDate: (date: Dayjs) => void;
+  isEndDate?: boolean;
 };
 
-const AppDatePicker = ({ date, setDate }: Props) => {
+const AppDatePicker = ({ date, isEndDate, setDate }: Props) => {
   return (
     <Box
       sx={{
@@ -18,7 +19,11 @@ const AppDatePicker = ({ date, setDate }: Props) => {
       }}
     >
       <DatePicker
-        label={<IntlMessages id="common.startDate" />}
+        label={
+          <IntlMessages
+            id={isEndDate ? 'common.endDate' : 'common.startDate'}
+          />
+        }
         value={date}
         onChange={(newValue) => setDate(newValue as Dayjs)}
       />

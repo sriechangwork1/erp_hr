@@ -10,9 +10,7 @@ import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 import ImageCardWrapper from './ImageCardWrapper';
 
-type WallPaperProps = {};
-
-const WallPaper: React.FC<WallPaperProps> = () => {
+const WallPaper = () => {
   return (
     <ImageCardWrapper>
       <Box

@@ -34,7 +34,7 @@ const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const onChangeTaskStatus = (status: number) => {
     const task = selectedTask;
     task.status = status;
-    putDataApi<TodoType[]>('/api/todoApp/task/', infoViewActionsContext, {
+    putDataApi<TodoType>('/api/todoApp/task/', infoViewActionsContext, {
       task,
     })
       .then((data) => {

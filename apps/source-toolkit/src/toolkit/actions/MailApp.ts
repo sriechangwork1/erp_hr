@@ -18,7 +18,7 @@ import jwtAxios from '@crema/services/auth/JWT';
 import { fetchError, fetchStart, fetchSuccess, showMessage } from './Common';
 import { Dispatch } from 'redux';
 import { AppActions } from '@crema/actions';
-import { mailListMessages } from 'libs/mockapi/src/fakedb/apps/mail/folderList';
+import { mailListMessages } from '@crema/fakedb/mail/folderList';
 import { LabelType, MailType } from '@crema/models/apps/Mail';
 
 export const onGetMailList = (

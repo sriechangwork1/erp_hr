@@ -6,9 +6,7 @@ import AppCircularProgress from '@crema/components/AppCircularProgress';
 import AppCard from '@crema/components/AppCard';
 import { useIntl } from 'react-intl';
 
-type VisitorAnalysisProps = {};
-
-const VisitorAnalysis: React.FC<VisitorAnalysisProps> = () => {
+const VisitorAnalysis = () => {
   const { messages } = useIntl();
   return (
     <AppCard

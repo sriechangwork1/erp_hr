@@ -75,20 +75,18 @@ const VisitorsPageViews = ({ data=[] }: Props) => {
         <VisitorAction>
           <div className='visitor-action-view'>
             <div className='visitor-action-item'>
-              <><span
+              <span
                 className='dot-visitor'
                 style={{ backgroundColor: theme.palette.primary.main }}
               />
-              {messages['dashboard.crm.pagesViews']}</>
+              {messages['dashboard.crm.pagesViews']}
             </div>
             <div className='visitor-action-item'>
-              <>
               <span
                 className='dot-visitor'
                 style={{ backgroundColor: theme.palette.secondary.main }}
               />
               {messages['dashboard.crm.visitors']}
-              </>
             </div>
           </div>
           <AppSelect

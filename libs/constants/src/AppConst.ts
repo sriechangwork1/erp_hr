@@ -3,7 +3,7 @@ export const authRole = {
   User: ['user', 'admin'],
 };
 
-export const defaultUser: any = {
+export const defaultUser = {
   uid: 'john-alex',
   displayName: 'John Alex',
   email: 'demo@example.com',
