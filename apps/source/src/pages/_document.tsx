@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content="#343434" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Be Vietnam:wght@100;200;300;400;500;600&display=swap"
             rel="stylesheet"
           />
           <script
