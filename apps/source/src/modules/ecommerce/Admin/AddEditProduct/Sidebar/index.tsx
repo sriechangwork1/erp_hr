@@ -256,9 +256,9 @@ const BlogSidebar = ({
                         }}
                         onChange={(event) => {
                           const { value } = event.target;
-                          const newProductInfo = [...productSpec];
-                          newProductInfo[index].title = value;
-                          setProductInfo(newProductInfo);
+                          const newProductSpec = [...productSpec];
+                          newProductSpec[index].title = value;
+                          setProductSpec(newProductSpec);
                         }}
                         label="Product Label"
                       />
@@ -273,9 +273,9 @@ const BlogSidebar = ({
                         }}
                         onChange={(event) => {
                           const { value } = event.target;
-                          const newProductInfo = [...productSpec];
-                          newProductInfo[index].desc = value;
-                          setProductInfo(newProductInfo);
+                          const newProductSpec = [...productSpec];
+                          newProductSpec[index].desc = value;
+                          setProductSpec(newProductSpec);
                         }}
                         label="Product Value"
                       />

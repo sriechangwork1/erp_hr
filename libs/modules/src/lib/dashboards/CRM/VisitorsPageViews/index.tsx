@@ -1,12 +1,12 @@
 import React from 'react';
 import StatGraphs from './StatGraphs';
-import {useIntl} from 'react-intl';
-import {alpha, useTheme} from '@mui/material';
-import {styled} from '@mui/material/styles';
+import { useIntl } from 'react-intl';
+import { alpha, useTheme } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import AppCard from '@crema/components/AppCard';
 import AppSelect from '@crema/components/AppSelect';
-import {VisitorPageViewType} from "@crema/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import { VisitorPageViewType } from '@crema/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 const VisitorCard = styled(AppCard)(({ theme }) => {
   return {
@@ -58,10 +58,10 @@ const VisitorAction = styled('div')(({ theme }) => {
   };
 });
 
-type Props={
-  data:VisitorPageViewType[];
-}
-const VisitorsPageViews = ({ data=[] }: Props) => {
+type Props = {
+  data: VisitorPageViewType[];
+};
+const VisitorsPageViews = ({ data = [] }: Props) => {
   const theme = useTheme();
   const handleSelectionType = (data: VisitorPageViewType) => {
     console.log('data: ', data);
@@ -70,23 +70,23 @@ const VisitorsPageViews = ({ data=[] }: Props) => {
 
   return (
     <VisitorCard
-      title={<IntlMessages id='dashboard.crm.visitorsPageViews'/>}
+      title={<IntlMessages id="dashboard.crm.visitorsPageViews" />}
       action={
         <VisitorAction>
-          <div className='visitor-action-view'>
-            <div className='visitor-action-item'>
+          <div className="visitor-action-view">
+            <div className="visitor-action-item">
               <span
-                className='dot-visitor'
+                className="dot-visitor"
                 style={{ backgroundColor: theme.palette.primary.main }}
               />
-              {messages['dashboard.crm.pagesViews']}
+              {messages['dashboard.crm.pagesViews'] as string}
             </div>
-            <div className='visitor-action-item'>
+            <div className="visitor-action-item">
               <span
-                className='dot-visitor'
+                className="dot-visitor"
                 style={{ backgroundColor: theme.palette.secondary.main }}
               />
-              {messages['dashboard.crm.visitors']}
+              {messages['dashboard.crm.visitors'] as string}
             </div>
           </div>
           <AppSelect

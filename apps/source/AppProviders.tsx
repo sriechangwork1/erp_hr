@@ -6,7 +6,6 @@ import AppStyleProvider from '@crema/context/AppStyleProvider';
 import AppLocaleProvider from '@crema/context/AppLocaleProvider';
 import AppAuthProvider from './src/core/AppAuthProvider';
 import AuthRoutes from '@crema/components/AuthRoutes';
-import PropTypes from 'prop-types';
 
 import '@crema/mockapi';
 import '../../public/styles/vendors/index.css';
@@ -37,10 +36,6 @@ const AppProviders = ({ children }: AppProvidersProps) => {
       </AppContextProvider>
     </CacheProvider>
   );
-};
-
-AppProviders.propTypes = {
-  children: PropTypes.node,
 };
 
 export default AppProviders;

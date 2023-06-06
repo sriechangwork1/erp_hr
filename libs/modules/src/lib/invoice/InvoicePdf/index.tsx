@@ -47,13 +47,21 @@ const InvoicePdf = ({ selectedInv, clientsList, invoiceSettings }: Props) => {
                 </Typography>
                 <Box sx={{ mb: 2 }}>
                   {selectedClient?.steetName}{' '}
-                  {selectedClient!.steetName.length > 0 && ' , '}
+                  {selectedClient?.steetName &&
+                    selectedClient?.steetName?.length > 0 &&
+                    ' , '}
                   {selectedClient?.city}{' '}
-                  {selectedClient!.city.length > 0 && ' , '}
+                  {selectedClient?.city &&
+                    selectedClient?.city?.length > 0 &&
+                    ' , '}
                   {selectedClient?.zipCode}{' '}
-                  {selectedClient!.zipCode.length > 0 && ' , '}
+                  {selectedClient?.zipCode &&
+                    selectedClient?.zipCode?.length > 0 &&
+                    ' , '}
                   {selectedClient?.state}{' '}
-                  {selectedClient!.state.length > 0 && ' , '}
+                  {selectedClient?.state &&
+                    selectedClient?.state?.length > 0 &&
+                    ' , '}
                   {selectedClient?.country}
                 </Box>
                 {selectedClient?.vatId && (

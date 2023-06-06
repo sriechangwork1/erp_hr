@@ -8,6 +8,7 @@ import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvide
 import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
 import { ContactObjType } from '@crema/models/apps/Contact';
 import { useIntl } from 'react-intl';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 interface Props {
   isAddContact: boolean;
@@ -115,7 +116,7 @@ const CreateContact = (props: Props) => {
             onUpdateContact!(newContact);
           } else {
             const newContact = {
-              id: Math.floor(Math.random() * 1000),
+              id: generateRandomUniqueNumber(),
               isStarred: false,
               isFrequent: Math.random() > 0.5,
               image: userImage,

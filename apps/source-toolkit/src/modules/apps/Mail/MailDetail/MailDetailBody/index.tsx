@@ -11,14 +11,32 @@ type Props = {
   selectedMail: MailType;
 };
 
+function addObjectInMiddle(
+  array: MessageType[],
+  index: number,
+  object: MessageType
+) {
+  const newArray = new Array(array.length);
+  for (let i = 0; i < array.length; i++) {
+    newArray[i] = array[i];
+  }
+  newArray[index] = object;
+  return newArray;
+}
+
 const MailDetailBody = (props: Props) => {
   const dispatch = useAppDispatch();
   const { selectedMail } = props;
 
   const onSubmitMail = (message: MessageType, index: number) => {
-    const messages = selectedMail.messages!;
-    messages.splice(index + 1, 0, message);
-    dispatch(onUpdateSelectedMail({ ...selectedMail, messages }));
+    const messages = selectedMail.messages;
+    if (messages)
+      dispatch(
+        onUpdateSelectedMail({
+          ...selectedMail,
+          messages: addObjectInMiddle(messages, index + 1, message),
+        })
+      );
   };
 
   const onChangeStarred = (message: MessageType, isStarred: boolean) => {

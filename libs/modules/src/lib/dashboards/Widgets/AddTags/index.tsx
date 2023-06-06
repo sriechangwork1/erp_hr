@@ -7,6 +7,7 @@ import AppCard from '@crema/components/AppCard';
 import { useIntl } from 'react-intl';
 import { darken } from '@mui/material';
 import { TagsListType } from '@crema/models/dashboards/Widgets';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const colorList = [
   { id: 9001, color: blue[600] },
@@ -31,7 +32,7 @@ const AddTags: React.FC<AddTagsPorps> = ({ data }) => {
   const onAddNewTag = (newTag: string) => {
     const tag = {
       label: newTag,
-      id: Math.floor(Math.random() * 10000),
+      id: generateRandomUniqueNumber(),
       color: colorList[Math.floor(Math.random() * colorList.length)].color,
     };
     setTags((tags) => tags.concat(tag));

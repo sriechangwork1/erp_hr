@@ -28,7 +28,7 @@ import {
 } from '@crema/models/ecommerce/EcommerceApp';
 import { useRouter } from 'next/router';
 
-const TagList = [
+const TagList: TagType[] = [
   {
     id: 1,
     name: 'Fashion',
@@ -94,7 +94,7 @@ const BlogSidebar = ({
                 width: '100%',
                 my: 4,
               }}
-              placeholder="Product SKU"
+              label="Product SKU"
             />
 
             <FormControl
@@ -144,9 +144,9 @@ const BlogSidebar = ({
               }}
               options={TagList}
               autoHighlight
-              getOptionLabel={(option) => option.name}
+              getOptionLabel={(option: TagType) => option.name}
               value={selectedTags}
-              onChange={(event, value) => setSelectedTags(value)}
+              onChange={(event, value) => setSelectedTags(value as TagType[])}
               renderOption={(props, option) => (
                 <Box
                   component="li"
@@ -171,6 +171,7 @@ const BlogSidebar = ({
           <AppCard title="Product Pricing" sxStyle={{ mt: 7 }}>
             <AppTextField
               name="mrp"
+              type="number"
               variant="outlined"
               sx={{
                 width: '100%',
@@ -186,6 +187,7 @@ const BlogSidebar = ({
             />
             <AppTextField
               name="salemrp"
+              type="number"
               variant="outlined"
               sx={{
                 width: '100%',
@@ -212,12 +214,13 @@ const BlogSidebar = ({
 
             <AppTextField
               name="discount"
+              type="number"
               variant="outlined"
               sx={{
                 width: '100%',
                 my: 2,
               }}
-              placeholder="Discount in %"
+              label="Discount %"
             />
           </AppCard>
 
@@ -253,9 +256,9 @@ const BlogSidebar = ({
                         }}
                         onChange={(event) => {
                           const { value } = event.target;
-                          const newProductInfo = [...productSpec];
-                          newProductInfo[index].title = value;
-                          setProductInfo(newProductInfo);
+                          const newProductSpec = [...productSpec];
+                          newProductSpec[index].title = value;
+                          setProductSpec(newProductSpec);
                         }}
                         label="Product Label"
                       />
@@ -270,9 +273,9 @@ const BlogSidebar = ({
                         }}
                         onChange={(event) => {
                           const { value } = event.target;
-                          const newProductInfo = [...productSpec];
-                          newProductInfo[index].desc = value;
-                          setProductInfo(newProductInfo);
+                          const newProductSpec = [...productSpec];
+                          newProductSpec[index].desc = value;
+                          setProductSpec(newProductSpec);
                         }}
                         label="Product Value"
                       />
@@ -370,7 +373,7 @@ const BlogSidebar = ({
             variant="contained"
             type="submit"
           >
-            {isEdit ? 'Edit' : 'Add'} Product
+            {isEdit ? 'Update' : 'Add'} Product
           </Button>
         </Stack>
       </Grid>

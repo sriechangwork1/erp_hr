@@ -7,8 +7,7 @@ import BlogContent from './Content';
 import { Formik, Form } from 'formik';
 import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
 import { useRouter } from 'next/router';
-import { getStringFromHtml } from '@crema/helpers';
-import dayjs from 'dayjs';
+import { getFormattedDate, getStringFromHtml } from '@crema/helpers';
 import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 import {
   ProductDataType,
@@ -106,10 +105,11 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
                 description: getStringFromHtml(data.description),
                 image: uploadedFiles.map((file, index) => ({
                   id: index,
-                  src: file.src,
+                  src: file.preview,
                   rating: 0,
                   reviews: 0,
                 })),
+                createdAt: getFormattedDate(),
                 tag: selectedTags,
                 productInfo,
                 productSpec,

@@ -57,7 +57,7 @@ const LabelItem = ({ label }: Props) => {
   return (
     <Link
       href={`/apps/contact/label/${label.alias}`}
-      style={{ textDecoration: 'none' }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <ContactSidebarListItemWrapper
         className={clsx({

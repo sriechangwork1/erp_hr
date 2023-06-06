@@ -12,6 +12,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import { BlogCommentType } from '@crema/models/extrapages/Blog';
 import { useIntl } from 'react-intl';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const validationSchema = (messages: any) =>
   yup.object({
@@ -35,7 +36,7 @@ const BlogComment = ({ comment }: Props) => {
 
   const onCommentSend = (data: Partial<BlogCommentType>) => {
     const item: BlogCommentType = {
-      id: Math.floor(Math.random() * 1000),
+      id: generateRandomUniqueNumber(),
       name: data.name!,
       image: user.photoURL,
       duration: dayjs().format('ll'),

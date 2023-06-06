@@ -88,7 +88,7 @@ mock.onPut('/api/todoApp/task/').reply((request: AxiosRequestConfig) => {
   const { task } = JSON.parse(request.data);
   // task.assignedTo = staffList.find(staff => staff.id === task.assignedTo);
   todoData = todoData.map((item) => (item.id === task.id ? task : item));
-  return [200, todoData];
+  return [200, task];
 });
 
 mock.onGet('/api/todo/folders/list').reply(200, folderList);

@@ -117,7 +117,6 @@ const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(UpdateTaskDetailAction, (state, action) => {
       state.selectedTask = action.payload.task;
-      state.taskList = action.payload.data;
     });
 });
 

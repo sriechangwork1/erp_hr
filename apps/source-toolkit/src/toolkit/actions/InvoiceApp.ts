@@ -142,7 +142,7 @@ export const onGetInvoiceDetail = (id: number) => {
       });
   };
 };
-export const onGetClientDetail = (id: number) => {
+export const onGetClientDetail = (id: string) => {
   const { messages } = appIntl();
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(fetchStart());

@@ -30,6 +30,7 @@ import {
 } from '@crema/models/apps/ScrumbBoard';
 import { AuthUserType } from '@crema/models/AuthUser';
 import { DatePicker } from '@mui/x-date-pickers';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 type Props = {
   board: BoardType;
@@ -83,7 +84,7 @@ const AddCardForm = (props: Props) => {
 
   const onAddNewCheckedItem = () => {
     const item = {
-      id: Math.floor(Math.random() * 1000),
+      id: generateRandomUniqueNumber(),
       title: '',
     };
     const updatedList = checkedList.concat(item);

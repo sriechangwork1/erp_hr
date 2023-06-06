@@ -46,7 +46,7 @@ const TaskSideBar = () => {
               },
             }}
             startIcon={<AddIcon />}
-            onClick={() => router.push('/invoice/list/add')}
+            onClick={() => router.push('/invoice/add-invoice')}
           >
             <IntlMessages id="invoice.addNewInvoice" />
           </Button>

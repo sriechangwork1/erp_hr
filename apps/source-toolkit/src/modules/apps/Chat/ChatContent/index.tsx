@@ -4,6 +4,7 @@ import { NoUserScreen } from '@crema/modules/apps/Chat';
 import { ConnectionType } from '@crema/models/apps/Chat';
 import { styled } from '@mui/material/styles';
 import { Fonts } from '@crema/constants/AppEnums';
+import { isEmptyObject } from '@crema/helpers';
 
 const MessagesScreen = styled('div')(() => {
   return {
@@ -42,7 +43,7 @@ type Props = {
 const ChatContent = ({ selectedUser }: Props) => {
   return (
     <>
-      {selectedUser ? (
+      {!isEmptyObject(selectedUser) ? (
         <MessagesScreen>
           <ChatViewContainer selectedUser={selectedUser} />
         </MessagesScreen>

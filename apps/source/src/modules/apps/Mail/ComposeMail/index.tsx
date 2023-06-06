@@ -20,6 +20,7 @@ import AppInfoView from '@crema/components/AppInfoView';
 import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 import dynamic from 'next/dynamic';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const ReactQuillWrapper = styled(ReactQuill)(() => {
@@ -118,7 +119,7 @@ const ComposeMail = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           const mail = {
-            id: Math.floor(Math.random()) * 1000,
+            id: generateRandomUniqueNumber(),
             isChecked: false,
             isStarred: false,
             label: {
@@ -136,9 +137,10 @@ const ComposeMail = (props: Props) => {
               {
                 messageId: 1,
                 sender: {
+                  id: user.id,
                   name: user.displayName ? user.displayName : user.username,
-                  email: user.username,
-                  profilePic: '',
+                  email: user.email,
+                  profilePic: user.photoURL ? user.photoURL : '',
                 },
                 to: [
                   {
@@ -156,7 +158,6 @@ const ComposeMail = (props: Props) => {
             ],
             subject: data.subject !== '' ? data.subject : 'No Subject',
           };
-          console.log('Success:', mail);
           postDataApi('/api/mailApp/compose', infoViewActionsContext, { mail })
             .then(() => {
               infoViewActionsContext.showMessage('Mail Sent Successfully');

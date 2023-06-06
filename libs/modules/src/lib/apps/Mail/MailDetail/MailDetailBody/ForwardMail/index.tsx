@@ -13,7 +13,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 
 import { styled } from '@mui/material/styles';
 import { MessageType } from '@crema/models/apps/Mail';
-import { generateUniqueID } from '@crema/helpers';
+import { generateRandomUniqueNumber, generateUniqueID } from '@crema/helpers';
 
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -77,12 +77,12 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
           console.log('data: ', data);
           setSubmitting(true);
           const mail = {
-            messageId: Math.floor(Math.random()) * 1000,
+            messageId: generateRandomUniqueNumber(),
             sender: {
               id: generateUniqueID(),
               name: user.displayName ? user.displayName : user.username,
               email: user.email,
-              profilePic: '',
+              profilePic: user.photoURL ? user.photoURL : '',
             },
             to: [
               {

@@ -9,7 +9,11 @@ import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/InfoViewContextProvider';
 import { useTodoActionsContext } from '../../context/TodoContextProvider';
 import { useIntl } from 'react-intl';
-import { getDateObject, getFormattedDate } from '@crema/helpers';
+import {
+  generateRandomUniqueNumber,
+  getDateObject,
+  getFormattedDate,
+} from '@crema/helpers';
 
 type Props = {
   isAddTaskOpen: boolean;
@@ -52,7 +56,7 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
           const newTask = {
-            id: Math.floor(Math.random() * 1000000),
+            id: generateRandomUniqueNumber(),
             isStarred: false,
             isAttachment: false,
             isRead: true,

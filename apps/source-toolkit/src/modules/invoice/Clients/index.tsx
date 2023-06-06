@@ -27,7 +27,7 @@ const Clients = () => {
           color="primary"
           variant="contained"
           sx={{ display: 'block', ml: 'auto', mb: 3 }}
-          onClick={() => router.push('/invoice/client/add')}
+          onClick={() => router.push('/invoice/clients/add')}
         >
           Add Clients
         </Button>

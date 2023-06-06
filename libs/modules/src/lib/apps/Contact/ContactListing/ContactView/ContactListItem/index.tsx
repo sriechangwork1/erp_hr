@@ -78,7 +78,8 @@ const ContactListItem = ({
 }: Props) => {
   const onGetLabelColor = (labelId: number): string => {
     if (labelId) {
-      return labelList.find((label: LabelType) => label.id === labelId)!.color;
+      const list = labelList.find((label: LabelType) => label.id === labelId);
+      return list ? list.color : '';
     }
     return '';
   };

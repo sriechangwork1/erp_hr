@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import mock from '../MockConfig';
 import { postsList, wallData } from '../../fakedb/apps/wall';
 import { PostObjType } from '@crema/models/apps/Wall';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 let posts = postsList;
 
@@ -12,7 +13,7 @@ mock.onGet('/wall/posts').reply(200, posts);
 mock.onPost('/wall/posts').reply((request: AxiosRequestConfig) => {
   const { post } = JSON.parse(request.data);
   const newPost = {
-    id: Math.floor(Math.random() * 10000),
+    id: generateRandomUniqueNumber(),
     date: new Date().toString(),
     likes: 0,
     shares: 0,
@@ -26,7 +27,9 @@ mock.onPost('/wall/posts').reply((request: AxiosRequestConfig) => {
 
 mock.onPut('/wall/posts').reply((request: AxiosRequestConfig) => {
   const { postId, status } = JSON.parse(request.data);
-  const post = posts.find((item: PostObjType) => item?.id === postId) as PostObjType;
+  const post = posts.find(
+    (item: PostObjType) => item?.id === postId
+  ) as PostObjType;
   post.liked = status as boolean;
   if (status) {
     post.likes += 1;
@@ -41,9 +44,11 @@ mock.onPut('/wall/posts').reply((request: AxiosRequestConfig) => {
 
 mock.onPost('/wall/posts/comments').reply((request: AxiosRequestConfig) => {
   const { postId, comment } = JSON.parse(request.data);
-  const post = posts.find((item: PostObjType) => item?.id === postId) as PostObjType;
+  const post = posts.find(
+    (item: PostObjType) => item?.id === postId
+  ) as PostObjType;
   const newComment = {
-    id: Math.floor(Math.random() * 10000),
+    id: generateRandomUniqueNumber(),
     date: new Date().toString(),
     liked: false,
     ...comment,

@@ -10,18 +10,24 @@ export const getDateObject = (dateObject?: string) => {
   return dayjs();
 };
 
+export const getCurrentMonthDate = (date: number, format = 'MMM DD,YYYY') => {
+  if (date) return dayjs().date(date).format(format);
+
+  return dayjs().format(format);
+};
+
 export const getFormattedDate = (
   dateObject?: dayjs.Dayjs | string,
-  format = 'YYYY-MM-DD'
+  format = 'MMM DD,YYYY'
 ) => {
   if (dateObject) return dayjs(dateObject).format(format);
-  return '';
+  return dayjs().format(format);
 };
 
 export const getFormattedDateTime = (
   value = 0,
   unit = 'days',
-  format = 'YYYY-MM-DD'
+  format = 'DD MMM YYYY'
 ) => {
   if (value === 0) {
     return dayjs().format(format);

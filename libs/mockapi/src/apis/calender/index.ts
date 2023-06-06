@@ -180,7 +180,7 @@ mock
     return [200, updatedTasks];
   });
 
-mock.onPost('/api/todoApp/compose').reply((request: AxiosRequestConfig) => {
+mock.onPost('/api/calendar/compose').reply((request: AxiosRequestConfig) => {
   const { task } = JSON.parse(request.data);
   task.assignedTo = staffList.find((staff) => staff.id === task.assignedTo);
   task.priority = priorityList.find(

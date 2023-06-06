@@ -43,8 +43,6 @@ const ProductListing = ({
 
   const { list, total } = ecommerceList;
 
-  console.log('ecommerceList', ecommerceList, list);
-
   useEffect(() => {
     setQueryParams({ page, filterData });
   }, [page, filterData]);

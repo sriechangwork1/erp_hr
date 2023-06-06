@@ -145,7 +145,7 @@ const TableItem = ({
           type="number"
           sx={{ minWidth: 50 }}
           variant="standard"
-          value={data?.quantity?.value}
+          defaultValue={data?.quantity?.value}
           placeholder="Value"
           onChange={(e) => {
             onChangeLineItems(index, 'value', e.target.value, 'quantity');
@@ -157,10 +157,7 @@ const TableItem = ({
           }}
         />
       </StyledTableCell>
-      <StyledTableCell
-        align="left"
-        // sx={{ width: 300, whiteSpace: 'inherit !important' }}
-      >
+      <StyledTableCell align="left">
         <Select
           sx={{ mr: 2.5 }}
           variant="standard"
@@ -189,7 +186,7 @@ const TableItem = ({
         <TextField
           type="number"
           variant="standard"
-          value={data?.unitPrice || 0}
+          defaultValue={data?.unitPrice || 0}
           placeholder="Unit Price"
           onChange={(e) => {
             onChangeLineItems(index, 'unitPrice', e.target.value);

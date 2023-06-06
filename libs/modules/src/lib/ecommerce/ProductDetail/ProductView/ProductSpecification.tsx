@@ -1,46 +1,13 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
+import { ProductSpecType } from '@crema/models/ecommerce/EcommerceApp';
 
-const productSpecification = [
-  {
-    id: 1,
-    title: 'Brand',
-    desc: 'JBL',
-  },
-  {
-    id: 2,
-    title: 'Model Number',
-    desc: 'SH12',
-  },
-  {
-    id: 3,
-    title: 'Color',
-    desc: 'Red',
-  },
-  {
-    id: 4,
-    title: 'Headphone Type',
-    desc: 'Wireless over the head',
-  },
-  {
-    id: 5,
-    title: 'Inline Remote',
-    desc: 'No',
-  },
-  {
-    id: 6,
-    title: 'Sales Package',
-    desc: '1 SH12 HEADPHONE',
-  },
-  {
-    id: 7,
-    title: 'Connectivity',
-    desc: 'Bluetooth',
-  },
-];
+type ProductSpecificationProps = {
+  productSpec: ProductSpecType[];
+};
 
-const ProductSpecification = () => {
+const ProductSpecification = ({ productSpec }: ProductSpecificationProps) => {
   return (
     <>
       <Box
@@ -55,7 +22,7 @@ const ProductSpecification = () => {
         Specification
       </Box>
       <Grid container spacing={3}>
-        {productSpecification.map((data: any) => (
+        {productSpec.map((data: any) => (
           <React.Fragment key={data.id}>
             <Grid item xs={4}>
               <Box

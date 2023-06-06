@@ -10,7 +10,7 @@ import {
   onUpdateSelectedContact,
 } from '../../../../toolkit/actions';
 import { useAppDispatch } from '../../../../toolkit/hooks';
-import { getFormattedDate } from '@crema/helpers';
+import {generateRandomUniqueNumber, getFormattedDate} from '@crema/helpers';
 
 type Props = {
   isAddContact: boolean;
@@ -111,7 +111,7 @@ const CreateContact = (props: Props) => {
           } else {
             const newContact = {
               ...data,
-              id: Math.floor(Math.random() * 1000),
+              id:generateRandomUniqueNumber(),
               isStarred: false,
               isFrequent: Math.random() > 0.5,
               image: userImage,

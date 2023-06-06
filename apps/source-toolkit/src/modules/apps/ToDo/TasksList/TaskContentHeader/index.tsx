@@ -97,10 +97,10 @@ const TaskContentHeader = (props: Props) => {
               color: 'text.disabled',
             }}
             indeterminate={
-              checkedTasks.length > 0 && checkedTasks.length < taskList.length
+              checkedTasks?.length > 0 && checkedTasks.length < taskList?.length
             }
             checked={
-              taskList.length > 0 && checkedTasks.length === taskList.length
+              taskList?.length > 0 && checkedTasks?.length === taskList?.length
             }
             onChange={onHandleMasterCheckbox}
           />
@@ -147,7 +147,7 @@ const TaskContentHeader = (props: Props) => {
       </Box>
 
       <Hidden smDown>
-        {taskList.length > 0 ? (
+        {taskList?.length > 0 ? (
           <AppsPagination
             sx={{
               paddingRight: 2,

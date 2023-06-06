@@ -181,7 +181,7 @@ const TasksList = () => {
       </AppsContent>
 
       <Hidden smUp>
-        {taskList.length > 0 ? (
+        {taskList?.length > 0 ? (
           <AppsFooter>
             <AppsPagination
               count={totalTasks}

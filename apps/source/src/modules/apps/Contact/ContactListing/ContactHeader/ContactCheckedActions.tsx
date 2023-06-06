@@ -29,9 +29,15 @@ const ContactCheckedActions = (props: Props) => {
 
   const infoViewActionsContext = useInfoViewActionsContext();
 
-  const [isLabelOpen, onOpenLabel] = React.useState<null|HTMLAnchorElement | HTMLButtonElement>(null);
+  const [isLabelOpen, onOpenLabel] = React.useState<
+    null | HTMLAnchorElement | HTMLButtonElement
+  >(null);
 
-  const onLabelOpen = (event: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>) => {
+  const onLabelOpen = (
+    event:
+      | React.MouseEvent<HTMLAnchorElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
     onOpenLabel(event.currentTarget);
   };
 
@@ -75,13 +81,13 @@ const ContactCheckedActions = (props: Props) => {
             color: (theme) => theme.palette.text.disabled,
           }}
           size="large"
+          onClick={() => onSelectContactsForDelete(checkedContacts)}
         >
           <DeleteOutlinedIcon
             sx={{
               cursor: 'pointer',
               display: 'block',
             }}
-            onClick={() => onSelectContactsForDelete(checkedContacts)}
           />
         </IconButton>
       </AppTooltip>

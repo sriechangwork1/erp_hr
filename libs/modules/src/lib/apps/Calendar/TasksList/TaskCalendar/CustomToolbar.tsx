@@ -124,18 +124,20 @@ const CustomToolbar = (props: Props) => {
             className={clsx({
               active: viewState === 'month',
             })}
+            onClick={goToMonthView}
           >
             <AppTooltip title="Month">
-              <CalendarViewMonthOutlinedIcon onClick={goToMonthView} />
+              <CalendarViewMonthOutlinedIcon />
             </AppTooltip>
           </IconBtn>
           <IconBtn
             className={clsx({
               active: viewState === 'agenda',
             })}
+            onClick={goToAgenda}
           >
             <AppTooltip title="Agenda">
-              <ViewAgendaOutlinedIcon onClick={goToAgenda} />
+              <ViewAgendaOutlinedIcon />
             </AppTooltip>
           </IconBtn>
           <Box sx={{ mr: 3 }}>
@@ -155,9 +157,9 @@ const CustomToolbar = (props: Props) => {
         </Box>
 
         <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
-          <IconButton>
+          <IconButton onClick={goToBack}>
             <AppTooltip title="Next">
-              <ArrowBackIosNewIcon onClick={goToBack} />
+              <ArrowBackIosNewIcon />
             </AppTooltip>
           </IconButton>
           <Button
@@ -169,9 +171,9 @@ const CustomToolbar = (props: Props) => {
           >
             today
           </Button>
-          <IconButton>
+          <IconButton onClick={goToNext}>
             <AppTooltip title="Next">
-              <ArrowForwardIosIcon onClick={goToNext} />
+              <ArrowForwardIosIcon />
             </AppTooltip>
           </IconButton>
         </Stack>

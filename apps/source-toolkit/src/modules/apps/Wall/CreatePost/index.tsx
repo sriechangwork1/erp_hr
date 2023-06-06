@@ -17,6 +17,7 @@ import { darken } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../../../toolkit/hooks';
 import { onCreateNewPost } from '../../../../toolkit/actions';
 import { AttachmentType, PostObjType } from '@crema/models/apps/Wall';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const CreateView = styled('div')(({ theme }) => ({
   flex: 1,
@@ -84,7 +85,7 @@ const CreatePost = () => {
     onDrop: (acceptedFiles) => {
       const files = acceptedFiles.map((file: any) => {
         return {
-          id: Math.floor(Math.random() * 10000),
+          id: generateRandomUniqueNumber(),
           path: file.path,
           metaData: { type: file.type, size: file.size },
           preview: URL.createObjectURL(file),

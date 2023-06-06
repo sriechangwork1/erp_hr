@@ -15,6 +15,8 @@ export type ConnectionType = {
   id: number;
   channelId: number;
   name: string;
+  displayName?: string;
+  photoURL?: string;
   image: string;
   status: string;
   username: string;

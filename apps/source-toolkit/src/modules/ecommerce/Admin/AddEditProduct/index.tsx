@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import BlogSidebar from './Sidebar';
 import ProductContent from './Content';
 import { Formik, Form } from 'formik';
-import { getStringFromHtml } from '@crema/helpers';
+import { getFormattedDate, getStringFromHtml } from '@crema/helpers';
 import { onCreateProduct, onUpdateProduct } from '../../../../toolkit/actions';
 import { useAppDispatch } from '../../../../toolkit/hooks';
 import {
@@ -82,6 +82,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
                 rating: 0,
                 reviews: 0,
               })),
+              createdAt: getFormattedDate(),
               tag: selectedTags,
               productInfo,
               productSpec,

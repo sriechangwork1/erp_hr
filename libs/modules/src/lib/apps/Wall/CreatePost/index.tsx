@@ -21,6 +21,7 @@ import {
   PostObjType,
   WallDataType,
 } from '@crema/models/apps/Wall';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const CreateView = styled('div')(({ theme }) => ({
   flex: 1,
@@ -91,7 +92,7 @@ const CreatePost = ({ wallData, setPostList }: Props) => {
     onDrop: (acceptedFiles) => {
       const files = acceptedFiles.map((file: any) => {
         return {
-          id: Math.floor(Math.random() * 10000),
+          id: generateRandomUniqueNumber(),
           path: file.path,
           metaData: { type: file.type, size: file.size },
           preview: URL.createObjectURL(file),

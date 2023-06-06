@@ -19,6 +19,7 @@ import AppInfoView from '@crema/components/AppInfoView';
 import { useAppDispatch } from '../../../../toolkit/hooks';
 import { onComposeMail } from '../../../../toolkit/actions';
 import { useRouter } from 'next/router';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 const ReactQuillWrapper = styled(ReactQuill)(() => {
@@ -116,7 +117,7 @@ const ComposeMail = (props: Props) => {
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           const mail = {
-            id: Math.floor(Math.random()) * 1000,
+            id: generateRandomUniqueNumber(),
             isChecked: false,
             isStarred: false,
             label: {
@@ -134,9 +135,10 @@ const ComposeMail = (props: Props) => {
               {
                 messageId: 1,
                 sender: {
+                  id: user.id,
                   name: user.displayName ? user.displayName : user.username,
-                  email: user.username,
-                  profilePic: '',
+                  email: user.email,
+                  profilePic: user.photoURL ? user.photoURL : '',
                 },
                 to: [
                   {
@@ -154,7 +156,6 @@ const ComposeMail = (props: Props) => {
             ],
             subject: data.subject !== '' ? data.subject : 'No Subject',
           };
-          console.log('Success:', mail);
           dispatch(onComposeMail(mail, asPath));
           onCloseComposeMail(false);
           resetForm();

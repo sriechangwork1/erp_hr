@@ -110,7 +110,7 @@ const ContactDetail = (props: Props) => {
                     mb: 2.5,
                   }}
                 >
-                  {contact.name[0].toUpperCase()}
+                  {contact?.name?.[0]?.toUpperCase()}
                 </Avatar>
               )}
               <Box component="h3">{contact.name}</Box>

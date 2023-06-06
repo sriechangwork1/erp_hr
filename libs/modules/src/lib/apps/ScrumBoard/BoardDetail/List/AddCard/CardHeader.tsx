@@ -7,6 +7,7 @@ import IntlMessages from '@crema/helpers/IntlMessages';
 import { useDropzone } from 'react-dropzone';
 import { Fonts } from '@crema/constants/AppEnums';
 import IconButton from '@mui/material/IconButton';
+import { generateRandomUniqueNumber } from '@crema/helpers';
 
 type Props = {
   onClickDeleteIcon: (event: React.MouseEvent<HTMLElement>) => void;
@@ -21,7 +22,7 @@ const CardHeader = (props: Props) => {
     onDrop: (acceptedFiles) => {
       const files = acceptedFiles.map((file) => {
         return {
-          id: Math.floor(Math.random() * 10000),
+          id: generateRandomUniqueNumber(),
           file,
           preview: URL.createObjectURL(file),
         };

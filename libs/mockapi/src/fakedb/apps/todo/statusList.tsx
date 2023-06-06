@@ -1,8 +1,8 @@
 import { StatusType } from '@crema/models/apps/Todo';
 
 const statusList: StatusType[] = [
-  { id: 1001, name: 'Pending', type: 1 },
-  { id: 1002, name: 'In Progress', type: 2 },
-  { id: 1003, name: 'Completed', type: 3 },
+  { id: 1, name: 'Pending', type: 1001 },
+  { id: 2, name: 'In Progress', type: 1002 },
+  { id: 3, name: 'Completed', type: 1003 },
 ];
 export default statusList;

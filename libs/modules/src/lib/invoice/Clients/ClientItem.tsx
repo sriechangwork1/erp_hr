@@ -106,7 +106,7 @@ const ClientItem = ({ client }: Props) => {
       >
         <MenuItem
           value={312}
-          onClick={() => router.push(`/invoice/client/edit/${client.id}`)}
+          onClick={() => router.push(`/invoice/clients/${client.id}`)}
         >
           Edit Client
         </MenuItem>

@@ -14,7 +14,7 @@ const BlogDetailPage = () => {
   const { loading } = useAppSelector(({ common }) => common);
 
   useEffect(() => {
-    dispatch(getBlogDetail(Number(query?.all?.[0])));
+    dispatch(getBlogDetail(query?.all?.[0]));
   }, [dispatch, query.all]);
 
   return loading ? (

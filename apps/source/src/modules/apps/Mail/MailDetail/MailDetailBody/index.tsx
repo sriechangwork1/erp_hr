@@ -11,14 +11,28 @@ type Props = {
   selectedMail: MailType;
   onUpdateSelectedMail: (data: MailType) => void;
 };
+
+function addObjectInMiddle(
+  array: MessageType[],
+  index: number,
+  object: MessageType
+) {
+  const newArray = new Array(array.length);
+  for (let i = 0; i < array.length; i++) {
+    newArray[i] = array[i];
+  }
+  newArray[index] = object;
+  return newArray;
+}
+
 const MailDetailBody = (props: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const { selectedMail, onUpdateSelectedMail } = props;
 
   const onSubmitMail = (message: MessageType, index: number) => {
-    const messages = selectedMail.messages!;
-    messages.splice(index + 1, 0, message);
-    selectedMail.messages = messages;
+    const messages = selectedMail.messages;
+    if (messages)
+      selectedMail.messages = addObjectInMiddle(messages, index + 1, message);
     putDataApi<MailType>('/api/mailApp/mail/', infoViewActionsContext, {
       mail: selectedMail,
     })

@@ -286,7 +286,10 @@ export const onUpdateSelectedTask = (task: TodoType) => {
       .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
-          dispatch({ type: UPDATE_TASK_DETAIL, payload: data.data });
+          dispatch({
+            type: UPDATE_TASK_DETAIL,
+            payload: { data: data.data, task },
+          });
           dispatch(
             showMessage(
               task.folderValue === 126

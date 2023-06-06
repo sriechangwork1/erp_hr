@@ -40,7 +40,7 @@ export const onGetEcommerceData = ({
       .then((data: any) => {
         if (data.status === 200) {
           dispatch(fetchSuccess());
-          dispatch({ type: GET_ECOMMERCE_LIST, payload: data.data.list });
+          dispatch({ type: GET_ECOMMERCE_LIST, payload: data.data });
         } else {
           dispatch(fetchError('Something went wrong, Please try again!'));
         }

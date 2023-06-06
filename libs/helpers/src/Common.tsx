@@ -93,3 +93,15 @@ export const IntlGlobalProvider = ({
 export const appIntl = () => {
   return intl;
 };
+
+export const generateRandomUniqueNumber = (): number => {
+  const numbers: number[] = [];
+  const number = Math.floor(Math.random() * 100000000);
+
+  if (numbers.includes(number)) {
+    return generateRandomUniqueNumber();
+  } else {
+    numbers.push(number)
+    return number;
+  }
+};

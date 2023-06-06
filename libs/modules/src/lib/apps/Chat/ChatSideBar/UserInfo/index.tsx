@@ -5,13 +5,13 @@ import { green, orange, red } from '@mui/material/colors';
 import { Typography } from '@mui/material';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { Fonts } from '@crema/constants/AppEnums';
-import {ConnectionType} from "@crema/models/apps/Chat";
+import { ConnectionType } from '@crema/models/apps/Chat';
 
-type UserInfoProps ={
+type UserInfoProps = {
   user: ConnectionType;
   showStatus?: boolean;
-}
-const UserInfo = ({ user, showStatus }:UserInfoProps) => {
+};
+const UserInfo = ({ user, showStatus }: UserInfoProps) => {
   const getUserAvatar = () => {
     const name = user.name;
     if (name) {
@@ -35,7 +35,7 @@ const UserInfo = ({ user, showStatus }:UserInfoProps) => {
           position: 'relative',
         }}
       >
-        {user.image ? (
+        {user.image || user?.photoURL ? (
           <Avatar
             sx={{
               height: 44,
@@ -43,7 +43,7 @@ const UserInfo = ({ user, showStatus }:UserInfoProps) => {
               fontSize: 24,
               backgroundColor: orange[500],
             }}
-            src={user.image || user.image}
+            src={user.image || user.photoURL}
           />
         ) : (
           <Avatar
@@ -91,7 +91,7 @@ const UserInfo = ({ user, showStatus }:UserInfoProps) => {
             fontWeight: Fonts.MEDIUM,
           }}
         >
-          {user.name}
+          {user.name || user?.displayName}
         </Typography>
         <Typography
           sx={{

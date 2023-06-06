@@ -21,6 +21,7 @@ import { useAppSelector, useAppDispatch } from '../../../toolkit/hooks';
 import { onGetWallData } from '../../../toolkit/actions';
 import CreatePost from './CreatePost';
 import PostsList from './PostsList';
+import { isEmptyObject } from '@crema/helpers';
 
 const LeftSidebar = styled(Grid)(({ theme }) => ({
   '@media screen and (min-width: 600px) and (max-width: 1023px)': {
@@ -72,7 +73,7 @@ const Wall = () => {
       cardStyle={{ background: 'none', boxShadow: 'none', border: '0 none' }}
       fullView
     >
-      {wallData && (
+      {!isEmptyObject(wallData) && (
         <AppGridContainer style={{ height: 'calc(100% + 32px)' }}>
           <LeftSidebar item xs={12} sm={6} md={3} style={{ height: '100%' }}>
             <AppScrollbar style={{ height: '100%' }}>

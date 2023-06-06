@@ -30,7 +30,7 @@ export const getBlogList = () => {
       });
   };
 };
-export const getBlogDetail = (id: number) => {
+export const getBlogDetail = (id: string) => {
   const { messages } = appIntl();
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(fetchStart());

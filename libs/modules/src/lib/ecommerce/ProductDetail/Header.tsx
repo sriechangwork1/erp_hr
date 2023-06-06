@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
               color: 'text.secondary',
             }}
           >
-            {product.reviews + ' reviews'}
+            {product.reviews || 0 + ' reviews'}
           </Box>
 
           <Box>
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
                 color: 'text.secondary',
               }}
             >
-              MB023
+              {product.SKU || 'MB023'}
             </Box>
           </Box>
         </Box>

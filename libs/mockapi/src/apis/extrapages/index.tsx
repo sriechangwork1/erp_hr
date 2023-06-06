@@ -1,5 +1,5 @@
 import mock from '../MockConfig';
-import { blogContent, blogSidebar } from '@crema/fakedb/extraPages';
+import { blogContent, blogSidebar } from '../../fakedb/extraPages/blog';
 import { BlogContentType } from '@crema/models/extrapages/Blog';
 
 let blogContentData = blogContent;

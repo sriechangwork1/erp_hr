@@ -17,7 +17,7 @@ import {
   CardType,
 } from '@crema/models/apps/ScrumbBoard';
 import { useIntl } from 'react-intl';
-import { getDateObject } from '@crema/helpers';
+import { generateRandomUniqueNumber, getDateObject } from '@crema/helpers';
 
 type AddCardProps = {
   isAddCardOpen: boolean;
@@ -171,7 +171,7 @@ const AddCard: React.FC<AddCardProps> = ({
               });
           } else {
             const newCard = {
-              id: Math.floor(Math.random() * 1000),
+              id: generateRandomUniqueNumber(),
               attachments: attachments,
               checkedList: [],
               comments: comments,

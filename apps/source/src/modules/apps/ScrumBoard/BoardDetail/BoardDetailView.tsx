@@ -116,6 +116,7 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
   };
 
   const handleDragCard = (
+    cardId: any,
     sourceLaneId: number,
     targetLaneId: number,
     position: number,

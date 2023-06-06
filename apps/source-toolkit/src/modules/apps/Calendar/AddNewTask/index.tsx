@@ -9,7 +9,11 @@ import PropTypes from 'prop-types';
 import AppDialog from '@crema/components/AppDialog';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import { useIntl } from 'react-intl';
-import { getDateObject, getFormattedDate } from '@crema/helpers';
+import {
+  generateRandomUniqueNumber,
+  getDateObject,
+  getFormattedDate,
+} from '@crema/helpers';
 
 type Props = {
   isAddTaskOpen: boolean;
@@ -52,7 +56,7 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
           const newTask = {
-            id: Math.floor(Math.random() * 1000000),
+            id: generateRandomUniqueNumber(),
             isStarred: false,
             hasAttachments: false,
             isRead: true,
