@@ -1,0 +1,6 @@
+import React from "react";
+import AppPage from "@crema/core/AppLayout/DefaultPage";
+import asyncComponent from "@crema/components/AppAsyncComponent/AsyncLoaderComponent";
+
+const Error404 = asyncComponent(() => import("../modules/errorPages/Error404"));
+export default AppPage(() => <Error404 />);
