@@ -26,7 +26,7 @@ const StyledBox = styled(Box)(() => ({
   fontWeight: Fonts.MEDIUM,
   fontSize: 12,
   mb: 0.5,
-}));
+})) as typeof Box;
 
 type Props = {
   data: WhatsHappenDataType;

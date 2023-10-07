@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 export const useTimeout = (callback, delay) => {
-  const savedCallback = React.useRef();
+  const savedCallback = React.useRef<any>();
 
   React.useEffect(() => {
     savedCallback.current = callback;

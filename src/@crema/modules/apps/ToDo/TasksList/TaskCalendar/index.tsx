@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { momentLocalizer, SlotInfo } from "react-big-calendar";
 import moment from "moment";
-import AddNewTask from "../../AddNewTask";
+// import AddNewTask from "../../AddNewTask";
 import { StyledCalendar } from "./Calendar.style";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
@@ -9,7 +9,9 @@ import { useRouter } from "next/router";
 import AppTooltip from "@crema/components/AppTooltip";
 import CustomToolbar from "./CustomToolbar";
 import { TodoType } from "@crema/types/models/apps/Todo";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
+const DragAndDropCalendar = withDragAndDrop(StyledCalendar as any);
 const localizer = momentLocalizer(moment);
 
 type Props = {
@@ -51,8 +53,8 @@ const TaskCalender = ({ taskList }: Props) => {
         return {
           ...task,
           title: task.title,
-          start: task.startDate,
-          end: task.startDate,
+          start: new Date(task.startDate),
+          end: new Date(task.startDate),
           allDay: true,
         };
       });
@@ -60,7 +62,7 @@ const TaskCalender = ({ taskList }: Props) => {
   };
   return (
     <>
-      <StyledCalendar
+      <DragAndDropCalendar
         localizer={localizer}
         events={getEvents()}
         views={["month", "agenda"]}
@@ -92,15 +94,6 @@ const TaskCalender = ({ taskList }: Props) => {
         onSelectSlot={onSelectDate}
         defaultView="month"
       />
-
-      {isAddTaskOpen ? (
-        <AddNewTask
-          selectedDate={selectedDate}
-          // onOpenAddTask={onOpenAddTask}
-          onCloseAddTask={onCloseAddTask}
-          isAddTaskOpen={isAddTaskOpen}
-        />
-      ) : null}
     </>
   );
 };

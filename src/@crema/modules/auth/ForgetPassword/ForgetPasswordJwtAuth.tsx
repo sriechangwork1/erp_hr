@@ -10,7 +10,7 @@ import IntlMessages from "@crema/helpers/IntlMessages";
 import AppTextField from "@crema/components/AppFormComponents/AppTextField";
 import { Fonts } from "@crema/constants/AppEnums";
 import AuthWrapper from "../AuthWrapper";
-import AppLogo from "@crema/components/AppLogo";
+import AppLogo from "@crema/components/AppLayout/components/AppLogo";
 import { useIntl } from "react-intl";
 
 const ForgetPasswordJwtAuth = () => {

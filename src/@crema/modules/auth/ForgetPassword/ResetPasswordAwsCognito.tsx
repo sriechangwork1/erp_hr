@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import AppInfoView from "@crema/components/AppInfoView";
 import AuthWrapper from "../AuthWrapper";
-import AppLogo from "@crema/components/AppLogo";
+import AppLogo from "@crema/components/AppLayout/components/AppLogo";
 import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
 
 const ResetPasswordAwsCognito = () => {

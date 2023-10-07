@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
-import data from './data';
+import React, { Component } from "react";
+import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
+import data from "./data";
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -22,7 +22,7 @@ const renderCustomizedLabel = ({
       x={x}
       y={y}
       fill="white"
-      textAnchor={x > cx ? 'start' : 'end'}
+      textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
     >
       {`${(percent * 100).toFixed(0)}%`}
@@ -34,7 +34,7 @@ class PieChartWithCustomizedLabel extends Component {
   render() {
     return (
       <ResponsiveContainer width="100%" height={300}>
-        <PieChart onMouseEnter={this.onPieEnter}>
+        <PieChart>
           <Pie
             dataKey="value"
             data={data}
