@@ -1,21 +1,21 @@
-import React from "react";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import AppsDeleteIcon from "@crema/components/AppsDeleteIcon";
-import IconButton from "@mui/material/IconButton";
-import AppTooltip from "@crema/components/AppTooltip";
-import { StyledBox } from "./index.style";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
+import React from 'react';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import AppsDeleteIcon from '@crema/components/AppsDeleteIcon';
+import IconButton from '@mui/material/IconButton';
+import AppTooltip from '@crema/components/AppTooltip';
+import { StyledBox } from './index.style';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
 import {
   useTodoActionsContext,
   useTodoContext,
-} from "../../../context/TodoContextProvider";
-import { TodoType } from "@crema/types/models/apps/Todo";
-import { APIDataProps } from "@crema/types/models/APIDataProps";
+} from '../../../context/TodoContextProvider';
+import { TodoType } from '@crema/types/models/apps/Todo';
+import { APIDataProps } from '@crema/types/models/APIDataProps';
 
 type Props = {
   checkedTasks: number[];
@@ -42,20 +42,16 @@ const CheckedTasksActions = ({
   };
 
   const onDeleteTasks = () => {
-    putDataApi<APIDataProps<TodoType[]>>(
-      "/api/todo/update/folder",
-      infoViewActionsContext,
-      {
-        taskIds: checkedTasks,
-        type: folder ? "folder" : "label",
-        name: folder || label,
-        page,
-      }
-    )
+    putDataApi<APIDataProps<TodoType[]>>('/todo', infoViewActionsContext, {
+      taskIds: checkedTasks,
+      type: folder ? 'folder' : 'label',
+      name: folder || label,
+      page,
+    })
       .then((data) => {
         setTodoData(data);
         setCheckedTasks([]);
-        infoViewActionsContext.showMessage("Task Deleted Successfully");
+        infoViewActionsContext.showMessage('Task Deleted Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -64,7 +60,7 @@ const CheckedTasksActions = ({
 
   const onSelectLabel = (event: any) => {
     const labelType = event.target.value;
-    putDataApi<TodoType[]>("/api/todo/update/label", infoViewActionsContext, {
+    putDataApi<TodoType[]>('/todo/labels', infoViewActionsContext, {
       taskIds: checkedTasks,
       type: +labelType,
     })
@@ -72,7 +68,7 @@ const CheckedTasksActions = ({
         onUpdateTasks(data);
         setCheckedTasks([]);
         onLabelClose();
-        infoViewActionsContext.showMessage("Task Updated Successfully");
+        infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -81,32 +77,32 @@ const CheckedTasksActions = ({
 
   return (
     <>
-      <StyledBox component="span">
-        <Box component="span">
+      <StyledBox component='span'>
+        <Box component='span'>
           <AppsDeleteIcon
             deleteAction={onDeleteTasks}
-            deleteTitle={<IntlMessages id="todo.deleteMessage" />}
+            deleteTitle={<IntlMessages id='todo.deleteMessage' />}
             sx={{
-              cursor: "pointer",
-              color: "text.disabled",
+              cursor: 'pointer',
+              color: 'text.disabled',
             }}
           />
         </Box>
 
-        <Box component="span">
-          <AppTooltip title={<IntlMessages id="common.label" />}>
+        <Box component='span'>
+          <AppTooltip title={<IntlMessages id='common.label' />}>
             <IconButton
               sx={{
-                color: "text.disabled",
+                color: 'text.disabled',
               }}
-              size="large"
+              size='large'
               onClick={onLabelOpen}
             >
               <LabelOutlinedIcon
                 sx={{
-                  cursor: "pointer",
-                  color: "text.disabled",
-                  display: "block",
+                  cursor: 'pointer',
+                  color: 'text.disabled',
+                  display: 'block',
                 }}
               />
             </IconButton>
@@ -122,7 +118,7 @@ const CheckedTasksActions = ({
           return (
             <MenuItem
               key={label.id}
-              sx={{ p: "8px !important" }}
+              sx={{ p: '8px !important' }}
               value={label.id}
               onClick={onSelectLabel}
             >

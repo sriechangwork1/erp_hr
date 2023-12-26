@@ -1,28 +1,28 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  ActiveVisitors,
-  EarningByCountry,
-  InfoWidget,
-  OrderNTransaction,
-  PageVisits,
-  SalesState,
-  StateCard,
-  TicketsSupport,
-  TopSelling,
-  TrafficSource,
-  VisitorPageView,
-  WelcomeCard,
-} from "@crema/modules/dashboards/Analytics";
-import AppLoader from "@crema/components/AppLoader";
-import type { AnalyticsType } from "@crema/types/models/dashboards/Analytics";
+'use client';
+import React from 'react';
+import { Grid } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import TicketsSupport from './TicketsSupport';
+import InfoWidget from './InfoWidget';
+import PageVisits from './PageVisits';
+import OrderNTransaction from './OrderNTransaction';
+import TrafficSource from './TrafficSource';
+import TopSelling from './TopSelling';
+import EarningByCountry from './EarningByCountry';
+import VisitorPageView from './VisitorPageView';
+import SalesState from './SalesState';
+import StateCard from './StateCards';
+import WelcomeCard from './WelcomeCard';
+import ActiveVisitors from './ActiveVisitors';
+
+import AppLoader from '@crema/components/AppLoader';
+import type { AnalyticsType } from '@crema/types/models/dashboards/Analytics';
 
 const Analytics = () => {
   const [{ apiData: analyticsData, loading }] = useGetDataApi<AnalyticsType>(
-    "/dashboard/analytics"
+    '/dashboard/analytics',
   );
 
   return (
@@ -30,7 +30,7 @@ const Analytics = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppGridContainer>
             <Grid item xs={12} lg={6}>
               <WelcomeCard data={analyticsData.welcomeCard} />
@@ -67,7 +67,7 @@ const Analytics = () => {
 
               <AppGridContainer>
                 {analyticsData.infoWidgets.map((data, index) => (
-                  <Grid item xs={12} md={4} key={"grid-" + index}>
+                  <Grid item xs={12} md={4} key={'grid-' + index}>
                     <InfoWidget data={data} />
                   </Grid>
                 ))}

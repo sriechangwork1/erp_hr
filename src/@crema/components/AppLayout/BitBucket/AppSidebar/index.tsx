@@ -1,22 +1,22 @@
-import React from "react";
-import clsx from "clsx";
-import AppScrollbar from "../../../AppScrollbar";
-import MainSidebar from "../../components/MainSidebar";
-import Box from "@mui/material/Box";
-import Hidden from "@mui/material/Hidden";
-import Drawer from "@mui/material/Drawer";
-import VerticalNav from "../../components/VerticalNav";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import BitBucketSidebarWrapper from "./BitBucketSidebarWrapper";
-import AppSidebarContainer from "./AppSidebarContainer";
-import BucketMinibar from "./BucketMinibar";
-import { Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React from 'react';
+import clsx from 'clsx';
+import AppScrollbar from '../../../AppScrollbar';
+import MainSidebar from '../../components/MainSidebar';
+import Box from '@mui/material/Box';
+import Hidden from '@mui/material/Hidden';
+import Drawer from '@mui/material/Drawer';
+import VerticalNav from '../../components/VerticalNav';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import BitBucketSidebarWrapper from './BitBucketSidebarWrapper';
+import AppSidebarContainer from './AppSidebarContainer';
+import BucketMinibar from './BucketMinibar';
+import { Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type AppSidebarProps = {
-  position?: "left" | "top" | "right" | "bottom";
+  position?: 'left' | 'top' | 'right' | 'bottom';
   variant?: string;
   routesConfig: RouterConfigData[];
   isNavCollapsed: boolean;
@@ -24,21 +24,21 @@ type AppSidebarProps = {
 };
 
 const AppSidebar: React.FC<AppSidebarProps> = ({
-  variant = "",
-  position = "left",
+  variant = '',
+  position = 'left',
   toggleNavCollapsed,
   isNavCollapsed,
   routesConfig,
 }) => {
   const sideBarComponent = () => {
     return (
-      <BitBucketSidebarWrapper className="bit-bucket-sidebar">
-        <Box className="bit-bucket-sidebar-fixed">
-          <Box className="bit-bucket-btn" onClick={() => toggleNavCollapsed()}>
+      <BitBucketSidebarWrapper className='bit-bucket-sidebar'>
+        <Box className='bit-bucket-sidebar-fixed'>
+          <Box className='bit-bucket-btn' onClick={() => toggleNavCollapsed()}>
             {isNavCollapsed ? <NavigateNextIcon /> : <NavigateBeforeIcon />}
           </Box>
           <BucketMinibar />
-          <AppSidebarContainer className="app-sidebar-container">
+          <AppSidebarContainer className='app-sidebar-container'>
             <MainSidebar>
               <Box
                 sx={{
@@ -51,7 +51,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                     fontSize: 22,
                     fontWeight: Fonts.MEDIUM,
                   }}
-                  component="h2"
+                  component='h2'
                 >
                   Crema
                 </Typography>
@@ -59,7 +59,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
               <AppScrollbar
                 sx={{
                   py: 2,
-                  height: "calc(100vh - 70px) !important",
+                  height: 'calc(100vh - 70px) !important',
                 }}
                 scrollToTop={false}
               >
@@ -82,7 +82,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
             root: clsx(variant),
             paper: clsx(variant),
           }}
-          style={{ position: "absolute" }}
+          style={{ position: 'absolute' }}
         >
           {sideBarComponent()}
         </Drawer>

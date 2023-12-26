@@ -1,17 +1,17 @@
-import React from "react";
-import Checkbox from "@mui/material/Checkbox";
-import Box from "@mui/material/Box";
-import { Hidden } from "@mui/material";
-import CheckedMailActions from "./CheckedMailActions";
-import MoreOptions from "./MoreOptions";
-import AppsPagination from "@crema/components/AppsPagination";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { useIntl } from "react-intl";
+import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import { Hidden } from '@mui/material';
+import CheckedMailActions from './CheckedMailActions';
+import MoreOptions from './MoreOptions';
+import AppsPagination from '@crema/components/AppsPagination';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import { useIntl } from 'react-intl';
 import {
   useMailActionsContext,
   useMailContext,
-} from "../../../context/MailContextProvider";
-import { MailType } from "@crema/types/models/apps/Mail";
+} from '../../../context/MailContextProvider';
+import { MailType } from '@crema/types/models/apps/Mail';
 
 type Props = {
   checkedMails: number[];
@@ -22,13 +22,13 @@ type Props = {
   mailList: MailType[];
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number
+    value: number,
   ) => void;
 };
 
 const MailContentHeader = (props: Props) => {
   const {
-    checkedMails,
+    checkedMails = [],
     setCheckedMails,
     mailList,
     totalMails,
@@ -36,13 +36,13 @@ const MailContentHeader = (props: Props) => {
     onSetFilterText,
   } = props;
 
-  const { page } = useMailContext();
+  const { page = 0 } = useMailContext();
   const { onPageChange } = useMailActionsContext();
 
   const { messages } = useIntl();
 
   const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (event.target.checked) {
       const mailIds = mailList.map((mail) => mail.id);
@@ -56,17 +56,17 @@ const MailContentHeader = (props: Props) => {
     <>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          width: { xs: "100%", sm: "auto" },
+          display: 'flex',
+          alignItems: 'center',
+          width: { xs: '100%', sm: 'auto' },
         }}
       >
-        <Box component="span">
+        <Box component='span'>
           <Checkbox
             sx={{
               color: (theme) => theme.palette.text.disabled,
             }}
-            color="primary"
+            color='primary'
             indeterminate={
               checkedMails?.length > 0 &&
               checkedMails?.length < mailList?.length
@@ -79,11 +79,11 @@ const MailContentHeader = (props: Props) => {
         </Box>
         <Box sx={{ mr: 5 }}>
           <AppSearchBar
-            iconPosition="right"
+            iconPosition='right'
             overlap={false}
             value={filterText}
             onChange={(event: any) => onSetFilterText(event.target.value)}
-            placeholder={messages["common.searchHere"] as string}
+            placeholder={messages['common.searchHere'] as string}
           />
         </Box>
         {checkedMails?.length > 0 ? (
@@ -102,9 +102,9 @@ const MailContentHeader = (props: Props) => {
       <Hidden smDown>
         {mailList?.length > 0 ? (
           <Box
-            component="span"
+            component='span'
             sx={{
-              ml: { sm: "auto" },
+              ml: { sm: 'auto' },
             }}
           >
             <AppsPagination
@@ -120,8 +120,3 @@ const MailContentHeader = (props: Props) => {
 };
 
 export default MailContentHeader;
-
-MailContentHeader.defaultProps = {
-  checkedMails: [],
-  page: 0,
-};

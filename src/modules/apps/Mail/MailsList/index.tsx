@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import MailContentHeader from "./MailContentHeader";
-import { Hidden } from "@mui/material";
-import AppsPagination from "@crema/components/AppsPagination";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import AppsFooter from "@crema/components/AppsContainer/AppsFooter";
-import AppList from "@crema/components/AppList";
-import ListEmptyResult from "@crema/components/AppList/ListEmptyResult";
-import EmailListSkeleton from "@crema/components/AppSkeleton/EmailListSkeleton";
-import MailListItem from "./MailListItem";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { MailType } from "@crema/types/models/apps/Mail";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { MailListItemMobile } from "@crema/modules/apps/Mail";
+'use client';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import MailContentHeader from './MailContentHeader';
+import { Hidden } from '@mui/material';
+import AppsPagination from '@crema/components/AppsPagination';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
+import AppList from '@crema/components/AppList';
+import ListEmptyResult from '@crema/components/AppList/ListEmptyResult';
+import EmailListSkeleton from '@crema/components/AppSkeleton/EmailListSkeleton';
+import MailListItem from './MailListItem';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { MailType } from '@crema/types/models/apps/Mail';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import MailListItemMobile from './MailListItemMobile';
 import {
   useMailActionsContext,
   useMailContext,
-} from "../../context/MailContextProvider";
+} from '../../context/MailContextProvider';
 
 const MailsList = () => {
   const router = useRouter();
   const { page, all, folder, label, mailList, loading } = useMailContext();
   const infoViewActionsContext = useInfoViewActionsContext();
   const { onPageChange, setMailData } = useMailActionsContext();
-
   const [checkedMails, setCheckedMails] = useState<number[]>([]);
 
-  const [filterText, onSetFilterText] = useState("");
+  const [filterText, onSetFilterText] = useState('');
 
   const onChangeCheckedMails = (checked: boolean, id: number) => {
     if (checked) {
@@ -44,12 +44,12 @@ const MailsList = () => {
 
   const onViewMailDetail = (mail: MailType) => {
     if (mail.isRead) {
-      if (typeof all !== "string") {
-        router.push(`/apps/mail/${all.join("/")}/${mail.id}`);
+      if (typeof all !== 'string') {
+        router.push(`/apps/mail/${all?.join('/')}/${mail.id}`);
       }
     } else {
       mail.isRead = true;
-      putDataApi<MailType>("/api/mailApp/mail/", infoViewActionsContext, {
+      putDataApi<MailType>('mail/', infoViewActionsContext, {
         mail,
       })
         .then((data) => {
@@ -57,8 +57,8 @@ const MailsList = () => {
           onUpdateItem(data);
           infoViewActionsContext.showMessage(
             mail.isRead
-              ? "Mail Marked as Read Successfully"
-              : "Mail Marked as Unread Successfully"
+              ? 'Mail Marked as Read Successfully'
+              : 'Mail Marked as Unread Successfully',
           );
         })
         .catch((error) => {
@@ -68,20 +68,16 @@ const MailsList = () => {
   };
 
   const onChangeStarred = (checked: boolean, mail: MailType) => {
-    putDataApi<MailType[]>(
-      "/api/mailApp/update/starred",
-      infoViewActionsContext,
-      {
-        mailIds: [mail.id],
-        status: checked,
-      }
-    )
+    putDataApi<MailType[]>('mail/starred', infoViewActionsContext, {
+      mailIds: [mail.id],
+      status: checked,
+    })
       .then((data) => {
         onUpdateItem(data[0]);
         infoViewActionsContext.showMessage(
           checked
-            ? "Mail Marked as Starred Successfully"
-            : "Mail Marked as Unstarred Successfully"
+            ? 'Mail Marked as Starred Successfully'
+            : 'Mail Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -102,13 +98,13 @@ const MailsList = () => {
   };
 
   const onGetFilteredMails = () => {
-    if (filterText === "") {
+    if (filterText === '') {
       return mailList?.data;
     } else {
       return mailList?.data.filter(
         (mail) =>
           mail?.subject?.toLowerCase()?.includes(filterText.toLowerCase()) ||
-          mail?.detail?.toLowerCase()?.includes(filterText.toLowerCase())
+          mail?.detail?.toLowerCase()?.includes(filterText.toLowerCase()),
       );
     }
   };
@@ -116,11 +112,12 @@ const MailsList = () => {
   const onRemoveItem = (data: MailType) => {
     setMailData({
       data: mailList?.data.filter((item) => item.id !== data.id),
-      count: mailList?.count - 1,
+      count: mailList?.data?.length - 1,
     });
   };
-  console.log(mailList?.data);
+
   const list = onGetFilteredMails();
+
   return (
     <>
       <AppsHeader>

@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import { alpha, Box, Hidden } from "@mui/material";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
-import AppsFooter from "@crema/components/AppsContainer/AppsFooter";
-import AppsPagination from "@crema/components/AppsPagination";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  ProductGrid,
-  ProductHeader,
-  ProductList,
-  VIEW_TYPE,
-} from "@crema/modules/ecommerce/Products";
+import React, { useEffect, useState } from 'react';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import { alpha, Box, Hidden } from '@mui/material';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
+import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
+import AppsPagination from '@crema/components/AppsPagination';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import ProductHeader from '../ProductHeader';
+import ProductGrid from './ProductGrid';
+import ProductList from './ProductList';
+import { VIEW_TYPE } from '../index';
+
 import {
   FilterDataType,
   ProductDataType,
-} from "@crema/types/models/ecommerce/EcommerceApp";
+} from '@crema/types/models/ecommerce/EcommerceApp';
 
 type EcomType = {
-  list: ProductDataType[];
-  total: number;
+  data: ProductDataType[];
+  count: number;
 };
 
 type Props = {
@@ -39,12 +38,20 @@ const ProductListing = ({
   const [page, setPage] = useState(0);
 
   const [{ apiData: ecommerceList, loading }, { setQueryParams }] =
-    useGetDataApi<EcomType>("/api/ecommerce/list", {} as EcomType, {}, false);
+    useGetDataApi<EcomType>('ecommerce/products', {} as EcomType, {}, false);
 
-  const { list, total } = ecommerceList;
+  const { data: list, count: total } = ecommerceList;
 
   useEffect(() => {
-    setQueryParams({ page, filterData });
+    setQueryParams({
+      page,
+      ...filterData,
+      brand: filterData?.brand?.toString() || '',
+      ideaFor: filterData?.ideaFor?.toString() || '',
+      rating: filterData?.rating?.toString() || '',
+      color: filterData?.color?.toString() || '',
+      discount: filterData?.discount?.toString() || '',
+    });
   }, [page, filterData]);
 
   const onPageChange = (event: any, value: number) => {
@@ -58,7 +65,7 @@ const ProductListing = ({
     <>
       <AppsHeader>
         <ProductHeader
-          list={ecommerceList?.list}
+          list={ecommerceList?.data}
           viewType={viewType}
           page={page}
           totalProducts={total}
@@ -75,25 +82,25 @@ const ProductListing = ({
       >
         <Box
           sx={{
-            width: "100%",
+            width: '100%',
             flex: 1,
-            display: "flex",
+            display: 'flex',
             py: 2,
             px: 4,
             height: 1,
-            "& > div": {
-              width: "100%",
+            '& > div': {
+              width: '100%',
             },
           }}
         >
           {viewType === VIEW_TYPE.GRID ? (
             <ProductGrid
-              ecommerceList={ecommerceList?.list}
+              ecommerceList={ecommerceList?.data}
               loading={loading}
             />
           ) : (
             <ProductList
-              ecommerceList={ecommerceList?.list}
+              ecommerceList={ecommerceList?.data}
               loading={loading}
             />
           )}

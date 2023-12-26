@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Layouts } from "@crema/components/AppLayout";
+import React, { useEffect } from 'react';
+import { Layouts } from '@crema/components/AppLayout';
 import {
   useLayoutActionsContext,
   useLayoutContext,
-} from "@crema/context/AppContextProvider/LayoutContextProvider";
-import routesConfig from "../../AppRoutes/routeConfig";
-import { useSidebarActionsContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
-import { useRouter } from "next/router";
+} from '@crema/context/AppContextProvider/LayoutContextProvider';
+import routesConfig from '../../AppRoutes/routeConfig';
+import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
+import { useRouter } from 'next/navigation';
 
 // eslint-disable-next-line react/display-name
 const withLayout = (ComposedComponent) => (props) => {

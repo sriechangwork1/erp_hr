@@ -1,17 +1,18 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import { useRouter } from "next/router";
+} from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import { useParams } from 'next/navigation';
 import type {
   ContactType,
   FolderType,
   LabelType,
-} from "@crema/types/models/apps/Contact";
+} from '@crema/types/models/apps/Contact';
 
 export type ContactContextType = {
   labelList: LabelType[];
@@ -26,7 +27,7 @@ export type ContactActionContextType = {
   setContactData: (data: ContactType) => void;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number
+    data: number,
   ) => void;
   reCallAPI: () => void;
   setPageView: (data: string) => void;
@@ -39,7 +40,7 @@ const ContextState: ContactContextType = {
   contactList: {} as ContactType,
   loading: false,
   page: 0,
-  pageView: "list",
+  pageView: 'list',
 };
 
 const ContactContext = createContext<ContactContextType>(ContextState);
@@ -47,7 +48,7 @@ const ContactActionsContext = createContext<ContactActionContextType>({
   setContactData: (data: ContactType) => {},
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number
+    data: number,
   ) => {},
   reCallAPI: () => {},
   setPageView: (data: string) => {},
@@ -63,31 +64,26 @@ type Props = {
 };
 
 export const ContactContextProvider = ({ children }: Props) => {
-  const router = useRouter();
-  const { all } = router.query;
+  const params = useParams();
+  const { all } = params;
   const [{ apiData: labelList }] = useGetDataApi<LabelType[]>(
-    "/api/contactApp/labels/list",
-    []
+    '/contact/labels',
+    [],
   );
 
   const [{ apiData: folderList }] = useGetDataApi<FolderType[]>(
-    "/api/contactApp/folders/list",
-    []
+    '/contact/folders',
+    [],
   );
 
-  const [pageView, setPageView] = useState("list");
+  const [pageView, setPageView] = useState('list');
 
   const [page, setPage] = useState(0);
 
   const [
     { apiData: contactList, loading },
     { setQueryParams, setData: setContactData, reCallAPI },
-  ] = useGetDataApi<ContactType>(
-    "/api/contactApp/contact/List",
-    {} as ContactType,
-    {},
-    false
-  );
+  ] = useGetDataApi<ContactType>('/contact', {} as ContactType, {}, false);
 
   useEffect(() => {
     setPage(0);
@@ -103,7 +99,7 @@ export const ContactContextProvider = ({ children }: Props) => {
 
   const onPageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number
+    value: number,
   ) => {
     setPage(value);
   };

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import AppSidebar from "./AppSidebar";
-import AppContentView from "../../AppContentView";
-import AppThemeSetting from "../../AppThemeSetting";
-import AppHeader from "./AppHeader";
-import clsx from "clsx";
-import Box from "@mui/material/Box";
-import UserMiniHeaderWrapper from "./UserMiniHeaderWrapper";
-import AppFixedFooter from "./AppFixedFooter";
-import { useLayoutContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import { LayoutType } from "@crema/constants/AppEnums";
-import UserMiniHeaderContainer from "./UserMiniHeaderContainer";
-import { useRouter } from "next/router";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React, { useEffect, useState } from 'react';
+import AppSidebar from './AppSidebar';
+import AppContentView from '../../AppContentView';
+import AppThemeSetting from '../../AppThemeSetting';
+import AppHeader from './AppHeader';
+import clsx from 'clsx';
+import Box from '@mui/material/Box';
+import UserMiniHeaderWrapper from './UserMiniHeaderWrapper';
+import AppFixedFooter from './AppFixedFooter';
+import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import { LayoutType } from '@crema/constants/AppEnums';
+import UserMiniHeaderContainer from './UserMiniHeaderContainer';
+import { useRouter } from 'next/navigation';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
   children: React.ReactNode;
@@ -36,13 +36,13 @@ const UserMiniHeader = ({ children, routesConfig }: Props) => {
       })}
     >
       <UserMiniHeaderWrapper
-        className={clsx("mini-sidebar-collapsed", {
-          appMainFooter: footer && footerType === "fluid",
-          appMainFixedFooter: footer && footerType === "fixed",
+        className={clsx('mini-sidebar-collapsed', {
+          appMainFooter: footer && footerType === 'fluid',
+          appMainFixedFooter: footer && footerType === 'fixed',
         })}
       >
         <AppHeader toggleNavCollapsed={toggleNavCollapsed} />
-        <Box className="mainContent">
+        <Box className='mainContent'>
           <AppSidebar
             routesConfig={routesConfig}
             isNavCollapsed={isNavCollapsed}

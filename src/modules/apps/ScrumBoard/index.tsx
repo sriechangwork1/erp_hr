@@ -1,12 +1,14 @@
+'use client';
 import React from 'react';
 import BoardDetail from './BoardDetail';
 import BoardList from './BoardList';
-import { useRouter } from 'next/router';
+import { useParams, useRouter } from 'next/navigation';
 import ScrumContextProvider from '../context/ScrumContextProvider';
 
 const ScrumBoard = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const params = useParams();
+  const { id } = params;
 
   const onGetMainComponent = () => {
     if (id) {

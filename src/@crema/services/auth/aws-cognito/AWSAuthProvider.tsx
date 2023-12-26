@@ -1,3 +1,4 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -5,12 +6,12 @@ import React, {
   useEffect,
   useMemo,
   useState,
-} from "react";
-import Auth from "@aws-amplify/auth";
-import { useRouter } from "next/router";
-import { awsConfig } from "./aws-exports";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { AuthUserType } from "@crema/types/models/AuthUser";
+} from 'react';
+import Auth from '@aws-amplify/auth';
+import { useRouter } from 'next/navigation';
+import { awsConfig } from './aws-exports';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { AuthUserType } from '@crema/types/models/AuthUser';
 
 interface AwsCognitoContextProps {
   user: AuthUserType | null | undefined;
@@ -80,14 +81,14 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
           user,
           isAuthenticated: true,
           isLoading: false,
-        })
+        }),
       )
       .catch(() =>
         setAwsCognitoData({
           user: undefined,
           isAuthenticated: false,
           isLoading: false,
-        })
+        }),
       );
   }, [auth]);
 
@@ -95,7 +96,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
     infoViewActionsContext.fetchStart();
     try {
       const user = await Auth.signIn(email, password);
-      console.log("user: ", user);
+
       infoViewActionsContext.fetchSuccess();
       setAwsCognitoData({
         user,
@@ -122,10 +123,10 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
         },
       });
       infoViewActionsContext.fetchSuccess();
-      router.push("/confirm-signup", { email: email } as any);
+      router.push('/confirm-signup', { email: email } as any);
 
       infoViewActionsContext.showMessage(
-        "A code has been sent to your registered email address, Enter the code to complete the signup process!"
+        'A code has been sent to your registered email address, Enter the code to complete the signup process!',
       );
     } catch (data: any) {
       setAwsCognitoData({
@@ -142,9 +143,9 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       await Auth.confirmSignUp(username, code, {
         forceAliasCreation: false,
       });
-      router.push("/signin");
+      router.push('/signin');
       infoViewActionsContext.showMessage(
-        "Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!"
+        'Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!',
       );
     } catch (data: any) {
       setAwsCognitoData({
@@ -161,9 +162,9 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       await Auth.confirmSignUp(username, code, {
         forceAliasCreation: false,
       });
-      router.push("/signin");
+      router.push('/signin');
       infoViewActionsContext.showMessage(
-        "Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!"
+        'Congratulations, Signup process is complete, You can now Sign in by entering correct credentials!',
       );
     } catch (data: any) {
       setAwsCognitoData({

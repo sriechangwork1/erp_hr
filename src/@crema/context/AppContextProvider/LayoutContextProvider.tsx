@@ -1,3 +1,4 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -52,7 +53,7 @@ const LayoutContextProvider: React.FC<LayoutContextProviderProps> = ({
   children,
 }) => {
   const [layoutType, updateLayoutType] = useState<string>(
-    defaultConfig.layoutType
+    defaultConfig.layoutType,
   );
   const [navStyle, setNavStyle] = useState<string>(defaultConfig.navStyle);
 
@@ -61,11 +62,11 @@ const LayoutContextProvider: React.FC<LayoutContextProviderProps> = ({
   }, []);
 
   const [footerType, setFooterType] = useState<string>(
-    defaultConfig.footerType
+    defaultConfig.footerType,
   );
   const [footer, setFooter] = useState<boolean>(defaultConfig.footer);
   const [headerType, setHeaderType] = useState<string>(
-    defaultConfig.headerType
+    defaultConfig.headerType,
   );
 
   return (

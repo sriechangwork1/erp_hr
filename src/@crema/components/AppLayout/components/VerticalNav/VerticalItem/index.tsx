@@ -1,15 +1,15 @@
-import React, { useEffect, useMemo } from "react";
-import { Icon, ListItemText } from "@mui/material";
-import clsx from "clsx";
-import AppBadge from "../../../../AppBadge";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { checkPermission } from "@crema/helpers/RouteHelper";
-import { useAuthUser } from "@crema/hooks/AuthHooks";
-import VerticalNavItem from "./VerticalNavItem";
-import { RouterConfigData } from "@crema/types/models/Apps";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useEffect, useMemo } from 'react';
+import { Icon, ListItemText } from '@mui/material';
+import clsx from 'clsx';
+import AppBadge from '../../../../AppBadge';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { checkPermission } from '@crema/helpers/RouteHelper';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import VerticalNavItem from './VerticalNavItem';
+import { RouterConfigData } from '@crema/types/models/Apps';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type VerticalItemProps = {
   item: RouterConfigData;
@@ -21,7 +21,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
   const { pathname, asPath } = useRouter();
   const hasPermission = useMemo(
     () => checkPermission(item.permittedRole, user?.role),
-    [item.permittedRole, user?.role]
+    [item.permittedRole, user?.role],
   );
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
         if (document.getElementById(pathname)) {
           (document as any)
             .getElementById(pathname)
-            .scrollIntoView({ behavior: "smooth", block: "center" });
+            .scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 1);
     }
@@ -47,7 +47,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
   return (
     <Link
       href={item.url as string}
-      style={{ textDecoration: "none" }}
+      style={{ textDecoration: 'none' }}
       id={item.url}
       className={clsx({
         active: item.url === asPath,
@@ -55,27 +55,27 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
     >
       <VerticalNavItem item={item} level={level} exact={item.exact}>
         {item.icon && (
-          <Box component="span">
+          <Box component='span'>
             <Icon
               sx={{
                 fontSize: 18,
-                display: "block",
+                display: 'block',
                 mr: 4,
               }}
-              className={clsx("nav-item-icon", "material-icons-outlined")}
-              color="action"
+              className={clsx('nav-item-icon', 'material-icons-outlined')}
+              color='action'
             >
               {item.icon}
             </Icon>
           </Box>
         )}
         <ListItemText
-          className="nav-item-content"
+          className='nav-item-content'
           primary={<IntlMessages id={item.messageId} />}
-          classes={{ primary: "nav-item-text" }}
+          classes={{ primary: 'nav-item-text' }}
         />
         {item.count && (
-          <Box sx={{ mr: 3.5 }} className="menu-badge">
+          <Box sx={{ mr: 3.5 }} className='menu-badge'>
             <AppBadge count={item.count} color={item.color} />
           </Box>
         )}

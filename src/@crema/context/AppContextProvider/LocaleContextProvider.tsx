@@ -1,17 +1,18 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
-import defaultConfig from "@crema/constants/defaultConfig";
+} from 'react';
+import defaultConfig from '@crema/constants/defaultConfig';
 import {
   useThemeActionsContext,
   useThemeContext,
-} from "./ThemeContextProvider";
-import { LayoutDirection } from "@crema/constants/AppEnums";
-import { LanguageProps } from "@crema/types/models/Apps";
+} from './ThemeContextProvider';
+import { LayoutDirection } from '@crema/constants/AppEnums';
+import { LanguageProps } from '@crema/types/models/Apps';
 
 export interface LocaleContextData {
   locale: LanguageProps;

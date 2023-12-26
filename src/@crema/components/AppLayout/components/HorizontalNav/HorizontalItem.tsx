@@ -1,13 +1,13 @@
-import React from "react";
-import { Icon, ListItem, ListItemText } from "@mui/material";
-import { useRouter } from "next/router";
-import clsx from "clsx";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import Badge from "@mui/material/Badge";
-import { RouterConfigData } from "@crema/types/models/Apps";
-import { useSidebarContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
-import Link from "next/link";
+import React from 'react';
+import { Icon, ListItem, ListItemText } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
+import { RouterConfigData } from '@crema/types/models/Apps';
+import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
+import Link from 'next/link';
 
 type HorizontalItemProps = {
   item: RouterConfigData;
@@ -47,36 +47,36 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
   }
 
   return (
-    <Link href={item.url as string} style={{ textDecoration: "none" }}>
+    <Link href={item.url as string} style={{ textDecoration: 'none' }}>
       <ListItem
-        className={clsx("navItemSubmenu", dense && "dense", {
+        className={clsx('navItemSubmenu', dense && 'dense', {
           active: item.url === router.pathname,
         })}
         sx={{
           minHeight: 40,
-          padding: "4px 12px",
+          padding: '4px 12px',
           color: (theme) => theme.palette.text.primary,
-          textDecoration: "none!important",
+          textDecoration: 'none!important',
           minWidth: 160,
-          "&.active": {
+          '&.active': {
             backgroundColor: sidebarMenuSelectedBgColor,
-            color: sidebarMenuSelectedTextColor + "!important",
-            pointerEvents: "none",
-            "& .list-item-text-primary": {
-              color: "inherit",
+            color: sidebarMenuSelectedTextColor + '!important',
+            pointerEvents: 'none',
+            '& .list-item-text-primary': {
+              color: 'inherit',
             },
-            "& .list-item-icon": {
-              color: "inherit",
+            '& .list-item-icon': {
+              color: 'inherit',
             },
           },
-          "& .list-item-text": {
-            padding: "0 0 0 16px",
+          '& .list-item-text': {
+            padding: '0 0 0 16px',
           },
-          "&.dense": {
-            padding: "4px 12px",
+          '&.dense': {
+            padding: '4px 12px',
             minHeight: 40,
-            "& .list-item-text": {
-              padding: "0 0 0 8px",
+            '& .list-item-text': {
+              padding: '0 0 0 8px',
             },
           },
         }}
@@ -84,7 +84,7 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
         {item.icon && (
           <Icon
             sx={{
-              color: active ? sidebarMenuSelectedTextColor : "action",
+              color: active ? sidebarMenuSelectedTextColor : 'action',
               mr: 3,
               fontSize: { xs: 16, xl: 18 },
             }}
@@ -93,7 +93,7 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
           </Icon>
         )}
         <ListItemText
-          className="AppNavLinkTextSubmenu"
+          className='AppNavLinkTextSubmenu'
           primary={<IntlMessages id={item.messageId} />}
         />
         {item.count && (

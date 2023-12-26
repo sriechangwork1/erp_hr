@@ -1,22 +1,22 @@
-import React from "react";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import MarkunreadOutlinedIcon from "@mui/icons-material/MarkunreadOutlined";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { Box } from "@mui/material";
-import { useRouter } from "next/router";
-import AppTooltip from "@crema/components/AppTooltip";
-import IconButton from "@mui/material/IconButton";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { MailType } from "@crema/types/models/apps/Mail";
-import { useMailContext } from "../../../context/MailContextProvider";
+import React from 'react';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MarkunreadOutlinedIcon from '@mui/icons-material/MarkunreadOutlined';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { Box } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import AppTooltip from '@crema/components/AppTooltip';
+import IconButton from '@mui/material/IconButton';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { MailType } from '@crema/types/models/apps/Mail';
+import { useMailContext } from '../../../context/MailContextProvider';
 
 type Props = {
   selectedMail: MailType;
@@ -57,11 +57,11 @@ const MailDetailHeader = (props: Props) => {
   const onSelectLabel = (event: any) => {
     const mail = selectedMail;
     mail.label = event.target.value;
-    putDataApi("/api/mailApp/mail/", infoViewActionsContext, { mail })
+    putDataApi('/mail/detail', infoViewActionsContext, { mail })
       .then(() => {
         onUpdateSelectedMail(mail);
         onOpenLabel(null);
-        infoViewActionsContext.showMessage("Mail Updated Successfully");
+        infoViewActionsContext.showMessage('Mail Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -71,7 +71,7 @@ const MailDetailHeader = (props: Props) => {
   const onChangeMailFolder = (type: number) => {
     const mail = selectedMail;
     mail.folderValue = type;
-    putDataApi("/api/mailApp/update/folder", infoViewActionsContext, {
+    putDataApi('mail/folders', infoViewActionsContext, {
       mailIds: [selectedMail.id],
       type,
     })
@@ -79,7 +79,7 @@ const MailDetailHeader = (props: Props) => {
         selectedMail.folderValue = type;
         router.back();
         onUpdateSelectedMail(selectedMail);
-        infoViewActionsContext.showMessage("Mail Updated Successfully");
+        infoViewActionsContext.showMessage('Mail Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -89,14 +89,14 @@ const MailDetailHeader = (props: Props) => {
   const onChangeReadStatus = () => {
     const mail = selectedMail;
     mail.isRead = false;
-    putDataApi<MailType>("/api/mailApp/mail/", infoViewActionsContext, { mail })
+    putDataApi<MailType>('/mail/detail', infoViewActionsContext, { mail })
       .then((data) => {
         onUpdateSelectedMail(data);
         router.back();
         infoViewActionsContext.showMessage(
           mail.isRead
-            ? "Mail Marked as Read Successfully"
-            : "Mail Marked as Unread Successfully"
+            ? 'Mail Marked as Read Successfully'
+            : 'Mail Marked as Unread Successfully',
         );
       })
       .catch((error) => {
@@ -107,7 +107,7 @@ const MailDetailHeader = (props: Props) => {
   const onChangeStarredStatus = () => {
     const mail = selectedMail;
     mail.isStarred = !mail.isStarred;
-    putDataApi("/api/mailApp/update/starred", infoViewActionsContext, {
+    putDataApi('/mail/detail', infoViewActionsContext, {
       mailIds: [mail.id],
       status: mail.isStarred,
     })
@@ -115,8 +115,8 @@ const MailDetailHeader = (props: Props) => {
         onUpdateSelectedMail(mail);
         infoViewActionsContext.showMessage(
           mail.isStarred
-            ? "Mail Marked as Starred Successfully"
-            : "Mail Marked as Unstarred Successfully"
+            ? 'Mail Marked as Starred Successfully'
+            : 'Mail Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -128,7 +128,7 @@ const MailDetailHeader = (props: Props) => {
   if (!selectedMail) return null;
   return (
     <>
-      <AppTooltip title={<IntlMessages id="common.back" />}>
+      <AppTooltip title={<IntlMessages id='common.back' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
@@ -140,11 +140,11 @@ const MailDetailHeader = (props: Props) => {
       </AppTooltip>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
-        <AppTooltip title={<IntlMessages id="common.archive" />}>
+        <AppTooltip title={<IntlMessages id='common.archive' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -155,7 +155,7 @@ const MailDetailHeader = (props: Props) => {
           </IconButton>
         </AppTooltip>
 
-        <AppTooltip title={<IntlMessages id="common.reportSpam" />}>
+        <AppTooltip title={<IntlMessages id='common.reportSpam' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -166,7 +166,7 @@ const MailDetailHeader = (props: Props) => {
           </IconButton>
         </AppTooltip>
 
-        <AppTooltip title={<IntlMessages id="common.trash" />}>
+        <AppTooltip title={<IntlMessages id='common.trash' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -177,7 +177,7 @@ const MailDetailHeader = (props: Props) => {
           </IconButton>
         </AppTooltip>
 
-        <AppTooltip title={<IntlMessages id="mailApp.markAsUnread" />}>
+        <AppTooltip title={<IntlMessages id='mailApp.markAsUnread' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -188,7 +188,7 @@ const MailDetailHeader = (props: Props) => {
           </IconButton>
         </AppTooltip>
 
-        <AppTooltip title={<IntlMessages id="common.label" />}>
+        <AppTooltip title={<IntlMessages id='common.label' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -217,12 +217,12 @@ const MailDetailHeader = (props: Props) => {
 
       <Box
         sx={{
-          ml: "auto",
-          display: "flex",
-          alignItems: "center",
+          ml: 'auto',
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
-        <AppTooltip title={<IntlMessages id="common.more" />}>
+        <AppTooltip title={<IntlMessages id='common.more' />}>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
@@ -239,13 +239,13 @@ const MailDetailHeader = (props: Props) => {
           onClose={onViewMoreClose}
         >
           <MenuItem onClick={onChangeReadStatus}>
-            <IntlMessages id="mailApp.markAsUnread" />
+            <IntlMessages id='mailApp.markAsUnread' />
           </MenuItem>
           <MenuItem onClick={onChangeStarredStatus}>
             {selectedMail.isStarred ? (
-              <IntlMessages id="mailApp.markAsNotImportant" />
+              <IntlMessages id='mailApp.markAsNotImportant' />
             ) : (
-              <IntlMessages id="mailApp.markAsImportant" />
+              <IntlMessages id='mailApp.markAsImportant' />
             )}
           </MenuItem>
         </Menu>

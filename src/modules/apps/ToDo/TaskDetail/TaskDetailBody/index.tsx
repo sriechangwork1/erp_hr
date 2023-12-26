@@ -1,32 +1,30 @@
-import React, { useState } from "react";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
-import { alpha, SelectChangeEvent } from "@mui/material";
-import Box from "@mui/material/Box";
-import { useIntl } from "react-intl";
-import ChangeStaff from "./ChangeStaff";
-import TaskStatus from "./TaskStatus";
-import TaskPriority from "./TaskPriority";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { useAuthUser } from "@crema/hooks/AuthHooks";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import { Fonts } from "@crema/constants/AppEnums";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import {
-  AssignedStaff,
-  CommentsLists,
-  EditButton,
-  TaskCreatedByInfo,
-  TaskLabels,
-  TodoDatePicker,
-} from "@crema/modules/apps/ToDo";
-import { useTodoContext } from "../../../context/TodoContextProvider";
-import { TodoType } from "@crema/types/models/apps/Todo";
-import { getDateObject, getFormattedDate } from "@crema/helpers/DateHelper";
+import React, { useState } from 'react';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import { alpha, SelectChangeEvent } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useIntl } from 'react-intl';
+import ChangeStaff from './ChangeStaff';
+import TaskStatus from './TaskStatus';
+import TaskPriority from './TaskPriority';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import { Fonts } from '@crema/constants/AppEnums';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import AssignedStaff from './AssignedStaff';
+import CommentsLists from './CommentsList';
+import EditButton from './EditButton';
+import TaskCreatedByInfo from './TaskCreatedByInfo';
+import TodoDatePicker from './DatePicker';
+import TaskLabels from '../../TasksList/TaskListItem/Labels';
+import { useTodoContext } from '../../../context/TodoContextProvider';
+import { TodoType } from '@crema/types/models/apps/Todo';
+import { getDateObject, getFormattedDate } from '@crema/helpers/DateHelper';
 
 type Props = {
   selectedTask: TodoType;
@@ -44,10 +42,10 @@ const TaskDetailBody = (props: Props) => {
 
   const [content, setContent] = useState(selectedTask.content);
 
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   const [scheduleDate, setScheduleDate] = useState(
-    getDateObject(selectedTask.startDate)
+    getDateObject(selectedTask.startDate),
   );
 
   const [selectedStaff, setStaff] = useState(selectedTask.assignedTo);
@@ -61,13 +59,13 @@ const TaskDetailBody = (props: Props) => {
     task.content = content;
     task.startDate = getFormattedDate(scheduleDate);
     task.assignedTo = selectedStaff;
-    putDataApi<TodoType>("/api/todoApp/task/", infoViewActionsContext, {
+    putDataApi<TodoType>('todo/task', infoViewActionsContext, {
       task,
     })
       .then((data) => {
         onUpdateSelectedTask(data);
         setEdit(!isEdit);
-        infoViewActionsContext.showMessage("Task Updated Successfully");
+        infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -78,21 +76,21 @@ const TaskDetailBody = (props: Props) => {
     const task = selectedTask;
     task.comments = task.comments.concat({
       comment: comment,
-      name: user.displayName ? user.displayName : "User",
+      name: user.displayName ? user.displayName : 'User',
       image: user.photoURL,
-      date: getDateObject().format("ll"),
+      date: getDateObject().format('ll'),
     });
-    putDataApi<TodoType>("/api/todoApp/task/", infoViewActionsContext, {
+    putDataApi<TodoType>('todo/task', infoViewActionsContext, {
       task,
     })
       .then((data) => {
         onUpdateSelectedTask(data);
-        infoViewActionsContext.showMessage("Task Updated Successfully");
+        infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
       });
-    setComment("");
+    setComment('');
   };
 
   const handleStaffChange = (event: SelectChangeEvent<number>) => {
@@ -105,28 +103,28 @@ const TaskDetailBody = (props: Props) => {
   return (
     <Box
       sx={{
-        padding: "12px 20px",
-        display: "flex",
-        flexDirection: "column",
+        padding: '12px 20px',
+        display: 'flex',
+        flexDirection: 'column',
         flex: 1,
       }}
     >
       <Box
         sx={{
           mb: 5,
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: { sm: "center" },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { sm: 'center' },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
-            component="h2"
-            variant="h2"
+            component='h2'
+            variant='h2'
             sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
               marginRight: 3.5,
               fontSize: 16,
               fontWeight: Fonts.MEDIUM,
@@ -138,7 +136,7 @@ const TaskDetailBody = (props: Props) => {
 
           <Box mr={1} mb={{ xs: 3, sm: 0 }}>
             <Box
-              component="span"
+              component='span'
               sx={{
                 px: 3,
                 py: 1,
@@ -148,7 +146,7 @@ const TaskDetailBody = (props: Props) => {
                   alpha(selectedTask?.priority?.color, 0.1),
                 fontSize: 14,
                 borderRadius: 30,
-                display: "inline-block",
+                display: 'inline-block',
               }}
             >
               {selectedTask?.priority?.name}
@@ -156,20 +154,20 @@ const TaskDetailBody = (props: Props) => {
           </Box>
         </Box>
 
-        <Box display="flex" alignItems="center" ml={{ sm: "auto" }}>
+        <Box display='flex' alignItems='center' ml={{ sm: 'auto' }}>
           <TaskLabels labels={selectedTask.label} />
-          <Box component="span" color="text.secondary" fontSize={14} ml={2}>
+          <Box component='span' color='text.secondary' fontSize={14} ml={2}>
             Nov 21, 2020, 9:46 AM
           </Box>
         </Box>
       </Box>
 
-      <Box mb={0.5} display="flex">
+      <Box mb={0.5} display='flex'>
         <Box
-          display="flex"
-          flexDirection={{ xs: "column", sm: "row" }}
+          display='flex'
+          flexDirection={{ xs: 'column', sm: 'row' }}
           mr={2}
-          alignItems={{ sm: "center" }}
+          alignItems={{ sm: 'center' }}
         >
           {isEdit ? (
             <>
@@ -186,14 +184,14 @@ const TaskDetailBody = (props: Props) => {
           )}
         </Box>
 
-        <Box ml="auto">
+        <Box ml='auto'>
           {!isEdit ? (
             <EditButton
               action={onClickEditButton}
               title={
                 <EditOutlinedIcon
                   sx={{
-                    position: "relative",
+                    position: 'relative',
                   }}
                 />
               }
@@ -204,7 +202,7 @@ const TaskDetailBody = (props: Props) => {
               title={
                 <CheckCircleOutlineIcon
                   sx={{
-                    position: "relative",
+                    position: 'relative',
                   }}
                 />
               }
@@ -221,20 +219,20 @@ const TaskDetailBody = (props: Props) => {
       />
 
       {!isEdit ? (
-        <Typography sx={{ color: "text.secondary" }}>{content}</Typography>
+        <Typography sx={{ color: 'text.secondary' }}>{content}</Typography>
       ) : (
         <TextField
           multiline
           sx={{
-            width: "100%",
-            "& .MuiOutlinedInput-root": {
-              padding: "10px 15px",
+            width: '100%',
+            '& .MuiOutlinedInput-root': {
+              padding: '10px 15px',
             },
           }}
-          rows="6"
-          variant="outlined"
-          placeholder={messages["common.description"] as string}
-          name="content"
+          rows='6'
+          variant='outlined'
+          placeholder={messages['common.description'] as string}
+          name='content'
           value={content}
           onChange={(event) => setContent(event.target.value)}
         />
@@ -242,15 +240,15 @@ const TaskDetailBody = (props: Props) => {
 
       <Box
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          alignItems: { sm: "center" },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { sm: 'center' },
           mb: 1,
           pt: 5,
         }}
       >
         <Box
-          sx={{ display: "flex", alignItems: "center", mb: { xs: 3, sm: 0 } }}
+          sx={{ display: 'flex', alignItems: 'center', mb: { xs: 3, sm: 0 } }}
         >
           <Box mr={5}>
             <TaskStatus
@@ -284,41 +282,41 @@ const TaskDetailBody = (props: Props) => {
 
       <Box
         sx={{
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          marginTop: "auto",
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          marginTop: 'auto',
         }}
       >
         <TextField
           multiline
           sx={{
-            width: "100%",
-            "& .MuiOutlinedInput-root": {
-              padding: "10px 15px",
+            width: '100%',
+            '& .MuiOutlinedInput-root': {
+              padding: '10px 15px',
             },
           }}
           minRows={2}
           maxRows={4}
-          variant="outlined"
-          placeholder={messages["common.writeComment"] as string}
+          variant='outlined'
+          placeholder={messages['common.writeComment'] as string}
           value={comment}
           onChange={(event) => setComment(event.target.value)}
         />
         <Button
           sx={{
-            position: "relative",
+            position: 'relative',
             width: 41,
             height: 41,
             minWidth: 41,
             padding: 2,
             marginLeft: 3,
-            "& svg": {
+            '& svg': {
               marginLeft: 0.75,
             },
           }}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           disabled={!comment}
           onClick={onAddComments}
         >

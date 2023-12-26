@@ -1,10 +1,11 @@
-import React, { ReactNode, createContext, useContext } from "react";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
+'use client';
+import React, { ReactNode, createContext, useContext } from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
 import type {
   BoardType,
   LabelType,
   MemberType,
-} from "@crema/types/models/apps/ScrumbBoard";
+} from '@crema/types/models/apps/ScrumbBoard';
 
 export type ScrumContextType = {
   boardList: BoardType[];
@@ -37,17 +38,17 @@ type Props = {
 
 export const ScrumContextProvider = ({ children }: Props) => {
   const [{ apiData: boardList }, { setData }] = useGetDataApi<BoardType[]>(
-    "/api/scrumboard/board/list",
-    []
+    '/scrumboard/detail',
+    [],
   );
 
   const [{ apiData: labelList }] = useGetDataApi<LabelType[]>(
-    "/api/scrumboard/label/list",
-    []
+    '/scrumboard/labels',
+    [],
   );
   const [{ apiData: memberList }] = useGetDataApi<MemberType[]>(
-    "/api/scrumboard/member/list",
-    []
+    '/scrumboard/memberList',
+    [],
   );
 
   return (

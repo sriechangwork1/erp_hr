@@ -1,53 +1,60 @@
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import { Box, Grid, Hidden } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useIntl } from "react-intl";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import AppsPagination from "@crema/components/AppsPagination";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { FilterItem, ListingTable } from "@crema/modules/ecommerce/Admin";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import Slide from "@mui/material/Slide";
+'use client';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import { Box, Grid, Hidden } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppsPagination from '@crema/components/AppsPagination';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import FilterItem from '../FilterItem';
+import ListingTable from '../ListingTable';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import Slide from '@mui/material/Slide';
 import {
   FilterType,
   ProductDataType,
-} from "@crema/types/models/ecommerce/EcommerceApp";
+} from '@crema/types/models/ecommerce/EcommerceApp';
 
 const ProductListing = () => {
   const { messages } = useIntl();
-  const [filterData, setFilterData] = useState<FilterType>({
-    title: "",
+  const [filterData, setFilterData] = useState<any>({
+    title: '',
     inStock: [],
     mrp: { start: 0, end: 30000 },
   });
-
   const [page, setPage] = useState(0);
   const [{ apiData, loading }, { setQueryParams }] = useGetDataApi<{
     list: ProductDataType[];
     total: number;
   }>(
-    "/api/ecommerce/list",
+    'ecommerce/admin/list',
     {
       list: [],
       total: 0,
     },
     {},
-    false
+    false,
   );
-
   const { list, total } = apiData;
-
   const onPageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number
+    value: number,
   ) => {
     setPage(value);
   };
+
   useEffect(() => {
-    setQueryParams({ filterData, page });
+    setQueryParams({
+      ...filterData,
+      page,
+      brand: filterData?.brand?.toString() || '',
+      ideaFor: filterData?.ideaFor?.toString() || '',
+      rating: filterData?.rating?.toString() || '',
+      color: filterData?.color?.toString() || '',
+    });
   }, [filterData, page]);
 
   const searchProduct = (title: string) => {
@@ -57,10 +64,10 @@ const ProductListing = () => {
   return (
     <>
       <Box
-        component="h2"
+        component='h2'
         sx={{
           fontSize: 16,
-          color: "text.primary",
+          color: 'text.primary',
           fontWeight: Fonts.SEMI_BOLD,
           mb: {
             xs: 2,
@@ -68,34 +75,34 @@ const ProductListing = () => {
           },
         }}
       >
-        {messages["sidebar.ecommerceAdmin.productListing"] as string}
+        {messages['sidebar.ecommerceAdmin.productListing'] as string}
       </Box>
       <AppGridContainer spacing={7}>
-        <Slide direction="right" in mountOnEnter unmountOnExit>
+        <Slide direction='right' in mountOnEnter unmountOnExit>
           <Grid item xs={12} lg={9}>
             <AppCard
               title={
                 <AppsHeader>
                   <Box
-                    display="flex"
-                    flexDirection="row"
-                    alignItems="center"
+                    display='flex'
+                    flexDirection='row'
+                    alignItems='center'
                     width={1}
-                    justifyContent="space-between"
+                    justifyContent='space-between'
                   >
                     <AppSearchBar
-                      iconPosition="right"
+                      iconPosition='right'
                       overlap={false}
                       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                         searchProduct(event.target.value)
                       }
-                      placeholder={messages["common.searchHere"] as string}
+                      placeholder={messages['common.searchHere'] as string}
                     />
                     <Box
-                      display="flex"
-                      flexDirection="row"
-                      alignItems="center"
-                      justifyContent="flex-end"
+                      display='flex'
+                      flexDirection='row'
+                      alignItems='center'
+                      justifyContent='flex-end'
                     >
                       <Hidden smDown>
                         <AppsPagination
@@ -131,7 +138,7 @@ const ProductListing = () => {
             </AppCard>
           </Grid>
         </Slide>
-        <Slide direction="left" in mountOnEnter unmountOnExit>
+        <Slide direction='left' in mountOnEnter unmountOnExit>
           <Grid item xs={12} lg={3}>
             <FilterItem filterData={filterData} setFilterData={setFilterData} />
           </Grid>

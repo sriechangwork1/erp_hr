@@ -1,14 +1,12 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-
-import {
-  PackageFour,
-  PackageOne,
-  PackageThree,
-  PackageTwo,
-} from "@crema/modules/extraPages/Pricing";
-import { pricingData } from "@crema/mockapi/fakedb/extraPages";
+'use client';
+import React from 'react';
+import { Grid } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import PackageOne from './PackageOne';
+import PackageFour from './PackageFour';
+import PackageThree from './PackageThree';
+import PackageTwo from './PackageTwo';
+import { pricingData } from '@crema/fakedb/extraPages';
 
 const PricingListing = () => {
   return (

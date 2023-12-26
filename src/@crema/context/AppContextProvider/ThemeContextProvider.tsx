@@ -1,3 +1,4 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -53,10 +54,10 @@ const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
 }) => {
   const [theme, setTheme] = useState<any>(defaultTheme.theme);
   const [themeMode, updateThemeMode] = useState<string>(
-    defaultConfig.themeMode
+    defaultConfig.themeMode,
   );
   const [themeStyle, updateThemeStyle] = useState<string>(
-    defaultConfig.themeStyle
+    defaultConfig.themeStyle,
   );
 
   const updateTheme = useCallback((theme: any) => {

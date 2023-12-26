@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import Grid from "@mui/material/Grid";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppInfoView from "@crema/components/AppInfoView";
+'use client';
+import React, { useState } from 'react';
+import Grid from '@mui/material/Grid';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppInfoView from '@crema/components/AppInfoView';
 
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import { blue } from "@mui/material/colors";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppAnimate from "@crema/components/AppAnimate";
-import { FaqList, FaqSideBar } from "@crema/modules/extraPages/FAQ";
-import { generalFaq } from "@crema/mockapi/fakedb/extraPages";
-import { installationFaq } from "@crema/mockapi/fakedb/extraPages";
-import { pricingFaq } from "@crema/mockapi/fakedb/extraPages";
-import { licenseFaq } from "@crema/mockapi/fakedb/extraPages";
-import { supportFaq } from "@crema/mockapi/fakedb/extraPages";
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import { blue } from '@mui/material/colors';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppAnimate from '@crema/components/AppAnimate';
+import FaqSideBar from './FaqSideBar/index';
+import FaqList from './FaqList';
+import { generalFaq } from '@crema/fakedb/extraPages';
+import { installationFaq } from '@crema/fakedb/extraPages';
+import { pricingFaq } from '@crema/fakedb/extraPages';
+import { licenseFaq } from '@crema/fakedb/extraPages';
+import { supportFaq } from '@crema/fakedb/extraPages';
 
 const FAQ = () => {
   const [dataValue, setDataValue] = useState(generalFaq);
@@ -48,30 +50,30 @@ const FAQ = () => {
   };
 
   return (
-    <AppAnimate animation="transition.slideUpIn" delay={200}>
+    <AppAnimate animation='transition.slideUpIn' delay={200}>
       <Box sx={{ flex: 1 }}>
         <Box
           sx={{
             backgroundColor: blue[500],
-            color: "primary.contrastText",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            color: 'primary.contrastText',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
             minHeight: 224,
-            width: "100%",
+            width: '100%',
             p: 1.5,
             mb: 2,
           }}
         >
           <Box
-            component="h2"
+            component='h2'
             sx={{ mb: 5, fontSize: 20, fontWeight: Fonts.MEDIUM }}
           >
-            <IntlMessages id="faq.heading" />
+            <IntlMessages id='faq.heading' />
           </Box>
-          <Box component="p" sx={{ fontSize: 16 }}>
-            <IntlMessages id="faq.content" />
+          <Box component='p' sx={{ fontSize: 16 }}>
+            <IntlMessages id='faq.content' />
           </Box>
         </Box>
 

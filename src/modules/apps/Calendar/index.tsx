@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import TaskSideBar from './TaskSideBar/index';
 import TasksList from './TasksList';
@@ -5,13 +6,12 @@ import TaskDetail from './TaskDetail';
 import { useIntl } from 'react-intl';
 import AppsContainer from '@crema/components/AppsContainer';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { Box } from '@mui/material';
 import CalendarContextProvider from '../context/CalendarContextProvider';
 
 const ToDo = () => {
-  const { query } = useRouter();
-
+  const params = useParams();
   const { messages } = useIntl();
   return (
     <CalendarContextProvider>
@@ -40,8 +40,8 @@ const ToDo = () => {
             },
           }}
           className={clsx({
-            show: query?.all?.length
-              ? Number(query.all[query.all.length - 1]) > 0
+            show: params?.all?.length
+              ? Number(params.all[params.all.length - 1]) > 0
               : false,
           })}
         >

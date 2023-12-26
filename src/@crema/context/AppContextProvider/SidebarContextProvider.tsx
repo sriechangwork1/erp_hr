@@ -1,3 +1,4 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -55,16 +56,16 @@ const SidebarContextProvider: React.FC<SidebarContextProviderProps> = ({
   children,
 }) => {
   const [menuStyle, updateMenuStyle] = useState<string>(
-    defaultConfig.sidebar.menuStyle
+    defaultConfig.sidebar.menuStyle,
   );
   const [sidebarColorSet, updateSidebarColorSet] = useState<SidebarData>(
-    defaultConfig.sidebar.colorSet
+    defaultConfig.sidebar.colorSet,
   );
   const [isSidebarBgImage, updateImage] = useState<boolean>(
-    defaultConfig.sidebar.isSidebarBgImage
+    defaultConfig.sidebar.isSidebarBgImage,
   );
   const [sidebarBgImage, setSidebarImage] = useState<string | number>(
-    defaultConfig.sidebar.sidebarBgImage
+    defaultConfig.sidebar.sidebarBgImage,
   );
 
   const setSidebarBgImage = useCallback((isSidebarBgImage: boolean) => {
@@ -75,7 +76,7 @@ const SidebarContextProvider: React.FC<SidebarContextProviderProps> = ({
     (sidebarBgImage: string | number) => {
       setSidebarImage(sidebarBgImage);
     },
-    []
+    [],
   );
 
   return (

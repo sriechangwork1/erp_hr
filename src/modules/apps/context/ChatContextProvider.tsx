@@ -1,6 +1,7 @@
-import React, { createContext, ReactNode, useContext } from "react";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import type { ConnectionType } from "@crema/types/models/apps/Chat";
+'use client';
+import React, { createContext, ReactNode, useContext } from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import type { ConnectionType } from '@crema/types/models/apps/Chat';
 
 export type ChatContextType = {
   connectionList: ConnectionType[];
@@ -29,7 +30,7 @@ type Props = {
 };
 export const ChatContextProvider = ({ children }: Props) => {
   const [{ apiData: connectionList, loading }, { setData: setConnectionData }] =
-    useGetDataApi<ConnectionType[]>("/api/chatApp/connections", []);
+    useGetDataApi<ConnectionType[]>('/chat/connections', []);
 
   return (
     <ChatContext.Provider

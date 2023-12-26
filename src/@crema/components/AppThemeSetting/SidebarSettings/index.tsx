@@ -1,20 +1,20 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Switch from "@mui/material/Switch";
-import CheckIcon from "@mui/icons-material/Check";
-import { CustomizerItemWrapper } from "../index.style";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import CheckIcon from '@mui/icons-material/Check';
+import { CustomizerItemWrapper } from '../index.style';
 import {
   useSidebarActionsContext,
   useSidebarContext,
-} from "@crema/context/AppContextProvider/SidebarContextProvider";
-import NavMenuStyle from "./NavMenuStyle";
-import MenuColorCell from "./MenuColorCell";
-import AppGrid from "../../AppGrid";
+} from '@crema/context/AppContextProvider/SidebarContextProvider';
+import NavMenuStyle from './NavMenuStyle';
+import MenuColorCell from './MenuColorCell';
+import AppGrid from '../../AppGrid';
 import {
   sidebarBgImages,
   sidebarColors,
   SideBarImageType,
-} from "@crema/mockapi/fakedb/navigationStyle";
+} from '@crema/fakedb/navigationStyle';
 
 const SidebarSettings = () => {
   const { sidebarBgImage, isSidebarBgImage } = useSidebarContext();
@@ -31,28 +31,28 @@ const SidebarSettings = () => {
       <NavMenuStyle />
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           mb: 2.5,
         }}
       >
-        <Box component="h4">Sidebar Images</Box>
-        <Box component="span" sx={{ ml: "auto" }}>
+        <Box component='h4'>Sidebar Images</Box>
+        <Box component='span' sx={{ ml: 'auto' }}>
           <Switch
-            className="customize-switch"
+            className='customize-switch'
             checked={isSidebarBgImage}
             onChange={onToggleSidebarImage}
-            value="checkedA"
+            value='checkedA'
           />
         </Box>
       </Box>
       {isSidebarBgImage ? (
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
             marginLeft: -2.5,
             marginRight: -2.5,
             mt: 5,
@@ -62,8 +62,8 @@ const SidebarSettings = () => {
             return (
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                   pl: 2.5,
                   pr: 2.5,
                   mb: 5,
@@ -72,35 +72,35 @@ const SidebarSettings = () => {
               >
                 <Box
                   sx={{
-                    position: "relative",
-                    cursor: "pointer",
-                    " & .layout-img": {
+                    position: 'relative',
+                    cursor: 'pointer',
+                    ' & .layout-img': {
                       width: 82,
                     },
                   }}
                   onClick={() => updateSidebarBgImage(imagesObj.id)}
                 >
-                  <img src={imagesObj.image} alt="nav" />
+                  <img src={imagesObj.image} alt='nav' />
                   {sidebarBgImage === imagesObj.id ? (
                     <Box
                       sx={{
-                        position: "absolute",
-                        left: "50%",
-                        top: "50%",
-                        transform: "translate(-50%, -50%)",
+                        position: 'absolute',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)',
                         width: 25,
                         height: 25,
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: "hidden",
-                        backgroundColor: "primary.main",
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                        backgroundColor: 'primary.main',
                       }}
                     >
                       <CheckIcon
                         sx={{
-                          color: "white",
+                          color: 'white',
                           fontSize: 22,
                         }}
                       />
@@ -112,7 +112,7 @@ const SidebarSettings = () => {
           })}
         </Box>
       ) : null}
-      <Box component="h4" sx={{ mb: 3 }}>
+      <Box component='h4' sx={{ mb: 3 }}>
         Sidebar Colors
       </Box>
       <AppGrid

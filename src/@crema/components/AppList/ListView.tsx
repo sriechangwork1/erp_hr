@@ -37,13 +37,13 @@ const getFooterContainer = (ListFooterComponent: any) => {
 };
 const ListView = ({
   renderRow,
-  onEndReached,
-  data,
-  animation,
-  delay,
-  duration,
+  onEndReached = () => {},
+  data = [],
+  animation = 'transition.slideUpIn',
+  delay = 0,
+  duration = 200,
   containerStyle,
-  border,
+  border = false,
   ListFooterComponent,
   ListEmptyComponent,
   ...rest
@@ -80,11 +80,3 @@ const ListView = ({
 };
 
 export default ListView;
-ListView.defaultProps = {
-  border: false,
-  animation: 'transition.slideUpIn',
-  data: [],
-  delay: 0,
-  duration: 200,
-  onEndReached: () => {},
-};

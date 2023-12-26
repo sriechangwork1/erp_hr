@@ -1,17 +1,17 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import clsx from "clsx";
-import AppContentView from "../../AppContentView";
-import AppFixedFooter from "./AppFixedFooter";
-import AppHeader from "./AppHeader";
-import { useLayoutContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import AppThemeSetting from "../../AppThemeSetting";
-import DefaultLayoutWrapper from "./DefaultLayoutWrapper";
-import MainContent from "./MainContent";
-import { LayoutType } from "@crema/constants/AppEnums";
-import AppSidebar from "./AppSidebar";
-import DefaultLayoutContainer from "./DefaultLayoutContainer";
-import { useRouter } from "next/router";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React, { ReactNode, useEffect, useState } from 'react';
+import clsx from 'clsx';
+import AppContentView from '../../AppContentView';
+import AppFixedFooter from './AppFixedFooter';
+import AppHeader from './AppHeader';
+import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import AppThemeSetting from '../../AppThemeSetting';
+import DefaultLayoutWrapper from './DefaultLayoutWrapper';
+import MainContent from './MainContent';
+import { LayoutType } from '@crema/constants/AppEnums';
+import AppSidebar from './AppSidebar';
+import DefaultLayoutContainer from './DefaultLayoutContainer';
+import { useRouter } from 'next/navigation';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
   children: ReactNode;
@@ -37,10 +37,10 @@ const DefaultLayout: React.FC<Props> = ({ children, routesConfig }) => {
       })}
     >
       <DefaultLayoutWrapper
-        className={clsx("defaultLayoutWrapper", {
-          appMainFooter: footer && footerType === "fluid",
-          appMainFixedFooter: footer && footerType === "fixed",
-          appMainFixedHeader: headerType === "fixed",
+        className={clsx('defaultLayoutWrapper', {
+          appMainFooter: footer && footerType === 'fluid',
+          appMainFixedFooter: footer && footerType === 'fixed',
+          appMainFixedHeader: headerType === 'fixed',
         })}
       >
         <AppSidebar

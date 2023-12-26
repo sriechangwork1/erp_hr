@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import IconButton from "@mui/material/IconButton";
-import AppTooltip from "@crema/components/AppTooltip";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { useMailActionsContext } from "../../../context/MailContextProvider";
-import { MailType } from "@crema/types/models/apps/Mail";
-import { APIDataProps } from "@crema/types/models/APIDataProps";
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import AppTooltip from '@crema/components/AppTooltip';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { useMailActionsContext } from '../../../context/MailContextProvider';
+import { MailType } from '@crema/types/models/apps/Mail';
+import { APIDataProps } from '@crema/types/models/APIDataProps';
 
 type Props = {
   checkedMails: number[];
@@ -18,7 +18,7 @@ type Props = {
   mailList: MailType[];
 };
 const MoreOptions = (props: Props) => {
-  const { checkedMails, setCheckedMails, mailList } = props;
+  const { checkedMails = [], setCheckedMails, mailList } = props;
   const { setMailData } = useMailActionsContext();
 
   const infoViewActionsContext = useInfoViewActionsContext();
@@ -56,7 +56,7 @@ const MoreOptions = (props: Props) => {
 
   const onChangeReadStatus = (statusValue: number) => {
     const status = !!statusValue;
-    putDataApi<MailType[]>("/api/mailApp/update/read", infoViewActionsContext, {
+    putDataApi<MailType[]>('/mail', infoViewActionsContext, {
       mailIds: checkedMails,
       status: status,
     })
@@ -65,7 +65,7 @@ const MoreOptions = (props: Props) => {
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(
-          `Email marked as ${status ? "read" : "unread"}`
+          `Email marked as ${status ? 'read' : 'unread'}`,
         );
       })
       .catch((error) => {
@@ -76,7 +76,7 @@ const MoreOptions = (props: Props) => {
   const onChangeAllReadStatus = (statusValue: number) => {
     const status = !!statusValue;
     const allMails = mailList.map((mail) => mail.id);
-    putDataApi<MailType[]>("/api/mailApp/update/read", infoViewActionsContext, {
+    putDataApi<MailType[]>('/mail', infoViewActionsContext, {
       mailIds: allMails,
       status: status,
     })
@@ -85,7 +85,7 @@ const MoreOptions = (props: Props) => {
         onOpenMoreIcon(null);
         setCheckedMails([]);
         infoViewActionsContext.showMessage(
-          `Email marked as ${status ? "read" : "unread"}`
+          `Email marked as ${status ? 'read' : 'unread'}`,
         );
       })
       .catch((error) => {
@@ -95,20 +95,16 @@ const MoreOptions = (props: Props) => {
 
   const onChangeAllStarred = (status: number) => {
     const allMails = mailList.map((mail) => mail.id);
-    putDataApi<MailType[]>(
-      "/api/mailApp/update/starred",
-      infoViewActionsContext,
-      {
-        mailIds: allMails,
-        status: status,
-      }
-    )
+    putDataApi<MailType[]>('/mail', infoViewActionsContext, {
+      mailIds: allMails,
+      status: status,
+    })
       .then((data) => {
         setMailData({ data, count: data.length });
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(
-          `Email(s) marked as ${status ? "stared" : "unread"}`
+          `Email(s) marked as ${status ? 'stared' : 'unread'}`,
         );
       })
       .catch((error) => {
@@ -117,20 +113,16 @@ const MoreOptions = (props: Props) => {
   };
 
   const onChangeStarredStatus = (status: number) => {
-    putDataApi<MailType[]>(
-      "/api/mailApp/update/starred",
-      infoViewActionsContext,
-      {
-        mailIds: checkedMails,
-        status: status,
-      }
-    )
+    putDataApi<MailType[]>('/mail', infoViewActionsContext, {
+      mailIds: checkedMails,
+      status: status,
+    })
       .then((data) => {
         setMailData({ data, count: data.length });
         setCheckedMails([]);
         onOpenMoreIcon(null);
         infoViewActionsContext.showMessage(
-          `Email(s) marked as ${status ? "stared" : "unread"}`
+          `Email(s) marked as ${status ? 'stared' : 'unread'}`,
         );
       })
       .catch((error) => {
@@ -141,14 +133,14 @@ const MoreOptions = (props: Props) => {
   return (
     <>
       {checkedMails.length > 0 ? (
-        <Box component="span" sx={{ ml: { xs: "auto", sm: 0 } }}>
-          <AppTooltip title={<IntlMessages id="common.more" />}>
+        <Box component='span' sx={{ ml: { xs: 'auto', sm: 0 } }}>
+          <AppTooltip title={<IntlMessages id='common.more' />}>
             <IconButton
               sx={{
                 color: (theme) => theme.palette.text.disabled,
               }}
               onClick={onViewMoreOpen}
-              size="large"
+              size='large'
             >
               <MoreVertIcon />
             </IconButton>
@@ -161,35 +153,35 @@ const MoreOptions = (props: Props) => {
           >
             {readOption ? (
               <MenuItem onClick={() => onChangeReadStatus(1)}>
-                <IntlMessages id="mailApp.markAsRead" />
+                <IntlMessages id='mailApp.markAsRead' />
               </MenuItem>
             ) : null}
             {unReadOption ? (
               <MenuItem onClick={() => onChangeReadStatus(0)}>
-                <IntlMessages id="mailApp.markAsUnread" />
+                <IntlMessages id='mailApp.markAsUnread' />
               </MenuItem>
             ) : null}
             {starredOption ? (
               <MenuItem onClick={() => onChangeStarredStatus(1)}>
-                <IntlMessages id="mailApp.markAsImportant" />
+                <IntlMessages id='mailApp.markAsImportant' />
               </MenuItem>
             ) : null}
             {unStarredOption ? (
               <MenuItem onClick={() => onChangeStarredStatus(0)}>
-                <IntlMessages id="mailApp.markAsNotImportant" />
+                <IntlMessages id='mailApp.markAsNotImportant' />
               </MenuItem>
             ) : null}
           </Menu>
         </Box>
       ) : (
-        <Box component="span" sx={{ ml: { xs: "auto", sm: 0 } }}>
-          <AppTooltip title={<IntlMessages id="common.more" />}>
+        <Box component='span' sx={{ ml: { xs: 'auto', sm: 0 } }}>
+          <AppTooltip title={<IntlMessages id='common.more' />}>
             <IconButton
               sx={{
                 color: (theme) => theme.palette.text.disabled,
               }}
               onClick={onViewMoreOpen}
-              size="large"
+              size='large'
             >
               <MoreVertIcon />
             </IconButton>
@@ -201,16 +193,16 @@ const MoreOptions = (props: Props) => {
             onClose={onViewMoreClose}
           >
             <MenuItem onClick={() => onChangeAllReadStatus(1)}>
-              <IntlMessages id="mailApp.markAllAsRead" />
+              <IntlMessages id='mailApp.markAllAsRead' />
             </MenuItem>
             <MenuItem onClick={() => onChangeAllReadStatus(0)}>
-              <IntlMessages id="mailApp.markAllAsUnread" />
+              <IntlMessages id='mailApp.markAllAsUnread' />
             </MenuItem>
             <MenuItem onClick={() => onChangeAllStarred(1)}>
-              <IntlMessages id="mailApp.markAllAsImportant" />
+              <IntlMessages id='mailApp.markAllAsImportant' />
             </MenuItem>
             <MenuItem onClick={() => onChangeAllStarred(0)}>
-              <IntlMessages id="mailApp.markAllAsNotImportant" />
+              <IntlMessages id='mailApp.markAllAsNotImportant' />
             </MenuItem>
           </Menu>
         </Box>
@@ -220,7 +212,3 @@ const MoreOptions = (props: Props) => {
 };
 
 export default MoreOptions;
-
-MoreOptions.defaultProps = {
-  checkedMails: [],
-};

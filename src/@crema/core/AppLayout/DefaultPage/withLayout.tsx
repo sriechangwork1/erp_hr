@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import AuthLayout from "./AuthLayout";
-import { useRouter } from "next/router";
-import { useLayoutActionsContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import { useSidebarActionsContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
+import React, { useEffect } from 'react';
+import AuthLayout from './AuthLayout';
+import { useRouter } from 'next/navigation';
+import { useLayoutActionsContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 
 // eslint-disable-next-line react/display-name
 const withLayout = (ComposedComponent) => (props) => {

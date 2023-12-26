@@ -1,5 +1,5 @@
-import sanitizeHtml from "sanitize-html";
-import dayjs from "dayjs";
+import sanitizeHtml from 'sanitize-html';
+import dayjs from 'dayjs';
 
 /**
  * Sanitize Content
@@ -7,7 +7,7 @@ import dayjs from "dayjs";
  * @returns content any
  */
 export const sanitizeContent = (content: any) => {
-  if (typeof content === "string") {
+  if (typeof content === 'string') {
     return sanitizeHtml(content);
   }
 
@@ -25,26 +25,26 @@ const sanitizeArrayObject = (arrayOrObject: any) => {
   // loop for an array
   for (const key in arrayOrObject) {
     const item = arrayOrObject[key];
-    if (typeof item === "object" && item instanceof FormData) {
+    if (typeof item === 'object' && item instanceof FormData) {
       // @ts-ignore
       output[key] = item;
     } else if (
-      typeof item === "object" &&
+      typeof item === 'object' &&
       item !== null &&
       dayjs.isDayjs(item)
     ) {
       // @ts-ignore
       output[key] = item;
     } else if (
-      typeof item === "object" &&
+      typeof item === 'object' &&
       item !== null &&
-      typeof item.getMonth === "function"
+      typeof item.getMonth === 'function'
     ) {
       // @ts-ignore
       output[key] = item;
     } else if (
       Array.isArray(item) ||
-      (typeof item === "object" && item !== null)
+      (typeof item === 'object' && item !== null)
     ) {
       // @ts-ignore
       output[key] = sanitizeArrayObject(item);
@@ -59,20 +59,20 @@ const sanitizeArrayObject = (arrayOrObject: any) => {
 
 export const sanitizeData = (inputVal: any) => {
   try {
-    if (typeof inputVal === "object" && inputVal instanceof FormData) {
+    if (typeof inputVal === 'object' && inputVal instanceof FormData) {
       return inputVal;
     }
 
     if (
       Array.isArray(inputVal) ||
-      (typeof inputVal === "object" && inputVal !== null)
+      (typeof inputVal === 'object' && inputVal !== null)
     ) {
       return sanitizeArrayObject(inputVal);
     }
 
     return sanitizeContent(inputVal);
   } catch (e) {
-    console.log("parse error", e);
+    console.log('parse error', e);
   }
 };
 

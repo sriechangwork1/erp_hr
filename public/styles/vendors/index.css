@@ -3,7 +3,6 @@
 @import "loader.css";
 @import "base.css";
 @import "react-timeline.css";
-@import 'react-big-calendar/lib/css/react-big-calendar.css';
 *{
   margin: 0;
   padding: 0;

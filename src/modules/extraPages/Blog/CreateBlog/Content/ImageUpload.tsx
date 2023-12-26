@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDropzone } from "react-dropzone";
-import AppGrid from "@crema/components/AppGrid";
-import PreviewThumb from "@crema/modules/thirdParty/reactDropzone/components/PreviewThumb";
-import UploadModern from "@crema/modules/thirdParty/reactDropzone/components/UploadModern";
-import type { FileType } from "@crema/types/models/extrapages/Blog";
+import React, { useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+import AppGrid from '@crema/components/AppGrid';
+import PreviewThumb from '../../../../thirdParty/reactDropzone/components/PreviewThumb';
+import UploadModern from '../../../../thirdParty/reactDropzone/components/UploadModern';
+import type { FileType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   uploadedFiles: FileType[];
@@ -13,15 +13,15 @@ type Props = {
 const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
   const dropzone = useDropzone({
     accept: {
-      "image/png": [".png", ".jpeg", ".jpg"],
+      'image/png': ['.png', '.jpeg', '.jpg'],
     },
     onDrop: (acceptedFiles) => {
       setUploadedFiles(
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-          })
-        )
+          }),
+        ),
       );
     },
   });
@@ -32,15 +32,15 @@ const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
   const onDeleteUploadFile = (file: FileType) => {
     dropzone.acceptedFiles.splice(
       dropzone.acceptedFiles.indexOf(file as File),
-      1
+      1,
     );
     setUploadedFiles([...dropzone.acceptedFiles]);
   };
 
   return (
-    <section className="container" style={{ cursor: "pointer" }}>
+    <section className='container' style={{ cursor: 'pointer' }}>
       <UploadModern
-        uploadText="Drag n drop some files here, or click to select files"
+        uploadText='Drag n drop some files here, or click to select files'
         dropzone={dropzone}
       />
       <AppGrid

@@ -6,7 +6,10 @@ type ListFooterProps = {
   footerText: string;
 };
 
-const ListFooter: React.FC<ListFooterProps> = ({ loading, footerText }) => {
+const ListFooter: React.FC<ListFooterProps> = ({
+  loading = false,
+  footerText,
+}) => {
   return loading ? (
     <Box
       sx={{
@@ -21,7 +24,7 @@ const ListFooter: React.FC<ListFooterProps> = ({ loading, footerText }) => {
       }}
     >
       <CircularProgress size={16} />
-      <Box component="span" sx={{ ml: 2 }}>
+      <Box component='span' sx={{ ml: 2 }}>
         Loading...
       </Box>
     </Box>
@@ -40,6 +43,3 @@ const ListFooter: React.FC<ListFooterProps> = ({ loading, footerText }) => {
 };
 
 export default ListFooter;
-ListFooter.defaultProps = {
-  loading: false,
-};

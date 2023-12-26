@@ -1,3 +1,4 @@
+/*
 import React from "react";
 
 export const useEventListener = (type, handler, el = window) => {
@@ -17,3 +18,4 @@ export const useEventListener = (type, handler, el = window) => {
     };
   }, [type, el]);
 };
+*/

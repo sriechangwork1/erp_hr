@@ -1,8 +1,11 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties } from 'react';
+import Image from 'next/image';
 
 type AppImageProps = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
   className?: string;
   style?: CSSProperties;
 };
@@ -10,7 +13,7 @@ type AppImageProps = {
 const AppImage = ({ src, alt, ...props }: AppImageProps) => {
   return (
     <picture>
-      <img src={src} alt={alt} {...props} />
+      <Image src={src} alt={alt} {...props} />
     </picture>
   );
 };

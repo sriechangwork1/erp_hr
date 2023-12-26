@@ -1,38 +1,38 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import AppAnimate from "@crema/components/AppAnimate";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import { Grid } from "@mui/material";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  AverageGrades,
-  CourseCategories,
-  CourseDetail,
-  GeneralStats,
-  LatestResults,
-  MyClass,
-  MyCourses,
-  MyLearning,
-  MyProfile,
-  Notifications,
-  PromoCard,
-  RelatedCourses,
-  StudentRankings,
-  VideoPromo,
-} from "@crema/modules/dashboards/Academy";
-import AppLoader from "@crema/components/AppLoader";
-import type { AcademyType } from "@crema/types/models/dashboards/Academy";
+'use client';
+import React from 'react';
+import Box from '@mui/material/Box';
+import AppAnimate from '@crema/components/AppAnimate';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { Grid } from '@mui/material';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+
+import GeneralStats from './GeneralStats';
+import CourseCategories from './CourseCategories';
+import MyProfile from './MyProfile';
+import MyCourses from './MyCourses';
+import Notifications from './Notifications';
+import CourseDetail from './CourseDetail';
+import MyLearning from './MyLearning';
+import LatestResults from './LatestResults';
+import MyClass from './MyClass';
+import StudentRankings from './StudentRankings';
+import PromoCard from './PromoCard';
+import AverageGrades from './AverageGrades';
+import RelatedCourses from './RelatedCourses';
+import VideoPromo from './VideoPromo';
+import AppLoader from '@crema/components/AppLoader';
+import type { AcademyType } from '@crema/types/models/dashboards/Academy';
 
 const Academy = () => {
   const [{ apiData: academyData, loading }] =
-    useGetDataApi<AcademyType>("/dashboard/academy");
+    useGetDataApi<AcademyType>('/dashboard/academy');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <Box>
             <Box
               sx={{

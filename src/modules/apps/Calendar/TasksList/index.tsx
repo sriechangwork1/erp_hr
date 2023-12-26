@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import AddNewTask from "../AddNewTask";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import { TaskCalender } from "@crema/modules/apps/Calendar";
+import React, { useState } from 'react';
+import AddNewTask from '../AddNewTask';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import TaskCalender from './TaskCalendar';
 import {
   useCalendarActionsContext,
   useCalendarContext,
-} from "../../context/CalendarContextProvider";
+} from '../../context/CalendarContextProvider';
 
 const TasksList = () => {
   const { taskLists } = useCalendarContext();
   const { setCalenderData } = useCalendarActionsContext();
 
-  const [filterText, onSetFilterText] = useState("");
+  const [filterText, onSetFilterText] = useState('');
 
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
 
@@ -20,11 +20,11 @@ const TasksList = () => {
   };
 
   const onGetFilteredItems = () => {
-    if (filterText === "") {
+    if (filterText === '') {
       return taskLists?.data;
     } else {
       return taskLists?.data.filter((task) =>
-        task.title.toUpperCase().includes(filterText.toUpperCase())
+        task.title.toUpperCase().includes(filterText.toUpperCase()),
       );
     }
   };

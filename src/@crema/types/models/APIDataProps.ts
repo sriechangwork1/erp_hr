@@ -1,6 +1,6 @@
 export type APIDataProps<T> = {
   data: T;
-  count?: number;
+  count?: number | undefined;
   message?: string;
 };
 

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import InputLabel from "@mui/material/InputLabel";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import FormControl from "@mui/material/FormControl";
+import React, { useState } from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 
-import { MenuItem } from "@mui/material";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { useCalendarContext } from "../../../context/CalendarContextProvider";
-import { PriorityType, TodoType } from "@crema/types/models/apps/Todo";
+import { MenuItem } from '@mui/material';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { useCalendarContext } from '../../../context/CalendarContextProvider';
+import { PriorityType, TodoType } from '@crema/types/models/apps/Todo';
 
 type Props = {
   selectedTask: TodoType;
@@ -24,17 +24,16 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const onChangePriority = (event: SelectChangeEvent<number>) => {
     setPriority(event.target.value as number);
     const priority = priorityList.find(
-      (data) => data.type.toString() === event.target.value.toString()
+      (data) => data.type.toString() === event.target.value.toString(),
     );
-    console.log("priority: ", priority, event.target.value);
     const task = selectedTask;
     task.priority = priority as PriorityType;
-    putDataApi<TodoType>("/api/calendar/task/", infoViewActionsContext, {
+    putDataApi<TodoType>('/calender/detail', infoViewActionsContext, {
       task: selectedTask,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
-        infoViewActionsContext.showMessage("Task Updated Successfully");
+        onUpdateSelectedTask(data);
+        infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -42,19 +41,19 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   };
 
   return (
-    <FormControl variant="outlined">
-      <InputLabel id="priority-select-outlined-label">
-        <IntlMessages id="common.priority" />
+    <FormControl variant='outlined'>
+      <InputLabel id='priority-select-outlined-label'>
+        <IntlMessages id='common.priority' />
       </InputLabel>
       <Select
-        labelId="priority-select-outlined-label"
-        label={<IntlMessages id="common.priority" />}
-        name="priority"
+        labelId='priority-select-outlined-label'
+        label={<IntlMessages id='common.priority' />}
+        name='priority'
         value={priority}
         onChange={(event) => onChangePriority(event)}
         sx={{
-          cursor: "pointer",
-          "& .MuiOutlinedInput-input": {
+          cursor: 'pointer',
+          '& .MuiOutlinedInput-input': {
             paddingBottom: 2.5,
             paddingTop: 2.5,
           },
@@ -67,7 +66,7 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
               value={priority.type}
               sx={{
                 padding: 2,
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
             >
               {priority.name}

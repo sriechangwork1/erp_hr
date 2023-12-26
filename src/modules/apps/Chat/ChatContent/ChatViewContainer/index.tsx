@@ -1,38 +1,41 @@
-import React, { useEffect, useRef, useState } from "react";
-import Box from "@mui/material/Box";
-import dayjs from "dayjs";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import AppsFooter from "@crema/components/AppsContainer/AppsFooter";
-import { useAuthUser } from "@crema/hooks/AuthHooks";
-import SimpleBarReact from "simplebar-react";
+import React, { useEffect, useRef, useState } from 'react';
+import Box from '@mui/material/Box';
+import dayjs from 'dayjs';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import SimpleBarReact from 'simplebar-react';
+import SendMessage from './SendMessage';
+import Header from './Header';
 
-import { styled } from "@mui/material/styles";
-import { postDataApi, putDataApi, useGetDataApi } from "@crema/hooks/APIHooks";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { Header, MessagesList, SendMessage } from "@crema/modules/apps/Chat";
+import { styled } from '@mui/material/styles';
+import { postDataApi, putDataApi, useGetDataApi } from '@crema/hooks/APIHooks';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+
 import {
   ConnectionType,
   MessageDataType,
   MessageObjType,
   MessageType,
-} from "@crema/types/models/apps/Chat";
-import { useChatActionsContext } from "../../../context/ChatContextProvider";
+} from '@crema/types/models/apps/Chat';
+import { useChatActionsContext } from '../../../context/ChatContextProvider';
+import MessagesList from './MessageList';
 
 const ScrollbarWrapper = styled(SimpleBarReact)(() => {
   return {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     height: `calc(100% - 132px)`,
   };
 });
-const ScrollChatNoMainWrapper = styled("div")(() => {
+const ScrollChatNoMainWrapper = styled('div')(() => {
   return {
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    textAlign: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
   };
 });
 
@@ -41,7 +44,7 @@ type Props = {
   setSelectedUser: (member: ConnectionType) => void;
 };
 const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
-  const [message, setMessage] = useState<string | undefined>("");
+  const [message, setMessage] = useState<string | undefined>('');
   const { setConnectionData } = useChatActionsContext();
   const [isEdit, setIsEdit] = useState(false);
   const infoViewActionsContext = useInfoViewActionsContext();
@@ -51,7 +54,7 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
 
   const _scrollBarRef = useRef<any>(null);
   const [{ apiData: userMessages }, { setQueryParams, setData }] =
-    useGetDataApi<MessageObjType>("/api/chatApp/connection/messages");
+    useGetDataApi<MessageObjType>('/chat');
 
   useEffect(() => {
     if (selectedUser?.channelId)
@@ -79,16 +82,16 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
     const data = {
       ...fileMessage,
       sender: user.id,
-      time: dayjs().format("llll"),
+      time: dayjs().format('llll'),
     };
-    postDataApi<Props>("/api/chatApp/message", infoViewActionsContext, {
+    postDataApi<Props>('/chat', infoViewActionsContext, {
       channelId: selectedUser?.channelId,
       message: data,
     })
       .then((data) => {
         setData(data?.userMessages);
         setConnectionData(data?.connectionData);
-        infoViewActionsContext.showMessage("Message Added Successfully!");
+        infoViewActionsContext.showMessage('Message Added Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -101,20 +104,20 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
       message,
       message_type: MessageType.TEXT,
       sender: user.id,
-      time: dayjs().format("llll"),
+      time: dayjs().format('llll'),
     };
 
     if (isEdit) {
       data.edited = true;
-      putDataApi<Props>("/api/chatApp/message", infoViewActionsContext, {
+      putDataApi<Props>('/chat', infoViewActionsContext, {
         channelId: selectedUser?.channelId,
         message: data,
       })
         .then((data) => {
           setData(data?.userMessages);
           setConnectionData(data?.connectionData);
-          infoViewActionsContext.showMessage("Message Edited Successfully!");
-          setMessage("");
+          infoViewActionsContext.showMessage('Message Edited Successfully!');
+          setMessage('');
           setIsEdit(false);
           setSelectedMessage(null);
         })
@@ -122,15 +125,15 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
           infoViewActionsContext.fetchError(error.message);
         });
     } else {
-      postDataApi<Props>("/api/chatApp/message", infoViewActionsContext, {
+      postDataApi<Props>('/chat', infoViewActionsContext, {
         channelId: selectedUser?.channelId,
         message: data,
       })
         .then((data) => {
-          setMessage("");
+          setMessage('');
           setData(data?.userMessages);
           setConnectionData(data?.connectionData);
-          infoViewActionsContext.showMessage("Message Added Successfully!");
+          infoViewActionsContext.showMessage('Message Added Successfully!');
         })
         .catch((error) => {
           infoViewActionsContext.fetchError(error.message);
@@ -147,14 +150,14 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
   };
 
   const deleteMessage = (messageId: number) => {
-    postDataApi<Props>("/api/chatApp/delete/message", infoViewActionsContext, {
+    postDataApi<Props>('/chat/deleteMessage', infoViewActionsContext, {
       channelId: selectedUser?.channelId,
       messageId,
     })
       .then((data) => {
         setData(data?.userMessages);
         setConnectionData(data?.connectionData);
-        infoViewActionsContext.showMessage("Message Deleted Successfully!");
+        infoViewActionsContext.showMessage('Message Deleted Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -163,16 +166,16 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
 
   const deleteConversation = () => {
     postDataApi<ConnectionType[]>(
-      "/api/chatApp/delete/user/messages",
+      '/chat/deleteUserMessages',
       infoViewActionsContext,
       {
         channelId: selectedUser?.channelId,
-      }
+      },
     )
       .then((data) => {
         setSelectedUser(undefined as any);
         setConnectionData(data);
-        infoViewActionsContext.showMessage("Chat Deleted Successfully!");
+        infoViewActionsContext.showMessage('Chat Deleted Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -183,10 +186,10 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
     <Box
       sx={{
         height: 1,
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        "& .apps-header": {
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        '& .apps-header': {
           minHeight: 72,
         },
       }}
@@ -211,13 +214,13 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
       ) : (
         <ScrollChatNoMainWrapper>
           <Box
-            component="span"
+            component='span'
             sx={{
               fontSize: 18,
-              color: "grey.500",
+              color: 'grey.500',
             }}
           >
-            <IntlMessages id="chatApp.sayHi" /> {selectedUser.name}
+            <IntlMessages id='chatApp.sayHi' /> {selectedUser.name}
           </Box>
         </ScrollChatNoMainWrapper>
       )}

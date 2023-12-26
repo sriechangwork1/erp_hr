@@ -1,11 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
-import AppTooltip from "@crema/components/AppTooltip";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { MailType, MessageType } from "@crema/types/models/apps/Mail";
-import { MessageItem } from "@crema/modules/apps/Mail";
+import React from 'react';
+import Box from '@mui/material/Box';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import AppTooltip from '@crema/components/AppTooltip';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { MailType, MessageType } from '@crema/types/models/apps/Mail';
+import MessageItem from './MessageItem';
 
 type Props = {
   selectedMail: MailType;
@@ -15,7 +15,7 @@ type Props = {
 function addObjectInMiddle(
   array: MessageType[],
   index: number,
-  object: MessageType
+  object: MessageType,
 ) {
   const newArray = new Array(array.length);
   for (let i = 0; i < array.length; i++) {
@@ -33,12 +33,12 @@ const MailDetailBody = (props: Props) => {
     const messages = selectedMail.messages;
     if (messages)
       selectedMail.messages = addObjectInMiddle(messages, index + 1, message);
-    putDataApi<MailType>("/api/mailApp/mail/", infoViewActionsContext, {
+    putDataApi<MailType>('/mail/detail', infoViewActionsContext, {
       mail: selectedMail,
     })
       .then((data) => {
         onUpdateSelectedMail(data);
-        infoViewActionsContext.showMessage("Mail Sent Successfully");
+        infoViewActionsContext.showMessage('Mail Sent Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -48,14 +48,14 @@ const MailDetailBody = (props: Props) => {
   const onChangeStarred = (message: MessageType, isStarred: boolean) => {
     message.isStarred = isStarred;
     selectedMail.messages = selectedMail.messages!.map((data) =>
-      data.messageId === message.messageId ? message : data
+      data.messageId === message.messageId ? message : data,
     );
-    putDataApi<MailType>("/api/mailApp/mail/", infoViewActionsContext, {
+    putDataApi<MailType>('/mail/detail', infoViewActionsContext, {
       mail: selectedMail,
     })
       .then((data) => {
         onUpdateSelectedMail(data);
-        infoViewActionsContext.showMessage("Mail Updated Successfully");
+        infoViewActionsContext.showMessage('Mail Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -69,12 +69,12 @@ const MailDetailBody = (props: Props) => {
             sx={{
               pt: 1,
               pb: 3,
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <Box
-              component="span"
+              component='span'
               sx={{
                 fontSize: { xs: 16, sm: 18 },
                 marginRight: 3,
@@ -88,7 +88,7 @@ const MailDetailBody = (props: Props) => {
                 style={{
                   color: selectedMail?.label?.color,
                   height: 22,
-                  cursor: "pointer",
+                  cursor: 'pointer',
                 }}
               >
                 <LabelOutlinedIcon />

@@ -1,38 +1,36 @@
-import React from "react";
-import { InvoicePdf } from "@crema/modules/invoice";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import { isEmptyObject } from "@crema/helpers/ApiHelper";
-import { useRouter } from "next/router";
+'use client';
+import React from 'react';
+import InvoicePdf from './InvoicePdf';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import { isEmptyObject } from '@crema/helpers/ApiHelper';
+import { useParams, useRouter } from 'next/navigation';
 import {
   InvoiceType,
   InvoiceSettingType,
   ClientType,
-} from "@crema/types/models/invoice";
+} from '@crema/types/models/invoice';
 
 const InvoicePdfPage = () => {
-  const { query } = useRouter();
-
+  const params = useParams();
+  const { all } = params;
   const [{ apiData: invoiceSettings }] = useGetDataApi<InvoiceSettingType>(
-    "/api/invoice/settings",
+    '/invoice/settings',
     {} as InvoiceSettingType,
     {},
-    true
+    true,
   );
-
   const [{ apiData: clientsList }] = useGetDataApi<ClientType[]>(
-    "/api/invoice/clients",
+    '/invoice/clients',
     [],
     {},
-    true
+    true,
   );
-
   const [{ apiData: selectedInv }] = useGetDataApi<InvoiceType>(
-    "/api/invoice/detail",
+    '/invoice/detail',
     {} as InvoiceType,
-    { id: query?.all?.[0] },
-    true
+    { id: all[0] || 1 },
+    true,
   );
-
   return clientsList?.length > 0 &&
     !isEmptyObject(invoiceSettings) &&
     !isEmptyObject(selectedInv) ? (

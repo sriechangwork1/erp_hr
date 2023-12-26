@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import AppsContainer from "@crema/components/AppsContainer";
-import { useIntl } from "react-intl";
-import { Button, Hidden } from "@mui/material";
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import AppsPagination from "@crema/components/AppsPagination";
-import Box from "@mui/material/Box";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import { OrderTable } from "@crema/modules/ecommerce/Orders";
-import { RecentOrdersType } from "@crema/types/models/ecommerce/EcommerceApp";
+'use client';
+import React, { useEffect, useState } from 'react';
+import AppsContainer from '@crema/components/AppsContainer';
+import { useIntl } from 'react-intl';
+import { Button, Hidden } from '@mui/material';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppsPagination from '@crema/components/AppsPagination';
+import Box from '@mui/material/Box';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import OrderTable from './OrderTable';
+import { RecentOrdersType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type OrderType = {
   count: number;
@@ -19,13 +20,13 @@ type OrderType = {
 const Orders = () => {
   const { messages } = useIntl();
   const [{ apiData, loading }, { setQueryParams }] = useGetDataApi<OrderType>(
-    "/api/ecommerce/orders",
+    'ecommerce/orders',
     {} as OrderType,
     {},
-    false
+    false,
   );
   const [page, setPage] = useState(0);
-  const [search, setSearchQuery] = useState("");
+  const [search, setSearchQuery] = useState('');
 
   const onPageChange = (event: any, value: number) => {
     setPage(value);
@@ -40,27 +41,27 @@ const Orders = () => {
   };
   return (
     <AppsContainer
-      title={messages["eCommerce.recentOrders"] as string}
+      title={messages['eCommerce.recentOrders'] as string}
       fullView
     >
       <AppsHeader>
         <Box
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
+          display='flex'
+          flexDirection='row'
+          alignItems='center'
           width={1}
-          justifyContent="space-between"
+          justifyContent='space-between'
         >
           <AppSearchBar
-            iconPosition="right"
+            iconPosition='right'
             overlap={false}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onSearchOrder(event)
             }
-            placeholder={messages["common.searchHere"] as string}
+            placeholder={messages['common.searchHere'] as string}
           />
-          <Box display="flex" flexDirection="row" alignItems="center">
-            <Button variant="contained" color="primary">
+          <Box display='flex' flexDirection='row' alignItems='center'>
+            <Button variant='contained' color='primary'>
               Add Order
             </Button>
 

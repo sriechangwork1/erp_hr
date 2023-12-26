@@ -1,20 +1,18 @@
-import React from "react";
-import Checkbox from "@mui/material/Checkbox";
-import Box from "@mui/material/Box";
-import { useIntl } from "react-intl";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import CheckedTasksActions from "./CheckedTasksActions";
-import AppsPagination from "@crema/components/AppsPagination";
-import Hidden from "@mui/material/Hidden";
-import {
-  SelectTasksDropdown,
-  ViewSelectButtons,
-} from "@crema/modules/apps/ToDo";
+import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import { useIntl } from 'react-intl';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import CheckedTasksActions from './CheckedTasksActions';
+import AppsPagination from '@crema/components/AppsPagination';
+import Hidden from '@mui/material/Hidden';
+import SelectTasksDropdown from './SelectTasksDropdown';
+import ViewSelectButtons from './ViewSelectButtons';
 import {
   useTodoActionsContext,
   useTodoContext,
-} from "../../../context/TodoContextProvider";
-import { TodoType } from "@crema/types/models/apps/Todo";
+} from '../../../context/TodoContextProvider';
+import { TodoType } from '@crema/types/models/apps/Todo';
 
 type Props = {
   onUpdateTasks: (tasks: TodoType[]) => void;
@@ -27,17 +25,17 @@ type Props = {
 const TaskContentHeader = (props: Props) => {
   const {
     onUpdateTasks,
-    checkedTasks,
+    checkedTasks = [],
     setCheckedTasks,
-    filterText,
+    filterText = '',
     onSetFilterText,
   } = props;
 
-  const { taskLists, page, viewMode } = useTodoContext();
+  const { taskLists, page = 0, viewMode } = useTodoContext();
   const { onPageChange, setViewMode } = useTodoActionsContext();
 
   const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (event.target.checked) {
       const taskIds = taskLists?.data?.map((task) => task.id);
@@ -60,7 +58,7 @@ const TaskContentHeader = (props: Props) => {
         setCheckedTasks(
           taskLists?.data
             ?.filter((task) => task.isStarred)
-            .map((task) => task.id)
+            .map((task) => task.id),
         );
         break;
 
@@ -68,7 +66,7 @@ const TaskContentHeader = (props: Props) => {
         setCheckedTasks(
           taskLists?.data
             ?.filter((task) => task.isAttachment)
-            .map((task) => task.id)
+            .map((task) => task.id),
         );
         break;
 
@@ -83,16 +81,16 @@ const TaskContentHeader = (props: Props) => {
     <>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
+          display: 'flex',
+          flexDirection: 'row',
           flex: 1,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         <span>
           <Checkbox
             sx={{
-              color: "text.disabled",
+              color: 'text.disabled',
             }}
             indeterminate={
               checkedTasks.length > 0 &&
@@ -107,11 +105,11 @@ const TaskContentHeader = (props: Props) => {
         </span>
         <Box sx={{ mr: 3 }}>
           <AppSearchBar
-            iconPosition="right"
+            iconPosition='right'
             overlap={false}
             value={filterText}
             onChange={(event: any) => onSetFilterText(event.target.value)}
-            placeholder={messages["common.searchHere"] as string}
+            placeholder={messages['common.searchHere'] as string}
           />
         </Box>
         <SelectTasksDropdown
@@ -120,10 +118,10 @@ const TaskContentHeader = (props: Props) => {
         />
         {checkedTasks.length > 0 ? (
           <Box
-            component="span"
+            component='span'
             sx={{
               mr: { sm: 4 },
-              display: "flex",
+              display: 'flex',
             }}
           >
             <CheckedTasksActions
@@ -149,12 +147,12 @@ const TaskContentHeader = (props: Props) => {
             sx={{
               paddingRight: 2,
               paddingLeft: 2,
-              "& .MuiToolbar-root": {
+              '& .MuiToolbar-root': {
                 paddingLeft: 0,
               },
-              "& .MuiTablePagination-actions": {
+              '& .MuiTablePagination-actions': {
                 marginLeft: 0,
-                "& .MuiButtonBase-root": {
+                '& .MuiButtonBase-root': {
                   padding: 2,
                 },
               },
@@ -170,9 +168,3 @@ const TaskContentHeader = (props: Props) => {
 };
 
 export default TaskContentHeader;
-
-TaskContentHeader.defaultProps = {
-  checkedTasks: [],
-  filterText: "",
-  page: 0,
-};

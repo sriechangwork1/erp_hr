@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import AppSidebar from "./AppSidebar";
-import AppContentView from "../../AppContentView";
-import AppThemeSetting from "../../AppThemeSetting";
-import AppHeader from "./AppHeader";
-import clsx from "clsx";
-import Hidden from "@mui/material/Hidden";
-import Box from "@mui/material/Box";
-import BitBucketWrapper from "./BitBucketWrapper";
-import { LayoutType } from "@crema/constants/AppEnums";
-import { useLayoutContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import BitBucketContainer from "./BitBucketContainer";
-import { useRouter } from "next/router";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React, { useEffect, useState } from 'react';
+import AppSidebar from './AppSidebar';
+import AppContentView from '../../AppContentView';
+import AppThemeSetting from '../../AppThemeSetting';
+import AppHeader from './AppHeader';
+import clsx from 'clsx';
+import Hidden from '@mui/material/Hidden';
+import Box from '@mui/material/Box';
+import BitBucketWrapper from './BitBucketWrapper';
+import { LayoutType } from '@crema/constants/AppEnums';
+import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import BitBucketContainer from './BitBucketContainer';
+import { useParams } from 'next/navigation';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ type Props = {
 };
 const BitBucket = ({ children, routesConfig }: Props) => {
   const { layoutType } = useLayoutContext();
-  const { pathname } = useRouter();
+  const { pathname } = useParams();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {
     setNavCollapsed(!isNavCollapsed);
@@ -36,7 +36,7 @@ const BitBucket = ({ children, routesConfig }: Props) => {
       })}
     >
       <BitBucketWrapper
-        className={clsx("bitBucketWrapper", {
+        className={clsx('bitBucketWrapper', {
           bitBucketCollapsed: isNavCollapsed,
         })}
       >
@@ -48,7 +48,7 @@ const BitBucket = ({ children, routesConfig }: Props) => {
           isNavCollapsed={isNavCollapsed}
           toggleNavCollapsed={toggleNavCollapsed}
         />
-        <Box className="mainContent">
+        <Box className='mainContent'>
           <AppContentView>{children}</AppContentView>
         </Box>
         <AppThemeSetting />

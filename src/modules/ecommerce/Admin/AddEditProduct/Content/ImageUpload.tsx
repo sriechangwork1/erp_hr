@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import { useDropzone } from "react-dropzone";
-import AppGrid from "@crema/components/AppGrid";
-import { Box } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import UploadModern from "@crema/modules/thirdParty/reactDropzone/components/UploadModern";
-import PreviewThumb from "@crema/modules/thirdParty/reactDropzone/components/PreviewThumb";
-import { FileType } from "@crema/types/models/ecommerce/EcommerceApp";
+import React, { useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
+import AppGrid from '@crema/components/AppGrid';
+import { Box } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import UploadModern from '../../../../thirdParty/reactDropzone/components/UploadModern';
+import PreviewThumb from '../../../../thirdParty/reactDropzone/components/PreviewThumb';
+import { FileType } from '@crema/types/models/ecommerce/EcommerceApp';
+import Image from 'next/image';
 
 type Props = {
   uploadedFiles: FileType[];
@@ -15,15 +16,15 @@ type Props = {
 const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
   const dropzone = useDropzone({
     accept: {
-      "image/png": [".png", ".jpeg", ".jpg"],
+      'image/png': ['.png', '.jpeg', '.jpg'],
     },
     onDrop: (acceptedFiles) => {
       setUploadedFiles(
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-          })
-        )
+          }),
+        ),
       );
     },
   });
@@ -34,34 +35,34 @@ const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
   const onDeleteUploadFile = (file: FileType) => {
     dropzone.acceptedFiles.splice(
       dropzone.acceptedFiles.indexOf(file as File),
-      1
+      1,
     );
     setUploadedFiles([...dropzone.acceptedFiles]);
   };
 
   return (
-    <section className="container" style={{ cursor: "pointer" }}>
+    <section className='container' style={{ cursor: 'pointer' }}>
       <UploadModern
         dropzone={dropzone}
         customContent={
           <>
-            <img
-              src={"/assets/icon/upload.svg"}
+            <Image
+              src={'/assets/icon/upload.svg'}
               width={40}
               height={40}
-              alt="upload"
+              alt='upload'
             />
 
             <p>
               <Box
-                component="span"
-                sx={{ color: "primary.main", fontWeight: Fonts.MEDIUM }}
+                component='span'
+                sx={{ color: 'primary.main', fontWeight: Fonts.MEDIUM }}
               >
                 Click to upload
-              </Box>{" "}
+              </Box>{' '}
               or drag and drop
             </p>
-            <Box component="p" sx={{ mt: 1 }}>
+            <Box component='p' sx={{ mt: 1 }}>
               SVG, PNG, JPG or GIF (max. 800x400px)
             </Box>
           </>

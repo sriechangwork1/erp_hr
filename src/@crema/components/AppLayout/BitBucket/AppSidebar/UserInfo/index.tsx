@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Fonts } from '@crema/constants/AppEnums';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { orange } from '@mui/material/colors';
 
 const UserInfo = () => {
@@ -67,7 +67,7 @@ const UserInfo = () => {
         )}
       </Box>
       <Menu
-        id="simple-menu"
+        id='simple-menu'
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -120,7 +120,7 @@ const UserInfo = () => {
                 fontSize: 14,
                 fontWeight: Fonts.MEDIUM,
               }}
-              component="span"
+              component='span'
             >
               {user.displayName ? user.displayName : 'Admin User '}
             </Box>
@@ -140,7 +140,7 @@ const UserInfo = () => {
         <MenuItem
           onClick={() => {
             handleClose();
-            router.push('/my-profile');
+            router.push('account/my-profile');
           }}
           sx={{
             px: 6,

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import InvoiceSideBar from './InvoiceSideBar';
 import InvoiceList from './InvoiceList';

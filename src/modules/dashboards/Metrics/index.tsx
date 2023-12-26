@@ -1,42 +1,40 @@
-import React from "react";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import { blue, grey, indigo, red } from "@mui/material/colors";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useIntl } from "react-intl";
-import AppLoader from "@crema/components/AppLoader";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  ComparisonCard,
-  EarningInMonth,
-  FloatingGraphs,
-  MetricTitleLineGraphCard,
-  ProfileViews,
-  Sales,
-  SocialVisitors,
-  Stats,
-  StatsCardWithGraph,
-  Subscriptions,
-  Visits,
-  WorkViews,
-  YourAccount,
-} from "@crema/modules/dashboards/Metrics";
+'use client';
+import React from 'react';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import { blue, grey, indigo, red } from '@mui/material/colors';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppAnimate from '@crema/components/AppAnimate';
+import { useIntl } from 'react-intl';
+import AppLoader from '@crema/components/AppLoader';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import StatsCardWithGraph from './StatsCardWithGraph';
+import ComparisonCard from './ComparisonCard';
+import Sales from './Sales';
+import YourAccount from './YourAccount';
+import EarningInMonth from './EarningInMonth';
+import MetricTitleLineGraphCard from './MetricTitleLineGraphCard';
+import FloatingGraphs from './FloatingGraphs';
+import Visits from './Visits';
+import ProfileViews from './ProfileViews';
+import WorkViews from './WorkViews';
+import Stats from './Stats';
+import SocialVisitors from './SocialVisitors';
+import Subscriptions from './Subscriptions';
+import StatsDirCard from '../CommonComponents/StatsDirCard';
+import StatsItemCard from '../CommonComponents/StatsItemCard';
 
-import {
-  StatsDirCard,
-  StatsItemCard,
-} from "@crema/modules/dashboards/CommonComponents";
-import { ReportCard } from "@crema/modules/dashboards/ECommerce";
-import { VisitorPageView } from "@crema/modules/dashboards/Analytics";
-import { HeartRate, YourActivity } from "@crema/modules/dashboards/HealthCare";
-import { MetricsType } from "@crema/types/models/dashboards/Metrics";
+import ReportCard from '../ECommerce/ReportCard';
+import YourActivity from '../HealthCare/YourActivity';
+import HeartRate from '../HealthCare/HeartRate';
+import VisitorPageView from '../Analytics/VisitorPageView';
+import { MetricsType } from '@crema/types/models/dashboards/Metrics';
 
 const Metrics = () => {
   const [{ apiData: metricsData, loading }] =
-    useGetDataApi<MetricsType>("/dashboard/metrics");
+    useGetDataApi<MetricsType>('/dashboard/metrics');
   const { messages } = useIntl();
 
   return loading ? (
@@ -45,15 +43,15 @@ const Metrics = () => {
     <AppAnimate>
       <>
         <Box
-          component="h2"
+          component='h2'
           sx={{
-            color: "text.primary",
+            color: 'text.primary',
             mb: { xs: 4, sm: 4, xl: 6 },
             fontSize: 16,
             fontWeight: Fonts.BOLD,
           }}
         >
-          <IntlMessages id="dashboard.metrics" />
+          <IntlMessages id='dashboard.metrics' />
         </Box>
 
         <AppGridContainer>
@@ -75,103 +73,103 @@ const Metrics = () => {
           ))}
           <Grid item xs={12} md={3}>
             <FloatingGraphs
-              title={messages["dashboard.sales"]}
+              title={messages['dashboard.sales']}
               data={metricsData.metricsFloatingGraphData.salesData}
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <FloatingGraphs
-              title={messages["dashboard.clients"]}
+              title={messages['dashboard.clients']}
               data={metricsData.metricsFloatingGraphData.clientsData}
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <FloatingGraphs
-              title={messages["dashboard.revenue"]}
+              title={messages['dashboard.revenue']}
               data={metricsData.metricsFloatingGraphData.revenueData}
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <FloatingGraphs
-              title={messages["dashboard.newUser"]}
+              title={messages['dashboard.newUser']}
               data={metricsData.metricsFloatingGraphData.newUserData}
             />
           </Grid>
           <Grid item xs={12} md={4}>
             <StatsCardWithGraph
-              text={messages["dashboard.incomeLastYear"]}
+              text={messages['dashboard.incomeLastYear']}
               data={metricsData.incomeLastYear}
-              type="incomeGraph"
-              headingColor="text.primary"
-              valueColor="#FFA940"
+              type='incomeGraph'
+              headingColor='text.primary'
+              valueColor='#FFA940'
             />
           </Grid>
 
           <Grid item xs={12} md={4}>
             <StatsCardWithGraph
-              text={messages["dashboard.webTraffic"]}
+              text={messages['dashboard.webTraffic']}
               data={metricsData.websiteTrafficData}
-              bgColor="background.paper"
-              type="trafficGraph"
-              headingColor="text.primary"
+              bgColor='background.paper'
+              type='trafficGraph'
+              headingColor='text.primary'
               valueColor={red[600]}
             />
           </Grid>
 
           <Grid item xs={12} md={4}>
             <StatsCardWithGraph
-              text={messages["dashboard.growthInRevenue"]}
+              text={messages['dashboard.growthInRevenue']}
               data={metricsData.revenueGrowthData}
-              bgColor="background.paper"
-              type="revenueGrowth"
-              headingColor="text.primary"
+              bgColor='background.paper'
+              type='revenueGrowth'
+              headingColor='text.primary'
               valueColor={blue[500]}
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <ComparisonCard
-              text={messages["dashboard.incrementInUsers"]}
+              text={messages['dashboard.incrementInUsers']}
               data={metricsData.incrementActiveUsers}
-              bgColor="background.paper"
-              type="activeUsers"
-              headingColor="text.primary"
-              valueColor="#4299E1"
+              bgColor='background.paper'
+              type='activeUsers'
+              headingColor='text.primary'
+              valueColor='#4299E1'
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <ComparisonCard
-              text={messages["dashboard.extraRevenue"]}
+              text={messages['dashboard.extraRevenue']}
               data={metricsData.extraRevenue}
-              bgColor="background.paper"
-              type="extraRevenue"
-              headingColor="text.primary"
-              valueColor="#4C51BF"
+              bgColor='background.paper'
+              type='extraRevenue'
+              headingColor='text.primary'
+              valueColor='#4C51BF'
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <ComparisonCard
-              text={messages["dashboard.trafficRaise"]}
+              text={messages['dashboard.trafficRaise']}
               data={metricsData.trafficRaise}
-              bgColor="background.paper"
-              type="trafficRaise"
-              headingColor="text.primary"
+              bgColor='background.paper'
+              type='trafficRaise'
+              headingColor='text.primary'
               valueColor={blue[500]}
             />
           </Grid>
 
           <Grid item xs={12} md={3}>
             <ComparisonCard
-              text={messages["dashboard.lessOrders"]}
+              text={messages['dashboard.lessOrders']}
               data={metricsData.lessOrders}
-              bgColor="background.paper"
-              type="lessOrders"
-              headingColor="text.primary"
+              bgColor='background.paper'
+              type='lessOrders'
+              headingColor='text.primary'
               valueColor={red[500]}
             />
           </Grid>
@@ -200,24 +198,24 @@ const Metrics = () => {
             >
               <MetricTitleLineGraphCard
                 data={metricsData.metricsLineGraphData}
-                title={messages["dashboard.rides"]}
-                titleColor="rgb(73, 80, 87)"
+                title={messages['dashboard.rides']}
+                titleColor='rgb(73, 80, 87)'
                 valueColor={grey[500]}
                 differenceColor={red[500]}
-                bgColor="white"
-                graphColor="#4299E1"
+                bgColor='white'
+                graphColor='#4299E1'
               />
             </Box>
 
             <Box>
               <MetricTitleLineGraphCard
                 data={metricsData.metricsLineGraphData}
-                title={messages["dashboard.visits"]}
-                titleColor="white"
+                title={messages['dashboard.visits']}
+                titleColor='white'
                 valueColor={indigo[300]}
-                differenceColor="white"
+                differenceColor='white'
                 bgColor={indigo[500]}
-                graphColor="#FFFFFF"
+                graphColor='#FFFFFF'
               />
             </Box>
           </Grid>

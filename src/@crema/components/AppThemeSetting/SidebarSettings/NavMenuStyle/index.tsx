@@ -1,16 +1,13 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 import {
   useSidebarActionsContext,
   useSidebarContext,
-} from "@crema/context/AppContextProvider/SidebarContextProvider";
-import AppSelectedIcon from "../../../AppSelectedIcon";
-import {
-  menuStyles,
-  MenuStyleType,
-} from "@crema/mockapi/fakedb/navigationStyle";
+} from '@crema/context/AppContextProvider/SidebarContextProvider';
+import AppSelectedIcon from '../../../AppSelectedIcon';
+import { menuStyles, MenuStyleType } from '@crema/fakedb/navigationStyle';
 
 const NavMenuStyle = () => {
   const { menuStyle } = useSidebarContext();
@@ -22,16 +19,16 @@ const NavMenuStyle = () => {
 
   return (
     <>
-      <Box component="h4" sx={{ mb: 3 }}>
-        <IntlMessages id="customizer.sidebarMenuStyle" />
+      <Box component='h4' sx={{ mb: 3 }}>
+        <IntlMessages id='customizer.sidebarMenuStyle' />
       </Box>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-          marginLeft: "-10px",
-          marginRight: "-10px",
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          marginLeft: '-10px',
+          marginRight: '-10px',
         }}
       >
         {menuStyles.map((menu: MenuStyleType) => {
@@ -46,12 +43,12 @@ const NavMenuStyle = () => {
             >
               <Box
                 sx={{
-                  position: "relative",
-                  cursor: "pointer",
+                  position: 'relative',
+                  cursor: 'pointer',
                 }}
                 onClick={() => onMenuStyleChange(menu.alias)}
               >
-                <img src={menu.image} alt="nav" />
+                <img src={menu.image} alt='nav' />
                 {menuStyle === menu.alias ? <AppSelectedIcon /> : null}
               </Box>
             </Box>

@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import SimpleBarReact from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 const StyledSimpleBarReact = styled(SimpleBarReact)(() => ({
   height: '100%',

@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import { Fonts } from "@crema/constants/AppEnums";
-import { Box } from "@mui/material";
-import BlogSidebar from "./Sidebar";
-import BlogContent from "./Content";
-import { Formik, Form } from "formik";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import { useRouter } from "next/router";
-import { getStringFromHtml } from "@crema/helpers/StringHelper";
-import { getFormattedDate } from "@crema/helpers/DateHelper";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
+'use client';
+import React, { useEffect, useState } from 'react';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { Fonts } from '@crema/constants/AppEnums';
+import { Box } from '@mui/material';
+import BlogSidebar from './Sidebar';
+import BlogContent from './Content';
+import { Formik, Form } from 'formik';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import { useRouter } from 'next/navigation';
+import { getStringFromHtml } from '@crema/helpers/StringHelper';
+import { getFormattedDate } from '@crema/helpers/DateHelper';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import {
   ProductDataType,
   ProductInfoType,
   ProductSpecType,
   TagType,
   FileType,
-} from "@crema/types/models/ecommerce/EcommerceApp";
+} from '@crema/types/models/ecommerce/EcommerceApp';
 
 type Props = {
   selectedProd?: ProductDataType;
@@ -29,10 +30,10 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
   const router = useRouter();
 
   const [productInfo, setProductInfo] = React.useState<ProductInfoType[]>([
-    { id: 1, title: "", desc: "" },
+    { id: 1, title: '', desc: '' },
   ]);
   const [productSpec, setProductSpec] = React.useState<ProductSpecType[]>([
-    { id: 1, title: "", desc: "" },
+    { id: 1, title: '', desc: '' },
   ]);
 
   useEffect(() => {
@@ -47,10 +48,10 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
   return (
     <>
       <Box
-        component="h2"
+        component='h2'
         sx={{
           fontSize: 16,
-          color: "text.primary",
+          color: 'text.primary',
           fontWeight: Fonts.SEMI_BOLD,
           mb: {
             xs: 2,
@@ -58,7 +59,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
           },
         }}
       >
-        {selectedProd ? "Edit Product" : "Create a new product"}
+        {selectedProd ? 'Edit Product' : 'Create a new product'}
       </Box>
 
       <Formik
@@ -70,13 +71,13 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
                 category: selectedProd?.category || 1,
               }
             : {
-                title: "",
-                SKU: "",
+                title: '',
+                SKU: '',
                 category: 1,
                 mrp: 0,
                 salemrp: 0,
                 discount: 0,
-                description: "",
+                description: '',
                 inStock: false,
               }
         }
@@ -87,20 +88,20 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
               ...selectedProd,
               ...data,
             };
-            putDataApi("/api/ecommerce/list/update", infoViewActionsContext, {
+            putDataApi('ecommerce/admin', infoViewActionsContext, {
               product: updatedProd,
             })
               .then(() => {
-                router.push("/ecommerce/product-listing");
+                router.push('/ecommerce/product-listing');
                 infoViewActionsContext.showMessage(
-                  "Product updated successfully!"
+                  'Product updated successfully!',
                 );
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
               });
           } else {
-            postDataApi("/api/ecommerce/list/add", infoViewActionsContext, {
+            postDataApi('ecommerce/admin', infoViewActionsContext, {
               product: {
                 ...data,
                 description: getStringFromHtml(data.description),
@@ -118,9 +119,9 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
             })
               .then(() => {
                 infoViewActionsContext.showMessage(
-                  "Product created successfully!"
+                  'Product created successfully!',
                 );
-                router.push("/ecommerce/product-listing");
+                router.push('/ecommerce/product-listing');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -131,10 +132,10 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
-          <Form noValidate autoComplete="off">
+          <Form noValidate autoComplete='off'>
             <AppGridContainer>
               <BlogContent
-                content={selectedProd?.description || ""}
+                content={selectedProd?.description || ''}
                 uploadedFiles={uploadedFiles}
                 setUploadedFiles={setUploadedFiles}
                 setFieldValue={setFieldValue}

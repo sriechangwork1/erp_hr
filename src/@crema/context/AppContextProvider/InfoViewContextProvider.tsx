@@ -1,3 +1,4 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
@@ -44,12 +45,12 @@ type InfoViewContextProviderProps = {
   children: ReactNode;
 };
 const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = (
-  props
+  props,
 ) => {
   const [state, dispatch] = useReducer(
     contextReducer,
     ContextState,
-    () => ContextState
+    () => ContextState,
   );
 
   const fetchStart = useCallback(() => {

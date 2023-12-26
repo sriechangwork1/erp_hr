@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import dayjs from "dayjs";
-import { Zoom } from "@mui/material";
-import { useIntl } from "react-intl";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { useAuthUser } from "@crema/hooks/AuthHooks";
-import { useChatContext } from "../../context/ChatContextProvider";
-import { ChatTabs, ChatUserInfo } from "@crema/modules/apps/Chat";
-import { ConnectionType } from "@crema/types/models/apps/Chat";
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import dayjs from 'dayjs';
+import { Zoom } from '@mui/material';
+import { useIntl } from 'react-intl';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useChatContext } from '../../context/ChatContextProvider';
 
+import { ConnectionType } from '@crema/types/models/apps/Chat';
+import ChatTabs from './ChatTabs';
+import ChatUserInfo from './UserInfo';
 type ChatSideBarProps = {
   selectedUser: ConnectionType;
   setSelectedUser: (member: ConnectionType) => void;
@@ -16,13 +17,13 @@ type ChatSideBarProps = {
 
 const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
   const { connectionList, loading } = useChatContext();
-  const [keywords, setKeywords] = useState("");
+  const [keywords, setKeywords] = useState('');
   const { user } = useAuthUser();
 
   const getConnectionList = () => {
-    if (keywords !== "") {
+    if (keywords !== '') {
       return connectionList.filter((item) =>
-        item.name.toUpperCase().includes(keywords.toUpperCase())
+        item.name.toUpperCase().includes(keywords.toUpperCase()),
       );
     }
     return connectionList;
@@ -30,14 +31,14 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
 
   const getChatList = () => {
     let chatsList = connectionList?.filter((item) => item.lastMessage);
-    if (keywords !== "") {
+    if (keywords !== '') {
       chatsList = chatsList.filter((item) =>
-        item.name.toUpperCase().includes(keywords.toUpperCase())
+        item.name.toUpperCase().includes(keywords.toUpperCase()),
       );
     }
     chatsList?.sort((a: ConnectionType, b: ConnectionType) => {
-      const momentA: any = dayjs(a.lastMessage!.time).format("X");
-      const momentB: any = dayjs(b.lastMessage!.time).format("X");
+      const momentA: any = dayjs(a.lastMessage!.time).format('X');
+      const momentB: any = dayjs(b.lastMessage!.time).format('X');
       return momentB - momentA;
     });
     return chatsList;
@@ -52,12 +53,12 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        height: "100%",
-        flexDirection: "column",
+        display: 'flex',
+        height: '100%',
+        flexDirection: 'column',
       }}
     >
-      <Zoom in style={{ transitionDelay: "300ms" }}>
+      <Zoom in style={{ transitionDelay: '300ms' }}>
         <Box
           sx={{
             px: 5,
@@ -78,24 +79,24 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
         <AppSearchBar
           sx={{
             marginRight: 0,
-            width: "100%",
-            "& .searchRoot": {
-              width: "100%",
+            width: '100%',
+            '& .searchRoot': {
+              width: '100%',
             },
-            "& .MuiInputBase-input": {
-              width: "100%",
-              "&:focus": {
-                width: "100%",
+            '& .MuiInputBase-input': {
+              width: '100%',
+              '&:focus': {
+                width: '100%',
               },
             },
           }}
-          iconPosition="right"
+          iconPosition='right'
           overlap={false}
           value={keywords}
           onChange={(
-            e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+            e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
           ) => setKeywords(e.target.value)}
-          placeholder={messages["common.searchHere"] as string}
+          placeholder={messages['common.searchHere'] as string}
         />
       </Box>
 

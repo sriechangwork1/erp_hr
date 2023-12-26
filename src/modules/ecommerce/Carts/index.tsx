@@ -1,32 +1,38 @@
-import React from "react";
-import { Box, Grid } from "@mui/material";
-import Button from "@mui/material/Button";
-import { useRouter } from "next/router";
-import AppCard from "@crema/components/AppCard";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppAnimate from "@crema/components/AppAnimate";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import { postDataApi, putDataApi, useGetDataApi } from "@crema/hooks/APIHooks";
-import { CartTable, OrderSummary } from "@crema/modules/ecommerce/Carts";
-import AppLoader from "@crema/components/AppLoader";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { CartItemsType } from "@crema/types/models/ecommerce/EcommerceApp";
+'use client';
+import React from 'react';
+import { Box, Grid } from '@mui/material';
+import Button from '@mui/material/Button';
+import { useRouter } from 'next/navigation';
+import AppCard from '@crema/components/AppCard';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppAnimate from '@crema/components/AppAnimate';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { postDataApi, putDataApi, useGetDataApi } from '@crema/hooks/APIHooks';
+import OrderSummary from '../OrderSummary';
+import CartTable from './CartTable';
+import AppLoader from '@crema/components/AppLoader';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { CartItemsType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const Carts = () => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const router = useRouter();
 
   const [{ apiData, loading }, { setData }] = useGetDataApi<CartItemsType[]>(
-    "/api/cart/get",
+    'ecommerce/cart',
     [],
-    {}
+    {},
   );
 
   const onRemoveItem = (product: CartItemsType) => {
-    postDataApi<CartItemsType[]>("/api/cart/remove", infoViewActionsContext, {
-      product,
-    })
+    postDataApi<CartItemsType[]>(
+      'ecommerce/cart/remove',
+      infoViewActionsContext,
+      {
+        product,
+      },
+    )
       .then((data) => {
         setData(data);
       })
@@ -37,7 +43,7 @@ const Carts = () => {
 
   const onDecrement = (data: CartItemsType) => {
     if (data.count > 1) {
-      putDataApi<CartItemsType[]>("/api/cart/update", infoViewActionsContext, {
+      putDataApi<CartItemsType[]>('ecommerce/cart', infoViewActionsContext, {
         product: { ...data, count: data.count - 1 },
       })
         .then((data) => {
@@ -47,9 +53,13 @@ const Carts = () => {
           infoViewActionsContext.fetchError(error.message);
         });
     } else {
-      postDataApi<CartItemsType[]>("/api/cart/remove", infoViewActionsContext, {
-        product: data,
-      })
+      postDataApi<CartItemsType[]>(
+        'ecommerce/cart/remove',
+        infoViewActionsContext,
+        {
+          product: data,
+        },
+      )
         .then((data) => {
           setData(data);
         })
@@ -59,7 +69,7 @@ const Carts = () => {
     }
   };
   const onIncrement = (data: CartItemsType) => {
-    putDataApi<CartItemsType[]>("/api/cart/update", infoViewActionsContext, {
+    putDataApi<CartItemsType[]>('ecommerce/cart', infoViewActionsContext, {
       product: { ...data, count: data.count + 1 },
     })
       .then((data) => {
@@ -75,18 +85,18 @@ const Carts = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <Box>
             <Box
-              component="h2"
+              component='h2'
               sx={{
-                color: "text.primary",
+                color: 'text.primary',
                 fontWeight: Fonts.BOLD,
                 mb: 6,
                 fontSize: 16,
               }}
             >
-              <IntlMessages id="sidebar.ecommerce.cart" />
+              <IntlMessages id='sidebar.ecommerce.cart' />
             </Box>
             <AppGridContainer>
               <Grid item xs={12} md={8}>
@@ -97,24 +107,24 @@ const Carts = () => {
                       sx={{
                         mt: 4,
                         width: 1,
-                        display: "flex",
-                        justifyContent: "space-between",
+                        display: 'flex',
+                        justifyContent: 'space-between',
                       }}
                     >
                       <Button
-                        variant="contained"
-                        color="primary"
+                        variant='contained'
+                        color='primary'
                         onClick={() => {
-                          router.push("/ecommerce/products");
+                          router.push('/ecommerce/products');
                         }}
                       >
                         Continue Shopping
                       </Button>
                       <Button
-                        variant="contained"
-                        color="secondary"
+                        variant='contained'
+                        color='secondary'
                         onClick={() => {
-                          router.push("/ecommerce/checkout");
+                          router.push('/ecommerce/checkout');
                         }}
                       >
                         Checkout

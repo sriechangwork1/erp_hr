@@ -1,40 +1,41 @@
-import React, { useEffect } from "react";
-import AppCard from "@crema/components/AppCard";
-import AppGridContainer from "@crema/components/AppGridContainer";
+'use client';
+import React, { useEffect } from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppGridContainer from '@crema/components/AppGridContainer';
 
-import AppAnimate from "@crema/components/AppAnimate";
-import { useRouter } from "next/router";
-import AppInfoView from "@crema/components/AppInfoView";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  Header,
-  ProductImageSlide,
-  ProductView,
-  SimilarProduct,
-} from "@crema/modules/ecommerce/ProductDetail";
-import AppLoader from "@crema/components/AppLoader";
-import { ProductDataType } from "@crema/types/models/ecommerce/EcommerceApp";
+import AppAnimate from '@crema/components/AppAnimate';
+import { useParams } from 'next/navigation';
+import AppInfoView from '@crema/components/AppInfoView';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+
+import ProductImageSlide from './ProductImageSlide';
+import Header from './Header';
+import ProductView from './ProductView/index';
+import SimilarProduct from './SimilarProduct';
+import AppLoader from '@crema/components/AppLoader';
+import { ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const ProductDetail = () => {
-  const { query } = useRouter();
+  const params = useParams();
+
   const [{ apiData: currentProduct, loading }, { setQueryParams }] =
     useGetDataApi<ProductDataType>(
-      "/api/ecommerce/get",
+      'ecommerce',
       {} as ProductDataType,
-      { id: query?.all?.[0] },
-      false
+      { id: params?.all?.[0] ? params?.all?.[0] : 0 },
+      false,
     );
 
   useEffect(() => {
-    setQueryParams({ id: query?.all?.[0] });
-  }, [query?.all?.[0]]);
+    setQueryParams({ id: params?.all?.[0] });
+  }, [params?.all?.[0]]);
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : currentProduct ? (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppCard>
             <Header product={currentProduct} />
             <AppGridContainer>

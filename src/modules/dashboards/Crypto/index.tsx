@@ -1,34 +1,32 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  ATCStatics,
-  BuySell,
-  CardDetails,
-  Coins,
-  GainerLooser,
-  OrdersActivities,
-  QuickTransfer,
-  TopStories,
-  TotalBalance,
-  TradingChart,
-} from "@crema/modules/dashboards/Crypto";
-import AppLoader from "@crema/components/AppLoader";
-import type { CryptoPropsType } from "@crema/types/models/dashboards/Crypto";
+'use client';
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import TotalBalance from './TotalBalance';
+import Coins from './Coins';
+import BuySell from './BuySell';
+import TradingChart from './TradingChart';
+import OrdersActivities from './OrdersActivities';
+import TopStories from './TopStories';
+import GainerLooser from './GainerLooser';
+import ATCStatics from './ATCStatics';
+import CardDetails from './CardDetails';
+import QuickTransfer from './QuickTransfer';
+
+import AppLoader from '@crema/components/AppLoader';
+import type { CryptoPropsType } from '@crema/types/models/dashboards/Crypto';
 
 const Crypto = () => {
   const [{ apiData: cryptoData, loading }] =
-    useGetDataApi<CryptoPropsType>("/dashboard/crypto");
-
-  console.log(cryptoData, loading);
+    useGetDataApi<CryptoPropsType>('dashboard/crypto');
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppGridContainer>
             <Grid item xs={12} md={5}>
               <TotalBalance totalBalanceData={cryptoData.totalBalanceData} />

@@ -1,13 +1,13 @@
-import React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import FormControl from "@mui/material/FormControl";
-import { useCalendarContext } from "../../../context/CalendarContextProvider";
-import { StaffType } from "@crema/types/models/apps/Todo";
+import React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import FormControl from '@mui/material/FormControl';
+import { useCalendarContext } from '../../../context/CalendarContextProvider';
+import { StaffType } from '@crema/types/models/apps/Todo';
 
 type Props = {
   selectedStaff: StaffType;
@@ -17,38 +17,38 @@ const ChangeStaff = ({ selectedStaff, handleStaffChange }: Props) => {
   const { staffList } = useCalendarContext();
   return (
     <FormControl
-      variant="outlined"
+      variant='outlined'
       sx={{
         minWidth: 100,
-        width: "100%",
+        width: '100%',
       }}
     >
-      <InputLabel id="selected-staff-select-outlined-label">
-        <IntlMessages id="common.staff" />
+      <InputLabel id='selected-staff-select-outlined-label'>
+        <IntlMessages id='common.staff' />
       </InputLabel>
       <Select
-        labelId="selected-staff-select-outlined-label"
+        labelId='selected-staff-select-outlined-label'
         sx={{
-          cursor: "pointer",
-          "& .MuiOutlinedInput-input": {
+          cursor: 'pointer',
+          '& .MuiOutlinedInput-input': {
             paddingBottom: 2.5,
             paddingTop: 2.5,
           },
         }}
-        value={selectedStaff.id}
-        label={<IntlMessages id="common.staff" />}
+        value={selectedStaff?.id}
+        label={<IntlMessages id='common.staff' />}
         onChange={handleStaffChange}
       >
         {staffList.map((staff) => {
           return (
             <MenuItem
-              value={staff.id}
-              key={staff.id}
+              value={staff?.id}
+              key={staff?.id}
               sx={{
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
             >
-              <Box display="flex" alignItems="center">
+              <Box display='flex' alignItems='center'>
                 {staff.image ? (
                   <Avatar
                     sx={{
@@ -69,7 +69,7 @@ const ChangeStaff = ({ selectedStaff, handleStaffChange }: Props) => {
                     {staff.name.toUpperCase()}
                   </Avatar>
                 )}
-                <Box component="span">{staff.name}</Box>
+                <Box component='span'>{staff.name}</Box>
               </Box>
             </MenuItem>
           );

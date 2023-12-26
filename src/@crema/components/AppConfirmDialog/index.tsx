@@ -17,9 +17,9 @@ const Transition = React.forwardRef(function Transition(
     children: React.ReactElement<any, any>;
   },
   // eslint-disable-next-line no-undef
-  ref: React.Ref<unknown>
+  ref: React.Ref<unknown>,
 ) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction='up' ref={ref} {...props} />;
 });
 
 type AppConfirmDialogProps = {
@@ -45,20 +45,18 @@ const AppConfirmDialog: React.FC<AppConfirmDialogProps> = ({
     >
       <DialogTitle>
         <Typography
-          component="h4"
-          variant="h4"
           sx={{
             mb: 3,
             fontWeight: Fonts.SEMI_BOLD,
           }}
-          id="alert-dialog-title"
+          id='alert-dialog-title'
         >
           {dialogTitle}
         </Typography>
       </DialogTitle>
       <DialogContent
         sx={{ color: 'text.secondary', fontSize: 14 }}
-        id="alert-dialog-description"
+        id='alert-dialog-description'
       >
         {title}
       </DialogContent>
@@ -69,25 +67,25 @@ const AppConfirmDialog: React.FC<AppConfirmDialogProps> = ({
         }}
       >
         <Button
-          variant="outlined"
+          variant='outlined'
           sx={{
             fontWeight: Fonts.MEDIUM,
           }}
           onClick={onConfirm}
-          color="primary"
+          color='primary'
           autoFocus
         >
-          <IntlMessages id="common.yes" />
+          <IntlMessages id='common.yes' />
         </Button>
         <Button
-          variant="outlined"
+          variant='outlined'
           sx={{
             fontWeight: Fonts.MEDIUM,
           }}
           onClick={() => onDeny(false)}
-          color="secondary"
+          color='secondary'
         >
-          <IntlMessages id="common.no" />
+          <IntlMessages id='common.no' />
         </Button>
       </DialogActions>
     </Dialog>

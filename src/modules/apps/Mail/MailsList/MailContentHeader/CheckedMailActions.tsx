@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import ShopTwoOutlinedIcon from "@mui/icons-material/ShopTwoOutlined";
-import IconButton from "@mui/material/IconButton";
-import AppTooltip from "@crema/components/AppTooltip";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
+import React, { useState } from 'react';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ShopTwoOutlinedIcon from '@mui/icons-material/ShopTwoOutlined';
+import IconButton from '@mui/material/IconButton';
+import AppTooltip from '@crema/components/AppTooltip';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import {
   useMailActionsContext,
   useMailContext,
-} from "../../../context/MailContextProvider";
-import { MailType } from "@crema/types/models/apps/Mail";
+} from '../../../context/MailContextProvider';
+import { MailType } from '@crema/types/models/apps/Mail';
 
 type Props = {
   checkedMails: number[];
@@ -25,7 +25,7 @@ type Props = {
 
 const CheckedMailActions = (props: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
-  const { checkedMails, setCheckedMails } = props;
+  const { checkedMails = [], setCheckedMails } = props;
   const { labelList, folderList } = useMailContext();
   const { setMailData, reCallAPI } = useMailActionsContext();
 
@@ -50,19 +50,15 @@ const CheckedMailActions = (props: Props) => {
   };
 
   const onChangeMailFolder = (type: number) => {
-    putDataApi<MailType[]>(
-      "/api/mailApp/update/folder",
-      infoViewActionsContext,
-      {
-        mailIds: checkedMails,
-        type,
-      }
-    )
+    putDataApi<MailType[]>('mail/folders', infoViewActionsContext, {
+      mailIds: checkedMails,
+      type,
+    })
       .then((data) => {
         setMailData({ data, count: data.length });
         reCallAPI();
 
-        infoViewActionsContext.showMessage("Mail moved to folder successfully");
+        infoViewActionsContext.showMessage('Mail moved to folder successfully');
         setCheckedMails([]);
       })
       .catch((error) => {
@@ -72,22 +68,18 @@ const CheckedMailActions = (props: Props) => {
 
   const onSelectLabel = (event: any) => {
     const labelType = labelList.find(
-      (label) => label.id === event.target.value
+      (label) => label.id === event.target.value,
     );
-    putDataApi<MailType[]>(
-      "/api/mailApp/update/label",
-      infoViewActionsContext,
-      {
-        mailIds: checkedMails,
-        type: labelType,
-      }
-    )
+    putDataApi<MailType[]>('mail/labels', infoViewActionsContext, {
+      mailIds: checkedMails,
+      type: labelType,
+    })
       .then((data) => {
         setMailData({ data, count: data.length });
         reCallAPI();
         setCheckedMails([]);
         onOpenLabel(null);
-        infoViewActionsContext.showMessage("Mail moved to folder successfully");
+        infoViewActionsContext.showMessage('Mail moved to folder successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -97,73 +89,73 @@ const CheckedMailActions = (props: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
-      <AppTooltip title={<IntlMessages id="common.archive" />}>
+      <AppTooltip title={<IntlMessages id='common.archive' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
           }}
           onClick={() => onChangeMailFolder(127)}
-          size="large"
+          size='large'
         >
           <ArchiveOutlinedIcon
             sx={{
-              cursor: "pointer",
-              display: "block",
+              cursor: 'pointer',
+              display: 'block',
             }}
           />
         </IconButton>
       </AppTooltip>
 
-      <AppTooltip title={<IntlMessages id="common.reportSpam" />}>
+      <AppTooltip title={<IntlMessages id='common.reportSpam' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
           }}
           onClick={() => onChangeMailFolder(125)}
-          size="large"
+          size='large'
         >
           <InfoOutlinedIcon
             sx={{
-              cursor: "pointer",
-              display: "block",
+              cursor: 'pointer',
+              display: 'block',
             }}
           />
         </IconButton>
       </AppTooltip>
 
-      <AppTooltip title={<IntlMessages id="common.trash" />}>
+      <AppTooltip title={<IntlMessages id='common.trash' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
           }}
           onClick={() => onChangeMailFolder(126)}
-          size="large"
+          size='large'
         >
           <DeleteOutlinedIcon
             sx={{
-              cursor: "pointer",
-              display: "block",
+              cursor: 'pointer',
+              display: 'block',
             }}
           />
         </IconButton>
       </AppTooltip>
 
-      <AppTooltip title={<IntlMessages id="common.label" />}>
+      <AppTooltip title={<IntlMessages id='common.label' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
           }}
           onClick={onLabelOpen}
-          size="large"
+          size='large'
         >
           <LabelOutlinedIcon
             sx={{
-              cursor: "pointer",
-              display: "block",
+              cursor: 'pointer',
+              display: 'block',
             }}
           />
         </IconButton>
@@ -183,18 +175,18 @@ const CheckedMailActions = (props: Props) => {
         })}
       </Menu>
 
-      <AppTooltip title={<IntlMessages id="common.moveTo" />}>
+      <AppTooltip title={<IntlMessages id='common.moveTo' />}>
         <IconButton
           sx={{
             color: (theme) => theme.palette.text.disabled,
           }}
           onClick={onMoveToOpen}
-          size="large"
+          size='large'
         >
           <ShopTwoOutlinedIcon
             sx={{
-              cursor: "pointer",
-              display: "block",
+              cursor: 'pointer',
+              display: 'block',
             }}
           />
         </IconButton>
@@ -221,7 +213,3 @@ const CheckedMailActions = (props: Props) => {
 };
 
 export default CheckedMailActions;
-
-CheckedMailActions.defaultProps = {
-  checkedMails: [],
-};

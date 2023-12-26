@@ -1,32 +1,29 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  Activities,
-  AppointmentCard,
-  CancelVisits,
-  DrCard,
-  HealthStatics,
-  HeartRate,
-  HospitalActivity,
-  HospitalStatics,
-  InfoWidget,
-  NewPatients,
-  Notifications,
-  ProfileCard,
-  RecentPatients,
-  TopDoctors,
-  UpcomingAppointments,
-  YourActivity,
-} from "@crema/modules/dashboards/HealthCare";
-import AppLoader from "@crema/components/AppLoader";
-import type { HealthCareType } from "@crema/types/models/dashboards/HealthCare";
+'use client';
+import React from 'react';
+import { Grid } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import AppLoader from '@crema/components/AppLoader';
+import type { HealthCareType } from '@crema/types/models/dashboards/HealthCare';
+import DrCard from './DrCard';
+import Activities from './Activities';
+import HealthStatics from './HealthStatics';
+import TopDoctors from './TopDoctors';
+import UpcomingAppointments from './UpcomingAppointments';
+import Notifications from './Notifications';
+import HospitalStatics from './HospitalStatics';
+import RecentPatients from './RecentPatients';
+import InfoWidget from './InfoWidget';
+import HospitalActivity from './HospitalActivity';
+import ProfileCard from './ProfileCard';
+import AppointmentCard from './AppointmentCard';
+import HeartRate from './HeartRate';
+import YourActivity from './YourActivity';
 
 const HealthCarePage = () => {
   const [{ apiData: healthCare, loading }] = useGetDataApi<HealthCareType>(
-    "/dashboard/health_care"
+    '/dashboard/health_care',
   );
 
   return (
@@ -34,7 +31,7 @@ const HealthCarePage = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppGridContainer>
             {healthCare.salesState.map((data, index) => (
               <Grid item xs={12} sm={6} lg={3} key={index}>
@@ -108,7 +105,7 @@ const HealthCarePage = () => {
             <Grid item xs={12} sm={12} md={4}>
               <AppGridContainer>
                 {healthCare.bloodCard.map((data, index) => (
-                  <Grid item xs={12} sm={6} key={"grid-" + index}>
+                  <Grid item xs={12} sm={6} key={'grid-' + index}>
                     <InfoWidget data={data} />
                   </Grid>
                 ))}

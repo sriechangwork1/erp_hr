@@ -1,20 +1,18 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-
-import {
-  Clients,
-  Introduction,
-  OfficeCultureCard,
-  Sections,
-  Team,
-} from "@crema/modules/extraPages/AboutUs";
-import { aboutUsData } from "@crema/mockapi/fakedb/extraPages";
+'use client';
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import Introduction from './Introduction';
+import OfficeCultureCard from './OfficeCultureCard';
+import Sections from './Sections';
+import Team from './Team';
+import Clients from './Clients';
+import { aboutUsData } from '@crema/fakedb/extraPages';
 
 const AboutUs = () => {
   return (
-    <AppAnimate animation="transition.slideUpIn" delay={200}>
+    <AppAnimate animation='transition.slideUpIn' delay={200}>
       <AppGridContainer>
         <Grid item xs={12} md={6} lg={9}>
           <Introduction introduction={aboutUsData.introduction} />
@@ -23,7 +21,7 @@ const AboutUs = () => {
           <OfficeCultureCard officeCulture={aboutUsData.officeCulture} />
         </Grid>
         {aboutUsData.aboutUsSection.map((data, index) => (
-          <Grid item xs={12} sm={6} lg={3} key={"section-" + index}>
+          <Grid item xs={12} sm={6} lg={3} key={'section-' + index}>
             <Sections data={data} />
           </Grid>
         ))}

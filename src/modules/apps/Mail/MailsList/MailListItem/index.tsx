@@ -1,29 +1,29 @@
-import React from "react";
-import { Checkbox } from "@mui/material";
-import LabelOutlinedIcon from "@mui/icons-material/LabelOutlined";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
-import DraftsOutlinedIcon from "@mui/icons-material/DraftsOutlined";
+import React from 'react';
+import { Checkbox } from '@mui/material';
+import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
 
-import dayjs from "dayjs";
-import clsx from "clsx";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import AppsStarredIcon from "@crema/components/AppsStarredIcon";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
-import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import dayjs from 'dayjs';
+import clsx from 'clsx';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import AppsStarredIcon from '@crema/components/AppsStarredIcon';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import {
   MailInfoWrapper,
   MailItemWrapper,
   MainActionWrapper,
-} from "./index.styles";
-import { Fonts } from "@crema/constants/AppEnums";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { MailType } from "@crema/types/models/apps/Mail";
+} from './index.styles';
+import { Fonts } from '@crema/constants/AppEnums';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { MailType } from '@crema/types/models/apps/Mail';
 
 type Props = {
   mail: MailType;
@@ -38,7 +38,7 @@ type Props = {
 const MailListItem = (props: Props) => {
   const {
     mail,
-    checkedMails,
+    checkedMails = [],
     onChangeCheckedMails,
     onChangeStarred,
     onViewMailDetail,
@@ -49,24 +49,24 @@ const MailListItem = (props: Props) => {
   const messages = mail.messages!.length;
   const onGetMailDate = (date: string) => {
     if (
-      dayjs(date, "ddd, MMM DD, YYYY").format() ===
-      dayjs("ddd, MMM DD, YYYY").format()
+      dayjs(date, 'ddd, MMM DD, YYYY').format() ===
+      dayjs('ddd, MMM DD, YYYY').format()
     ) {
-      return dayjs(date).format("LT");
+      return dayjs(date).format('LT');
     } else {
-      return date.split(",")[1];
+      return date.split(',')[1];
     }
   };
 
   const onArchive = (e: any) => {
     e.stopPropagation();
-    putDataApi("/api/mailApp/update/folder", infoViewActionsContext, {
+    putDataApi('mail/folders', infoViewActionsContext, {
       mailIds: [mail.id],
       type: 127,
     })
       .then(() => {
         onRemoveItem(mail);
-        infoViewActionsContext.showMessage("Mail Archieved Successfully");
+        infoViewActionsContext.showMessage('Mail Archieved Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -74,17 +74,16 @@ const MailListItem = (props: Props) => {
   };
   const onUpdateReadStatus = (e: any) => {
     e.stopPropagation();
-    putDataApi<MailType>("/api/mailApp/update/read", infoViewActionsContext, {
+    putDataApi<MailType>('/mail/detail', infoViewActionsContext, {
       mailIds: [mail.id],
       status: !mail.isRead,
     })
       .then((data) => {
         onUpdateItem(data);
-        console.log("onChangeReadStatus: ", data);
         infoViewActionsContext.showMessage(
           data.isRead
-            ? "Mail Marked as Read Successfully"
-            : "Mail Marked as Unread Successfully"
+            ? 'Mail Marked as Read Successfully'
+            : 'Mail Marked as Unread Successfully',
         );
       })
       .catch((error) => {
@@ -93,13 +92,13 @@ const MailListItem = (props: Props) => {
   };
   const onReportSpam = (e: any) => {
     e.stopPropagation();
-    putDataApi("/api/mailApp/update/folder", infoViewActionsContext, {
+    putDataApi('mail/folders', infoViewActionsContext, {
       mailIds: [mail.id],
       type: 125,
     })
       .then(() => {
         onRemoveItem(mail);
-        infoViewActionsContext.showMessage("Mail Reported Successfully");
+        infoViewActionsContext.showMessage('Mail Reported Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -107,13 +106,13 @@ const MailListItem = (props: Props) => {
   };
   const onDelete = (e: any) => {
     e.stopPropagation();
-    putDataApi("/api/mailApp/update/folder", infoViewActionsContext, {
+    putDataApi('mail/folders', infoViewActionsContext, {
       mailIds: [mail.id],
       type: 126,
     })
       .then(() => {
         onRemoveItem(mail);
-        infoViewActionsContext.showMessage("Mail Deleted Successfully");
+        infoViewActionsContext.showMessage('Mail Deleted Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -149,11 +148,11 @@ const MailListItem = (props: Props) => {
 
   const getSenderImage = () => {
     if (messages === 1) {
-      return mail.messages[0].sender.profilePic;
+      return mail?.messages?.[0]?.sender.profilePic;
     } else if (messages === 2) {
-      return mail.messages[1].sender.profilePic;
+      return mail.messages?.[1].sender.profilePic;
     } else {
-      return mail.messages[2].sender.profilePic;
+      return mail?.messages?.[2].sender.profilePic;
     }
   };
 
@@ -161,22 +160,22 @@ const MailListItem = (props: Props) => {
     <MailItemWrapper
       dense
       key={mail.id}
-      className={clsx("item-hover", {
+      className={clsx('item-hover', {
         active: checkedMails.includes(mail.id),
       })}
       onClick={() => onViewMailDetail(mail)}
     >
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          width: { xs: "100%", sm: "auto" },
+          display: 'flex',
+          alignItems: 'center',
+          width: { xs: '100%', sm: 'auto' },
         }}
       >
         <Box
-          component="span"
+          component='span'
           sx={{
-            display: "inline-block",
+            display: 'inline-block',
           }}
           onClick={(event) => event.stopPropagation()}
         >
@@ -188,18 +187,18 @@ const MailListItem = (props: Props) => {
             onChange={(event) =>
               onChangeCheckedMails(event.target.checked, mail.id)
             }
-            color="primary"
+            color='primary'
           />
         </Box>
         <Box
           sx={{
             mr: 2.5,
-            display: { xs: "none", sm: "inline-block" },
-            "& .MuiCheckbox-root": {
+            display: { xs: 'none', sm: 'inline-block' },
+            '& .MuiCheckbox-root': {
               color: (theme) => theme.palette.warning.main,
             },
           }}
-          component="span"
+          component='span'
           onClick={(event) => event.stopPropagation()}
         >
           <AppsStarredIcon item={mail} onChange={onChangeStarred} />
@@ -211,7 +210,7 @@ const MailListItem = (props: Props) => {
           }}
         >
           <Avatar
-            className="avatar"
+            className='avatar'
             alt={getSenderName()}
             src={getSenderImage()}
           />
@@ -219,14 +218,14 @@ const MailListItem = (props: Props) => {
 
         <Typography
           sx={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
             fontWeight: mail.isRead ? Fonts.REGULAR : Fonts.MEDIUM,
             fontSize: 14,
-            width: { sm: "120px" },
+            width: { sm: '120px' },
           }}
-          className={clsx(!mail.isRead ? "fontBold" : "")}
+          className={clsx(!mail.isRead ? 'fontBold' : '')}
         >
           {mail.isReplied
             ? `${getSenderName()}, me(${messages})`
@@ -236,37 +235,37 @@ const MailListItem = (props: Props) => {
 
       <MailInfoWrapper>
         <Box
-          className="mail-info-content"
+          className='mail-info-content'
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            width: "calc(100% - 120px)",
-            transition: "all 0.4s ease",
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: 'calc(100% - 120px)',
+            transition: 'all 0.4s ease',
           }}
         >
           <Box
             sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
               mr: 3,
               mb: 0,
             }}
-            component="p"
-            className={clsx(!mail.isRead ? "fontBold" : "")}
+            component='p'
+            className={clsx(!mail.isRead ? 'fontBold' : '')}
           >
             {mail.subject}
           </Box>
           {mail?.hasAttachments ? (
             <Box
-              component="p"
+              component='p'
               sx={{
-                color: "text.secondary",
-                position: "relative",
-                "& .MuiSvgIcon-root": {
+                color: 'text.secondary',
+                position: 'relative',
+                '& .MuiSvgIcon-root': {
                   fontSize: 16,
-                  display: "block",
+                  display: 'block',
                 },
               }}
             >
@@ -274,12 +273,12 @@ const MailListItem = (props: Props) => {
             </Box>
           ) : null}
           <Box
-            component="p"
+            component='p'
             sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              color: "text.secondary",
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              color: 'text.secondary',
             }}
           >
             {mail.detail}
@@ -287,34 +286,34 @@ const MailListItem = (props: Props) => {
         </Box>
 
         <Box
-          className="mail-time"
-          component="span"
+          className='mail-time'
+          component='span'
           sx={{
             px: 2.5,
             minWidth: 110,
-            marginLeft: "auto",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            transition: "all 0.4s ease",
+            marginLeft: 'auto',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            transition: 'all 0.4s ease',
           }}
         >
           <Box
             sx={{
               color: mail.label.color,
             }}
-            component="span"
+            component='span'
           >
             <LabelOutlinedIcon
               sx={{
-                display: "block",
+                display: 'block',
               }}
             />
           </Box>
           <Box
-            component="span"
+            component='span'
             sx={{
-              whiteSpace: "pre",
+              whiteSpace: 'pre',
               fontWeight: Fonts.MEDIUM,
               pl: 2,
             }}
@@ -323,13 +322,13 @@ const MailListItem = (props: Props) => {
           </Box>
         </Box>
 
-        <MainActionWrapper className="main-action-wrapper">
+        <MainActionWrapper className='main-action-wrapper'>
           <IconButton
             sx={{
               color: (theme) => theme.palette.text.disabled,
             }}
             onClick={onArchive}
-            size="large"
+            size='large'
           >
             <ArchiveOutlinedIcon />
           </IconButton>
@@ -338,7 +337,7 @@ const MailListItem = (props: Props) => {
               color: (theme) => theme.palette.text.disabled,
             }}
             onClick={onDelete}
-            size="large"
+            size='large'
           >
             <DeleteOutlinedIcon />
           </IconButton>
@@ -347,7 +346,7 @@ const MailListItem = (props: Props) => {
               color: (theme) => theme.palette.text.disabled,
             }}
             onClick={onUpdateReadStatus}
-            size="large"
+            size='large'
           >
             {mail.isRead ? <MailOutlinedIcon /> : <DraftsOutlinedIcon />}
           </IconButton>
@@ -356,7 +355,7 @@ const MailListItem = (props: Props) => {
               color: (theme) => theme.palette.text.disabled,
             }}
             onClick={onReportSpam}
-            size="large"
+            size='large'
           >
             <InfoOutlinedIcon />
           </IconButton>
@@ -367,8 +366,3 @@ const MailListItem = (props: Props) => {
 };
 
 export default MailListItem;
-
-MailListItem.defaultProps = {
-  labelList: [],
-  checkedMails: [],
-};

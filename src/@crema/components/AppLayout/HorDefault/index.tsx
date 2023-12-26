@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import clsx from "clsx";
-import AppContentView from "../../AppContentView";
-import AppFixedFooter from "./AppFixedFooter";
-import AppHeader from "./AppHeader";
-import AppSidebar from "./AppSidebar";
-import { useLayoutContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import AppThemeSetting from "../../AppThemeSetting";
-import HorDefaultWrapper from "./HorDefaultWrapper";
-import MainContent from "./MainContent";
-import { LayoutType } from "@crema/constants/AppEnums";
-import HorDefaultContainer from "./HorDefaultContainer";
-import { useRouter } from "next/router";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React, { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import AppContentView from '../../AppContentView';
+import AppFixedFooter from './AppFixedFooter';
+import AppHeader from './AppHeader';
+import AppSidebar from './AppSidebar';
+import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import AppThemeSetting from '../../AppThemeSetting';
+import HorDefaultWrapper from './HorDefaultWrapper';
+import MainContent from './MainContent';
+import { LayoutType } from '@crema/constants/AppEnums';
+import HorDefaultContainer from './HorDefaultContainer';
+import { useRouter } from 'next/navigation';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
   children: React.ReactNode;
@@ -36,9 +36,9 @@ const HorDefault = ({ children, routesConfig }: Props) => {
       })}
     >
       <HorDefaultWrapper
-        className={clsx("horDefaultWrapper", {
-          appMainFooter: footer && footerType === "fluid",
-          appMainFixedFooter: footer && footerType === "fixed",
+        className={clsx('horDefaultWrapper', {
+          appMainFooter: footer && footerType === 'fluid',
+          appMainFixedFooter: footer && footerType === 'fixed',
         })}
       >
         <AppSidebar

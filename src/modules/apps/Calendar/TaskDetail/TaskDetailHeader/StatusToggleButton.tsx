@@ -1,15 +1,15 @@
-import React from "react";
-import DoneIcon from "@mui/icons-material/Done";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { putDataApi } from "@crema/hooks/APIHooks";
-import { TodoType } from "@crema/types/models/apps/Todo";
+import React from 'react';
+import DoneIcon from '@mui/icons-material/Done';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { putDataApi } from '@crema/hooks/APIHooks';
+import { TodoType } from '@crema/types/models/apps/Todo';
 
 const StatusButton = styled(Button)(({ theme }) => ({
   fontSize: 12,
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up('lg')]: {
     fontSize: 14,
   },
 }));
@@ -17,8 +17,8 @@ const StatusButton = styled(Button)(({ theme }) => ({
 const StyledDoneIcon = styled(DoneIcon)(({ theme }) => ({
   marginRight: 4,
   fontSize: 18,
-  verticalAlign: "middle",
-  [theme.breakpoints.up("sm")]: {
+  verticalAlign: 'middle',
+  [theme.breakpoints.up('sm')]: {
     marginRight: 8,
   },
 }));
@@ -34,12 +34,12 @@ const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const onChangeTaskStatus = (status: number) => {
     const task = selectedTask;
     task.status = status;
-    putDataApi<TodoType>("/api/calendar/task/", infoViewActionsContext, {
+    putDataApi<TodoType>('/calender/detail', infoViewActionsContext, {
       task,
     })
       .then((data) => {
-        onUpdateSelectedTask(data[0]);
-        infoViewActionsContext.showMessage("Task Updated Successfully");
+        onUpdateSelectedTask(data);
+        infoViewActionsContext.showMessage('Task Updated Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -50,21 +50,21 @@ const StatusToggleButton = ({ selectedTask, onUpdateSelectedTask }: Props) => {
     <>
       {selectedTask.status === 3 ? (
         <StatusButton
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           startIcon={<StyledDoneIcon />}
           onClick={() => onChangeTaskStatus(1)}
         >
-          <IntlMessages id="todo.completed" />
+          <IntlMessages id='todo.completed' />
         </StatusButton>
       ) : (
         <StatusButton
-          variant="outlined"
-          color="primary"
+          variant='outlined'
+          color='primary'
           startIcon={<StyledDoneIcon />}
           onClick={() => onChangeTaskStatus(3)}
         >
-          <IntlMessages id="todo.markAsCompleted" />
+          <IntlMessages id='todo.markAsCompleted' />
         </StatusButton>
       )}
     </>

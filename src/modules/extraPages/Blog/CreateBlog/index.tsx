@@ -1,16 +1,17 @@
-import React, { useEffect, useId, useState } from "react";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import { Fonts } from "@crema/constants/AppEnums";
-import { Box } from "@mui/material";
-import BlogSidebar from "./Sidebar";
-import BlogContent from "./Content";
-import { Formik, Form } from "formik";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import { CreateNewBlog } from "./NewBlogTemplete";
-import { useRouter } from "next/router";
-import { BlogContentType } from "@crema/types/models/extrapages/Blog";
-import { TagType, FileType } from "@crema/types/models/ecommerce/EcommerceApp";
+'use client';
+import React, { useEffect, useId, useState } from 'react';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { Fonts } from '@crema/constants/AppEnums';
+import { Box } from '@mui/material';
+import BlogSidebar from './Sidebar';
+import BlogContent from './Content';
+import { Formik, Form } from 'formik';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import { CreateNewBlog } from './NewBlogTemplete';
+import { useRouter } from 'next/navigation';
+import { BlogContentType } from '@crema/types/models/extrapages/Blog';
+import { TagType, FileType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type Props = {
   selectedBlog?: BlogContentType;
@@ -37,10 +38,10 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
   return (
     <>
       <Box
-        component="h2"
+        component='h2'
         sx={{
           fontSize: 16,
-          color: "text.primary",
+          color: 'text.primary',
           fontWeight: Fonts.SEMI_BOLD,
           mb: {
             xs: 2,
@@ -48,21 +49,21 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
           },
         }}
       >
-        {selectedBlog ? "Edit Blog" : "Create a new blog"}
+        {selectedBlog ? 'Edit Blog' : 'Create a new blog'}
       </Box>
 
       <Formik
         validateOnChange={true}
         initialValues={{
-          title: selectedBlog?.blogDetailContent?.title || "",
-          description: selectedBlog?.blogDetailContent?.description || "",
+          title: selectedBlog?.blogDetailContent?.title || '',
+          description: selectedBlog?.blogDetailContent?.description || '',
           tag: selectedBlog?.blogDetailContent?.tag || [],
-          cardMedia: selectedBlog?.blogDetailContent?.cardMedia || "",
-          metatitle: selectedBlog?.blogDetailContent?.meta?.metatitle || "",
-          metadesc: selectedBlog?.blogDetailContent?.meta?.metadesc || "",
-          keywords: selectedBlog?.blogDetailContent?.meta?.keywords || "",
-          content: selectedBlog?.blogDetailContent?.content || "",
-          preview: "",
+          cardMedia: selectedBlog?.blogDetailContent?.cardMedia || '',
+          metatitle: selectedBlog?.blogDetailContent?.meta?.metatitle || '',
+          metadesc: selectedBlog?.blogDetailContent?.meta?.metadesc || '',
+          keywords: selectedBlog?.blogDetailContent?.meta?.keywords || '',
+          content: selectedBlog?.blogDetailContent?.content || '',
+          preview: '',
         }}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
@@ -84,27 +85,27 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
                   metatitle: data.metatitle,
                 },
                 post: {
-                  user: "/assets/images/avatar/A12.jpg",
-                  userName: "John Deuo",
-                  userPosition: "Co-founder",
+                  user: '/assets/images/avatar/A12.jpg',
+                  userName: 'John Deuo',
+                  userPosition: 'Co-founder',
                   description: selectedBlog.blogDetailContent.post.description,
                 },
               },
             };
-            putDataApi("/pages/blogs", infoViewActionsContext, {
+            putDataApi('/blogs', infoViewActionsContext, {
               blog: newBlog,
             })
               .then(() => {
-                router.push("/extra-pages/blog");
+                router.push('/extra-pages/blog');
                 infoViewActionsContext.showMessage(
-                  "Blog updated successfully!"
+                  'Blog updated successfully!',
                 );
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
               });
           } else {
-            postDataApi("/pages/blogs", infoViewActionsContext, {
+            postDataApi('/blogs', infoViewActionsContext, {
               blog: CreateNewBlog({
                 ...data,
                 id,
@@ -115,9 +116,9 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
             })
               .then(() => {
                 infoViewActionsContext.showMessage(
-                  "Blog created successfully!"
+                  'Blog created successfully!',
                 );
-                router.push("/extra-pages/blog");
+                router.push('/extra-pages/blog');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -128,10 +129,10 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
-          <Form noValidate autoComplete="off">
+          <Form noValidate autoComplete='off'>
             <AppGridContainer>
               <BlogContent
-                content={selectedBlog?.blogDetailContent?.content || ""}
+                content={selectedBlog?.blogDetailContent?.content || ''}
                 uploadedFiles={uploadedFiles}
                 setUploadedFiles={setUploadedFiles}
                 setFieldValue={setFieldValue}

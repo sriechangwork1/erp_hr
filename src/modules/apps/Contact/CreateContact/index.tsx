@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
-import AddContactForm from "./AddContactForm";
-import AppDialog from "@crema/components/AppDialog";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
-import { useIntl } from "react-intl";
-import { useContactActionsContext } from "../../context/ContactContextProvider";
-import { getDateObject, getFormattedDate } from "@crema/helpers/DateHelper";
-import { generateRandomUniqueNumber } from "@crema/helpers/Common";
+import React, { useEffect, useState } from 'react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import AddContactForm from './AddContactForm';
+import AppDialog from '@crema/components/AppDialog';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
+import { useIntl } from 'react-intl';
+import { useContactActionsContext } from '../../context/ContactContextProvider';
+import { getDateObject, getFormattedDate } from '@crema/helpers/DateHelper';
+import { generateRandomUniqueNumber } from '@crema/helpers/Common';
 
 type Props = {
   isAddContact: boolean;
@@ -22,7 +22,7 @@ const CreateContact = (props: Props) => {
   const {
     isAddContact,
     handleAddContactClose,
-    selectContact,
+    selectContact = null,
     onUpdateContact,
   } = props;
   const { reCallAPI } = useContactActionsContext();
@@ -30,34 +30,34 @@ const CreateContact = (props: Props) => {
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
-    name: yup.string().required(String(messages["validation.nameRequired"])),
+    name: yup.string().required(String(messages['validation.nameRequired'])),
     email: yup
       .string()
-      .email(String(messages["validation.emailFormat"]))
-      .required(String(messages["validation.emailRequired"])),
+      .email(String(messages['validation.emailFormat']))
+      .required(String(messages['validation.emailRequired'])),
     contact: yup
       .string()
-      .required(String(messages["validation.phoneNumberRequired"])),
+      .required(String(messages['validation.phoneNumberRequired'])),
   });
   const infoViewActionsContext = useInfoViewActionsContext();
 
   const [userImage, setUserImage] = useState(
     selectContact && selectContact.image
       ? selectContact.image
-      : "/assets/images/placeholder.jpg"
+      : '/assets/images/placeholder.jpg',
   );
   useEffect(() => {
     setUserImage(
       selectContact && selectContact.image
         ? selectContact.image
-        : "/assets/images/placeholder.jpg"
+        : '/assets/images/placeholder.jpg',
     );
   }, [selectContact]);
 
   return (
     <AppDialog
       sxStyle={{
-        "& .MuiDialog-paperWidthSm": {
+        '& .MuiDialog-paperWidthSm': {
           maxWidth: 900,
           height: 600,
         },
@@ -69,31 +69,31 @@ const CreateContact = (props: Props) => {
       <Formik
         validateOnChange={true}
         initialValues={{
-          name: selectContact ? selectContact.name : "",
-          email: selectContact ? selectContact.email : "",
-          contact: selectContact ? selectContact.contact : "",
+          name: selectContact ? selectContact.name : '',
+          email: selectContact ? selectContact.email : '',
+          contact: selectContact ? selectContact.contact : '',
           birthday:
             selectContact && selectContact.birthday
               ? getDateObject(selectContact.birthday as string)
               : getDateObject(),
           website:
-            selectContact && selectContact.website ? selectContact.website : "",
+            selectContact && selectContact.website ? selectContact.website : '',
           company:
-            selectContact && selectContact.company ? selectContact.company : "",
+            selectContact && selectContact.company ? selectContact.company : '',
           address:
-            selectContact && selectContact.address ? selectContact.address : "",
+            selectContact && selectContact.address ? selectContact.address : '',
           facebookId:
             selectContact && selectContact.facebookId
               ? selectContact.facebookId
-              : "",
+              : '',
           twitterId:
             selectContact && selectContact.twitterId
               ? selectContact.twitterId
-              : "",
+              : '',
           notes:
-            selectContact && selectContact.notes ? selectContact.notes : "",
+            selectContact && selectContact.notes ? selectContact.notes : '',
           label:
-            selectContact && selectContact.label ? selectContact.label : "",
+            selectContact && selectContact.label ? selectContact.label : '',
         }}
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {
@@ -107,13 +107,13 @@ const CreateContact = (props: Props) => {
               image: userImage,
               birthday: getFormattedDate(data.birthday),
             } as ContactObjType;
-            putDataApi("/api/contactApp/contact/", infoViewActionsContext, {
+            putDataApi('/contact', infoViewActionsContext, {
               contact: newContact,
             })
               .then(() => {
                 reCallAPI();
                 infoViewActionsContext.showMessage(
-                  "Contact updated successfully!"
+                  'Contact updated successfully!',
                 );
               })
               .catch((error) => {
@@ -129,13 +129,13 @@ const CreateContact = (props: Props) => {
               image: userImage,
               birthday: getFormattedDate(data.birthday),
             };
-            postDataApi("/api/contactApp/compose", infoViewActionsContext, {
+            postDataApi('/contact', infoViewActionsContext, {
               contact: newContact,
             })
               .then(() => {
                 reCallAPI();
                 infoViewActionsContext.showMessage(
-                  "Contact created successfully!"
+                  'Contact created successfully!',
                 );
               })
               .catch((error) => {
@@ -162,7 +162,3 @@ const CreateContact = (props: Props) => {
 };
 
 export default CreateContact;
-
-CreateContact.defaultProps = {
-  selectContact: null,
-};

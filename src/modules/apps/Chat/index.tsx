@@ -1,22 +1,23 @@
-import React, { useState } from "react";
-import { useIntl } from "react-intl";
-import AppsContainer from "@crema/components/AppsContainer";
+'use client';
+import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
+import AppsContainer from '@crema/components/AppsContainer';
 
-import ChatContent from "./ChatContent";
-import ChatSideBar from "./ChatSideBar";
-import { ConnectionType } from "@crema/types/models/apps/Chat";
-import ChatContextProvider from "../context/ChatContextProvider";
+import ChatContent from './ChatContent';
+import ChatSideBar from './ChatSideBar';
+import { ConnectionType } from '@crema/types/models/apps/Chat';
+import ChatContextProvider from '../context/ChatContextProvider';
 
 const Chat = () => {
   const [selectedUser, setSelectedUser] = useState<ConnectionType>(
-    {} as ConnectionType
+    {} as ConnectionType,
   );
 
   const { messages } = useIntl();
   return (
     <ChatContextProvider>
       <AppsContainer
-        title={messages["chatApp.chat"].toString()}
+        title={messages['chatApp.chat'].toString()}
         sidebarContent={
           <ChatSideBar
             selectedUser={selectedUser as ConnectionType}

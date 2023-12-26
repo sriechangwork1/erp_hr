@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Formik } from "formik";
-import * as yup from "yup";
-import AppConfirmDialog from "@crema/components/AppConfirmDialog";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AddCardForm from "./AddCardForm";
-import { useAuthUser } from "@crema/hooks/AuthHooks";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import { CardHeader } from "@crema/modules/apps/ScrumBoard";
+import React, { useEffect, useState } from 'react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import AppConfirmDialog from '@crema/components/AppConfirmDialog';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AddCardForm from './AddCardForm';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import CardHeader from './CardHeader';
 import {
   AttachmentType,
   BoardType,
   CardListType,
   CardType,
-} from "@crema/types/models/apps/ScrumbBoard";
-import { useIntl } from "react-intl";
-import { getDateObject } from "@crema/helpers/DateHelper";
-import { generateRandomUniqueNumber } from "@crema/helpers/Common";
+} from '@crema/types/models/apps/ScrumbBoard';
+import { useIntl } from 'react-intl';
+import { getDateObject } from '@crema/helpers/DateHelper';
+import { generateRandomUniqueNumber } from '@crema/helpers/Common';
 
 type AddCardProps = {
   isAddCardOpen: boolean;
   onCloseAddCard: () => void;
   setData: (data: BoardType) => void;
-  board: BoardType;
+  board: BoardType | undefined;
   list: CardListType | undefined;
   selectedCard: CardType | null;
   setSelectedCard: (data: CardType) => void;
@@ -33,40 +33,39 @@ type AddCardProps = {
 const AddCard: React.FC<AddCardProps> = ({
   isAddCardOpen,
   onCloseAddCard,
-  board,
-  list,
-  selectedCard,
+  board = undefined,
+  list = undefined,
+  selectedCard = null,
   setData,
 }) => {
   const { messages } = useIntl();
   const validationSchema = yup.object({
-    title: yup.string().required(String(messages["validation.titleRequired"])),
+    title: yup.string().required(String(messages['validation.titleRequired'])),
   });
 
   const infoViewActionsContext = useInfoViewActionsContext();
 
   const { user } = useAuthUser();
-  console.log("selectedCard: ", selectedCard);
   const [checkedList, setCheckedList] = useState(() =>
-    selectedCard ? selectedCard.checkedList : []
+    selectedCard ? selectedCard.checkedList : [],
   );
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const [selectedMembers, setMembersList] = useState(() =>
-    selectedCard ? selectedCard.members : []
+    selectedCard ? selectedCard.members : [],
   );
 
   const [selectedLabels, setSelectedLabels] = useState(() =>
-    selectedCard ? selectedCard.label : []
+    selectedCard ? selectedCard.label : [],
   );
 
   const [comments, setComments] = useState(() =>
-    selectedCard ? selectedCard.comments : []
+    selectedCard ? selectedCard.comments : [],
   );
 
   const [attachments, setAttachments] = useState(() =>
-    selectedCard ? selectedCard.attachments : []
+    selectedCard ? selectedCard.attachments : [],
   );
 
   const onAddAttachments = (files: AttachmentType[]) => {
@@ -84,23 +83,23 @@ const AddCard: React.FC<AddCardProps> = ({
   }, [selectedCard]);
 
   const onDeleteCard = () => {
-    const boardId = board.id;
+    const boardId = board?.id;
     const listId = list!.id;
     const cardId = selectedCard!.id;
     postDataApi<BoardType>(
-      "/api/scrumboard/delete/card",
+      '/scrumboard/scrumboardCards/deleteCard',
       infoViewActionsContext,
       {
         boardId,
         listId,
         cardId,
-      }
+      },
     )
       .then((data) => {
         setData(data);
         setDeleteDialogOpen(false);
         onCloseAddCard();
-        infoViewActionsContext.showMessage("Card Deleted Successfully!");
+        infoViewActionsContext.showMessage('Card Deleted Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -119,20 +118,20 @@ const AddCard: React.FC<AddCardProps> = ({
     <Drawer
       sx={{
         flexShrink: 0,
-        "& .MuiDrawer-paper": {
+        '& .MuiDrawer-paper': {
           width: { xs: 320, sm: 400, md: 600, lg: 900 },
-          boxSizing: "border-box",
+          boxSizing: 'border-box',
         },
       }}
-      anchor="right"
+      anchor='right'
       open={isAddCardOpen}
       onClose={onCloseAddCard}
     >
       <Formik
         validateOnChange={true}
         initialValues={{
-          title: selectedCard ? selectedCard.title : "",
-          desc: selectedCard && selectedCard.desc ? selectedCard.desc : "",
+          title: selectedCard ? selectedCard.title : '',
+          desc: selectedCard && selectedCard.desc ? selectedCard.desc : '',
           label: selectedCard && selectedCard.label ? selectedCard.label : [],
           members:
             selectedCard && selectedCard.members ? selectedCard.members : [],
@@ -152,20 +151,20 @@ const AddCard: React.FC<AddCardProps> = ({
               attachments: attachments,
               members: selectedMembers,
               label: selectedLabels,
-              checkedList: checkedList.filter((item) => item.title !== ""),
+              checkedList: checkedList.filter((item) => item.title !== ''),
             };
             putDataApi<BoardType>(
-              "/api/scrumboard/edit/card",
+              '/scrumboard/scrumboardCards',
               infoViewActionsContext,
               {
                 board,
                 list,
                 card: editedCard,
-              }
+              },
             )
               .then((data) => {
                 setData(data);
-                infoViewActionsContext.showMessage("Card Edited Successfully!");
+                infoViewActionsContext.showMessage('Card Edited Successfully!');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -181,17 +180,17 @@ const AddCard: React.FC<AddCardProps> = ({
               members: selectedMembers,
             };
             postDataApi<BoardType>(
-              "/api/scrumboard/add/card",
+              '/scrumboard/scrumboardCards',
               infoViewActionsContext,
               {
                 board,
                 list,
                 card: newCard,
-              }
+              },
             )
               .then((data) => {
                 setData(data);
-                infoViewActionsContext.showMessage("Card Added Successfully!");
+                infoViewActionsContext.showMessage('Card Added Successfully!');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -211,7 +210,7 @@ const AddCard: React.FC<AddCardProps> = ({
             />
             <Box
               sx={{
-                height: "calc(100% - 60px)",
+                height: 'calc(100% - 60px)',
               }}
             >
               <AddCardForm
@@ -244,8 +243,8 @@ const AddCard: React.FC<AddCardProps> = ({
           open={isDeleteDialogOpen}
           onDeny={setDeleteDialogOpen}
           onConfirm={onDeleteCard}
-          title={<IntlMessages id="scrumboard.deleteCard" />}
-          dialogTitle={<IntlMessages id="common.deleteItem" />}
+          title={<IntlMessages id='scrumboard.deleteCard' />}
+          dialogTitle={<IntlMessages id='common.deleteItem' />}
         />
       ) : null}
     </Drawer>
@@ -253,9 +252,3 @@ const AddCard: React.FC<AddCardProps> = ({
 };
 
 export default AddCard;
-
-AddCard.defaultProps = {
-  board: undefined,
-  list: undefined,
-  selectedCard: null,
-};

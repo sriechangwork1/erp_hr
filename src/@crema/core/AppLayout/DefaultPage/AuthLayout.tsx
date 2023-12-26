@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import AuthWrapper from '@crema/modules/auth/AuthWrapper';
+import AuthWrapper from '../../../../modules/auth/AuthWrapper';
 
 type Props = {
   children: any;

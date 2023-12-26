@@ -1,32 +1,33 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import ContactHeader from "./ContactHeader";
-import AppConfirmDialog from "@crema/components/AppConfirmDialog";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import CreateContact from "../CreateContact";
-import { Hidden } from "@mui/material";
-import ContactView from "./ContactView";
-import ContactDetail from "../ContactDetail";
-import AppsPagination from "@crema/components/AppsPagination";
-import AppsHeader from "@crema/components/AppsContainer/AppsHeader";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import AppsFooter from "@crema/components/AppsContainer/AppsFooter";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import { ContactObjType, ContactType } from "@crema/types/models/apps/Contact";
+import React, { useState } from 'react';
+import { useParams } from 'next/navigation';
+import ContactHeader from './ContactHeader';
+import AppConfirmDialog from '@crema/components/AppConfirmDialog';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import CreateContact from '../CreateContact';
+import { Hidden } from '@mui/material';
+import ContactView from './ContactView';
+import ContactDetail from '../ContactDetail';
+import AppsPagination from '@crema/components/AppsPagination';
+import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import { ContactObjType, ContactType } from '@crema/types/models/apps/Contact';
 import {
   useContactActionsContext,
   useContactContext,
-} from "../../context/ContactContextProvider";
+} from '../../context/ContactContextProvider';
 
 const ContactListing = () => {
   const { page, contactList } = useContactContext();
   const { setContactData, onPageChange } = useContactActionsContext();
-
-  const { asPath } = useRouter();
+  const params = useParams();
+  const { all } = params;
+  // const { asPath } = useRouter();
   const infoViewActionsContext = useInfoViewActionsContext();
 
-  const [filterText, onSetFilterText] = useState("");
+  const [filterText, onSetFilterText] = useState('');
 
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
 
@@ -39,7 +40,7 @@ const ContactListing = () => {
   const [isShowDetail, onShowDetail] = useState<boolean>(false);
 
   const [selectedContact, setSelectedContact] = useState<ContactObjType | null>(
-    null
+    null,
   );
 
   const handleAddContactOpen = () => {
@@ -62,33 +63,29 @@ const ContactListing = () => {
 
   const onChangeCheckedContacts = (
     event: React.ChangeEvent<HTMLInputElement>,
-    id: number
+    id: number,
   ) => {
     if (event.target.checked) {
       setCheckedContacts(checkedContacts.concat(id));
     } else {
       setCheckedContacts(
-        checkedContacts.filter((contactId) => contactId !== id)
+        checkedContacts.filter((contactId) => contactId !== id),
       );
     }
   };
 
   const onChangeStarred = (status: boolean, contact: ContactObjType) => {
     const selectedIdList = [contact.id];
-    putDataApi<ContactObjType[]>(
-      "/api/contactApp/update/starred",
-      infoViewActionsContext,
-      {
-        contactIds: selectedIdList,
-        status: status,
-      }
-    )
+    putDataApi<ContactObjType[]>('/contact/starred', infoViewActionsContext, {
+      contactIds: selectedIdList,
+      status: status,
+    })
       .then((data) => {
         onUpdateSelectedContact(data[0]);
         infoViewActionsContext.showMessage(
           data[0].isStarred
-            ? "Contact Marked as Starred Successfully"
-            : "Contact Marked as Unstarred Successfully"
+            ? 'Contact Marked as Starred Successfully'
+            : 'Contact Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -127,31 +124,27 @@ const ContactListing = () => {
   };
 
   const onGetFilteredItems = () => {
-    if (filterText === "") {
+    if (filterText === '') {
       return contactList?.data;
     } else {
       return contactList?.data.filter((contact) =>
-        contact.name.toUpperCase().includes(filterText.toUpperCase())
+        contact.name.toUpperCase().includes(filterText.toUpperCase()),
       );
     }
   };
 
   const onDeleteSelectedContacts = () => {
-    const path = asPath.split("/");
+    // const path = asPath.split('/');
 
-    postDataApi<ContactType>(
-      "/api/contactApp/delete/contact",
-      infoViewActionsContext,
-      {
-        type: path[path.length - 2],
-        name: path[path.length - 1],
-        contactIds: toDeleteContacts,
-        page,
-      }
-    )
+    postDataApi<ContactType>('/contact/delete', infoViewActionsContext, {
+      type: all[0],
+      name: all[1],
+      contactIds: toDeleteContacts,
+      page,
+    })
       .then((data) => {
         setContactData(data);
-        infoViewActionsContext.showMessage("Contact Deleted Successfully");
+        infoViewActionsContext.showMessage('Contact Deleted Successfully');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -224,8 +217,8 @@ const ContactListing = () => {
         open={isDeleteDialogOpen}
         onDeny={setDeleteDialogOpen}
         onConfirm={onDeleteSelectedContacts}
-        title={<IntlMessages id="contactApp.deleteContact" />}
-        dialogTitle={<IntlMessages id="common.deleteItem" />}
+        title={<IntlMessages id='contactApp.deleteContact' />}
+        dialogTitle={<IntlMessages id='common.deleteItem' />}
       />
     </>
   );

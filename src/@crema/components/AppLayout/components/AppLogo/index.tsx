@@ -1,7 +1,7 @@
-import React from "react";
-import { useSidebarContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
-import { Box } from "@mui/material";
-import AppImage from "../../../AppImage";
+import React from 'react';
+import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
+import { Box } from '@mui/material';
+import AppImage from '../../../AppImage';
 
 type AppLogoProps = {
   hasSidebarColor?: boolean;
@@ -15,24 +15,31 @@ const AppLogo: React.FC<AppLogoProps> = ({ hasSidebarColor }) => {
       sx={{
         height: { xs: 56, sm: 70 },
         padding: 2.5,
-        display: "flex",
-        flexDirection: "row",
-        cursor: "pointer",
-        alignItems: "center",
-        justifyContent: "center",
-        "& img": {
+        display: 'flex',
+        flexDirection: 'row',
+        cursor: 'pointer',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '& img': {
           height: { xs: 40, sm: 45 },
         },
       }}
-      className="app-logo"
+      className='app-logo'
     >
-      {hasSidebarColor && mode === "dark" ? (
+      {hasSidebarColor && mode === 'dark' ? (
         <AppImage
-          src="/assets/images/logo-white-with-name.png"
-          alt="crema-logo"
+          src='/assets/images/logo-white-with-name.png'
+          alt='crema-logo'
+          width={146}
+          height={50}
         />
       ) : (
-        <AppImage src="/assets/images/logo-with-name.png" alt="crema-logo" />
+        <AppImage
+          src='/assets/images/logo-with-name.png'
+          alt='crema-logo'
+          width={146}
+          height={50}
+        />
       )}
       {/* <Logo fill={theme.palette.primary.main} />
       <Box

@@ -1,38 +1,38 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  DealsNew,
-  EmailMarketing,
-  GoalProgress,
-  OpportunitiesWon,
-  RecentActivities,
-  Report,
-  SocialMediaAdvertise,
-  TeamState,
-  TicketSupport,
-  Timesheet,
-  ToDoLists,
-  TopLeaders,
-  TotalVisitor,
-  VisitorsPageViews,
-} from "@crema/modules/dashboards/CRM";
-import AppLoader from "@crema/components/AppLoader";
-import type { CRMType } from "@crema/types/models/dashboards/CRM";
-import { StatsDirCard } from "@crema/modules/dashboards/CommonComponents";
+'use client';
+import React from 'react';
+import { Grid } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import SocialMediaAdvertise from './SocialMediaAdvertise';
+import GoalProgress from './GoalProgress';
+import TicketSupport from './TicketSupport';
+import VisitorsPageViews from './VisitorsPageViews';
+import EmailMarketing from './EmailMarketing';
+import OpportunitiesWon from './OpportunitiesWon';
+import DealsNew from './DealsNew';
+import RecentActivities from './RecentActivities';
+import Report from './Report';
+import TeamState from './TeamState';
+import Timesheet from './Timesheet';
+import ToDoLists from './ToDoLists';
+import TopLeaders from './TopLeaders';
+import TotalVisitor from './TotalVisitor';
+
+import AppLoader from '@crema/components/AppLoader';
+import type { CRMType } from '@crema/types/models/dashboards/CRM';
+import StatsDirCard from '../CommonComponents/StatsDirCard';
 
 const CRM = () => {
   const [{ apiData: crmData, loading }] =
-    useGetDataApi<CRMType>("/dashboard/crm");
+    useGetDataApi<CRMType>('/dashboard/crm');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppGridContainer>
             {crmData.stateData.map((data) => (
               <Grid key={data.id} item xs={12} sm={6} lg={3}>

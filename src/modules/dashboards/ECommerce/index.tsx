@@ -1,30 +1,29 @@
-import React from "react";
-import { Grid } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppAnimate from "@crema/components/AppAnimate";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import {
-  AgeOfAudience,
-  Browser,
-  BudgetStatistic,
-  MarketingCampaign,
-  NewCustomers,
-  PopularProducts,
-  RecentOrders,
-  ReportCard,
-  Revenue,
-  RevenueGraph,
-  SalesReport,
-  StateCard,
-  TopInquiries,
-  WeeklyBestSellers,
-} from "@crema/modules/dashboards/ECommerce";
-import AppLoader from "@crema/components/AppLoader";
-import { EcommerceType } from "@crema/types/models/dashboards/Ecommerce";
+'use client';
+import React from 'react';
+import { Grid } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppAnimate from '@crema/components/AppAnimate';
+import StateCard from './StateCard';
+import SalesReport from './SalesReport';
+import BudgetStatistic from './BudgetStatistic';
+import TopInquiries from './TopInquiries';
+import WeeklyBestSellers from './WeeklyBestSellers';
+import AgeOfAudience from './AgeOfAudience';
+import ReportCard from './ReportCard';
+import RecentOrders from './RecentOrders';
+import Revenue from './Revenue';
+import RevenueGraph from './RevenueGraph';
+import MarketingCampaign from './MarketingCampaign';
+import NewCustomers from './NewCustomers';
+import PopularProducts from './PopularProducts';
+import Browser from './Browser';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import AppLoader from '@crema/components/AppLoader';
+import { EcommerceType } from '@crema/types/models/dashboards/Ecommerce';
 
 const ECommerce = () => {
   const [{ apiData: ecommerceData, loading }] = useGetDataApi<EcommerceType>(
-    "/dashboard/ecommerce"
+    '/dashboard/ecommerce',
   );
 
   return (
@@ -32,7 +31,7 @@ const ECommerce = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation="transition.slideUpIn" delay={200}>
+        <AppAnimate animation='transition.slideUpIn' delay={200}>
           <AppGridContainer>
             {ecommerceData.stateData.map((data) => (
               <Grid key={data.id} item xs={12} sm={6} lg={3}>

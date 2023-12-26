@@ -1,33 +1,33 @@
-export type LabelType ={
+export type LabelType = {
   id: number;
   name: string;
   type: number;
   color: string;
-}
+};
 
-export type MemberType ={
+export type MemberType = {
   id: number;
   name: string;
   image: string;
-}
+};
 
-export type CheckedListType ={
+export type CheckedListType = {
   id: number;
   title: string;
-}
+};
 
-export type AttachmentType ={
+export type AttachmentType = {
   id: number;
-  file:{
+  file: {
     path: string;
     name: string;
     lastModified: number;
     lastModifiedDate: string;
   };
   preview: string;
-}
+};
 
-export type CardType ={
+export type CardType = {
   id: number;
   title: string;
   attachments: AttachmentType[];
@@ -37,16 +37,16 @@ export type CardType ={
   desc: string;
   members: MemberType[];
   checkedList: CheckedListType[];
-}
+};
 
-export type CardListType ={
+export type CardListType = {
   id: number;
   name: string;
   cards: CardType[];
-}
+};
 
-export type BoardType ={
-  id: number;
+export type BoardType = {
+  id: number | undefined;
   name: string;
   list: CardListType[];
-}
+};

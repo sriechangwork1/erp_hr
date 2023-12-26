@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import PropTypes from "prop-types";
-import AppDialog from "@crema/components/AppDialog";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import { DialogActions } from "@mui/material";
-import Button from "@mui/material/Button";
-import {
-  ContactActions,
-  OtherDetails,
-  PersonalDetails,
-} from "@crema/modules/apps/Contact";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
+import React, { useEffect, useState } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import AppDialog from '@crema/components/AppDialog';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import { DialogActions } from '@mui/material';
+import Button from '@mui/material/Button';
+import PersonalDetails from './PersonalDetails';
+import OtherDetails from './OtherDetails';
+import ContactActions from './ContactActions';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
 
 type Props = {
   isShowDetail: boolean;
@@ -34,7 +32,7 @@ const ContactDetail = (props: Props) => {
   } = props;
 
   const [contact, setContact] = useState<ContactObjType | null>(
-    selectedContact
+    selectedContact,
   );
 
   useEffect(() => {
@@ -49,10 +47,10 @@ const ContactDetail = (props: Props) => {
   return (
     <AppDialog
       sxStyle={{
-        "& .MuiPaper-root:hover": {
-          "& .btn-action-view": {
+        '& .MuiPaper-root:hover': {
+          '& .btn-action-view': {
             opacity: 1,
-            visibility: "visible",
+            visibility: 'visible',
           },
         },
       }}
@@ -83,9 +81,9 @@ const ContactDetail = (props: Props) => {
             <Box
               sx={{
                 mb: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
             >
               {contact.image ? (
@@ -108,7 +106,7 @@ const ContactDetail = (props: Props) => {
                   {contact.name[0].toUpperCase()}
                 </Avatar>
               )}
-              <Box component="h3">{contact.name}</Box>
+              <Box component='h3'>{contact.name}</Box>
             </Box>
           </Box>
 
@@ -133,9 +131,9 @@ const ContactDetail = (props: Props) => {
       )}
       <DialogActions>
         <Button
-          variant="outlined"
-          color="primary"
-          type="submit"
+          variant='outlined'
+          color='primary'
+          type='submit'
           sx={{ width: 100 }}
           onClick={() => onShowDetail(false)}
         >

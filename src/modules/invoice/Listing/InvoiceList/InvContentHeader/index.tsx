@@ -1,11 +1,11 @@
-import React from "react";
-import Checkbox from "@mui/material/Checkbox";
-import Box from "@mui/material/Box";
-import { useIntl } from "react-intl";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import AppsPagination from "@crema/components/AppsPagination";
-import Hidden from "@mui/material/Hidden";
-import { InvoiceType } from "@crema/types/models/invoice";
+import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import { useIntl } from 'react-intl';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import AppsPagination from '@crema/components/AppsPagination';
+import Hidden from '@mui/material/Hidden';
+import { InvoiceType } from '@crema/types/models/invoice';
 
 type InvContentHeaderPropsTypes = {
   page: number;
@@ -19,17 +19,17 @@ type InvContentHeaderPropsTypes = {
 
 const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
   const {
-    page,
+    page = 0,
     invoiceList,
-    checkedInvs,
+    checkedInvs = [],
     setCheckedInvs,
-    filterText,
+    filterText = '',
     onPageChange,
     onSetFilterText,
   } = props;
 
   const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (event.target.checked) {
       const InvIds = invoiceList?.map((Inv) => Inv.id);
@@ -45,16 +45,16 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
     <>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
+          display: 'flex',
+          flexDirection: 'row',
           flex: 1,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         <span>
           <Checkbox
             sx={{
-              color: "text.disabled",
+              color: 'text.disabled',
             }}
             indeterminate={
               checkedInvs.length > 0 &&
@@ -69,11 +69,11 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
         </span>
         <Box sx={{ mr: 3 }}>
           <AppSearchBar
-            iconPosition="right"
+            iconPosition='right'
             overlap={false}
             value={filterText}
             onChange={(event: any) => onSetFilterText(event.target.value)}
-            placeholder={messages["common.searchHere"] as string}
+            placeholder={messages['common.searchHere'] as string}
           />
         </Box>
       </Box>
@@ -84,12 +84,12 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
             sx={{
               paddingRight: 2,
               paddingLeft: 2,
-              "& .MuiToolbar-root": {
+              '& .MuiToolbar-root': {
                 paddingLeft: 0,
               },
-              "& .MuiTablePagination-actions": {
+              '& .MuiTablePagination-actions': {
                 marginLeft: 0,
-                "& .MuiButtonBase-root": {
+                '& .MuiButtonBase-root': {
                   padding: 2,
                 },
               },
@@ -105,9 +105,3 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
 };
 
 export default InvContentHeader;
-
-InvContentHeader.defaultProps = {
-  checkedInvs: [],
-  filterText: "",
-  page: 0,
-};

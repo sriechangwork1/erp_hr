@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Grow,
   Icon,
@@ -6,19 +6,19 @@ import {
   ListItem,
   ListItemText,
   Paper,
-} from "@mui/material";
-import { useRouter } from "next/router";
-import clsx from "clsx";
-import List from "@mui/material/List";
-import Box from "@mui/material/Box";
-import { Manager, Popper, Reference } from "react-popper";
-import HorizontalItem from "./HorizontalItem";
-import HorizontalGroup from "./HorizontalGroup";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
-import { RouterConfigData } from "@crema/types/models/Apps";
-import ClientOnlyPortal from "./ClientPortal";
-import { useSidebarContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
+} from '@mui/material';
+import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+import List from '@mui/material/List';
+import Box from '@mui/material/Box';
+import { Manager, Popper, Reference } from 'react-popper';
+import HorizontalItem from './HorizontalItem';
+import HorizontalGroup from './HorizontalGroup';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
+import { RouterConfigData } from '@crema/types/models/Apps';
+import ClientOnlyPortal from './ClientPortal';
+import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 
 type HorizontalCollapseProps = {
   item: RouterConfigData;
@@ -66,11 +66,11 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
     <List
       sx={{
         py: 0,
-        "& .list-item-text": {
-          padding: "0 0 0 16px",
+        '& .list-item-text': {
+          padding: '0 0 0 16px',
         },
       }}
-      className="navbarNavSubmenu"
+      className='navbarNavSubmenu'
     >
       <Manager>
         <Reference>
@@ -79,26 +79,26 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
               ref={ref}
               sx={{
                 color: theme.palette.text.primary,
-                padding: "0px 12px",
-                "&.active, &.active:hover, &.active:focus": {
-                  backgroundColor: sidebarMenuSelectedBgColor + "!important",
-                  color: sidebarMenuSelectedTextColor + "!important",
+                padding: '0px 12px',
+                '&.active, &.active:hover, &.active:focus': {
+                  backgroundColor: sidebarMenuSelectedBgColor + '!important',
+                  color: sidebarMenuSelectedTextColor + '!important',
                 },
-                "&.open": {
-                  backgroundColor: "rgba(0,0,0,.08)",
+                '&.open': {
+                  backgroundColor: 'rgba(0,0,0,.08)',
                 },
-                "&.dense": {
-                  padding: "0px 12px",
-                  "& .list-item-text": {
-                    padding: "0 0 0 8px",
+                '&.dense': {
+                  padding: '0px 12px',
+                  '& .list-item-text': {
+                    padding: '0 0 0 8px',
                   },
                 },
               }}
               className={clsx(
-                "navItemSubmenu",
-                opened && "open",
-                dense && "dense",
-                active && "active"
+                'navItemSubmenu',
+                opened && 'open',
+                dense && 'dense',
+                active && 'active',
               )}
               onMouseEnter={() => handleToggle(true)}
               onMouseLeave={() => handleToggle(false)}
@@ -106,7 +106,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
               {item.icon && (
                 <Icon
                   sx={{
-                    color: active ? sidebarMenuSelectedTextColor : "action",
+                    color: active ? sidebarMenuSelectedTextColor : 'action',
                     mr: 3.5,
                     fontSize: { xs: 16, xl: 18 },
                   }}
@@ -115,37 +115,37 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
                 </Icon>
               )}
               <ListItemText
-                className="navLinkTextSubmenu"
+                className='navLinkTextSubmenu'
                 primary={<IntlMessages id={item.messageId} />}
               />
               <Box p={0}>
                 <IconButton disableRipple>
                   <Icon
                     sx={{
-                      color: active ? sidebarMenuSelectedTextColor : "action",
+                      color: active ? sidebarMenuSelectedTextColor : 'action',
                     }}
                   >
-                    {theme.direction === "ltr"
-                      ? "chevron_right"
-                      : "chevron_left"}
+                    {theme.direction === 'ltr'
+                      ? 'chevron_right'
+                      : 'chevron_left'}
                   </Icon>
                 </IconButton>
               </Box>
             </ListItem>
           )}
         </Reference>
-        <ClientOnlyPortal selector="#root">
-          <Popper placement="right">
+        <ClientOnlyPortal selector='#root'>
+          <Popper placement='right'>
             {({ ref, style, placement }) =>
               opened && (
                 <Box
                   ref={ref}
                   sx={{
-                    boxShadow: "0 0 3px 0 rgba(0, 0, 0, 0.2)",
+                    boxShadow: '0 0 3px 0 rgba(0, 0, 0, 0.2)',
                     zIndex: 1110 + nestedLevel + 1,
                     ...style,
-                    "& .popperClose": {
-                      pointerEvents: "none",
+                    '& .popperClose': {
+                      pointerEvents: 'none',
                     },
                   }}
                   data-placement={placement}
@@ -166,21 +166,21 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
                         >
                           {item.children.map((item) => (
                             <React.Fragment key={item.id}>
-                              {item.type === "group" && (
+                              {item.type === 'group' && (
                                 <HorizontalGroup
                                   item={item}
                                   nestedLevel={nestedLevel + 1}
                                 />
                               )}
 
-                              {item.type === "collapse" && (
+                              {item.type === 'collapse' && (
                                 <HorizontalCollapse
                                   item={item}
                                   nestedLevel={nestedLevel + 1}
                                 />
                               )}
 
-                              {item.type === "item" && (
+                              {item.type === 'item' && (
                                 <HorizontalItem
                                   item={item}
                                   nestedLevel={nestedLevel + 1}

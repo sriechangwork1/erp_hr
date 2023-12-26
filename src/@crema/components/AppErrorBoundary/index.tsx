@@ -13,7 +13,6 @@ class AppErrorBoundary extends React.Component<
   }
 
   static getDerivedStateFromError(error: any) {
-    console.log("error: ", error);
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
@@ -23,14 +22,14 @@ class AppErrorBoundary extends React.Component<
       return (
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            justifyContent: 'center',
             flex: 1,
-            textAlign: "center",
-            "& svg": {
-              width: "100%",
+            textAlign: 'center',
+            '& svg': {
+              width: '100%',
               maxWidth: 400,
               color: (theme) => theme.palette.primary.main,
             },
@@ -38,8 +37,8 @@ class AppErrorBoundary extends React.Component<
         >
           <ErrorIcon />
           <Typography
-            variant="h2"
-            component="h2"
+            variant='h2'
+            component='h2'
             style={{ fontSize: 30, marginTop: 16 }}
           >
             Ah! Something went wrong.

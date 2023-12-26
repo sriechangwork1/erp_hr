@@ -1,13 +1,14 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
-import { AuthUserType } from "@crema/types/models/AuthUser";
-import jwtAxios, { setAuthToken } from "./index";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
+} from 'react';
+import { AuthUserType } from '@crema/types/models/AuthUser';
+import jwtAxios, { setAuthToken } from './index';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 
 interface JWTAuthContextProps {
   user: AuthUserType | null | undefined;
@@ -64,7 +65,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
 
   useEffect(() => {
     const getAuthUser = () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem('token');
 
       if (!token) {
         setJWTAuthData({
@@ -76,7 +77,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
       }
       setAuthToken(token);
       jwtAxios
-        .get("/auth")
+        .get('/auth')
         .then(({ data }: { data: AuthUserType }) => {
           setJWTAuthData({
             user: data,
@@ -89,7 +90,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
             user: undefined,
             isLoading: false,
             isAuthenticated: false,
-          })
+          }),
         );
     };
 
@@ -105,10 +106,10 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
   }) => {
     infoViewActionsContext.fetchStart();
     try {
-      const { data } = await jwtAxios.post("auth", { email, password });
-      localStorage.setItem("token", data.token);
+      const { data } = await jwtAxios.post('auth', { email, password });
+      localStorage.setItem('token', data.token);
       setAuthToken(data.token);
-      const res = await jwtAxios.get("/auth");
+      const res = await jwtAxios.get('/auth');
       setJWTAuthData({
         user: res.data,
         isAuthenticated: true,
@@ -121,7 +122,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
         isAuthenticated: false,
         isLoading: false,
       });
-      infoViewActionsContext.fetchError("Something went wrong");
+      infoViewActionsContext.fetchError('Something went wrong');
     }
   };
 
@@ -136,10 +137,10 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
   }) => {
     infoViewActionsContext.fetchStart();
     try {
-      const { data } = await jwtAxios.post("users", { name, email, password });
-      localStorage.setItem("token", data.token);
+      const { data } = await jwtAxios.post('users', { name, email, password });
+      localStorage.setItem('token', data.token);
       setAuthToken(data.token);
-      const res = await jwtAxios.get("/auth");
+      const res = await jwtAxios.get('/auth');
       setJWTAuthData({
         user: res.data,
         isAuthenticated: true,
@@ -152,12 +153,12 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
         isAuthenticated: false,
         isLoading: false,
       });
-      infoViewActionsContext.fetchError("Something went wrong");
+      infoViewActionsContext.fetchError('Something went wrong');
     }
   };
 
   const logout = async () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setAuthToken();
     setJWTAuthData({
       user: null,

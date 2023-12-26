@@ -1,18 +1,16 @@
-import Box from "@mui/material/Box";
-import React from "react";
-import AppList from "@crema/components/AppList";
-import AppGrid from "@crema/components/AppGrid";
-import ListEmptyResult from "@crema/components/AppList/ListEmptyResult";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import ContactListSkeleton from "@crema/components/AppSkeleton/ContactListSkeleton";
-import { Hidden } from "@mui/material";
-import {
-  ContactGridItem,
-  ContactListItem,
-  ContactListItemMobile,
-} from "@crema/modules/apps/Contact";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
-import { useContactContext } from "../../../context/ContactContextProvider";
+import Box from '@mui/material/Box';
+import React from 'react';
+import AppList from '@crema/components/AppList';
+import AppGrid from '@crema/components/AppGrid';
+import ListEmptyResult from '@crema/components/AppList/ListEmptyResult';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import ContactListSkeleton from '@crema/components/AppSkeleton/ContactListSkeleton';
+import { Hidden } from '@mui/material';
+import ContactGridItem from './ContactGridItem';
+import ContactListItem from './ContactListItem';
+import ContactListItemMobile from './ContactListItem/ContactListItemMobile';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
+import { useContactContext } from '../../../context/ContactContextProvider';
 
 type Props = {
   list: ContactObjType[];
@@ -27,11 +25,11 @@ type Props = {
 
 const ContactView = (props: Props) => {
   const {
-    list,
+    list = [],
     handleAddContactOpen,
     onChangeStarred,
     onChangeCheckedContacts,
-    checkedContacts,
+    checkedContacts = [],
     onSelectContactsForDelete,
     onOpenEditContact,
     onViewContactDetail,
@@ -41,23 +39,23 @@ const ContactView = (props: Props) => {
 
   return (
     <>
-      {pageView === "list" ? (
+      {pageView === 'list' ? (
         <>
           <Hidden smDown>
             <AppList
               data={list}
-              animation="transition.slideUpIn"
+              animation='transition.slideUpIn'
               sx={{
                 pt: 0,
                 pb: 0,
                 flex: 1,
-                display: "flex",
-                flexDirection: "column",
+                display: 'flex',
+                flexDirection: 'column',
               }}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle={<IntlMessages id="contactApp.createContact" />}
+                  actionTitle={<IntlMessages id='contactApp.createContact' />}
                   onClick={handleAddContactOpen}
                   placeholder={<ContactListSkeleton />}
                 />
@@ -81,18 +79,18 @@ const ContactView = (props: Props) => {
           <Hidden smUp>
             <AppList
               data={list}
-              animation="transition.slideUpIn"
+              animation='transition.slideUpIn'
               sx={{
                 pt: 0,
                 pb: 0,
                 flex: 1,
-                display: "flex",
-                flexDirection: "column",
+                display: 'flex',
+                flexDirection: 'column',
               }}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle={<IntlMessages id="contactApp.createContact" />}
+                  actionTitle={<IntlMessages id='contactApp.createContact' />}
                   onClick={handleAddContactOpen}
                   placeholder={<ContactListSkeleton />}
                 />
@@ -149,8 +147,3 @@ const ContactView = (props: Props) => {
 };
 
 export default ContactView;
-
-ContactView.defaultProps = {
-  list: [],
-  checkedContacts: [],
-};

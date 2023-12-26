@@ -1,17 +1,17 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { Hidden } from "@mui/material";
-import { useIntl } from "react-intl";
-import CheckBox from "./CheckBox";
-import ContactCheckedActions from "./ContactCheckedActions";
-import AppsPagination from "@crema/components/AppsPagination";
-import { ViewSelectButtons } from "@crema/modules/apps/Contact";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
+import React from 'react';
+import Box from '@mui/material/Box';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import { Hidden } from '@mui/material';
+import { useIntl } from 'react-intl';
+import CheckBox from './CheckBox';
+import ContactCheckedActions from './ContactCheckedActions';
+import AppsPagination from '@crema/components/AppsPagination';
+import ViewSelectButtons from './ViewSelectButtons';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
 import {
   useContactActionsContext,
   useContactContext,
-} from "../../../context/ContactContextProvider";
+} from '../../../context/ContactContextProvider';
 
 type Props = {
   checkedContacts: number[];
@@ -24,15 +24,15 @@ type Props = {
 
 const ContactHeader = (props: Props) => {
   const {
-    checkedContacts,
+    checkedContacts = [],
     setCheckedContacts,
-    filterText,
+    filterText = '',
     onSetFilterText,
     onUpdateContacts,
     onSelectContactsForDelete,
   } = props;
 
-  const { page, pageView, contactList } = useContactContext();
+  const { page = 0, pageView, contactList } = useContactContext();
   const { onPageChange, setPageView } = useContactActionsContext();
 
   const { messages } = useIntl();
@@ -42,9 +42,9 @@ const ContactHeader = (props: Props) => {
       <Box
         sx={{
           flex: 1,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
         }}
       >
         <CheckBox
@@ -53,13 +53,13 @@ const ContactHeader = (props: Props) => {
         />
 
         <AppSearchBar
-          iconPosition="right"
+          iconPosition='right'
           overlap={false}
           value={filterText}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             onSetFilterText(event.target.value)
           }
-          placeholder={messages["common.searchHere"] as string}
+          placeholder={messages['common.searchHere'] as string}
         />
         {checkedContacts.length > 0 ? (
           <ContactCheckedActions
@@ -87,9 +87,3 @@ const ContactHeader = (props: Props) => {
 };
 
 export default ContactHeader;
-
-ContactHeader.defaultProps = {
-  checkedContacts: [],
-  filterText: "",
-  page: 0,
-};

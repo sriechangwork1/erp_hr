@@ -1,24 +1,22 @@
-import React, { ReactNode, useCallback, useEffect, useState } from "react";
-import AppsContent from "@crema/components/AppsContainer/AppsContent";
-import "react-trello-ts";
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import 'react-trello-ts';
 
-import Board from "react-trello";
-import { Box, useTheme } from "@mui/material";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import { postDataApi, putDataApi } from "@crema/hooks/APIHooks";
-import {
-  AddCardButton,
-  AddNewList,
-  CardDetail,
-  ListHeader,
-  NewListButton,
-} from "@crema/modules/apps/ScrumBoard";
-import AddCard from "./List/AddCard";
+import Board from 'react-trello';
+import { Box, useTheme } from '@mui/material';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
+import NewListButton from './NewListButton';
+import ListHeader from './List/ListHeader';
+import CardDetail from './List/CardDetail';
+import AddNewList from './AddNewList';
+import AddCard from './List/AddCard';
+import AddCardButton from './List/AddCardButton';
 import {
   BoardType,
   CardListType,
   CardType,
-} from "@crema/types/models/apps/ScrumbBoard";
+} from '@crema/types/models/apps/ScrumbBoard';
 
 type Props = {
   children: ReactNode;
@@ -28,10 +26,10 @@ const BoardWrapper = ({ children }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "row",
+        display: 'flex',
+        flexDirection: 'row',
         height: 1,
-        "& .smooth-dnd-container.horizontal": {
+        '& .smooth-dnd-container.horizontal': {
           height: 1,
         },
       }}
@@ -84,15 +82,19 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
   };
 
   const onAddList = (name: string) => {
-    postDataApi<BoardType>("/api/scrumboard/add/list", infoViewActionsContext, {
-      boardId: boardDetail?.id,
-      list: {
-        name: name,
+    postDataApi<BoardType>(
+      '/scrumboard/scrumboardList',
+      infoViewActionsContext,
+      {
+        boardId: boardDetail?.id,
+        list: {
+          name: name,
+        },
       },
-    })
+    )
       .then((data) => {
         setData(data);
-        infoViewActionsContext.showMessage("List Added Successfully!");
+        infoViewActionsContext.showMessage('List Added Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -103,7 +105,6 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
     lane.cards!.find((item) => item.id === cardId);
 
   const onEditCardDetail = (cardId: number) => {
-    console.log("onEditCardDetail");
     const selectedList = boardData.lanes!.find((item) => {
       const correctCard = item.cards!.find((card) => card.id === cardId);
       if (correctCard) return item;
@@ -120,12 +121,12 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
     sourceLaneId: number,
     targetLaneId: number,
     position: number,
-    cardDetails: CardType
+    cardDetails: CardType,
   ) => {
     if (sourceLaneId !== targetLaneId) {
       const boardId = boardDetail.id;
       putDataApi<BoardType>(
-        "/api/cards/update/category",
+        '/scrumboard/cardsCategory',
         infoViewActionsContext,
         {
           cardId: cardDetails.id,
@@ -133,11 +134,11 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
           categoryId: targetLaneId,
           position: position,
           boardId: boardId,
-        }
+        },
       )
         .then((data) => {
           setData(data);
-          infoViewActionsContext.showMessage("Card Updated Successfully!");
+          infoViewActionsContext.showMessage('Card Updated Successfully!');
         })
         .catch((error) => {
           infoViewActionsContext.fetchError(error.message);
@@ -146,13 +147,17 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
   };
 
   const onEditBoardList = (boardId: number, list: CardListType) => {
-    putDataApi<BoardType>("/api/scrumboard/edit/list", infoViewActionsContext, {
-      boardId: boardId,
-      list: list,
-    })
+    putDataApi<BoardType>(
+      '/scrumboard/scrumboardList',
+      infoViewActionsContext,
+      {
+        boardId: boardId,
+        list: list,
+      },
+    )
       .then((data) => {
         setData(data);
-        infoViewActionsContext.showMessage("List Edited Successfully!");
+        infoViewActionsContext.showMessage('List Edited Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -161,16 +166,16 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
 
   const onDeleteSelectedList = (boardId: number, laneId: number) => {
     postDataApi<BoardType>(
-      "/api/scrumboard/delete/list",
+      '/scrumboard/scrumboardList/deleteList',
       infoViewActionsContext,
       {
         boardId: boardId,
         listId: laneId,
-      }
+      },
     )
       .then((data) => {
         setData(data);
-        infoViewActionsContext.showMessage("List Deleted Successfully!");
+        infoViewActionsContext.showMessage('List Deleted Successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -181,21 +186,21 @@ const BoardDetailView = (props: BoardDetailViewProps) => {
     <AppsContent
       sx={{
         flex: 1,
-        "& .simplebar-wrapper": {
-          my: "0 !important",
-          height: "100%",
+        '& .simplebar-wrapper': {
+          my: '0 !important',
+          height: '100%',
         },
-        "& .simplebar-content": {
-          height: "100%",
-          maxHeight: "100%",
-          py: "0 !important",
+        '& .simplebar-content': {
+          height: '100%',
+          maxHeight: '100%',
+          py: '0 !important',
         },
       }}
     >
       <Board
         laneStyle={{
           borderRadius: 16,
-          maxHeight: "98%",
+          maxHeight: '98%',
           backgroundColor: theme.palette.background.default,
           width: 350,
         }}

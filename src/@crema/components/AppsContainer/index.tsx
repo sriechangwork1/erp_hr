@@ -1,17 +1,17 @@
-import React, { CSSProperties, ReactNode, useEffect, useState } from "react";
-import AppInfoView from "../AppInfoView";
-import { Box, Slide, Theme, Zoom } from "@mui/material";
-import Hidden from "@mui/material/Hidden";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Card from "@mui/material/Card";
+import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
+import AppInfoView from '../AppInfoView';
+import { Box, Slide, Theme, Zoom } from '@mui/material';
+import Hidden from '@mui/material/Hidden';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Card from '@mui/material/Card';
 
-import AppSidebar from "./AppSidebar";
-import { useLayoutContext } from "@crema/context/AppContextProvider/LayoutContextProvider";
-import { Fonts, NavStyle } from "@crema/constants/AppEnums";
-import AppContainerWrapper from "./AppContainerWrapper";
-import { SxProps } from "@mui/system";
-import { useRouter } from "next/router";
+import AppSidebar from './AppSidebar';
+import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import { Fonts, NavStyle } from '@crema/constants/AppEnums';
+import AppContainerWrapper from './AppContainerWrapper';
+import { SxProps } from '@mui/system';
+import { useRouter } from 'next/navigation';
 
 type AppsContainerProps = {
   title: string | ReactNode;
@@ -41,9 +41,9 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
     <Box
       sx={{
         flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
         margin: -4,
         padding: 4,
         ...props.sxStyle,
@@ -52,8 +52,8 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
       <Box
         sx={{
           marginTop: fullView ? 0 : -4,
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           mb: {
             xs: fullView ? 4 : 2,
             lg: 4,
@@ -67,14 +67,14 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
         {fullView ? null : (
           <Hidden lgUp>
             <IconButton
-              edge="start"
+              edge='start'
               sx={{
                 marginRight: (theme) => theme.spacing(2),
               }}
-              color="inherit"
-              aria-label="open drawer"
+              color='inherit'
+              aria-label='open drawer'
               onClick={toggleNavCollapsed}
-              size="large"
+              size='large'
             >
               <MenuIcon
                 sx={{
@@ -85,12 +85,12 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
             </IconButton>
           </Hidden>
         )}
-        <Zoom in style={{ transitionDelay: "300ms" }}>
+        <Zoom in style={{ transitionDelay: '300ms' }}>
           <Box
-            component="h2"
+            component='h2'
             sx={{
               fontSize: 16,
-              color: "text.primary",
+              color: 'text.primary',
               fontWeight: Fonts.SEMI_BOLD,
             }}
           >
@@ -112,10 +112,10 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
 
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             width: {
-              xs: "100%",
+              xs: '100%',
               lg: `calc(100% - ${fullView ? 0 : 280}px)`,
             },
             pl: {
@@ -123,13 +123,13 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
             },
           }}
         >
-          <Slide direction="left" in mountOnEnter unmountOnExit>
+          <Slide direction='left' in mountOnEnter unmountOnExit>
             <Card
               style={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
                 ...props.cardStyle,
               }}
             >

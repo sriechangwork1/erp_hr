@@ -1,10 +1,22 @@
-import {FaRegCalendarAlt, FaRegHospital} from 'react-icons/fa';
-import {FiMap, FiUsers} from 'react-icons/fi';
-import {HiOutlineAcademicCap, HiOutlineChartSquareBar} from 'react-icons/hi';
-import {RiCustomerService2Line, RiDashboardLine, RiFileUploadLine, RiShieldUserLine, RiTodoLine,} from 'react-icons/ri';
-import {BiCarousel, BiCartAlt, BiErrorAlt, BiTask} from 'react-icons/bi';
-import {BsBriefcase, BsCart4, BsChatDots, BsCurrencyBitcoin, BsQuestionDiamond,} from 'react-icons/bs';
-import {DiHtml5Multimedia} from 'react-icons/di';
+import { FaRegCalendarAlt, FaRegHospital } from 'react-icons/fa';
+import { FiMap, FiUsers } from 'react-icons/fi';
+import { HiOutlineAcademicCap, HiOutlineChartSquareBar } from 'react-icons/hi';
+import {
+  RiCustomerService2Line,
+  RiDashboardLine,
+  RiFileUploadLine,
+  RiShieldUserLine,
+  RiTodoLine,
+} from 'react-icons/ri';
+import { BiCarousel, BiCartAlt, BiErrorAlt, BiTask } from 'react-icons/bi';
+import {
+  BsBriefcase,
+  BsCart4,
+  BsChatDots,
+  BsCurrencyBitcoin,
+  BsQuestionDiamond,
+} from 'react-icons/bs';
+import { DiHtml5Multimedia } from 'react-icons/di';
 import {
   MdOutlineAnalytics,
   MdOutlineContactPhone,
@@ -12,10 +24,10 @@ import {
   MdOutlineDns,
   MdOutlineManageAccounts,
 } from 'react-icons/md';
-import {CgFeed} from 'react-icons/cg';
-import {GrUserAdmin} from 'react-icons/gr';
-import {AiOutlineEdit, AiOutlineUnorderedList,} from 'react-icons/ai';
-import {TbFileInvoice} from 'react-icons/tb';
+import { CgFeed } from 'react-icons/cg';
+import { GrUserAdmin } from 'react-icons/gr';
+import { AiOutlineEdit, AiOutlineUnorderedList } from 'react-icons/ai';
+import { TbFileInvoice } from 'react-icons/tb';
 
 const routesConfig = [
   {
@@ -498,7 +510,7 @@ const routesConfig = [
         messageId: 'sidebar.pages.extraPages.account',
         type: 'item',
         icon: <MdOutlineManageAccounts />,
-        url: '/my-profile',
+        url: '/account/my-profile',
       },
       {
         id: 'about-us',

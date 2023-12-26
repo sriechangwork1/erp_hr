@@ -1,10 +1,11 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -16,8 +17,8 @@ import {
   signInWithPopup,
   twitterAuthProvider,
   updateProfile,
-} from "./firebase";
-import { AuthUserType } from "@crema/types/models/AuthUser";
+} from './firebase';
+import { AuthUserType } from '@crema/types/models/AuthUser';
 
 interface FirebaseContextProps {
   user: AuthUserType | null | undefined;
@@ -104,7 +105,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
           isLoading: false,
           isAuthenticated: true,
         });
-      }
+      },
     );
 
     return () => {
@@ -114,16 +115,16 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
 
   const getProvider = (providerName: string) => {
     switch (providerName) {
-      case "google": {
+      case 'google': {
         return googleAuthProvider;
       }
-      case "facebook": {
+      case 'facebook': {
         return facebookAuthProvider;
       }
-      case "twitter": {
+      case 'twitter': {
         return twitterAuthProvider;
       }
-      case "github": {
+      case 'github': {
         return githubAuthProvider;
       }
       default:
@@ -183,7 +184,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       await sendEmailVerification(auth.currentUser!, {
         url: window.location.href,

@@ -20,7 +20,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Fonts } from '@crema/constants/AppEnums';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import { useParams, useRouter } from 'next/navigation';
 
 const AppsSideBarFolderList = styled(ListItem)(({ theme }) => {
   return {
@@ -111,7 +111,8 @@ const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
   item,
   path,
 }) => {
-  const { asPath } = useRouter();
+  const params = useParams();
+  const { asPath } = params;
   return (
     <Link href={path as string} style={{ textDecoration: 'none' }}>
       <AppsSideBarFolderList
@@ -141,7 +142,7 @@ const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
               mb: 0.5,
             },
           }}
-          className="data-item-text"
+          className='data-item-text'
         />
       </AppsSideBarFolderList>
     </Link>

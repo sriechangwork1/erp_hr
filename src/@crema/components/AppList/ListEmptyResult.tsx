@@ -17,7 +17,7 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
   loader,
   placeholder,
   loading,
-  title,
+  title = <IntlMessages id='common.noRecordFound' />,
   actionTitle,
   content,
   onClick,
@@ -44,7 +44,7 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
             }}
           >
             <CircularProgress size={16} />
-            <Box component="span" sx={{ ml: 2 }}>
+            <Box component='span' sx={{ ml: 2 }}>
               Loading...
             </Box>
           </Box>
@@ -77,8 +77,8 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
               fontWeight: Fonts.MEDIUM,
               mb: 2,
             }}
-            component="h4"
-            variant="h4"
+            component='h4'
+            variant='h4'
           >
             {title}
           </Typography>
@@ -94,8 +94,8 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
 
         {actionTitle ? (
           <Button
-            color="primary"
-            variant="contained"
+            color='primary'
+            variant='contained'
             sx={{ mt: 7.5, height: 45, minWidth: 150 }}
             onClick={onClick}
           >
@@ -105,9 +105,6 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
       </Box>
     );
   }
-};
-ListEmptyResult.defaultProps = {
-  title: <IntlMessages id="common.noRecordFound" />,
 };
 
 export default ListEmptyResult;

@@ -1,23 +1,19 @@
-import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import AppsContainer from "@crema/components/AppsContainer";
-import BoardDetailView from "./BoardDetailView";
-import { useRouter } from "next/router";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import { BoardType } from "@crema/types/models/apps/ScrumbBoard";
+import React, { useEffect } from 'react';
+import Box from '@mui/material/Box';
+import AppsContainer from '@crema/components/AppsContainer';
+import BoardDetailView from './BoardDetailView';
+import { useParams, useRouter } from 'next/navigation';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import { BoardType } from '@crema/types/models/apps/ScrumbBoard';
 
 const BoardDetail = () => {
   const router = useRouter();
-  const { query } = router;
-  const { id } = query;
+
+  const params = useParams();
+  const { id } = params;
 
   const [{ apiData: boardDetail }, { setData, setQueryParams }] =
-    useGetDataApi<BoardType>(
-      "/api/scrumboard/board/",
-      undefined,
-      { id: id },
-      false
-    );
+    useGetDataApi<BoardType>('scrumboard', undefined, { id: id }, false);
 
   useEffect(() => {
     setQueryParams({ id });
@@ -40,11 +36,11 @@ const BoardDetail = () => {
       title={
         <>
           <Box
-            component="span"
+            component='span'
             sx={{
-              cursor: "pointer",
+              cursor: 'pointer',
               mr: 2,
-              color: "primary.main",
+              color: 'primary.main',
             }}
             onClick={onGoToBoardList}
           >

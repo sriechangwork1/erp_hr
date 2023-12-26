@@ -43,8 +43,9 @@ export type CommentType = {
 
 export type TodoDataType = {
   data: TodoType[];
-  count: number;
+  count?: number;
 };
+
 export type TodoType = {
   id: number;
   title: string;

@@ -1,19 +1,20 @@
+'use client';
 import React, {
   createContext,
   ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
+} from 'react';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
 import type {
   ConnectionType,
   FolderType,
   LabelType,
   MailType,
-} from "@crema/types/models/apps/Mail";
-import { APIDataProps } from "@crema/types/models/APIDataProps";
-import { useRouter } from "next/router";
+} from '@crema/types/models/apps/Mail';
+import { APIDataProps } from '@crema/types/models/APIDataProps';
+import { useParams } from 'next/navigation';
 
 export type MailContextType = {
   labelList: LabelType[];
@@ -31,7 +32,7 @@ export type MailActionContextType = {
   setMailData: (data: APIDataProps<MailType[]>) => void;
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number
+    data: number,
   ) => void;
   reCallAPI: () => void;
 };
@@ -53,7 +54,7 @@ const MailActionsContext = createContext<MailActionContextType>({
   setMailData: (data: APIDataProps<MailType[]>) => {},
   onPageChange: (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number
+    data: number,
   ) => {},
   reCallAPI: () => {},
 });
@@ -66,41 +67,35 @@ type Props = {
   children: ReactNode;
 };
 export const MailContextProvider = ({ children }: Props) => {
-  const router = useRouter();
-  const { asPath } = router;
-  const { all } = router.query;
-  let folder;
-  let label;
+  const params = useParams();
+  const { all, asPath } = params;
+  let folder: any;
+
+  let label: any;
   if (all.length === 2 && !+all[1]) {
     label = all[1];
   } else if (all.length === 1) {
     folder = all[0];
   }
-  const [{ apiData: labelList }] = useGetDataApi<LabelType[]>(
-    "/api/mailApp/labels/list"
-  );
-  const [{ apiData: connectionList }] = useGetDataApi<ConnectionType[]>(
-    "/api/mailApp/connection/list"
-  );
-  const [{ apiData: folderList }] = useGetDataApi<FolderType[]>(
-    "/api/mailApp/folders/list"
-  );
+  const [{ apiData: labelList }] = useGetDataApi<LabelType[]>('/mail/labels');
+  const [{ apiData: connectionList }] =
+    useGetDataApi<ConnectionType[]>('mail/connection');
+  const [{ apiData: folderList }] = useGetDataApi<any>('mail/folders');
   const [page, setPage] = useState(0);
 
   const [
     { apiData: mailList, loading },
     { setQueryParams, setData: setMailData, reCallAPI },
   ] = useGetDataApi<APIDataProps<MailType[]>>(
-    "/api/mailApp/folder/mail/List",
+    'mail',
     undefined,
     {
-      type: folder ? "folder" : "label",
+      type: folder ? 'folder' : 'label',
       name: folder || label,
       page: page,
     },
-    false
+    false,
   );
-  console.log();
 
   useEffect(() => {
     setPage(0);
@@ -108,7 +103,7 @@ export const MailContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     setQueryParams({
-      type: folder ? "folder" : "label",
+      type: folder ? 'folder' : 'label',
       name: folder || label,
       page,
     });
@@ -116,7 +111,7 @@ export const MailContextProvider = ({ children }: Props) => {
 
   const onPageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number
+    value: number,
   ) => {
     setPage(value);
   };

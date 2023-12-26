@@ -40,7 +40,3 @@ const AppList: React.FC<AppListProps> = ({ footerProps, ...props }) => {
 };
 
 export default AppList;
-AppList.defaultProps = {
-  border: false,
-  data: [],
-};

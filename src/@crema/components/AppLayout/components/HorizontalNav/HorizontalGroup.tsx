@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Grow,
   Icon,
@@ -7,17 +7,17 @@ import {
   ListItem,
   ListItemText,
   Paper,
-} from "@mui/material";
-import clsx from "clsx";
-import { Manager, Popper, Reference } from "react-popper";
-import HorizontalCollapse from "./HorizontalCollapse";
-import HorizontalItem from "./HorizontalItem";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { Fonts } from "@crema/constants/AppEnums";
-import ClientOnlyPortal from "./ClientPortal";
-import { useRouter } from "next/router";
-import { RouterConfigData } from "@crema/types/models/Apps";
+} from '@mui/material';
+import clsx from 'clsx';
+import { Manager, Popper, Reference } from 'react-popper';
+import HorizontalCollapse from './HorizontalCollapse';
+import HorizontalItem from './HorizontalItem';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { Fonts } from '@crema/constants/AppEnums';
+import ClientOnlyPortal from './ClientPortal';
+import { useRouter } from 'next/navigation';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type HorizontalCollapseProps = {
   item: RouterConfigData;
@@ -64,14 +64,14 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
           <ListItem
             ref={ref}
             className={clsx(
-              "navItem",
-              isUrlInChildren(item, pathname) && "active"
+              'navItem',
+              isUrlInChildren(item, pathname) && 'active',
             )}
             onMouseEnter={() => handleToggle(true)}
             onMouseLeave={() => handleToggle(false)}
           >
             {item.icon && (
-              <Icon color="action" className="navLinkIcon">
+              <Icon color='action' className='navLinkIcon'>
                 {item.icon}
               </Icon>
             )}
@@ -92,7 +92,7 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
                   sx={{
                     fontSize: 18,
                   }}
-                  className="arrow-icon"
+                  className='arrow-icon'
                 >
                   keyboard_arrow_right
                 </Icon>
@@ -101,18 +101,18 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
           </ListItem>
         )}
       </Reference>
-      <ClientOnlyPortal selector="#root">
-        <Popper placement={nestedLevel === 0 ? "bottom-start" : "right"}>
+      <ClientOnlyPortal selector='#root'>
+        <Popper placement={nestedLevel === 0 ? 'bottom-start' : 'right'}>
           {({ ref, style, placement }) =>
             opened && (
               <Box
                 ref={ref}
                 sx={{
                   ...style,
-                  boxShadow: "0 0 3px 0 rgba(0, 0, 0, 0.2)",
+                  boxShadow: '0 0 3px 0 rgba(0, 0, 0, 0.2)',
                   zIndex: 1110 + nestedLevel,
-                  "& .popperClose": {
-                    pointerEvents: "none",
+                  '& .popperClose': {
+                    pointerEvents: 'none',
                   },
                 }}
                 data-placement={placement}
@@ -133,21 +133,21 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
                       >
                         {item.children.map((item) => (
                           <React.Fragment key={item.id}>
-                            {item.type === "group" && (
+                            {item.type === 'group' && (
                               <HorizontalGroup
                                 item={item}
                                 nestedLevel={nestedLevel}
                               />
                             )}
 
-                            {item.type === "collapse" && (
+                            {item.type === 'collapse' && (
                               <HorizontalCollapse
                                 item={item}
                                 nestedLevel={nestedLevel}
                               />
                             )}
 
-                            {item.type === "item" && (
+                            {item.type === 'item' && (
                               <HorizontalItem
                                 item={item}
                                 nestedLevel={nestedLevel}

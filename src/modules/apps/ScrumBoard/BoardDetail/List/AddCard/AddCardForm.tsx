@@ -1,24 +1,23 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { Form } from "formik";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import { useIntl } from "react-intl";
-import Divider from "@mui/material/Divider";
-import dayjs from "dayjs";
-import { Autocomplete } from "@mui/lab";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import AppScrollbar from "@crema/components/AppScrollbar";
-import {
-  CardAttachments,
-  CardCheckedList,
-  CardComments,
-} from "@crema/modules/apps/ScrumBoard";
-import { useScrumContext } from "../../../../context/ScrumContextProvider";
+import React from 'react';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { Form } from 'formik';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import { useIntl } from 'react-intl';
+import Divider from '@mui/material/Divider';
+import dayjs from 'dayjs';
+import { Autocomplete } from '@mui/lab';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
+import AppScrollbar from '@crema/components/AppScrollbar';
+import CardComments from './CardComments';
+import CardCheckedList from './CardCheckedList';
+import CardAttachments from './CardAttachments';
+
+import { useScrumContext } from '../../../../context/ScrumContextProvider';
 import {
   AttachmentType,
   BoardType,
@@ -27,13 +26,13 @@ import {
   CheckedListType,
   LabelType,
   MemberType,
-} from "@crema/types/models/apps/ScrumbBoard";
-import { AuthUserType } from "@crema/types/models/AuthUser";
-import { DatePicker } from "@mui/x-date-pickers";
-import { generateRandomUniqueNumber } from "@crema/helpers/Common";
+} from '@crema/types/models/apps/ScrumbBoard';
+import { AuthUserType } from '@crema/types/models/AuthUser';
+import { DatePicker } from '@mui/x-date-pickers';
+import { generateRandomUniqueNumber } from '@crema/helpers/Common';
 
 type Props = {
-  board: BoardType;
+  board: BoardType | undefined;
   list: CardListType | undefined;
   checkedList: CheckedListType[];
   setCheckedList: (checkList: CheckedListType[]) => void;
@@ -60,18 +59,18 @@ const AddCardForm = (props: Props) => {
     setFieldValue,
     checkedList,
     setCheckedList,
-    comments,
+    comments = [],
     setComments,
     authUser,
-    attachments,
+    attachments = [],
     setAttachments,
-    selectedLabels,
+    selectedLabels = [],
     setSelectedLabels,
-    selectedMembers,
+    selectedMembers = [],
     setMembersList,
     selectedCard,
     onCloseAddCard,
-    isSubmitting,
+    isSubmitting = false,
   } = props;
 
   const { messages } = useIntl();
@@ -85,7 +84,7 @@ const AddCardForm = (props: Props) => {
   const onAddNewCheckedItem = () => {
     const item = {
       id: generateRandomUniqueNumber(),
-      title: "",
+      title: '',
     };
     const updatedList = checkedList.concat(item);
     setCheckedList(updatedList);
@@ -109,17 +108,17 @@ const AddCardForm = (props: Props) => {
         comment: comment,
         sender: {
           id: authUser!.id,
-          name: authUser!.displayName ? authUser!.displayName : "User",
+          name: authUser!.displayName ? authUser!.displayName : 'User',
           image: authUser!.photoURL,
         },
-        date: dayjs().format("ll"),
-      })
+        date: dayjs().format('ll'),
+      }),
     );
   };
 
   const onDeleteAttachment = (id: number) => {
     const updatedAttachments = attachments.filter(
-      (attachment) => attachment.id !== id
+      (attachment) => attachment.id !== id,
     );
     setAttachments(updatedAttachments);
   };
@@ -127,17 +126,17 @@ const AddCardForm = (props: Props) => {
   return (
     <Form
       style={{
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
       }}
       noValidate
-      autoComplete="off"
+      autoComplete='off'
     >
       <AppScrollbar
         sx={{
-          height: "calc(100% - 70px)",
-          "& .simplebar-content": {
-            height: "100%",
+          height: 'calc(100% - 70px)',
+          '& .simplebar-content': {
+            height: '100%',
           },
         }}
       >
@@ -146,24 +145,24 @@ const AddCardForm = (props: Props) => {
             pt: 6,
             px: { xs: 5, lg: 8, xl: 10 },
             pb: 2,
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { md: "center" },
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { md: 'center' },
           }}
         >
           <Box
             sx={{
               mb: 3,
-              width: { md: "60%" },
+              width: { md: '60%' },
             }}
           >
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
               }}
-              variant="outlined"
-              label={<IntlMessages id="common.title" />}
-              name="title"
+              variant='outlined'
+              label={<IntlMessages id='common.title' />}
+              name='title'
             />
           </Box>
 
@@ -171,9 +170,9 @@ const AddCardForm = (props: Props) => {
             sx={{
               ml: { md: 8 },
               mb: 3,
-              width: { md: "40%" },
-              "& .MuiFormControl-root": {
-                width: "100%",
+              width: { md: '40%' },
+              '& .MuiFormControl-root': {
+                width: '100%',
               },
             }}
           >
@@ -182,10 +181,10 @@ const AddCardForm = (props: Props) => {
               // format="YYYY/MM/DD"
               // variant="outlined"
               // inputVariant="outlined"
-              label={<IntlMessages id="common.date" />}
+              label={<IntlMessages id='common.date' />}
               // name="date"
               value={values.date}
-              onChange={(value: any) => setFieldValue("date", value)}
+              onChange={(value: any) => setFieldValue('date', value)}
               // renderInput={(params: TextFieldProps) => (
               //   <TextField {...params} />
               // )}
@@ -200,15 +199,15 @@ const AddCardForm = (props: Props) => {
           }}
         >
           <AppTextField
-            name="desc"
+            name='desc'
             multiline
             sx={{
-              width: "100%",
+              width: '100%',
               mb: 5,
             }}
-            rows="3"
-            variant="outlined"
-            placeholder={messages["common.description"] as string}
+            rows='3'
+            variant='outlined'
+            placeholder={messages['common.description'] as string}
           />
 
           <AppGridContainer
@@ -219,7 +218,7 @@ const AddCardForm = (props: Props) => {
             <Grid item xs={12} md={6}>
               <Autocomplete
                 multiple
-                id="tags-outlined"
+                id='tags-outlined'
                 options={labelList}
                 getOptionLabel={(option: LabelType) => option.name}
                 value={selectedLabels}
@@ -230,8 +229,8 @@ const AddCardForm = (props: Props) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    variant="outlined"
-                    label={<IntlMessages id="common.label" />}
+                    variant='outlined'
+                    label={<IntlMessages id='common.label' />}
                     fullWidth
                   />
                 )}
@@ -241,7 +240,7 @@ const AddCardForm = (props: Props) => {
             <Grid item xs={12} md={6}>
               <Autocomplete
                 multiple
-                id="tags-outlined"
+                id='tags-outlined'
                 options={memberList}
                 autoHighlight
                 getOptionLabel={(option: MemberType) => option.name}
@@ -251,8 +250,8 @@ const AddCardForm = (props: Props) => {
                 }
                 renderOption={(props, option) => (
                   <Box
-                    component="li"
-                    sx={{ display: "flex", alignItems: "center" }}
+                    component='li'
+                    sx={{ display: 'flex', alignItems: 'center' }}
                     {...props}
                   >
                     {option.image ? (
@@ -267,8 +266,8 @@ const AddCardForm = (props: Props) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    variant="outlined"
-                    label={<IntlMessages id="common.members" />}
+                    variant='outlined'
+                    label={<IntlMessages id='common.members' />}
                     fullWidth
                   />
                 )}
@@ -304,7 +303,7 @@ const AddCardForm = (props: Props) => {
         sx={{
           px: 8,
           py: 4,
-          textAlign: "right",
+          textAlign: 'right',
           borderTop: (theme) => `solid 1px ${theme.palette.divider}`,
         }}
       >
@@ -312,23 +311,23 @@ const AddCardForm = (props: Props) => {
           sx={{
             px: 8,
           }}
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           disabled={isSubmitting}
-          type="submit"
+          type='submit'
         >
-          <IntlMessages id="common.done" />
+          <IntlMessages id='common.done' />
         </Button>
         <Button
           sx={{
             px: 8,
             ml: 2.5,
           }}
-          color="primary"
-          variant="outlined"
+          color='primary'
+          variant='outlined'
           onClick={onCloseAddCard}
         >
-          <IntlMessages id="common.cancel" />
+          <IntlMessages id='common.cancel' />
         </Button>
       </Box>
     </Form>
@@ -336,11 +335,3 @@ const AddCardForm = (props: Props) => {
 };
 
 export default AddCardForm;
-
-AddCardForm.defaultProps = {
-  comments: [],
-  attachments: [],
-  selectedLabels: [],
-  selectedMembers: [],
-  isSubmitting: false,
-};
