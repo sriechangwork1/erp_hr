@@ -51,7 +51,7 @@ const SlideBasicArrow: React.FC<SlideBasicArrowProps> = ({
                 }}
               >
                 <Image
-                  src={slide.srcImg}
+                  src={`${slide.srcImg}`}
                   alt={slide.title}
                   width={698}
                   height={310}

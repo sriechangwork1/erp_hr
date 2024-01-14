@@ -10,7 +10,7 @@ import BitBucketWrapper from './BitBucketWrapper';
 import { LayoutType } from '@crema/constants/AppEnums';
 import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import BitBucketContainer from './BitBucketContainer';
-import { useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
@@ -19,13 +19,13 @@ type Props = {
 };
 const BitBucket = ({ children, routesConfig }: Props) => {
   const { layoutType } = useLayoutContext();
-  const { pathname } = useParams();
+  const pathname = usePathname();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {
     setNavCollapsed(!isNavCollapsed);
   };
   useEffect(() => {
-    if (isNavCollapsed) setNavCollapsed(!isNavCollapsed);
+    setNavCollapsed(true);
   }, [pathname]);
 
   return (

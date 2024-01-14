@@ -20,7 +20,9 @@ export const POST = async (request: NextRequest) => {
         return data;
       }
     });
-    const updatedBoard = updatedBoardList.find((data) => data.id === boardId);
+    const updatedBoard = updatedBoardList.find(
+      (data) => data.id === boardId,
+    ) || { id: boardId, name: list.name, list: [...list] };
     return new Response(JSON.stringify(updatedBoard), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

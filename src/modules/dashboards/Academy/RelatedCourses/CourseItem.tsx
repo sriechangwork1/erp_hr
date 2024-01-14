@@ -24,7 +24,12 @@ const CourseItem = ({ data }: Props) => {
           },
         }}
       >
-        <Image src={data.image} alt={data.title} width={337} height={160} />
+        <Image
+          src={`${data.image}`}
+          alt={data.title}
+          width={337}
+          height={160}
+        />
       </Box>
       <Box
         component='p'

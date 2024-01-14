@@ -9,6 +9,7 @@ import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined
 
 import { styled } from '@mui/material/styles';
 import { AttachmentType } from '@crema/types/models/apps/ScrumbBoard';
+import Image from 'next/image';
 
 const CardAttachmentWrapper = styled('div')(({ theme }) => {
   return {
@@ -112,7 +113,12 @@ const CardAttachments = (props: Props) => {
             >
               <CardAttachmentWrapper>
                 <Box className='attachment-thumb'>
-                  <img src={attachment.preview} alt='attachment' />
+                  <Image
+                    src={`${attachment.preview}`}
+                    alt='attachment'
+                    height={132}
+                    width={278}
+                  />
 
                   <Box className='attachment-action'>
                     <IconButton

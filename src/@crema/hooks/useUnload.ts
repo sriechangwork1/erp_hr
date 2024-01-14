@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useUnload = (fn) => {
+export const useUnload = (fn: any) => {
   const cb = React.useRef(fn);
 
   React.useEffect(() => {

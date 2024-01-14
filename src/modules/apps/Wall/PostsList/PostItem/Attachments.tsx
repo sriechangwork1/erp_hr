@@ -62,7 +62,7 @@ const Attachments = ({ attachments }: Props) => {
         renderRow={(item, index) => (
           <ImageView key={index}>
             <Image
-              src={item.preview}
+              src={`${item.preview}`}
               alt='attachment'
               width={706}
               height={200}

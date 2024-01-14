@@ -1,15 +1,15 @@
 import React from 'react';
-
-import dynamic from 'next/dynamic';
+import ReactApexChart from 'react-apexcharts';
+// import dynamic from 'next/dynamic';
 import { ApexOptions } from 'apexcharts';
 import AppCard from '@crema/components/AppCard';
 import ChartHeader from './ChartHeader';
 import TimeSelection from './TimeSelection';
 import Box from '@mui/material/Box';
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {
-  ssr: false,
-});
+// const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+//   ssr: false,
+// });
 const seriesData = [
   {
     data: [
@@ -317,7 +317,7 @@ const TrendingChart = () => {
           <ReactApexChart
             options={options}
             series={seriesData}
-            type="candlestick"
+            type='candlestick'
             height={288}
           />
         </Box>

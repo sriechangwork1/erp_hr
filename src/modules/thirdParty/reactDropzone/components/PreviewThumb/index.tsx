@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import Image from 'next/image';
 
 interface PreviewThumbProps {
   file?: any;
@@ -52,7 +53,7 @@ const PreviewThumb: React.FC<PreviewThumbProps> = ({
           onClick={() => onDeleteUploadFile(file)}
         />
       </Box>
-      <img alt='preview' src={file.preview} />
+      <Image alt='preview' src={`${file.preview}`} width={90} height={90} />
     </Box>
   );
 };

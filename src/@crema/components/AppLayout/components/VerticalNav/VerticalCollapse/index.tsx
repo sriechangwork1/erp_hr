@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Collapse, Icon, IconButton, ListItemText } from '@mui/material';
-import { useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import VerticalItem from '../VerticalItem';
 import Box from '@mui/material/Box';
@@ -47,7 +47,7 @@ type VerticalCollapseProps = {
 const VerticalCollapse: React.FC<VerticalCollapseProps> = ({ item, level }) => {
   const { theme } = useThemeContext();
   const { sidebarTextColor } = useSidebarContext();
-  const { pathname }: any = useParams();
+  const pathname: any = usePathname();
   const [open, setOpen] = useState<boolean>(() =>
     needsToBeOpened(pathname, item),
   );

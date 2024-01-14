@@ -9,7 +9,7 @@ import { useAuthUser } from '@crema/hooks/AuthHooks';
 import VerticalNavItem from './VerticalNavItem';
 import { RouterConfigData } from '@crema/types/models/Apps';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 type VerticalItemProps = {
   item: RouterConfigData;
@@ -18,7 +18,7 @@ type VerticalItemProps = {
 
 const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
   const { user } = useAuthUser();
-  const { pathname, asPath } = useRouter();
+  const pathname = usePathname();
   const hasPermission = useMemo(
     () => checkPermission(item.permittedRole, user?.role),
     [item.permittedRole, user?.role],
@@ -50,7 +50,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
       style={{ textDecoration: 'none' }}
       id={item.url}
       className={clsx({
-        active: item.url === asPath,
+        active: item.url === pathname,
       })}
     >
       <VerticalNavItem item={item} level={level} exact={item.exact}>

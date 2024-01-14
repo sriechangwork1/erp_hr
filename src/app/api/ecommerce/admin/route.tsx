@@ -10,7 +10,10 @@ export const GET = async (request: NextRequest) => {
       const data = ecommerceListingData.filter(
         (item: ProductDataType) => +item.id === +id,
       );
-      if (data.length > 0) return [200, data[0]];
+      if (data.length > 0)
+        return new Response(JSON.stringify(data[0]), {
+          status: 200,
+        });
     }
     return new Response(JSON.stringify(ecommerceListingData[0]), {
       status: 200,

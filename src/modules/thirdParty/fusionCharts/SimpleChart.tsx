@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
@@ -16,7 +16,11 @@ const chartConfigs = {
 };
 
 const SimpleChart = () => {
-  return <ReactFC {...chartConfigs} />;
+  return (
+    <>
+      <ReactFC {...chartConfigs} />
+    </>
+  );
 };
 
-export default SimpleChart;
+export default SimpleChart;*/

@@ -20,7 +20,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Fonts } from '@crema/constants/AppEnums';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 
 const AppsSideBarFolderList = styled(ListItem)(({ theme }) => {
   return {
@@ -111,14 +111,14 @@ const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
   item,
   path,
 }) => {
-  const params = useParams();
-  const { asPath } = params;
+  const pathname = usePathname();
+
   return (
     <Link href={path as string} style={{ textDecoration: 'none' }}>
       <AppsSideBarFolderList
         key={item.id}
         className={clsx({
-          active: path === asPath,
+          active: path === pathname,
         })}
       >
         <ListItemIcon

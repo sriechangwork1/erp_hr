@@ -192,7 +192,6 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                     alt='logo'
                     width={40}
                     height={52}
-                    style={{ width: 40, height: 'auto' }}
                   />
                 </Box>
               ) : (
@@ -201,7 +200,6 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                   alt='logo'
                   width={40}
                   height={52}
-                  style={{ width: 40, height: 'auto' }}
                 />
               )}
             </Box>

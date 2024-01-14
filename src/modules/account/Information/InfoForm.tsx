@@ -11,6 +11,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Autocomplete from '@mui/material/Autocomplete';
 import { countries } from '@crema/fakedb';
 import { CountryType } from '@crema/types/models/account/countries';
+import Image from 'next/image';
 
 type InfoFormProps = {
   setFieldValue: (field: string, data: any) => void;

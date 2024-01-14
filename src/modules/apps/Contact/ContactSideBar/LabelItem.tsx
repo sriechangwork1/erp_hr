@@ -5,7 +5,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { alpha, styled } from '@mui/material/styles';
 import { Fonts } from '@crema/constants/AppEnums';
 import ListItem from '@mui/material/ListItem';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
 import Link from 'next/link';
 
@@ -53,7 +53,7 @@ interface Props {
 }
 
 const LabelItem = ({ label }: Props) => {
-  const { asPath } = useParams();
+  const pathname = usePathname();
   return (
     <Link
       href={`/apps/contact/label/${label.alias}`}
@@ -61,7 +61,7 @@ const LabelItem = ({ label }: Props) => {
     >
       <ContactSidebarListItemWrapper
         className={clsx({
-          active: `/apps/contact/label/${label.alias}` === asPath,
+          active: `/apps/contact/label/${label.alias}` === pathname,
         })}
       >
         <LabelOutlinedIcon style={{ color: `${label.color}` }} />

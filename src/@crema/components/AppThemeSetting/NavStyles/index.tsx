@@ -8,6 +8,7 @@ import {
 } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import AppSelectedIcon from '../../AppSelectedIcon';
 import { navStyles, NavStyleType } from '@crema/fakedb/navigationStyle';
+import Image from 'next/image';
 
 const NavStyles = () => {
   const { updateNavStyle } = useLayoutActionsContext();
@@ -50,7 +51,12 @@ const NavStyles = () => {
                 }}
                 onClick={() => onNavStyleChange(navLayout.alias)}
               >
-                <img src={navLayout.image} alt='nav' />
+                <Image
+                  src={`${navLayout.image}`}
+                  alt='nav'
+                  width={65}
+                  height={57}
+                />
                 {navStyle === navLayout.alias ? <AppSelectedIcon /> : null}
               </Box>
             </Box>

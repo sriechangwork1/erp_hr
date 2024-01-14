@@ -15,6 +15,7 @@ import {
   sidebarColors,
   SideBarImageType,
 } from '@crema/fakedb/navigationStyle';
+import Image from 'next/image';
 
 const SidebarSettings = () => {
   const { sidebarBgImage, isSidebarBgImage } = useSidebarContext();
@@ -80,7 +81,12 @@ const SidebarSettings = () => {
                   }}
                   onClick={() => updateSidebarBgImage(imagesObj.id)}
                 >
-                  <img src={imagesObj.image} alt='nav' />
+                  <Image
+                    src={`${imagesObj.image}`}
+                    alt='nav'
+                    width={40}
+                    height={80}
+                  />
                   {sidebarBgImage === imagesObj.id ? (
                     <Box
                       sx={{

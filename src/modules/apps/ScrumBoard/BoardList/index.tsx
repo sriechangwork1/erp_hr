@@ -59,6 +59,7 @@ const BoardList = () => {
         board: { name },
       })
         .then((data) => {
+
           setData(data);
           infoViewActionsContext.showMessage('Board Added Successfully!');
         })
@@ -69,6 +70,7 @@ const BoardList = () => {
   };
 
   const onViewBoardDetail = (board: BoardType) => {
+
     router.push(`/apps/scrum-board/${board.id}`);
   };
 
@@ -102,6 +104,7 @@ const BoardList = () => {
           >
             {boardList && boardList.length > 0
               ? boardList.map((board) => {
+
                   return (
                     <BoardItem
                       key={board.id}

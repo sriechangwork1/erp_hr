@@ -30,11 +30,11 @@ type Props = {
   connection: ConnectionType;
 };
 const ConnectionListItem = (props: Props) => {
-  const { connection = null } = props;
+  const { connection } = props;
 
   return (
     <ListItem
-      key={connection.id}
+      key={connection?.id}
       sx={{
         px: 0,
         cursor: 'pointer',
@@ -53,8 +53,8 @@ const ConnectionListItem = (props: Props) => {
             width: 36,
             height: 36,
           }}
-          alt={connection.name}
-          src={connection.image}
+          alt={connection?.name}
+          src={connection?.image}
         />
       </ListItemAvatar>
       <ListItemTextWrapper
@@ -66,10 +66,10 @@ const ConnectionListItem = (props: Props) => {
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            {connection.name}
+            {connection?.name}
           </Box>
         }
-        secondary={connection.status}
+        secondary={connection?.status}
       />
     </ListItem>
   );

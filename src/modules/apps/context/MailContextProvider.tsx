@@ -14,7 +14,7 @@ import type {
   MailType,
 } from '@crema/types/models/apps/Mail';
 import { APIDataProps } from '@crema/types/models/APIDataProps';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 export type MailContextType = {
   labelList: LabelType[];
@@ -68,7 +68,8 @@ type Props = {
 };
 export const MailContextProvider = ({ children }: Props) => {
   const params = useParams();
-  const { all, asPath } = params;
+  const pathname = usePathname();
+  const { all } = params;
   let folder: any;
 
   let label: any;
@@ -99,7 +100,7 @@ export const MailContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     setPage(0);
-  }, [asPath]);
+  }, [pathname]);
 
   useEffect(() => {
     setQueryParams({
@@ -107,7 +108,7 @@ export const MailContextProvider = ({ children }: Props) => {
       name: folder || label,
       page,
     });
-  }, [page, asPath]);
+  }, [page, pathname]);
 
   const onPageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,

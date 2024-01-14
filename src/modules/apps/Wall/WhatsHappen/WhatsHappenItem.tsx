@@ -46,7 +46,7 @@ const WhatsHappenItem = ({ data }: Props) => {
       }}
     >
       <ThumbWrapper>
-        <Image src={imgSrc} alt='happen img' width={56} height={58} />
+        <Image src={`${imgSrc}`} alt='happen img' width={56} height={58} />
       </ThumbWrapper>
       <Box
         sx={{

@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useGetDataApi } from '@crema/hooks/APIHooks';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import {
   FolderType,
   LabelType,
@@ -91,7 +91,8 @@ export const CalendarContextProvider = ({ children }: Props) => {
   });
 
   const params = useParams();
-  const { all, asPath } = params;
+  const pathname = usePathname();
+  const { all } = params;
   let folder: any;
   let label: any;
   // if (all.length === 2 && !+all[1] > 0) {
@@ -128,7 +129,7 @@ export const CalendarContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     setPage(0);
-  }, [asPath]);
+  }, [pathname]);
 
   useEffect(() => {
     setQueryParams({

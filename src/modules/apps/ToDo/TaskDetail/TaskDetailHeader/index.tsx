@@ -91,7 +91,6 @@ const TaskDetailHeader = (props: Props) => {
           display: { xs: 'none', sm: 'block' },
         }}
       >
-        78787878
         <AppsStarredIcon item={selectedTask} onChange={onChangeStarred} />
       </Box>
 

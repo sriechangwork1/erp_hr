@@ -7,7 +7,7 @@ import {
   ListItemText,
   Paper,
 } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
@@ -30,7 +30,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
   const [opened, setOpened] = useState<boolean>(false);
   const { theme } = useThemeContext();
   const { item, nestedLevel, dense } = props;
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const active = isUrlInChildren(item, pathname);
   const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } =
     useSidebarContext();

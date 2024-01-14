@@ -11,7 +11,7 @@ import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContex
 import { Fonts, NavStyle } from '@crema/constants/AppEnums';
 import AppContainerWrapper from './AppContainerWrapper';
 import { SxProps } from '@mui/system';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 type AppsContainerProps = {
   title: string | ReactNode;
@@ -24,13 +24,13 @@ type AppsContainerProps = {
 };
 
 const AppsContainer: React.FC<AppsContainerProps> = (props) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {
     setNavCollapsed(!isNavCollapsed);
   };
   useEffect(() => {
-    if (isNavCollapsed) setNavCollapsed(!isNavCollapsed);
+    setNavCollapsed(false);
   }, [pathname]);
 
   const { footer } = useLayoutContext();

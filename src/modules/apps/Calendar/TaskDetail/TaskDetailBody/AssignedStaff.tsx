@@ -6,10 +6,10 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { StaffType } from '@crema/types/models/apps/Todo';
 
 type Props = {
-  assignedStaff: StaffType;
+  assignedStaff: StaffType | null;
 };
 
-const AssignedStaff = ({ assignedStaff = null }: Props) => {
+const AssignedStaff = ({ assignedStaff }: Props) => {
   return assignedStaff ? (
     <Box mr={4} display='flex' alignItems='center'>
       {assignedStaff.image ? (

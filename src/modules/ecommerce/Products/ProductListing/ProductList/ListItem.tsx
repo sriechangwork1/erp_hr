@@ -85,7 +85,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
                       }}
                     >
                       <Image
-                        src={img.src}
+                        src={`${img.src}`}
                         alt='watch'
                         width={144}
                         height={119}

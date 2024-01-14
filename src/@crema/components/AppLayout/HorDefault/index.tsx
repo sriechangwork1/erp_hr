@@ -10,7 +10,7 @@ import HorDefaultWrapper from './HorDefaultWrapper';
 import MainContent from './MainContent';
 import { LayoutType } from '@crema/constants/AppEnums';
 import HorDefaultContainer from './HorDefaultContainer';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
@@ -19,13 +19,13 @@ type Props = {
 };
 const HorDefault = ({ children, routesConfig }: Props) => {
   const { footer, layoutType, footerType } = useLayoutContext();
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {
     setNavCollapsed(!isNavCollapsed);
   };
   useEffect(() => {
-    if (isNavCollapsed) setNavCollapsed(!isNavCollapsed);
+    setNavCollapsed(false);
   }, [pathname]);
 
   return (

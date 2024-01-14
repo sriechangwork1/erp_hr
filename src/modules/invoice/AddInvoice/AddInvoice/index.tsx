@@ -210,7 +210,6 @@ const AddInvoice = ({
                       alt='logo'
                       width={70}
                       height={92}
-                      style={{ width: 70, height: 'auto' }}
                     />
                   )}
                 </Box>

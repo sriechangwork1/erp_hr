@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, ListItem, ListItemText } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
@@ -18,8 +18,8 @@ type HorizontalItemProps = {
 const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
   const { item, dense } = props;
 
-  const router = useRouter();
-  const active = isUrlInChildren(item, router.pathname);
+  const pathname = usePathname();
+  const active = isUrlInChildren(item, pathname);
   const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } =
     useSidebarContext();
 
@@ -50,7 +50,7 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
     <Link href={item.url as string} style={{ textDecoration: 'none' }}>
       <ListItem
         className={clsx('navItemSubmenu', dense && 'dense', {
-          active: item.url === router.pathname,
+          active: item.url === pathname,
         })}
         sx={{
           minHeight: 40,

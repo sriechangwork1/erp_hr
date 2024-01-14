@@ -1,16 +1,15 @@
-/*
 import boardList from '@crema/fakedb/apps/scrumboard/boardList';
-import {NextRequest} from "next/server";
+import { NextRequest } from 'next/server';
 
 let boardData = boardList;
 
-export const POST = async (request:NextRequest) => {
+export const POST = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
     const { boardId, listId } = reqBody;
-    let selectedBoard = boardData.find((data) => data.id === boardId);
+    let selectedBoard: any = boardData.find((data) => data.id === boardId);
     selectedBoard.list = selectedBoard.list.filter(
-      (item) => item.id !== listId,
+      (item: any) => item.id !== listId,
     );
     boardData = boardData.map((data) =>
       data.id === selectedBoard.id ? selectedBoard : data,
@@ -20,4 +19,3 @@ export const POST = async (request:NextRequest) => {
     return new Response('Internal Server Error', { status: 500 });
   }
 };
-*/

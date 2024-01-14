@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import FusionCharts from 'fusioncharts';
 import charts from 'fusioncharts/fusioncharts.charts';
@@ -19,3 +20,4 @@ const StackedNegative = () => {
 };
 
 export default StackedNegative;
+*/

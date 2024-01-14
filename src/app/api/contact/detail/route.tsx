@@ -1,21 +1,21 @@
-// import contactData from '@crema/fakedb/apps/contact/contactList';
-// import labelList from '@crema/fakedb/apps/contact/labelList';
-// import { NextRequest } from 'next/server';
-//
-// let contactList = contactData;
-// export const GET = async (request: NextRequest) => {
-//   try {
-//     const params = Object.fromEntries(request.nextUrl.searchParams);
-//
-//     const response = contactList.find(
-//       (contact) => contact.id === parseInt(params.id),
-//     );
-//
-//     return new Response(JSON.stringify(response), { status: 200 });
-//   } catch (error) {
-//     return new Response('Internal Server Error', { status: 500 });
-//   }
-// };
+import contactData from '@crema/fakedb/apps/contact/contactList';
+import { NextRequest } from 'next/server';
+
+let contactList = contactData;
+export const GET = async (request: NextRequest) => {
+  try {
+    const params = Object.fromEntries(request.nextUrl.searchParams);
+
+    const response = contactList.find(
+      (contact) => contact.id === parseInt(params.id),
+    );
+
+    return new Response(JSON.stringify(response), { status: 200 });
+  } catch (error) {
+    return new Response('Internal Server Error', { status: 500 });
+  }
+};
+
 //
 // export const PUT = async (request: NextRequest) => {
 //   try {

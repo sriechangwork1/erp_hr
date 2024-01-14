@@ -27,6 +27,7 @@ const TasksList = () => {
   const { setTodoData, onPageChange } = useTodoActionsContext();
 
   const [filterText, onSetFilterText] = useState<string>('');
+
   const [checkedTasks, setCheckedTasks] = useState<number[]>([]);
   const [isAddTaskOpen, setAddTaskOpen] = useState<boolean>(false);
 

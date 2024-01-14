@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { stackAreaData } from './data';
 import FusionCharts from 'fusioncharts';
@@ -19,3 +20,4 @@ const StackedArea = () => {
 };
 
 export default StackedArea;
+*/

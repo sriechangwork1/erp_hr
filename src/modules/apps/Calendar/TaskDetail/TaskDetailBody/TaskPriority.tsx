@@ -53,6 +53,8 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
         onChange={(event) => onChangePriority(event)}
         sx={{
           cursor: 'pointer',
+          maxWidth: '72px',
+          width: '100%',
           '& .MuiOutlinedInput-input': {
             paddingBottom: 2.5,
             paddingTop: 2.5,

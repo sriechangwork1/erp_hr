@@ -17,7 +17,6 @@ type Props = {
 const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   const { statusList } = useCalendarContext();
   const infoViewActionsContext = useInfoViewActionsContext();
-
   const onChangeStatus = (event: SelectChangeEvent<number>) => {
     const task = selectedTask;
     task.status = event.target.value as number;
@@ -42,9 +41,11 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
         labelId='status-select-outlined-label'
         label={<IntlMessages id='common.status' />}
         value={selectedTask.status}
+        defaultValue={selectedTask.status}
         onChange={(event) => onChangeStatus(event)}
         sx={{
           cursor: 'pointer',
+          width: '117px',
           '& .MuiOutlinedInput-input': {
             paddingBottom: 2.5,
             paddingTop: 2.5,

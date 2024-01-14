@@ -10,7 +10,7 @@ import AppFixedFooter from './AppFixedFooter';
 import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import { LayoutType } from '@crema/constants/AppEnums';
 import UserMiniHeaderContainer from './UserMiniHeaderContainer';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { RouterConfigData } from '@crema/types/models/Apps';
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 };
 const UserMiniHeader = ({ children, routesConfig }: Props) => {
   const { footer, layoutType, footerType } = useLayoutContext();
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const [isNavCollapsed, setNavCollapsed] = useState(false);
   const toggleNavCollapsed = () => {
     setNavCollapsed(!isNavCollapsed);

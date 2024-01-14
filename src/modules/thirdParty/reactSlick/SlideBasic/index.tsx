@@ -49,7 +49,7 @@ const SlideDemoBasic: React.FC<SlideBasicProps> = ({ slideBasic }) => {
                 }}
               >
                 <Image
-                  src={slide.srcImg}
+                  src={`${slide.srcImg}`}
                   alt={slide.title}
                   width={698}
                   height={310}

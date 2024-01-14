@@ -1,8 +1,10 @@
 import React from 'react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
-
-const RevenueGraph = (props) => {
+type Props = {
+  data: any[];
+};
+const RevenueGraph: React.FC<Props> = (props) => {
   const { data = [] } = props;
 
   return (
@@ -28,7 +30,3 @@ const RevenueGraph = (props) => {
 };
 
 export default RevenueGraph;
-
-RevenueGraph.propTypes = {
-  data: PropTypes.array,
-};

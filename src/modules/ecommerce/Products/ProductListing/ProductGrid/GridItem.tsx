@@ -92,7 +92,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
           }}
         >
           <Image
-            src={item.image[0].src}
+            src={`${item.image[0].src}`}
             alt='watch'
             width={191}
             height={259}

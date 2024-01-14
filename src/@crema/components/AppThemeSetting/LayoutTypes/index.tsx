@@ -49,7 +49,12 @@ const LayoutTypes = () => {
                 }}
                 onClick={() => onLayoutChange(layout.alias)}
               >
-                <Image src={layout.image} alt='nav' width={84} height={48} />
+                <Image
+                  src={`${layout.image}`}
+                  alt='nav'
+                  width={84}
+                  height={48}
+                />
                 {layoutType === layout.alias ? <AppSelectedIcon /> : null}
               </Box>
             </Box>

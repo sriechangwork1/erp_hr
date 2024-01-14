@@ -12,6 +12,8 @@ const TotalRevenue = ({
     clients: 0,
     countries: '',
     revenueGraphData: [],
+    clientsColor: '',
+    countriesColor: '',
   },
 }) => {
   return (

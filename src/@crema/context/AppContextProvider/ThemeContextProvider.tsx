@@ -7,15 +7,9 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import defaultConfig, {
-  backgroundDark,
-  backgroundLight,
-  defaultTheme,
-  textDark,
-  textLight,
-} from '@crema/constants/defaultConfig';
+import defaultConfig, { defaultTheme } from '@crema/constants/defaultConfig';
 import PropTypes from 'prop-types';
-import { LayoutDirection, ThemeMode } from '@crema/constants/AppEnums';
+import { LayoutDirection } from '@crema/constants/AppEnums';
 
 export interface ThemeData {
   theme: any;
@@ -63,18 +57,6 @@ const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
   const updateTheme = useCallback((theme: any) => {
     setTheme(theme);
   }, []);
-
-  useEffect(() => {
-    theme.palette = {
-      ...theme.palette,
-      mode: themeMode === ThemeMode.DARK ? ThemeMode.DARK : ThemeMode.LIGHT,
-      background:
-        themeMode === ThemeMode.DARK ? backgroundDark : backgroundLight,
-      text: themeMode === ThemeMode.DARK ? textDark : textLight,
-    };
-
-    updateTheme(theme);
-  }, [themeMode, theme, updateTheme]);
 
   useEffect(() => {
     if (theme.direction === LayoutDirection.RTL) {

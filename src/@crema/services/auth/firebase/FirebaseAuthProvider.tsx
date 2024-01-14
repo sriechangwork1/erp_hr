@@ -142,13 +142,13 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }: any) {
+    } catch (error: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,
         isLoading: false,
       });
-      fetchError(message as string);
+      fetchError(error.message as string);
     }
   };
 
@@ -165,13 +165,13 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }: any) {
+    } catch (error: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,
         isLoading: false,
       });
-      fetchError(message as string);
+      fetchError(error.message as string);
     }
   };
   const registerUserWithEmailAndPassword = async ({
@@ -199,13 +199,13 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
         isLoading: false,
       });
       fetchSuccess();
-    } catch ({ message }: any) {
+    } catch (error: any) {
       setFirebaseData({
         ...firebaseData,
         isAuthenticated: false,
         isLoading: false,
       });
-      fetchError(message as string);
+      fetchError(error.message as string);
     }
   };
 

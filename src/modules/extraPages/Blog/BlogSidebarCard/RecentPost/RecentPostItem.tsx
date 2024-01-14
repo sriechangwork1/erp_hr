@@ -28,7 +28,7 @@ const RecentPostItem = ({ recentPost }: Props) => {
         }}
       >
         <Image
-          src={recentPost.srcImg}
+          src={`${recentPost.srcImg}`}
           alt='Recent Post'
           width={100}
           height={69}

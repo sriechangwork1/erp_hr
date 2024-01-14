@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { styled } from "@mui/material/styles";
-import AppCard from "@crema/components/AppCard";
-import AppGrid from "@crema/components/AppGrid";
-import { useIntl } from "react-intl";
-import clsx from "clsx";
-import AppMediaViewer from "@crema/components/AppMediaViewer";
-import { ImageType } from "@crema/types/models/apps/Wall";
+import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import AppCard from '@crema/components/AppCard';
+import AppGrid from '@crema/components/AppGrid';
+import { useIntl } from 'react-intl';
+import clsx from 'clsx';
+import AppMediaViewer from '@crema/components/AppMediaViewer';
+import { ImageType } from '@crema/types/models/apps/Wall';
 
-const StyledImage = styled("img")(({ theme }: any) => ({
+const StyledImage = styled('img')(({ theme }: any) => ({
   borderRadius: theme.cardRadius,
-  display: "block",
-  width: "100%",
-  cursor: "pointer",
+  display: 'block',
+  width: '100%',
+  cursor: 'pointer',
 }));
 
 type Props = {
@@ -28,8 +28,8 @@ const Photos = ({ photos }: Props) => {
   return (
     <AppCard
       sxStyle={{ mb: 8 }}
-      title={messages["wall.photos"] as string}
-      action={messages["common.viewAll"] as string}
+      title={messages['wall.photos'] as string}
+      action={messages['common.viewAll'] as string}
     >
       <div>
         <AppGrid
@@ -46,10 +46,10 @@ const Photos = ({ photos }: Props) => {
           renderRow={(photo, index) => (
             <StyledImage
               onClick={() => setIndex(index)}
-              className={clsx("card-hover")}
+              className={clsx('card-hover')}
               key={index}
-              src={photo.thumb}
-              alt="user"
+              src={`${photo.thumb}`}
+              alt='user'
             />
           )}
         />
@@ -59,7 +59,7 @@ const Photos = ({ photos }: Props) => {
         medias={photos.map((data) => {
           return {
             url: data.thumb,
-            mime_type: "image/*",
+            mime_type: 'image/*',
           };
         })}
         onClose={onClose}

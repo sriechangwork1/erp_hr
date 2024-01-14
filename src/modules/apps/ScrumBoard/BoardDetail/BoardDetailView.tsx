@@ -2,6 +2,7 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import 'react-trello-ts';
 
+// @ts-ignore
 import Board from 'react-trello';
 import { Box, useTheme } from '@mui/material';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';

@@ -3,7 +3,7 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import { ProductType } from '@crema/types/models/extrapages/Portfolio';
-
+import Image from 'next/image';
 type Props = {
   product: ProductType[];
 };

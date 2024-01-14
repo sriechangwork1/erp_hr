@@ -139,7 +139,7 @@ const getMediaMessage = (item: MediaType) => {
           },
         }}
       >
-        <Image alt='' src={item.url} width={56} height={56} />
+        <Image alt='' src={`${item.url}`} width={56} height={56} />
       </Box>
     );
   } else if (item.mime_type.startsWith('video')) {

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import CoinDropdown from "./CoinDropdown";
-import CurrencyField from "./CurrencyField";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Button from "@mui/material/Button";
-import { CoinListType } from "@crema/types/models/dashboards/Crypto";
-import { SelectChangeEvent } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import CoinDropdown from './CoinDropdown';
+import CurrencyField from './CurrencyField';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Button from '@mui/material/Button';
+import { CoinListType } from '@crema/types/models/dashboards/Crypto';
+import { SelectChangeEvent } from '@mui/material';
 
 type Props = {
   coinList: CoinListType[];
   type?: string;
 };
-const ExchangeForm = ({ coinList, type = "buy" }: Props) => {
+const ExchangeForm = ({ coinList, type = 'buy' }: Props) => {
   const [selectedCoinId, setSelectedCoinID] = React.useState(coinList[0].id);
   const [usdValue, setUsdValue] = useState(0);
   const [coinValue, setCoinValue] = useState(0);
@@ -31,7 +31,7 @@ const ExchangeForm = ({ coinList, type = "buy" }: Props) => {
 
   const coin = selectedCoin();
   return (
-    <form noValidate autoComplete="off">
+    <form noValidate autoComplete='off'>
       <Box
         sx={{
           mb: 5,
@@ -49,10 +49,10 @@ const ExchangeForm = ({ coinList, type = "buy" }: Props) => {
         }}
       >
         <CurrencyField
-          label={<IntlMessages id="dashboard.crypto.usdAmount" />}
-          shortName="USD"
+          label={<IntlMessages id='dashboard.crypto.usdAmount' />}
+          shortName='USD'
           value={usdValue}
-          coinColor="#16C784"
+          coinColor='#16C784'
           onChange={(value) => {
             setUsdValue(value);
             setCoinValue(value / coin!.usdPrice);
@@ -81,9 +81,9 @@ const ExchangeForm = ({ coinList, type = "buy" }: Props) => {
           minHeight: 46,
         }}
         fullWidth
-        variant="contained"
+        variant='contained'
       >
-        {type === "buy" ? "Buy" : "Sell"} {coin!.shortName}
+        {type === 'buy' ? 'Buy' : 'Sell'} {coin!.shortName}
       </Button>
     </form>
   );

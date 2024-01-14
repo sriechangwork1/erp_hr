@@ -13,7 +13,6 @@ import {
 import AppGridContainer from '@crema/components/AppGridContainer';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
-import { FilterType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const statusList = [
   {
@@ -52,7 +51,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
               label='status'
               name='status'
               onChange={(e) => {
-                setFilterData((prev) => ({
+                setFilterData((prev: any) => ({
                   ...prev,
                   inStock: [e.target.value === 1],
                 }));
@@ -78,7 +77,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
         <Grid item xs={12} md={6}>
           <TextField
             onChange={(e) => {
-              setFilterData((prev) => ({
+              setFilterData((prev: any) => ({
                 ...prev,
                 mrp: { start: +e.target.value, end: filterData.mrp.end },
               }));
@@ -95,7 +94,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
         <Grid item xs={12} md={6}>
           <TextField
             onChange={(e) => {
-              setFilterData((prev) => ({
+              setFilterData((prev: any) => ({
                 ...prev,
                 mrp: { start: filterData.mrp.start, end: +e.target.value },
               }));
@@ -114,7 +113,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
             label='Creation Start Date'
             value={filterData.createdAt?.start}
             onChange={(value) =>
-              setFilterData((prev) => ({
+              setFilterData((prev: any) => ({
                 ...prev,
                 createdAt: {
                   start: dayjs(value).format('DD MMM YYYY'),
@@ -129,7 +128,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
             label='Creation End Date'
             value={filterData.createdAt?.end}
             onChange={(value) =>
-              setFilterData((prev) => ({
+              setFilterData((prev: any) => ({
                 ...prev,
                 createdAt: {
                   start: filterData.createdAt?.start,

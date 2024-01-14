@@ -8,6 +8,7 @@ import {
 } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import AppSelectedIcon from '../../../AppSelectedIcon';
 import { menuStyles, MenuStyleType } from '@crema/fakedb/navigationStyle';
+import Image from 'next/image';
 
 const NavMenuStyle = () => {
   const { menuStyle } = useSidebarContext();
@@ -48,7 +49,7 @@ const NavMenuStyle = () => {
                 }}
                 onClick={() => onMenuStyleChange(menu.alias)}
               >
-                <img src={menu.image} alt='nav' />
+                <Image src={`${menu.image}`} alt='nav' width={62} height={86} />
                 {menuStyle === menu.alias ? <AppSelectedIcon /> : null}
               </Box>
             </Box>

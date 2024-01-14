@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { Fonts } from '@crema/constants/AppEnums';
 import ClientOnlyPortal from './ClientPortal';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { RouterConfigData } from '@crema/types/models/Apps';
 
 type HorizontalCollapseProps = {
@@ -28,7 +28,7 @@ type HorizontalCollapseProps = {
 const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
   const [opened, setOpened] = useState<boolean>(false);
   const { item, nestedLevel } = props;
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   const handleToggle = (open: boolean) => {
     setOpened(open);

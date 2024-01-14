@@ -6,7 +6,6 @@ import { useParams, useRouter } from 'next/navigation';
 import ScrumContextProvider from '../context/ScrumContextProvider';
 
 const ScrumBoard = () => {
-  const router = useRouter();
   const params = useParams();
   const { id } = params;
 

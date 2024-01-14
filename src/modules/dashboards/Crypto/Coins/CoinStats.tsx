@@ -46,7 +46,7 @@ const CoinStats = ({
             backgroundColor: bgColor,
           }}
         >
-          <Image alt='' src={icon} width={24} height={31} />
+          <Image alt='' src={`${icon}`} width={24} height={31} />
         </Avatar>
 
         <Box

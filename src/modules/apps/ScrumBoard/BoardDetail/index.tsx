@@ -18,7 +18,7 @@ const BoardDetail = () => {
   useEffect(() => {
     setQueryParams({ id });
     return () => {
-      setQueryParams(null);
+      setQueryParams({});
     };
   }, [id]);
 

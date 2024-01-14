@@ -7,7 +7,6 @@ import Tag from '../../BlogContent/Tag';
 import BlogPost from './BlogPost';
 import Social from './Social';
 import AppCardMedia from '@crema/components/AppCard/AppCardMedia';
-import renderHTML from 'react-render-html';
 import type { BlogDetailContentType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {

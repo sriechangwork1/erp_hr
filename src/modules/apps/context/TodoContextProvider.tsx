@@ -16,7 +16,7 @@ import {
   TodoType,
 } from '@crema/types/models/apps/Todo';
 import { APIDataProps } from '@crema/types/models/APIDataProps';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 
 export const ViewMode = {
   List: 'list',
@@ -62,8 +62,8 @@ const ContextState: TodoContextType = {
   page: 0,
   viewMode: 'list',
   all: undefined,
-  folder: undefined,
-  label: undefined,
+  folder: '',
+  label: '',
 };
 
 const TodoContext = createContext<TodoContextType>(ContextState);
@@ -88,7 +88,8 @@ type Props = {
 };
 export const TodoContextProvider = ({ children }: Props) => {
   const params = useParams();
-  const { all, asPath } = params;
+  const pathname = usePathname();
+  const { all } = params;
 
   let folder: any;
   let label: any;
@@ -119,7 +120,7 @@ export const TodoContextProvider = ({ children }: Props) => {
 
   useEffect(() => {
     setPage(0);
-  }, [asPath]);
+  }, [pathname]);
 
   useEffect(() => {
     if (folder || label)

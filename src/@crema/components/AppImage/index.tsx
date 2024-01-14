@@ -13,7 +13,7 @@ type AppImageProps = {
 const AppImage = ({ src, alt, ...props }: AppImageProps) => {
   return (
     <picture>
-      <Image src={src} alt={alt} {...props} />
+      <Image src={`${src}`} alt={alt} {...props} />
     </picture>
   );
 };

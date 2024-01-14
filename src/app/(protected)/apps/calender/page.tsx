@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
-import asyncComponent from '@crema/components/AppAsyncComponent';
-const Calendar = asyncComponent(
-  () => import('../../../../modules/apps/Calendar'),
-  { ssr: false },
-);
-export default <Calendar />;
+import Calendar from '../../../../modules/apps/Calendar';
+
+const Page = () => {
+  return <Calendar />;
+};
+
+export default Page;

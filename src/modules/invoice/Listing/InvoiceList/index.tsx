@@ -4,17 +4,16 @@ import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import { putDataApi, useGetDataApi } from '@crema/hooks/APIHooks';
 import InvoiceTable from '../InvoiceTable';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { isEmptyObject } from '@crema/helpers/ApiHelper';
 import AppLoader from '@crema/components/AppLoader';
 import { InvoiceType } from '@crema/types/models/invoice';
 
 const InvoiceList = () => {
-  // const { asPath } = useRouter();
-
   const params = useParams();
-  const { all, asPath } = params;
+  const pathname = usePathname();
+  const { all } = params;
   const infoViewActionsContext = useInfoViewActionsContext();
 
   let folder = '';
@@ -44,7 +43,7 @@ const InvoiceList = () => {
       folder: folder,
       page: page,
     });
-  }, [page, folder, asPath]);
+  }, [page, folder, pathname]);
 
   const onChangeStatus = (invoice: InvoiceType, status: number) => {
     invoice.folderValue = status;

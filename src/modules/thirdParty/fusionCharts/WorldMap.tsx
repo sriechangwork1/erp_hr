@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import FusionCharts from 'fusioncharts';
 import Maps from 'fusioncharts/fusioncharts.maps';
@@ -21,3 +22,4 @@ const WorldMap = () => {
 };
 
 export default WorldMap;
+*/

@@ -55,7 +55,7 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
           return (
             <MenuItem
               key={status.type}
-              value={status.type}
+              value={status.id}
               sx={{
                 padding: 2,
                 cursor: 'pointer',

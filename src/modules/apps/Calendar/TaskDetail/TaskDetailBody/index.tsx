@@ -34,10 +34,8 @@ type Props = {
 const TaskDetailBody = (props: Props) => {
   const { selectedTask, onUpdateSelectedTask } = props;
   const infoViewActionsContext = useInfoViewActionsContext();
-
   const { user } = useAuthUser();
   const { staffList } = useCalendarContext();
-
   const [isEdit, setEdit] = useState(false);
 
   const [content, setContent] = useState(selectedTask.content);

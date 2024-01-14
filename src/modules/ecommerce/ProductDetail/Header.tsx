@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Rating from "@mui/lab/Rating";
-import { Fonts } from "@crema/constants/AppEnums";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/lab/Rating';
+import { Fonts } from '@crema/constants/AppEnums';
 
 import {
   FacebookIcon,
@@ -10,8 +10,8 @@ import {
   LinkedinShareButton,
   TwitterIcon,
   TwitterShareButton,
-} from "react-share";
-import { ProductDataType } from "@crema/types/models/ecommerce/EcommerceApp";
+} from 'react-share';
+import { ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type HeaderProps = {
   product: ProductDataType;
@@ -23,12 +23,12 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        flexDirection: { xs: "column", sm: "row" },
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: { xs: 'column', sm: 'row' },
         pb: 5,
         mb: 5,
-        borderBottom: "1px solid #E5E4EA",
+        borderBottom: '1px solid #E5E4EA',
       }}
     >
       <Box
@@ -37,9 +37,9 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
         }}
       >
         <Box
-          component="h3"
+          component='h3'
           sx={{
-            color: "text.primary",
+            color: 'text.primary',
             fontWeight: Fonts.BOLD,
             fontSize: 16,
             mb: 1,
@@ -49,30 +49,30 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
         </Box>
         <Box
           sx={{
-            display: "flex",
+            display: 'flex',
           }}
         >
-          <Rating defaultValue={product.rating} size="small" readOnly />
+          <Rating defaultValue={product.rating} size='small' readOnly />
           <Box
             sx={{
               ml: 2,
               mr: 4,
-              color: "text.secondary",
+              color: 'text.secondary',
             }}
           >
-            {product.reviews || 0 + " reviews"}
+            {product.reviews || 0 + ' reviews'}
           </Box>
 
           <Box>
-            SKU :{" "}
+            SKU :{' '}
             <Box
-              component="span"
+              component='span'
               sx={{
                 ml: 2,
-                color: "text.secondary",
+                color: 'text.secondary',
               }}
             >
-              {product.SKU || "MB023"}
+              {product.SKU || 'MB023'}
             </Box>
           </Box>
         </Box>
@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ product }) => {
 
       <Box
         sx={{
-          display: "flex",
+          display: 'flex',
           mt: { xs: 4, sm: 0 },
         }}
       >

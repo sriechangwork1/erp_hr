@@ -7,7 +7,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { LabelType } from '@crema/types/models/apps/Todo';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 // interface NavListItemProps {
 //   [x: string]: any;
@@ -59,7 +59,7 @@ type Props = {
 };
 
 const LabelItem = ({ label }: Props) => {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
 
   return (
     <Link
@@ -69,7 +69,7 @@ const LabelItem = ({ label }: Props) => {
       <StyledListItem
         key={label.id}
         className={clsx({
-          active: `/apps/todo/label/${label.alias}` === asPath,
+          active: `/apps/todo/label/${label.alias}` === pathname,
         })}
       >
         <LabelOutlinedIcon style={{ color: `${label.color}` }} />

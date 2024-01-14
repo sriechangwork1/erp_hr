@@ -8,7 +8,7 @@ import { useLayoutActionsContext } from '@crema/context/AppContextProvider/Layou
 import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import AuthLayout from './AuthLayout';
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: any) {
   const { updateNavStyle } = useLayoutActionsContext();
   const { updateMenuStyle, setSidebarBgImage } = useSidebarActionsContext();
   const searchParams = useSearchParams();

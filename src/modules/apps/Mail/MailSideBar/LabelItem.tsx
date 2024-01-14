@@ -8,7 +8,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { LabelType } from '@crema/types/models/apps/Mail';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const LabelItemWrapper = styled(ListItem)(({ theme }) => {
   return {
@@ -50,7 +50,7 @@ const LabelItemWrapper = styled(ListItem)(({ theme }) => {
 });
 
 const LabelItem = ({ label }: { label: LabelType }) => {
-  const { asPath } = useParams();
+  const pathname = usePathname();
   return (
     <Link
       href={`/apps/mail/label/${label.alias}`}
@@ -59,7 +59,7 @@ const LabelItem = ({ label }: { label: LabelType }) => {
       <LabelItemWrapper
         key={label.id}
         className={clsx({
-          active: `/apps/mail/label/${label.alias}` === asPath,
+          active: `/apps/mail/label/${label.alias}` === pathname,
         })}
       >
         <LabelOutlinedIcon style={{ color: `${label.color}` }} />

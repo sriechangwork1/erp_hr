@@ -24,7 +24,7 @@ const ChartHeader = () => {
           }}
           value={1}
         >
-          {cryptoData.buySell.coinList.map((coin: CoinListType) => {
+          {cryptoData?.buySell?.coinList?.map((coin: CoinListType) => {
             return CurrencyCell(coin);
           })}
         </Select>

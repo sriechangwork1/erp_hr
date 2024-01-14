@@ -41,7 +41,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
             },
           }}
         >
-          <Image src={slide.srcImg} alt='Art' width={339} height={330} />
+          <Image src={`${slide.srcImg}`} alt='Art' width={339} height={330} />
         </Box>
       </Box>
 

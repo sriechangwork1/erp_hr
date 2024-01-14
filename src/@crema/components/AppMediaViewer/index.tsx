@@ -25,7 +25,7 @@ const renderRow = (data: any, index: number) => {
     return (
       <Image
         key={'IMAGE-' + index}
-        src={data.url}
+        src={`${data.url}`}
         alt={data.name ? data.name : 'detail view'}
         width={390}
         height={300}

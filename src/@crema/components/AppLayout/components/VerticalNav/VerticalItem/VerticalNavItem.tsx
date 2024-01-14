@@ -5,7 +5,7 @@ import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarCont
 import clsx from 'clsx';
 import { alpha } from '@mui/material';
 import { RouterConfigData } from '@crema/types/models/Apps';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 type VerticalNavItemProps = {
   children: ReactNode;
@@ -29,7 +29,7 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
     menuStyle,
   } = useSidebarContext();
 
-  const { asPath } = useRouter();
+  const pathname = usePathname();
   return (
     <ListItem
       className={clsx('menu-vertical-item', {
@@ -37,7 +37,7 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
         'rounded-menu-reverse': menuStyle === MenuStyle.ROUNDED_REVERSE,
         'standard-menu': menuStyle === MenuStyle.STANDARD,
         'curved-menu': menuStyle === MenuStyle.CURVED_MENU,
-        active: item.url === asPath,
+        active: item.url === pathname,
       })}
       sx={{
         height: 40,

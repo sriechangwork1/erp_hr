@@ -65,7 +65,7 @@ const TaskCalender = ({ taskList, onUpdateTask, onSetFilterText }: Props) => {
     event: object;
     start: stringOrDate;
     end: stringOrDate;
-    isAllDay: boolean;
+    isAllDay?: boolean;
   }) => {
     // onUpdateTask({ ...event, startDate: start, endDate: end });
     console.log('resizeEvent: ', event, start, end);
@@ -80,7 +80,7 @@ const TaskCalender = ({ taskList, onUpdateTask, onSetFilterText }: Props) => {
     event: object;
     start: stringOrDate;
     end: stringOrDate;
-    isAllDay: boolean;
+    isAllDay?: boolean;
   }) => {
     onUpdateTask({ ...event, startDate: start, endDate: end });
   };
