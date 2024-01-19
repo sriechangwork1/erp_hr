@@ -3,8 +3,9 @@ import Zoom from '@mui/material/Zoom';
 
 import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip';
 import { lighten, Theme } from '@mui/material';
-import styled from '@emotion/styled';
-import { useTheme } from '@mui/styles';
+// import styled from '@emotion/styled';
+import { styled } from '@mui/material/styles';
+// import { useTheme } from '@mui/styles';
 
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -46,14 +47,14 @@ const AppTooltip: React.FC<AppTooltipProps> = ({
   placement = 'top',
   children,
 }) => {
-  const { theme }: { theme: Theme } = useTheme();
+  // const theme = 'light';
   return (
     <LightTooltip
       title={title}
       TransitionComponent={Zoom}
       placement={placement}
       arrow
-      theme={theme}
+      // theme={theme}
     >
       {children}
     </LightTooltip>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Form, Formik } from 'formik';
@@ -10,26 +10,78 @@ import dayjs from 'dayjs';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
 import { Fonts } from '@crema/constants/AppEnums';
-
-import { styled } from '@mui/material/styles';
 import { MessageType } from '@crema/types/models/apps/Mail';
 import { generateRandomUniqueNumber } from '@crema/helpers/Common';
 import { generateUniqueID } from '@crema/helpers/StringHelper';
+import JoditEditor from 'jodit-react';
 
-import dynamic from 'next/dynamic';
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-const ReactQuillWrapper = styled(ReactQuill)(() => {
-  return {
-    '& .ql-toolbar': {
-      borderRadius: '8px 8px 0 0',
+const config = {
+  readonly: false, // all options from https://xdsoft.net/jodit/doc/
+  toolbar: true,
+  minHeight: 300,
+  maxHeight: 500,
+  buttons: [
+    'source',
+    '|',
+    'bold',
+    'strikethrough',
+    'underline',
+    'italic',
+    '|',
+    'ul',
+    'ol',
+    '|',
+    'outdent',
+    'indent',
+    '|',
+    'font',
+    'fontsize',
+    'brush',
+    'paragraph',
+    '|',
+    'image',
+    'video',
+    'table',
+    'link',
+    '|',
+    'align',
+    'undo',
+    'redo',
+    'selectall',
+    'cut',
+    'copy',
+    'paste',
+    'copyformat',
+    '|',
+    'hr',
+    '|',
+    'print',
+    'symbol',
+    'fullsize',
+    'about',
+  ],
+  uploader: {
+    insertImageAsBase64URI: true,
+    url: '/api/upload',
+    format: 'json',
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
+    headers: {
+      'X-CSRF-TOKEN': 'CSFR-Token',
+      Authorization: 'Bearer <JSON Web Token>',
     },
-    '& .ql-container': {
-      borderRadius: '0 0 8px 8px',
-      minHeight: 150,
-      maxHeight: 200,
+    process: function (resp: any) {
+      return {
+        files: resp.data,
+      };
     },
-  };
-});
+  },
+  style: {
+    '& .jodit .jodit-status-bar': {
+      background: '#29572E',
+      color: 'rgba(255,255,255,0.5)',
+    },
+  },
+};
 
 interface Props {
   onSubmitForwardedMail: (mail: MessageType) => void;
@@ -38,7 +90,7 @@ interface Props {
 
 const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
   const [isShowCC, onShowCC] = useState(false);
-
+  const editor = useRef(null);
   const onShowCcInput = () => {
     onShowCC(true);
   };
@@ -103,7 +155,7 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
           resetForm();
         }}
       >
-        {({ setFieldValue }) => (
+        {({ setFieldValue, values }) => (
           <Form>
             <Box
               sx={{
@@ -160,8 +212,11 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
                 mb: 4,
               }}
             >
-              <ReactQuillWrapper
-                placeholder={messages['common.writeContent'] as string}
+              <JoditEditor
+                ref={editor}
+                value={values.content}
+                config={config}
+                // placeholder={messages['common.writeContent'] as string}
                 onChange={(value) => setFieldValue('content', value)}
               />
             </Box>

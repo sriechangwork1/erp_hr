@@ -23,7 +23,6 @@ import Profile from './Profile';
 import Messages from './Messages';
 import TaskList from './TaskList';
 import HollywoodMovie from './HollywoodMovie';
-import CountryMap from './CountryMap';
 import Colors from './Colors';
 import AddTags from './AddTags';
 import Reviews from './Reviews';
@@ -175,10 +174,6 @@ const Widgets = () => {
 
               <Grid item xs={12} md={4}>
                 <BirthdayCard />
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <CountryMap />
               </Grid>
 
               <Grid item xs={12} md={4}>

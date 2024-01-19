@@ -10,7 +10,6 @@ import PageVisits from './PageVisits';
 import OrderNTransaction from './OrderNTransaction';
 import TrafficSource from './TrafficSource';
 import TopSelling from './TopSelling';
-import EarningByCountry from './EarningByCountry';
 import VisitorPageView from './VisitorPageView';
 import SalesState from './SalesState';
 import StateCard from './StateCards';
@@ -60,20 +59,6 @@ const Analytics = () => {
               <TopSelling products={analyticsData.topSellingProduct} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <EarningByCountry earningData={analyticsData.earningData} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TicketsSupport tickets={analyticsData.tickets} />
-
-              <AppGridContainer>
-                {analyticsData.infoWidgets.map((data, index) => (
-                  <Grid item xs={12} md={4} key={'grid-' + index}>
-                    <InfoWidget data={data} />
-                  </Grid>
-                ))}
-              </AppGridContainer>
-            </Grid>
-            <Grid item xs={12} md={6}>
               <PageVisits pageVisits={analyticsData.pageVisits} />
             </Grid>
             <Grid item xs={12} md={9}>
@@ -83,6 +68,21 @@ const Analytics = () => {
             </Grid>
             <Grid item xs={12} md={3}>
               <TrafficSource trafficData={analyticsData.trafficData} />
+            </Grid>
+            {/*<Grid item xs={12} md={6}>*/}
+            {/*  <EarningByCountry earningData={analyticsData.earningData} />*/}
+            {/*</Grid>*/}
+            <Grid item xs={12} md={6}>
+              <TicketsSupport tickets={analyticsData.tickets} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <AppGridContainer>
+                {analyticsData.infoWidgets.map((data, index) => (
+                  <Grid item xs={12} md={4} key={'grid-' + index}>
+                    <InfoWidget data={data} />
+                  </Grid>
+                ))}
+              </AppGridContainer>
             </Grid>
           </AppGridContainer>
         </AppAnimate>

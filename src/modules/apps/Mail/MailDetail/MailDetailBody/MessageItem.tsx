@@ -12,8 +12,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ForwardMail from './ForwardMail';
 import dayjs from 'dayjs';
 import { BiChevronDown } from 'react-icons/bi';
-// @ts-ignore
-import renderHTML from 'react-render-html';
 import clsx from 'clsx';
 0;
 import { styled } from '@mui/material/styles';
@@ -371,7 +369,8 @@ const MessageItem = ({
             mr: { md: 8 },
           }}
         >
-          {renderHTML(message.description)}
+          {' '}
+          <div dangerouslySetInnerHTML={{ __html: `${message.description}` }} />
         </Box>
       ) : null}
 

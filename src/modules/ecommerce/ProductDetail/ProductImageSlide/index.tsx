@@ -1,61 +1,82 @@
 import React, { useState } from 'react';
-import Carousel, { Dots } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
-import { Button, Checkbox } from '@mui/material';
+import { Button, Checkbox, lighten } from '@mui/material';
 import Box from '@mui/material/Box';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/navigation';
 import { ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { styled } from '@mui/material/styles';
 import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import Image from 'next/image';
+import Slider from 'react-slick';
 
 const BrainHubSliderRoot = styled(Box)(({ theme }) => {
   return {
     position: 'relative',
     display: 'flex',
-    '& .BrainhubCarousel__container': {
-      marginLeft: 20,
-      marginRight: 20,
-      maxWidth: 300,
-      [theme.breakpoints.up('sm')]: {
-        maxWidth: 450,
-      },
-      '& .BrainhubCarousel': {
-        height: '100%',
-        maxHeight: 600,
-        img: {
-          width: '100%',
-          height: '100%',
-        },
-      },
-    },
-    '& .BrainhubCarousel__dots': {
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
-      '& .BrainhubCarousel__thumbnail': {
-        opacity: 1,
-        backgroundColor: 'transparent',
-        borderRadius: 10,
-        marginBottom: 10,
-        border: '1px solid #A0A5B9',
-        '&.BrainhubCarousel__thumbnail--selected': {
-          border: `solid 2px #7c7c7c`,
-        },
-      },
-      flexDirection: 'column',
-      '& img': {
-        height: 80,
-      },
-    },
   };
 });
+const MediaSlider = ({ children }: any) => {
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        '& .slick-slider': {
+          pb: 5,
+        },
+        '& .slick-track': {
+          display: 'flex',
+          '& .slick-slide': {
+            height: '500px',
+            '& > div': {
+              height: '100%',
+            },
+          },
+        },
+        '& .slick-slide img': {
+          display: 'inline-block',
+        },
+        '& .slick-dots': {
+          bottom: 0,
+          // display: 'flex !important',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          // listStyle: 'none',
+          // gap: '10px',
 
+          '& li': {
+            width: 10,
+            height: 10,
+            '& button': {
+              width: 10,
+              height: 10,
+              padding: 0,
+              // borderRadius: '50%',
+              // backgroundColor: (theme) =>
+              //   lighten(theme.palette.common.black, 0.5),
+              // color: (theme) => lighten(theme.palette.common.black, 0.5),
+              // overflow: 'hidden',
+            },
+            '& button:before': {
+              fontSize: 0,
+              backgroundColor: (theme) =>
+                lighten(theme.palette.common.black, 0.5),
+              width: 10,
+              height: 10,
+              borderRadius: '50%',
+            },
+          },
+        },
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
 type ProductImageSlideProps = {
   product: ProductDataType;
 };
@@ -96,18 +117,46 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
         infoViewActionsContext.fetchError(error.message);
       });
   };
-
+  const settings = {
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    autoplay: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <Grid item sm={12} md={4}>
       <BrainHubSliderRoot>
-        <Dots
-          thumbnails={slides}
-          value={value}
-          onChange={onChange}
-          number={slides?.length}
-        />
-        <Carousel value={value} slides={slides} onChange={onChange} />
-
+        <MediaSlider>
+          <div
+            style={{
+              height: 'auto',
+              width: '100%',
+              overflow: 'hidden',
+            }}
+          >
+            <Slider {...settings}>
+              {product.image.map((item, index) => (
+                <Box key={index} sx={{ px: 3, py: 3, height: '100%' }}>
+                  <Image
+                    src={`${item.src}`}
+                    alt='watch'
+                    width={191}
+                    height={259}
+                    sizes='100vh'
+                    style={{
+                      objectFit: 'contain',
+                      width: '100%',
+                      height: '100%',
+                    }}
+                  />
+                </Box>
+              ))}
+            </Slider>
+          </div>
+        </MediaSlider>
         <Box
           sx={{
             position: 'absolute',

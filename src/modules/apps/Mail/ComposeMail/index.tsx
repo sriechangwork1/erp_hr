@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import dayjs from 'dayjs';
@@ -11,30 +11,79 @@ import Button from '@mui/material/Button';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
 import AppDialog from '@crema/components/AppDialog';
-import 'react-quill/dist/quill.snow.css';
 import { blue } from '@mui/material/colors';
 import { Fonts } from '@crema/constants/AppEnums';
-
 import { styled } from '@mui/material/styles';
 import AppInfoView from '@crema/components/AppInfoView';
 import { postDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
-import dynamic from 'next/dynamic';
 import { generateRandomUniqueNumber } from '@crema/helpers/Common';
+import JoditEditor from 'jodit-react';
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-const ReactQuillWrapper = styled(ReactQuill)(() => {
-  return {
-    '& .ql-toolbar': {
-      borderRadius: '8px 8px 0 0',
+const config = {
+  readonly: false, // all options from https://xdsoft.net/jodit/doc/
+  toolbar: true,
+  minHeight: 300,
+  maxHeight: 500,
+  buttons: [
+    'source',
+    '|',
+    'bold',
+    'strikethrough',
+    'underline',
+    'italic',
+    '|',
+    'ul',
+    'ol',
+    '|',
+    'outdent',
+    'indent',
+    '|',
+    'font',
+    'fontsize',
+    'paragraph',
+    '|',
+    'image',
+    'video',
+    'table',
+    'link',
+    '|',
+    'align',
+    'undo',
+    'redo',
+    'selectall',
+    'cut',
+    'copy',
+    '|',
+    'hr',
+    '|',
+    'print',
+    'symbol',
+    'about',
+  ],
+  uploader: {
+    insertImageAsBase64URI: true,
+    url: '/api/upload',
+    format: 'json',
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif'],
+    headers: {
+      'X-CSRF-TOKEN': 'CSFR-Token',
+      Authorization: 'Bearer <JSON Web Token>',
     },
-    '& .ql-container': {
-      borderRadius: '0 0 8px 8px',
-      minHeight: 150,
-      maxHeight: 200,
+
+    process: function (resp: any) {
+      return {
+        files: resp.data,
+      };
     },
-  };
-});
+  },
+  style: {
+    '& .jodit .jodit-status-bar': {
+      background: '#29572E',
+      color: 'rgba(255,255,255,0.5)',
+    },
+  },
+};
 
 const CcBccFieldWrapper = styled('div')(() => {
   return {
@@ -69,7 +118,7 @@ const ComposeMail = (props: Props) => {
   const { isComposeMail, onCloseComposeMail } = props;
   const infoViewActionsContext = useInfoViewActionsContext();
   const [isShowBcc, onShowBcc] = useState(false);
-
+  const editor = useRef<any>(null);
   const { user } = useAuthUser();
 
   const [isShowCC, onShowCC] = useState(false);
@@ -284,8 +333,11 @@ const ComposeMail = (props: Props) => {
                   mb: 3,
                 }}
               >
-                <ReactQuillWrapper
-                  placeholder={messages['common.writeContent'] as string}
+                <JoditEditor
+                  ref={editor}
+                  value={values.content}
+                  // placeholder={messages['common.writeContent'] as string}
+                  config={config}
                   onChange={(value) => setFieldValue('content', value)}
                 />
               </Box>

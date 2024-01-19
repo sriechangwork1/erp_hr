@@ -1,34 +1,33 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import MapChart from "../../Widgets/CountryMap/MapChart";
-import { Box } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppSelect from "@crema/components/AppSelect";
-import { useIntl } from "react-intl";
-import { EarningDaumType } from "@crema/types/models/dashboards/Analytics";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import { Box } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppSelect from '@crema/components/AppSelect';
+import { useIntl } from 'react-intl';
+import { EarningDaumType } from '@crema/types/models/dashboards/Analytics';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   earningData: EarningDaumType[];
 };
 const EarningByCountry = ({ earningData }: Props) => {
   const handleSelectionType = (data: EarningDaumType) => {
-    console.log("data: ", data);
+    console.log('data: ', data);
   };
 
   const { messages } = useIntl();
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={<IntlMessages id="dashboard.analytics.earningByCountries" />}
+      title={<IntlMessages id='dashboard.analytics.earningByCountries' />}
       action={
         <AppSelect
           menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
+            messages['dashboard.thisWeek'],
+            messages['dashboard.lastWeeks'],
+            messages['dashboard.lastMonth'],
           ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }
@@ -36,21 +35,21 @@ const EarningByCountry = ({ earningData }: Props) => {
       <Box
         sx={{
           height: 224,
-          "& .map-chart": {
-            width: "100%",
-            height: "100%",
+          '& .map-chart': {
+            width: '100%',
+            height: '100%',
           },
         }}
       >
-        <MapChart />
+        {/*<MapChart />*/}
       </Box>
 
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
         }}
       >
         {earningData.map((data) => (
@@ -62,7 +61,7 @@ const EarningByCountry = ({ earningData }: Props) => {
             key={data.id}
           >
             <Box
-              component="p"
+              component='p'
               sx={{
                 mb: 1,
                 fontWeight: Fonts.MEDIUM,
@@ -73,28 +72,28 @@ const EarningByCountry = ({ earningData }: Props) => {
             </Box>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <Box
-                component="span"
+                component='span'
                 sx={{
                   height: { xs: 8, xl: 10 },
                   width: { xs: 8, xl: 10 },
-                  borderRadius: "50%",
-                  display: "block",
+                  borderRadius: '50%',
+                  display: 'block',
                   backgroundColor: data.color,
                   p: 1,
                   mr: 2,
                 }}
               />
               <Box
-                component="p"
+                component='p'
                 sx={{
-                  color: "text.secondary",
+                  color: 'text.secondary',
                   fontSize: 14,
-                  textTransform: "capitalize",
+                  textTransform: 'capitalize',
                 }}
               >
                 {data.country}
