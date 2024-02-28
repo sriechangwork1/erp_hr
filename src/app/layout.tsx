@@ -39,7 +39,6 @@ export default function RootLayout({ children }: Props) {
         />
       </head>
       <body>
-      <div id="root">
         <CacheProvider value={clientSideEmotionCache}>
           <AppContextProvider>
             <AppThemeProvider>
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: Props) {
             </AppThemeProvider>
           </AppContextProvider>
         </CacheProvider>
-      </div>
       </body>
     </html>
   );

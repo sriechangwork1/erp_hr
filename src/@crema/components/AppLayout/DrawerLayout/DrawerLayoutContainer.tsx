@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type DrawerLayoutContainerProps = {
   children: ReactNode;
@@ -79,7 +80,7 @@ const DrawerLayoutContainer: React.FC<DrawerLayoutContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

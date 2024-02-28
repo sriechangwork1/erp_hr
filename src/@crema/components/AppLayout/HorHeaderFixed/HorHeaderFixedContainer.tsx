@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import PropsTypes from 'prop-types';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type HorHeaderFixedContainerProps = {
   children: ReactNode;
@@ -75,7 +76,7 @@ const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

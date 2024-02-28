@@ -1,3 +1,5 @@
+/*
+'use client';
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -12,12 +14,16 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import AppInfoView from '@crema/components/AppInfoView';
 import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import { useAwsCognitoActions } from '@crema/services/auth/aws-cognito/AWSAuthProvider';
+import {
+  useAwsCognito,
+  useAwsCognitoActions,
+} from '@crema/services/auth/aws-cognito/AWSAuthProvider';
 import { Fonts } from '@crema/constants/AppEnums';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
 
 const SigninAwsCognito = () => {
+  const { auth } = useAwsCognito();
   const { signIn } = useAwsCognitoActions();
   const router = useRouter();
 
@@ -219,8 +225,8 @@ const SigninAwsCognito = () => {
               color: (theme) => theme.palette.text.secondary,
             }}
             onClick={() =>
-              Auth.federatedSignIn({
-                provider: CognitoHostedUIIdentityProvider.Facebook,
+              auth?.federatedSignIn({
+                provider: 'Facebook',
               })
             }
           >
@@ -235,3 +241,4 @@ const SigninAwsCognito = () => {
 };
 
 export default SigninAwsCognito;
+*/

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type HorDarkContainerProps = {
   children: ReactNode;
@@ -70,7 +71,7 @@ const HorDarkContainer: React.FC<HorDarkContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

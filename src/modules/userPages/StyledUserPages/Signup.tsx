@@ -2,21 +2,19 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import { Checkbox, useTheme } from '@mui/material';
-import { Form, Formik } from 'formik';
+import {Checkbox} from '@mui/material';
+import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import { Fonts } from '@crema/constants/AppEnums';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
-import Logo from '../../../assets/user/signup.png';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Image from 'next/image';
 
 const Signup = () => {
-  const theme = useTheme();
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
@@ -70,13 +68,13 @@ const Signup = () => {
               lg={6}
               sx={{
                 textAlign: 'center',
-                '& svg': {
+                '& img': {
                   display: 'inline-block',
                   paddingRight: { xs: 0, lg: 10 },
                 },
               }}
-            >
-              <Image alt='signup' src={Logo} width={442} height={442} />;
+            >123
+              <Image alt='signup' src={'/assets/user/signup.png'} width={442} height={442} />;
             </Grid>
 
             <Grid

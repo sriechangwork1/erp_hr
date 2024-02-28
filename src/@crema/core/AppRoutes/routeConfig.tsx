@@ -152,14 +152,6 @@ const routesConfig = [
         url: '/apps/chat',
       },
       {
-        id: 'scrum-board',
-        title: 'Scrum Board',
-        messageId: 'sidebar.apps.scrumboard',
-        type: 'item',
-        icon: <MdOutlineDns />,
-        url: '/apps/scrum-board',
-      },
-      {
         id: 'wall',
         title: 'Wall',
         messageId: 'sidebar.apps.wall',

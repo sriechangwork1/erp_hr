@@ -85,9 +85,7 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
   const [value, setValue] = useState(0);
   const infoViewActionsContext = useInfoViewActionsContext();
   const router = useRouter();
-  const slides = product?.image?.map((data: any) => (
-    <Image src={data.src} alt='' key={data.src} width={96} height={80} />
-  ));
+
   const onChange = (value: number) => {
     setValue(value);
   };
@@ -138,10 +136,10 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
             }}
           >
             <Slider {...settings}>
-              {product.image.map((item, index) => (
-                <Box key={index} sx={{ px: 3, py: 3, height: '100%' }}>
+              {product?.image?.map((item) => (
+                <Box key={item?.id} sx={{ px: 3, py: 3, height: '100%' }}>
                   <Image
-                    src={`${item.src}`}
+                    src={item.src || ''}
                     alt='watch'
                     width={191}
                     height={259}

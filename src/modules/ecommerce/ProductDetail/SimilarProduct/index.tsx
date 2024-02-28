@@ -2,7 +2,7 @@ import React from 'react';
 import { alpha, Box } from '@mui/material';
 import Slider from 'react-slick';
 import GridItem from '../../Products/ProductListing/ProductGrid/GridItem';
-import { ecommerceData } from '@crema/fakedb/extraPages';
+import ecommerceData from '@crema/fakedb/ecommerce/ecommerceData';
 import MediaSlider from './MediaSlider';
 
 const settings = {

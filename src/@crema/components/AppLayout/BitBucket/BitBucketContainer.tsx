@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type BitBucketContainerProps = {
   children: ReactNode;
@@ -94,7 +95,7 @@ const BitBucketContainer: React.FC<BitBucketContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type UserHeaderContainerProps = {
   children: ReactNode;
@@ -110,7 +111,7 @@ const UserHeaderContainer: React.FC<UserHeaderContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

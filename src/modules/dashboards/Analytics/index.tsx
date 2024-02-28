@@ -56,10 +56,17 @@ const Analytics = () => {
               <ActiveVisitors data={analyticsData.activeVisitors} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <TopSelling products={analyticsData.topSellingProduct} />
+              <PageVisits pageVisits={analyticsData.pageVisits} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <PageVisits pageVisits={analyticsData.pageVisits} />
+              <TicketsSupport tickets={analyticsData.tickets} />
+              <AppGridContainer>
+                {analyticsData.infoWidgets.map((data, index) => (
+                  <Grid item xs={12} md={4} key={'grid-' + index}>
+                    <InfoWidget data={data} />
+                  </Grid>
+                ))}
+              </AppGridContainer>
             </Grid>
             <Grid item xs={12} md={9}>
               <OrderNTransaction
@@ -72,17 +79,9 @@ const Analytics = () => {
             {/*<Grid item xs={12} md={6}>*/}
             {/*  <EarningByCountry earningData={analyticsData.earningData} />*/}
             {/*</Grid>*/}
+
             <Grid item xs={12} md={6}>
-              <TicketsSupport tickets={analyticsData.tickets} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <AppGridContainer>
-                {analyticsData.infoWidgets.map((data, index) => (
-                  <Grid item xs={12} md={4} key={'grid-' + index}>
-                    <InfoWidget data={data} />
-                  </Grid>
-                ))}
-              </AppGridContainer>
+              <TopSelling products={analyticsData.topSellingProduct} />
             </Grid>
           </AppGridContainer>
         </AppAnimate>

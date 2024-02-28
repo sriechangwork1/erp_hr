@@ -7,28 +7,31 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import Auth from '@aws-amplify/auth';
+import { Amplify } from 'aws-amplify';
+import Auth, { getCurrentUser } from '@aws-amplify/auth';
+// import { CognitoUser } from '@aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 import { awsConfig } from './aws-exports';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { AuthUserType } from '@crema/types/models/AuthUser';
 
-interface AwsCognitoContextProps {
+type AwsCognitoContextProps = {
   user: AuthUserType | null | undefined;
   isAuthenticated: boolean;
   isLoading: boolean;
-}
+  auth?: any;
+};
 
-interface SignUpProps {
+type SignUpProps = {
   name: string;
   email: string;
   password: string;
-}
+};
 
-interface SignInProps {
-  email: string;
+type SignInProps = {
+  username: string;
   password: string;
-}
+};
 
 interface AwsCognitoActionsProps {
   signUpCognitoUser: (data: SignUpProps) => void;
@@ -69,14 +72,15 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const router = useRouter();
 
   const auth = useMemo(() => {
-    Auth.configure(awsConfig);
-    return Auth;
+    Amplify.configure(awsConfig);
+    return Amplify;
   }, []);
 
   useEffect(() => {
-    auth
-      .currentAuthenticatedUser()
-      .then((user) =>
+    // auth
+    //   .currentAuthenticatedUser()
+    getCurrentUser()
+      .then((user: any) =>
         setAwsCognitoData({
           user,
           isAuthenticated: true,
@@ -92,10 +96,10 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       );
   }, [auth]);
 
-  const signIn = async ({ email, password }: SignInProps) => {
+  const signIn = async ({ username, password }: SignInProps) => {
     infoViewActionsContext.fetchStart();
     try {
-      const user = await Auth.signIn(email, password);
+      const user: any = await Auth.signIn({ username, password });
 
       infoViewActionsContext.fetchSuccess();
       setAwsCognitoData({
@@ -118,8 +122,10 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       await Auth.signUp({
         username: email,
         password,
-        attributes: {
-          name,
+        options: {
+          userAttributes: {
+            name,
+          },
         },
       });
       infoViewActionsContext.fetchSuccess();
@@ -140,8 +146,12 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const confirmCognitoUserSignup = async (username: string, code: string) => {
     infoViewActionsContext.fetchStart();
     try {
-      await Auth.confirmSignUp(username, code, {
-        forceAliasCreation: false,
+      await Auth.confirmSignUp({
+        username,
+        confirmationCode: code,
+        options: {
+          forceAliasCreation: false,
+        },
       });
       router.push('/signin');
       infoViewActionsContext.showMessage(
@@ -159,8 +169,12 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const forgotPassword = async (username: string, code: string) => {
     infoViewActionsContext.fetchStart();
     try {
-      await Auth.confirmSignUp(username, code, {
-        forceAliasCreation: false,
+      await Auth.confirmSignUp({
+        username,
+        confirmationCode: code,
+        options: {
+          forceAliasCreation: false,
+        },
       });
       router.push('/signin');
       infoViewActionsContext.showMessage(
@@ -179,7 +193,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const logout = async () => {
     setAwsCognitoData({ ...awsCognitoData, isLoading: true });
     try {
-      await auth.signOut();
+      await Auth.signOut();
       setAwsCognitoData({
         user: null,
         isLoading: false,
@@ -198,6 +212,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
     <AwsCognitoContext.Provider
       value={{
         ...awsCognitoData,
+        auth,
       }}
     >
       <AwsCognitoActionsContext.Provider

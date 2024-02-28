@@ -15,7 +15,6 @@ import HorizontalItem from './HorizontalItem';
 import Box from '@mui/material/Box';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { Fonts } from '@crema/constants/AppEnums';
-import ClientOnlyPortal from './ClientPortal';
 import { usePathname } from 'next/navigation';
 import { RouterConfigData } from '@crema/types/models/Apps';
 
@@ -101,69 +100,69 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
           </ListItem>
         )}
       </Reference>
-      <ClientOnlyPortal selector='#root'>
-        <Popper placement={nestedLevel === 0 ? 'bottom-start' : 'right'}>
-          {({ ref, style, placement }) =>
-            opened && (
-              <Box
-                ref={ref}
-                sx={{
-                  ...style,
-                  boxShadow: '0 0 3px 0 rgba(0, 0, 0, 0.2)',
-                  zIndex: 1110 + nestedLevel,
-                  '& .popperClose': {
-                    pointerEvents: 'none',
-                  },
-                }}
-                data-placement={placement}
-                className={clsx({
-                  popperClose: !opened,
-                })}
-              >
-                <Grow in={opened}>
-                  <Paper
-                    onMouseEnter={() => handleToggle(true)}
-                    onMouseLeave={() => handleToggle(false)}
-                  >
-                    {item.children && (
-                      <List
-                        sx={{
-                          px: 0,
-                        }}
-                      >
-                        {item.children.map((item) => (
-                          <React.Fragment key={item.id}>
-                            {item.type === 'group' && (
-                              <HorizontalGroup
-                                item={item}
-                                nestedLevel={nestedLevel}
-                              />
-                            )}
+      {/*<ClientOnlyPortal selector='#root'>*/}
+      <Popper placement={nestedLevel === 0 ? 'bottom-start' : 'right'}>
+        {({ ref, style, placement }) =>
+          opened && (
+            <Box
+              ref={ref}
+              sx={{
+                ...style,
+                boxShadow: '0 0 3px 0 rgba(0, 0, 0, 0.2)',
+                zIndex: 1110 + nestedLevel,
+                '& .popperClose': {
+                  pointerEvents: 'none',
+                },
+              }}
+              data-placement={placement}
+              className={clsx({
+                popperClose: !opened,
+              })}
+            >
+              <Grow in={opened}>
+                <Paper
+                  onMouseEnter={() => handleToggle(true)}
+                  onMouseLeave={() => handleToggle(false)}
+                >
+                  {item.children && (
+                    <List
+                      sx={{
+                        px: 0,
+                      }}
+                    >
+                      {item.children.map((item) => (
+                        <React.Fragment key={item.id}>
+                          {item.type === 'group' && (
+                            <HorizontalGroup
+                              item={item}
+                              nestedLevel={nestedLevel}
+                            />
+                          )}
 
-                            {item.type === 'collapse' && (
-                              <HorizontalCollapse
-                                item={item}
-                                nestedLevel={nestedLevel}
-                              />
-                            )}
+                          {item.type === 'collapse' && (
+                            <HorizontalCollapse
+                              item={item}
+                              nestedLevel={nestedLevel}
+                            />
+                          )}
 
-                            {item.type === 'item' && (
-                              <HorizontalItem
-                                item={item}
-                                nestedLevel={nestedLevel}
-                              />
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </List>
-                    )}
-                  </Paper>
-                </Grow>
-              </Box>
-            )
-          }
-        </Popper>
-      </ClientOnlyPortal>
+                          {item.type === 'item' && (
+                            <HorizontalItem
+                              item={item}
+                              nestedLevel={nestedLevel}
+                            />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </List>
+                  )}
+                </Paper>
+              </Grow>
+            </Box>
+          )
+        }
+      </Popper>
+      {/*</ClientOnlyPortal>*/}
     </Manager>
   );
 };

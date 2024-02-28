@@ -41,7 +41,7 @@ const PricingDetail = () => {
           m: 'auto',
           borderRadius: 1.5,
           p: 1,
-          bgcolor: (theme) => theme.palette.common.white,
+          bgcolor: (theme) => theme.palette.background.paper,
           display: 'flex',
           alignItems: 'center',
           '.active': {
@@ -65,7 +65,13 @@ const PricingDetail = () => {
           Yearly billing
         </Box>
         <Box
-          sx={{ borderRadius: '20px', bgcolor: '#F2F4F7', ml: 3, p: '4px 8px' }}
+          sx={{
+            borderRadius: '20px',
+            bgcolor: '#F2F4F7',
+            ml: 3,
+            p: '4px 8px',
+            color: '#111827',
+          }}
         >
           Save 20%
         </Box>

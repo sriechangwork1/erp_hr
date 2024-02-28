@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Box} from '@mui/material';
-import {Fonts, ThemeStyleRadius} from '@crema/constants/AppEnums';
+import { Box } from '@mui/material';
+import { Fonts, ThemeStyleRadius } from '@crema/constants/AppEnums';
 
 type Props = {
   children: React.ReactNode;
-}
+};
 
-const PackageWrapper = ({children, ...rest}: Props) => {
-
+const PackageWrapper = ({ children, ...rest }: Props) => {
   const cardRadius = ThemeStyleRadius.STANDARD;
 
   return (

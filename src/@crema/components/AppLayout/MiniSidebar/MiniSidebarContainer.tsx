@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
 
 type MiniSidebarContainerProps = {
   children: ReactNode;
@@ -119,7 +120,7 @@ const MiniSidebarContainer: React.FC<MiniSidebarContainerProps> = ({
       }}
       {...rest}
     >
-      {children}
+      <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>
     </Box>
   );
 };

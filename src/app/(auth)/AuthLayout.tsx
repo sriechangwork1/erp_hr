@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
+import AuthWrapper from '../../modules/auth/AuthWrapper';
 
 export default function AuthLayout({ children }: any) {
   return (
@@ -27,7 +28,7 @@ export default function AuthLayout({ children }: any) {
         },
       }}
     >
-      {children}
+      <AuthWrapper>{children}</AuthWrapper>
     </Box>
   );
 }

@@ -5,23 +5,21 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import Button from '@mui/material/Button';
-import { Checkbox, useTheme } from '@mui/material';
-import { Form, Formik } from 'formik';
+import {Checkbox} from '@mui/material';
+import {Form, Formik} from 'formik';
 import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import { useIntl } from 'react-intl';
+import {useIntl} from 'react-intl';
 import Box from '@mui/material/Box';
-import { grey } from '@mui/material/colors';
-import { Fonts } from '@crema/constants/AppEnums';
+import {grey} from '@mui/material/colors';
+import {Fonts} from '@crema/constants/AppEnums';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
-import Logo from '../../../../public/assets/user/login.png';
 import Image from 'next/image';
 
 const Signin = () => {
-  const theme = useTheme();
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
@@ -67,7 +65,7 @@ const Signin = () => {
                 width: '100%',
                 height: '100%',
                 textAlign: 'center',
-                '& svg': {
+                '& img': {
                   width: '100%',
                   height: '100%',
                   display: 'inline-block',
@@ -75,7 +73,7 @@ const Signin = () => {
                 },
               }}
             >
-              <Image alt='login' src={Logo} />;
+              <Image alt='login' src={'/assets/user/login.png'} width={442} height={442}/>;
             </Grid>
             <Grid
               item

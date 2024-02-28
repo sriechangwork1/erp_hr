@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import React from "react";
-import PricingTable from "./Table";
-import { TableDataType } from "@crema/types/models/extrapages/Pricing";
-import { ThemeStyleRadius } from "@crema/constants/AppEnums";
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+import PricingTable from './Table';
+import { TableDataType } from '@crema/types/models/extrapages/Pricing';
+import { ThemeStyleRadius } from '@crema/constants/AppEnums';
 
 type Props = {
   billingFormat: string;
@@ -17,14 +17,14 @@ const PackageTable = ({ billingFormat, pricing }: Props) => {
       sx={{
         p: 6,
         borderRadius: cardRadius / 4,
-        backgroundColor: (theme) => theme.palette.common.white,
+        backgroundColor: (theme) => theme.palette.background.paper,
         boxShadow:
-          "0px 4.00784px 8.01569px -2.00392px rgba(16, 24, 40, 0.1), 0px 2.00392px 4.00784px -2.00392px rgba(16, 24, 40, 0.06)",
+          '0px 4.00784px 8.01569px -2.00392px rgba(16, 24, 40, 0.1), 0px 2.00392px 4.00784px -2.00392px rgba(16, 24, 40, 0.06)',
       }}
     >
       <Typography
-        variant="h3"
-        sx={{ mt: 8, width: "100%", fontSize: 48, textAlign: "center" }}
+        variant='h3'
+        sx={{ mt: 8, width: '100%', fontSize: 48, textAlign: 'center' }}
       >
         Compare Our Plans
       </Typography>

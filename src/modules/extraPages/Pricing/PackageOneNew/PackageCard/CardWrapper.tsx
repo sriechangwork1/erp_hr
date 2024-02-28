@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Box, useTheme} from '@mui/material';
-import {ThemeStyleRadius} from "@crema/constants/AppEnums";
+import { Box, useTheme } from '@mui/material';
+import { ThemeStyleRadius } from '@crema/constants/AppEnums';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const CardWrapper = ({children, ...rest}: Props) => {
-
+const CardWrapper = ({ children, ...rest }: Props) => {
   const cardRadius = ThemeStyleRadius.STANDARD;
   const theme = useTheme();
 
@@ -18,7 +17,7 @@ const CardWrapper = ({children, ...rest}: Props) => {
         px: 7.5,
         py: 5,
         borderRadius: cardRadius / 4,
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: theme.palette.background.paper,
         boxShadow:
           '0px 4.00784px 8.01569px -2.00392px rgba(16, 24, 40, 0.1), 0px 2.00392px 4.00784px -2.00392px rgba(16, 24, 40, 0.06)',
         position: 'relative',
