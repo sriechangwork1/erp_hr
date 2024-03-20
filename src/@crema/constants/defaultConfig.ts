@@ -72,7 +72,7 @@ export const defaultTheme: any = {
     },
     divider: 'rgba(224, 224, 224, 1)',
     typography: {
-      fontFamily: ['Poppins', 'sans-serif'].join(','),
+      fontFamily: ['Be Vietnam', 'sans-serif'].join(','),
       fontSize: 14,
       fontWeight: 400,
       h1: {
