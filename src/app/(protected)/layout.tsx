@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuthUser } from '../../@crema/hooks/AuthHooks';
+import { useAuthUser } from '@crema/hooks/AuthHooks';
 import AppLoader from '@crema/components/AppLoader';
 import routesConfig from '@crema/core/AppRoutes/routeConfig';
 import { Layouts } from '@crema/components/AppLayout';
