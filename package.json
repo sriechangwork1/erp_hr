@@ -1,6 +1,6 @@
 {
   "name": "crema-mui-next-ts",
-  "version": "4.2.2",
+  "version": "4.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
