@@ -1,14 +1,14 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Avatar, IconButton, Typography } from "@mui/material";
-import { AiFillHeart } from "react-icons/ai";
-import Tag from "../Tag";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCardMedia from "@crema/components/AppCard/AppCardMedia";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import type { BlogContentType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Avatar, IconButton, Typography } from '@mui/material';
+import { AiFillHeart } from 'react-icons/ai';
+import Tag from '../Tag';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCardMedia from '@crema/components/AppCard/AppCardMedia';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import type { BlogContentType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   blog: BlogContentType;
@@ -28,38 +28,32 @@ const BlogCard = ({ blog, onViewBlogDetail }: Props) => {
 
   return (
     <AppCardMedia
-      sxStyle={{ height: "100%", position: "relative" }}
+      sxStyle={{ height: '100%', position: 'relative' }}
       cardMedia={blog.blogDetailContent.cardMedia}
       cardMediaAction={blog.cardMediaAction}
       sxCardMediaAction={{ mr: 3 }}
       // onClick={() => onViewBlogDetail(blog)}
     >
-      <Box sx={{ position: "absolute", top: 10, right: 0 }}>
-        <IconButton
-          style={{ height: 30, width: 30 }}
-          aria-label="more"
-          onClick={onLabelOpen}
-          size="large"
-        >
+      <Box sx={{ position: 'absolute', top: 10, right: 0 }}>
+        <IconButton style={{ height: 30, width: 30 }} aria-label="more" onClick={onLabelOpen} size="large">
           <MoreVertIcon />
         </IconButton>
       </Box>
-
       <Box
         sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <Box
-          sx={{
+          sx={(theme) => ({
             fontSize: 12,
             fontWeight: Fonts.MEDIUM,
-            color: (theme) => theme.palette.primary.main,
+            color: theme.palette.primary.main,
             mb: 2.5,
-            display: "block",
-          }}
+            display: 'block',
+          })}
           component="span"
         >
           {blog.duration}
@@ -74,11 +68,11 @@ const BlogCard = ({ blog, onViewBlogDetail }: Props) => {
           {blog.blogDetailContent.title}
         </Typography>
         <Typography
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
             mb: 4,
             fontSize: 12,
-          }}
+          })}
         >
           {blog.blogDetailContent.description}
         </Typography>
@@ -89,16 +83,16 @@ const BlogCard = ({ blog, onViewBlogDetail }: Props) => {
         ) : null}
         <Box
           sx={{
-            mt: "auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            mt: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <Box sx={{ mr: 2 }}>
@@ -116,31 +110,25 @@ const BlogCard = ({ blog, onViewBlogDetail }: Props) => {
             </Box>
           </Box>
           <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
               ml: 2,
-              color: (theme) => theme.palette.error.light,
+              color: theme.palette.error.light,
               fontSize: 12,
               fontWeight: Fonts.SEMI_BOLD,
-              "& svg": {
+              '& svg': {
                 mr: 1,
-                display: "block",
+                display: 'block',
                 mt: 1,
               },
-            }}
+            })}
           >
             <AiFillHeart /> {blog.blogDetailContent.likeCount}
           </Box>
         </Box>
       </Box>
-      <Menu
-        anchorEl={isLabelOpen}
-        keepMounted
-        elevation={0}
-        open={Boolean(isLabelOpen)}
-        onClose={onLabelClose}
-      >
+      <Menu anchorEl={isLabelOpen} keepMounted elevation={0} open={Boolean(isLabelOpen)} onClose={onLabelClose}>
         <MenuItem value={311} onClick={() => onViewBlogDetail(blog)}>
           View Blog
         </MenuItem>

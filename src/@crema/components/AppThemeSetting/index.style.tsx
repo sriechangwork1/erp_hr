@@ -18,21 +18,21 @@ export const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.primary.main,
   borderColor: theme.palette.primary.main,
-  "&:not(:first-of-type)": {
+  '&:not(:first-of-type)': {
     borderLeft: `1px solid ${theme.palette.primary.main} !important`,
   },
-  [theme.breakpoints.up("xl")]: {
+  [theme.breakpoints.up('xl')]: {
     height: 44,
     minWidth: 96,
   },
-  "&:hover,&:focus": {
+  '&:hover,&:focus': {
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
   },
-  "&.active": {
+  '&.active': {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
-    "&:hover,&:focus": {
+    '&:hover,&:focus': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
     },

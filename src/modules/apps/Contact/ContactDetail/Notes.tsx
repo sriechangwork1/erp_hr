@@ -1,11 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { useIntl } from "react-intl";
-import PropTypes from "prop-types";
-import { Fonts } from "@crema/constants/AppEnums";
-import TextField from "@mui/material/TextField";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
+import React from 'react';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { useIntl } from 'react-intl';
+import PropTypes from 'prop-types';
+import { Fonts } from '@crema/constants/AppEnums';
+import TextField from '@mui/material/TextField';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
 
 interface Props {
   contact: ContactObjType;
@@ -36,10 +36,10 @@ const Notes = (props: Props) => {
       <TextField
         multiline
         sx={{
-          width: "100%",
+          width: '100%',
         }}
         rows="4"
-        placeholder={messages["common.notes"] as string}
+        placeholder={messages['common.notes'] as string}
         name="notes"
         value={contact.notes}
         variant="outlined"

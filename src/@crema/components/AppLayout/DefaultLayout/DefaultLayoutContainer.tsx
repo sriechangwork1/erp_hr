@@ -8,18 +8,15 @@ type DefaultLayoutContainerProps = {
   [x: string]: any;
 };
 
-const DefaultLayoutContainer: React.FC<DefaultLayoutContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const DefaultLayoutContainer: React.FC<DefaultLayoutContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -53,12 +50,10 @@ const DefaultLayoutContainer: React.FC<DefaultLayoutContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .defaultLayoutWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .app-sidebar': {
             position: { xl: 'sticky' },
             borderTopLeftRadius: { xl: 12 },
@@ -92,7 +87,7 @@ const DefaultLayoutContainer: React.FC<DefaultLayoutContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

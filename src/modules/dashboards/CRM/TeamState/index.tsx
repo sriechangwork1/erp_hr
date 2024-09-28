@@ -1,34 +1,34 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import Switch, { SwitchProps } from "@mui/material/Switch";
-import CallMadeOutlinedIcon from "@mui/icons-material/CallMadeOutlined";
-import IconButton from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import { alpha } from "@mui/material";
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
-import { Fonts } from "@crema/constants/AppEnums";
-import { TeamStateDaumType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import CallMadeOutlinedIcon from '@mui/icons-material/CallMadeOutlined';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import { alpha } from '@mui/material';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+import { Fonts } from '@crema/constants/AppEnums';
+import { TeamStateDaumType } from '@crema/types/models/dashboards/CRM';
 
 const AvatarGroupRoot = styled(AvatarGroup)(({ theme }) => {
   return {
-    "& .MuiAvatar-root": {
+    '& .MuiAvatar-root': {
       fontSize: 14,
       fontWeight: Fonts.SEMI_BOLD,
-      "@media only screen and (min-width: 1200px) and (max-width: 1399px)": {
+      '@media only screen and (min-width: 1200px) and (max-width: 1399px)': {
         width: 30,
         height: 30,
       },
     },
-    "& .MuiAvatar-colorDefault": {
+    '& .MuiAvatar-colorDefault': {
       backgroundColor: alpha(theme.palette.primary.main, 0.6),
       color: theme.palette.primary.contrastText,
     },
-    "&:hover": {
-      "& .MuiAvatar-colorDefault": {
+    '&:hover': {
+      '& .MuiAvatar-colorDefault': {
         backgroundColor: theme.palette.primary.main,
       },
     },
@@ -40,18 +40,18 @@ const IconBtnRoot = styled(IconButton)(({ theme }) => {
     border: `solid 1px ${theme.palette.primary.main}`,
     color: theme.palette.primary.main,
     padding: 7,
-    "&:hover, &:focus": {
+    '&:hover, &:focus': {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
     },
-    "& .MuiSvgIcon-root": {
+    '& .MuiSvgIcon-root': {
       fontSize: 20,
     },
-    "@media only screen and (min-width: 1200px) and (max-width: 1399px)": {
+    '@media only screen and (min-width: 1200px) and (max-width: 1399px)': {
       padding: 4,
       width: 26,
       height: 26,
-      "& .MuiSvgIcon-root": {
+      '& .MuiSvgIcon-root': {
         fontSize: 16,
       },
     },
@@ -64,47 +64,56 @@ const IOSSwitch = styled((props: SwitchProps) => (
   width: 36,
   height: 20,
   padding: 0,
-  "& .MuiSwitch-switchBase": {
+  '& .MuiSwitch-switchBase': {
     padding: 0,
     margin: 2,
-    transitionDuration: "300ms",
-    "&.Mui-checked": {
-      transform: "translateX(16px)",
-      color: "#fff",
-      "& + .MuiSwitch-track": {
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? theme.palette.primary.main
-            : alpha(theme.palette.primary.main, 0.6),
+    transitionDuration: '300ms',
+    '&.Mui-checked': {
+      transform: 'translateX(16px)',
+      color: '#fff',
+      '& + .MuiSwitch-track': {
+        backgroundColor: alpha(theme.palette.primary.main, 0.6),
         opacity: 1,
         border: 0,
+        ...theme.applyStyles('dark', {
+          backgroundColor: theme.palette.primary.main,
+        }),
       },
-      "&.Mui-disabled + .MuiSwitch-track": {
+      '&.Mui-disabled + .MuiSwitch-track': {
         opacity: 0.5,
       },
     },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
-      border: "6px solid #fff",
+    '&.Mui-focusVisible .MuiSwitch-thumb': {
+      color: '#33cf4d',
+      border: '6px solid #fff',
     },
-    "&.Mui-disabled .MuiSwitch-thumb": {
-      color: theme.palette.mode === "light" ? "grey.100" : "grey.600",
+    '&.Mui-disabled .MuiSwitch-thumb': {
+      color: 'grey.600',
+      ...theme.applyStyles('light', {
+        color: 'grey.100',
+      }),
     },
-    "&.Mui-disabled + .MuiSwitch-track": {
-      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
+    '&.Mui-disabled + .MuiSwitch-track': {
+      opacity: 0.3,
+      ...theme.applyStyles('light', {
+        opacity: 0.7,
+      }),
     },
   },
-  "& .MuiSwitch-thumb": {
-    boxSizing: "border-box",
+  '& .MuiSwitch-thumb': {
+    boxSizing: 'border-box',
     width: 16,
     height: 16,
   },
-  "& .MuiSwitch-track": {
+  '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
+    backgroundColor: '#39393D',
     opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
+    transition: theme.transitions.create(['background-color'], {
       duration: 500,
+    }),
+    ...theme.applyStyles('light', {
+      backgroundColor: '#E9E9EA',
     }),
   },
 }));
@@ -117,29 +126,29 @@ const TeamState = ({ data }: Props) => {
     <AppCard>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
           mb: 3,
         }}
       >
         <Box
-          sx={{
-            width: "calc(100% - 60px)",
-            color: (theme) => theme.palette.text.secondary,
-          }}
+          sx={(theme) => ({
+            width: 'calc(100% - 60px)',
+            color: theme.palette.text.secondary,
+          })}
         >
           <Typography
             component="h3"
             variant="h3"
-            sx={{
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              width: "100%",
-              color: (theme) => theme.palette.text.primary,
+            sx={(theme) => ({
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              width: '100%',
+              color: theme.palette.text.primary,
               fontWeight: Fonts.SEMI_BOLD,
               mb: 1,
-            }}
+            })}
           >
             {data.name}
           </Typography>
@@ -147,11 +156,10 @@ const TeamState = ({ data }: Props) => {
         </Box>
         <IOSSwitch defaultChecked={data.status} />
       </Box>
-
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           mb: 5,
         }}
       >
@@ -159,12 +167,12 @@ const TeamState = ({ data }: Props) => {
           <Box
             component="span"
             sx={{
-              padding: "2px 12px",
+              padding: '2px 12px',
               mr: 1.5,
               borderRadius: 30,
             }}
-            key={"team-" + index}
-            style={{ backgroundColor: data.color + "21", color: data.color }}
+            key={'team-' + index}
+            style={{ backgroundColor: data.color + '21', color: data.color }}
           >
             <Typography component="span" variant="h6">
               {data.title}
@@ -172,30 +180,29 @@ const TeamState = ({ data }: Props) => {
           </Box>
         ))}
       </Box>
-
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
         <AvatarGroupRoot max={3}>
           {data.members.map((data, index) => (
-            <Avatar key={"member-" + index} alt={data.name} src={data.image} />
+            <Avatar key={'member-' + index} alt={data.name} src={data.image} />
           ))}
         </AvatarGroupRoot>
 
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Box
             component="span"
             sx={{
-              display: "block",
+              display: 'block',
             }}
           >
             <IconBtnRoot size="large">
@@ -206,7 +213,7 @@ const TeamState = ({ data }: Props) => {
           <Box
             component="span"
             sx={{
-              display: "block",
+              display: 'block',
               ml: 1.5,
             }}
           >

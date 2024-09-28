@@ -24,19 +24,14 @@ const ListWrapper = styled(List)(({ theme }) => ({
 
 const TaskSideBar = () => {
   const router = useRouter();
-  const [{ apiData: folderList }] = useGetDataApi<InvFolderType[]>(
-    '/invoice/folders',
-    [],
-    {},
-    true,
-  );
+  const [{ apiData: folderList }] = useGetDataApi<InvFolderType[]>('/invoice/folders', [], {}, true);
   return (
     <>
       <Box sx={{ px: { xs: 4, md: 5 }, pt: { xs: 4, md: 5 }, pb: 2.5 }}>
         <Zoom in style={{ transitionDelay: '300ms' }}>
           <Button
-            variant='outlined'
-            color='primary'
+            variant="outlined"
+            color="primary"
             sx={{
               padding: '8px 28px',
               borderRadius: 30,
@@ -47,7 +42,7 @@ const TaskSideBar = () => {
             startIcon={<AddIcon />}
             onClick={() => router.push('/invoice/add-invoice')}
           >
-            <IntlMessages id='invoice.addNewInvoice' />
+            <IntlMessages id="invoice.addNewInvoice" />
           </Button>
         </Zoom>
       </Box>
@@ -62,26 +57,24 @@ const TaskSideBar = () => {
             pb: { xs: 4, md: 5, lg: 6.2 },
           }}
         >
-          <ListWrapper aria-label='main task folders'>
+          <ListWrapper aria-label="main task folders">
             <AppList
               data={folderList}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={true}
                   placeholder={
-                    <Box px={{ xs: 4, md: 5, lg: 6.2 }}>
+                    <Box
+                      sx={{
+                        px: { xs: 4, md: 5, lg: 6.2 },
+                      }}
+                    >
                       <SidebarPlaceholder />
                     </Box>
                   }
                 />
               }
-              renderRow={(item) => (
-                <AppsSideBarFolderItem
-                  key={item.id}
-                  item={item}
-                  path={`/invoice/${item.alias}`}
-                />
-              )}
+              renderRow={(item) => <AppsSideBarFolderItem key={item.id} item={item} path={`/invoice/${item.alias}`} />}
             />
           </ListWrapper>
         </Box>

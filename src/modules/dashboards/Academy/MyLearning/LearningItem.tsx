@@ -13,7 +13,7 @@ const LearningItem = ({ course }: Props) => {
   const theme = useTheme();
   return (
     <Box
-      className='item-hover'
+      className="item-hover"
       key={course.id}
       sx={{
         display: 'flex',
@@ -41,7 +41,7 @@ const LearningItem = ({ course }: Props) => {
             padding: 1.5,
           }}
         >
-          <Image alt='' src={course.icon} height={50} width={50} />
+          <Image alt="" src={course.icon} height={50} width={50} />
         </Box>
         <Box
           sx={{
@@ -56,12 +56,12 @@ const LearningItem = ({ course }: Props) => {
               fontWeight: Fonts.MEDIUM,
               fontSize: 14,
             }}
-            component='h3'
+            component="h3"
           >
             {course.title}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               color: 'text.secondary',
@@ -81,7 +81,7 @@ const LearningItem = ({ course }: Props) => {
         <AppCircularProgress
           minWidth={42}
           maxWidth={45}
-          activeColor='#0A8FDC'
+          activeColor="#0A8FDC"
           value={course.percentage}
           valueStyle={{
             fontSize: 12,

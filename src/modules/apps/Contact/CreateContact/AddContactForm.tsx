@@ -1,63 +1,63 @@
-import React from "react";
-import { alpha, Box, Button, Select } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import { Field, Form } from "formik";
-import { useDropzone } from "react-dropzone";
-import { useIntl } from "react-intl";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import { Fonts } from "@crema/constants/AppEnums";
-import EditIcon from "@mui/icons-material/Edit";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import AppDateFiled from "@crema/components/AppFormComponents/AppDateFiled";
+import React from 'react';
+import { alpha, Box, Button, Select } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import { Field, Form } from 'formik';
+import { useDropzone } from 'react-dropzone';
+import { useIntl } from 'react-intl';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import { Fonts } from '@crema/constants/AppEnums';
+import EditIcon from '@mui/icons-material/Edit';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
+import AppDateFiled from '@crema/components/AppFormComponents/AppDateFiled';
 
-import { styled } from "@mui/material/styles";
-import { ContactObjType } from "@crema/types/models/apps/Contact";
-import { useContactContext } from "../../context/ContactContextProvider";
+import { styled } from '@mui/material/styles';
+import { ContactObjType } from '@crema/types/models/apps/Contact';
+import { useContactContext } from '../../context/ContactContextProvider';
 
-const HeaderWrapper = styled("div")(({ theme }) => {
+const HeaderWrapper = styled('div')(({ theme }) => {
   return {
     padding: 20,
     marginLeft: -24,
     marginRight: -24,
     marginTop: -20,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    "& .dropzone": {
+    '& .dropzone': {
       outline: 0,
-      "&:hover .edit-icon, &:focus .edit-icon": {
-        display: "flex",
+      '&:hover .edit-icon, &:focus .edit-icon': {
+        display: 'flex',
       },
     },
   };
 });
 
-const AvatarViewWrapper = styled("div")(({ theme }) => {
+const AvatarViewWrapper = styled('div')(({ theme }) => {
   return {
-    position: "relative",
-    cursor: "pointer",
-    "& .edit-icon": {
-      position: "absolute",
+    position: 'relative',
+    cursor: 'pointer',
+    '& .edit-icon': {
+      position: 'absolute',
       bottom: 0,
       right: 0,
       zIndex: 1,
       border: `solid 2px ${theme.palette.background.paper}`,
       backgroundColor: alpha(theme.palette.primary.main, 0.7),
       color: theme.palette.primary.contrastText,
-      borderRadius: "50%",
+      borderRadius: '50%',
       width: 26,
       height: 26,
-      display: "none",
-      alignItems: "center",
-      justifyContent: "center",
-      transition: "all 0.4s ease",
-      "& .MuiSvgIcon-root": {
+      display: 'none',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.4s ease',
+      '& .MuiSvgIcon-root': {
         fontSize: 16,
       },
     },
@@ -77,7 +77,7 @@ const AddContactForm = (props: Props) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      "image/png": [".png", ".jpg", ".jpeg"],
+      'image/png': ['.png', '.jpg', '.jpeg'],
     },
     onDrop: (acceptedFiles) => {
       setUserImage(URL.createObjectURL(acceptedFiles[0]));
@@ -89,7 +89,7 @@ const AddContactForm = (props: Props) => {
   return (
     <Form noValidate autoComplete="off">
       <HeaderWrapper>
-        <div {...getRootProps({ className: "dropzone" })}>
+        <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
           <label htmlFor="icon-button-file">
             <AvatarViewWrapper>
@@ -98,7 +98,7 @@ const AddContactForm = (props: Props) => {
                   width: 60,
                   height: 60,
                 }}
-                src={userImage ? userImage : ""}
+                src={userImage ? userImage : ''}
               />
               <Box className="edit-icon">
                 <EditIcon />
@@ -107,12 +107,17 @@ const AddContactForm = (props: Props) => {
           </label>
         </div>
         {values.name ? (
-          <Box component="h4" fontWeight={Fonts.SEMI_BOLD} mt={2}>
+          <Box
+            component="h4"
+            sx={{
+              fontWeight: Fonts.SEMI_BOLD,
+              mt: 2,
+            }}
+          >
             {values.name}
           </Box>
         ) : null}
       </HeaderWrapper>
-
       <Box
         sx={{
           padding: 5,
@@ -121,13 +126,13 @@ const AddContactForm = (props: Props) => {
         }}
       >
         <Box
-          sx={{
+          sx={(theme) => ({
             pb: 5,
             px: 5,
             mx: -5,
             mb: 5,
-            borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-          }}
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          })}
         >
           <Box
             component="h6"
@@ -143,7 +148,7 @@ const AddContactForm = (props: Props) => {
           <div>
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
                 mb: { xs: 4, xl: 6 },
               }}
               variant="outlined"
@@ -153,7 +158,7 @@ const AddContactForm = (props: Props) => {
 
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
                 mb: { xs: 4, xl: 6 },
               }}
               variant="outlined"
@@ -163,7 +168,7 @@ const AddContactForm = (props: Props) => {
 
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
                 mb: { xs: 4, xl: 6 },
               }}
               variant="outlined"
@@ -176,7 +181,7 @@ const AddContactForm = (props: Props) => {
                   autoOk={true}
                   disableFuture
                   sx={{
-                    width: "100%",
+                    width: '100%',
                     mb: { xs: 4, xl: 6 },
                   }}
                   format="MM/DD/YYYY"
@@ -185,14 +190,14 @@ const AddContactForm = (props: Props) => {
                   label={<IntlMessages id="common.birthday" />}
                   name="birthday"
                   value={values.birthday}
-                  onChange={(value: any) => setFieldValue("birthday", value)}
+                  onChange={(value: any) => setFieldValue('birthday', value)}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <FormControl
                   variant="outlined"
                   sx={{
-                    width: "100%",
+                    width: '100%',
                   }}
                 >
                   <InputLabel id="label-select-outlined-label">
@@ -204,7 +209,7 @@ const AddContactForm = (props: Props) => {
                     labelId="label-select-outlined-label"
                     as={Select}
                     sx={{
-                      width: "100%",
+                      width: '100%',
                       mb: { xs: 4, xl: 6 },
                     }}
                   >
@@ -214,7 +219,7 @@ const AddContactForm = (props: Props) => {
                           value={label.id}
                           key={label.id}
                           sx={{
-                            cursor: "pointer",
+                            cursor: 'pointer',
                           }}
                         >
                           {label.name}
@@ -228,7 +233,7 @@ const AddContactForm = (props: Props) => {
 
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
               }}
               variant="outlined"
               label={<IntlMessages id="common.website" />}
@@ -238,13 +243,13 @@ const AddContactForm = (props: Props) => {
         </Box>
 
         <Box
-          sx={{
+          sx={(theme) => ({
             pb: 5,
             px: 5,
             mx: -5,
             mb: 5,
-            borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-          }}
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          })}
         >
           <Box
             component="h6"
@@ -260,7 +265,7 @@ const AddContactForm = (props: Props) => {
           <div>
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
                 mb: { xs: 4, xl: 6 },
               }}
               variant="outlined"
@@ -270,7 +275,7 @@ const AddContactForm = (props: Props) => {
 
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
               }}
               variant="outlined"
               label={<IntlMessages id="common.address" />}
@@ -280,13 +285,13 @@ const AddContactForm = (props: Props) => {
         </Box>
 
         <Box
-          sx={{
+          sx={(theme) => ({
             pb: 5,
             px: 5,
             mx: -5,
             mb: 5,
-            borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
-          }}
+            borderBottom: `1px solid ${theme.palette.divider}`,
+          })}
         >
           <Box
             component="h6"
@@ -302,7 +307,7 @@ const AddContactForm = (props: Props) => {
           <div>
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
                 mb: { xs: 4, xl: 6 },
               }}
               variant="outlined"
@@ -312,7 +317,7 @@ const AddContactForm = (props: Props) => {
 
             <AppTextField
               sx={{
-                width: "100%",
+                width: '100%',
               }}
               variant="outlined"
               label={<IntlMessages id="common.twitterId" />}
@@ -337,25 +342,24 @@ const AddContactForm = (props: Props) => {
             name="notes"
             multiline
             sx={{
-              width: "100%",
+              width: '100%',
             }}
             rows="4"
             variant="outlined"
-            placeholder={messages["common.notes"] as string}
+            placeholder={messages['common.notes'] as string}
           />
         </div>
       </Box>
-
       <Box
         sx={{
           pb: 4,
           mx: -1,
-          textAlign: "right",
+          textAlign: 'right',
         }}
       >
         <Button
           sx={{
-            position: "relative",
+            position: 'relative',
             minWidth: 100,
           }}
           color="primary"

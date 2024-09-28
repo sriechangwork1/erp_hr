@@ -1,7 +1,7 @@
-import React from "react";
-import { Avatar, Box, Typography } from "@mui/material";
-import PropTypes from "prop-types";
-import type { RecentContactType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import { Avatar, Box, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import type { RecentContactType } from '@crema/types/models/dashboards/Crypto';
 
 type Props = {
   recentContact: RecentContactType;
@@ -11,7 +11,7 @@ const RecentContact = ({ recentContact }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
       }}
     >
       <Box sx={{ mb: 2.5 }}>
@@ -26,7 +26,7 @@ const RecentContact = ({ recentContact }: Props) => {
       </Box>
       <Typography
         sx={{
-          whiteSpace: "nowrap",
+          whiteSpace: 'nowrap',
         }}
       >
         {recentContact.name}

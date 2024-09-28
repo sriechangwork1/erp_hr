@@ -1,10 +1,10 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import PropTypes from "prop-types";
-import StatGraphs from "./StatGraphs";
-import { useIntl } from "react-intl";
-import { AtcStaticType } from "@crema/types/models/dashboards/Crypto";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import PropTypes from 'prop-types';
+import StatGraphs from './StatGraphs';
+import { useIntl } from 'react-intl';
+import { AtcStaticType } from '@crema/types/models/dashboards/Crypto';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   data: AtcStaticType[];

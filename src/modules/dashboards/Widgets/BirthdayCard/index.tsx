@@ -26,7 +26,7 @@ const BirthdayCard = () => {
         }}
       >
         <Box
-          component='h3'
+          component="h3"
           sx={{
             fontWeight: Fonts.BOLD,
             fontSize: 16,
@@ -51,12 +51,7 @@ const BirthdayCard = () => {
             justifyContent: 'center',
           }}
         >
-          <Image
-            src={'/assets/images/cakeicon.png'}
-            alt='cake'
-            width={167}
-            height={204}
-          />
+          <Image src={'/assets/images/cakeicon.png'} alt="cake" width={167} height={204} />
         </Box>
         <Box
           sx={{
@@ -65,12 +60,12 @@ const BirthdayCard = () => {
           }}
         >
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
             }}
           >
-            <IntlMessages id='dashboard.antonBirthday' />
+            <IntlMessages id="dashboard.antonBirthday" />
           </Box>
         </Box>
       </Box>

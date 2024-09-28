@@ -1,15 +1,11 @@
-import React from "react";
-import IncomeGraph from "./IncomeGraph";
-import WebTrafficGraph from "./WebTrafficGraph";
-import RevenueGrowthGraph from "./RevenueGrowthGraph";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import {
-  IncomeLastYearType,
-  RevenueGrowthType,
-  WebsiteTrafficType,
-} from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import IncomeGraph from './IncomeGraph';
+import WebTrafficGraph from './WebTrafficGraph';
+import RevenueGrowthGraph from './RevenueGrowthGraph';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import { IncomeLastYearType, RevenueGrowthType, WebsiteTrafficType } from '@crema/types/models/dashboards/Metrics';
 
 type StatsCardWithGraphProps = {
   data: IncomeLastYearType | WebsiteTrafficType | RevenueGrowthType;
@@ -30,13 +26,13 @@ const StatsCardWithGraph: React.FC<StatsCardWithGraphProps> = ({
 }) => {
   const onGetGraph = () => {
     switch (type) {
-      case "incomeGraph":
+      case 'incomeGraph':
         return <IncomeGraph data={data.graphData} />;
 
-      case "trafficGraph":
+      case 'trafficGraph':
         return <WebTrafficGraph data={data.graphData} />;
 
-      case "revenueGrowth":
+      case 'revenueGrowth':
         return <RevenueGrowthGraph data={data.graphData} />;
 
       default:
@@ -53,12 +49,12 @@ const StatsCardWithGraph: React.FC<StatsCardWithGraphProps> = ({
     >
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
         }}
       >
         <Box
           sx={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
           }}

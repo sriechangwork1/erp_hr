@@ -1,8 +1,8 @@
-import React from "react";
-import { alpha, Box, Typography, useTheme } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCircularProgress from "@crema/components/AppCircularProgress";
-import { MonthlyLimitType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import { alpha, Box, Typography, useTheme } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCircularProgress from '@crema/components/AppCircularProgress';
+import { MonthlyLimitType } from '@crema/types/models/dashboards/Crypto';
 
 type Props = {
   monthlyLimit: MonthlyLimitType;
@@ -13,7 +13,7 @@ const MonthlyLimitItem = ({ monthlyLimit }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
       }}
     >
       <Box
@@ -37,7 +37,7 @@ const MonthlyLimitItem = ({ monthlyLimit }: Props) => {
       </Box>
       <Box
         sx={{
-          textAlign: "center",
+          textAlign: 'center',
         }}
       >
         <Typography
@@ -49,7 +49,7 @@ const MonthlyLimitItem = ({ monthlyLimit }: Props) => {
         </Typography>
         <Typography
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
           }}
         >
           {monthlyLimit.income}

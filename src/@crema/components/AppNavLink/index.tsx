@@ -1,5 +1,5 @@
-import React, { Ref } from "react";
-import Link from "next/link";
+import React, { Ref } from 'react';
+import Link from 'next/link';
 
 type AppNavLinkProps = {
   activeClassName: string;
@@ -8,9 +8,9 @@ type AppNavLinkProps = {
   [x: string]: any;
 };
 
-const AppNavLink = React.forwardRef(function AppNavLink(
-  { activeClassName, className, ...rest }: AppNavLinkProps,
-  ref: Ref<HTMLAnchorElement>
+const AppNavLink: React.FC<AppNavLinkProps> = React.forwardRef(function AppNavLink(
+  { activeClassName, className, ...rest },
+  ref: Ref<HTMLAnchorElement>,
 ) {
   return (
     <Link ref={ref} href={rest.to} {...rest}>

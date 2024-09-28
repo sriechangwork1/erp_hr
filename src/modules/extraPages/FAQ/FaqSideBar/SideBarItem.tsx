@@ -12,11 +12,7 @@ type SideBarItemProps = {
   selectionId: number;
 };
 
-const SideBarItem: React.FC<SideBarItemProps> = ({
-  item,
-  onGetFaqData,
-  selectionId,
-}) => {
+const SideBarItem: React.FC<SideBarItemProps> = ({ item, onGetFaqData, selectionId }) => {
   return (
     <ListItem
       className={clsx('listItem', {

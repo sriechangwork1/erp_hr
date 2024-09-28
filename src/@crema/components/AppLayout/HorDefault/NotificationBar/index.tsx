@@ -11,11 +11,11 @@ const NotificationBar = () => {
   return (
     <Collapse in={open}>
       <Box
-        sx={{
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+        sx={(theme) => ({
+          borderBottom: `solid 1px ${theme.palette.divider}`,
           padding: '2px 0',
-          backgroundColor: (theme) => theme.palette.background.paper,
-        }}
+          backgroundColor: theme.palette.background.paper,
+        })}
       >
         <Box
           sx={{

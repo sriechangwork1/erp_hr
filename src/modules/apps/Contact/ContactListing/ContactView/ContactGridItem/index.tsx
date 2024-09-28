@@ -63,10 +63,7 @@ const ContactGridItem = (props: Props) => {
   } = props;
 
   return (
-    <GridCard
-      className='card-hover'
-      onClick={() => onViewContactDetail(contact)}
-    >
+    <GridCard className="card-hover" onClick={() => onViewContactDetail(contact)}>
       <Box
         sx={{
           mb: 1,
@@ -79,13 +76,13 @@ const ContactGridItem = (props: Props) => {
           sx={{
             ml: -2,
           }}
-          component='span'
+          component="span"
           onClick={(event) => event.stopPropagation()}
         >
           <Checkbox
             checked={checkedContacts.includes(contact.id)}
             onChange={(event) => onChangeCheckedContacts(event, contact.id)}
-            color='primary'
+            color="primary"
           />
         </Box>
 
@@ -96,7 +93,6 @@ const ContactGridItem = (props: Props) => {
           onSelectContactsForDelete={onSelectContactsForDelete}
         />
       </Box>
-
       <Box
         sx={{
           mb: { xs: 3, lg: 4, xl: 5 },
@@ -131,7 +127,7 @@ const ContactGridItem = (props: Props) => {
           }}
         >
           <Box
-            component='p'
+            component="p"
             sx={{
               fontWeight: Fonts.MEDIUM,
               fontSize: 14,
@@ -140,7 +136,7 @@ const ContactGridItem = (props: Props) => {
             {contact.name}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               color: 'text.secondary',
@@ -153,13 +149,12 @@ const ContactGridItem = (props: Props) => {
           </Box>
         </Box>
       </Box>
-
       <Box
-        sx={{
+        sx={(theme) => ({
           pt: 2,
           fontSize: 13,
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-        }}
+          borderTop: `1px solid ${theme.palette.divider}`,
+        })}
       >
         <Box
           sx={{
@@ -177,13 +172,9 @@ const ContactGridItem = (props: Props) => {
             sx={{
               ml: 3.5,
             }}
-            component='p'
+            component="p"
           >
-            {contact.company ? (
-              contact.company
-            ) : (
-              <IntlMessages id='common.na' />
-            )}
+            {contact.company ? contact.company : <IntlMessages id="common.na" />}
           </Box>
         </Box>
         <Box
@@ -202,7 +193,7 @@ const ContactGridItem = (props: Props) => {
             sx={{
               ml: 3.5,
             }}
-            component='p'
+            component="p"
           >
             {contact.contact}
           </Box>

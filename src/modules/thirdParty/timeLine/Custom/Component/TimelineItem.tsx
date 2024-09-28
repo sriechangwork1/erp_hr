@@ -2,7 +2,7 @@ import React from 'react';
 import { Fonts } from '@crema/constants/AppEnums';
 import TimelineItemWrapper from './TimelineItemWrapper';
 import TimelineItemContentWrapper from './TimelineItemContentWrapper';
-import {grey} from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import CircleWrapper from './CircleWrapper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -86,26 +86,21 @@ const TimelineItem = ({ data }: Props) => {
           {data.text}
         </Typography>
         <Box
-          sx={{
+          sx={(theme) => ({
             textAlign: 'center',
             margin: '20px -20px -20px',
             padding: { xs: '12px 20px', sm: '20px' },
-            borderTop: (theme) => `solid 1px ${theme.palette.grey[300]}`,
+            borderTop: `solid 1px ${theme.palette.grey[300]}`,
             '& .link': {
-              color: (theme) => theme.palette.secondary.main,
+              color: theme.palette.secondary.main,
               textTransform: 'capitalize',
               fontWeight: 700,
               textDecoration: 'none',
             },
-          }}
+          })}
         >
           {data.link && (
-            <a
-              className="link"
-              href={data.link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a className="link" href={data.link.url} target="_blank" rel="noopener noreferrer">
               {data.link.text}
             </a>
           )}
@@ -113,12 +108,12 @@ const TimelineItem = ({ data }: Props) => {
         <CircleWrapper>
           <Box
             component="span"
-            sx={{
-              backgroundColor: (theme) => theme.palette.secondary.main,
+            sx={(theme) => ({
+              backgroundColor: theme.palette.secondary.main,
               borderRadius: '50%',
               width: 16,
               height: 16,
-            }}
+            })}
           />
         </CircleWrapper>
       </TimelineItemContentWrapper>

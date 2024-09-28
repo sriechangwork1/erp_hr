@@ -1,16 +1,7 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import defaultConfig from '@crema/constants/defaultConfig';
-import {
-  useThemeActionsContext,
-  useThemeContext,
-} from './ThemeContextProvider';
+import { useThemeActionsContext, useThemeContext } from './ThemeContextProvider';
 import { LayoutDirection } from '@crema/constants/AppEnums';
 import { LanguageProps } from '@crema/types/models/Apps';
 
@@ -39,26 +30,18 @@ interface LocaleContextProviderProps {
   children: ReactNode;
 }
 
-const LocaleContextProvider: React.FC<LocaleContextProviderProps> = ({
-  children,
-}) => {
+const LocaleContextProvider: React.FC<LocaleContextProviderProps> = ({ children }) => {
   const [locale, updateLocale] = useState<LanguageProps>(defaultConfig.locale);
   const { theme } = useThemeContext();
   const { updateTheme } = useThemeActionsContext();
 
   useEffect(() => {
-    if (
-      defaultConfig.rtlLocale.includes(locale.locale) &&
-      theme.direction === LayoutDirection.LTR
-    ) {
+    if (defaultConfig.rtlLocale.includes(locale.locale) && theme.direction === LayoutDirection.LTR) {
       updateTheme({
         ...theme,
         direction: LayoutDirection.RTL,
       });
-    } else if (
-      !defaultConfig.rtlLocale.includes(locale.locale) &&
-      theme.direction === LayoutDirection.RTL
-    ) {
+    } else if (!defaultConfig.rtlLocale.includes(locale.locale) && theme.direction === LayoutDirection.RTL) {
       updateTheme({
         ...theme,
         direction: LayoutDirection.LTR,

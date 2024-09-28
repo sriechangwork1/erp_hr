@@ -1,10 +1,9 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import Hidden from "@mui/material/Hidden";
-import { UserListProps } from "@crema/types/models/Apps";
+import React from 'react';
+import Box from '@mui/material/Box';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { UserListProps } from '@crema/types/models/Apps';
 
 type UserSocialMediaInfoProps = {
   user: UserListProps;
@@ -14,29 +13,27 @@ const UserSocialMediaInfo: React.FC<UserSocialMediaInfoProps> = ({ user }) => {
   return (
     <Box
       sx={{
-        color: "grey.600",
+        color: 'grey.600',
         mx: { xs: -3, xl: -5 },
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
         fontSize: 14,
-        justifyContent: { xs: "space-between", sm: "flex-start" },
+        justifyContent: { xs: 'space-between', sm: 'flex-start' },
       }}
     >
-      <Hidden xsDown>
-        <Box
-          sx={{
-            px: { xs: 3, xl: 5 },
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Box sx={{ mr: 1 }} component="span">
-            {user.readTime}
-          </Box>
-          <IntlMessages id="common.read" />
+      <Box
+        sx={{
+          px: { xs: 3, xl: 5 },
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ mr: 1 }} component="span">
+          {user.readTime}
         </Box>
-      </Hidden>
-      <Box sx={{ px: { xs: 3, xl: 5 }, display: "flex", alignItems: "center" }}>
+        <IntlMessages id="common.read" />
+      </Box>
+      <Box sx={{ px: { xs: 3, xl: 5 }, display: 'flex', alignItems: 'center' }}>
         <Box sx={{ mr: 1 }} component="span">
           <FacebookIcon />
         </Box>
@@ -48,8 +45,8 @@ const UserSocialMediaInfo: React.FC<UserSocialMediaInfoProps> = ({ user }) => {
       <Box
         sx={{
           px: { xs: 3, xl: 5 },
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Box sx={{ mr: 1 }} component="span">

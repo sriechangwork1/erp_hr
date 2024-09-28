@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import CategoriesItem from "./CategoriesItem";
-import { Fonts } from "@crema/constants/AppEnums";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppList from "@crema/components/AppList";
-import { CategoriesType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import CategoriesItem from './CategoriesItem';
+import { Fonts } from '@crema/constants/AppEnums';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppList from '@crema/components/AppList';
+import { CategoriesType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   categories?: CategoriesType[];
@@ -13,11 +13,11 @@ type Props = {
 const Categories = ({ categories }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         mb: 5.5,
         pb: 5,
-        borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-      }}
+        borderBottom: `solid 1px ${theme.palette.divider}`,
+      })}
     >
       <Typography
         component="h3"
@@ -31,15 +31,13 @@ const Categories = ({ categories }: Props) => {
       </Typography>
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
         }}
       >
         {categories && (
           <AppList
             data={categories}
-            renderRow={(categories, index) => (
-              <CategoriesItem key={index} categories={categories} />
-            )}
+            renderRow={(categories, index) => <CategoriesItem key={index} categories={categories} />}
           />
         )}
       </Box>

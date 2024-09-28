@@ -21,23 +21,19 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
     paddingLeft: 24,
     paddingRight: 24,
   },
-
   '& .MuiSvgIcon-root': {
     marginRight: 14,
     fontSize: 20,
   },
-
   '& .MuiButtonBase-root': {
     paddingTop: 0,
     paddingBottom: 0,
     paddingRight: 0,
   },
-
   '&:hover,&:focus,&.active': {
     backgroundColor: alpha(theme.palette.primary.main, 0.1),
     color: theme.palette.primary.main,
   },
-
   '&.active': {
     color: theme.palette.primary.main,
     '& $listItemText': {

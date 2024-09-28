@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import {
   createUserWithEmailAndPassword,
   FacebookAuthProvider,
@@ -13,8 +13,8 @@ import {
   signInWithPopup,
   signOut,
   TwitterAuthProvider,
-  updateProfile
-} from "firebase/auth";
+  updateProfile,
+} from 'firebase/auth';
 
 // Initialize Firebase
 const firebaseConfig = {

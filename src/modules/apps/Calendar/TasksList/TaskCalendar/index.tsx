@@ -110,15 +110,13 @@ const TaskCalender = ({ taskList, onUpdateTask, onSetFilterText }: Props) => {
       onEventDrop={moveEvent}
       onSelectEvent={onOpenAddTask}
       components={{
-        toolbar: (props: any) => (
-          <CustomToolbar onSetFilterText={onSetFilterText} {...props} />
-        ),
+        toolbar: (props: any) => <CustomToolbar onSetFilterText={onSetFilterText} {...props} />,
         event: (item: any) => <TaskItem key={item.title} item={item.event} />,
       }}
       popup
       selectable
       onSelectSlot={onSelectDate}
-      defaultView='month'
+      defaultView="month"
     />
   );
 };

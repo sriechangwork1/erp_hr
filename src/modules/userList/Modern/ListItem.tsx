@@ -24,7 +24,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
         p: 5,
         mb: 5,
       }}
-      className='item-hover'
+      className="item-hover"
     >
       <Box
         sx={{
@@ -44,13 +44,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             },
           }}
         >
-          <Image
-            src={user.image}
-            alt='user'
-            className='crUserImage'
-            width={130}
-            height={130}
-          />
+          <Image src={user.image} alt="user" className="crUserImage" width={130} height={130} />
         </Box>
 
         <Box sx={{ flex: 1 }}>
@@ -63,7 +57,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             }}
           >
             <Box
-              component='h3'
+              component="h3"
               sx={{
                 mb: { xs: 2, sm: 0 },
                 fontSize: 16,
@@ -83,34 +77,34 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
                 color: 'text.secondary',
               }}
             >
-              <Box sx={{ mx: 4 }} component='span'>
+              <Box sx={{ mx: 4 }} component="span">
                 <Tooltip
                   sx={{
                     cursor: 'pointer',
                   }}
-                  title={<IntlMessages id='common.share' />}
+                  title={<IntlMessages id="common.share" />}
                 >
                   <ShareIcon />
                 </Tooltip>
               </Box>
 
-              <Box sx={{ mx: 4 }} component='span'>
+              <Box sx={{ mx: 4 }} component="span">
                 <Tooltip
                   sx={{
                     cursor: 'pointer',
                   }}
-                  title={<IntlMessages id='common.bookmark' />}
+                  title={<IntlMessages id="common.bookmark" />}
                 >
                   <BookmarkBorderIcon />
                 </Tooltip>
               </Box>
 
-              <Box sx={{ mx: 4 }} component='span'>
+              <Box sx={{ mx: 4 }} component="span">
                 <Tooltip
                   sx={{
                     cursor: 'pointer',
                   }}
-                  title={<IntlMessages id='common.more' />}
+                  title={<IntlMessages id="common.more" />}
                 >
                   <MoreVertIcon />
                 </Tooltip>
@@ -124,7 +118,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             }}
           >
             <Box
-              component='p'
+              component="p"
               sx={{
                 color: 'text.secondary',
                 mb: 4,
@@ -148,11 +142,8 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
                   <Chip
                     key={index}
                     label={skill}
-                    sx={{
-                      backgroundColor: (theme) =>
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.grey[700]
-                          : theme.palette.grey[200],
+                    sx={(theme) => ({
+                      backgroundColor: theme.palette.grey[200],
                       padding: '4px 12px',
                       marginTop: 2,
                       marginRight: { xs: 1, xl: 2 },
@@ -160,7 +151,10 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
                       border: '1px solid',
                       borderColor: grey[500],
                       borderRadius: 2,
-                    }}
+                      ...theme.applyStyles('dark', {
+                        backgroundColor: theme.palette.grey[700],
+                      }),
+                    })}
                   />
                 );
               })}
@@ -172,8 +166,8 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
               }}
             >
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 sx={{
                   marginRight: 5,
                   marginTop: 2,
@@ -183,13 +177,12 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
                   fontWeight: Fonts.MEDIUM,
                 }}
               >
-                <IntlMessages id='common.hire' />
+                <IntlMessages id="common.hire" />
               </Button>
               <Button
-                variant='contained'
-                sx={{
-                  backgroundColor: (theme) =>
-                    theme.palette.primary.contrastText,
+                variant="contained"
+                sx={(theme) => ({
+                  backgroundColor: theme.palette.primary.contrastText,
                   color: grey[500],
                   marginTop: 2,
                   border: '1px solid',
@@ -198,9 +191,9 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
                   fontWeight: Fonts.MEDIUM,
                   padding: '9px 12px',
                   lineHeight: 1,
-                }}
+                })}
               >
-                <IntlMessages id='mailApp.remove' />
+                <IntlMessages id="mailApp.remove" />
               </Button>
             </Box>
           </Box>

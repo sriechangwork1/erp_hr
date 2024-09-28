@@ -1,4 +1,16 @@
-import { Fonts, FooterType, HeaderType, LayoutDirection, LayoutType, MenuStyle, NavStyle, RouteTransition, ThemeMode, ThemeStyle, ThemeStyleRadius } from './AppEnums';
+import {
+  Fonts,
+  FooterType,
+  HeaderType,
+  LayoutDirection,
+  LayoutType,
+  MenuStyle,
+  NavStyle,
+  RouteTransition,
+  ThemeMode,
+  ThemeStyle,
+  ThemeStyleRadius,
+} from './AppEnums';
 
 export const textLight = {
   primary: 'rgb(17, 24, 39)',
@@ -125,9 +137,7 @@ export const defaultTheme: any = {
           root: {
             // apply theme's border-radius instead of component's default
             borderRadius:
-              cardRadius === ThemeStyleRadius.STANDARD
-                ? ThemeStyleRadius.STANDARD
-                : ThemeStyleRadius.MODERN + 20,
+              cardRadius === ThemeStyleRadius.STANDARD ? ThemeStyleRadius.STANDARD : ThemeStyleRadius.MODERN + 20,
           },
         },
       },

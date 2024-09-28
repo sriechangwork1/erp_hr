@@ -1,6 +1,13 @@
 
 
-## 4.1.1 (2024-02-28)
+## [4.2.0](https://github.com/crema-git/crema-dev-mui-next-ts/compare/4.1.1...4.2.0) (2024-09-28)
+
+
+### Features
+
+* update the font ([cd3a0a3](https://github.com/crema-git/crema-dev-mui-next-ts/commit/cd3a0a31ef3826444ab6d426b86504550dff2e2d))
+
+## [4.1.1](https://github.com/crema-git/crema-dev-mui-next-ts/compare/4.1.0...4.1.1) (2024-02-28)
 
 ## 4.1.0 (2024-02-25)
 

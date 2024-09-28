@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import AppCard from "@crema/components/AppCard";
-import AppSelect from "@crema/components/AppSelect";
-import { useIntl } from "react-intl";
-import StaticsGraph from "./StaticsGraph";
-import { Box } from "@mui/material";
-import PropTypes from "prop-types";
-import { HeathStaticsType } from "@crema/types/models/dashboards/HealthCare";
+import React, { useState } from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppSelect from '@crema/components/AppSelect';
+import { useIntl } from 'react-intl';
+import StaticsGraph from './StaticsGraph';
+import { Box } from '@mui/material';
+import PropTypes from 'prop-types';
+import { HeathStaticsType } from '@crema/types/models/dashboards/HealthCare';
 
 type Props = {
   data: HeathStaticsType;
@@ -31,13 +31,13 @@ const HealthStatics = ({ data }: Props) => {
 
   const handleMonthChange = (value: string) => {
     switch (value) {
-      case "June":
+      case 'June':
         setGraphData(data.dataTwo);
         break;
-      case "July":
+      case 'July':
         setGraphData(data.dataThree);
         break;
-      case "August":
+      case 'August':
         setGraphData(data.dataOne);
         break;
       default:
@@ -48,27 +48,19 @@ const HealthStatics = ({ data }: Props) => {
   const { messages } = useIntl();
   return (
     <AppCard
-      title={messages["healthCare.staticsHealthCare"] as string}
+      title={messages['healthCare.staticsHealthCare'] as string}
       action={
         <Box
           sx={{
-            ml: "auto",
-            display: "flex",
-            alignItems: "center",
+            ml: 'auto',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
+          <AppSelect menus={[2019, 2018, 2017]} defaultValue={2019} onChange={handleYearChange} />
           <AppSelect
-            menus={[2019, 2018, 2017]}
-            defaultValue={2019}
-            onChange={handleYearChange}
-          />
-          <AppSelect
-            menus={[
-              messages["common.june"],
-              messages["common.july"],
-              messages["common.august"],
-            ]}
-            defaultValue={messages["common.june"]}
+            menus={[messages['common.june'], messages['common.july'], messages['common.august']]}
+            defaultValue={messages['common.june']}
             onChange={handleMonthChange}
           />
         </Box>
@@ -76,7 +68,7 @@ const HealthStatics = ({ data }: Props) => {
     >
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
           height: { xs: 245, xl: 155 },
         }}
       >

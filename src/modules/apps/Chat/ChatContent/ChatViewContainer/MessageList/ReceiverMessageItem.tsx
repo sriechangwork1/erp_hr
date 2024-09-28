@@ -13,12 +13,7 @@ import { styled } from '@mui/material/styles';
 import { getFileSize } from '@crema/helpers/Common';
 import Image from 'next/image';
 
-import {
-  ConnectionType,
-  MediaType,
-  MessageDataType,
-  MessageType,
-} from '@crema/types/models/apps/Chat';
+import { ConnectionType, MediaType, MessageDataType, MessageType } from '@crema/types/models/apps/Chat';
 
 const ReceiverMessageWrapper = styled('div')(() => {
   return {
@@ -108,7 +103,7 @@ const getMediaMessage = (item: MediaType) => {
           },
         }}
       >
-        <Image alt='' src={`${item.url}`} width={56} height={56} />
+        <Image alt="" src={`${item.url}`} width={56} height={56} />
       </Box>
     );
   } else if (item.mime_type.startsWith('video')) {
@@ -116,14 +111,14 @@ const getMediaMessage = (item: MediaType) => {
       <VideoWrapper>
         <video src={item.url} />
         <PlayCircleOutlineIcon
-          sx={{
+          sx={(theme) => ({
             fontSize: 20,
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            color: (theme) => theme.palette.common.white,
-          }}
+            color: theme.palette.common.white,
+          })}
         />
       </VideoWrapper>
     );
@@ -137,15 +132,15 @@ const getMediaMessage = (item: MediaType) => {
       >
         <DescriptionOutlinedIcon />
         <Box
-          component='p'
+          component="p"
           sx={{
             ml: 2,
           }}
         >
-          <Box component='span' sx={{ display: 'block' }}>
+          <Box component="span" sx={{ display: 'block' }}>
             {item.file_name}
           </Box>
-          <Box component='span' sx={{ display: 'block' }}>
+          <Box component="span" sx={{ display: 'block' }}>
             {getFileSize(item.file_size as number)}
           </Box>
         </Box>
@@ -154,10 +149,7 @@ const getMediaMessage = (item: MediaType) => {
   }
 };
 
-const getMessage = (
-  item: MessageDataType,
-  setIndex: (index: number) => void,
-) => {
+const getMessage = (item: MessageDataType, setIndex: (index: number) => void) => {
   if (item.message_type === MessageType.TEXT) {
     return <Typography>{item.message}</Typography>;
   } else {
@@ -198,18 +190,17 @@ const getMessage = (
               onClick={() => setIndex(showMediaItems)}
             >
               <Box
-                sx={{
+                sx={(theme) => ({
                   width: 56,
                   height: 56,
                   borderRadius: 1,
-                  backgroundColor: (theme) =>
-                    alpha(theme.palette.primary.main, 0.15),
-                  color: (theme) => theme.palette.primary.main,
+                  backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.15),
+                  color: theme.palette.primary.main,
                   fontWeight: Fonts.MEDIUM,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
+                })}
               >
                 +{item.media!.length - showMediaItems}
               </Box>
@@ -227,12 +218,7 @@ type ReceiverMessageItemProps = {
   isPreviousSender: boolean;
   isLast: boolean;
 };
-const ReceiverMessageItem = ({
-  selectedUser,
-  item,
-  isPreviousSender = false,
-  isLast,
-}: ReceiverMessageItemProps) => {
+const ReceiverMessageItem = ({ selectedUser, item, isPreviousSender = false, isLast }: ReceiverMessageItemProps) => {
   const [index, setIndex] = useState(-1);
 
   const onClose = () => {
@@ -241,10 +227,7 @@ const ReceiverMessageItem = ({
 
   return (
     <ReceiverMessageWrapper
-      className={clsx(
-        isPreviousSender ? 'hideUser-info' : '',
-        isLast ? 'last-chat-message' : '',
-      )}
+      className={clsx(isPreviousSender ? 'hideUser-info' : '', isLast ? 'last-chat-message' : '')}
     >
       <Box
         sx={{
@@ -261,7 +244,7 @@ const ReceiverMessageItem = ({
               mr: 2.5,
               mb: 5.5,
             }}
-            className='message-chat-avatar'
+            className="message-chat-avatar"
             src={selectedUser.image}
           />
         ) : (
@@ -273,7 +256,7 @@ const ReceiverMessageItem = ({
               mr: 2.5,
               mb: 5.5,
             }}
-            className='message-chat-avatar'
+            className="message-chat-avatar"
           >
             {selectedUser.name.charAt(0).toUpperCase()}
           </Avatar>
@@ -282,17 +265,17 @@ const ReceiverMessageItem = ({
           sx={{
             position: 'relative',
           }}
-          className='message-chat-item'
+          className="message-chat-item"
         >
           <Box
-            component='span'
-            sx={{
+            component="span"
+            sx={(theme) => ({
               fontSize: 12,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
               display: 'block',
               mb: 1.5,
-            }}
-            className='message-time'
+            })}
+            className="message-time"
           >
             {item.time}
           </Box>
@@ -306,13 +289,13 @@ const ReceiverMessageItem = ({
 
             {item.edited && (
               <Box
-                sx={{
+                sx={(theme) => ({
                   pl: 2.5,
-                  color: (theme) => theme.palette.text.secondary,
+                  color: theme.palette.text.secondary,
                   '& .MuiSvgIcon-root': {
                     fontSize: 16,
                   },
-                }}
+                })}
               >
                 <EditIcon />
               </Box>
@@ -320,11 +303,7 @@ const ReceiverMessageItem = ({
           </Box>
         </Box>
       </Box>
-      <AppMediaViewer
-        index={index}
-        medias={item?.media as MediaType[]}
-        onClose={onClose}
-      />
+      <AppMediaViewer index={index} medias={item?.media as MediaType[]} onClose={onClose} />
     </ReceiverMessageWrapper>
   );
 };

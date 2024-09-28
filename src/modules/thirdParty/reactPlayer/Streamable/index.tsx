@@ -1,5 +1,5 @@
-import React from "react";
-import ReactPlayer from "react-player";
+import React from 'react';
+import ReactPlayer from 'react-player';
 
 const Streamable = () => {
   return <ReactPlayer controls={true} url="https://streamable.com/moo" />;

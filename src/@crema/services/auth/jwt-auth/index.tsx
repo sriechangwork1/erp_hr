@@ -15,7 +15,7 @@ jwtAxios.interceptors.response.use(
       // store.dispatch({type: LOGOUT});
     }
     return Promise.reject(err);
-  }
+  },
 );
 export const setAuthToken = (token?: string) => {
   if (token) {

@@ -1,10 +1,6 @@
 import boardList from '@crema/fakedb/apps/scrumboard/boardList';
 import { NextRequest } from 'next/server';
-import {
-  BoardType,
-  CardListType,
-  CardType,
-} from '@crema/types/models/apps/ScrumbBoard';
+import { BoardType, CardListType, CardType } from '@crema/types/models/apps/ScrumbBoard';
 
 let boardData = boardList;
 
@@ -14,20 +10,12 @@ export const PUT = async (request: NextRequest) => {
     const { cardId, sourceLaneId, categoryId, position, boardId } = reqBody;
     const updatedBoardList = boardData.map((data: BoardType) => {
       if (data.id === boardId) {
-        const sourceLane = data.list.find(
-          (item: CardListType) => item.id === sourceLaneId,
-        );
-        const card = sourceLane?.cards.find(
-          (item: CardType) => item.id === cardId,
-        );
+        const sourceLane = data.list.find((item: CardListType) => item.id === sourceLaneId);
+        const card = sourceLane?.cards.find((item: CardType) => item.id === cardId);
         if (sourceLane) {
-          sourceLane.cards = sourceLane.cards
-            ? sourceLane.cards.filter((item) => item.id !== cardId)
-            : [];
+          sourceLane.cards = sourceLane.cards ? sourceLane.cards.filter((item) => item.id !== cardId) : [];
         }
-        const targetLane = data.list.find(
-          (item: CardListType) => item.id === categoryId,
-        );
+        const targetLane = data.list.find((item: CardListType) => item.id === categoryId);
         if (targetLane?.cards) {
           targetLane?.cards.splice(position, 0, card!);
         } else {

@@ -25,9 +25,7 @@ const EditClients = () => {
       client,
     })
       .then(() => {
-        infoViewActionsContext.showMessage(
-          'Client has been updated successfully!',
-        );
+        infoViewActionsContext.showMessage('Client has been updated successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -36,11 +34,7 @@ const EditClients = () => {
     router.push('/invoice/clients');
   };
 
-  return (
-    !isEmptyObject(selectedClient) && (
-      <AddClient selectedClient={selectedClient} onSave={onSave} />
-    )
-  );
+  return !isEmptyObject(selectedClient) && <AddClient selectedClient={selectedClient} onSave={onSave} />;
 };
 
 export default EditClients;

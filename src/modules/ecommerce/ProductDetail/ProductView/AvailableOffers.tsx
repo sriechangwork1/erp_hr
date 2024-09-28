@@ -1,7 +1,7 @@
-import React from "react";
-import { Box } from "@mui/material";
-import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
-import DateRangeIcon from "@mui/icons-material/DateRange";
+import React from 'react';
+import { Box } from '@mui/material';
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const AvailableOffers = () => {
   return (
@@ -13,7 +13,7 @@ const AvailableOffers = () => {
       <Box
         component="h3"
         sx={{
-          color: "text.primary",
+          color: 'text.primary',
           fontSize: 16,
           mb: 3,
         }}
@@ -24,16 +24,16 @@ const AvailableOffers = () => {
       <Box
         sx={{
           fontSize: 14,
-          display: "flex",
-          alignItems: "center",
-          color: "primary.main",
+          display: 'flex',
+          alignItems: 'center',
+          color: 'primary.main',
         }}
       >
         <LocalOfferOutlinedIcon style={{ fontSize: 18 }} />
         <Box
           component="span"
           sx={{
-            color: "text.primary",
+            color: 'text.primary',
             mx: 3,
           }}
         >
@@ -41,7 +41,7 @@ const AvailableOffers = () => {
           <Box
             component="span"
             sx={{
-              color: "primary.main",
+              color: 'primary.main',
               ml: 2,
             }}
           >
@@ -54,16 +54,16 @@ const AvailableOffers = () => {
         sx={{
           fontSize: 14,
           my: 3,
-          display: "flex",
-          alignItems: "center",
-          color: "primary.main",
+          display: 'flex',
+          alignItems: 'center',
+          color: 'primary.main',
         }}
       >
         <DateRangeIcon style={{ fontSize: 18 }} />
         <Box
           component="span"
           sx={{
-            color: "text.primary",
+            color: 'text.primary',
             mx: 3,
           }}
         >
@@ -71,7 +71,7 @@ const AvailableOffers = () => {
           <Box
             component="span"
             sx={{
-              color: "primary.main",
+              color: 'primary.main',
             }}
           >
             View Plans

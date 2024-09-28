@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsPagination from '@crema/components/AppsPagination';
-import Hidden from '@mui/material/Hidden';
 import { InvoiceType } from '@crema/types/models/invoice';
 
 type InvContentHeaderPropsTypes = {
@@ -28,9 +27,7 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
     onSetFilterText,
   } = props;
 
-  const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const onHandleMasterCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const InvIds = invoiceList?.map((Inv) => Inv.id);
       setCheckedInvs(InvIds);
@@ -56,20 +53,14 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
             sx={{
               color: 'text.disabled',
             }}
-            indeterminate={
-              checkedInvs.length > 0 &&
-              checkedInvs?.length < invoiceList?.length
-            }
-            checked={
-              invoiceList?.length > 0 &&
-              checkedInvs?.length === invoiceList?.length
-            }
+            indeterminate={checkedInvs.length > 0 && checkedInvs?.length < invoiceList?.length}
+            checked={invoiceList?.length > 0 && checkedInvs?.length === invoiceList?.length}
             onChange={onHandleMasterCheckbox}
           />
         </span>
         <Box sx={{ mr: 3 }}>
           <AppSearchBar
-            iconPosition='right'
+            iconPosition="right"
             overlap={false}
             value={filterText}
             onChange={(event: any) => onSetFilterText(event.target.value)}
@@ -78,28 +69,27 @@ const InvContentHeader = (props: InvContentHeaderPropsTypes) => {
         </Box>
       </Box>
 
-      <Hidden smDown>
-        {invoiceList?.length > 0 ? (
-          <AppsPagination
-            sx={{
-              paddingRight: 2,
-              paddingLeft: 2,
-              '& .MuiToolbar-root': {
-                paddingLeft: 0,
+      {invoiceList?.length > 0 ? (
+        <AppsPagination
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            paddingRight: 2,
+            paddingLeft: 2,
+            '& .MuiToolbar-root': {
+              paddingLeft: 0,
+            },
+            '& .MuiTablePagination-actions': {
+              marginLeft: 0,
+              '& .MuiButtonBase-root': {
+                padding: 2,
               },
-              '& .MuiTablePagination-actions': {
-                marginLeft: 0,
-                '& .MuiButtonBase-root': {
-                  padding: 2,
-                },
-              },
-            }}
-            count={invoiceList?.length}
-            page={page}
-            onPageChange={onPageChange}
-          />
-        ) : null}
-      </Hidden>
+            },
+          }}
+          count={invoiceList?.length}
+          page={page}
+          onPageChange={onPageChange}
+        />
+      ) : null}
     </>
   );
 };

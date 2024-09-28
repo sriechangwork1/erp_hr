@@ -22,9 +22,7 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
 
   const getConnectionList = () => {
     if (keywords !== '') {
-      return connectionList.filter((item) =>
-        item.name.toUpperCase().includes(keywords.toUpperCase()),
-      );
+      return connectionList.filter((item) => item.name.toUpperCase().includes(keywords.toUpperCase()));
     }
     return connectionList;
   };
@@ -32,9 +30,7 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
   const getChatList = () => {
     let chatsList = connectionList?.filter((item) => item.lastMessage);
     if (keywords !== '') {
-      chatsList = chatsList.filter((item) =>
-        item.name.toUpperCase().includes(keywords.toUpperCase()),
-      );
+      chatsList = chatsList.filter((item) => item.name.toUpperCase().includes(keywords.toUpperCase()));
     }
     chatsList?.sort((a: ConnectionType, b: ConnectionType) => {
       const momentA: any = dayjs(a.lastMessage!.time).format('X');
@@ -90,12 +86,10 @@ const ChatSideBar = ({ selectedUser, setSelectedUser }: ChatSideBarProps) => {
               },
             },
           }}
-          iconPosition='right'
+          iconPosition="right"
           overlap={false}
           value={keywords}
-          onChange={(
-            e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-          ) => setKeywords(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setKeywords(e.target.value)}
           placeholder={messages['common.searchHere'] as string}
         />
       </Box>

@@ -17,13 +17,11 @@ const UnlockScreen = () => {
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
-    password: yup
-      .string()
-      .required(String(messages['validation.passwordRequired'])),
+    password: yup.string().required(String(messages['validation.passwordRequired'])),
   });
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           pb: 6,
@@ -42,8 +40,7 @@ const UnlockScreen = () => {
             textAlign: 'center',
             padding: { xs: 8, lg: 12, xl: '48px 64px' },
             overflow: 'hidden',
-            boxShadow:
-              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           }}
         >
           <Box
@@ -63,10 +60,10 @@ const UnlockScreen = () => {
               }}
             >
               <Image
-                className='logo'
+                className="logo"
                 src={'/assets/images/logo-icon-large.png'}
-                alt='crema'
-                title='crema'
+                alt="crema"
+                title="crema"
                 width={18}
                 height={24}
               />
@@ -77,7 +74,7 @@ const UnlockScreen = () => {
                 fontSize: 20,
               }}
             >
-              <IntlMessages id='common.unlockScreen' />
+              <IntlMessages id="common.unlockScreen" />
             </Box>
           </Box>
 
@@ -87,11 +84,11 @@ const UnlockScreen = () => {
               fontSize: 14,
             }}
           >
-            <Typography component='p'>
-              <IntlMessages id='common.unlockScreenTextOne' />
+            <Typography component="p">
+              <IntlMessages id="common.unlockScreenTextOne" />
             </Typography>
-            <Typography component='p'>
-              <IntlMessages id='common.unlockScreenTextTwo' />
+            <Typography component="p">
+              <IntlMessages id="common.unlockScreenTextTwo" />
             </Typography>
           </Box>
 
@@ -113,26 +110,26 @@ const UnlockScreen = () => {
                   }}
                 >
                   <AppTextField
-                    name='password'
-                    label={<IntlMessages id='common.password' />}
+                    name="password"
+                    label={<IntlMessages id="common.password" />}
                     sx={{
                       width: '100%',
                     }}
-                    variant='outlined'
-                    type='password'
+                    variant="outlined"
+                    type="password"
                   />
                 </Box>
                 <Button
-                  variant='contained'
-                  color='primary'
+                  variant="contained"
+                  color="primary"
                   disabled={isSubmitting}
                   sx={{
                     width: '100%',
                     height: 44,
                   }}
-                  type='submit'
+                  type="submit"
                 >
-                  <IntlMessages id='common.unlockItForMe' />
+                  <IntlMessages id="common.unlockItForMe" />
                 </Button>
               </Form>
             )}

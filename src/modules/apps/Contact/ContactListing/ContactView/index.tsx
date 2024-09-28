@@ -5,7 +5,6 @@ import AppGrid from '@crema/components/AppGrid';
 import ListEmptyResult from '@crema/components/AppList/ListEmptyResult';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import ContactListSkeleton from '@crema/components/AppSkeleton/ContactListSkeleton';
-import { Hidden } from '@mui/material';
 import ContactGridItem from './ContactGridItem';
 import ContactListItem from './ContactListItem';
 import ContactListItemMobile from './ContactListItem/ContactListItemMobile';
@@ -41,10 +40,10 @@ const ContactView = (props: Props) => {
     <>
       {pageView === 'list' ? (
         <>
-          <Hidden smDown>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             <AppList
               data={list}
-              animation='transition.slideUpIn'
+              animation="transition.slideUpIn"
               sx={{
                 pt: 0,
                 pb: 0,
@@ -55,7 +54,7 @@ const ContactView = (props: Props) => {
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle={<IntlMessages id='contactApp.createContact' />}
+                  actionTitle={<IntlMessages id="contactApp.createContact" />}
                   onClick={handleAddContactOpen}
                   placeholder={<ContactListSkeleton />}
                 />
@@ -74,12 +73,12 @@ const ContactView = (props: Props) => {
                 />
               )}
             />
-          </Hidden>
+          </Box>
 
-          <Hidden smUp>
+          <Box sx={{ display: { sm: 'none', xs: 'block' } }}>
             <AppList
               data={list}
-              animation='transition.slideUpIn'
+              animation="transition.slideUpIn"
               sx={{
                 pt: 0,
                 pb: 0,
@@ -90,7 +89,7 @@ const ContactView = (props: Props) => {
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle={<IntlMessages id='contactApp.createContact' />}
+                  actionTitle={<IntlMessages id="contactApp.createContact" />}
                   onClick={handleAddContactOpen}
                   placeholder={<ContactListSkeleton />}
                 />
@@ -107,7 +106,7 @@ const ContactView = (props: Props) => {
                 />
               )}
             />
-          </Hidden>
+          </Box>
         </>
       ) : (
         <Box

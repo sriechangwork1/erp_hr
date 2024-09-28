@@ -1,10 +1,10 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import Slider from "react-slick";
-import CourseItem from "./CourseItem";
-import CourseSlider from "./CourseSlider";
-import { RelatedCourseType } from "@crema/types/models/dashboards/Academy";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import Slider from 'react-slick';
+import CourseItem from './CourseItem';
+import CourseSlider from './CourseSlider';
+import { RelatedCourseType } from '@crema/types/models/dashboards/Academy';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   relatedCourses: RelatedCourseType[];
@@ -50,10 +50,7 @@ const RelatedCourses = ({ relatedCourses }: Props) => {
   };
 
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={<IntlMessages id="academy.relatedCourses" />}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={<IntlMessages id="academy.relatedCourses" />}>
       <CourseSlider>
         <Slider className="slideRoot" {...settings}>
           {relatedCourses.map((data, index) => (

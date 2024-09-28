@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import AppsContainer from '@crema/components/AppsContainer';
 import { useIntl } from 'react-intl';
-import { Hidden } from '@mui/material';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import AppsPagination from '@crema/components/AppsPagination';
@@ -23,12 +22,7 @@ const Customers = () => {
       apiData: { customers, customerCount },
     },
     { setQueryParams },
-  ] = useGetDataApi<CustomerType>(
-    '/ecommerce/customers',
-    {} as CustomerType,
-    {},
-    false,
-  );
+  ] = useGetDataApi<CustomerType>('/ecommerce/customers', {} as CustomerType, {}, false);
 
   const [page, setPage] = useState(0);
   const [search, setSearchQuery] = useState('');
@@ -47,10 +41,7 @@ const Customers = () => {
   };
 
   return (
-    <AppsContainer
-      title={messages['sidebar.ecommerce.customers'] as string}
-      fullView
-    >
+    <AppsContainer title={messages['sidebar.ecommerce.customers'] as string} fullView>
       <AppsHeader>
         <Box
           sx={{
@@ -61,27 +52,20 @@ const Customers = () => {
           }}
         >
           <AppSearchBar
-            iconPosition='right'
+            iconPosition="right"
             overlap={false}
             onChange={onSearchCustomer}
             placeholder={messages['common.searchHere'] as string}
           />
           <Box
             sx={{
-              display: 'flex',
+              display: { xs: 'none', sm: 'flex' },
               flexDirection: 'row',
               alignItems: 'center',
               ml: 'auto',
             }}
           >
-            <Hidden smDown>
-              <AppsPagination
-                rowsPerPage={10}
-                count={customerCount}
-                page={page}
-                onPageChange={onPageChange}
-              />
-            </Hidden>
+            <AppsPagination rowsPerPage={10} count={customerCount} page={page} onPageChange={onPageChange} />
           </Box>
         </Box>
       </AppsHeader>
@@ -95,14 +79,14 @@ const Customers = () => {
         <CustomerTable customers={customers} />
       </AppsContent>
 
-      <Hidden smUp>
-        <AppsPagination
-          rowsPerPage={10}
-          count={customerCount}
-          page={page}
-          onPageChange={onPageChange}
-        />
-      </Hidden>
+      <Box
+        component="span"
+        sx={{
+          display: { sm: 'none', xs: 'block' },
+        }}
+      >
+        <AppsPagination rowsPerPage={10} count={customerCount} page={page} onPageChange={onPageChange} />
+      </Box>
     </AppsContainer>
   );
 };

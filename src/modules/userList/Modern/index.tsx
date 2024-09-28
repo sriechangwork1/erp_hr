@@ -8,8 +8,7 @@ import ListItem from './ListItem';
 import { UserListProps } from '@crema/types/models/Apps';
 
 const Modern = () => {
-  const [{ apiData: usersList, loading }] =
-    useGetDataApi<UserListProps[]>('/userList');
+  const [{ apiData: usersList, loading }] = useGetDataApi<UserListProps[]>('/userList');
   return (
     <>
       {loading ? (

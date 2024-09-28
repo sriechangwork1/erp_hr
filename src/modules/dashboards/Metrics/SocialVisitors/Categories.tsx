@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { SocialVisitorsType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { SocialVisitorsType } from '@crema/types/models/dashboards/Metrics';
 
 type CategoriesProps = {
   data: SocialVisitorsType[];
@@ -11,10 +11,10 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
       }}
     >
       {data.map((item) => {
@@ -28,8 +28,8 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
           >
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <Box
@@ -37,8 +37,8 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
                 sx={{
                   height: { xs: 12, xl: 16 },
                   width: { xs: 12, xl: 16 },
-                  borderRadius: "50%",
-                  display: "block",
+                  borderRadius: '50%',
+                  display: 'block',
                   bgcolor: item.color,
                   p: 1,
                   mr: 2,
@@ -58,8 +58,8 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
             <Box
               component="p"
               sx={{
-                textTransform: "capitalize",
-                color: "text.secondary",
+                textTransform: 'capitalize',
+                color: 'text.secondary',
                 fontSize: 14,
               }}
             >

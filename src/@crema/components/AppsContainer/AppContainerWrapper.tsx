@@ -7,18 +7,13 @@ const getMainHeaderHeight = (navStyle: NavStyle, screenSize: number) => {
   return screenSize >= 600 ? 70 : 56;
 };
 
-type AppContainerWrapperProps ={
+type AppContainerWrapperProps = {
   children: ReactNode;
   navStyle: NavStyle;
   footer?: boolean;
-}
+};
 
-const AppContainerWrapper: React.FC<AppContainerWrapperProps> = ({
-  children,
-  navStyle,
-  footer,
-  ...rest
-}) => {
+const AppContainerWrapper: React.FC<AppContainerWrapperProps> = ({ children, navStyle, footer, ...rest }) => {
   return (
     <Box
       sx={{

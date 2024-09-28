@@ -1,11 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { AuthUserType } from '@crema/types/models/AuthUser';
 import jwtAxios, { setAuthToken } from './index';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
@@ -52,9 +46,7 @@ interface JWTAuthAuthProviderProps {
   children: ReactNode;
 }
 
-const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
-  children,
-}) => {
+const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({ children }) => {
   const [firebaseData, setJWTAuthData] = useState<JWTAuthContextProps>({
     user: null,
     isAuthenticated: false,
@@ -97,13 +89,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
     getAuthUser();
   }, []);
 
-  const signInUser = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
+  const signInUser = async ({ email, password }: { email: string; password: string }) => {
     infoViewActionsContext.fetchStart();
     try {
       const { data } = await jwtAxios.post('auth', { email, password });
@@ -126,15 +112,7 @@ const JWTAuthAuthProvider: React.FC<JWTAuthAuthProviderProps> = ({
     }
   };
 
-  const signUpUser = async ({
-    name,
-    email,
-    password,
-  }: {
-    name: string;
-    email: string;
-    password: string;
-  }) => {
+  const signUpUser = async ({ name, email, password }: { name: string; email: string; password: string }) => {
     infoViewActionsContext.fetchStart();
     try {
       const { data } = await jwtAxios.post('users', { name, email, password });

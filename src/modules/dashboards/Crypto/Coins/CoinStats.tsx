@@ -26,10 +26,9 @@ const CoinStats = ({
   return (
     <AppCard
       sxStyle={{
-        borderRadius: (theme: any) =>
-          theme.components.MuiCard.styleOverrides.root.borderRadius / 4,
+        borderRadius: (theme: any) => theme.components.MuiCard.styleOverrides.root.borderRadius / 4,
       }}
-      className='card-hover'
+      className="card-hover"
     >
       <Box
         sx={{
@@ -46,7 +45,7 @@ const CoinStats = ({
             backgroundColor: bgColor,
           }}
         >
-          <Image alt='' src={`${icon}`} width={24} height={31} />
+          <Image alt="" src={`${icon}`} width={24} height={31} />
         </Avatar>
 
         <Box
@@ -56,7 +55,7 @@ const CoinStats = ({
           }}
         >
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               color: 'text.secondary',
@@ -66,7 +65,7 @@ const CoinStats = ({
             {heading}
           </Box>
           <Box
-            component='h3'
+            component="h3"
             sx={{
               display: 'inline-block',
               fontWeight: Fonts.MEDIUM,
@@ -79,13 +78,21 @@ const CoinStats = ({
         </Box>
         <Box sx={{ ml: 'auto' }}>
           <Box
-            component='p'
-            sx={{
-              fontSize: 16,
-              fontWeight: Fonts.MEDIUM,
-              color: data.increment > 0.0 ? green[500] : red[500],
-              textAlign: 'right',
-            }}
+            component="p"
+            sx={[
+              {
+                fontSize: 16,
+                fontWeight: Fonts.MEDIUM,
+                textAlign: 'right',
+              },
+              data.increment > 0.0
+                ? {
+                    color: green[500],
+                  }
+                : {
+                    color: red[500],
+                  },
+            ]}
           >
             {data.increment}%
           </Box>

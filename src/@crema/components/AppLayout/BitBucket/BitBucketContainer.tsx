@@ -8,18 +8,15 @@ type BitBucketContainerProps = {
   [x: string]: any;
 };
 
-const BitBucketContainer: React.FC<BitBucketContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const BitBucketContainer: React.FC<BitBucketContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -55,17 +52,14 @@ const BitBucketContainer: React.FC<BitBucketContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .bitBucketWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .bucketMinibar': {
             borderTopLeftRadius: { xl: 12 },
             borderBottomLeftRadius: { xl: 12 },
           },
-
           '& .bit-bucket-sidebar': {
             position: { xl: 'sticky' },
             left: { xl: 0 },
@@ -92,7 +86,7 @@ const BitBucketContainer: React.FC<BitBucketContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

@@ -10,11 +10,7 @@ type VerticalCollapseItemProps = {
   [x: string]: any;
 };
 
-const VerticalCollapseItem: React.FC<VerticalCollapseItemProps> = ({
-  children,
-  sidebarTextColor,
-  ...rest
-}) => {
+const VerticalCollapseItem: React.FC<VerticalCollapseItemProps> = ({ children, sidebarTextColor, ...rest }) => {
   return (
     <ListItem
       sx={{
@@ -28,36 +24,29 @@ const VerticalCollapseItem: React.FC<VerticalCollapseItemProps> = ({
           fontWeight: Fonts.MEDIUM,
           color: alpha(sidebarTextColor, 0.7),
         },
-
         '& .nav-item-icon': {
           color: alpha(sidebarTextColor, 0.7),
           fontSize: 20,
           display: 'block',
         },
-
         '& .nav-item-icon-arrow': {
           color: alpha(sidebarTextColor, 0.7),
         },
-
         '& .MuiIconButton-root': {
           mr: 3,
           padding: 0,
         },
-
         '& .MuiTouchRipple-root': {
           zIndex: 10,
         },
-
         '&.open, &:hover, &:focus': {
           '& .nav-item-text': {
             fontWeight: Fonts.MEDIUM,
             color: sidebarTextColor,
           },
-
           '& .nav-item-icon': {
             color: sidebarTextColor,
           },
-
           '& .nav-item-icon-arrow': {
             color: sidebarTextColor,
           },

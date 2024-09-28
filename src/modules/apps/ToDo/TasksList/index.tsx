@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TaskContentHeader from './TaskContentHeader';
 import AddNewTask from '../AddNewTask';
-import { Hidden } from '@mui/material';
+import { Box } from '@mui/material';
 import AppsPagination from '@crema/components/AppsPagination';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
@@ -13,10 +13,7 @@ import { putDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import TaskListItem from './TaskListItem';
 import TaskListItemMobile from './TaskListItemMobile';
-import {
-  useTodoActionsContext,
-  useTodoContext,
-} from '../../context/TodoContextProvider';
+import { useTodoActionsContext, useTodoContext } from '../../context/TodoContextProvider';
 import { TodoDataType, TodoType } from '@crema/types/models/apps/Todo';
 import { loadWebpackHook } from 'next/dist/server/config-utils';
 
@@ -55,9 +52,7 @@ const TasksList = () => {
       .then((data) => {
         onUpdateSelectedTask(data);
         infoViewActionsContext.showMessage(
-          data?.isStarred
-            ? 'Todo Marked as Starred Successfully'
-            : 'Todo Marked as Unstarred Successfully',
+          data?.isStarred ? 'Todo Marked as Starred Successfully' : 'Todo Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -69,9 +64,7 @@ const TasksList = () => {
     if (filterText === '') {
       return taskLists?.data;
     } else {
-      return taskLists?.data.filter((task) =>
-        task.title.toUpperCase().includes(filterText.toUpperCase()),
-      );
+      return taskLists?.data.filter((task) => task.title.toUpperCase().includes(filterText.toUpperCase()));
     }
   };
 
@@ -122,7 +115,7 @@ const TasksList = () => {
       </AppsHeader>
       <AppsContent>
         <>
-          <Hidden smDown>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }}>
             <AppList
               data={list}
               renderRow={(task) => {
@@ -140,15 +133,15 @@ const TasksList = () => {
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle='Add Task'
+                  actionTitle="Add Task"
                   onClick={onOpenAddTask}
                   placeholder={<TodoListSkeleton />}
                 />
               }
             />
-          </Hidden>
+          </Box>
 
-          <Hidden smUp>
+          <Box component="span" sx={{ display: { sm: 'none', xs: 'block' } }}>
             <AppList
               sx={{
                 paddingTop: 0,
@@ -166,34 +159,25 @@ const TasksList = () => {
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={loading}
-                  actionTitle='Add Task'
+                  actionTitle="Add Task"
                   onClick={onOpenAddTask}
                   placeholder={<TodoListSkeleton />}
                 />
               }
             />
-          </Hidden>
+          </Box>
         </>
       </AppsContent>
 
-      <Hidden smUp>
+      <Box component="span" sx={{ display: { sm: 'none', xs: 'block' } }}>
         {taskLists?.data?.length > 0 ? (
           <AppsFooter>
-            <AppsPagination
-              count={taskLists?.count as number}
-              page={page}
-              onPageChange={onPageChange}
-            />
+            <AppsPagination count={taskLists?.count as number} page={page} onPageChange={onPageChange} />
           </AppsFooter>
         ) : null}
-      </Hidden>
+      </Box>
 
-      {isAddTaskOpen ? (
-        <AddNewTask
-          isAddTaskOpen={isAddTaskOpen}
-          onCloseAddTask={onCloseAddTask}
-        />
-      ) : null}
+      {isAddTaskOpen ? <AddNewTask isAddTaskOpen={isAddTaskOpen} onCloseAddTask={onCloseAddTask} /> : null}
     </>
   );
 };

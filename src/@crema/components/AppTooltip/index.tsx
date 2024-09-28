@@ -42,11 +42,7 @@ type AppTooltipProps = {
   children: React.ReactElement<any, any>;
 };
 
-const AppTooltip: React.FC<AppTooltipProps> = ({
-  title,
-  placement = 'top',
-  children,
-}) => {
+const AppTooltip: React.FC<AppTooltipProps> = ({ title, placement = 'top', children }) => {
   // const theme = 'light';
   return (
     <LightTooltip

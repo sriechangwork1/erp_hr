@@ -10,87 +10,87 @@ export type DealsTableData = {
   logo: string;
 };
 
-export type EarningGraphData={
+export type EarningGraphData = {
   name: string;
   value: number;
   color: string;
   colorName: PaletteColorOptions;
-}
+};
 
-export type ProgressGraphData={
+export type ProgressGraphData = {
   name: string;
   actual: number;
   progress: number;
-}
+};
 
-export type QuickStatsData={
-  clientsData:{
+export type QuickStatsData = {
+  clientsData: {
     count: string;
   };
-  invoiceData:{
+  invoiceData: {
     count: string;
   };
-  totalProjectsData:{
+  totalProjectsData: {
     count: string;
   };
-  openProjectsData:{
+  openProjectsData: {
     count: string;
   };
-}
+};
 
-export type RevenueData={
+export type RevenueData = {
   ytdRevenue: string;
   clients: number;
   countries: string;
   revenueGraphData: ReviewGraphData[];
-}
+};
 
-export type ReviewGraphData={
+export type ReviewGraphData = {
   name: string;
   value: number;
-}
+};
 
-export type SocialMediaData={
+export type SocialMediaData = {
   id: number;
   name: string;
   revenue: number;
   change: number;
   color: string;
-}
+};
 
-export type StatisticData={
+export type StatisticData = {
   month: string;
   number: number;
-}
+};
 
-export type StatisticsGraph={
+export type StatisticsGraph = {
   projectData: StatisticData[];
   clientsData: StatisticData[];
   incomeData: StatisticData[];
-}
+};
 
-export type TicketSupportDataProps={
+export type TicketSupportDataProps = {
   id: number;
   name: string;
   ticketId: string;
   created: string;
   contact: string;
   image: string;
-}
+};
 
-export type TodayTaskData={
+export type TodayTaskData = {
   id: number;
   task: string;
   date: string;
   isChecked: boolean;
-}
+};
 
-export type WebsiteTrafficData={
+export type WebsiteTrafficData = {
   month: number;
   users: number;
-}
+};
 
-export type CRM={
+export type CRM = {
   dealsTableData: DealsTableData[];
   earningGraphData: EarningGraphData[];
   progressGraphData: ProgressGraphData[];
@@ -102,4 +102,4 @@ export type CRM={
   ticketSupportData: TicketSupportDataProps[];
   todayTaskData: TodayTaskData[];
   websiteTrafficData: WebsiteTrafficData[];
-}
+};

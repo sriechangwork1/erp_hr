@@ -7,14 +7,14 @@ import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCard from '@crema/components/AppCard';
 
-type ComparisonCardProps ={
+type ComparisonCardProps = {
   data: any;
   text: any;
   bgColor: string;
   headingColor: string;
   valueColor: string;
   type: string;
-}
+};
 
 const ComparisonCard: React.FC<ComparisonCardProps> = ({
   data,

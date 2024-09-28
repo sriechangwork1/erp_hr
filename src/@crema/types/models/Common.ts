@@ -3,4 +3,4 @@ export type CommonType = {
   loading: boolean;
   isAppDrawerOpen: boolean;
   message: string;
-}
+};

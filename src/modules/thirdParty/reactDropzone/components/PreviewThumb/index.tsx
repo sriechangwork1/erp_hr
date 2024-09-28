@@ -8,10 +8,7 @@ interface PreviewThumbProps {
   onDeleteUploadFile: (file: any) => void;
 }
 
-const PreviewThumb: React.FC<PreviewThumbProps> = ({
-  file,
-  onDeleteUploadFile,
-}) => {
+const PreviewThumb: React.FC<PreviewThumbProps> = ({ file, onDeleteUploadFile }) => {
   return (
     <Box
       sx={{
@@ -53,7 +50,7 @@ const PreviewThumb: React.FC<PreviewThumbProps> = ({
           onClick={() => onDeleteUploadFile(file)}
         />
       </Box>
-      <Image alt='preview' src={`${file.preview}`} width={90} height={90} />
+      <Image alt="preview" src={`${file.preview}`} width={90} height={90} />
     </Box>
   );
 };

@@ -2,12 +2,12 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import SalesChart from './SalesChart';
 import AppSelect from '@crema/components/AppSelect';
-import {useIntl} from 'react-intl';
+import { useIntl } from 'react-intl';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import {alpha, useTheme} from '@mui/material';
+import { alpha, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import {styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 const DotActionItem = styled('div')(({ theme }) => {
   return {
@@ -61,26 +61,16 @@ const SalesReport = () => {
             }}
           >
             <DotActionItem>
-              <span
-                style={{ backgroundColor: theme.palette.secondary.main }}
-                className='dot-icon'
-              />
-              <IntlMessages id='dashboard.eCommerce.return' />
+              <span style={{ backgroundColor: theme.palette.secondary.main }} className="dot-icon" />
+              <IntlMessages id="dashboard.eCommerce.return" />
             </DotActionItem>
             <DotActionItem>
-              <span
-                style={{ backgroundColor: theme.palette.primary.main }}
-                className='dot-icon'
-              />
-              <IntlMessages id='common.orders' />
+              <span style={{ backgroundColor: theme.palette.primary.main }} className="dot-icon" />
+              <IntlMessages id="common.orders" />
             </DotActionItem>
           </Box>
           <AppSelect
-            menus={[
-              messages['dashboard.thisWeek'],
-              messages['dashboard.lastWeeks'],
-              messages['dashboard.lastMonth'],
-            ]}
+            menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
             defaultValue={messages['dashboard.thisWeek']}
             onChange={handleSelectionType}
           />

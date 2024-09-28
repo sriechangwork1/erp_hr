@@ -19,7 +19,7 @@ const MemberItem = ({ member }: MemberItemProps) => {
       }}
     >
       <Typography
-        component='h5'
+        component="h5"
         sx={{
           mb: 1,
           fontWeight: Fonts.SEMI_BOLD,
@@ -29,10 +29,10 @@ const MemberItem = ({ member }: MemberItemProps) => {
         {member.name}
       </Typography>
       <Typography
-        sx={{
+        sx={(theme) => ({
           fontWeight: Fonts.MEDIUM,
-          color: (theme) => theme.palette.text.secondary,
-        }}
+          color: theme.palette.text.secondary,
+        })}
       >
         {member.position}
       </Typography>

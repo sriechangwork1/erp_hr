@@ -33,11 +33,11 @@ const Clients = ({ client }: ClientsProps) => {
           {client.map((client, index) => (
             <Box
               key={index}
-              sx={{
+              sx={(theme) => ({
                 width: { xs: '50%', sm: '33.33%', md: '25%', lg: '20%' },
-                borderRight: (theme) => `solid 1px ${theme.palette.divider}`,
-                borderTop: (theme) => `solid 1px ${theme.palette.divider}`,
-              }}
+                borderRight: `solid 1px ${theme.palette.divider}`,
+                borderTop: `solid 1px ${theme.palette.divider}`,
+              })}
             >
               <ClientLogo client={client} />
             </Box>

@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import type { TagType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import type { TagType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   tag?: TagType[];
@@ -11,9 +11,9 @@ const Tag = ({ tag }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        flexWrap: "wrap",
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
         mx: -0.75,
       }}
     >
@@ -26,17 +26,17 @@ const Tag = ({ tag }: Props) => {
           key={index}
         >
           <Box
-            sx={{
-              border: (theme) => `solid 1px ${theme.palette.divider}`,
+            sx={(theme) => ({
+              border: `solid 1px ${theme.palette.divider}`,
               borderRadius: 1,
-              display: "block",
+              display: 'block',
               fontSize: 12,
               fontWeight: Fonts.MEDIUM,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
               px: 4,
               pt: 1.25,
               pb: 1.75,
-            }}
+            })}
             component="span"
           >
             {tag.name}

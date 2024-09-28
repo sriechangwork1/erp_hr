@@ -7,11 +7,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AppsStarredIcon from '@crema/components/AppsStarredIcon';
 import Avatar from '@mui/material/Avatar';
-import {
-  AttachmentWrapper,
-  AvatarWrapper,
-  MailMobileItemWrapper,
-} from './index.styles';
+import { AttachmentWrapper, AvatarWrapper, MailMobileItemWrapper } from './index.styles';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import { Fonts } from '@crema/constants/AppEnums';
 import { getStringFromHtml } from '@crema/helpers/StringHelper';
@@ -25,20 +21,11 @@ type Props = {
   onViewMailDetail: (mail: MailType) => void;
 };
 const MailListItemMobile = (props: Props) => {
-  const {
-    mail,
-    checkedMails = [],
-    onChangeCheckedMails,
-    onChangeStarred,
-    onViewMailDetail,
-  } = props;
+  const { mail, checkedMails = [], onChangeCheckedMails, onChangeStarred, onViewMailDetail } = props;
 
   const messages = mail.messages!.length;
   const onGetMailDate = (date: string) => {
-    if (
-      dayjs(date, 'ddd, MMM DD, YYYY').format() ===
-      dayjs('ddd, MMM DD, YYYY').format()
-    ) {
+    if (dayjs(date, 'ddd, MMM DD, YYYY').format() === dayjs('ddd, MMM DD, YYYY').format()) {
       return dayjs(date).format('LT');
     } else {
       return date.split(',')[1];
@@ -49,9 +36,7 @@ const MailListItemMobile = (props: Props) => {
     if (messages === 1) {
       return mail!.messages![0].sender!.name;
     } else if (messages === 2) {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![1].sender.name
-      }(2)`;
+      return `${mail.messages![0].sender.name}, ${mail.messages![1].sender.name}(2)`;
     } else {
       return `${mail.messages![0].sender.name}, ${
         mail.messages![messages - 2].sender.name
@@ -62,9 +47,7 @@ const MailListItemMobile = (props: Props) => {
     if (messages === 1) {
       return mail.messages![0].sender.name;
     } else if (messages === 2) {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![1].sender.name
-      }(2)`;
+      return `${mail.messages![0].sender.name}, ${mail.messages![1].sender.name}(2)`;
     } else {
       return `${mail.messages![0].sender.name}, ${
         mail.messages![messages - 2].sender.name
@@ -111,15 +94,10 @@ const MailListItemMobile = (props: Props) => {
           {checkedMails.includes(mail.id) ? (
             <CheckOutlinedIcon />
           ) : (
-            <Avatar
-              className='avatar'
-              alt={getSenderName()}
-              src={getSenderImage()}
-            />
+            <Avatar className="avatar" alt={getSenderName()} src={getSenderImage()} />
           )}
         </AvatarWrapper>
       </Box>
-
       <Box
         sx={{
           position: 'relative',
@@ -143,27 +121,25 @@ const MailListItemMobile = (props: Props) => {
               whiteSpace: 'nowrap',
             }}
           >
-            {mail.isReplied
-              ? `${getSenderName()}, me(${messages})`
-              : getLastSenderName()}
+            {mail.isReplied ? `${getSenderName()}, me(${messages})` : getLastSenderName()}
           </Typography>
           <Typography
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
+            sx={(theme) => ({
+              color: theme.palette.text.secondary,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
-            }}
+            })}
           >
             {mail.subject}
           </Typography>
           <Typography
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
+            sx={(theme) => ({
+              color: theme.palette.text.secondary,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
-            }}
+            })}
           >
             {getLastMessage()}
           </Typography>
@@ -185,18 +161,18 @@ const MailListItemMobile = (props: Props) => {
           }}
         >
           <Box
-            component='span'
-            sx={{
+            component="span"
+            sx={(theme) => ({
               fontWeight: Fonts.MEDIUM,
               fontSize: 12,
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
           >
             {onGetMailDate(mail.sentOn!)}
           </Box>
 
           <Box
-            component='span'
+            component="span"
             sx={{
               mt: 'auto',
             }}

@@ -8,9 +8,7 @@ interface ColoredDateCellWrapperProps {
   children?: ReactElement<any, string | JSXElementConstructor<any>>;
 }
 
-const ColoredDateCellWrapper: React.FC<ColoredDateCellWrapperProps> = ({
-  children,
-}) =>
+const ColoredDateCellWrapper: React.FC<ColoredDateCellWrapperProps> = ({ children }) =>
   React.cloneElement(React.Children.only(children) as any, {
     style: {
       backgroundColor: 'lightblue',

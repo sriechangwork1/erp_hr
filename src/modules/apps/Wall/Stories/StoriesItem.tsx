@@ -1,36 +1,35 @@
-import React from "react";
-import { Box, CardMedia } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import { StoriesDataType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import { Box, CardMedia } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { StoriesDataType } from '@crema/types/models/apps/Wall';
 
-const UserInfoContainer = styled("div")(({ theme }) => ({
-  position: "absolute",
+const UserInfoContainer = styled('div')(({ theme }) => ({
+  position: 'absolute',
   bottom: 0,
   left: 0,
   right: 0,
   zIndex: 1,
-  padding: "30px 10px 16px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  padding: '30px 10px 16px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   color: theme.palette.common.white,
-  "&:before": {
+  '&:before': {
     content: '""',
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     top: 0,
-    width: "100%",
-    height: "100%",
-    backgroundImage:
-      "linear-gradient(180deg, rgba(120, 130, 146, 0) 7.29%, #788292 100%)",
+    width: '100%',
+    height: '100%',
+    backgroundImage: 'linear-gradient(180deg, rgba(120, 130, 146, 0) 7.29%, #788292 100%)',
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
     opacity: 0.65,
   },
-  "& > *": {
-    position: "relative",
+  '& > *': {
+    position: 'relative',
     zIndex: 3,
   },
 }));
@@ -44,13 +43,13 @@ const StoriesItem = ({ data }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
       }}
     >
       <CardMedia
         component="img"
         sx={{
-          width: "100%",
+          width: '100%',
           minHeight: 160,
           borderRadius: 1,
         }}
@@ -63,11 +62,11 @@ const StoriesItem = ({ data }: Props) => {
             width: 40,
             height: 40,
             border: `solid 2px primary.main`,
-            backgroundColor: "background.paper",
+            backgroundColor: 'background.paper',
             padding: 0.5,
             marginBottom: 1.25,
-            "& .MuiAvatar-img": {
-              borderRadius: "50%",
+            '& .MuiAvatar-img': {
+              borderRadius: '50%',
             },
           }}
           src={avatar}
@@ -75,11 +74,11 @@ const StoriesItem = ({ data }: Props) => {
         />
         <Typography
           sx={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            width: "100%",
-            textAlign: "center",
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            width: '100%',
+            textAlign: 'center',
           }}
         >
           {title}

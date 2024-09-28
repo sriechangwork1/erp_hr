@@ -314,12 +314,7 @@ const TrendingChart = () => {
             width: '100%',
           }}
         >
-          <ReactApexChart
-            options={options}
-            series={seriesData}
-            type='candlestick'
-            height={288}
-          />
+          <ReactApexChart options={options} series={seriesData} type="candlestick" height={288} />
         </Box>
         <TimeSelection />
       </Box>

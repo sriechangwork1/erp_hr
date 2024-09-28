@@ -1,10 +1,10 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { TransactionDaumType } from "@crema/types/models/dashboards/Analytics";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { TransactionDaumType } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   data: TransactionDaumType;
@@ -12,27 +12,27 @@ type Props = {
 const TableItem = ({ data }: Props) => {
   const getPaymentTypeColor = () => {
     switch (data.paymentType) {
-      case "COD": {
-        return "#F84E4E";
+      case 'COD': {
+        return '#F84E4E';
       }
-      case "Prepaid": {
-        return "#43C888";
+      case 'Prepaid': {
+        return '#43C888';
       }
       default: {
-        return "#E2A72E";
+        return '#E2A72E';
       }
     }
   };
   const getPaymentStatusColor = () => {
     switch (data.status) {
-      case "In Transit": {
-        return "#F84E4E";
+      case 'In Transit': {
+        return '#F84E4E';
       }
-      case "Delivered": {
-        return "#43C888";
+      case 'Delivered': {
+        return '#43C888';
       }
       default: {
-        return "#E2A72E";
+        return '#E2A72E';
       }
     }
   };
@@ -41,13 +41,13 @@ const TableItem = ({ data }: Props) => {
     <TableRow
       key={data.id}
       sx={{
-        "& .tableCell": {
+        '& .tableCell': {
           fontSize: 13,
-          padding: "12px 8px",
-          "&:first-of-type": {
+          padding: '12px 8px',
+          '&:first-of-type': {
             pl: 5,
           },
-          "&:last-of-type": {
+          '&:last-of-type': {
             pr: 5,
           },
         },
@@ -56,11 +56,11 @@ const TableItem = ({ data }: Props) => {
     >
       <TableCell component="th" scope="row" className="tableCell">
         <Box
-          sx={{
-            color: (theme) => theme.palette.primary.main,
-            borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
-            display: "inline-block",
-          }}
+          sx={(theme) => ({
+            color: theme.palette.primary.main,
+            borderBottom: `1px solid ${theme.palette.primary.main}`,
+            display: 'inline-block',
+          })}
         >
           {data.id}
         </Box>
@@ -71,21 +71,17 @@ const TableItem = ({ data }: Props) => {
       <TableCell align="left" className="tableCell">
         {data.date}
       </TableCell>
-      <TableCell
-        align="left"
-        className="tableCell"
-        style={{ color: getPaymentTypeColor() }}
-      >
+      <TableCell align="left" className="tableCell" style={{ color: getPaymentTypeColor() }}>
         {data.paymentType}
       </TableCell>
       <TableCell align="left" className="tableCell">
         <Box
           sx={{
             color: getPaymentStatusColor(),
-            backgroundColor: getPaymentStatusColor() + "44",
-            padding: "3px 10px",
+            backgroundColor: getPaymentStatusColor() + '44',
+            padding: '3px 10px',
             borderRadius: 1,
-            display: "inline-block",
+            display: 'inline-block',
           }}
         >
           {data.status}

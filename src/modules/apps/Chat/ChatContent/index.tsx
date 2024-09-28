@@ -46,10 +46,7 @@ const ChatContent = ({ selectedUser, setSelectedUser }: ChatContentProps) => {
     <>
       {!isEmptyObject(selectedUser) ? (
         <MessagesScreen>
-          <ChatViewContainer
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-          />
+          <ChatViewContainer selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
         </MessagesScreen>
       ) : (
         <ScrollChatNoUser>

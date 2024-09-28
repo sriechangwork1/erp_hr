@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { SketchPicker } from "react-color";
-import { Box } from "@mui/material";
+import React, { useState } from 'react';
+import { SketchPicker } from 'react-color';
+import { Box } from '@mui/material';
 
 const Basic = () => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const [color, setColor] = useState({
-    r: "241",
-    g: "112",
-    b: "19",
-    a: "1",
+    r: '241',
+    g: '112',
+    b: '19',
+    a: '1',
   });
 
   const handleClick = () => {

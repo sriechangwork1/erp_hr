@@ -28,18 +28,18 @@ const Innovation = ({ innovation }: Props) => {
           <InnovationImgWrapper>
             <Image
               src={innovation.srcImg}
-              alt='innovation'
+              alt="innovation"
               width={710}
               height={397}
-              sizes='100vw'
+              sizes="100vw"
               style={{
                 width: '100%',
                 height: '100%',
               }}
             />
-            <Box className='innovation-img-content'>
+            <Box className="innovation-img-content">
               <Typography
-                component='h5'
+                component="h5"
                 sx={{
                   fontSize: 12,
                   fontWeight: Fonts.SEMI_BOLD,
@@ -50,7 +50,7 @@ const Innovation = ({ innovation }: Props) => {
                 {innovation.brandSubTitle}
               </Typography>
               <Typography
-                component='h3'
+                component="h3"
                 sx={{
                   fontSize: { xs: 18, md: 20, lg: 22 },
                   fontWeight: Fonts.BOLD,
@@ -70,7 +70,7 @@ const Innovation = ({ innovation }: Props) => {
             }}
           >
             <Typography
-              component='h5'
+              component="h5"
               sx={{
                 fontSize: { xs: 18, md: 20 },
                 fontWeight: Fonts.BOLD,
@@ -80,15 +80,15 @@ const Innovation = ({ innovation }: Props) => {
               {innovation.title}
             </Typography>
             <Typography
-              sx={{
+              sx={(theme) => ({
                 fontSize: 12,
-                color: (theme) => theme.palette.text.secondary,
+                color: theme.palette.text.secondary,
                 mb: { xs: 5, md: 7.5 },
-              }}
+              })}
             >
               {innovation.description}
             </Typography>
-            <Button variant='contained'>Explore Website</Button>
+            <Button variant="contained">Explore Website</Button>
           </Box>
         </Grid>
       </AppGridContainer>

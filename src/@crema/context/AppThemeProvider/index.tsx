@@ -1,9 +1,5 @@
 import React, { ReactElement } from 'react';
-import {
-  createTheme,
-  StyledEngineProvider,
-  ThemeProvider,
-} from '@mui/material/styles';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import AppLocale from '@crema/services/localization';
 import { useThemeContext } from '../AppContextProvider/ThemeContextProvider';
 import { useLocaleContext } from '../AppContextProvider/LocaleContextProvider';
@@ -22,9 +18,7 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = (props) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={createTheme(theme, muiLocale)}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {props.children}
-        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>{props.children}</LocalizationProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   );

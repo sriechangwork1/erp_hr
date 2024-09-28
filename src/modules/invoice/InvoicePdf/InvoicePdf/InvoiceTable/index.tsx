@@ -9,10 +9,7 @@ import { Box, Grid } from '@mui/material';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import { formatCurrency } from '@crema/helpers/StringHelper';
 import { taxType } from '../../../AddInvoice/AddInvoice/data';
-import {
-  InvoiceItemType,
-  InvoiceCurrencyType,
-} from '@crema/types/models/invoice';
+import { InvoiceItemType, InvoiceCurrencyType } from '@crema/types/models/invoice';
 
 type Props = {
   items: InvoiceItemType[];
@@ -21,12 +18,7 @@ type Props = {
   taxRateData: number;
 };
 
-const EditInvoiceTable = ({
-  items,
-  currency,
-  taxTypeData,
-  taxRateData,
-}: Props) => {
+const EditInvoiceTable = ({ items, currency, taxTypeData, taxRateData }: Props) => {
   const taxLabelType = taxType.find((tax) => tax.value === taxTypeData)?.label;
 
   const currencyData = currency || {
@@ -44,17 +36,13 @@ const EditInvoiceTable = ({
   return (
     <>
       <AppTableContainer>
-        <Table stickyHeader className='table'>
+        <Table stickyHeader className="table">
           <TableHead>
             <TableHeading />
           </TableHead>
           <TableBody>
             {items.map((data, index) => (
-              <TableItem
-                key={data.id}
-                data={data}
-                currencyData={currencyData}
-              />
+              <TableItem key={data.id} data={data} currencyData={currencyData} />
             ))}
           </TableBody>
         </Table>

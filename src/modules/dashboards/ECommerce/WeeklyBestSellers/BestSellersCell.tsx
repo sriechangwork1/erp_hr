@@ -1,18 +1,18 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import PropTypes from "prop-types";
-import Rating from "@mui/material/Rating";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
+import Rating from '@mui/material/Rating';
 
-import { alpha, styled } from "@mui/material/styles";
-import { Fonts } from "@crema/constants/AppEnums";
-import type { BestSellerType } from "@crema/types/models/dashboards/Ecommerce";
+import { alpha, styled } from '@mui/material/styles';
+import { Fonts } from '@crema/constants/AppEnums';
+import type { BestSellerType } from '@crema/types/models/dashboards/Ecommerce';
 
-const BadgeRoot = styled("div")(({ theme }) => {
+const BadgeRoot = styled('div')(({ theme }) => {
   return {
     backgroundColor: alpha(theme.palette.primary.main, 0.2),
     color: theme.palette.primary.main,
-    padding: "3px 10px",
+    padding: '3px 10px',
     borderRadius: 30,
     fontSize: 12,
     fontWeight: Fonts.SEMI_BOLD,
@@ -28,9 +28,9 @@ const BestSellersCell = ({ bestSeller }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        padding: "8px 20px",
+        display: 'flex',
+        alignItems: 'center',
+        padding: '8px 20px',
       }}
       className="item-hover"
     >
@@ -45,9 +45,9 @@ const BestSellersCell = ({ bestSeller }: Props) => {
       <Box
         sx={{
           flex: 1,
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'wrap',
         }}
       >
         <Box sx={{ mr: 3 }}>
@@ -57,7 +57,7 @@ const BestSellersCell = ({ bestSeller }: Props) => {
           <Box
             component="p"
             sx={{
-              color: "text.secondary",
+              color: 'text.secondary',
               fontSize: 14,
             }}
           >
@@ -67,18 +67,18 @@ const BestSellersCell = ({ bestSeller }: Props) => {
         <Box
           sx={{
             flex: 1,
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-            justifyContent: "flex-end",
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end',
           }}
         >
           <Box
             sx={{
               flex: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
             }}
           >
             <Rating

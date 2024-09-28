@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { Card } from '@mui/material';
+import { Card, Theme } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CodeIcon from '@mui/icons-material/Code';
@@ -85,14 +85,11 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
               <AppScrollbar
                 sx={{
                   borderRadius: 3,
+                  maxHeight: 500,
                   background: '#333333',
                 }}
               >
-                <Highlight
-                  code={source}
-                  language="jsx"
-                  theme={themes.shadesOfPurple}
-                >
+                <Highlight code={source} language="jsx" theme={themes.shadesOfPurple}>
                   {({ style, tokens, getLineProps, getTokenProps }) => (
                     <pre
                       style={{
@@ -103,15 +100,9 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
                       }}
                     >
                       {tokens.map((line, i) => (
-                        <Box
-                          key={'line-' + i}
-                          {...getLineProps({ line, key: i })}
-                        >
+                        <Box key={'line-' + i} {...getLineProps({ line, key: i })}>
                           {line.map((token, key) => (
-                            <span
-                              key={'token-' + key}
-                              {...getTokenProps({ token, key })}
-                            />
+                            <span key={'token-' + key} {...getTokenProps({ token, key })} />
                           ))}
                         </Box>
                       ))}
@@ -123,27 +114,26 @@ const AppComponentCard: React.FC<AppComponentCardProps> = ({
           </Collapse>
           {noScrollbar ? (
             <Box
-              sx={{
+              sx={(theme) => ({
                 width: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 p: 4,
-                backgroundColor: (theme) => theme.palette.background.default,
-              }}
+                backgroundColor: theme.palette.background.default,
+              })}
             >
               <Component />
             </Box>
           ) : (
             <AppScrollbar
-              sx={{
+              sx={(theme:Theme) => ({
                 mt: 2,
                 p: 4,
                 borderRadius: 3,
                 maxHeight: maxHeight,
-                backgroundColor: (theme: any) =>
-                  theme.palette.background.default,
-              }}
+                backgroundColor: theme.palette.background.default,
+              })}
             >
               <Box
                 sx={{

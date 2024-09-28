@@ -7,12 +7,7 @@ import PriceSelector from './PriceSelector';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import AppList from '@crema/components/AppList';
 import CheckedCell from './CheckedCell';
-import {
-  brandData,
-  discountList,
-  idealFor,
-  ProductColors,
-} from '@crema/fakedb';
+import { brandData, discountList, idealFor, ProductColors } from '@crema/fakedb';
 import AppGrid from '@crema/components/AppGrid';
 import ColorCell from './ColorCell';
 import RatingCell from './RatingCell';
@@ -23,9 +18,7 @@ type Props = {
   setFilterData: (filterData: FilterDataType) => void;
 };
 const ProductSidebar = ({ filterData, setFilterData }: Props) => {
-  const [selectedBrand, setSelectedBrand] = useState<number[]>(
-    filterData.brand,
-  );
+  const [selectedBrand, setSelectedBrand] = useState<number[]>(filterData.brand);
   const [selectedFor, setSelectedFor] = useState(filterData.ideaFor);
   const [selectedDiscount, setSelectedDiscount] = useState(filterData.discount);
   const [selectedColor, setSelectedColor] = useState(filterData.color);
@@ -40,14 +33,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
       color: selectedColor,
       rating: customerRating,
     });
-  }, [
-    filterData.title,
-    selectedBrand,
-    selectedFor,
-    selectedDiscount,
-    selectedColor,
-    customerRating,
-  ]);
+  }, [filterData.title, selectedBrand, selectedFor, selectedDiscount, selectedColor, customerRating]);
 
   const onSelectBrand = (brandId: any) => {
     if (selectedBrand.some((brand) => brand === brandId)) {
@@ -67,9 +53,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
 
   const onSelectDiscount = (id: number) => {
     if (selectedDiscount.some((item: number) => item === id)) {
-      setSelectedDiscount(
-        selectedDiscount.filter((item: number) => item !== id),
-      );
+      setSelectedDiscount(selectedDiscount.filter((item: number) => item !== id));
     } else {
       setSelectedDiscount(selectedDiscount.concat(id));
     }
@@ -99,7 +83,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
         }}
       >
         <Box
-          component='h5'
+          component="h5"
           sx={{
             mb: 2,
             fontWeight: Fonts.MEDIUM,
@@ -148,12 +132,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
           <AppList
             data={brandData}
             renderRow={(data: any) => (
-              <CheckedCell
-                key={data.id}
-                data={data}
-                onChange={onSelectBrand}
-                selected={selectedBrand}
-              />
+              <CheckedCell key={data.id} data={data} onChange={onSelectBrand} selected={selectedBrand} />
             )}
           />
         </Box>
@@ -173,12 +152,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
           <AppList
             data={idealFor}
             renderRow={(data: any) => (
-              <CheckedCell
-                key={data.id}
-                data={data}
-                onChange={() => onSelectFor(data.id)}
-                selected={selectedFor}
-              />
+              <CheckedCell key={data.id} data={data} onChange={() => onSelectFor(data.id)} selected={selectedFor} />
             )}
           />
         </Box>
@@ -198,12 +172,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
           <AppList
             data={discountList}
             renderRow={(data: any) => (
-              <CheckedCell
-                key={data.id}
-                data={data}
-                onChange={onSelectDiscount}
-                selected={selectedDiscount}
-              />
+              <CheckedCell key={data.id} data={data} onChange={onSelectDiscount} selected={selectedDiscount} />
             )}
           />
         </Box>
@@ -226,12 +195,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
             column={6}
             itemPadding={10}
             renderRow={(data, index) => (
-              <ColorCell
-                key={'color-' + index}
-                data={data}
-                selected={selectedColor}
-                onChange={onSelectColor}
-              />
+              <ColorCell key={'color-' + index} data={data} selected={selectedColor} onChange={onSelectColor} />
             )}
           />
         </Box>
@@ -251,12 +215,7 @@ const ProductSidebar = ({ filterData, setFilterData }: Props) => {
           <AppList
             data={[5, 4, 3, 2, 1]}
             renderRow={(data: any) => (
-              <RatingCell
-                key={data}
-                data={data}
-                onChange={onSelectRating}
-                selected={customerRating}
-              />
+              <RatingCell key={data} data={data} onChange={onSelectRating} selected={customerRating} />
             )}
           />
         </Box>

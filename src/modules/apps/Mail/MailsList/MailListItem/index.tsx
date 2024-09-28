@@ -15,11 +15,7 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import {
-  MailInfoWrapper,
-  MailItemWrapper,
-  MainActionWrapper,
-} from './index.styles';
+import { MailInfoWrapper, MailItemWrapper, MainActionWrapper } from './index.styles';
 import { Fonts } from '@crema/constants/AppEnums';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { putDataApi } from '@crema/hooks/APIHooks';
@@ -48,10 +44,7 @@ const MailListItem = (props: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const messages = mail.messages!.length;
   const onGetMailDate = (date: string) => {
-    if (
-      dayjs(date, 'ddd, MMM DD, YYYY').format() ===
-      dayjs('ddd, MMM DD, YYYY').format()
-    ) {
+    if (dayjs(date, 'ddd, MMM DD, YYYY').format() === dayjs('ddd, MMM DD, YYYY').format()) {
       return dayjs(date).format('LT');
     } else {
       return date.split(',')[1];
@@ -81,9 +74,7 @@ const MailListItem = (props: Props) => {
       .then((data) => {
         onUpdateItem(data);
         infoViewActionsContext.showMessage(
-          data.isRead
-            ? 'Mail Marked as Read Successfully'
-            : 'Mail Marked as Unread Successfully',
+          data.isRead ? 'Mail Marked as Read Successfully' : 'Mail Marked as Unread Successfully',
         );
       })
       .catch((error) => {
@@ -123,9 +114,7 @@ const MailListItem = (props: Props) => {
     if (messages === 1) {
       return mail!.messages![0].sender!.name;
     } else if (messages === 2) {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![1].sender.name
-      }(2)`;
+      return `${mail.messages![0].sender.name}, ${mail.messages![1].sender.name}(2)`;
     } else {
       return `${mail.messages![0].sender.name}, ${
         mail.messages![messages - 2].sender.name
@@ -136,9 +125,7 @@ const MailListItem = (props: Props) => {
     if (messages === 1) {
       return mail.messages![0].sender.name;
     } else if (messages === 2) {
-      return `${mail.messages![0].sender.name}, ${
-        mail.messages![1].sender.name
-      }(2)`;
+      return `${mail.messages![0].sender.name}, ${mail.messages![1].sender.name}(2)`;
     } else {
       return `${mail.messages![0].sender.name}, ${
         mail.messages![messages - 2].sender.name
@@ -173,32 +160,30 @@ const MailListItem = (props: Props) => {
         }}
       >
         <Box
-          component='span'
+          component="span"
           sx={{
             display: 'inline-block',
           }}
           onClick={(event) => event.stopPropagation()}
         >
           <Checkbox
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             checked={checkedMails.includes(mail.id)}
-            onChange={(event) =>
-              onChangeCheckedMails(event.target.checked, mail.id)
-            }
-            color='primary'
+            onChange={(event) => onChangeCheckedMails(event.target.checked, mail.id)}
+            color="primary"
           />
         </Box>
         <Box
-          sx={{
+          sx={(theme) => ({
             mr: 2.5,
             display: { xs: 'none', sm: 'inline-block' },
             '& .MuiCheckbox-root': {
-              color: (theme) => theme.palette.warning.main,
+              color: theme.palette.warning.main,
             },
-          }}
-          component='span'
+          })}
+          component="span"
           onClick={(event) => event.stopPropagation()}
         >
           <AppsStarredIcon item={mail} onChange={onChangeStarred} />
@@ -209,11 +194,7 @@ const MailListItem = (props: Props) => {
             mr: 3.5,
           }}
         >
-          <Avatar
-            className='avatar'
-            alt={getSenderName()}
-            src={getSenderImage()}
-          />
+          <Avatar className="avatar" alt={getSenderName()} src={getSenderImage()} />
         </Box>
 
         <Typography
@@ -227,15 +208,12 @@ const MailListItem = (props: Props) => {
           }}
           className={clsx(!mail.isRead ? 'fontBold' : '')}
         >
-          {mail.isReplied
-            ? `${getSenderName()}, me(${messages})`
-            : getLastSenderName()}
+          {mail.isReplied ? `${getSenderName()}, me(${messages})` : getLastSenderName()}
         </Typography>
       </Box>
-
       <MailInfoWrapper>
         <Box
-          className='mail-info-content'
+          className="mail-info-content"
           sx={{
             display: 'flex',
             flexDirection: 'row',
@@ -252,14 +230,14 @@ const MailListItem = (props: Props) => {
               mr: 3,
               mb: 0,
             }}
-            component='p'
+            component="p"
             className={clsx(!mail.isRead ? 'fontBold' : '')}
           >
             {mail.subject}
           </Box>
           {mail?.hasAttachments ? (
             <Box
-              component='p'
+              component="p"
               sx={{
                 color: 'text.secondary',
                 position: 'relative',
@@ -273,7 +251,7 @@ const MailListItem = (props: Props) => {
             </Box>
           ) : null}
           <Box
-            component='p'
+            component="p"
             sx={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -286,8 +264,8 @@ const MailListItem = (props: Props) => {
         </Box>
 
         <Box
-          className='mail-time'
-          component='span'
+          className="mail-time"
+          component="span"
           sx={{
             px: 2.5,
             minWidth: 110,
@@ -302,7 +280,7 @@ const MailListItem = (props: Props) => {
             sx={{
               color: mail.label.color,
             }}
-            component='span'
+            component="span"
           >
             <LabelOutlinedIcon
               sx={{
@@ -311,7 +289,7 @@ const MailListItem = (props: Props) => {
             />
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               whiteSpace: 'pre',
               fontWeight: Fonts.MEDIUM,
@@ -322,40 +300,40 @@ const MailListItem = (props: Props) => {
           </Box>
         </Box>
 
-        <MainActionWrapper className='main-action-wrapper'>
+        <MainActionWrapper className="main-action-wrapper">
           <IconButton
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             onClick={onArchive}
-            size='large'
+            size="large"
           >
             <ArchiveOutlinedIcon />
           </IconButton>
           <IconButton
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             onClick={onDelete}
-            size='large'
+            size="large"
           >
             <DeleteOutlinedIcon />
           </IconButton>
           <IconButton
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             onClick={onUpdateReadStatus}
-            size='large'
+            size="large"
           >
             {mail.isRead ? <MailOutlinedIcon /> : <DraftsOutlinedIcon />}
           </IconButton>
           <IconButton
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             onClick={onReportSpam}
-            size='large'
+            size="large"
           >
             <InfoOutlinedIcon />
           </IconButton>

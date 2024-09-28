@@ -53,7 +53,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
           alignItems: 'center',
           cursor: 'pointer',
         }}
-        className='user-info-view'
+        className="user-info-view"
       >
         <Box sx={{ py: 0.5 }}>
           {user?.photoURL ? (
@@ -85,7 +85,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
             ml: 4,
             color: color,
           }}
-          className='user-info'
+          className="user-info"
         >
           <Box
             sx={{
@@ -104,7 +104,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
                 fontWeight: Fonts.MEDIUM,
                 color: 'inherit',
               }}
-              component='span'
+              component="span"
             >
               {user.displayName ? user.displayName : 'Admin User '}
             </Box>
@@ -131,7 +131,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
         </Box>
       </Box>
       <Menu
-        id='simple-menu'
+        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}

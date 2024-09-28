@@ -8,16 +8,10 @@ export const POST = async (request: NextRequest) => {
     const reqBody = await request.json();
     const { board, list, card } = reqBody;
     let selectedBoard: any = boardData.find((data) => data.id === board.id);
-    let selectedList: any = selectedBoard.list.find(
-      (data: any) => data.id === list.id,
-    );
+    let selectedList: any = selectedBoard.list.find((data: any) => data.id === list.id);
     selectedList.cards = selectedList.cards.concat(card);
-    selectedBoard.list = selectedBoard.list.map((data: any) =>
-      data.id === selectedList.id ? selectedList : data,
-    );
-    boardData = boardData.map((data: any) =>
-      data.id === selectedBoard.id ? selectedBoard : data,
-    );
+    selectedBoard.list = selectedBoard.list.map((data: any) => (data.id === selectedList.id ? selectedList : data));
+    boardData = boardData.map((data: any) => (data.id === selectedBoard.id ? selectedBoard : data));
     return new Response(JSON.stringify(selectedBoard), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

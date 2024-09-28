@@ -1,6 +1,6 @@
-import React from "react";
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
-import { GraphDaum2Type } from "@crema/types/models/dashboards/Analytics";
+import React from 'react';
+import { Bar, BarChart, ResponsiveContainer } from 'recharts';
+import { GraphDaum2Type } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   data: GraphDaum2Type[];

@@ -1,7 +1,7 @@
-import React from "react";
-import { Box } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { ProductSpecType } from "@crema/types/models/ecommerce/EcommerceApp";
+import React from 'react';
+import { Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { ProductSpecType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type ProductSpecificationProps = {
   productSpec: ProductSpecType[];
@@ -13,7 +13,7 @@ const ProductSpecification = ({ productSpec }: ProductSpecificationProps) => {
       <Box
         component="h3"
         sx={{
-          color: "text.primary",
+          color: 'text.primary',
           fontSize: 16,
           mt: 4,
           mb: 3,
@@ -27,7 +27,7 @@ const ProductSpecification = ({ productSpec }: ProductSpecificationProps) => {
             <Grid item xs={4}>
               <Box
                 sx={{
-                  color: "text.secondary",
+                  color: 'text.secondary',
                 }}
               >
                 {data.title}

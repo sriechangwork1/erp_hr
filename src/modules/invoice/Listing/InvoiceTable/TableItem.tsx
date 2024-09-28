@@ -50,28 +50,28 @@ const TableItem = ({ data, onChangeStatus }: TableItemProps) => {
   };
 
   return (
-    <TableRow key={data.id} className='item-hover'>
-      <StyledTableCell align='left'>
-        <Checkbox color='primary' />
+    <TableRow key={data.id} className="item-hover">
+      <StyledTableCell align="left">
+        <Checkbox color="primary" />
       </StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">
         <Box
           onClick={() => router.push(`/invoice/pdf/${data.id}`)}
-          component='span'
-          color='primary.main'
+          component="span"
           style={{
             cursor: 'pointer',
+          }}
+          sx={{
+            color: 'primary.main',
           }}
         >
           {data.inum}
         </Box>
       </StyledTableCell>
-      <StyledTableCell align='left' sx={{ width: 400 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {data.clientName}
-        </Box>
+      <StyledTableCell align="left" sx={{ width: 400 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>{data.clientName}</Box>
       </StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">
         <Box
           sx={{
             color: getPaymentStatusColor(),
@@ -85,16 +85,11 @@ const TableItem = ({ data, onChangeStatus }: TableItemProps) => {
           {statusName[data.folderValue as keyof typeof statusName]}
         </Box>
       </StyledTableCell>
-      <StyledTableCell align='left'>{data.idt}</StyledTableCell>
-      <StyledTableCell align='left'>{data.dueDate}</StyledTableCell>
-      <StyledTableCell align='left'>${data.amount}</StyledTableCell>
-      <TableCell align='right'>
-        <OrderActions
-          id={data.id}
-          data={data}
-          status={data.folderValue}
-          onChangeStatus={onChangeStatus}
-        />
+      <StyledTableCell align="left">{data.idt}</StyledTableCell>
+      <StyledTableCell align="left">{data.dueDate}</StyledTableCell>
+      <StyledTableCell align="left">${data.amount}</StyledTableCell>
+      <TableCell align="right">
+        <OrderActions id={data.id} data={data} status={data.folderValue} onChangeStatus={onChangeStatus} />
       </TableCell>
     </TableRow>
   );

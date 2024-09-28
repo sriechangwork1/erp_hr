@@ -14,7 +14,7 @@ type Props = {
 
 const StatsItemCard = ({ stats }: Props) => {
   return (
-    <AppCard sxStyle={{ height: 1 }} className='card-hover'>
+    <AppCard sxStyle={{ height: 1 }} className="card-hover">
       <Box
         sx={{
           display: 'flex',
@@ -38,12 +38,7 @@ const StatsItemCard = ({ stats }: Props) => {
               padding: 2,
             }}
           >
-            <Image
-              src={getAssetsUrl(stats.icon)}
-              alt=''
-              width={30}
-              height={25}
-            />
+            <Image src={getAssetsUrl(stats.icon)} alt="" width={30} height={25} />
           </Avatar>
         </Box>
         <Box
@@ -59,9 +54,9 @@ const StatsItemCard = ({ stats }: Props) => {
           }}
         >
           <Box sx={{ overflow: 'hidden' }}>
-            <Box component='h3'>{stats.count}</Box>
+            <Box component="h3">{stats.count}</Box>
             <Box
-              component='p'
+              component="p"
               sx={{
                 color: 'text.secondary',
                 fontSize: 14,
@@ -74,7 +69,7 @@ const StatsItemCard = ({ stats }: Props) => {
             </Box>
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               backgroundColor: stats.bgcolor,
               borderRadius: 30,
@@ -85,10 +80,9 @@ const StatsItemCard = ({ stats }: Props) => {
               display: 'inline-block',
               minWidth: 75,
               textAlign: 'center',
-              '@media only screen and (max-width: 1580px) and (min-width: 1200px)':
-                {
-                  display: 'none',
-                },
+              '@media only screen and (max-width: 1580px) and (min-width: 1200px)': {
+                display: 'none',
+              },
             }}
           >
             {stats.new}

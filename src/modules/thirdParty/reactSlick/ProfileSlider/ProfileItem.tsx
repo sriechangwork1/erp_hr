@@ -1,19 +1,19 @@
-import React from "react";
-import Avatar from "@mui/material/Avatar";
-import { alpha, Box } from "@mui/material";
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import { alpha, Box } from '@mui/material';
 
-import { styled } from "@mui/material/styles";
-import { ProfileSlideType } from "@crema/types/models/thirdParty/reactSlick";
+import { styled } from '@mui/material/styles';
+import { ProfileSlideType } from '@crema/types/models/thirdParty/reactSlick';
 
-const ProfilePic = styled("div")(({ theme }) => {
+const ProfilePic = styled('div')(({ theme }) => {
   return {
-    position: "relative",
+    position: 'relative',
     border: `solid 2px ${alpha(theme.palette.primary.main, 0.7)}`,
     padding: 4,
-    borderRadius: "50%",
+    borderRadius: '50%',
     marginBottom: 10,
     marginTop: 10,
-    "& .avatar-pic": {
+    '& .avatar-pic': {
       height: 84,
       width: 84,
     },
@@ -28,10 +28,10 @@ const ProfileItem: React.FC<ProfileItemProps> = ({ profile }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <ProfilePic>
@@ -44,36 +44,40 @@ const ProfileItem: React.FC<ProfileItemProps> = ({ profile }) => {
         sx={{
           mb: 4,
           fontSize: 12,
-          color: "text.secondary",
+          color: 'text.secondary',
         }}
       >
         {profile.designation}
       </Box>
-
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           width: 1,
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            textAlign: "center",
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
           }}
         >
           <Box
-            sx={{
+            sx={(theme) => ({
               py: 3.5,
               px: 2,
               width: 1 / 2,
-              borderRight: (theme) => `solid 1px ${theme.palette.grey[200]}`,
-            }}
+              borderRight: `solid 1px ${theme.palette.grey[200]}`,
+            })}
           >
             <Box component="h5">{profile.years}</Box>
-            <Box component="p" color="text.secondary">
+            <Box
+              component="p"
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
               Years
             </Box>
           </Box>
@@ -85,29 +89,29 @@ const ProfileItem: React.FC<ProfileItemProps> = ({ profile }) => {
             }}
           >
             <Box component="h5">{profile.blood}</Box>
-            <Box component="p" sx={{ color: "text.secondary" }}>
+            <Box component="p" sx={{ color: 'text.secondary' }}>
               Blood
             </Box>
           </Box>
         </Box>
         <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            textAlign: "center",
-            borderTop: (theme) => `solid 1px ${theme.palette.grey[200]}`,
-          }}
+          sx={(theme) => ({
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            borderTop: `solid 1px ${theme.palette.grey[200]}`,
+          })}
         >
           <Box
-            sx={{
+            sx={(theme) => ({
               py: 3.5,
               px: 2,
               width: 1 / 2,
-              borderRight: (theme) => `solid 1px ${theme.palette.grey[200]}`,
-            }}
+              borderRight: `solid 1px ${theme.palette.grey[200]}`,
+            })}
           >
             <Box component="h5">{profile.height} cm</Box>
-            <Box component="p" sx={{ color: "text.secondary" }}>
+            <Box component="p" sx={{ color: 'text.secondary' }}>
               Height
             </Box>
           </Box>
@@ -119,7 +123,7 @@ const ProfileItem: React.FC<ProfileItemProps> = ({ profile }) => {
             }}
           >
             <Box component="h5">{profile.weight} kg</Box>
-            <Box component="p" sx={{ color: "text.secondary" }}>
+            <Box component="p" sx={{ color: 'text.secondary' }}>
               Weight
             </Box>
           </Box>

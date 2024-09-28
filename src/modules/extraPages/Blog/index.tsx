@@ -8,16 +8,7 @@ const Blogs = () => {
   const [{ apiData, loading }] = useGetDataApi<BlogType>('/blogs');
 
   return (
-    <>
-      {loading ? (
-        <AppLoader />
-      ) : (
-        <BlogContent
-          blogSidebar={apiData.blogSidebar}
-          blogContent={apiData.blogContent}
-        />
-      )}
-    </>
+    <>{loading ? <AppLoader /> : <BlogContent blogSidebar={apiData.blogSidebar} blogContent={apiData.blogContent} />}</>
   );
 };
 export default Blogs;

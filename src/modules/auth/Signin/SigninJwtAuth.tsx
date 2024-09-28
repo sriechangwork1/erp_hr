@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Button from '@mui/material/Button';
 import { Checkbox } from '@mui/material';
@@ -29,9 +28,7 @@ const SigninJwtAuth = () => {
       .string()
       .email(String(messages['validation.emailFormat']))
       .required(String(messages['validation.emailRequired'])),
-    password: yup
-      .string()
-      .required(String(messages['validation.passwordRequired'])),
+    password: yup.string().required(String(messages['validation.passwordRequired'])),
   });
 
   return (
@@ -54,13 +51,13 @@ const SigninJwtAuth = () => {
           }}
         >
           {({ isSubmitting }) => (
-            <Form style={{ textAlign: 'left' }} noValidate autoComplete='off'>
+            <Form style={{ textAlign: 'left' }} noValidate autoComplete="off">
               <Box sx={{ mb: { xs: 5, xl: 8 } }}>
                 <AppTextField
                   placeholder={messages['common.email'] as string}
-                  name='email'
-                  label={<IntlMessages id='common.email' />}
-                  variant='outlined'
+                  name="email"
+                  label={<IntlMessages id="common.email" />}
+                  variant="outlined"
                   sx={{
                     width: '100%',
                     '& .MuiInputBase-input': {
@@ -72,11 +69,11 @@ const SigninJwtAuth = () => {
 
               <Box sx={{ mb: { xs: 3, xl: 4 } }}>
                 <AppTextField
-                  type='password'
+                  type="password"
                   placeholder={messages['common.password'] as string}
-                  label={<IntlMessages id='common.password' />}
-                  name='password'
-                  variant='outlined'
+                  label={<IntlMessages id="common.password" />}
+                  name="password"
+                  variant="outlined"
                   sx={{
                     width: '100%',
                     '& .MuiInputBase-input': {
@@ -97,36 +94,36 @@ const SigninJwtAuth = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <Checkbox color='primary' sx={{ ml: -3 }} />
+                  <Checkbox color="primary" sx={{ ml: -3 }} />
                   <Box
-                    component='span'
+                    component="span"
                     sx={{
                       color: 'grey.500',
                     }}
                   >
-                    <IntlMessages id='common.rememberMe' />
+                    <IntlMessages id="common.rememberMe" />
                   </Box>
                 </Box>
                 <Box
-                  component='span'
-                  sx={{
-                    color: (theme) => theme.palette.primary.main,
+                  component="span"
+                  sx={(theme) => ({
+                    color: theme.palette.primary.main,
                     fontWeight: Fonts.MEDIUM,
                     cursor: 'pointer',
                     display: 'block',
                     textAlign: 'right',
-                  }}
+                  })}
                   onClick={onGoToForgetPassword}
                 >
-                  <IntlMessages id='common.forgetPassword' />
+                  <IntlMessages id="common.forgetPassword" />
                 </Box>
               </Box>
 
               <div>
                 <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
+                  variant="contained"
+                  color="primary"
+                  type="submit"
                   disabled={isSubmitting}
                   sx={{
                     minWidth: 160,
@@ -136,38 +133,36 @@ const SigninJwtAuth = () => {
                     padding: '4px 16px 8px',
                   }}
                 >
-                  <IntlMessages id='common.login' />
+                  <IntlMessages id="common.login" />
                 </Button>
               </div>
             </Form>
           )}
         </Formik>
       </Box>
-
       <Box
         sx={{
           color: 'grey.500',
         }}
       >
         <span style={{ marginRight: 4 }}>
-          <IntlMessages id='common.dontHaveAccount' />
+          <IntlMessages id="common.dontHaveAccount" />
         </span>
         <Box
-          component='span'
-          sx={{
+          component="span"
+          sx={(theme) => ({
             fontWeight: Fonts.MEDIUM,
             '& a': {
-              color: (theme) => theme.palette.primary.main,
+              color: theme.palette.primary.main,
               textDecoration: 'none',
             },
-          }}
+          })}
         >
-          <Link href='/signup'>
-            <IntlMessages id='common.signup' />
+          <Link href="/signup">
+            <IntlMessages id="common.signup" />
           </Link>
         </Box>
       </Box>
-
       <AppInfoView />
     </Box>
   );

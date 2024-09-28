@@ -30,15 +30,13 @@ const Banner = () => {
         margin: 'auto',
       }}
     >
-      <Box className='banner-content'>
-        <h1 className='banner_heading'>Crema Theme</h1>
+      <Box className="banner-content">
+        <h1 className="banner_heading">Crema Theme</h1>
         <h2 style={{ fontSize: '30px' }}>
-          Available with <span style={{ color: '#fff000' }}>MUI</span> and{' '}
-          <span>Ant Design + 💅</span>
+          Available with <span style={{ color: '#fff000' }}>MUI</span> and <span>Ant Design + 💅</span>
         </h2>
         <p style={{ fontSize: '24px', margin: '24px auto' }}>
-          Crema is the perfect UI Kit to start your next project. It provides a
-          clean and clear codebase.
+          Crema is the perfect UI Kit to start your next project. It provides a clean and clear codebase.
         </p>
       </Box>
       <Box
@@ -53,7 +51,7 @@ const Banner = () => {
         }}
       >
         {bannerItems.map((items) => (
-          <Box key={items.name} className='banner-items'>
+          <Box key={items.name} className="banner-items">
             <Box
               sx={{
                 backgroundColor: '#fff',
@@ -65,12 +63,7 @@ const Banner = () => {
                 borderRadius: '10px',
               }}
             >
-              <Image
-                src={`${items.img}`}
-                alt={items.name}
-                width={40}
-                height={40}
-              />
+              <Image src={`${items.img}`} alt={items.name} width={40} height={40} />
             </Box>
 
             <span>{items.name}</span>

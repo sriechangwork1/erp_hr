@@ -18,13 +18,12 @@ import { ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 const ProductDetail = () => {
   const params = useParams();
 
-  const [{ apiData: currentProduct, loading }, { setQueryParams }] =
-    useGetDataApi<ProductDataType>(
-      'ecommerce',
-      {} as ProductDataType,
-      { id: params?.all?.[0] ? params?.all?.[0] : 0 },
-      false,
-    );
+  const [{ apiData: currentProduct, loading }, { setQueryParams }] = useGetDataApi<ProductDataType>(
+    'ecommerce',
+    {} as ProductDataType,
+    { id: params?.all?.[0] ? params?.all?.[0] : 0 },
+    false,
+  );
 
   useEffect(() => {
     setQueryParams({ id: params?.all?.[0] });
@@ -35,7 +34,7 @@ const ProductDetail = () => {
       {loading ? (
         <AppLoader />
       ) : currentProduct ? (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppCard>
             <Header product={currentProduct} />
             <AppGridContainer>

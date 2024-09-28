@@ -1,15 +1,12 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import CardDetailItem from "./CardDetailItem";
-import Box from "@mui/material/Box";
-import MonthlyLimitItem from "./MonthlyLimitItem";
-import { Typography } from "@mui/material";
-import { useIntl } from "react-intl";
-import {
-  CardDetailsType,
-  CardDetailType,
-} from "@crema/types/models/dashboards/Crypto";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import CardDetailItem from './CardDetailItem';
+import Box from '@mui/material/Box';
+import MonthlyLimitItem from './MonthlyLimitItem';
+import { Typography } from '@mui/material';
+import { useIntl } from 'react-intl';
+import { CardDetailsType, CardDetailType } from '@crema/types/models/dashboards/Crypto';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   cardDetails: CardDetailsType;
@@ -18,18 +15,18 @@ const CardDetails = ({ cardDetails }: Props) => {
   return (
     <AppCard title={<IntlMessages id="dashboard.crypto.cardDetails" />}>
       <Box
-        sx={{
-          borderBottom: (theme) => `solid 2px ${theme.palette.divider}`,
+        sx={(theme) => ({
+          borderBottom: `solid 2px ${theme.palette.divider}`,
           pb: 1,
           mb: 2.5,
-        }}
+        })}
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
             mx: -2.5,
           }}
         >
@@ -48,12 +45,12 @@ const CardDetails = ({ cardDetails }: Props) => {
       </Box>
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
         }}
       >
         <Typography
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
             mb: 2.5,
           }}
         >
@@ -61,10 +58,10 @@ const CardDetails = ({ cardDetails }: Props) => {
         </Typography>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
             mx: -2.5,
           }}
         >

@@ -13,7 +13,7 @@ type Props = {
 const StatsDirCard = ({ data }: Props) => {
   return (
     <AppCard
-      className='card-hover'
+      className="card-hover"
       contentStyle={{
         p: 0,
         '&:last-of-type': {
@@ -38,7 +38,7 @@ const StatsDirCard = ({ data }: Props) => {
           }}
         >
           <Box
-            component='span'
+            component="span"
             sx={{
               mr: 3.5,
               height: 46,
@@ -60,19 +60,14 @@ const StatsDirCard = ({ data }: Props) => {
                 {data.icon}
               </Icon>
             ) : (
-              <Image
-                src={getAssetsUrl(data.iconImg)}
-                alt={data.name}
-                height={22}
-                width={24}
-              />
+              <Image src={getAssetsUrl(data.iconImg)} alt={data.name} height={22} width={24} />
             )}
           </Box>
 
           <Box sx={{ mr: 2, overflow: 'hidden' }}>
             <Typography
-              variant='h2'
-              component='h2'
+              variant="h2"
+              component="h2"
               sx={{
                 fontWeight: Fonts.SEMI_BOLD,
                 fontSize: 18,
@@ -81,14 +76,14 @@ const StatsDirCard = ({ data }: Props) => {
               {data.value}
             </Typography>
             <Typography
-              sx={{
+              sx={(theme) => ({
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
                 fontSize: 14,
-                color: (theme) => theme.palette.text.secondary,
+                color: theme.palette.text.secondary,
                 mt: 0.5,
-              }}
+              })}
             >
               {data.name}
             </Typography>
@@ -97,19 +92,18 @@ const StatsDirCard = ({ data }: Props) => {
         <Box
           sx={{
             position: 'relative',
-            '@media only screen and (min-width: 1200px) and (max-width: 1579px)':
-              {
-                display: 'none',
-              },
+            '@media only screen and (min-width: 1200px) and (max-width: 1579px)': {
+              display: 'none',
+            },
           }}
         >
           <Box
-            sx={{
-              color: (theme) => theme.palette.success.main,
+            sx={(theme) => ({
+              color: theme.palette.success.main,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
-            }}
+            })}
           >
             {!data?.hidePercent && (
               <span style={{ marginRight: 4 }}>
@@ -119,32 +113,40 @@ const StatsDirCard = ({ data }: Props) => {
                       ? '/assets/images/dashboard/up-arrow.svg'
                       : '/assets/images/dashboard/down-arrow.svg'
                   }
-                  alt='up-icon'
+                  alt="up-icon"
                   height={data.percentageChange > 0 ? 10 : 8}
                   width={data.percentageChange > 0 ? 10 : 8}
                 />
               </span>
             )}
             <Box
-              component='span'
-              sx={{
-                ml: 0.25,
-                fontSize: 14,
-                fontWeight: Fonts.SEMI_BOLD,
-                color: data.percentageChange > 0 ? '#11C15B' : '#F04F47',
-              }}
+              component="span"
+              sx={[
+                {
+                  ml: 0.25,
+                  fontSize: 14,
+                  fontWeight: Fonts.SEMI_BOLD,
+                },
+                data.percentageChange > 0
+                  ? {
+                      color: '#11C15B',
+                    }
+                  : {
+                      color: '#F04F47',
+                    },
+              ]}
             >
               {data.percentageChange > 0 ? '+' : ''}
               {data.percentageChange}%
             </Box>
           </Box>
           <Box
-            sx={{
+            sx={(theme) => ({
               mt: 2,
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
           >
-            <Typography variant='body2'>{data.duration}</Typography>
+            <Typography variant="body2">{data.duration}</Typography>
           </Box>
         </Box>
       </Box>

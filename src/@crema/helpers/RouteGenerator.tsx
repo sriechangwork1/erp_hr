@@ -29,26 +29,17 @@ const generateRoutes = (structure: any) => {
   const dynamicRoutes: RouteObject[] = [];
 
   if (anonymousStructure) {
-    dynamicRoutes.push(
-      ...routesGenerator(isAuthenticated, anonymousStructure, 'anonymous')
-    );
+    dynamicRoutes.push(...routesGenerator(isAuthenticated, anonymousStructure, 'anonymous'));
   }
 
   if (authorizedStructure) {
     dynamicRoutes.push(
-      ...routesGenerator(
-        isAuthenticated,
-        authorizedStructure,
-        'authorized',
-        isAuthenticated ? userRole : null
-      )
+      ...routesGenerator(isAuthenticated, authorizedStructure, 'authorized', isAuthenticated ? userRole : null),
     );
   }
 
   if (unAuthorizedStructure) {
-    dynamicRoutes.push(
-      ...routesGenerator(isAuthenticated, unAuthorizedStructure, 'unAuthorized')
-    );
+    dynamicRoutes.push(...routesGenerator(isAuthenticated, unAuthorizedStructure, 'unAuthorized'));
   }
   return dynamicRoutes;
 };
@@ -61,12 +52,7 @@ const generateRoutes = (structure: any) => {
  * redirectPath: String ----> To redirect to specific location
  * showRouteIf: to override when to show the component or when to [ Navigate ]
  */
-const routesGenerator = (
-  isAuthenticated = false,
-  routeSet: any = {},
-  type = 'anonymous',
-  userRole?: any
-): any => {
+const routesGenerator = (isAuthenticated = false, routeSet: any = {}, type = 'anonymous', userRole?: any): any => {
   const generatedRoutes: any[] = [];
   const { fallbackPath = '' } = routeSet || {};
 
@@ -90,16 +76,14 @@ const routesGenerator = (
           if (!path) {
             console.log(
               `A [route] is skipped because one of the following, No valid [path] prop provided for the route`,
-              isAuthenticated
+              isAuthenticated,
             );
           } else {
             if (isAnonymous) {
               return generatedRoutes.push(route);
             }
             if (isAuthorized) {
-              const renderCondition = isAuthorized
-                ? isAuthenticated
-                : !isAuthenticated;
+              const renderCondition = isAuthorized ? isAuthenticated : !isAuthenticated;
 
               if (Array.isArray(route.path)) {
                 route.path.forEach((path: string) => {
@@ -117,13 +101,8 @@ const routesGenerator = (
                           }
                       : {
                           path: path,
-                          element: (
-                            <Navigate
-                              to={redirectPath || fallbackPath}
-                              replace
-                            />
-                          ),
-                        }
+                          element: <Navigate to={redirectPath || fallbackPath} replace />,
+                        },
                   );
                 });
               } else {
@@ -137,17 +116,13 @@ const routesGenerator = (
                         }
                     : {
                         path: route.path,
-                        element: (
-                          <Navigate to={redirectPath || fallbackPath} replace />
-                        ),
-                      }
+                        element: <Navigate to={redirectPath || fallbackPath} replace />,
+                      },
                 );
               }
               return generatedRoutes;
             }
-            const renderCondition = isAuthorized
-              ? isAuthenticated
-              : !isAuthenticated;
+            const renderCondition = isAuthorized ? isAuthenticated : !isAuthenticated;
             if (Array.isArray(route.path)) {
               route.path.forEach((path: string) => {
                 generatedRoutes.push(
@@ -159,10 +134,8 @@ const routesGenerator = (
                       }
                     : {
                         path: path,
-                        element: (
-                          <Navigate to={redirectPath || fallbackPath} replace />
-                        ),
-                      }
+                        element: <Navigate to={redirectPath || fallbackPath} replace />,
+                      },
                 );
               });
             } else {
@@ -171,10 +144,8 @@ const routesGenerator = (
                   ? route
                   : {
                       path: route.path,
-                      element: (
-                        <Navigate to={redirectPath || fallbackPath} replace />
-                      ),
-                    }
+                      element: <Navigate to={redirectPath || fallbackPath} replace />,
+                    },
               );
             }
             return generatedRoutes;

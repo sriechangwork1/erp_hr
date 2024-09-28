@@ -25,14 +25,14 @@ const Social: React.FC<SocialProps> = ({ social }) => {
   return (
     <Box sx={{ position: 'relative' }}>
       <Typography
-        component='h3'
+        component="h3"
         sx={{
           fontSize: 16,
           fontWeight: Fonts.BOLD,
           mb: { xs: 3, lg: 5 },
         }}
       >
-        <IntlMessages id='common.socialLinks' />
+        <IntlMessages id="common.socialLinks" />
       </Typography>
       <Formik
         validateOnChange={false}

@@ -9,13 +9,7 @@ import {
   RiTodoLine,
 } from 'react-icons/ri';
 import { BiCarousel, BiCartAlt, BiErrorAlt, BiTask } from 'react-icons/bi';
-import {
-  BsBriefcase,
-  BsCart4,
-  BsChatDots,
-  BsCurrencyBitcoin,
-  BsQuestionDiamond,
-} from 'react-icons/bs';
+import { BsBriefcase, BsCart4, BsChatDots, BsCurrencyBitcoin, BsQuestionDiamond } from 'react-icons/bs';
 import { DiHtml5Multimedia } from 'react-icons/di';
 import {
   MdOutlineAnalytics,

@@ -103,21 +103,19 @@ const ContactListItem = ({
       >
         <span onClick={(event) => event.stopPropagation()}>
           <Checkbox
-            sx={{
-              color: (theme) => theme.palette.text.disabled,
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.disabled,
+            })}
             checked={checkedContacts.includes(contact.id)}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              onChangeCheckedContacts(event, contact.id)
-            }
-            color='primary'
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChangeCheckedContacts(event, contact.id)}
+            color="primary"
           />
         </span>
         <Box
           sx={{
             mr: 2.5,
           }}
-          component='span'
+          component="span"
           onClick={(event) => event.stopPropagation()}
         >
           <AppsStarredIcon item={contact} onChange={onChangeStarred} />
@@ -126,7 +124,7 @@ const ContactListItem = ({
           sx={{
             mr: 3,
           }}
-          component='span'
+          component="span"
         >
           {contact.image ? (
             <Avatar
@@ -150,7 +148,7 @@ const ContactListItem = ({
           )}
         </Box>
         <Box
-          component='span'
+          component="span"
           sx={{
             mr: 4,
             fontWeight: Fonts.MEDIUM,
@@ -164,7 +162,7 @@ const ContactListItem = ({
         </Box>
 
         <Box
-          component='span'
+          component="span"
           sx={{
             mr: 4,
             flex: 1,
@@ -177,7 +175,6 @@ const ContactListItem = ({
           {contact.email ? contact.email : null}
         </Box>
       </Box>
-
       <Box
         sx={{
           display: 'flex',
@@ -193,10 +190,10 @@ const ContactListItem = ({
             alignItems: 'center',
             width: { sm: 'calc(100% - 70px)' },
           }}
-          className='contactViewInfo'
+          className="contactViewInfo"
         >
           <Box
-            component='span'
+            component="span"
             sx={{
               mr: 4,
               flex: 1,
@@ -209,7 +206,7 @@ const ContactListItem = ({
             {contact.contact}
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               mr: 4,
               flex: 1,
@@ -224,14 +221,14 @@ const ContactListItem = ({
         </Box>
 
         <Box
-          component='span'
+          component="span"
           sx={{
             display: 'flex',
             alignItems: 'center',
             marginLeft: 'auto',
           }}
         >
-          <span className='conActionHoverHideRoot'>
+          <span className="conActionHoverHideRoot">
             <LabelOutlinedIcon
               sx={{
                 ml: 2,

@@ -28,12 +28,7 @@ const AppList: React.FC<AppListProps> = ({ footerProps, ...props }) => {
     <ListView
       {...props}
       ListFooterComponent={
-        footerProps ? (
-          <ListFooter
-            loading={footerProps.loading}
-            footerText={footerProps.footerText}
-          />
-        ) : null
+        footerProps ? <ListFooter loading={footerProps.loading} footerText={footerProps.footerText} /> : null
       }
     />
   );

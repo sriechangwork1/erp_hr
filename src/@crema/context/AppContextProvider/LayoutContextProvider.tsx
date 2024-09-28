@@ -1,11 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import defaultConfig from '@crema/constants/defaultConfig';
 import PropTypes from 'prop-types';
 
@@ -49,25 +43,17 @@ type LayoutContextProviderProps = {
   children: ReactNode;
 };
 
-const LayoutContextProvider: React.FC<LayoutContextProviderProps> = ({
-  children,
-}) => {
-  const [layoutType, updateLayoutType] = useState<string>(
-    defaultConfig.layoutType,
-  );
+const LayoutContextProvider: React.FC<LayoutContextProviderProps> = ({ children }) => {
+  const [layoutType, updateLayoutType] = useState<string>(defaultConfig.layoutType);
   const [navStyle, setNavStyle] = useState<string>(defaultConfig.navStyle);
 
   const updateNavStyle = useCallback((navStyle: string) => {
     setNavStyle(navStyle);
   }, []);
 
-  const [footerType, setFooterType] = useState<string>(
-    defaultConfig.footerType,
-  );
+  const [footerType, setFooterType] = useState<string>(defaultConfig.footerType);
   const [footer, setFooter] = useState<boolean>(defaultConfig.footer);
-  const [headerType, setHeaderType] = useState<string>(
-    defaultConfig.headerType,
-  );
+  const [headerType, setHeaderType] = useState<string>(defaultConfig.headerType);
 
   return (
     <LayoutContext.Provider

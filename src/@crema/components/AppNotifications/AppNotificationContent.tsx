@@ -16,10 +16,7 @@ type AppNotificationContentProps = {
   sxStyle: SxProps<Theme>;
 };
 
-const AppNotificationContent: React.FC<AppNotificationContentProps> = ({
-  onClose,
-  sxStyle,
-}) => {
+const AppNotificationContent: React.FC<AppNotificationContentProps> = ({ onClose, sxStyle }) => {
   return (
     <Box
       sx={{
@@ -31,17 +28,17 @@ const AppNotificationContent: React.FC<AppNotificationContentProps> = ({
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: '5px 20px',
           display: 'flex',
           alignItems: 'center',
           borderBottom: 1,
-          borderBottomColor: (theme) => theme.palette.divider,
+          borderBottomColor: theme.palette.divider,
           minHeight: { xs: 56, sm: 70 },
-        }}
+        })}
       >
-        <Typography component='h3'>
-          <IntlMessages id='common.notifications' />({notification.length})
+        <Typography component="h3">
+          <IntlMessages id="common.notifications" />({notification.length})
         </Typography>
         <IconButton
           sx={{
@@ -51,7 +48,7 @@ const AppNotificationContent: React.FC<AppNotificationContentProps> = ({
             color: 'text.secondary',
           }}
           onClick={onClose}
-          size='large'
+          size="large"
         >
           <CancelOutlinedIcon />
         </IconButton>
@@ -75,10 +72,10 @@ const AppNotificationContent: React.FC<AppNotificationContentProps> = ({
           marginTop: 'auto',
           height: 40,
         }}
-        variant='contained'
-        color='primary'
+        variant="contained"
+        color="primary"
       >
-        <IntlMessages id='common.viewAll' />
+        <IntlMessages id="common.viewAll" />
       </Button>
     </Box>
   );

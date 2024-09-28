@@ -13,21 +13,13 @@ type AppsDeleteIconProps = {
   sx: SxProps<Theme>;
 };
 
-const AppsDeleteIcon: React.FC<AppsDeleteIconProps> = ({
-  deleteAction,
-  deleteTitle,
-  sx,
-}) => {
+const AppsDeleteIcon: React.FC<AppsDeleteIconProps> = ({ deleteAction, deleteTitle, sx }) => {
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
 
   return (
     <>
       <AppTooltip title={<IntlMessages id="common.trash" />}>
-        <IconButton
-          sx={sx}
-          size="large"
-          onClick={() => setDeleteDialogOpen(true)}
-        >
+        <IconButton sx={sx} size="large" onClick={() => setDeleteDialogOpen(true)}>
           <DeleteOutlinedIcon />
         </IconButton>
       </AppTooltip>

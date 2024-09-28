@@ -24,15 +24,14 @@ import type { CRMType } from '@crema/types/models/dashboards/CRM';
 import StatsDirCard from '../CommonComponents/StatsDirCard';
 
 const CRM = () => {
-  const [{ apiData: crmData, loading }] =
-    useGetDataApi<CRMType>('/dashboard/crm');
+  const [{ apiData: crmData, loading }] = useGetDataApi<CRMType>('/dashboard/crm');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppGridContainer>
             {crmData.stateData.map((data) => (
               <Grid key={data.id} item xs={12} sm={6} lg={3}>
@@ -75,9 +74,7 @@ const CRM = () => {
                       <Report />
                     </Grid>
                     <Grid item xs={12} sm={6} lg={12}>
-                      <SocialMediaAdvertise
-                        socialMediaData={crmData.socialMediaData}
-                      />
+                      <SocialMediaAdvertise socialMediaData={crmData.socialMediaData} />
                     </Grid>
                   </AppGridContainer>
                 </Grid>

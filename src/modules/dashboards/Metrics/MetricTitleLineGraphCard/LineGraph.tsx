@@ -1,5 +1,5 @@
 import React from 'react';
-import {Line, LineChart} from 'recharts';
+import { Line, LineChart } from 'recharts';
 import Box from '@mui/material/Box';
 
 type LineGraphProps = {
@@ -8,8 +8,7 @@ type LineGraphProps = {
 };
 
 const LineGraph = (props: LineGraphProps) => {
-  const {data, graphColor} = props;
-
+  const { data, graphColor } = props;
 
   return (
     <Box
@@ -20,25 +19,12 @@ const LineGraph = (props: LineGraphProps) => {
         },
       }}
     >
-      <LineChart className='lineChart' width={300} height={40} data={data}>
-        <Line
-          type='monotone'
-          dataKey='value'
-          stroke={graphColor}
-          strokeWidth={2}
-          dot={false}
-        />
+      <LineChart className="lineChart" width={300} height={40} data={data}>
+        <Line type="monotone" dataKey="value" stroke={graphColor} strokeWidth={2} dot={false} />
       </LineChart>
 
       <LineChart width={300} height={40} data={data}>
-        <Line
-          type='monotone'
-          dataKey='value'
-          stroke={graphColor}
-          strokeWidth={2}
-          dot={false}
-          strokeDasharray='5 5'
-        />
+        <Line type="monotone" dataKey="value" stroke={graphColor} strokeWidth={2} dot={false} strokeDasharray="5 5" />
       </LineChart>
     </Box>
   );

@@ -22,16 +22,14 @@ import HeartRate from './HeartRate';
 import YourActivity from './YourActivity';
 
 const HealthCarePage = () => {
-  const [{ apiData: healthCare, loading }] = useGetDataApi<HealthCareType>(
-    '/dashboard/health_care',
-  );
+  const [{ apiData: healthCare, loading }] = useGetDataApi<HealthCareType>('/dashboard/health_care');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <AppGridContainer>
             {healthCare.salesState.map((data, index) => (
               <Grid item xs={12} sm={6} lg={3} key={index}>

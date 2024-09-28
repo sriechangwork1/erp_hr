@@ -14,15 +14,10 @@ type CartTableProps = {
   onDecrement: (data: CartItemsType) => void;
 };
 
-const CartTable = ({
-  cartItems,
-  onRemoveItem,
-  onIncrement,
-  onDecrement,
-}: CartTableProps) => {
+const CartTable = ({ cartItems, onRemoveItem, onIncrement, onDecrement }: CartTableProps) => {
   return (
     <AppTableContainer>
-      <Table stickyHeader className='table'>
+      <Table stickyHeader className="table">
         <TableHead>
           <TableHeading />
         </TableHead>

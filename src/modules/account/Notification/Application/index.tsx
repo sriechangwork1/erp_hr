@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import { ActivityType } from "@crema/types/models/account";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import { ActivityType } from '@crema/types/models/account';
 
 type ActivityProps = {
   application: ActivityType[];

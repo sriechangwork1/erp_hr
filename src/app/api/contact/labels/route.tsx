@@ -22,9 +22,7 @@ export const PUT = async (request: NextRequest) => {
         return contact;
       }
     });
-    const updatedContacts = contactList.filter((contact) =>
-      contactIds.includes(contact.id),
-    );
+    const updatedContacts = contactList.filter((contact) => contactIds.includes(contact.id));
     return new Response(JSON.stringify(updatedContacts), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

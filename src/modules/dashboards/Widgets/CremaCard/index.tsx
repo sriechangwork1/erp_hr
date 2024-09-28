@@ -12,12 +12,7 @@ type CremaCardProps = {
   icon: any;
 };
 
-const CremaCard: React.FC<CremaCardProps> = ({
-  data,
-  color,
-  bgColor,
-  icon,
-}) => {
+const CremaCard: React.FC<CremaCardProps> = ({ data, color, bgColor, icon }) => {
   return (
     <AppCard
       sxStyle={{
@@ -42,7 +37,7 @@ const CremaCard: React.FC<CremaCardProps> = ({
           }}
         >
           <Box>
-            <Image width={40} height={52} alt='logo' src={data.image} />
+            <Image width={40} height={52} alt="logo" src={data.image} />
           </Box>
           <Box
             sx={{
@@ -52,7 +47,7 @@ const CremaCard: React.FC<CremaCardProps> = ({
             }}
           >
             <Box
-              component='h4'
+              component="h4"
               sx={{
                 color: 'primary.contrastText',
                 fontWeight: Fonts.BOLD,
@@ -67,7 +62,7 @@ const CremaCard: React.FC<CremaCardProps> = ({
               {data.name}
             </Box>
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'primary.contrastText',
                 mb: 0,
@@ -83,7 +78,7 @@ const CremaCard: React.FC<CremaCardProps> = ({
           </Box>
         </Box>
         <Box
-          component='span'
+          component="span"
           sx={{
             ml: 'auto',
             fontSize: 20,
@@ -94,7 +89,7 @@ const CremaCard: React.FC<CremaCardProps> = ({
       </Box>
 
       <Box
-        component='p'
+        component="p"
         sx={{
           color: 'primary.contrastText',
           mb: { xs: 1, xl: 4 },

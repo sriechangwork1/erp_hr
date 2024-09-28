@@ -13,7 +13,7 @@ const CardWrapper = ({ children, ...rest }: Props) => {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         px: 7.5,
         py: 5,
         borderRadius: cardRadius / 4,
@@ -27,7 +27,7 @@ const CardWrapper = ({ children, ...rest }: Props) => {
           top: -50,
           zIndex: 0,
           display: 'flex',
-          color: (theme) => theme.palette.primary.main,
+          color: theme.palette.primary.main,
           '& .popularText': {
             position: 'relative',
             top: -10,
@@ -44,7 +44,7 @@ const CardWrapper = ({ children, ...rest }: Props) => {
             borderRadius: '50%',
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

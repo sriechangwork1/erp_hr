@@ -20,7 +20,7 @@ const Error404 = () => {
   };
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           py: { xl: 8 },
@@ -43,7 +43,7 @@ const Error404 = () => {
             },
           }}
         >
-          <Image alt='404' src={Logo} width={400} height={400} />;
+          <Image alt="404" src={Logo} width={400} height={400} />;
         </Box>
         <Box
           sx={{
@@ -51,14 +51,14 @@ const Error404 = () => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: { xs: 3, xl: 4 },
               fontSize: { xs: 20, md: 24 },
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <IntlMessages id='error.404Error' />.
+            <IntlMessages id="error.404Error" />.
           </Box>
           <Box
             sx={{
@@ -69,15 +69,15 @@ const Error404 = () => {
             }}
           >
             <Typography>
-              <IntlMessages id='error.message1' />
+              <IntlMessages id="error.message1" />
             </Typography>
             <Typography>
-              <IntlMessages id='error.message2' />
+              <IntlMessages id="error.message2" />
             </Typography>
           </Box>
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             sx={{
               fontWeight: Fonts.MEDIUM,
               fontSize: 16,
@@ -85,7 +85,7 @@ const Error404 = () => {
             }}
             onClick={onGoBackToHome}
           >
-            <IntlMessages id='error.goBackToHome' />
+            <IntlMessages id="error.goBackToHome" />
           </Button>
         </Box>
       </Box>

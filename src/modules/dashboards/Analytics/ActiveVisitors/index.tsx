@@ -1,12 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import VisitorsGraph from "./VisitorsGraph";
-import Link from "@mui/material/Link";
-import { green, red } from "@mui/material/colors";
-import { ActiveVisitorsType } from "@crema/types/models/dashboards/Analytics";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import VisitorsGraph from './VisitorsGraph';
+import Link from '@mui/material/Link';
+import { green, red } from '@mui/material/colors';
+import { ActiveVisitorsType } from '@crema/types/models/dashboards/Analytics';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   data: ActiveVisitorsType;
@@ -26,7 +26,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
         >
           <Box
             sx={{
-              color: "#49bd65",
+              color: '#49bd65',
               mb: 1,
               fontWeight: Fonts.BOLD,
               fontSize: 16,
@@ -37,7 +37,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
           </Box>
           <Box
             sx={{
-              color: "#49bd65AA",
+              color: '#49bd65AA',
             }}
           >
             {<IntlMessages id="dashboard.analytics.pageViewPerMinutes" />}
@@ -45,7 +45,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
         </Box>
         <Box
           sx={{
-            mt: "auto",
+            mt: 'auto',
           }}
         >
           <VisitorsGraph data={data.graphData} />
@@ -60,7 +60,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
       >
         <Box
           sx={{
-            position: "relative",
+            position: 'relative',
           }}
         >
           <Box
@@ -70,7 +70,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
           >
             <Box
               sx={{
-                display: "inline-block",
+                display: 'inline-block',
                 fontWeight: Fonts.MEDIUM,
                 fontSize: 18,
               }}
@@ -79,12 +79,20 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
               {data.value}
             </Box>
             <Box
-              sx={{
-                ml: 3,
-                fontSize: 16,
-                fontWeight: Fonts.MEDIUM,
-                color: data.growth > 0.0 ? green[500] : red[500],
-              }}
+              sx={[
+                {
+                  ml: 3,
+                  fontSize: 16,
+                  fontWeight: Fonts.MEDIUM,
+                },
+                data.growth > 0.0
+                  ? {
+                      color: green[500],
+                    }
+                  : {
+                      color: red[500],
+                    },
+              ]}
               component="span"
             >
               {data.growth}% Then yesterday
@@ -94,7 +102,7 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
             component="p"
             sx={{
               fontSize: 14,
-              color: "text.secondary",
+              color: 'text.secondary',
               mb: 1,
             }}
           >
@@ -103,16 +111,16 @@ const ActiveVisitors = ({ data = {} as ActiveVisitorsType }: Props) => {
         </Box>
         <Box
           sx={{
-            textAlign: "right",
+            textAlign: 'right',
           }}
         >
           <Link
             component="button"
             sx={{
-              color: "secondary.main",
+              color: 'secondary.main',
               fontSize: 16,
               marginTop: { xs: 1.5, xl: 4 },
-              textDecoration: "none",
+              textDecoration: 'none',
             }}
           >
             View Report

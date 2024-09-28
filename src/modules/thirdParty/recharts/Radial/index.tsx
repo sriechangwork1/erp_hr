@@ -10,17 +10,11 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 const Radial = () => {
   return (
     <>
-      <AppComponentHeader
-        title='Radial Bar Chart'
-        refUrl='http://recharts.org/en-US/api/RadialBarChart/'
-      />
+      <AppComponentHeader title="Radial Bar Chart" refUrl="http://recharts.org/en-US/api/RadialBarChart/" />
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard
-            title='Simple Radial Bar Chart'
-            component={SimpleRadialBarChart}
-          />
+          <AppComponentCard title="Simple Radial Bar Chart" component={SimpleRadialBarChart} />
         </Grid>
       </AppGridContainer>
     </>

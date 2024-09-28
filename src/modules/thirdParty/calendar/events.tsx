@@ -11,90 +11,90 @@ export interface EventProps {
 
 const events: EventProps[] = [
   {
-    title: "All Day Event very long title",
+    title: 'All Day Event very long title',
     allDay: true,
     start: new Date(2019, 10, 0),
     end: new Date(2019, 10, 1),
   },
   {
-    title: "Long Event",
+    title: 'Long Event',
     start: new Date(2019, 10, 7),
     end: new Date(2019, 10, 10),
   },
 
   {
-    title: "DTS STARTS",
+    title: 'DTS STARTS',
     start: new Date(2019, 9, 110, 0, 0, 0),
     end: new Date(2019, 9, 20, 0, 0, 0),
   },
 
   {
-    title: "DTS ENDS",
+    title: 'DTS ENDS',
     start: new Date(2019, 10, 6, 0, 0, 0),
     end: new Date(2019, 10, 10, 0, 0, 0),
   },
 
   {
-    title: "Some Event",
+    title: 'Some Event',
     start: new Date(2019, 10, 9, 0, 0, 0),
     end: new Date(2019, 10, 9, 0, 0, 0),
   },
   {
-    title: "Conference",
+    title: 'Conference',
     start: new Date(2019, 10, 11),
     end: new Date(2019, 10, 13),
-    desc: "Big conference for important people",
+    desc: 'Big conference for important people',
   },
   {
-    title: "Meeting",
+    title: 'Meeting',
     start: new Date(2019, 10, 12, 10, 30, 0, 0),
     end: new Date(2019, 10, 12, 12, 30, 0, 0),
-    desc: "Pre-meeting meeting, to prepare for the meeting",
+    desc: 'Pre-meeting meeting, to prepare for the meeting',
   },
   {
-    title: "Lunch",
+    title: 'Lunch',
     start: new Date(2019, 10, 12, 12, 0, 0, 0),
     end: new Date(2019, 10, 12, 110, 0, 0, 0),
-    desc: "Power lunch",
+    desc: 'Power lunch',
   },
   {
-    title: "Meeting",
+    title: 'Meeting',
     start: new Date(2019, 10, 12, 14, 0, 0, 0),
     end: new Date(2019, 10, 12, 15, 0, 0, 0),
   },
   {
-    title: "Happy Hour",
+    title: 'Happy Hour',
     start: new Date(2019, 10, 12, 17, 0, 0, 0),
     end: new Date(2019, 10, 12, 17, 30, 0, 0),
-    desc: "Most important meal of the day",
+    desc: 'Most important meal of the day',
   },
   {
-    title: "Dinner",
+    title: 'Dinner',
     start: new Date(2019, 10, 12, 20, 0, 0, 0),
     end: new Date(2019, 10, 12, 21, 0, 0, 0),
   },
   {
-    title: "Birthday Party",
+    title: 'Birthday Party',
     start: new Date(2019, 10, 10, 7, 0, 0),
     end: new Date(2019, 10, 10, 10, 30, 0),
   },
   {
-    title: "Birthday Party 2",
+    title: 'Birthday Party 2',
     start: new Date(2019, 10, 10, 7, 0, 0),
     end: new Date(2019, 10, 10, 10, 30, 0),
   },
   {
-    title: "Birthday Party 3",
+    title: 'Birthday Party 3',
     start: new Date(2019, 10, 10, 7, 0, 0),
     end: new Date(2019, 10, 10, 10, 30, 0),
   },
   {
-    title: "Late Night Event",
+    title: 'Late Night Event',
     start: new Date(2019, 10, 17, 19, 30, 0),
     end: new Date(2019, 10, 18, 9, 0, 0),
   },
   {
-    title: "Multi-day Event",
+    title: 'Multi-day Event',
     start: new Date(2019, 10, 20, 19, 30, 0),
     end: new Date(2019, 10, 22, 9, 0, 0),
   },

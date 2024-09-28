@@ -38,8 +38,8 @@ const TableItem = ({ data }: TableItemProps) => {
   };
 
   return (
-    <TableRow key={data.id} className='item-hover'>
-      <StyledTableCell align='left' sx={{ width: 400 }}>
+    <TableRow key={data.id} className="item-hover">
+      <StyledTableCell align="left" sx={{ width: 400 }}>
         <Box
           sx={{
             display: 'flex',
@@ -55,16 +55,16 @@ const TableItem = ({ data }: TableItemProps) => {
               marginRight: 10,
             }}
             src={data?.image?.[0]?.src || ''}
-            alt='crema-logo'
+            alt="crema-logo"
             height={40}
             width={40}
           />
           {ellipsisLines(data.title)}
         </Box>
       </StyledTableCell>
-      <StyledTableCell align='left'>{data.SKU}</StyledTableCell>
-      <StyledTableCell align='left'>{data.createdAt}</StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">{data.SKU}</StyledTableCell>
+      <StyledTableCell align="left">{data.createdAt}</StyledTableCell>
+      <StyledTableCell align="left">
         <Box
           sx={{
             color: getPaymentStatusColor(),
@@ -78,8 +78,8 @@ const TableItem = ({ data }: TableItemProps) => {
           {data.inStock ? 'In Stock' : 'Out of Stock'}
         </Box>
       </StyledTableCell>
-      <StyledTableCell align='left'>${data.mrp}</StyledTableCell>
-      <TableCell align='right'>
+      <StyledTableCell align="left">${data.mrp}</StyledTableCell>
+      <TableCell align="right">
         <OrderActions id={data.id} />
       </TableCell>
     </TableRow>

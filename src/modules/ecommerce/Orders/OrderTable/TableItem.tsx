@@ -1,18 +1,18 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import Box from "@mui/material/Box";
-import OrderActions from "./OrderActions";
-import { styled } from "@mui/material/styles";
-import { RecentOrdersType } from "@crema/types/models/ecommerce/EcommerceApp";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
+import OrderActions from './OrderActions';
+import { styled } from '@mui/material/styles';
+import { RecentOrdersType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const StyledTableCell = styled(TableCell)(() => ({
   fontSize: 14,
   padding: 8,
-  "&:first-of-type": {
+  '&:first-of-type': {
     paddingLeft: 20,
   },
-  "&:last-of-type": {
+  '&:last-of-type': {
     paddingRight: 20,
   },
 }));
@@ -24,14 +24,14 @@ type TableItemProps = {
 const TableItem: React.FC<TableItemProps> = ({ data }) => {
   const getPaymentStatusColor = () => {
     switch (data.status) {
-      case "Pending": {
-        return "#F84E4E";
+      case 'Pending': {
+        return '#F84E4E';
       }
-      case "Delivered": {
-        return "#43C888";
+      case 'Delivered': {
+        return '#43C888';
       }
       default: {
-        return "#E2A72E";
+        return '#E2A72E';
       }
     }
   };
@@ -40,11 +40,11 @@ const TableItem: React.FC<TableItemProps> = ({ data }) => {
     <TableRow key={data.id} className="item-hover">
       <StyledTableCell component="th" scope="row">
         <Box
-          sx={{
-            color: "primary.main",
-            borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
-            display: "inline-block",
-          }}
+          sx={(theme) => ({
+            color: 'primary.main',
+            borderBottom: `1px solid ${theme.palette.primary.main}`,
+            display: 'inline-block',
+          })}
         >
           {data.id}
         </Box>
@@ -58,11 +58,11 @@ const TableItem: React.FC<TableItemProps> = ({ data }) => {
         <Box
           sx={{
             color: getPaymentStatusColor(),
-            backgroundColor: getPaymentStatusColor() + "44",
-            padding: "3px 5px",
+            backgroundColor: getPaymentStatusColor() + '44',
+            padding: '3px 5px',
             borderRadius: 1,
             fontSize: 14,
-            display: "inline-block",
+            display: 'inline-block',
           }}
         >
           {data.status}

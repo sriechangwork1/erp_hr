@@ -38,13 +38,13 @@ const Header = () => {
           >
             <Image
               src={'/assets/images/logo.png'}
-              alt='logo'
+              alt="logo"
               width={100}
               height={80}
               style={{ objectFit: 'contain' }}
             />
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'text.primary',
                 fontSize: { xs: 26, md: 30 },
@@ -70,7 +70,7 @@ const Header = () => {
               fontSize: { xs: 14, sm: 16 },
             }}
           >
-            <IntlMessages id='invoice.invoiceTo' />
+            <IntlMessages id="invoice.invoiceTo" />
           </Box>
           <Box
             sx={{
@@ -92,7 +92,7 @@ const Header = () => {
           }}
         >
           <Typography
-            component='p'
+            component="p"
             sx={{
               mb: 1,
               fontWeight: Fonts.BOLD,
@@ -102,7 +102,7 @@ const Header = () => {
           >
             A
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'text.secondary',
                 ml: 3,
@@ -113,7 +113,7 @@ const Header = () => {
             </Box>
           </Typography>
           <Typography
-            component='p'
+            component="p"
             sx={{
               mb: 1,
               fontWeight: Fonts.BOLD,
@@ -123,7 +123,7 @@ const Header = () => {
           >
             E
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'text.secondary',
                 ml: 3,
@@ -134,7 +134,7 @@ const Header = () => {
             </Box>
           </Typography>
           <Typography
-            component='p'
+            component="p"
             sx={{
               mb: 1,
               fontWeight: Fonts.BOLD,
@@ -144,7 +144,7 @@ const Header = () => {
           >
             P
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'text.secondary',
                 ml: 3,
@@ -158,7 +158,7 @@ const Header = () => {
       </Box>
       <Box sx={{ ml: { sm: 2 } }}>
         <Box
-          component='h1'
+          component="h1"
           sx={{
             mb: { xs: 5, sm: 6, lg: 7, xl: 12 },
             color: 'text.primary',
@@ -169,7 +169,7 @@ const Header = () => {
             textAlign: { xs: 'center', sm: 'right' },
           }}
         >
-          <IntlMessages id='invoice.invoice' />
+          <IntlMessages id="invoice.invoice" />
         </Box>
         <Box
           sx={{
@@ -188,10 +188,10 @@ const Header = () => {
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <Box component='span'>
-              <IntlMessages id='invoice.invoiceDate' /> :
+            <Box component="span">
+              <IntlMessages id="invoice.invoiceDate" /> :
             </Box>
-            <Box component='span' sx={{ ml: 2 }}>
+            <Box component="span" sx={{ ml: 2 }}>
               {invoiceData.invoice.date}
             </Box>
           </Box>
@@ -204,10 +204,10 @@ const Header = () => {
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <Box component='span'>
-              <IntlMessages id='invoice.invoiceNumber' /> :
+            <Box component="span">
+              <IntlMessages id="invoice.invoiceNumber" /> :
             </Box>
-            <Box component='span' sx={{ ml: 2 }}>
+            <Box component="span" sx={{ ml: 2 }}>
               {invoiceData.invoice.id}
             </Box>
           </Box>
@@ -225,7 +225,7 @@ const Header = () => {
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <IntlMessages id='invoice.totalAmount' />
+            <IntlMessages id="invoice.totalAmount" />
           </Box>
           <Box
             sx={{

@@ -1,17 +1,17 @@
-import React from "react";
-import StatGraphs from "./StatGraphs";
-import AppCard from "@crema/components/AppCard";
-import AppSelect from "@crema/components/AppSelect";
-import { useIntl } from "react-intl";
-import { VisitorsPageViewType } from "@crema/types/models/dashboards/Analytics";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import StatGraphs from './StatGraphs';
+import AppCard from '@crema/components/AppCard';
+import AppSelect from '@crema/components/AppSelect';
+import { useIntl } from 'react-intl';
+import { VisitorsPageViewType } from '@crema/types/models/dashboards/Analytics';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   data: VisitorsPageViewType[];
 };
 const VisitorPageView = ({ data = [] }: Props) => {
   const handleSelectionType = (data: VisitorsPageViewType) => {
-    console.log("data: ", data);
+    console.log('data: ', data);
   };
   const { messages } = useIntl();
   return (
@@ -20,12 +20,8 @@ const VisitorPageView = ({ data = [] }: Props) => {
       title={<IntlMessages id="dashboard.analytics.visitorsPageViews" />}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }

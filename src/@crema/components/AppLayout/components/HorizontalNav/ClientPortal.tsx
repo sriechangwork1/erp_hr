@@ -6,10 +6,7 @@ type ClientOnlyPortalProps = {
   selector: string;
 };
 
-const ClientOnlyPortal: React.FC<ClientOnlyPortalProps> = ({
-  children,
-  selector,
-}) => {
+const ClientOnlyPortal: React.FC<ClientOnlyPortalProps> = ({ children, selector }) => {
   const ref = useRef<Element>();
   const [mounted, setMounted] = useState(false);
 

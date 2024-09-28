@@ -1,33 +1,30 @@
-import React from "react";
-import GoalProgressGraph from "./GoalProgressGraph";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import AppCard from "@crema/components/AppCard";
-import { ProgressGraphDaumType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import GoalProgressGraph from './GoalProgressGraph';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import AppCard from '@crema/components/AppCard';
+import { ProgressGraphDaumType } from '@crema/types/models/dashboards/CRM';
 
 type Props = {
   progressGraphData: ProgressGraphDaumType[];
 };
 const GoalProgress = ({ progressGraphData = [] }: Props) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={<IntlMessages id="dashboard.goalProgress" />}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={<IntlMessages id="dashboard.goalProgress" />}>
       <GoalProgressGraph progressGraphData={progressGraphData} />
       <Box
         sx={{
           mt: 5,
           px: 2,
           mb: 1,
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Box
@@ -36,8 +33,8 @@ const GoalProgress = ({ progressGraphData = [] }: Props) => {
               height: { xs: 12, xl: 16 },
               width: { xs: 12, xl: 16 },
               mr: 2,
-              borderRadius: "50%",
-              backgroundColor: "primary.main",
+              borderRadius: '50%',
+              backgroundColor: 'primary.main',
             }}
           />
           <Box
@@ -51,9 +48,9 @@ const GoalProgress = ({ progressGraphData = [] }: Props) => {
         </Box>
         <Box
           sx={{
-            ml: "auto",
-            display: "flex",
-            alignItems: "center",
+            ml: 'auto',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Box
@@ -62,8 +59,8 @@ const GoalProgress = ({ progressGraphData = [] }: Props) => {
               height: { xs: 12, xl: 16 },
               width: { xs: 12, xl: 16 },
               mr: 2,
-              borderRadius: "50%",
-              backgroundColor: "error.main",
+              borderRadius: '50%',
+              backgroundColor: 'error.main',
             }}
           />
           <Box

@@ -1,14 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { CustomizerItemWrapper } from "../index.style";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import themeColorSets from "@crema/constants/ColorSets";
-import CustomColorCell from "../CustomColorCell";
-import {
-  useThemeActionsContext,
-  useThemeContext,
-} from "@crema/context/AppContextProvider/ThemeContextProvider";
-import AppGrid from "../../AppGrid";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { CustomizerItemWrapper } from '../index.style';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import themeColorSets from '@crema/constants/ColorSets';
+import CustomColorCell from '../CustomColorCell';
+import { useThemeActionsContext, useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
+import AppGrid from '../../AppGrid';
 
 export type ThemeColorsProps = {
   mode: string;
@@ -48,7 +45,11 @@ const ThemeColors = () => {
       <Box component="h4" sx={{ mb: 2 }}>
         <IntlMessages id="customizer.themeColors" />
       </Box>
-      <Box mt={4}>
+      <Box
+        sx={{
+          mt: 4,
+        }}
+      >
         <AppGrid
           data={themeColorSets}
           itemPadding={5}
@@ -57,11 +58,7 @@ const ThemeColors = () => {
             sm: 2,
           }}
           renderRow={(colorSet, index) => (
-            <CustomColorCell
-              key={index}
-              updateThemeColors={updateThemeColors}
-              themeColorSet={colorSet}
-            />
+            <CustomColorCell key={index} updateThemeColors={updateThemeColors} themeColorSet={colorSet} />
           )}
         />
       </Box>

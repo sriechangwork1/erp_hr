@@ -7,13 +7,13 @@ import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
-import {Typography} from '@mui/material';
-import {Fonts} from '@crema/constants/AppEnums';
+import { Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
 import Logo from '../../../assets/user/forgot-password.png';
 import Image from 'next/image';
-import {useIntl} from 'react-intl';
+import { useIntl } from 'react-intl';
 
 const ForgetPassword = () => {
   const { messages } = useIntl();
@@ -26,7 +26,7 @@ const ForgetPassword = () => {
   });
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           pb: 6,
@@ -44,8 +44,7 @@ const ForgetPassword = () => {
             width: '100%',
             textAlign: 'center',
             overflow: 'hidden',
-            boxShadow:
-              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           }}
         >
           <Grid container>
@@ -63,13 +62,7 @@ const ForgetPassword = () => {
                   },
                 }}
               >
-                <Image
-                  alt='forgot-password'
-                  src={'/assets/user/forgot-password.png'}
-                  width={442}
-                  height={442}
-                />
-                ;
+                <Image alt="forgot-password" src={'/assets/user/forgot-password.png'} width={442} height={442} />;
               </Box>
             </Grid>
 
@@ -88,14 +81,14 @@ const ForgetPassword = () => {
                     fontSize: 20,
                   }}
                 >
-                  <IntlMessages id='common.forgetPassword' />
+                  <IntlMessages id="common.forgetPassword" />
                 </Box>
                 <Box sx={{ mb: 5, fontSize: 14 }}>
-                  <Typography component='p'>
-                    <IntlMessages id='common.forgetPasswordTextOne' />
+                  <Typography component="p">
+                    <IntlMessages id="common.forgetPasswordTextOne" />
                   </Typography>
-                  <Typography component='p'>
-                    <IntlMessages id='common.forgetPasswordTextTwo' />
+                  <Typography component="p">
+                    <IntlMessages id="common.forgetPasswordTextTwo" />
                   </Typography>
                 </Box>
                 <Formik
@@ -114,24 +107,24 @@ const ForgetPassword = () => {
                     <Form>
                       <Box sx={{ mb: { xs: 3, xl: 4 } }}>
                         <AppTextField
-                          name='email'
-                          label={<IntlMessages id='common.emailAddress' />}
+                          name="email"
+                          label={<IntlMessages id="common.emailAddress" />}
                           sx={{
                             width: '100%',
                           }}
-                          variant='outlined'
+                          variant="outlined"
                         />
                       </Box>
 
                       <Button
-                        variant='contained'
-                        color='primary'
+                        variant="contained"
+                        color="primary"
                         disabled={isSubmitting}
                         sx={{
                           width: '100%',
                           height: 44,
                         }}
-                        type='submit'
+                        type="submit"
                       >
                         Send password
                       </Button>

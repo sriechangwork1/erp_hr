@@ -1,6 +1,6 @@
 import React from 'react';
-import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis,} from 'recharts';
-import {useTheme} from '@mui/material';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
+import { useTheme } from '@mui/material';
 
 const data = [
   {
@@ -83,7 +83,7 @@ const data = [
 const SalesChart = () => {
   const theme = useTheme();
   return (
-    <ResponsiveContainer width='100%' height={250}>
+    <ResponsiveContainer width="100%" height={250}>
       <BarChart
         data={data}
         margin={{
@@ -93,30 +93,21 @@ const SalesChart = () => {
           bottom: 0,
         }}
       >
-        <CartesianGrid
-          strokeDasharray='3 1'
-          horizontal={true}
-          vertical={false}
-        />
-        <XAxis dataKey='days' />
+        <CartesianGrid strokeDasharray="3 1" horizontal={true} vertical={false} />
+        <XAxis dataKey="days" />
         {/*<YAxis />*/}
         <Tooltip
-          labelStyle={{color: 'black'}}
+          labelStyle={{ color: 'black' }}
           contentStyle={{
             borderRadius: 12,
             borderColor: '#31354188',
             background: '#FFFFFFCA',
           }}
         />
+        <Bar stackId="a" dataKey="return" fill={theme.palette.secondary.main} barSize={8} />
         <Bar
-          stackId='a'
-          dataKey='return'
-          fill={theme.palette.secondary.main}
-          barSize={8}
-        />
-        <Bar
-          stackId='a'
-          dataKey='order'
+          stackId="a"
+          dataKey="order"
           fill={theme.palette.primary.main}
           // margin={{bottom: -15}}
           barSize={8}

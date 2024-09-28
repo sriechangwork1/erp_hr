@@ -22,15 +22,10 @@ const PromoCard = () => {
             mb: 2,
           }}
         >
-          <Image
-            src={'/assets/images/dashboard/academy/promo.png'}
-            alt='promo'
-            width={155}
-            height={180}
-          />
+          <Image src={'/assets/images/dashboard/academy/promo.png'} alt="promo" width={155} height={180} />
         </Box>
         <Box
-          component='p'
+          component="p"
           sx={{
             mb: 2,
             fontSize: 14,
@@ -41,7 +36,7 @@ const PromoCard = () => {
           Do you want to get
         </Box>
         <Box
-          component='p'
+          component="p"
           sx={{
             mb: 3,
             color: '#fff',
@@ -51,8 +46,8 @@ const PromoCard = () => {
         </Box>
         <Box>
           <Button
-            variant='contained'
-            size='small'
+            variant="contained"
+            size="small"
             sx={{
               backgroundColor: '#fff',
               color: '#000',

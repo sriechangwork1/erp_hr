@@ -9,10 +9,7 @@ export const generateUniqueID = () => {
   return `v1-${Date.now()}-${Math.floor(Math.random() * (9e12 - 1)) + 1e12}`;
 };
 
-export const ellipsisLines = (
-  content: string,
-  placement: TooltipProps['placement'] = 'top'
-) => {
+export const ellipsisLines = (content: string, placement: TooltipProps['placement'] = 'top') => {
   if (content) {
     return (
       <Tooltip placement={placement} title={content}>
@@ -50,7 +47,7 @@ export const formatCurrency = (
     language: string;
     currency: string;
   },
-  decimalDigits: number
+  decimalDigits: number,
 ) => {
   return new Intl.NumberFormat(currencyFormat?.language || 'en-IN', {
     style: 'currency',

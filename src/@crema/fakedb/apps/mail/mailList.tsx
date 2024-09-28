@@ -1,5 +1,5 @@
-import { MailType, SenderType } from "@crema/types/models/apps/Mail";
-import { blue, green, red } from "@mui/material/colors";
+import { MailType, SenderType } from '@crema/types/models/apps/Mail';
+import { blue, green, red } from '@mui/material/colors';
 
 const emailDescription = [
   `<p>Hi,</p><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p><p> Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p><p> Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>`,
@@ -10,57 +10,57 @@ const emailDescription = [
 export const senders: SenderType[] = [
   {
     id: 1,
-    name: "Crema",
-    email: "info@cremawork.com",
-    profilePic: "/assets/images/logo/vcs.png",
+    name: 'Crema',
+    email: 'info@cremawork.com',
+    profilePic: '/assets/images/logo/vcs.png',
   },
   {
     id: 2,
-    name: "Paytm",
-    email: "support@paytm.com",
-    profilePic: "/assets/images/logo/paytm.png",
+    name: 'Paytm',
+    email: 'support@paytm.com',
+    profilePic: '/assets/images/logo/paytm.png',
   },
   {
     id: 3,
-    name: "Bitcoins Support",
-    email: "support@bitcoin.com",
-    profilePic: "/assets/images/logo/bitcoin.png",
+    name: 'Bitcoins Support',
+    email: 'support@bitcoin.com',
+    profilePic: '/assets/images/logo/bitcoin.png',
   },
   {
     id: 4,
-    name: "Symu Freebies",
-    email: "noReply@flipkart.com",
-    profilePic: "/assets/images/logo/flipkart.jpg",
+    name: 'Symu Freebies',
+    email: 'noReply@flipkart.com',
+    profilePic: '/assets/images/logo/flipkart.jpg',
   },
   {
     id: 5,
-    name: "Dribbble",
-    email: "support@dribbble.com",
-    profilePic: "/assets/images/logo/dribble.png",
+    name: 'Dribbble',
+    email: 'support@dribbble.com',
+    profilePic: '/assets/images/logo/dribble.png',
   },
   {
     id: 6,
-    name: "Amazon",
-    email: "offers@amazon.in",
-    profilePic: "",
+    name: 'Amazon',
+    email: 'offers@amazon.in',
+    profilePic: '',
   },
   {
     id: 7,
-    name: "SBI YONO",
-    email: "yono@sbi.com",
-    profilePic: "",
+    name: 'SBI YONO',
+    email: 'yono@sbi.com',
+    profilePic: '',
   },
   {
     id: 8,
-    name: "Naukri.com",
-    email: "noreply@nokri.com",
-    profilePic: "/assets/images/logo/bitcoin.png",
+    name: 'Naukri.com',
+    email: 'noreply@nokri.com',
+    profilePic: '/assets/images/logo/bitcoin.png',
   },
   {
     id: 9,
-    name: "Dribble",
-    email: "support@dribbble.com",
-    profilePic: "/assets/images/logo/dribble.png",
+    name: 'Dribble',
+    email: 'support@dribbble.com',
+    profilePic: '/assets/images/logo/dribble.png',
   },
 ];
 
@@ -70,11 +70,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 214,
-      name: "Paypal",
-      alias: "paypal",
-      color: "grey.500",
+      name: 'Paypal',
+      alias: 'paypal',
+      color: 'grey.500',
     },
-    subject: "Work Enquiry - Website Development",
+    subject: 'Work Enquiry - Website Development',
     hasAttachments: false,
     isRead: true,
     folderValue: 121,
@@ -87,7 +87,7 @@ const mailList: MailType[] = [
         cc: [],
         bcc: [],
         isStarred: false,
-        sentOn: "Thu, Oct 18, 2021 8:30 PM",
+        sentOn: 'Thu, Oct 18, 2021 8:30 PM',
       },
       {
         messageId: 2,
@@ -97,7 +97,7 @@ const mailList: MailType[] = [
         cc: [],
         bcc: [],
         isStarred: false,
-        sentOn: "Thu, Oct 18, 2021 8:30 PM",
+        sentOn: 'Thu, Oct 18, 2021 8:30 PM',
       },
       {
         messageId: 3,
@@ -107,7 +107,7 @@ const mailList: MailType[] = [
         cc: [],
         bcc: [],
         isStarred: false,
-        sentOn: "Thu, Oct 18, 2021 8:30 PM",
+        sentOn: 'Thu, Oct 18, 2021 8:30 PM',
       },
     ],
   },
@@ -116,11 +116,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject: "Your Movie Tickets for Sahoo",
+    subject: 'Your Movie Tickets for Sahoo',
     hasAttachments: false,
     isRead: true,
     messages: [
@@ -132,7 +132,7 @@ const mailList: MailType[] = [
         cc: [],
         bcc: [],
         isStarred: false,
-        sentOn: "Wed, Oct 17, 2021 8:30 PM",
+        sentOn: 'Wed, Oct 17, 2021 8:30 PM',
       },
       {
         messageId: 2,
@@ -142,7 +142,7 @@ const mailList: MailType[] = [
         cc: [],
         bcc: [],
         isStarred: false,
-        sentOn: "Wed, Oct 17, 2021 8:30 PM",
+        sentOn: 'Wed, Oct 17, 2021 8:30 PM',
       },
     ],
     folderValue: 121,
@@ -152,12 +152,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject:
-      "Bitcoins IP Whitelist mail: Please approve this IP to continue to login",
+    subject: 'Bitcoins IP Whitelist mail: Please approve this IP to continue to login',
     hasAttachments: true,
     isRead: true,
     messages: [
@@ -169,7 +168,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[0],
         isStarred: false,
-        sentOn: "Tues, Oct 15, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 15, 2021 8:30 PM',
       },
       {
         messageId: 2,
@@ -179,7 +178,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[1],
         isStarred: false,
-        sentOn: "Tues, Oct 15, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 15, 2021 8:30 PM',
       },
     ],
     folderValue: 123,
@@ -189,11 +188,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject: "Download freebie Hello Tune plugin",
+    subject: 'Download freebie Hello Tune plugin',
     hasAttachments: false,
     messages: [
       {
@@ -204,7 +203,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[0],
         isStarred: false,
-        sentOn: "Tues, Oct 15, 2021 7:30 PM",
+        sentOn: 'Tues, Oct 15, 2021 7:30 PM',
       },
     ],
     isRead: false,
@@ -215,11 +214,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject: "Big Billion Day sale coming, Are you ready?",
+    subject: 'Big Billion Day sale coming, Are you ready?',
     hasAttachments: true,
     messages: [
       {
@@ -230,7 +229,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[0],
         isStarred: false,
-        sentOn: "Mon, Oct 14, 2021 8:30 PM",
+        sentOn: 'Mon, Oct 14, 2021 8:30 PM',
       },
       {
         messageId: 2,
@@ -240,7 +239,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Mon, Oct 14, 2021 8:30 PM",
+        sentOn: 'Mon, Oct 14, 2021 8:30 PM',
       },
     ],
     isRead: true,
@@ -251,11 +250,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 211,
-      name: "Crema",
-      alias: "Crema",
+      name: 'Crema',
+      alias: 'Crema',
       color: red[500],
     },
-    subject: "Work Enquiry - Website Development",
+    subject: 'Work Enquiry - Website Development',
     hasAttachments: false,
     messages: [
       {
@@ -266,7 +265,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Sun, Oct 13, 2021 8:30 PM",
+        sentOn: 'Sun, Oct 13, 2021 8:30 PM',
       },
       {
         messageId: 2,
@@ -276,7 +275,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Sun, Oct 13, 2021 8:30 PM",
+        sentOn: 'Sun, Oct 13, 2021 8:30 PM',
       },
     ],
     isRead: true,
@@ -287,11 +286,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Your Movie Tickets for Sahoo",
+    subject: 'Your Movie Tickets for Sahoo',
     hasAttachments: false,
     messages: [
       {
@@ -302,7 +301,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Sat, Oct 12, 2021 8:30 PM",
+        sentOn: 'Sat, Oct 12, 2021 8:30 PM',
       },
     ],
     isRead: false,
@@ -313,12 +312,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject:
-      "Bitcoins IP Whitelist mail: Please approve this IP to continue to login",
+    subject: 'Bitcoins IP Whitelist mail: Please approve this IP to continue to login',
     hasAttachments: false,
     messages: [
       {
@@ -329,7 +327,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Fri, Oct 11, 2021 8:30 PM",
+        sentOn: 'Fri, Oct 11, 2021 8:30 PM',
       },
     ],
     isRead: true,
@@ -340,11 +338,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject: "Download freebie Hello Tune plugin",
+    subject: 'Download freebie Hello Tune plugin',
     hasAttachments: true,
     messages: [
       {
@@ -355,7 +353,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Thru, Oct 10, 2021 8:30 PM",
+        sentOn: 'Thru, Oct 10, 2021 8:30 PM',
       },
     ],
     isRead: false,
@@ -366,11 +364,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Big Billion Day sale coming, Are you ready?",
+    subject: 'Big Billion Day sale coming, Are you ready?',
     hasAttachments: false,
     messages: [
       {
@@ -379,7 +377,7 @@ const mailList: MailType[] = [
         to: [senders[0]],
         cc: [],
         bcc: [],
-        sentOn: "Tues, Oct 09, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 09, 2021 8:30 PM',
         isStarred: false,
         description: emailDescription[2],
       },
@@ -389,7 +387,7 @@ const mailList: MailType[] = [
         to: [senders[4]],
         cc: [],
         bcc: [],
-        sentOn: "Tues, Oct 09, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 09, 2021 8:30 PM',
         isStarred: false,
         description: emailDescription[2],
       },
@@ -399,7 +397,7 @@ const mailList: MailType[] = [
         to: [senders[4]],
         cc: [],
         bcc: [],
-        sentOn: "Tues, Oct 09, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 09, 2021 8:30 PM',
         description: emailDescription[1],
         isStarred: false,
       },
@@ -409,7 +407,7 @@ const mailList: MailType[] = [
         to: [senders[0]],
         cc: [],
         bcc: [],
-        sentOn: "Tues, Oct 09, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 09, 2021 8:30 PM',
         description: emailDescription[0],
         isStarred: false,
       },
@@ -419,7 +417,7 @@ const mailList: MailType[] = [
         to: [senders[0]],
         cc: [],
         bcc: [],
-        sentOn: "Tues, Oct 09, 2021 8:30 PM",
+        sentOn: 'Tues, Oct 09, 2021 8:30 PM',
         description: emailDescription[2],
         isStarred: false,
       },
@@ -432,11 +430,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 214,
-      name: "Paypal",
-      alias: "paypal",
-      color: "grey.500",
+      name: 'Paypal',
+      alias: 'paypal',
+      color: 'grey.500',
     },
-    subject: "Work Enquiry - Website Development",
+    subject: 'Work Enquiry - Website Development',
     hasAttachments: false,
     messages: [
       {
@@ -447,7 +445,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Mon, Oct 08, 2021 8:30 PM",
+        sentOn: 'Mon, Oct 08, 2021 8:30 PM',
       },
     ],
     isRead: false,
@@ -458,11 +456,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 211,
-      name: "Crema",
-      alias: "Crema",
+      name: 'Crema',
+      alias: 'Crema',
       color: red[500],
     },
-    subject: "Your Movie Tickets for Sahoo",
+    subject: 'Your Movie Tickets for Sahoo',
     hasAttachments: false,
     messages: [
       {
@@ -473,7 +471,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Mon, Oct 08, 2021 6:30 PM",
+        sentOn: 'Mon, Oct 08, 2021 6:30 PM',
       },
     ],
     isRead: false,
@@ -484,12 +482,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 214,
-      name: "Paypal",
-      alias: "paypal",
-      color: "grey.500",
+      name: 'Paypal',
+      alias: 'paypal',
+      color: 'grey.500',
     },
-    subject:
-      "Bitcoins IP Whitelist mail: Please approve this IP to continue to login",
+    subject: 'Bitcoins IP Whitelist mail: Please approve this IP to continue to login',
     hasAttachments: false,
     messages: [
       {
@@ -500,7 +497,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[0],
         isStarred: false,
-        sentOn: "Sun, Oct 07, 2021 6:30 PM",
+        sentOn: 'Sun, Oct 07, 2021 6:30 PM',
       },
     ],
     isRead: false,
@@ -511,11 +508,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 211,
-      name: "Crema",
-      alias: "Crema",
+      name: 'Crema',
+      alias: 'Crema',
       color: red[500],
     },
-    subject: "Download freebie Hello Tune plugin",
+    subject: 'Download freebie Hello Tune plugin',
     hasAttachments: false,
     messages: [
       {
@@ -526,7 +523,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Sat, Oct 06, 2021 6:30 PM",
+        sentOn: 'Sat, Oct 06, 2021 6:30 PM',
       },
     ],
     isRead: false,
@@ -537,11 +534,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 212,
-      name: "Personal",
-      alias: "personal",
+      name: 'Personal',
+      alias: 'personal',
       color: blue[500],
     },
-    subject: "Big Billion Day sale coming, Are you ready?",
+    subject: 'Big Billion Day sale coming, Are you ready?',
     hasAttachments: true,
     messages: [
       {
@@ -552,7 +549,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Sat, Oct 06, 2021 4:30 PM",
+        sentOn: 'Sat, Oct 06, 2021 4:30 PM',
       },
     ],
     isRead: true,
@@ -563,11 +560,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 214,
-      name: "Paypal",
-      alias: "paypal",
-      color: "grey.500",
+      name: 'Paypal',
+      alias: 'paypal',
+      color: 'grey.500',
     },
-    subject: "Offers you can not miss!",
+    subject: 'Offers you can not miss!',
     hasAttachments: false,
     messages: [
       {
@@ -578,7 +575,7 @@ const mailList: MailType[] = [
         bcc: [],
         isStarred: false,
         description: emailDescription[2],
-        sentOn: "Fri, Oct 05, 2021 6:30 PM",
+        sentOn: 'Fri, Oct 05, 2021 6:30 PM',
       },
     ],
     isRead: true,
@@ -589,11 +586,11 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 214,
-      name: "Paypal",
-      alias: "paypal",
-      color: "grey.500",
+      name: 'Paypal',
+      alias: 'paypal',
+      color: 'grey.500',
     },
-    subject: "Use SBI YONO for faster banking",
+    subject: 'Use SBI YONO for faster banking',
     hasAttachments: false,
     messages: [
       {
@@ -604,7 +601,7 @@ const mailList: MailType[] = [
         bcc: [],
         description: emailDescription[2],
         isStarred: false,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
       },
     ],
     isRead: true,
@@ -615,16 +612,16 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Thank you for being with us!",
+    subject: 'Thank you for being with us!',
     hasAttachments: false,
     messages: [
       {
         messageId: 1,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[2],
         isStarred: false,
         sender: senders[7],
@@ -641,16 +638,16 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Thank you for being with us!",
+    subject: 'Thank you for being with us!',
     hasAttachments: false,
     messages: [
       {
         messageId: 1,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[0],
         isStarred: false,
         sender: senders[7],
@@ -660,7 +657,7 @@ const mailList: MailType[] = [
       },
       {
         messageId: 2,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[2],
         isStarred: false,
         sender: senders[0],
@@ -677,16 +674,16 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Thank you for being with us!",
+    subject: 'Thank you for being with us!',
     hasAttachments: false,
     messages: [
       {
         messageId: 1,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[2],
         sender: senders[8],
         to: [senders[0]],
@@ -696,7 +693,7 @@ const mailList: MailType[] = [
       },
       {
         messageId: 2,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[0],
         sender: senders[0],
         to: [senders[8]],
@@ -713,17 +710,17 @@ const mailList: MailType[] = [
     isChecked: false,
     label: {
       id: 213,
-      name: "Work",
-      alias: "work",
+      name: 'Work',
+      alias: 'work',
       color: green[500],
     },
-    subject: "Thank you for being with us!",
+    subject: 'Thank you for being with us!',
     hasAttachments: false,
     messages: [
       {
         messageId: 1,
         isStarred: false,
-        sentOn: "Wed, Oct 03, 2021 6:30 PM",
+        sentOn: 'Wed, Oct 03, 2021 6:30 PM',
         description: emailDescription[0],
         sender: senders[8],
         to: [senders[0]],

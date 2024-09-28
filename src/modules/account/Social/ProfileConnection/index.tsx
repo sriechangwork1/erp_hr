@@ -1,20 +1,18 @@
-import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Member from "./Member";
-import { MemberDataType } from "@crema/types/models/account";
+import React from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Member from './Member';
+import { MemberDataType } from '@crema/types/models/account';
 
 type ProfileConnectionProps = {
   profileConnection: MemberDataType[];
 };
 
-const ProfileConnection: React.FC<ProfileConnectionProps> = ({
-  profileConnection,
-}) => {
+const ProfileConnection: React.FC<ProfileConnectionProps> = ({ profileConnection }) => {
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{ position: 'relative' }}>
       <Typography
         component="h3"
         sx={{

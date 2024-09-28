@@ -26,9 +26,7 @@ export const POST = async (request: NextRequest) => {
         status: 200,
       });
     } else {
-      const filteredBrand = brandData.find(
-        (brand) => brand.id === product.brand,
-      );
+      const filteredBrand = brandData.find((brand) => brand.id === product.brand);
       cartItemsData = cartItemsData.concat({
         id: product.id,
         brand: filteredBrand?.name,
@@ -51,9 +49,7 @@ export const PUT = async (request: NextRequest) => {
     const reqBody = await request.json();
 
     const { product } = reqBody;
-    cartItemsData = cartItemsData.map((item) =>
-      item.id === product.id ? product : item,
-    );
+    cartItemsData = cartItemsData.map((item) => (item.id === product.id ? product : item));
     return new Response(JSON.stringify(cartItemsData), {
       status: 200,
     });

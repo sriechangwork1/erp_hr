@@ -1,10 +1,10 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import TopLeadersTable from "./TopLeadersTable";
-import PropTypes from "prop-types";
-import { useIntl } from "react-intl";
-import { TopLeaderType } from "@crema/types/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import TopLeadersTable from './TopLeadersTable';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import { TopLeaderType } from '@crema/types/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   topLeaders: TopLeaderType[];

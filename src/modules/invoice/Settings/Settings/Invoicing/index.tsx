@@ -57,32 +57,22 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         resetForm();
       }}
     >
-      <Form noValidate autoComplete='off'>
+      <Form noValidate autoComplete="off">
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box>
-            <Typography variant='h4'>Invoicing Settings</Typography>
-            <Typography variant='body1' sx={{ mt: 2, color: 'text.secondary' }}>
+            <Typography variant="h4">Invoicing Settings</Typography>
+            <Typography variant="body1" sx={{ mt: 2, color: 'text.secondary' }}>
               Manage your invoicing settings
             </Typography>
           </Box>
-          <Box>
-            {!isEdit && (
-              <EditIcon
-                sx={{ cursor: 'pointer' }}
-                onClick={() => setIsEdit(true)}
-              />
-            )}
-          </Box>
+          <Box>{!isEdit && <EditIcon sx={{ cursor: 'pointer' }} onClick={() => setIsEdit(true)} />}</Box>
         </Box>
         <Divider sx={{ my: 4 }} />
         <AppGridContainer>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>General Info</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">General Info</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 View/Edit your general invoicing settings.
               </Typography>
             </Box>
@@ -93,20 +83,19 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               <AppGridContainer>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='language'
-                    variant='outlined'
+                    name="language"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Language'
+                    label="Language"
                     InputProps={{
                       readOnly: !isEdit,
                     }}
@@ -114,13 +103,13 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='dateFormat'
-                    variant='outlined'
+                    name="dateFormat"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Date Format'
+                    label="Date Format"
                     InputProps={{
                       readOnly: !isEdit,
                     }}
@@ -128,13 +117,13 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='currency'
-                    variant='outlined'
+                    name="currency"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Default Currency'
+                    label="Default Currency"
                     InputProps={{
                       readOnly: !isEdit,
                     }}
@@ -142,13 +131,13 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='decimalSeparator'
-                    variant='outlined'
+                    name="decimalSeparator"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Decimal Separator'
+                    label="Decimal Separator"
                     InputProps={{
                       readOnly: !isEdit,
                     }}
@@ -162,11 +151,8 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         <AppGridContainer sx={{ my: 1 }}>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>Logo</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">Logo</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 Set a logo
               </Typography>
             </Box>
@@ -177,8 +163,7 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               {isEdit ? (
@@ -187,20 +172,10 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                   {...dropzone.getRootProps({ className: 'dropzone' })}
                 >
                   <input {...dropzone.getInputProps()} />
-                  <Image
-                    src={uploadedFiles?.[0]?.preview || settings.logo}
-                    alt='logo'
-                    width={40}
-                    height={52}
-                  />
+                  <Image src={uploadedFiles?.[0]?.preview || settings.logo} alt="logo" width={40} height={52} />
                 </Box>
               ) : (
-                <Image
-                  src={uploadedFiles?.[0]?.preview || settings.logo}
-                  alt='logo'
-                  width={40}
-                  height={52}
-                />
+                <Image src={uploadedFiles?.[0]?.preview || settings.logo} alt="logo" width={40} height={52} />
               )}
             </Box>
           </Grid>
@@ -209,11 +184,8 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         <AppGridContainer>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>Invoice Recipient</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">Invoice Recipient</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 Set your invoicing recipient
               </Typography>
             </Box>
@@ -224,33 +196,32 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               <AppGridContainer>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='clientName'
-                    variant='outlined'
+                    name="clientName"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Client & Recipient Name'
+                    label="Client & Recipient Name"
                     readOnly={!isEdit}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    type='email'
-                    name='email'
-                    variant='outlined'
+                    type="email"
+                    name="email"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Email'
+                    label="Email"
                     readOnly={!isEdit}
                   />
                 </Grid>
@@ -262,11 +233,8 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         <AppGridContainer>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>Additional Text</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">Additional Text</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 Set introduction text.
               </Typography>
             </Box>
@@ -277,20 +245,19 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               <AppGridContainer>
                 <Grid item xs={12}>
                   <AppTextField
-                    name='introductionText'
-                    variant='outlined'
+                    name="introductionText"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Introduction Text'
+                    label="Introduction Text"
                     readOnly={!isEdit}
                   />
                 </Grid>
@@ -302,11 +269,8 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         <AppGridContainer>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>Tax Rates</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">Tax Rates</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 Update your tax rates.
               </Typography>
             </Box>
@@ -317,44 +281,43 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               <AppGridContainer>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='taxType'
-                    variant='outlined'
+                    name="taxType"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Tax Type'
+                    label="Tax Type"
                     readOnly={!isEdit}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='taxValue'
-                    variant='outlined'
+                    name="taxValue"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Tax Value'
+                    label="Tax Value"
                     readOnly={!isEdit}
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='concludingText'
-                    variant='outlined'
+                    name="concludingText"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Concluding Text'
+                    label="Concluding Text"
                     readOnly={!isEdit}
                   />
                 </Grid>
@@ -366,11 +329,8 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         <AppGridContainer>
           <Grid item xs={12} md={3}>
             <Box>
-              <Typography variant='h5'>Payment Deadline</Typography>
-              <Typography
-                variant='body1'
-                sx={{ mt: 1, color: 'text.secondary' }}
-              >
+              <Typography variant="h5">Payment Deadline</Typography>
+              <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
                 Set your payment deadline
               </Typography>
             </Box>
@@ -381,20 +341,19 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
                 border: '1px solid #EAECF0',
                 p: 6,
                 borderRadius: 3,
-                boxShadow:
-                  '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+                boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
               }}
             >
               <AppGridContainer>
                 <Grid item xs={12} md={6}>
                   <AppTextField
-                    name='paymentDeadline'
-                    variant='outlined'
+                    name="paymentDeadline"
+                    variant="outlined"
                     sx={{
                       width: '100%',
                       my: 2,
                     }}
-                    label='Payment Deadline'
+                    label="Payment Deadline"
                     readOnly={!isEdit}
                   />
                 </Grid>
@@ -404,18 +363,17 @@ const Invoicing = ({ settings, onUpdateSettings }: Props) => {
         </AppGridContainer>
         {isEdit && (
           <Stack
-            direction='row'
-            justifyContent='flex-end'
+            direction="row"
             spacing={5}
-            sx={{ mt: 3 }}
+            sx={{
+              justifyContent: 'flex-end',
+              mt: 3,
+            }}
           >
-            <Button
-              sx={{ color: 'text.secondary' }}
-              onClick={() => setIsEdit(false)}
-            >
+            <Button sx={{ color: 'text.secondary' }} onClick={() => setIsEdit(false)}>
               Cancel
             </Button>
-            <Button variant='contained' color='primary' type='submit'>
+            <Button variant="contained" color="primary" type="submit">
               Save
             </Button>
           </Stack>

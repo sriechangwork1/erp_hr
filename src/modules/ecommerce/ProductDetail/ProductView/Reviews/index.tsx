@@ -20,10 +20,7 @@ const Review = () => {
       </Box>
       <ReviewInfo />
       <Divider style={{ marginTop: 15, marginBottom: 15 }} />
-      <AppList
-        data={[1, 2, 3, 4, 5]}
-        renderRow={(data: any) => <ReviewCell key={data} />}
-      />
+      <AppList data={[1, 2, 3, 4, 5]} renderRow={(data: any) => <ReviewCell key={data} />} />
     </Box>
   );
 };

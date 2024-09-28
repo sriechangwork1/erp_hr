@@ -19,49 +19,58 @@ const KnowledgeBase = () => {
 
   const [filterText, setFilterText] = useState('');
 
-  const saleQueries =
-    filterText !== ''
-      ? salesData.filter((data) => data.ques.includes(filterText))
-      : salesData;
+  const saleQueries = filterText !== '' ? salesData.filter((data) => data.ques.includes(filterText)) : salesData;
 
   const installationQueries =
-    filterText !== ''
-      ? installationData.filter((data) => data.ques.includes(filterText))
-      : installationData;
+    filterText !== '' ? installationData.filter((data) => data.ques.includes(filterText)) : installationData;
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
-      <Box flex={1}>
-        <Box mx='auto' textAlign='center' maxWidth={768}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
+      <Box
+        sx={{
+          flex: 1,
+        }}
+      >
+        <Box
+          sx={{
+            mx: 'auto',
+            textAlign: 'center',
+            maxWidth: 768,
+          }}
+        >
           <Box
-            component='h2'
-            color='text.primary'
-            mb={6}
-            fontSize={20}
-            fontWeight={Fonts.MEDIUM}
+            component="h2"
+            sx={{
+              color: 'text.primary',
+              mb: 6,
+              fontSize: 20,
+              fontWeight: Fonts.MEDIUM,
+            }}
           >
-            <IntlMessages id='knowledge.howHelp' />
+            <IntlMessages id="knowledge.howHelp" />
           </Box>
 
           <TextField
-            id='outlined-with-placeholder'
+            id="outlined-with-placeholder"
             placeholder={messages['knowledge.AppSkeleton'] as string}
             style={{ width: '100%' }}
-            variant='outlined'
-            InputProps={{
-              startAdornment: (
-                <InputAdornment
-                  position='start'
-                  sx={{
-                    fontWeight: Fonts.MEDIUM,
-                  }}
-                >
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
+            variant="outlined"
             value={filterText}
             onChange={(event) => setFilterText(event.target.value)}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment
+                    position="start"
+                    sx={{
+                      fontWeight: Fonts.MEDIUM,
+                    }}
+                  >
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
         </Box>
 

@@ -27,12 +27,7 @@ const CourseCategories = ({ course }: Props) => {
         <Slider {...settings}>
           {images.map((image, index) => (
             <Box key={index}>
-              <Image
-                src={image.image}
-                alt={image.title}
-                width={353}
-                height={271}
-              />
+              <Image src={image.image} alt={image.title} width={353} height={271} />
             </Box>
           ))}
         </Slider>
@@ -44,7 +39,7 @@ const CourseCategories = ({ course }: Props) => {
         }}
       >
         <Box
-          component='h5'
+          component="h5"
           sx={{
             mb: 1,
             fontSize: 16,
@@ -54,7 +49,7 @@ const CourseCategories = ({ course }: Props) => {
           {title}
         </Box>
         <Box
-          component='p'
+          component="p"
           sx={{
             mb: 4,
             color: 'text.secondary',
@@ -84,12 +79,7 @@ const CourseCategories = ({ course }: Props) => {
               },
             }}
           >
-            <Image
-              src={'/assets/images/dashboard/academy/lessons.svg'}
-              alt='lessons'
-              height={16}
-              width={16}
-            />
+            <Image src={'/assets/images/dashboard/academy/lessons.svg'} alt="lessons" height={16} width={16} />
             {lessons} Lessons
           </Box>
           <Box
@@ -108,12 +98,7 @@ const CourseCategories = ({ course }: Props) => {
               },
             }}
           >
-            <Image
-              src={'/assets/images/dashboard/academy/xp.svg'}
-              alt='xp'
-              height={14}
-              width={14}
-            />
+            <Image src={'/assets/images/dashboard/academy/xp.svg'} alt="xp" height={14} width={14} />
             {xp} XP
           </Box>
         </Box>

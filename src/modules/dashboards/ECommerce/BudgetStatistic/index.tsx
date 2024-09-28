@@ -1,16 +1,16 @@
 import React from 'react';
-import {FormattedNumber, useIntl} from 'react-intl';
-import IntlMessages from "@crema/helpers/IntlMessages";
+import { FormattedNumber, useIntl } from 'react-intl';
+import IntlMessages from '@crema/helpers/IntlMessages';
 import Typography from '@mui/material/Typography';
-import {alpha, useTheme} from '@mui/material';
+import { alpha, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import {styled} from '@mui/material/styles';
-import {Fonts} from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import AppCircularProgress from "@crema/components/AppCircularProgress";
+import { styled } from '@mui/material/styles';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import AppCircularProgress from '@crema/components/AppCircularProgress';
 
-const FooterActionItem = styled('div')(({theme}) => {
+const FooterActionItem = styled('div')(({ theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -39,20 +39,20 @@ const FooterActionItem = styled('div')(({theme}) => {
 });
 
 const BudgetStatistic = () => {
-  const {messages} = useIntl();
+  const { messages } = useIntl();
   const theme = useTheme();
 
   return (
     <AppCard
-      sxStyle={{height: 1}}
+      sxStyle={{ height: 1 }}
       contentStyle={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
       }}
       title={messages['dashboard.eCommerce.budgetStatistic'] as string}
-      footerPosition='center'
-      footerStyle={{paddingBottom: 7.5, paddingTop: 0}}
+      footerPosition="center"
+      footerStyle={{ paddingBottom: 7.5, paddingTop: 0 }}
       footer={
         <Box
           sx={{
@@ -66,32 +66,32 @@ const BudgetStatistic = () => {
         >
           <FooterActionItem>
             <Box
-              className='footer-dot'
+              className="footer-dot"
               sx={{
                 backgroundColor: 'success.main',
               }}
             />
-            <span className='footer-title'>
-              <IntlMessages id='dashboard.eCommerce.completed' />
+            <span className="footer-title">
+              <IntlMessages id="dashboard.eCommerce.completed" />
             </span>
           </FooterActionItem>
           <FooterActionItem>
             <Box
-              className='footer-dot'
+              className="footer-dot"
               sx={{
                 backgroundColor: 'grey.300',
               }}
             />
-            <span className='footer-title'>
-              <IntlMessages id='dashboard.eCommerce.remaining' />
+            <span className="footer-title">
+              <IntlMessages id="dashboard.eCommerce.remaining" />
             </span>
           </FooterActionItem>
         </Box>
       }
     >
       <AppCircularProgress
-        activeColor='#0A8FDC'
-        pathColor='#F5F6FA'
+        activeColor="#0A8FDC"
+        pathColor="#F5F6FA"
         value={70}
         hidePercentage
         thickness={2}
@@ -105,22 +105,17 @@ const BudgetStatistic = () => {
             }}
           >
             <Typography
-              component='h1'
-              variant='h1'
+              component="h1"
+              variant="h1"
               sx={{
                 color: theme.palette.text.primary,
                 fontWeight: Fonts.SEMI_BOLD,
               }}
             >
-              <FormattedNumber
-                value={1000}
-                maximumFractionDigits={0}
-                style='currency'
-                currency='USD'
-              />
+              <FormattedNumber value={1000} maximumFractionDigits={0} style="currency" currency="USD" />
             </Typography>
             <Typography>
-              <IntlMessages id='dashboard.eCommerce.totalBudget' />
+              <IntlMessages id="dashboard.eCommerce.totalBudget" />
             </Typography>
           </Box>
         }

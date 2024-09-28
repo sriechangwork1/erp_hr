@@ -1,8 +1,4 @@
-import {
-  BlogContentType,
-  BlogDetailType,
-  BlogSidebarType,
-} from '@crema/types/models/extrapages/Blog';
+import { BlogContentType, BlogDetailType, BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 
 export const blogSidebar: BlogSidebarType = {
   recentPost: [
@@ -253,9 +249,6 @@ export const blogDetail: BlogDetailType = {
   ],
 };
 
-export const blogContent: BlogContentType[] = Array.from(
-  { length: 7 },
-  (_, index) => index + 1,
-).map((item) => {
+export const blogContent: BlogContentType[] = Array.from({ length: 7 }, (_, index) => index + 1).map((item) => {
   return { ...blogDetail, id: item };
 });

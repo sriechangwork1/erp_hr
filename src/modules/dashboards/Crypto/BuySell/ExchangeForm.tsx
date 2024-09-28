@@ -31,17 +31,13 @@ const ExchangeForm = ({ coinList, type = 'buy' }: Props) => {
 
   const coin = selectedCoin();
   return (
-    <form noValidate autoComplete='off'>
+    <form noValidate autoComplete="off">
       <Box
         sx={{
           mb: 5,
         }}
       >
-        <CoinDropdown
-          coinList={coinList}
-          selectedCoinId={selectedCoinId}
-          handleCoinChange={handleCoinChange}
-        />
+        <CoinDropdown coinList={coinList} selectedCoinId={selectedCoinId} handleCoinChange={handleCoinChange} />
       </Box>
       <Box
         sx={{
@@ -49,10 +45,10 @@ const ExchangeForm = ({ coinList, type = 'buy' }: Props) => {
         }}
       >
         <CurrencyField
-          label={<IntlMessages id='dashboard.crypto.usdAmount' />}
-          shortName='USD'
+          label={<IntlMessages id="dashboard.crypto.usdAmount" />}
+          shortName="USD"
           value={usdValue}
-          coinColor='#16C784'
+          coinColor="#16C784"
           onChange={(value) => {
             setUsdValue(value);
             setCoinValue(value / coin!.usdPrice);
@@ -81,7 +77,7 @@ const ExchangeForm = ({ coinList, type = 'buy' }: Props) => {
           minHeight: 46,
         }}
         fullWidth
-        variant='contained'
+        variant="contained"
       >
         {type === 'buy' ? 'Buy' : 'Sell'} {coin!.shortName}
       </Button>

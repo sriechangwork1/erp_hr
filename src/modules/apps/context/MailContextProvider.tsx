@@ -1,18 +1,7 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useGetDataApi } from '@crema/hooks/APIHooks';
-import type {
-  ConnectionType,
-  FolderType,
-  LabelType,
-  MailType,
-} from '@crema/types/models/apps/Mail';
+import type { ConnectionType, FolderType, LabelType, MailType } from '@crema/types/models/apps/Mail';
 import { APIDataProps } from '@crema/types/models/APIDataProps';
 import { useParams, usePathname } from 'next/navigation';
 
@@ -30,10 +19,7 @@ export type MailContextType = {
 
 export type MailActionContextType = {
   setMailData: (data: APIDataProps<MailType[]>) => void;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number,
-  ) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, data: number) => void;
   reCallAPI: () => void;
 };
 
@@ -52,10 +38,7 @@ const ContextState: MailContextType = {
 const MailContext = createContext<MailContextType>(ContextState);
 const MailActionsContext = createContext<MailActionContextType>({
   setMailData: (data: APIDataProps<MailType[]>) => {},
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number,
-  ) => {},
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, data: number) => {},
   reCallAPI: () => {},
 });
 
@@ -79,15 +62,13 @@ export const MailContextProvider = ({ children }: Props) => {
     folder = all[0];
   }
   const [{ apiData: labelList }] = useGetDataApi<LabelType[]>('/mail/labels');
-  const [{ apiData: connectionList }] =
-    useGetDataApi<ConnectionType[]>('mail/connection');
+  const [{ apiData: connectionList }] = useGetDataApi<ConnectionType[]>('mail/connection');
   const [{ apiData: folderList }] = useGetDataApi<any>('mail/folders');
   const [page, setPage] = useState(0);
 
-  const [
-    { apiData: mailList, loading },
-    { setQueryParams, setData: setMailData, reCallAPI },
-  ] = useGetDataApi<APIDataProps<MailType[]>>(
+  const [{ apiData: mailList, loading }, { setQueryParams, setData: setMailData, reCallAPI }] = useGetDataApi<
+    APIDataProps<MailType[]>
+  >(
     'mail',
     undefined,
     {
@@ -110,10 +91,7 @@ export const MailContextProvider = ({ children }: Props) => {
     });
   }, [page, pathname]);
 
-  const onPageChange = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number,
-  ) => {
+  const onPageChange = (event: React.MouseEvent<HTMLButtonElement> | null, value: number) => {
     setPage(value);
   };
 

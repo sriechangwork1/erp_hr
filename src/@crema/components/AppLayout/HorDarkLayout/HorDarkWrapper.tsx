@@ -7,26 +7,22 @@ type HorDarkWrapperProps = {
   [x: string]: any;
 };
 
-const HorDarkWrapper: React.FC<HorDarkWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const HorDarkWrapper: React.FC<HorDarkWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.appMainFixedFooter': {
           pb: { xs: 12, xl: 14.5 },
         },
         '& .customizerOption': {
           top: 210,
         },
-      }}
+      })}
       {...rest}
     >
       {children}

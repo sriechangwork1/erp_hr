@@ -169,27 +169,27 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment
-                      position='start'
+                      position="start"
                       sx={{
                         fontWeight: Fonts.MEDIUM,
                       }}
                     >
-                      <IntlMessages id='common.to' />
+                      <IntlMessages id="common.to" />
                     </InputAdornment>
                   ),
                 }}
-                name='to'
+                name="to"
               />
 
               <Box
-                component='span'
+                component="span"
                 sx={{
                   ml: 4,
                   cursor: 'pointer',
                 }}
                 onClick={onShowCcInput}
               >
-                <IntlMessages id='common.cc' />
+                <IntlMessages id="common.cc" />
               </Box>
             </Box>
 
@@ -199,11 +199,7 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
                   mb: 4,
                 }}
               >
-                <AppTextField
-                  placeholder={messages['common.cc'] as string}
-                  fullWidth
-                  name='cc'
-                />
+                <AppTextField placeholder={messages['common.cc'] as string} fullWidth name="cc" />
               </Box>
             ) : null}
 
@@ -222,8 +218,8 @@ const ForwardMail = ({ onSubmitForwardedMail }: Props) => {
             </Box>
 
             <div style={{ textAlign: 'right' }}>
-              <Button type='submit' color='primary' variant='outlined'>
-                <IntlMessages id='common.send' />
+              <Button type="submit" color="primary" variant="outlined">
+                <IntlMessages id="common.send" />
               </Button>
             </div>
           </Form>

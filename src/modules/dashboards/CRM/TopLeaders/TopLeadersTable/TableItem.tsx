@@ -1,26 +1,26 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import Avatar from "@mui/material/Avatar";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import { Typography } from "@mui/material";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import { Typography } from '@mui/material';
 
-import { styled } from "@mui/material/styles";
-import { Fonts } from "@crema/constants/AppEnums";
-import Box from "@mui/material/Box";
-import { TopLeaderType } from "@crema/types/models/dashboards/CRM";
+import { styled } from '@mui/material/styles';
+import { Fonts } from '@crema/constants/AppEnums';
+import Box from '@mui/material/Box';
+import { TopLeaderType } from '@crema/types/models/dashboards/CRM';
 
 const TableCellWrapper = styled(TableCell)(() => {
   return {
     fontSize: 14,
     padding: 8,
-    "&:first-of-type": {
+    '&:first-of-type': {
       paddingLeft: 20,
     },
-    "&:last-of-type": {
+    '&:last-of-type': {
       paddingRight: 20,
     },
-    "&.budget": {
+    '&.budget': {
       fontWeight: Fonts.MEDIUM,
     },
   };
@@ -34,8 +34,8 @@ const TableItem = ({ data }: Props) => {
       <TableCellWrapper component="th" scope="row">
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Avatar
@@ -55,10 +55,10 @@ const TableItem = ({ data }: Props) => {
               {data.teamLead.name}
             </Typography>
             <Typography
-              sx={{
+              sx={(theme) => ({
                 mt: 0.5,
-                color: (theme) => theme.palette.text.secondary,
-              }}
+                color: theme.palette.text.secondary,
+              })}
             >
               {data.teamLead.email}
             </Typography>
@@ -67,7 +67,7 @@ const TableItem = ({ data }: Props) => {
       </TableCellWrapper>
       <TableCellWrapper>{data.project}</TableCellWrapper>
       <TableCellWrapper>
-        <AvatarGroup max={3} sx={{ justifyContent: "center" }}>
+        <AvatarGroup max={3} sx={{ justifyContent: 'center' }}>
           {data.team.map((data) => (
             <Avatar key={data.id} src={data.image} />
           ))}
@@ -80,8 +80,8 @@ const TableItem = ({ data }: Props) => {
             backgroundColor: data.color,
             width: 12,
             height: 12,
-            borderRadius: "50%",
-            display: "inline-block",
+            borderRadius: '50%',
+            display: 'inline-block',
           }}
         >
           {/*{data.status}*/}

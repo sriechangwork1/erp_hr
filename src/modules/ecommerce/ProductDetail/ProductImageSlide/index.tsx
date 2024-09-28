@@ -47,7 +47,6 @@ const MediaSlider = ({ children }: any) => {
           // alignItems: 'center',
           // listStyle: 'none',
           // gap: '10px',
-
           '& li': {
             width: 10,
             height: 10,
@@ -63,8 +62,7 @@ const MediaSlider = ({ children }: any) => {
             },
             '& button:before': {
               fontSize: 0,
-              backgroundColor: (theme) =>
-                lighten(theme.palette.common.black, 0.5),
+              backgroundColor: (theme) => lighten(theme.palette.common.black, 0.5),
               width: 10,
               height: 10,
               borderRadius: '50%',
@@ -95,9 +93,7 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
       product,
     })
       .then(() => {
-        infoViewActionsContext.showMessage(
-          `${product.title} added to cart successfully`,
-        );
+        infoViewActionsContext.showMessage(`${product.title} added to cart successfully`);
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);
@@ -140,10 +136,10 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
                 <Box key={item?.id} sx={{ px: 3, py: 3, height: '100%' }}>
                   <Image
                     src={item.src || ''}
-                    alt='watch'
+                    alt="watch"
                     width={191}
                     height={259}
-                    sizes='100vh'
+                    sizes="100vh"
                     style={{
                       objectFit: 'contain',
                       width: '100%',
@@ -164,12 +160,12 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
           }}
         >
           <Checkbox
-            sx={{
-              color: (theme) => theme.palette.warning.main,
+            sx={(theme) => ({
+              color: theme.palette.warning.main,
               '&.Mui-checked': {
-                color: (theme) => theme.palette.warning.main,
+                color: theme.palette.warning.main,
               },
-            }}
+            })}
             icon={<FavoriteBorderIcon />}
             checkedIcon={<FavoriteOutlinedIcon />}
           />
@@ -182,20 +178,10 @@ const ProductImageSlide: React.FC<ProductImageSlideProps> = ({ product }) => {
           mt: 5,
         }}
       >
-        <Button
-          variant='contained'
-          color='primary'
-          onClick={onAddToCard}
-          style={{ marginRight: 20, width: 140 }}
-        >
+        <Button variant="contained" color="primary" onClick={onAddToCard} style={{ marginRight: 20, width: 140 }}>
           Add to cart
         </Button>
-        <Button
-          style={{ width: 140 }}
-          variant='contained'
-          color='secondary'
-          onClick={onButNowToCard}
-        >
+        <Button style={{ width: 140 }} variant="contained" color="secondary" onClick={onButNowToCard}>
           Buy now
         </Button>
       </Box>

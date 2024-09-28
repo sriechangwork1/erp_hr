@@ -1,24 +1,24 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
 
-import Avatar from "@mui/material/Avatar";
-import { Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import AppMenu from "@crema/components/AppMenu";
-import { RecentPatientType } from "@crema/types/models/dashboards/HealthCare";
+import Avatar from '@mui/material/Avatar';
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import AppMenu from '@crema/components/AppMenu';
+import { RecentPatientType } from '@crema/types/models/dashboards/HealthCare';
 
 const TableCellWrapper = styled(TableCell)(() => {
   return {
     fontSize: 14,
     padding: 8,
-    whiteSpace: "nowrap",
-    "&:first-of-type": {
+    whiteSpace: 'nowrap',
+    '&:first-of-type': {
       paddingLeft: 20,
     },
-    "&:last-of-type": {
+    '&:last-of-type': {
       paddingRight: 20,
     },
   };
@@ -34,8 +34,8 @@ const TableItem = ({ data }: Props) => {
       <TableCellWrapper component="th" scope="row">
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Box
@@ -60,11 +60,11 @@ const TableItem = ({ data }: Props) => {
         <Box
           component="span"
           sx={{
-            padding: "3px 10px 4px",
+            padding: '3px 10px 4px',
             borderRadius: 4,
-            display: "inline-block",
+            display: 'inline-block',
             color: data.color,
-            backgroundColor: data.color + "44",
+            backgroundColor: data.color + '44',
             fontSize: 12,
           }}
         >

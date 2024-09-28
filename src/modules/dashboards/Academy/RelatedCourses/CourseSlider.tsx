@@ -1,13 +1,13 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 
-type Props={
+type Props = {
   children: React.ReactNode;
-}
+};
 const CourseSlider = ({ children }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
         '& .slideRoot': {
           paddingBottom: 0,
@@ -20,7 +20,7 @@ const CourseSlider = ({ children }: Props) => {
           '& .slick-prev, & .slick-next': {
             top: -25,
             '&:before': {
-              color: (theme) => theme.palette.text.primary,
+              color: theme.palette.text.primary,
             },
           },
           '& .slick-prev': {
@@ -31,7 +31,7 @@ const CourseSlider = ({ children }: Props) => {
             right: 10,
           },
         },
-      }}
+      })}
     >
       {children}
     </Box>

@@ -29,17 +29,17 @@ const CourseCell = ({ course }: Props) => {
   return (
     <Box
       key={course.id}
-      sx={{
+      sx={(theme) => ({
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
         alignItems: { sm: 'center' },
         py: 2,
         px: 5,
         '&:not(:last-of-type)': {
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+          borderBottom: `solid 1px ${theme.palette.divider}`,
         },
-      }}
-      className='item-hover'
+      })}
+      className="item-hover"
     >
       <Box
         sx={{
@@ -59,13 +59,7 @@ const CourseCell = ({ course }: Props) => {
             },
           }}
         >
-          <Image
-            className='logo'
-            alt=''
-            src={course.thumb}
-            height={60}
-            width={60}
-          />
+          <Image className="logo" alt="" src={course.thumb} height={60} width={60} />
         </Box>
         <Box
           sx={{
@@ -79,12 +73,12 @@ const CourseCell = ({ course }: Props) => {
               mb: 0.5,
               fontSize: 14,
             }}
-            component='h3'
+            component="h3"
           >
             {course.title}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               color: 'text.secondary',
@@ -94,7 +88,6 @@ const CourseCell = ({ course }: Props) => {
           </Box>
         </Box>
       </Box>
-
       <Box
         sx={{
           ml: { sm: 'auto' },
@@ -121,9 +114,9 @@ const CourseCell = ({ course }: Props) => {
                 whiteSpace: 'nowrap',
                 width: 105,
               }}
-              size='small'
-              variant='contained'
-              color='primary'
+              size="small"
+              variant="contained"
+              color="primary"
             >
               Certificate
             </Button>
@@ -135,18 +128,13 @@ const CourseCell = ({ course }: Props) => {
               alignItems: 'center',
             }}
           >
-            <Image
-              src={'/assets/images/dashboard/academy/rating.svg'}
-              alt='rating'
-              width={15}
-              height={18}
-            />
+            <Image src={'/assets/images/dashboard/academy/rating.svg'} alt="rating" width={15} height={18} />
             <Box
               sx={{
                 mx: 2,
                 fontSize: { xs: 14, xl: 16 },
               }}
-              component='span'
+              component="span"
             >
               {course.rating}
             </Box>
@@ -155,9 +143,9 @@ const CourseCell = ({ course }: Props) => {
                 whiteSpace: 'nowrap',
                 width: 105,
               }}
-              size='small'
-              variant='outlined'
-              color='primary'
+              size="small"
+              variant="outlined"
+              color="primary"
             >
               View Course
             </Button>
@@ -169,15 +157,11 @@ const CourseCell = ({ course }: Props) => {
             mr: -2,
           }}
         >
-          <IconButton
-            aria-controls='alpha-menu'
-            aria-haspopup='true'
-            onClick={handleClick}
-          >
+          <IconButton aria-controls="alpha-menu" aria-haspopup="true" onClick={handleClick}>
             <MoreVertIcon />
           </IconButton>
           <Menu
-            id='alpha-menu'
+            id="alpha-menu"
             anchorEl={anchorEl}
             keepMounted
             open={open}

@@ -5,35 +5,35 @@ export type IncomeLastYear = {
   graphData: { name: ''; revenue: number }[];
 };
 
-export type WebsiteTrafficData={
+export type WebsiteTrafficData = {
   value: string;
-  graphData:{ name: string; traffic: number }[];
-}
+  graphData: { name: string; traffic: number }[];
+};
 
-export type RevenueGrowthData={
+export type RevenueGrowthData = {
   value: string;
-  graphData:{ name: string; growth: number }[];
-}
+  graphData: { name: string; growth: number }[];
+};
 
-export type IncrementActiveUsers={
+export type IncrementActiveUsers = {
   value: string;
-  graphData:{ name: string; activeUsers: number }[];
-}
+  graphData: { name: string; activeUsers: number }[];
+};
 
-export type ExtraRevenue={
+export type ExtraRevenue = {
   value: string;
-  graphData:{ name: string; revenue: number }[];
-}
+  graphData: { name: string; revenue: number }[];
+};
 
-export type TrafficRaise={
+export type TrafficRaise = {
   value: string;
-  graphData:{ name: string; traffic: number }[];
-}
+  graphData: { name: string; traffic: number }[];
+};
 
-export type LessOrders={
+export type LessOrders = {
   value: string;
-  graphData:{ name: string; orders: number }[];
-}
+  graphData: { name: string; orders: number }[];
+};
 /*
 export type SalesData={
   salesToday: string;
@@ -41,121 +41,120 @@ export type SalesData={
   salesGraphData:{ day: number; number: number }[];
 }*/
 
-export type SalesData={
+export type SalesData = {
   value: string;
   change: number;
   strokeColor: string;
   areaColor: string;
-  graphData:{ number: string; value: number }[];
-}
-export type EarningInMonthData={
+  graphData: { number: string; value: number }[];
+};
+export type EarningInMonthData = {
   id: number;
   name: string;
   value: number;
   color: string;
   colorName: PaletteColorOptions;
-}
+};
 
-export type SubscriptionData={
-  dataOne:{ number: number; value: number }[];
-  dataTwo:{ number: number; value: number }[];
-  dataThree:{ number: number; value: number }[];
-}
+export type SubscriptionData = {
+  dataOne: { number: number; value: number }[];
+  dataTwo: { number: number; value: number }[];
+  dataThree: { number: number; value: number }[];
+};
 
-export type MetricsLineGraphData={
+export type MetricsLineGraphData = {
   value: string;
   difference: string;
   differencePercent: string;
-  graphData:{ number: string; value: number }[];
-}
+  graphData: { number: string; value: number }[];
+};
 
-
-export type MetricsFloatingGraphData={
+export type MetricsFloatingGraphData = {
   salesData: SalesData;
   clientsData: SalesData;
   revenueData: SalesData;
   newUserData: SalesData;
-}
+};
 
-export type VisitsData={
+export type VisitsData = {
   new: number;
   returning: number;
-  graphData:{
-    dataOne:{ number: string; value: number }[];
-    dataTwo:{ number: string; value: number }[];
-    dataThree:{ number: string; value: number }[];
+  graphData: {
+    dataOne: { number: string; value: number }[];
+    dataTwo: { number: string; value: number }[];
+    dataThree: { number: string; value: number }[];
   };
-}
+};
 
-export type OrdersData={
+export type OrdersData = {
   revenue: number;
   orders: number;
-  graphData:{
-    dataOne:{ number: number; value: number }[];
-    dataTwo:{ number: number; value: number }[];
-    dataThree:{ number: number; value: number }[];
+  graphData: {
+    dataOne: { number: number; value: number }[];
+    dataTwo: { number: number; value: number }[];
+    dataThree: { number: number; value: number }[];
   };
-}
+};
 
-export type ProfileViewsData={
+export type ProfileViewsData = {
   views: string;
-  graphData:{ day: number; number: number }[];
-}
+  graphData: { day: number; number: number }[];
+};
 
-export type WorkViewsData={
+export type WorkViewsData = {
   views: string;
-  graphData:{ name: string; value: number }[];
-}
+  graphData: { name: string; value: number }[];
+};
 
-export type SocialData={
+export type SocialData = {
   likes: number;
   comments: number;
-}
+};
 
-export type StateGraphData={
+export type StateGraphData = {
   number: number;
   value: number;
-}
+};
 
-export type StatsGraphData={
-  dataOne:{
+export type StatsGraphData = {
+  dataOne: {
     stats1: StateGraphData[];
     stats2: StateGraphData[];
   };
-  dataTwo:{
+  dataTwo: {
     stats1: StateGraphData[];
     stats2: StateGraphData[];
   };
-  dataThree:{
+  dataThree: {
     stats1: StateGraphData[];
     stats2: StateGraphData[];
   };
-}
+};
 
-export type SocialVisitorsData={
+export type SocialVisitorsData = {
   id: number;
   name: string;
   visitors: number;
   change: number;
   color: string;
-}
+};
 
-export type AccountData={
+export type AccountData = {
   name: string;
   complete: number;
   week: number;
-}
+};
 
-export type ShareData={
+export type ShareData = {
   facebook: number;
   twitter: number;
   youtube: number;
   google: number;
   linkedin: number;
   bitbucket: number;
-}
+};
 
-export type Metrics={
+export type Metrics = {
   ordersThisYear: string;
   queryIcon: string;
   revenueThisYear: string;
@@ -183,4 +182,4 @@ export type Metrics={
   socialVisitorsData: SocialVisitorsData[];
   accountData: AccountData[];
   shareData: ShareData;
-}
+};

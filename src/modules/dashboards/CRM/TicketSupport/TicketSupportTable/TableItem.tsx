@@ -1,11 +1,11 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import { Box } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import TableRow from "@mui/material/TableRow";
-import { red } from "@mui/material/colors";
-import { Fonts } from "@crema/constants/AppEnums";
-import { TicketSupportDaumType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import { Box } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import TableRow from '@mui/material/TableRow';
+import { red } from '@mui/material/colors';
+import { Fonts } from '@crema/constants/AppEnums';
+import { TicketSupportDaumType } from '@crema/types/models/dashboards/CRM';
 
 type Props = {
   row: TicketSupportDaumType;
@@ -16,15 +16,15 @@ const TableItem = (props: Props) => {
   return (
     <TableRow
       sx={{
-        borderBottom: "0 none",
-        "& .tableCell": {
-          borderBottom: "0 none",
+        borderBottom: '0 none',
+        '& .tableCell': {
+          borderBottom: '0 none',
           fontSize: 13,
-          padding: "6px 8px",
-          "&:first-of-type": {
+          padding: '6px 8px',
+          '&:first-of-type': {
             pl: 5,
           },
-          "&:last-of-type": {
+          '&:last-of-type': {
             pr: 5,
           },
         },
@@ -35,7 +35,12 @@ const TableItem = (props: Props) => {
         {row.id}.
       </TableCell>
       <TableCell align="left" className="tableCell">
-        <Box display="flex" alignItems="center">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {row.image ? (
             <Avatar
               sx={{
@@ -56,7 +61,13 @@ const TableItem = (props: Props) => {
               {row.name[0].toUpperCase()}
             </Avatar>
           )}
-          <Box component="span" ml={3.5} fontWeight={Fonts.MEDIUM}>
+          <Box
+            component="span"
+            sx={{
+              ml: 3.5,
+              fontWeight: Fonts.MEDIUM,
+            }}
+          >
             {row.name}
           </Box>
         </Box>

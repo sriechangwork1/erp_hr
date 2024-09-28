@@ -1,8 +1,8 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import TimesheetTable from "./TimesheetTable";
-import { TimesheetType } from "@crema/types/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import TimesheetTable from './TimesheetTable';
+import { TimesheetType } from '@crema/types/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   timesheet: TimesheetType[];

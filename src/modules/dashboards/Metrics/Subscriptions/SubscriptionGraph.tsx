@@ -1,27 +1,15 @@
-import React from "react";
-import {
-  CartesianGrid,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import React from 'react';
+import { CartesianGrid, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
 
-type SubscriptionGraphProps= {
+type SubscriptionGraphProps = {
   data: { number: number; value: number }[];
-}
+};
 
 const SubscriptionGraph: React.FC<SubscriptionGraphProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={340}>
       <ScatterChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
-        <CartesianGrid
-          strokeDasharray="5 5"
-          stroke="#E2E8F0"
-          vertical={false}
-        />
+        <CartesianGrid strokeDasharray="5 5" stroke="#E2E8F0" vertical={false} />
         <XAxis
           type="number"
           dataKey="number"
@@ -38,10 +26,7 @@ const SubscriptionGraph: React.FC<SubscriptionGraphProps> = ({ data }) => {
           axisLine={false}
           ticks={[100, 200, 300, 400, 500, 600]}
         />
-        <Tooltip
-          cursor={{ strokeDasharray: "3 3" }}
-          labelStyle={{ color: "black" }}
-        />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} labelStyle={{ color: 'black' }} />
         <Scatter data={data} fill="#8884d8" />
       </ScatterChart>
     </ResponsiveContainer>

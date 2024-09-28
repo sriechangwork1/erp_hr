@@ -7,18 +7,15 @@ type MiniSidebarWrapperProps = {
   [x: string]: any;
 };
 
-const MiniSidebarWrapper: React.FC<MiniSidebarWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const MiniSidebarWrapper: React.FC<MiniSidebarWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '& .mainContent': {
           display: 'flex',
           flexDirection: 'column',
@@ -97,7 +94,7 @@ const MiniSidebarWrapper: React.FC<MiniSidebarWrapperProps> = ({
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

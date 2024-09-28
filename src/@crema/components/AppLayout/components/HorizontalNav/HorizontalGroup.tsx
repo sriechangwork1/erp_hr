@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Grow,
-  Icon,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-} from '@mui/material';
+import { Grow, Icon, IconButton, List, ListItem, ListItemText, Paper } from '@mui/material';
 import clsx from 'clsx';
 import { Manager, Popper, Reference } from 'react-popper';
 import HorizontalCollapse from './HorizontalCollapse';
@@ -45,10 +37,7 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
         }
       }
 
-      if (
-        parent.children[i].url === url ||
-        url.includes(parent!.children![i].url!)
-      ) {
+      if (parent.children[i].url === url || url.includes(parent!.children![i].url!)) {
         return true;
       }
     }
@@ -62,15 +51,12 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
         {({ ref }) => (
           <ListItem
             ref={ref}
-            className={clsx(
-              'navItem',
-              isUrlInChildren(item, pathname) && 'active',
-            )}
+            className={clsx('navItem', isUrlInChildren(item, pathname) && 'active')}
             onMouseEnter={() => handleToggle(true)}
             onMouseLeave={() => handleToggle(false)}
           >
             {item.icon && (
-              <Icon color='action' className='navLinkIcon'>
+              <Icon color="action" className="navLinkIcon">
                 {item.icon}
               </Icon>
             )}
@@ -91,7 +77,7 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
                   sx={{
                     fontSize: 18,
                   }}
-                  className='arrow-icon'
+                  className="arrow-icon"
                 >
                   keyboard_arrow_right
                 </Icon>
@@ -120,10 +106,7 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
               })}
             >
               <Grow in={opened}>
-                <Paper
-                  onMouseEnter={() => handleToggle(true)}
-                  onMouseLeave={() => handleToggle(false)}
-                >
+                <Paper onMouseEnter={() => handleToggle(true)} onMouseLeave={() => handleToggle(false)}>
                   {item.children && (
                     <List
                       sx={{
@@ -132,26 +115,11 @@ const HorizontalGroup: React.FC<HorizontalCollapseProps> = (props) => {
                     >
                       {item.children.map((item) => (
                         <React.Fragment key={item.id}>
-                          {item.type === 'group' && (
-                            <HorizontalGroup
-                              item={item}
-                              nestedLevel={nestedLevel}
-                            />
-                          )}
+                          {item.type === 'group' && <HorizontalGroup item={item} nestedLevel={nestedLevel} />}
 
-                          {item.type === 'collapse' && (
-                            <HorizontalCollapse
-                              item={item}
-                              nestedLevel={nestedLevel}
-                            />
-                          )}
+                          {item.type === 'collapse' && <HorizontalCollapse item={item} nestedLevel={nestedLevel} />}
 
-                          {item.type === 'item' && (
-                            <HorizontalItem
-                              item={item}
-                              nestedLevel={nestedLevel}
-                            />
-                          )}
+                          {item.type === 'item' && <HorizontalItem item={item} nestedLevel={nestedLevel} />}
                         </React.Fragment>
                       ))}
                     </List>

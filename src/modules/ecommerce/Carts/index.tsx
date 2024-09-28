@@ -19,20 +19,12 @@ const Carts = () => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const router = useRouter();
 
-  const [{ apiData, loading }, { setData }] = useGetDataApi<CartItemsType[]>(
-    'ecommerce/cart',
-    [],
-    {},
-  );
+  const [{ apiData, loading }, { setData }] = useGetDataApi<CartItemsType[]>('ecommerce/cart', [], {});
 
   const onRemoveItem = (product: CartItemsType) => {
-    postDataApi<CartItemsType[]>(
-      'ecommerce/cart/remove',
-      infoViewActionsContext,
-      {
-        product,
-      },
-    )
+    postDataApi<CartItemsType[]>('ecommerce/cart/remove', infoViewActionsContext, {
+      product,
+    })
       .then((data) => {
         setData(data);
       })
@@ -53,13 +45,9 @@ const Carts = () => {
           infoViewActionsContext.fetchError(error.message);
         });
     } else {
-      postDataApi<CartItemsType[]>(
-        'ecommerce/cart/remove',
-        infoViewActionsContext,
-        {
-          product: data,
-        },
-      )
+      postDataApi<CartItemsType[]>('ecommerce/cart/remove', infoViewActionsContext, {
+        product: data,
+      })
         .then((data) => {
           setData(data);
         })
@@ -85,10 +73,10 @@ const Carts = () => {
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <Box>
             <Box
-              component='h2'
+              component="h2"
               sx={{
                 color: 'text.primary',
                 fontWeight: Fonts.BOLD,
@@ -96,7 +84,7 @@ const Carts = () => {
                 fontSize: 16,
               }}
             >
-              <IntlMessages id='sidebar.ecommerce.cart' />
+              <IntlMessages id="sidebar.ecommerce.cart" />
             </Box>
             <AppGridContainer>
               <Grid item xs={12} md={8}>
@@ -112,8 +100,8 @@ const Carts = () => {
                       }}
                     >
                       <Button
-                        variant='contained'
-                        color='primary'
+                        variant="contained"
+                        color="primary"
                         onClick={() => {
                           router.push('/ecommerce/products');
                         }}
@@ -121,8 +109,8 @@ const Carts = () => {
                         Continue Shopping
                       </Button>
                       <Button
-                        variant='contained'
-                        color='secondary'
+                        variant="contained"
+                        color="secondary"
                         onClick={() => {
                           router.push('/ecommerce/checkout');
                         }}

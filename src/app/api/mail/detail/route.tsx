@@ -5,9 +5,7 @@ let mailList = mailData;
 export const GET = async (request: NextRequest) => {
   try {
     const params = Object.fromEntries(request.nextUrl.searchParams);
-    const response = mailList.find(
-      (mail: MailType) => mail.id === parseInt(params.id),
-    );
+    const response = mailList.find((mail: MailType) => mail.id === parseInt(params.id));
     return new Response(JSON.stringify(response), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

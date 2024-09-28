@@ -20,8 +20,7 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
 
   const pathname = usePathname();
   const active = isUrlInChildren(item, pathname);
-  const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } =
-    useSidebarContext();
+  const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } = useSidebarContext();
 
   function isUrlInChildren(parent: RouterConfigData, url: string) {
     if (!parent.children) {
@@ -35,10 +34,7 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
         }
       }
 
-      if (
-        parent.children[i].url === url ||
-        url.includes(parent!.children![i].url!)
-      ) {
+      if (parent.children[i].url === url || url.includes(parent!.children![i].url!)) {
         return true;
       }
     }
@@ -52,10 +48,10 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
         className={clsx('navItemSubmenu', dense && 'dense', {
           active: item.url === pathname,
         })}
-        sx={{
+        sx={(theme) => ({
           minHeight: 40,
           padding: '4px 12px',
-          color: (theme) => theme.palette.text.primary,
+          color: theme.palette.text.primary,
           textDecoration: 'none!important',
           minWidth: 160,
           '&.active': {
@@ -79,25 +75,34 @@ const HorizontalItem: React.FC<HorizontalItemProps> = (props) => {
               padding: '0 0 0 8px',
             },
           },
-        }}
+        })}
       >
         {item.icon && (
           <Icon
-            sx={{
-              color: active ? sidebarMenuSelectedTextColor : 'action',
-              mr: 3,
-              fontSize: { xs: 16, xl: 18 },
-            }}
+            sx={[
+              {
+                mr: 3,
+                fontSize: { xs: 16, xl: 18 },
+              },
+              active
+                ? {
+                    color: sidebarMenuSelectedTextColor,
+                  }
+                : {
+                    color: 'action',
+                  },
+            ]}
           >
             {item.icon}
           </Icon>
         )}
-        <ListItemText
-          className='AppNavLinkTextSubmenu'
-          primary={<IntlMessages id={item.messageId} />}
-        />
+        <ListItemText className="AppNavLinkTextSubmenu" primary={<IntlMessages id={item.messageId} />} />
         {item.count && (
-          <Box ml={4}>
+          <Box
+            sx={{
+              ml: 4,
+            }}
+          >
             <Badge
               badgeContent={item.count}
               sx={{

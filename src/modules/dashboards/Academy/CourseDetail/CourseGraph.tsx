@@ -1,7 +1,7 @@
-import React from "react";
-import { Area, AreaChart } from "recharts";
-import { GraphDaumType } from "@crema/types/models/dashboards/Academy";
-import { Box } from "@mui/material";
+import React from 'react';
+import { Area, AreaChart } from 'recharts';
+import { GraphDaumType } from '@crema/types/models/dashboards/Academy';
+import { Box } from '@mui/material';
 
 type Props = {
   data: GraphDaumType[];

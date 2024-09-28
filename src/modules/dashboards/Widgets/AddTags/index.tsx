@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Chip from "@mui/material/Chip";
-import Box from "@mui/material/Box";
-import AddNewTag from "./AddNewTag";
-import { blue, green, orange, red, teal } from "@mui/material/colors";
-import AppCard from "@crema/components/AppCard";
-import { useIntl } from "react-intl";
-import { darken } from "@mui/material";
-import { TagsListType } from "@crema/types/models/dashboards/Widgets";
-import { generateRandomUniqueNumber } from "@crema/helpers/Common";
+import React, { useState } from 'react';
+import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
+import AddNewTag from './AddNewTag';
+import { blue, green, orange, red, teal } from '@mui/material/colors';
+import AppCard from '@crema/components/AppCard';
+import { useIntl } from 'react-intl';
+import { darken } from '@mui/material';
+import { TagsListType } from '@crema/types/models/dashboards/Widgets';
+import { generateRandomUniqueNumber } from '@crema/helpers/Common';
 
 const colorList = [
   { id: 9001, color: blue[600] },
@@ -41,29 +41,25 @@ const AddTags: React.FC<AddTagsPorps> = ({ data }) => {
   const { messages } = useIntl();
 
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={messages["dashboard.addTags"] as string}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={messages['dashboard.addTags'] as string}>
       <Box
         sx={{
           p: 2,
           borderRadius: 1,
-          backgroundColor: (theme) =>
-            darken(theme.palette.background.default, 0.03),
+          backgroundColor: (theme) => darken(theme.palette.background.default, 0.03),
         }}
       >
         {tags.map((item) => {
           return (
             <Chip
               key={item.id}
-              sx={{
+              sx={(theme) => ({
                 backgroundColor: item.color,
                 fontSize: 14,
                 margin: 2,
-                padding: "8px 4px",
-                color: (theme) => theme.palette.primary.contrastText,
-              }}
+                padding: '8px 4px',
+                color: theme.palette.primary.contrastText,
+              })}
               label={item.label}
               onDelete={handleDelete(item)}
             />

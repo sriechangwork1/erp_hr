@@ -8,10 +8,7 @@ type BadgeProps = {
   color?: string;
 };
 
-const AppBadge: React.FC<BadgeProps> = ({
-  count,
-  color = 'secondary.main',
-}) => {
+const AppBadge: React.FC<BadgeProps> = ({ count, color = 'secondary.main' }) => {
   if (color === 'primary') {
     color = 'primary.main';
   } else if (color === 'v') {
@@ -19,7 +16,7 @@ const AppBadge: React.FC<BadgeProps> = ({
   }
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         bgcolor: color,
         padding: '0px 7px',
         fontSize: 11,
@@ -29,8 +26,8 @@ const AppBadge: React.FC<BadgeProps> = ({
         borderRadius: 20,
         display: 'flex',
         alignItems: 'center',
-        color: (theme) => theme.palette.secondary.contrastText,
-      }}
+        color: theme.palette.secondary.contrastText,
+      })}
     >
       {count}
     </Box>

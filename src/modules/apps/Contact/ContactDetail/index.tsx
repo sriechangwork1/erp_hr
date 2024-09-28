@@ -22,18 +22,10 @@ type Props = {
 };
 
 const ContactDetail = (props: Props) => {
-  const {
-    isShowDetail,
-    selectedContact,
-    onShowDetail,
-    onChangeStarred,
-    onSelectContactsForDelete,
-    onOpenEditContact,
-  } = props;
+  const { isShowDetail, selectedContact, onShowDetail, onChangeStarred, onSelectContactsForDelete, onOpenEditContact } =
+    props;
 
-  const [contact, setContact] = useState<ContactObjType | null>(
-    selectedContact,
-  );
+  const [contact, setContact] = useState<ContactObjType | null>(selectedContact);
 
   useEffect(() => {
     setContact(selectedContact);
@@ -69,14 +61,14 @@ const ContactDetail = (props: Props) => {
       {contact ? (
         <div>
           <Box
-            sx={{
-              borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+            sx={(theme) => ({
+              borderBottom: `1px solid ${theme.palette.divider}`,
               ml: -6,
               mr: -6,
               pl: 5,
               pr: 5,
               pb: 4,
-            }}
+            })}
           >
             <Box
               sx={{
@@ -106,7 +98,7 @@ const ContactDetail = (props: Props) => {
                   {contact.name[0].toUpperCase()}
                 </Avatar>
               )}
-              <Box component='h3'>{contact.name}</Box>
+              <Box component="h3">{contact.name}</Box>
             </Box>
           </Box>
 
@@ -131,9 +123,9 @@ const ContactDetail = (props: Props) => {
       )}
       <DialogActions>
         <Button
-          variant='outlined'
-          color='primary'
-          type='submit'
+          variant="outlined"
+          color="primary"
+          type="submit"
           sx={{ width: 100 }}
           onClick={() => onShowDetail(false)}
         >

@@ -56,10 +56,7 @@ const ContactListItemMobile = ({
 }: Props) => {
   const onGetLabelColor = (labelId: number) => {
     if (labelId) {
-      return (
-        labelList.length > 0 &&
-        labelList.find((label) => label.id === labelId)!.color
-      );
+      return labelList.length > 0 && labelList.find((label) => label.id === labelId)!.color;
     }
   };
 
@@ -79,14 +76,14 @@ const ContactListItemMobile = ({
           display: 'flex',
           alignItems: 'center',
         }}
-        className='contactViewLeft'
+        className="contactViewLeft"
       >
         <Box
           sx={{
             mr: 3,
             mt: 1,
           }}
-          component='span'
+          component="span"
         >
           {contact.image ? (
             <Avatar
@@ -117,13 +114,13 @@ const ContactListItemMobile = ({
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
             }}
-            component='p'
+            component="p"
           >
             {contact.name}
           </Box>
 
           <Box
-            component='p'
+            component="p"
             sx={{
               color: 'text.secondary',
               overflow: 'hidden',

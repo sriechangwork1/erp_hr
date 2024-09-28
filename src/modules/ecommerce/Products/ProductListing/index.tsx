@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
-import { alpha, Box, Hidden } from '@mui/material';
+import { alpha, Box } from '@mui/material';
 import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
 import AppsPagination from '@crema/components/AppsPagination';
@@ -11,10 +11,7 @@ import ProductGrid from './ProductGrid';
 import ProductList from './ProductList';
 import { VIEW_TYPE } from '../index';
 
-import {
-  FilterDataType,
-  ProductDataType,
-} from '@crema/types/models/ecommerce/EcommerceApp';
+import { FilterDataType, ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type EcomType = {
   data: ProductDataType[];
@@ -28,17 +25,16 @@ type Props = {
   setViewType: (data: string) => void;
 };
 
-const ProductListing = ({
-  filterData,
-  viewType,
-  setViewType,
-  setFilterData,
-}: Props) => {
+const ProductListing = ({ filterData, viewType, setViewType, setFilterData }: Props) => {
   const { theme } = useThemeContext();
   const [page, setPage] = useState(0);
 
-  const [{ apiData: ecommerceList, loading }, { setQueryParams }] =
-    useGetDataApi<EcomType>('ecommerce/products', {} as EcomType, {}, false);
+  const [{ apiData: ecommerceList, loading }, { setQueryParams }] = useGetDataApi<EcomType>(
+    'ecommerce/products',
+    {} as EcomType,
+    {},
+    false,
+  );
 
   const { data: list, count: total } = ecommerceList;
 
@@ -94,30 +90,19 @@ const ProductListing = ({
           }}
         >
           {viewType === VIEW_TYPE.GRID ? (
-            <ProductGrid
-              ecommerceList={ecommerceList?.data}
-              loading={loading}
-            />
+            <ProductGrid ecommerceList={ecommerceList?.data} loading={loading} />
           ) : (
-            <ProductList
-              ecommerceList={ecommerceList?.data}
-              loading={loading}
-            />
+            <ProductList ecommerceList={ecommerceList?.data} loading={loading} />
           )}
         </Box>
       </AppsContent>
-      <Hidden smUp>
+      <Box component="span" sx={{ display: { sm: 'none', xs: 'block' } }}>
         {list?.length > 0 ? (
           <AppsFooter>
-            <AppsPagination
-              count={total}
-              rowsPerPage={10}
-              page={page}
-              onPageChange={onPageChange}
-            />
+            <AppsPagination count={total} rowsPerPage={10} page={page} onPageChange={onPageChange} />
           </AppsFooter>
         ) : null}
-      </Hidden>
+      </Box>
     </>
   );
 };

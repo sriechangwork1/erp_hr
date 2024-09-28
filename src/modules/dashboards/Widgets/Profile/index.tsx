@@ -1,12 +1,12 @@
-import React from "react";
-import Avatar from "@mui/material/Avatar";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import { useIntl } from "react-intl";
-import { ProfileType } from "@crema/types/models/dashboards/Widgets";
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import CloseIcon from '@mui/icons-material/Close';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import { useIntl } from 'react-intl';
+import { ProfileType } from '@crema/types/models/dashboards/Widgets';
 
 type ProfileProps = {
   data: ProfileType;
@@ -18,14 +18,14 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
     <AppCard
       sxStyle={{ height: 1 }}
       contentStyle={{
-        display: "flex",
-        flexDirection: "column",
+        display: 'flex',
+        flexDirection: 'column',
       }}
-      title={messages["common.wall"] as string}
+      title={messages['common.wall'] as string}
       action={
         <CloseIcon
           sx={{
-            cursor: "pointer",
+            cursor: 'pointer',
           }}
         />
       }
@@ -34,11 +34,11 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
         sx={{
           mb: 8,
           flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
         }}
       >
         <Avatar
@@ -62,9 +62,9 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
 
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          textAlign: "center",
+          display: 'flex',
+          justifyContent: 'space-between',
+          textAlign: 'center',
           mb: 1,
         }}
       >
@@ -76,7 +76,7 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              display: "block",
+              display: 'block',
               mb: 2,
               fontWeight: Fonts.MEDIUM,
               fontSize: 20,
@@ -87,10 +87,10 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              color: "text.secondary",
-              display: "block",
+              color: 'text.secondary',
+              display: 'block',
               fontSize: 14,
-              textTransform: "uppercase",
+              textTransform: 'uppercase',
             }}
           >
             <IntlMessages id="dashboard.photos" />
@@ -104,7 +104,7 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              display: "block",
+              display: 'block',
               mb: 2,
               fontWeight: Fonts.MEDIUM,
               fontSize: 20,
@@ -115,10 +115,10 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              color: "text.secondary",
-              display: "block",
+              color: 'text.secondary',
+              display: 'block',
               fontSize: 14,
-              textTransform: "uppercase",
+              textTransform: 'uppercase',
             }}
           >
             <IntlMessages id="dashboard.followers" />
@@ -132,7 +132,7 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              display: "block",
+              display: 'block',
               mb: 2,
               fontWeight: Fonts.MEDIUM,
               fontSize: 20,
@@ -143,10 +143,10 @@ const Profile: React.FC<ProfileProps> = ({ data }) => {
           <Box
             component="span"
             sx={{
-              color: "text.secondary",
-              display: "block",
+              color: 'text.secondary',
+              display: 'block',
               fontSize: 14,
-              textTransform: "uppercase",
+              textTransform: 'uppercase',
             }}
           >
             <IntlMessages id="dashboard.following" />

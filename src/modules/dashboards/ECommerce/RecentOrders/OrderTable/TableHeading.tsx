@@ -1,12 +1,12 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableHeader from "@crema/components/AppTable/TableHeader";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableHeader from '@crema/components/AppTable/TableHeader';
 
 const TableHeading = () => {
   return (
     <TableHeader
       sx={{
-        "& th": {
+        '& th': {
           padding: 4,
         },
       }}

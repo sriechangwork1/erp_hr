@@ -25,12 +25,7 @@ const Products = () => {
   return (
     <AppsContainer
       title={messages['sidebar.ecommerce.products'] as string}
-      sidebarContent={
-        <ProductsSidebar
-          filterData={filterData}
-          setFilterData={setFilterData}
-        />
-      }
+      sidebarContent={<ProductsSidebar filterData={filterData} setFilterData={setFilterData} />}
     >
       <ProductListing
         filterData={filterData}

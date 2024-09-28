@@ -1,16 +1,16 @@
-import React from "react";
-import clsx from "clsx";
-import AppScrollbar from "../../../AppScrollbar";
-import MainSidebar from "../../components/MainSidebar";
-import Drawer from "@mui/material/Drawer";
-import VerticalNav from "../../components/VerticalNav";
-import StandardSidebarWrapper from "./StandardSidebarWrapper";
-import UserInfo from "../../components/UserInfo";
-import { useSidebarContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
-import { RouterConfigData } from "@crema/types/models/Apps";
+import React from 'react';
+import clsx from 'clsx';
+import AppScrollbar from '../../../AppScrollbar';
+import MainSidebar from '../../components/MainSidebar';
+import Drawer from '@mui/material/Drawer';
+import VerticalNav from '../../components/VerticalNav';
+import StandardSidebarWrapper from './StandardSidebarWrapper';
+import UserInfo from '../../components/UserInfo';
+import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
+import { RouterConfigData } from '@crema/types/models/Apps';
 
 type AppSidebarProps = {
-  position?: "left" | "top" | "right" | "bottom";
+  position?: 'left' | 'top' | 'right' | 'bottom';
   variant?: string;
   routesConfig: RouterConfigData[];
   isNavCollapsed: boolean;
@@ -18,8 +18,8 @@ type AppSidebarProps = {
 };
 
 const AppSidebar: React.FC<AppSidebarProps> = ({
-  variant = "",
-  position = "left",
+  variant = '',
+  position = 'left',
   toggleNavCollapsed,
   isNavCollapsed,
   routesConfig,
@@ -35,7 +35,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
         root: clsx(variant),
         paper: clsx(variant),
       }}
-      style={{ position: "absolute" }}
+      style={{ position: 'absolute' }}
     >
       <StandardSidebarWrapper className="standard-sidebar">
         <MainSidebar>
@@ -43,7 +43,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
           <AppScrollbar
             sx={{
               py: 2,
-              height: "calc(100vh - 70px) !important",
+              height: 'calc(100vh - 70px) !important',
             }}
             scrollToTop={false}
           >

@@ -26,16 +26,16 @@ const ForgetPasswordJwtAuth = () => {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ mb: { xs: 8, xl: 10 } }}>
         <Typography
-          variant='h2'
-          component='h2'
-          sx={{
+          variant="h2"
+          component="h2"
+          sx={(theme) => ({
             mb: 1.5,
-            color: (theme) => theme.palette.text.primary,
+            color: theme.palette.text.primary,
             fontWeight: Fonts.SEMI_BOLD,
             fontSize: { xs: 14, xl: 16 },
-          }}
+          })}
         >
-          <IntlMessages id='common.forgetPassword' />
+          <IntlMessages id="common.forgetPassword" />
         </Typography>
 
         <Typography
@@ -46,25 +46,24 @@ const ForgetPasswordJwtAuth = () => {
           }}
         >
           <span style={{ marginRight: 4 }}>
-            <IntlMessages id='common.alreadyHavePassword' />
+            <IntlMessages id="common.alreadyHavePassword" />
           </span>
           <Box
-            component='span'
-            sx={{
+            component="span"
+            sx={(theme) => ({
               fontWeight: Fonts.MEDIUM,
               '& a': {
-                color: (theme) => theme.palette.primary.main,
+                color: theme.palette.primary.main,
                 textDecoration: 'none',
               },
-            }}
+            })}
           >
-            <Link href='/signin'>
-              <IntlMessages id='common.signIn' />
+            <Link href="/signin">
+              <IntlMessages id="common.signIn" />
             </Link>
           </Box>
         </Typography>
       </Box>
-
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Formik
@@ -84,8 +83,8 @@ const ForgetPasswordJwtAuth = () => {
               <Form style={{ textAlign: 'left' }}>
                 <Box sx={{ mb: { xs: 5, lg: 8 } }}>
                   <AppTextField
-                    placeholder='Email'
-                    name='email'
+                    placeholder="Email"
+                    name="email"
                     label={messages['common.emailAddress'] as string}
                     sx={{
                       width: '100%',
@@ -93,14 +92,14 @@ const ForgetPasswordJwtAuth = () => {
                         fontSize: 14,
                       },
                     }}
-                    variant='outlined'
+                    variant="outlined"
                   />
                 </Box>
 
                 <div>
                   <Button
-                    variant='contained'
-                    color='primary'
+                    variant="contained"
+                    color="primary"
                     disabled={isSubmitting}
                     sx={{
                       fontWeight: Fonts.REGULAR,
@@ -108,9 +107,9 @@ const ForgetPasswordJwtAuth = () => {
                       fontSize: 16,
                       minWidth: 160,
                     }}
-                    type='submit'
+                    type="submit"
                   >
-                    <IntlMessages id='common.sendNewPassword' />
+                    <IntlMessages id="common.sendNewPassword" />
                   </Button>
                 </div>
               </Form>

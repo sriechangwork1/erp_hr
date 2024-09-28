@@ -34,9 +34,7 @@ export const PUT = async (request: NextRequest) => {
       }
       return mail;
     });
-    const updatedMails = mailList.filter((mail: MailType) =>
-      mailIds.includes(mail.id),
-    );
+    const updatedMails = mailList.filter((mail: MailType) => mailIds.includes(mail.id));
     return new Response(JSON.stringify(updatedMails), {
       status: 200,
     });

@@ -18,18 +18,12 @@ export const GET = async (request: NextRequest) => {
         folderContactList = contactList;
       }
     } else {
-      const labelType = labelList.find((label) => label.alias === params.name)
-        ?.id;
-      folderContactList = contactList.filter(
-        (contact) => contact.label === labelType,
-      );
+      const labelType = labelList.find((label) => label.alias === params.name)?.id;
+      folderContactList = contactList.filter((contact) => contact.label === labelType);
     }
     const index = params.page * 15;
     const count = folderContactList.length;
-    const data =
-      folderContactList.length > 15
-        ? folderContactList.slice(index, index + 15)
-        : folderContactList;
+    const data = folderContactList.length > 15 ? folderContactList.slice(index, index + 15) : folderContactList;
 
     return new Response(JSON.stringify({ data, count }), { status: 200 });
   } catch (error) {
@@ -52,9 +46,7 @@ export const PUT = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
     const { contact } = reqBody;
-    contactList = contactList.map((item) =>
-      item.id === contact.id ? contact : item,
-    );
+    contactList = contactList.map((item) => (item.id === contact.id ? contact : item));
     return new Response(JSON.stringify(contact), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

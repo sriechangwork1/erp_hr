@@ -67,7 +67,7 @@ const UserInfo = () => {
         )}
       </Box>
       <Menu
-        id='simple-menu'
+        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -77,11 +77,11 @@ const UserInfo = () => {
         }}
       >
         <MenuItem
-          sx={{
-            backgroundColor: (theme) => alpha(theme.palette.common.black, 0.08),
+          sx={(theme) => ({
+            backgroundColor: alpha(theme.palette.common.black, 0.08),
             px: 6,
             py: 3,
-          }}
+          })}
         >
           <Box
             sx={{
@@ -120,18 +120,18 @@ const UserInfo = () => {
                 fontSize: 14,
                 fontWeight: Fonts.MEDIUM,
               }}
-              component='span'
+              component="span"
             >
               {user.displayName ? user.displayName : 'Admin User '}
             </Box>
             <Box
-              sx={{
+              sx={(theme) => ({
                 mt: -0.5,
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
                 fontSize: 12,
-                color: (theme) => theme.palette.text.secondary,
-              }}
+                color: theme.palette.text.secondary,
+              })}
             >
               System Manager
             </Box>

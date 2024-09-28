@@ -17,30 +17,20 @@ const IntroductionItem = ({ data }: IntroductionProps) => {
       }}
     >
       <Box sx={{ mr: 5 }}>
-        <Image
-          src={data.icon}
-          alt='icon'
-          width={34}
-          height={37}
-          style={{ minWidth: 34 }}
-        />
+        <Image src={data.icon} alt="icon" width={34} height={37} style={{ minWidth: 34 }} />
       </Box>
       <Box>
-        <Typography
-          component='h4'
-          variant='h4'
-          sx={{ fontWeight: Fonts.SEMI_BOLD, fontSize: 16, mb: 2.5 }}
-        >
+        <Typography component="h4" variant="h4" sx={{ fontWeight: Fonts.SEMI_BOLD, fontSize: 16, mb: 2.5 }}>
           {data.title}
         </Typography>
         <Typography
-          sx={{
+          sx={(theme) => ({
             mb: {
               xs: 2,
               md: 3,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
             },
-          }}
+          })}
         >
           {data.description}
         </Typography>

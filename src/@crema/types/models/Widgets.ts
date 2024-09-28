@@ -7,86 +7,86 @@ export type RecentActivityData = {
   message: string;
 };
 
-export type CategoriesData={
+export type CategoriesData = {
   id: number;
   name: string;
   isChecked: boolean;
-}
+};
 
-export type ProfileData={
+export type ProfileData = {
   id: number;
   name: string;
   image: string;
   photos: number;
   followers: number;
   following: number;
-}
+};
 
-export type MessagesData={
+export type MessagesData = {
   id: number;
   image: string;
   message: string;
   name: string;
-}
+};
 
-export type TaskListData={
+export type TaskListData = {
   id: number;
   title: string;
   desc: string;
-}
+};
 
-export type ColorsList={
+export type ColorsList = {
   id: number;
   name: string;
   color: PaletteColorOptions;
   isChecked: boolean;
-}
+};
 
-export type TagsList={
+export type TagsList = {
   id: number;
   label: string;
   color: string;
-}
+};
 
-export type ReviewsList={
+export type ReviewsList = {
   id: number;
   rating: number;
   by: string;
   content: string;
   time: string;
-}
+};
 
-export type SocialInfo={
+export type SocialInfo = {
   image: string;
   name: string;
   id: string;
   desc: string;
-}
+};
 
-export type MateInfo={
+export type MateInfo = {
   facebookInfo: SocialInfo;
   twitterInfo: SocialInfo;
-}
+};
 
-export type FormatList={
+export type FormatList = {
   id: number;
   name: string;
-}
+};
 
-export type Temperatures={
+export type Temperatures = {
   id: number;
   day: string;
   image: string;
-}
+};
 
-export type CityData={
+export type CityData = {
   id: number;
   name: string;
   desc: string;
   image: string;
-}
+};
 
-export type Widgets={
+export type Widgets = {
   recentActivity: RecentActivityData[];
   categories: CategoriesData[];
   profile: ProfileData;
@@ -99,4 +99,4 @@ export type Widgets={
   formatList: FormatList[];
   temperatures: Temperatures[];
   cityData: CityData[];
-}
+};

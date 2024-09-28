@@ -22,11 +22,7 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import { Field } from 'formik';
 import Slide from '@mui/material/Slide';
-import {
-  ProductInfoType,
-  ProductSpecType,
-  TagType,
-} from '@crema/types/models/ecommerce/EcommerceApp';
+import { ProductInfoType, ProductSpecType, TagType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const TagList: TagType[] = [
   {
@@ -70,53 +66,46 @@ const BlogSidebar = ({
   const router = useRouter();
 
   return (
-    <Slide direction='left' in mountOnEnter unmountOnExit>
+    <Slide direction="left" in mountOnEnter unmountOnExit>
       <Grid item xs={12} lg={4}>
         <AppScrollbar style={{ height: '700px' }}>
-          <AppCard title='Product Details'>
+          <AppCard title="Product Details">
             <FormControlLabel
               control={
                 <Switch
                   checked={inStock}
-                  onChange={(event) =>
-                    setFieldValue('inStock', event.target.checked)
-                  }
-                  name='inStock'
+                  onChange={(event) => setFieldValue('inStock', event.target.checked)}
+                  name="inStock"
                 />
               }
-              label='In Stock'
+              label="In Stock"
             />
 
             <AppTextField
-              name='SKU'
-              variant='outlined'
+              name="SKU"
+              variant="outlined"
               sx={{
                 width: '100%',
                 my: 4,
               }}
-              label='Product SKU'
+              label="Product SKU"
             />
 
             <FormControl
               sx={{
                 width: '100%',
               }}
-              variant='outlined'
+              variant="outlined"
             >
-              <InputLabel
-                ref={inputLabel}
-                id='demo-simple-select-outlined-label'
-              >
-                <IntlMessages id='common.category' />
+              <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+                <IntlMessages id="common.category" />
               </InputLabel>
               <Field
-                name='category'
-                label={<IntlMessages id='common.category' />}
-                labelId='label-select-outlined-label'
+                name="category"
+                label={<IntlMessages id="common.category" />}
+                labelId="label-select-outlined-label"
                 as={Select}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                  setFieldValue('category', event.target.value)
-                }
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setFieldValue('category', event.target.value)}
               >
                 {productCategory.map((category) => {
                   return (
@@ -137,7 +126,7 @@ const BlogSidebar = ({
 
             <Autocomplete
               multiple
-              id='tags-outlined'
+              id="tags-outlined"
               sx={{
                 width: '100%',
                 my: 4,
@@ -148,31 +137,26 @@ const BlogSidebar = ({
               value={selectedTags}
               onChange={(event, value) => setSelectedTags(value as TagType[])}
               renderOption={(props, option) => (
-                <Box
-                  component='li'
-                  sx={{ display: 'flex', alignItems: 'center' }}
-                  {...props}
-                >
-                  <Box ml={4}>{option?.name}</Box>
+                <Box component="li" sx={{ display: 'flex', alignItems: 'center' }} {...props}>
+                  <Box
+                    sx={{
+                      ml: 4,
+                    }}
+                  >
+                    {option?.name}
+                  </Box>
                 </Box>
               )}
               filterSelectedOptions
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  label='Tags'
-                  fullWidth
-                />
-              )}
+              renderInput={(params) => <TextField {...params} variant="outlined" label="Tags" fullWidth />}
             />
           </AppCard>
 
-          <AppCard title='Product Pricing' sxStyle={{ mt: 7 }}>
+          <AppCard title="Product Pricing" sxStyle={{ mt: 7 }}>
             <AppTextField
-              name='mrp'
-              type='number'
-              variant='outlined'
+              name="mrp"
+              type="number"
+              variant="outlined"
               sx={{
                 width: '100%',
                 my: 2,
@@ -183,12 +167,12 @@ const BlogSidebar = ({
               InputProps={{
                 startAdornment: '$',
               }}
-              label='Regular Price'
+              label="Regular Price"
             />
             <AppTextField
-              name='salemrp'
-              type='number'
-              variant='outlined'
+              name="salemrp"
+              type="number"
+              variant="outlined"
               sx={{
                 width: '100%',
                 my: 2,
@@ -199,43 +183,34 @@ const BlogSidebar = ({
               InputProps={{
                 startAdornment: '$',
               }}
-              label='Sale Price'
+              label="Sale Price"
             />
             <FormControlLabel
-              control={
-                <Switch
-                  value='checkedA'
-                  inputProps={{ 'aria-label': 'secondary checkbox' }}
-                  name='inStock'
-                />
-              }
-              label='Tax Inclusive'
+              control={<Switch value="checkedA" inputProps={{ 'aria-label': 'secondary checkbox' }} name="inStock" />}
+              label="Tax Inclusive"
             />
 
             <AppTextField
-              name='discount'
-              type='number'
-              variant='outlined'
+              name="discount"
+              type="number"
+              variant="outlined"
               sx={{
                 width: '100%',
                 my: 2,
               }}
-              label='Discount %'
+              label="Discount %"
             />
           </AppCard>
 
           <AppCard
-            title='Product Specification'
+            title="Product Specification"
             sxStyle={{ mt: 7 }}
             action={
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 onClick={() => {
-                  setProductSpec([
-                    ...productSpec,
-                    { id: productSpec.length + 1, title: '', desc: '' },
-                  ]);
+                  setProductSpec([...productSpec, { id: productSpec.length + 1, title: '', desc: '' }]);
                 }}
               >
                 Add New
@@ -248,7 +223,7 @@ const BlogSidebar = ({
                   <React.Fragment key={index}>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        variant='outlined'
+                        variant="outlined"
                         value={productItem.title}
                         sx={{
                           width: '100%',
@@ -260,12 +235,12 @@ const BlogSidebar = ({
                           newProductSpec[index].title = value;
                           setProductSpec(newProductSpec);
                         }}
-                        label='Product Label'
+                        label="Product Label"
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        variant='outlined'
+                        variant="outlined"
                         value={productItem.desc}
                         sx={{
                           width: '100%',
@@ -277,7 +252,7 @@ const BlogSidebar = ({
                           newProductSpec[index].desc = value;
                           setProductSpec(newProductSpec);
                         }}
-                        label='Product Value'
+                        label="Product Value"
                       />
                     </Grid>
                   </React.Fragment>
@@ -287,17 +262,14 @@ const BlogSidebar = ({
           </AppCard>
 
           <AppCard
-            title='Product Details'
+            title="Product Details"
             sxStyle={{ mt: 7 }}
             action={
               <Button
-                variant='contained'
-                color='primary'
+                variant="contained"
+                color="primary"
                 onClick={() => {
-                  setProductInfo([
-                    ...productInfo,
-                    { id: productInfo.length + 1, title: '', desc: '' },
-                  ]);
+                  setProductInfo([...productInfo, { id: productInfo.length + 1, title: '', desc: '' }]);
                 }}
               >
                 Add New
@@ -310,7 +282,7 @@ const BlogSidebar = ({
                   <React.Fragment key={index}>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        variant='outlined'
+                        variant="outlined"
                         value={productItem.title}
                         sx={{
                           width: '100%',
@@ -322,12 +294,12 @@ const BlogSidebar = ({
                           newProductInfo[index].title = value;
                           setProductInfo(newProductInfo);
                         }}
-                        label='Product Label'
+                        label="Product Label"
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
-                        variant='outlined'
+                        variant="outlined"
                         value={productItem.desc}
                         sx={{
                           width: '100%',
@@ -339,7 +311,7 @@ const BlogSidebar = ({
                           newProductInfo[index].desc = value;
                           setProductInfo(newProductInfo);
                         }}
-                        label='Product Value'
+                        label="Product Value"
                       />
                     </Grid>
                   </React.Fragment>
@@ -348,17 +320,13 @@ const BlogSidebar = ({
             </AppGridContainer>
           </AppCard>
         </AppScrollbar>
-        <Stack
-          spacing={3}
-          direction='row'
-          sx={{ justifyContent: 'flex-end', mt: 4 }}
-        >
+        <Stack spacing={3} direction="row" sx={{ justifyContent: 'flex-end', mt: 4 }}>
           <Button
             sx={{
               minWidth: 100,
               color: 'text.secondary',
             }}
-            variant='text'
+            variant="text"
             onClick={() => router.back()}
           >
             Cancel
@@ -369,9 +337,9 @@ const BlogSidebar = ({
               display: 'block',
               minWidth: 100,
             }}
-            color='primary'
-            variant='contained'
-            type='submit'
+            color="primary"
+            variant="contained"
+            type="submit"
           >
             {isEdit ? 'Update' : 'Add'} Product
           </Button>

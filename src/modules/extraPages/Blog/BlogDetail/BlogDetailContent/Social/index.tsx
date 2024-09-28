@@ -1,11 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { FaFacebook } from 'react-icons/fa';
-import {
-  AiOutlineGithub,
-  AiOutlineInstagram,
-  AiOutlineTwitter,
-} from 'react-icons/ai';
+import { AiOutlineGithub, AiOutlineInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { FiGlobe } from 'react-icons/fi';
 
 const socialData = [
@@ -41,14 +37,14 @@ const Social = () => {
     >
       {socialData?.map((social, index) => (
         <Box
-          sx={{
+          sx={(theme) => ({
             px: { xs: 2, md: 4 },
-            color: (theme) => theme.palette.text.primary,
-          }}
+            color: theme.palette.text.primary,
+          })}
           key={index}
         >
           <Box
-            component='span'
+            component="span"
             sx={{
               cursor: 'pointer',
               '& svg': {

@@ -38,10 +38,7 @@ export const GET = async (request: NextRequest) => {
       folderinvList = invoiceData;
     }
     const index: any = params?.page || 0 * 15;
-    const data =
-      folderinvList.length > 15
-        ? folderinvList.slice(index, index + 15)
-        : folderinvList;
+    const data = folderinvList.length > 15 ? folderinvList.slice(index, index + 15) : folderinvList;
     return new Response(JSON.stringify(data), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

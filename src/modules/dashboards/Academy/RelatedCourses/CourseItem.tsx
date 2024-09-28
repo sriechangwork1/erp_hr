@@ -24,15 +24,10 @@ const CourseItem = ({ data }: Props) => {
           },
         }}
       >
-        <Image
-          src={`${data.image}`}
-          alt={data.title}
-          width={337}
-          height={160}
-        />
+        <Image src={`${data.image}`} alt={data.title} width={337} height={160} />
       </Box>
       <Box
-        component='p'
+        component="p"
         sx={{
           fontSize: 14,
           fontWeight: Fonts.MEDIUM,
@@ -48,7 +43,7 @@ const CourseItem = ({ data }: Props) => {
           color: 'text.secondary',
         }}
       >
-        <Box component='p'>{data.author}</Box>
+        <Box component="p">{data.author}</Box>
         <Box
           sx={{
             ml: 3,
@@ -61,7 +56,7 @@ const CourseItem = ({ data }: Props) => {
         >
           <VisibilityIcon />
           <Box
-            component='p'
+            component="p"
             sx={{
               ml: 2,
             }}

@@ -1,12 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import PropTypes from "prop-types";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import { Fonts } from "@crema/constants/AppEnums";
-import { NotificationsType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import Box from '@mui/material/Box';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import { Fonts } from '@crema/constants/AppEnums';
+import { NotificationsType } from '@crema/types/models/dashboards/Ecommerce';
 
 type Props = {
   item: NotificationsType;
@@ -14,14 +14,10 @@ type Props = {
 
 const NotificationCell = ({ item }: Props) => {
   return (
-    <ListItem
-      disableGutters
-      className="item-hover"
-      sx={{ paddingLeft: 5, paddingRight: 5 }}
-    >
+    <ListItem disableGutters className="item-hover" sx={{ paddingLeft: 5, paddingRight: 5 }}>
       <ListItemAvatar
         sx={{
-          minWidth: "auto",
+          minWidth: 'auto',
           mr: 4,
         }}
       >
@@ -38,7 +34,7 @@ const NotificationCell = ({ item }: Props) => {
           <Box
             component="span"
             sx={{
-              color: "text.primary",
+              color: 'text.primary',
               mb: 0.5,
               fontWeight: Fonts.MEDIUM,
               fontSize: 14,
@@ -51,17 +47,17 @@ const NotificationCell = ({ item }: Props) => {
           <Box
             component="span"
             sx={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
               fontSize: 14,
-              color: "primary.main",
+              color: 'primary.main',
             }}
           >
             <Box
               component="span"
               sx={{
-                display: "block",
+                display: 'block',
                 mr: 2,
               }}
             >
@@ -70,8 +66,8 @@ const NotificationCell = ({ item }: Props) => {
             <Box
               component="span"
               sx={{
-                display: "block",
-                color: "text.secondary",
+                display: 'block',
+                color: 'text.secondary',
               }}
             >
               {item.message}

@@ -50,7 +50,7 @@ const FAQ = () => {
   };
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box sx={{ flex: 1 }}>
         <Box
           sx={{
@@ -66,14 +66,11 @@ const FAQ = () => {
             mb: 2,
           }}
         >
-          <Box
-            component='h2'
-            sx={{ mb: 5, fontSize: 20, fontWeight: Fonts.MEDIUM }}
-          >
-            <IntlMessages id='faq.heading' />
+          <Box component="h2" sx={{ mb: 5, fontSize: 20, fontWeight: Fonts.MEDIUM }}>
+            <IntlMessages id="faq.heading" />
           </Box>
-          <Box component='p' sx={{ fontSize: 16 }}>
-            <IntlMessages id='faq.content' />
+          <Box component="p" sx={{ fontSize: 16 }}>
+            <IntlMessages id="faq.content" />
           </Box>
         </Box>
 

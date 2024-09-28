@@ -10,13 +10,12 @@ import { ProductDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const ProductEditPage = () => {
   const params = useParams();
-  const [{ apiData: currentProduct, loading }, { setQueryParams }] =
-    useGetDataApi<ProductDataType | undefined>(
-      '/ecommerce/admin',
-      undefined,
-      {},
-      false,
-    );
+  const [{ apiData: currentProduct, loading }, { setQueryParams }] = useGetDataApi<ProductDataType | undefined>(
+    '/ecommerce/admin',
+    undefined,
+    {},
+    false,
+  );
 
   useEffect(() => {
     if (params.all) setQueryParams({ id: params.all[0] });
@@ -25,7 +24,7 @@ const ProductEditPage = () => {
   return loading || isEmptyObject(currentProduct) ? (
     <AppLoader />
   ) : (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <AddEditProduct selectedProd={currentProduct} />
     </AppAnimate>
   );

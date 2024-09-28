@@ -7,9 +7,7 @@ export const GET = async (request: NextRequest) => {
   const { id } = Object.fromEntries(request.nextUrl.searchParams);
   try {
     if (+id >= 1) {
-      const data = ecommerceListingData.filter(
-        (item: ProductDataType) => +item.id === +id,
-      );
+      const data = ecommerceListingData.filter((item: ProductDataType) => +item.id === +id);
       if (data.length > 0)
         return new Response(JSON.stringify(data[0]), {
           status: 200,

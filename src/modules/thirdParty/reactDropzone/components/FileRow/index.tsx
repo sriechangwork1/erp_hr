@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import { IconButton, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import React from 'react';
+import Box from '@mui/material/Box';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import { IconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface FileRowProps {
   file?: any;
@@ -12,14 +12,14 @@ interface FileRowProps {
 const FileRow: React.FC<FileRowProps> = ({ file, onDeleteUploadFile }) => {
   return (
     <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        border: (theme) => `solid 1px ${theme.palette.divider}`,
+      sx={(theme) => ({
+        display: 'flex',
+        alignItems: 'center',
+        border: `solid 1px ${theme.palette.divider}`,
         mb: 2.5,
         borderRadius: 2.5,
         p: 2.5,
-      }}
+      })}
     >
       <Box sx={{ mr: 3 }}>
         <InsertDriveFileIcon />
@@ -29,7 +29,7 @@ const FileRow: React.FC<FileRowProps> = ({ file, onDeleteUploadFile }) => {
         <Box
           component="span"
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
           }}
         >
           {file.size} bytes

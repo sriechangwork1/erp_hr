@@ -1,7 +1,7 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import TableHeader from "@crema/components/AppTable/TableHeader";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import TableHeader from '@crema/components/AppTable/TableHeader';
 
 const TableHeading = () => {
   return (

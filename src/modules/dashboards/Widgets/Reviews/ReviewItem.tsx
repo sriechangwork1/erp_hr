@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
-import { Fonts } from "@crema/constants/AppEnums";
-import { ReviewsListType } from "@crema/types/models/dashboards/Widgets";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import { Fonts } from '@crema/constants/AppEnums';
+import { ReviewsListType } from '@crema/types/models/dashboards/Widgets';
 
 type ReviewItemProps = {
   item: ReviewsListType;
@@ -22,16 +22,16 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ item }) => {
       <Box
         sx={{
           mb: 1,
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Rating value={item.rating} readOnly />
         <Box
           component="span"
           sx={{
-            ml: "auto",
-            color: "text.secondary",
+            ml: 'auto',
+            color: 'text.secondary',
             fontWeight: Fonts.MEDIUM,
           }}
         >
@@ -41,7 +41,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ item }) => {
       <Box
         component="p"
         sx={{
-          color: "text.secondary",
+          color: 'text.secondary',
           mb: 1,
         }}
       >
@@ -50,7 +50,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ item }) => {
       <Box
         component="span"
         sx={{
-          color: "primary.main",
+          color: 'primary.main',
           fontWeight: Fonts.MEDIUM,
         }}
       >

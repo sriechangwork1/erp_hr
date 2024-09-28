@@ -1,27 +1,24 @@
-import React from "react";
-import SocialMediaGraph from "./SocialMediaGraph";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import { SocialMediaDaumType } from "@crema/types/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import SocialMediaGraph from './SocialMediaGraph';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import { SocialMediaDaumType } from '@crema/types/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   socialMediaData: SocialMediaDaumType[];
 };
 const SocialMediaAdvertise = ({ socialMediaData = [] }: Props) => {
   return (
-    <AppCard
-      title={<IntlMessages id="dashboard.socialMedia" />}
-      sxStyle={{ height: 1 }}
-    >
+    <AppCard title={<IntlMessages id="dashboard.socialMedia" />} sxStyle={{ height: 1 }}>
       <SocialMediaGraph socialMediaData={socialMediaData} />
       <Box
         sx={{
           mb: 1,
           mx: { xs: -2, xl: -3 },
-          display: "flex",
-          justifyContent: "space-between",
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
         {socialMediaData.map((item) => {
@@ -45,23 +42,20 @@ const SocialMediaAdvertise = ({ socialMediaData = [] }: Props) => {
               </Box>
               <Box
                 sx={{
-                  position: "relative",
+                  position: 'relative',
                 }}
               >
                 <Box
                   component="p"
                   sx={{
-                    color: "text.secondary",
+                    color: 'text.secondary',
                     fontSize: 14,
-                    textTransform: "capitalize",
+                    textTransform: 'capitalize',
                   }}
                 >
                   {item.name}
                 </Box>
-                <Box
-                  component="span"
-                  sx={{ color: item.changeColor, fontSize: 13 }}
-                >
+                <Box component="span" sx={{ color: item.changeColor, fontSize: 13 }}>
                   {item.change}
                 </Box>
               </Box>

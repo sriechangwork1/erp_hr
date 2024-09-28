@@ -1,16 +1,16 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import { Fonts } from "@crema/constants/AppEnums";
-import Card from "@mui/material/Card";
-import type { PricingTwoType } from "@crema/types/models/extrapages/Pricing";
+import React from 'react';
+import { Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import { Fonts } from '@crema/constants/AppEnums';
+import Card from '@mui/material/Card';
+import type { PricingTwoType } from '@crema/types/models/extrapages/Pricing';
 
 type Props = {
   pricing: PricingTwoType;
@@ -20,17 +20,17 @@ const PackageCard = ({ pricing }: Props) => {
   return (
     <Card
       sx={{
-        boxShadow: "none",
-        border: "1px solid #e8e5dd",
+        boxShadow: 'none',
+        border: '1px solid #e8e5dd',
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           py: 5,
           px: 5,
-          textAlign: "center",
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-        }}
+          textAlign: 'center',
+          borderBottom: `solid 1px ${theme.palette.divider}`,
+        })}
       >
         <Typography
           component="h5"
@@ -45,12 +45,12 @@ const PackageCard = ({ pricing }: Props) => {
         <Typography>{pricing.description}</Typography>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           py: 5,
           px: 5,
-          textAlign: "center",
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-        }}
+          textAlign: 'center',
+          borderBottom: `solid 1px ${theme.palette.divider}`,
+        })}
       >
         <Box
           sx={{
@@ -59,17 +59,17 @@ const PackageCard = ({ pricing }: Props) => {
         >
           <Typography
             component="h3"
-            sx={{
+            sx={(theme) => ({
               fontSize: { xs: 16, md: 18, lg: 20 },
               fontWeight: Fonts.MEDIUM,
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
           >
             <Box
               component="span"
               sx={{
-                display: "inline-block",
-                verticalAlign: "top",
+                display: 'inline-block',
+                verticalAlign: 'top',
               }}
             >
               $
@@ -112,32 +112,32 @@ const PackageCard = ({ pricing }: Props) => {
             >
               <ListItemIcon sx={{ minWidth: 10, mr: 3.5 }}>
                 <CheckOutlinedIcon
-                  sx={{
+                  sx={(theme) => ({
                     fontSize: 16,
                     mt: 1,
-                    color: (theme) => theme.palette.success.main,
-                  }}
+                    color: theme.palette.success.main,
+                  })}
                 />
               </ListItemIcon>
               <ListItemText primary={data.title} />
             </ListItem>
           ))}
         </List>
-        <Box sx={{ mt: 7.5, textAlign: "center" }}>
+        <Box sx={{ mt: 7.5, textAlign: 'center' }}>
           <Button
             variant="contained"
-            sx={{
+            sx={(theme) => ({
               fontWeight: Fonts.BOLD,
-              color: (theme) => theme.palette.common.white,
+              color: theme.palette.common.white,
               minWidth: 150,
               borderRadius: 7.5,
-              boxShadow: "none",
+              boxShadow: 'none',
               backgroundColor: pricing.priceColor,
-              "&:hover, &:focus": {
+              '&:hover, &:focus': {
                 backgroundColor: pricing.priceColor,
-                boxShadow: "none",
+                boxShadow: 'none',
               },
-            }}
+            })}
           >
             Get started
           </Button>

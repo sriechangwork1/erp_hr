@@ -5,9 +5,7 @@ type SlideContentWrapperProp = {
   children: React.ReactNode;
 };
 
-const SlideContentWrapper: React.FC<SlideContentWrapperProp> = ({
-  children,
-}) => {
+const SlideContentWrapper: React.FC<SlideContentWrapperProp> = ({ children }) => {
   return (
     <Box
       sx={{

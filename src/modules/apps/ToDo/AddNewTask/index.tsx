@@ -32,10 +32,10 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
   return (
     <AppDialog
       dividers
-      maxWidth='md'
+      maxWidth="md"
       open={isAddTaskOpen}
       onClose={() => onCloseAddTask()}
-      title={<IntlMessages id='todo.addNewTask' />}
+      title={<IntlMessages id="todo.addNewTask" />}
     >
       <Formik
         validateOnChange={true}
@@ -44,9 +44,7 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
           assignedTo: '',
           label: [],
           priority: 3,
-          startDate: selectedDate
-            ? getDateObject(selectedDate)
-            : getDateObject(),
+          startDate: selectedDate ? getDateObject(selectedDate) : getDateObject(),
           content: '',
         }}
         validationSchema={validationSchema}
@@ -75,9 +73,7 @@ const AddNewTask = ({ isAddTaskOpen, onCloseAddTask, selectedDate }: Props) => {
           })
             .then(() => {
               reCallAPI();
-              infoViewActionsContext.showMessage(
-                'New Task has been created successfully!',
-              );
+              infoViewActionsContext.showMessage('New Task has been created successfully!');
             })
             .catch((error) => {
               infoViewActionsContext.fetchError(error.message);

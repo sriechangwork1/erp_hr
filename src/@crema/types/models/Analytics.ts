@@ -1,40 +1,40 @@
-export type WelcomeCardType ={
+export type WelcomeCardType = {
   id: number;
   type: string;
   counts: number;
-}
+};
 
-export type RevenueCardsType ={
+export type RevenueCardsType = {
   id: number;
   type: string;
   value: string;
   growth: number;
   icon: string;
   strokeColor: string;
-  graphData:{ month: string; number: number }[];
-}
+  graphData: { month: string; number: number }[];
+};
 
-export type SalesStateType ={
+export type SalesStateType = {
   id: number;
   amount: string;
   type: string;
   icon: string;
-}
+};
 
-export type ChartDataType ={
+export type ChartDataType = {
   title: string;
   value: number;
   color: string;
-}
+};
 
-export type ActiveVisitorsType ={
+export type ActiveVisitorsType = {
   growth: number;
   value: number;
   slug: string;
-  graphData:{ time: string; value: number }[];
-}
+  graphData: { time: string; value: number }[];
+};
 
-export type TopSellingProductType ={
+export type TopSellingProductType = {
   id: number;
   icon: string;
   name: string;
@@ -42,57 +42,57 @@ export type TopSellingProductType ={
   price: number;
   rate: number;
   color: string;
-}
+};
 
-export type EarningDataType ={
+export type EarningDataType = {
   id: number;
   color: string;
   amount: number;
   country: string;
-}
+};
 
-export type TicketsType ={
+export type TicketsType = {
   id: number;
   name: string;
   opened: number;
-  overAllPercentage:{
+  overAllPercentage: {
     open: number;
     close: number;
     hold: number;
   };
-}
+};
 
-export type PageVisitType ={
+export type PageVisitType = {
   id: number;
   page: string;
   pageView: number;
   visitors: number;
-}
+};
 
-export type TransactionType ={
+export type TransactionType = {
   id: string;
   customer: string;
   date: string;
   paymentType: string;
   status: string;
-}
+};
 
-export type InfoWidgetsType ={
+export type InfoWidgetsType = {
   id: number;
   icon: string;
   count: number;
   details: string;
   bgColor: string;
-}
+};
 
-export type TrafficDataType ={
+export type TrafficDataType = {
   id: number;
   title: string;
   value: number;
   session: number;
-}
+};
 
-export type Analytics={
+export type Analytics = {
   welcomeCard: WelcomeCardType[];
   revenueCards: RevenueCardsType[];
   salesState: SalesStateType[];
@@ -106,4 +106,4 @@ export type Analytics={
   transactionData: TransactionType[];
   infoWidgets: InfoWidgetsType[];
   trafficData: TrafficDataType[];
-}
+};

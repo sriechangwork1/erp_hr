@@ -19,7 +19,7 @@ const VisitsTable = ({ visitsData = [] }: Props) => {
   return (
     <AppTableContainer sxStyle={{ maxHeight: 580 }}>
       <AppScrollbar sx={{ maxHeight: 580 }}>
-        <Table stickyHeader className='table'>
+        <Table stickyHeader className="table">
           <TableHead sx={{ borderBottom: '0 none' }}>
             <TableHeading />
           </TableHead>

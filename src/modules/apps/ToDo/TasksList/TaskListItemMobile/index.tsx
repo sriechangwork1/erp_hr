@@ -50,7 +50,6 @@ const TaskActionView = styled(Box)(({ theme }) => ({
   justifyContent: 'flex-end',
   width: '20%',
   paddingLeft: 12,
-
   [theme.breakpoints.up('sm')]: {
     width: '25%',
   },
@@ -62,11 +61,7 @@ type Props = {
   onChangeStarred: (checked: boolean, task: TodoType) => void;
 };
 
-const TaskListItemMobile = ({
-  task,
-  checkedTasks = [],
-  onChangeStarred,
-}: Props) => {
+const TaskListItemMobile = ({ task, checkedTasks = [], onChangeStarred }: Props) => {
   const router = useRouter();
   const params = useParams();
   const { all } = params;
@@ -94,7 +89,12 @@ const TaskListItemMobile = ({
       onClick={() => onViewTaskDetail(task)}
     >
       <UserInfoWrapper>
-        <Box mr={3.5} mt={1}>
+        <Box
+          sx={{
+            mr: 3.5,
+            mt: 1,
+          }}
+        >
           <Avatar
             sx={{
               width: 36,
@@ -120,7 +120,7 @@ const TaskListItemMobile = ({
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }}
-              component='p'
+              component="p"
             >
               {task.title}
             </Box>
@@ -140,10 +140,9 @@ const TaskListItemMobile = ({
           </Typography>
         </Box>
       </UserInfoWrapper>
-
       <TaskActionView>
         <Box
-          component='span'
+          component="span"
           sx={{
             color: 'text.secondary',
             fontSize: 12,
@@ -156,9 +155,11 @@ const TaskListItemMobile = ({
           {dayjs(task.startDate).format('HH:mm A')}
         </Box>
         <Box
-          mt='auto'
-          component='span'
+          component="span"
           onClick={(event) => event.stopPropagation()}
+          sx={{
+            mt: 'auto',
+          }}
         >
           <AppsStarredIcon item={task} onChange={onChangeStarred} />
         </Box>

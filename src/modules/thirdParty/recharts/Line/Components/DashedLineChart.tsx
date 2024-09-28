@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import data from './data';
 
 const DashedLineChart = () => (
@@ -19,18 +10,8 @@ const DashedLineChart = () => (
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
       <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#4299E1"
-        strokeDasharray="5 5"
-      />
-      <Line
-        type="monotone"
-        dataKey="uv"
-        stroke="#F04F47"
-        strokeDasharray="3 4 5 2"
-      />
+      <Line type="monotone" dataKey="pv" stroke="#4299E1" strokeDasharray="5 5" />
+      <Line type="monotone" dataKey="uv" stroke="#F04F47" strokeDasharray="3 4 5 2" />
     </LineChart>
   </ResponsiveContainer>
 );

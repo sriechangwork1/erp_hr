@@ -15,10 +15,7 @@ type AppMessageContentProps = {
   sxStyle: SxProps<Theme>;
 };
 
-const AppMessageContent: React.FC<AppMessageContentProps> = ({
-  onClose,
-  sxStyle,
-}) => {
+const AppMessageContent: React.FC<AppMessageContentProps> = ({ onClose, sxStyle }) => {
   return (
     <Box
       sx={{
@@ -30,17 +27,17 @@ const AppMessageContent: React.FC<AppMessageContentProps> = ({
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: '5px 20px',
           display: 'flex',
           alignItems: 'center',
           borderBottom: 1,
-          borderBottomColor: (theme) => theme.palette.divider,
+          borderBottomColor: theme.palette.divider,
           minHeight: { xs: 56, sm: 70 },
-        }}
+        })}
       >
-        <Typography component='h3'>
-          <IntlMessages id='dashboard.messages' />({messages.length})
+        <Typography component="h3">
+          <IntlMessages id="dashboard.messages" />({messages.length})
         </Typography>
         <IconButton
           sx={{
@@ -50,7 +47,7 @@ const AppMessageContent: React.FC<AppMessageContentProps> = ({
             color: 'text.secondary',
           }}
           onClick={onClose}
-          size='large'
+          size="large"
         >
           <CancelOutlinedIcon />
         </IconButton>
@@ -78,10 +75,10 @@ const AppMessageContent: React.FC<AppMessageContentProps> = ({
           marginTop: 'auto',
           height: 40,
         }}
-        variant='contained'
-        color='primary'
+        variant="contained"
+        color="primary"
       >
-        <IntlMessages id='common.viewAll' />
+        <IntlMessages id="common.viewAll" />
       </Button>
     </Box>
   );

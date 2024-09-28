@@ -1,6 +1,6 @@
-import React from "react";
-import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { SalesChartDaumType } from "@crema/types/models/dashboards/Analytics";
+import React from 'react';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
+import { SalesChartDaumType } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   data: SalesChartDaumType[];

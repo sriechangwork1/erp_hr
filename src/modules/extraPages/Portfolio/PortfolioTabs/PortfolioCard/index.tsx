@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import CardMedia from "@mui/material/CardMedia";
-import { FiSearch } from "react-icons/fi";
-import { AiOutlineLink } from "react-icons/ai";
-import CardContent from "@mui/material/CardContent";
-import CardWrapper from "./CardMediaWrapper";
-import { Fonts } from "@crema/constants/AppEnums";
-import { PortfolioTypes } from "@crema/types/models/extrapages/Portfolio";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import CardMedia from '@mui/material/CardMedia';
+import { FiSearch } from 'react-icons/fi';
+import { AiOutlineLink } from 'react-icons/ai';
+import CardContent from '@mui/material/CardContent';
+import CardWrapper from './CardMediaWrapper';
+import { Fonts } from '@crema/constants/AppEnums';
+import { PortfolioTypes } from '@crema/types/models/extrapages/Portfolio';
 
 type Props = {
   portfolio: PortfolioTypes;
@@ -29,7 +29,7 @@ const PortfolioCard = ({ portfolio, onViewPortfolioDetail }: Props) => {
       </Box>
       <CardContent
         sx={{
-          textAlign: "center",
+          textAlign: 'center',
         }}
       >
         <Typography
@@ -42,9 +42,9 @@ const PortfolioCard = ({ portfolio, onViewPortfolioDetail }: Props) => {
           {portfolio.title}
         </Typography>
         <Typography
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
-          }}
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
+          })}
         >
           {portfolio.subTitle}
         </Typography>

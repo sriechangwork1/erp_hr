@@ -4,7 +4,7 @@ import ContactHeader from './ContactHeader';
 import AppConfirmDialog from '@crema/components/AppConfirmDialog';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import CreateContact from '../CreateContact';
-import { Hidden } from '@mui/material';
+import { Box } from '@mui/material';
 import ContactView from './ContactView';
 import ContactDetail from '../ContactDetail';
 import AppsPagination from '@crema/components/AppsPagination';
@@ -14,10 +14,7 @@ import AppsFooter from '@crema/components/AppsContainer/AppsFooter';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
 import { ContactObjType, ContactType } from '@crema/types/models/apps/Contact';
-import {
-  useContactActionsContext,
-  useContactContext,
-} from '../../context/ContactContextProvider';
+import { useContactActionsContext, useContactContext } from '../../context/ContactContextProvider';
 
 const ContactListing = () => {
   const { page, contactList } = useContactContext();
@@ -39,9 +36,7 @@ const ContactListing = () => {
 
   const [isShowDetail, onShowDetail] = useState<boolean>(false);
 
-  const [selectedContact, setSelectedContact] = useState<ContactObjType | null>(
-    null,
-  );
+  const [selectedContact, setSelectedContact] = useState<ContactObjType | null>(null);
 
   const handleAddContactOpen = () => {
     onSetIsAddContact(true);
@@ -61,16 +56,11 @@ const ContactListing = () => {
     handleAddContactOpen();
   };
 
-  const onChangeCheckedContacts = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    id: number,
-  ) => {
+  const onChangeCheckedContacts = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
     if (event.target.checked) {
       setCheckedContacts(checkedContacts.concat(id));
     } else {
-      setCheckedContacts(
-        checkedContacts.filter((contactId) => contactId !== id),
-      );
+      setCheckedContacts(checkedContacts.filter((contactId) => contactId !== id));
     }
   };
 
@@ -83,9 +73,7 @@ const ContactListing = () => {
       .then((data) => {
         onUpdateSelectedContact(data[0]);
         infoViewActionsContext.showMessage(
-          data[0].isStarred
-            ? 'Contact Marked as Starred Successfully'
-            : 'Contact Marked as Unstarred Successfully',
+          data[0].isStarred ? 'Contact Marked as Starred Successfully' : 'Contact Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -127,9 +115,7 @@ const ContactListing = () => {
     if (filterText === '') {
       return contactList?.data;
     } else {
-      return contactList?.data.filter((contact) =>
-        contact.name.toUpperCase().includes(filterText.toUpperCase()),
-      );
+      return contactList?.data.filter((contact) => contact.name.toUpperCase().includes(filterText.toUpperCase()));
     }
   };
 
@@ -185,17 +171,13 @@ const ContactListing = () => {
         />
       </AppsContent>
 
-      <Hidden smUp>
+      <Box sx={{ display: { sm: 'none', xs: 'block' } }}>
         {contactList?.data?.length > 0 ? (
           <AppsFooter>
-            <AppsPagination
-              count={contactList?.count}
-              page={page}
-              onPageChange={onPageChange}
-            />
+            <AppsPagination count={contactList?.count} page={page} onPageChange={onPageChange} />
           </AppsFooter>
         ) : null}
-      </Hidden>
+      </Box>
 
       <CreateContact
         isAddContact={isAddContact}
@@ -217,8 +199,8 @@ const ContactListing = () => {
         open={isDeleteDialogOpen}
         onDeny={setDeleteDialogOpen}
         onConfirm={onDeleteSelectedContacts}
-        title={<IntlMessages id='contactApp.deleteContact' />}
-        dialogTitle={<IntlMessages id='common.deleteItem' />}
+        title={<IntlMessages id="contactApp.deleteContact" />}
+        dialogTitle={<IntlMessages id="common.deleteItem" />}
       />
     </>
   );

@@ -16,7 +16,6 @@ const TimelineContainer = ({ children }: Props) => {
         width: '100%',
         minWidth: { '@media (max-width: 499px)': 400 },
         paddingRight: { '@media (max-width: 499px)': 4 },
-
         '&:after': {
           backgroundColor: '#d5d6d8',
           content: '""',

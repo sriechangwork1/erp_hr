@@ -105,7 +105,12 @@ const VideoCall = ({ data }: Props) => {
         }}
         image="/assets/images/wall/v-card.jpg"
       />
-      <Box px={5} pb={4}>
+      <Box
+        sx={{
+          px: 5,
+          pb: 4,
+        }}
+      >
         <UserInfo>
           <UserWrapper>
             <Avatar src="/assets/images/avatar/A5.jpg" alt="User" />
@@ -116,7 +121,13 @@ const VideoCall = ({ data }: Props) => {
           <Typography component="h3" variant="h3">
             <IntlMessages id="wall.ericBrickey" />
           </Typography>
-          <Box component="p" color="text.secondary" mt={1}>
+          <Box
+            component="p"
+            sx={{
+              color: 'text.secondary',
+              mt: 1,
+            }}
+          >
             <IntlMessages id="wall.osloNorway" />
           </Box>
         </UserInfo>
@@ -128,24 +139,40 @@ const VideoCall = ({ data }: Props) => {
             flexDirection: 'column',
           }}
         >
-          <Box mb={2.5} component="h4">
+          <Box
+            component="h4"
+            sx={{
+              mb: 2.5,
+            }}
+          >
             {title}
           </Box>
-          <Box display="flex" alignItems="center" mb={{ xs: 5, xl: 7.5 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mb: { xs: 5, xl: 7.5 },
+            }}
+          >
             {users.slice(0, 4).map((user) => (
               <UserAvatar key={user.id} src={user.profilePic} />
             ))}
-            {users.length > 4 ? (
-              <AvatarCount>+{users.length - 4}</AvatarCount>
-            ) : null}
+            {users.length > 4 ? <AvatarCount>+{users.length - 4}</AvatarCount> : null}
           </Box>
           <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            flexWrap="wrap"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}
           >
-            <Box mx={2} mb={2}>
+            <Box
+              sx={{
+                mx: 2,
+                mb: 2,
+              }}
+            >
               <Button
                 startIcon={<PhoneOutlinedIcon />}
                 color="primary"
@@ -157,7 +184,12 @@ const VideoCall = ({ data }: Props) => {
                 <IntlMessages id="wall.groupCall" />
               </Button>
             </Box>
-            <Box mx={2} mb={2}>
+            <Box
+              sx={{
+                mx: 2,
+                mb: 2,
+              }}
+            >
               <Button
                 startIcon={<VideocamOutlinedIcon />}
                 color="primary"

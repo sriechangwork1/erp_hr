@@ -1,9 +1,9 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import AppList from "@crema/components/AppList";
-import RequestItem from "./RequestItem";
-import { useIntl } from "react-intl";
-import { FriendRequestType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppList from '@crema/components/AppList';
+import RequestItem from './RequestItem';
+import { useIntl } from 'react-intl';
+import { FriendRequestType } from '@crema/types/models/apps/Wall';
 
 type Props = {
   friendRequests: FriendRequestType[];
@@ -14,8 +14,8 @@ const FriendRequests = ({ friendRequests }: Props) => {
   return (
     <AppCard
       sxStyle={{ mb: 8 }}
-      title={messages["wall.friends"] as string}
-      action={messages["common.viewAll"] as string}
+      title={messages['wall.friends'] as string}
+      action={messages['common.viewAll'] as string}
       contentStyle={{ px: 0, pt: 2 }}
     >
       <AppList

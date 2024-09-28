@@ -1,13 +1,13 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import { useIntl } from "react-intl";
-import ProductCell from "./ProductCell";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import { useIntl } from 'react-intl';
+import ProductCell from './ProductCell';
 
-import AppScrollbar from "@crema/components/AppScrollbar";
-import AppSelect from "@crema/components/AppSelect";
-import PropTypes from "prop-types";
-import AppGrid from "@crema/components/AppGrid";
-import { PopularProductType } from "@crema/types/models/dashboards/Ecommerce";
+import AppScrollbar from '@crema/components/AppScrollbar';
+import AppSelect from '@crema/components/AppSelect';
+import PropTypes from 'prop-types';
+import AppGrid from '@crema/components/AppGrid';
+import { PopularProductType } from '@crema/types/models/dashboards/Ecommerce';
 
 type Props = {
   popularProducts: PopularProductType[];
@@ -21,15 +21,11 @@ const PopularProducts = ({ popularProducts }: Props) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages["eCommerce.popularProducts"] as string}
+      title={messages['eCommerce.popularProducts'] as string}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }
@@ -46,9 +42,7 @@ const PopularProducts = ({ popularProducts }: Props) => {
             xl: 2,
           }}
           itemPadding={0}
-          renderRow={(data, index) => (
-            <ProductCell key={"product-" + index} data={data} />
-          )}
+          renderRow={(data, index) => <ProductCell key={'product-' + index} data={data} />}
         />
       </AppScrollbar>
     </AppCard>

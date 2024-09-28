@@ -10,9 +10,9 @@ const CircleWrapper = ({ children }: Props) => {
     <Box
       component="span"
       className="circle"
-      sx={{
-        backgroundColor: (theme) => theme.palette.background.paper,
-        border: (theme) => `2px solid ${theme.palette.secondary.main}`,
+      sx={(theme) => ({
+        backgroundColor: theme.palette.background.paper,
+        border: `2px solid ${theme.palette.secondary.main}`,
         borderRadius: '50%',
         position: 'absolute',
         top: 'calc(50% - 15px)',
@@ -24,7 +24,7 @@ const CircleWrapper = ({ children }: Props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      }}
+      })}
     >
       {children}
     </Box>

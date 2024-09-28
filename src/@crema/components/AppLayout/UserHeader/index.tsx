@@ -42,7 +42,7 @@ const UserHeader = ({ children, routesConfig }: Props) => {
         })}
       >
         <AppHeader toggleNavCollapsed={toggleNavCollapsed} />
-        <Box className='mainContent'>
+        <Box className="mainContent">
           <AppSidebar
             routesConfig={routesConfig}
             isNavCollapsed={isNavCollapsed}

@@ -38,7 +38,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
   return (
     <>
       <Box
-        component='h2'
+        component="h2"
         sx={{
           fontSize: 16,
           color: 'text.primary',
@@ -76,9 +76,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
                 description: data.description,
                 content: data.content,
                 tag: selectedTags,
-                cardMedia:
-                  uploadedFiles[0]?.preview ||
-                  selectedBlog.blogDetailContent.cardMedia,
+                cardMedia: uploadedFiles[0]?.preview || selectedBlog.blogDetailContent.cardMedia,
                 meta: {
                   keywords: data.keywords,
                   metadesc: data.metadesc,
@@ -97,9 +95,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
             })
               .then(() => {
                 router.push('/extra-pages/blog');
-                infoViewActionsContext.showMessage(
-                  'Blog updated successfully!',
-                );
+                infoViewActionsContext.showMessage('Blog updated successfully!');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -115,9 +111,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
               }),
             })
               .then(() => {
-                infoViewActionsContext.showMessage(
-                  'Blog created successfully!',
-                );
+                infoViewActionsContext.showMessage('Blog created successfully!');
                 router.push('/extra-pages/blog');
               })
               .catch((error) => {
@@ -129,7 +123,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
-          <Form noValidate autoComplete='off'>
+          <Form noValidate autoComplete="off">
             <AppGridContainer>
               <BlogContent
                 content={selectedBlog?.blogDetailContent?.content || ''}
@@ -137,10 +131,7 @@ export const CreateBlog = ({ selectedBlog }: Props) => {
                 setUploadedFiles={setUploadedFiles}
                 setFieldValue={setFieldValue}
               />
-              <BlogSidebar
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-              />
+              <BlogSidebar selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
             </AppGridContainer>
           </Form>
         )}

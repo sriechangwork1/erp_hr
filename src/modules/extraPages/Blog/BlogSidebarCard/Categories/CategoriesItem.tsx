@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import { CategoriesType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import { CategoriesType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   categories: CategoriesType;
@@ -10,13 +10,13 @@ type Props = {
 const CategoriesItem = ({ categories }: Props) => {
   return (
     <Box
-      sx={{
-        color: (theme) => theme.palette.text.secondary,
+      sx={(theme) => ({
+        color: theme.palette.text.secondary,
         py: 2.5,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      })}
     >
       <Typography>{categories.title}</Typography>
       <Box

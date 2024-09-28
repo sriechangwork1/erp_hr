@@ -5,13 +5,13 @@ import ListItem from '@mui/material/ListItem';
 import { Box, Typography } from '@mui/material';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type MessageItemProps ={
+type MessageItemProps = {
   item: {
     name: string;
     message: string;
     image: string;
   };
-}
+};
 
 const MessageItem: React.FC<MessageItemProps> = ({ item }) => {
   return (
@@ -36,20 +36,20 @@ const MessageItem: React.FC<MessageItemProps> = ({ item }) => {
         />
       </ListItemAvatar>
       <Box
-        sx={{
+        sx={(theme) => ({
           fontSize: 14,
-          color: (theme) => theme.palette.text.secondary,
-        }}
+          color: theme.palette.text.secondary,
+        })}
       >
         <Typography
           component="h4"
           variant="h4"
-          sx={{
+          sx={(theme) => ({
             fontSize: 14,
             fontWeight: Fonts.MEDIUM,
             mb: 0.5,
-            color: (theme) => theme.palette.text.primary,
-          }}
+            color: theme.palette.text.primary,
+          })}
         >
           {item.name}
         </Typography>

@@ -8,18 +8,15 @@ type UserMiniHeaderContainerProps = {
   [x: string]: any;
 };
 
-const UserMiniHeaderContainer: React.FC<UserMiniHeaderContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const UserMiniHeaderContainer: React.FC<UserMiniHeaderContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -62,8 +59,7 @@ const UserMiniHeaderContainer: React.FC<UserMiniHeaderContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .mini-sidebar-collapsed': {
             borderRadius: { xl: 3 },
             pt: { xl: 0 },
@@ -108,7 +104,7 @@ const UserMiniHeaderContainer: React.FC<UserMiniHeaderContainerProps> = ({
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

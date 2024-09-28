@@ -29,12 +29,8 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const router = useRouter();
 
-  const [productInfo, setProductInfo] = React.useState<ProductInfoType[]>([
-    { id: 1, title: '', desc: '' },
-  ]);
-  const [productSpec, setProductSpec] = React.useState<ProductSpecType[]>([
-    { id: 1, title: '', desc: '' },
-  ]);
+  const [productInfo, setProductInfo] = React.useState<ProductInfoType[]>([{ id: 1, title: '', desc: '' }]);
+  const [productSpec, setProductSpec] = React.useState<ProductSpecType[]>([{ id: 1, title: '', desc: '' }]);
 
   useEffect(() => {
     if (selectedProd) {
@@ -48,7 +44,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
   return (
     <>
       <Box
-        component='h2'
+        component="h2"
         sx={{
           fontSize: 16,
           color: 'text.primary',
@@ -93,9 +89,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
             })
               .then(() => {
                 router.push('/ecommerce/product-listing');
-                infoViewActionsContext.showMessage(
-                  'Product updated successfully!',
-                );
+                infoViewActionsContext.showMessage('Product updated successfully!');
               })
               .catch((error) => {
                 infoViewActionsContext.fetchError(error.message);
@@ -118,9 +112,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
               },
             })
               .then(() => {
-                infoViewActionsContext.showMessage(
-                  'Product created successfully!',
-                );
+                infoViewActionsContext.showMessage('Product created successfully!');
                 router.push('/ecommerce/product-listing');
               })
               .catch((error) => {
@@ -132,7 +124,7 @@ export const AddEditProduct = ({ selectedProd }: Props) => {
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
-          <Form noValidate autoComplete='off'>
+          <Form noValidate autoComplete="off">
             <AppGridContainer>
               <BlogContent
                 content={selectedProd?.description || ''}

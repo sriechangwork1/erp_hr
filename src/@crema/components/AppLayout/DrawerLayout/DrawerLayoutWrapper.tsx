@@ -7,19 +7,15 @@ type DrawerLayoutWrapperProps = {
   [x: string]: any;
 };
 
-const DrawerLayoutWrapper: React.FC<DrawerLayoutWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const DrawerLayoutWrapper: React.FC<DrawerLayoutWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.appMainFixedFooter': {
           pb: { xs: 12, xl: 14.5 },
         },
@@ -33,7 +29,7 @@ const DrawerLayoutWrapper: React.FC<DrawerLayoutWrapperProps> = ({
             width: '100%',
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

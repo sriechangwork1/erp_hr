@@ -18,9 +18,7 @@ const ContactUs = () => {
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
-    fullName: yup
-      .string()
-      .required(String(messages['validation.nameRequired'])),
+    fullName: yup.string().required(String(messages['validation.nameRequired'])),
     email: yup
       .string()
       .email(String(messages['validation.emailFormat']))
@@ -28,7 +26,7 @@ const ContactUs = () => {
     message: yup.string().required(String(messages['validation.message'])),
   });
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <AppCard>
         <Box sx={{ mb: 5, maxHeight: '40%' }}>
           <SimpleMap />

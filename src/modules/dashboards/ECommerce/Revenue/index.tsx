@@ -1,13 +1,13 @@
-import AppCard from "@crema/components/AppCard";
-import AppList from "@crema/components/AppList";
-import React from "react";
-import AppScrollbar from "@crema/components/AppScrollbar";
-import PropTypes from "prop-types";
-import useIntl from "react-intl/lib/src/components/useIntl";
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import AppLinearProgress from "@crema/components/AppLinearProgress";
-import { RevenueItemType } from "@crema/types/models/dashboards/Ecommerce";
+import AppCard from '@crema/components/AppCard';
+import AppList from '@crema/components/AppList';
+import React from 'react';
+import AppScrollbar from '@crema/components/AppScrollbar';
+import PropTypes from 'prop-types';
+import useIntl from 'react-intl/lib/src/components/useIntl';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import AppLinearProgress from '@crema/components/AppLinearProgress';
+import { RevenueItemType } from '@crema/types/models/dashboards/Ecommerce';
 
 type RevenueItemProps = {
   item: RevenueItemType;
@@ -17,15 +17,15 @@ const RevenueItem = ({ item }: RevenueItemProps) => {
   return (
     <Box
       sx={{
-        padding: "10px 20px",
+        padding: '10px 20px',
       }}
       key={item.id}
       className="item-hover"
     >
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           mb: 1.5,
         }}
       >
@@ -33,7 +33,7 @@ const RevenueItem = ({ item }: RevenueItemProps) => {
           variant="h5"
           component="h5"
           sx={{
-            display: "inline-block",
+            display: 'inline-block',
             mr: 1,
           }}
         >
@@ -41,10 +41,10 @@ const RevenueItem = ({ item }: RevenueItemProps) => {
         </Typography>
         <Box
           component="span"
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
-            ml: "auto",
-          }}
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
+            ml: 'auto',
+          })}
         >
           {item.value}%
         </Box>
@@ -67,8 +67,8 @@ const Revenue = ({ revenueData }: RevenueProps) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages["dashboard.eCommerce.revenue"] as string}
-      action={messages["common.viewAll"] as string}
+      title={messages['dashboard.eCommerce.revenue'] as string}
+      action={messages['common.viewAll'] as string}
       contentStyle={{ paddingLeft: 0, paddingRight: 0 }}
     >
       <AppScrollbar style={{ maxHeight: 200 }}>

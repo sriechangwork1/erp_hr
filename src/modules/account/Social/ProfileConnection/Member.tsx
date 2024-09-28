@@ -47,7 +47,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
               pb: 1.5,
               px: 3,
             }}
-            variant='outlined'
+            variant="outlined"
             onClick={onConnect}
           >
             Connect
@@ -78,11 +78,10 @@ const Member: React.FC<MemberProps> = ({ member }) => {
               {member.email ? member.email : null}
             </Typography>
             <Button
-              sx={{
+              sx={(theme) => ({
                 boxShadow: 'none',
-                backgroundColor: (theme) =>
-                  alpha(theme.palette.secondary.main, 0.1),
-                color: (theme) => theme.palette.secondary.main,
+                backgroundColor: (theme) => alpha(theme.palette.secondary.main, 0.1),
+                color: theme.palette.secondary.main,
                 fontSize: 12,
                 fontWeight: Fonts.BOLD,
                 pt: 1,
@@ -90,15 +89,14 @@ const Member: React.FC<MemberProps> = ({ member }) => {
                 px: 3,
                 maxWidth: '100%',
                 '&:hover, &:focus': {
-                  backgroundColor: (theme) =>
-                    alpha(theme.palette.secondary.main, 0.1),
-                  color: (theme) => theme.palette.secondary.main,
+                  backgroundColor: (theme) => alpha(theme.palette.secondary.main, 0.1),
+                  color: theme.palette.secondary.main,
                 },
-              }}
+              })}
               onClick={onDisconnect}
             >
               <Box
-                component='span'
+                component="span"
                 sx={{
                   width: '100%',
                   whiteSpace: 'nowrap',

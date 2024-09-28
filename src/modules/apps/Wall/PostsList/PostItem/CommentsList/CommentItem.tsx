@@ -26,7 +26,11 @@ const CommentItem = ({ item }: Props) => {
         },
       }}
     >
-      <Box display='flex'>
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
         <Avatar
           sx={{
             width: 44,
@@ -34,49 +38,65 @@ const CommentItem = ({ item }: Props) => {
           }}
           src={author.profilePic}
         />
-        <Box ml={3.5}>
+        <Box
+          sx={{
+            ml: 3.5,
+          }}
+        >
           {message_type === MessageType.TEXT ? (
             <Box
-              sx={{
+              sx={(theme) => ({
                 padding: '10px 20px',
-                border: (theme) => `solid 1px ${theme.palette.divider}`,
+                border: `solid 1px ${theme.palette.divider}`,
                 borderRadius: 10,
                 borderBottomLeftRadius: 0,
-              }}
+              })}
             >
               <Typography>{comment}</Typography>
             </Box>
           ) : (
             <Box
-              sx={{
+              sx={(theme) => ({
                 padding: '10px 20px',
-                border: (theme) => `solid 1px ${theme.palette.divider}`,
+                border: `solid 1px ${theme.palette.divider}`,
                 borderRadius: 10,
                 borderBottomLeftRadius: 0,
                 '& img': {
                   maxHeight: 100,
                 },
-              }}
+              })}
             >
-              <Image
-                src={media?.url || ''}
-                alt='comment-img'
-                width={191}
-                height={100}
-              />
+              <Image src={media?.url || ''} alt="comment-img" width={191} height={100} />
             </Box>
           )}
-          <Box display='flex' alignItems='center' mt={1}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mt: 1,
+            }}
+          >
             <Box
-              className='pointer'
-              sx={{
-                color: isLiked ? 'primary.main' : 'text.secondary',
-              }}
+              className="pointer"
+              sx={[
+                isLiked
+                  ? {
+                      color: 'primary.main',
+                    }
+                  : {
+                      color: 'text.secondary',
+                    },
+              ]}
               onClick={toggleLikeStatus}
             >
               Like
             </Box>
-            <Box ml={4} className='pointer'>
+            <Box
+              className="pointer"
+              sx={{
+                ml: 4,
+              }}
+            >
               Reply
             </Box>
           </Box>

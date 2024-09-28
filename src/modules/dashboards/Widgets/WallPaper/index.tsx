@@ -36,10 +36,7 @@ const WallPaper = () => {
             mr: -3,
           }}
         >
-          <Checkbox
-            icon={<FavoriteBorder style={{ color: 'white' }} />}
-            checkedIcon={<Favorite />}
-          />
+          <Checkbox icon={<FavoriteBorder style={{ color: 'white' }} />} checkedIcon={<Favorite />} />
         </Box>
       </Box>
 

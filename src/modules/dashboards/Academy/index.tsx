@@ -24,15 +24,14 @@ import AppLoader from '@crema/components/AppLoader';
 import type { AcademyType } from '@crema/types/models/dashboards/Academy';
 
 const Academy = () => {
-  const [{ apiData: academyData, loading }] =
-    useGetDataApi<AcademyType>('/dashboard/academy');
+  const [{ apiData: academyData, loading }] = useGetDataApi<AcademyType>('/dashboard/academy');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <Box>
             <Box
               sx={{
@@ -118,9 +117,7 @@ const Academy = () => {
               </Grid>
 
               <Grid item xs={12} sm={12} md={9}>
-                <StudentRankings
-                  studentRankings={academyData.studentRankings}
-                />
+                <StudentRankings studentRankings={academyData.studentRankings} />
               </Grid>
 
               <Grid item xs={12} sm={12} md={3}>

@@ -1,11 +1,11 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import Categories from "./Categories";
-import List from "@mui/material/List";
-import ChartView from "./ChartView";
-import { Box } from "@mui/material";
-import { EmailMarketingType } from "@crema/types/models/dashboards/CRM";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import Categories from './Categories';
+import List from '@mui/material/List';
+import ChartView from './ChartView';
+import { Box } from '@mui/material';
+import { EmailMarketingType } from '@crema/types/models/dashboards/CRM';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   emailMarketing: EmailMarketingType[];
@@ -16,11 +16,11 @@ export const EmailMarking = ({ emailMarketing = [] }: Props) => {
       sxStyle={{ height: 1 }}
       title={<IntlMessages id="dashboard.crm.emailMarketing" />}
       contentStyle={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        "&:last-of-type": {
-          pb: "0 !important",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        '&:last-of-type': {
+          pb: '0 !important',
         },
       }}
     >
@@ -28,9 +28,9 @@ export const EmailMarking = ({ emailMarketing = [] }: Props) => {
         sx={{
           mb: 3,
           flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <ChartView data={emailMarketing} />
@@ -38,9 +38,9 @@ export const EmailMarking = ({ emailMarketing = [] }: Props) => {
       <List
         sx={{
           padding: 0,
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
         }}
       >
         {emailMarketing.map((category, id) => {

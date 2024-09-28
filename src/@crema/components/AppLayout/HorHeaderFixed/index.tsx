@@ -48,10 +48,7 @@ const HorHeaderFixed = ({ children, routesConfig }: Props) => {
         />
 
         <MainContent>
-          <AppHeader
-            toggleNavCollapsed={toggleNavCollapsed}
-            routesConfig={routesConfig}
-          />
+          <AppHeader toggleNavCollapsed={toggleNavCollapsed} routesConfig={routesConfig} />
           <AppContentView>{children}</AppContentView>
           <AppFixedFooter />
         </MainContent>

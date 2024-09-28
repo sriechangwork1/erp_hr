@@ -15,16 +15,12 @@ type Props = {
 
 const PortfolioDetail = ({ portfolioData }: Props) => {
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Card>
         <PortfolioSlider slide={portfolioData.portfolioDetail.slide} />
-        <ProjectDescription
-          projectDescription={portfolioData.portfolioDetail.projectDescription}
-        />
+        <ProjectDescription projectDescription={portfolioData.portfolioDetail.projectDescription} />
         <Product product={portfolioData.portfolioDetail.product} />
-        <PremiumBrand
-          premiumBrand={portfolioData.portfolioDetail.premiumBrand}
-        />
+        <PremiumBrand premiumBrand={portfolioData.portfolioDetail.premiumBrand} />
         <Innovation innovation={portfolioData.portfolioDetail.innovation} />
       </Card>
     </AppAnimate>

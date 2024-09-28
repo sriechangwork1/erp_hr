@@ -33,13 +33,13 @@ const TaskStatus = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   };
 
   return (
-    <FormControl variant='outlined'>
-      <InputLabel id='status-select-outlined-label'>
-        <IntlMessages id='common.status' />
+    <FormControl variant="outlined">
+      <InputLabel id="status-select-outlined-label">
+        <IntlMessages id="common.status" />
       </InputLabel>
       <Select
-        labelId='status-select-outlined-label'
-        label={<IntlMessages id='common.status' />}
+        labelId="status-select-outlined-label"
+        label={<IntlMessages id="common.status" />}
         value={selectedTask.status}
         defaultValue={selectedTask.status}
         onChange={(event) => onChangeStatus(event)}

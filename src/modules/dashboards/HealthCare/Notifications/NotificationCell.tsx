@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import PropTypes from "prop-types";
-import { NotificationType } from "@crema/types/models/dashboards/HealthCare";
-import { Fonts } from "@crema/constants/AppEnums";
+import React from 'react';
+import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import { NotificationType } from '@crema/types/models/dashboards/HealthCare';
+import { Fonts } from '@crema/constants/AppEnums';
 
 type Props = {
   notification: NotificationType;
@@ -12,9 +12,9 @@ const NotificationCell = ({ notification }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "flex-start",
-        padding: "12px 20px",
+        display: 'flex',
+        alignItems: 'flex-start',
+        padding: '12px 20px',
       }}
       className="item-hover"
     >
@@ -24,7 +24,7 @@ const NotificationCell = ({ notification }: Props) => {
           mt: 1.5,
           height: 10,
           minWidth: 10,
-          borderRadius: "50%",
+          borderRadius: '50%',
           backgroundColor: notification.color,
         }}
       />
@@ -41,7 +41,7 @@ const NotificationCell = ({ notification }: Props) => {
         <Box
           component="span"
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
           }}
         >
           {notification.time}

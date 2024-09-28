@@ -1,9 +1,9 @@
-import React from "react";
-import OpportunitiesWonGraph from "./OpportunitiesWonGraph";
-import AppCard from "@crema/components/AppCard";
-import { useIntl } from "react-intl";
-import AppSelect from "@crema/components/AppSelect";
-import { OpportunitiesWonGraphDaumType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import OpportunitiesWonGraph from './OpportunitiesWonGraph';
+import AppCard from '@crema/components/AppCard';
+import { useIntl } from 'react-intl';
+import AppSelect from '@crema/components/AppSelect';
+import { OpportunitiesWonGraphDaumType } from '@crema/types/models/dashboards/CRM';
 
 type Props = {
   data: OpportunitiesWonGraphDaumType[];
@@ -12,20 +12,16 @@ type Props = {
 const OpportunitiesWon = ({ data }: Props) => {
   const { messages } = useIntl();
   const handleSelectionType = (data: string) => {
-    console.log("data: ", data);
+    console.log('data: ', data);
   };
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages["dashboard.crm.opportunitiesWon"] as string}
+      title={messages['dashboard.crm.opportunitiesWon'] as string}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }

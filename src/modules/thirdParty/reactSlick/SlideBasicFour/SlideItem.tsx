@@ -41,7 +41,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
             },
           }}
         >
-          <Image src={`${slide.srcImg}`} alt='Art' width={339} height={330} />
+          <Image src={`${slide.srcImg}`} alt="Art" width={339} height={330} />
         </Box>
       </Box>
 
@@ -54,7 +54,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
         }}
       >
         <Typography
-          component='h3'
+          component="h3"
           sx={{
             fontSize: 16,
             fontWeight: Fonts.SEMI_BOLD,
@@ -83,7 +83,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
             }}
           >
             <Typography
-              component='h5'
+              component="h5"
               sx={{
                 fontWeight: Fonts.SEMI_BOLD,
               }}

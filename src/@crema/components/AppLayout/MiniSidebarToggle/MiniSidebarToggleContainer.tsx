@@ -11,12 +11,12 @@ type Props = {
 const MiniSidebarToggleContainer = ({ children, ...rest }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -61,12 +61,10 @@ const MiniSidebarToggleContainer = ({ children, ...rest }: Props) => {
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .miniSidebarToggleWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .mini-toggle-sidebar': {
             position: { xl: 'sticky' },
             height: { xl: '100%' },
@@ -112,7 +110,7 @@ const MiniSidebarToggleContainer = ({ children, ...rest }: Props) => {
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

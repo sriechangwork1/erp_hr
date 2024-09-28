@@ -17,22 +17,13 @@ type ListViewProps = {
 };
 
 const getEmptyContainer = (ListEmptyComponent: any) => {
-  if (ListEmptyComponent)
-    return React.isValidElement(ListEmptyComponent) ? (
-      ListEmptyComponent
-    ) : (
-      <ListEmptyComponent />
-    );
+  if (ListEmptyComponent) return React.isValidElement(ListEmptyComponent) ? ListEmptyComponent : <ListEmptyComponent />;
   return null;
 };
 
 const getFooterContainer = (ListFooterComponent: any) => {
   if (ListFooterComponent)
-    return React.isValidElement(ListFooterComponent) ? (
-      ListFooterComponent
-    ) : (
-      <ListFooterComponent />
-    );
+    return React.isValidElement(ListFooterComponent) ? ListFooterComponent : <ListFooterComponent />;
   return null;
 };
 const ListView = ({
@@ -66,14 +57,8 @@ const ListView = ({
   }
   useBottomScrollListener(onEndReached, { debounce: 200 });
   return (
-    <AppAnimateGroup
-      style={{ ...style }}
-      {...rest}
-      enter={{ delay, duration, animation }}
-    >
-      {data.length > 0
-        ? data.map((item, index) => renderRow(item, index))
-        : getEmptyContainer(ListEmptyComponent)}
+    <AppAnimateGroup style={{ ...style }} {...rest} enter={{ delay, duration, animation }}>
+      {data.length > 0 ? data.map((item, index) => renderRow(item, index)) : getEmptyContainer(ListEmptyComponent)}
       {getFooterContainer(ListFooterComponent)}
     </AppAnimateGroup>
   );

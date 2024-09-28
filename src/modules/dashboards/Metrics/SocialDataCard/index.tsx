@@ -1,11 +1,11 @@
-import React from "react";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import SpeakerNotesOutlinedIcon from "@mui/icons-material/SpeakerNotesOutlined";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import { SocialDataType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import SpeakerNotesOutlinedIcon from '@mui/icons-material/SpeakerNotesOutlined';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import { SocialDataType } from '@crema/types/models/dashboards/Metrics';
 
 type SocialDataCardPorps = {
   data: SocialDataType;
@@ -16,30 +16,30 @@ const SocialDataCard: React.FC<SocialDataCardPorps> = ({ data }) => {
     <AppCard
       sxStyle={{ height: 1 }}
       contentStyle={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
     >
       <Box
         sx={{
-          width: "100%",
+          width: '100%',
           py: { xs: 4, xl: 8 },
-          display: "flex",
-          textAlign: "center",
+          display: 'flex',
+          textAlign: 'center',
         }}
       >
         <Box
           sx={{
             px: 3,
-            width: "50%",
+            width: '50%',
             borderRight: 4,
-            borderColor: "grey.100",
+            borderColor: 'grey.100',
           }}
         >
           <Box
             sx={{
-              color: "secondary.main",
+              color: 'secondary.main',
               fontSize: { xs: 24, sm: 30, xl: 36 },
               mb: 2,
             }}
@@ -59,7 +59,7 @@ const SocialDataCard: React.FC<SocialDataCardPorps> = ({ data }) => {
           <Box
             component="p"
             sx={{
-              color: "text.secondary",
+              color: 'text.secondary',
               mb: 1,
               fontSize: 14,
               fontWeight: Fonts.REGULAR,
@@ -71,13 +71,13 @@ const SocialDataCard: React.FC<SocialDataCardPorps> = ({ data }) => {
 
         <Box
           sx={{
-            width: "50%",
+            width: '50%',
             px: 3,
           }}
         >
           <Box
             sx={{
-              color: "primary.main",
+              color: 'primary.main',
               fontSize: { xs: 24, sm: 30, xl: 36 },
               mb: 2,
             }}
@@ -97,7 +97,7 @@ const SocialDataCard: React.FC<SocialDataCardPorps> = ({ data }) => {
           <Box
             component="p"
             sx={{
-              color: "text.secondary",
+              color: 'text.secondary',
               mb: 1,
               fontSize: 14,
               fontWeight: Fonts.REGULAR,

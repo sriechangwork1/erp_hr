@@ -11,9 +11,7 @@ type Props = {
 const CheckBox = ({ checkedContacts, setCheckedContacts }: Props) => {
   const { contactList } = useContactContext();
 
-  const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const onHandleMasterCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const contactIds = contactList?.data.map((contact) => contact.id);
       setCheckedContacts(contactIds);
@@ -29,18 +27,12 @@ const CheckBox = ({ checkedContacts, setCheckedContacts }: Props) => {
       }}
     >
       <Checkbox
-        sx={{
-          color: (theme) => theme.palette.text.disabled,
-        }}
+        sx={(theme) => ({
+          color: theme.palette.text.disabled,
+        })}
         color="primary"
-        indeterminate={
-          checkedContacts.length > 0 &&
-          checkedContacts.length < contactList?.data?.length
-        }
-        checked={
-          contactList?.data?.length > 0 &&
-          checkedContacts.length === contactList?.data?.length
-        }
+        indeterminate={checkedContacts.length > 0 && checkedContacts.length < contactList?.data?.length}
+        checked={contactList?.data?.length > 0 && checkedContacts.length === contactList?.data?.length}
         onChange={onHandleMasterCheckbox}
       />
     </Box>

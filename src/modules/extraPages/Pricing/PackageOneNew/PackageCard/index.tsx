@@ -22,8 +22,8 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
   return (
     <PackageWrapper>
       <Box
-        component='span'
-        className='tag'
+        component="span"
+        className="tag"
         sx={{
           backgroundColor: pricing.tagColor,
         }}
@@ -38,7 +38,7 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
           }}
         >
           <Typography
-            component='h3'
+            component="h3"
             sx={{
               fontWeight: Fonts.BOLD,
               fontSize: { xs: 28, md: 32, lg: 36 },
@@ -47,14 +47,14 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
             {pricing.title}
           </Typography>
           <Typography
-            component='h4'
+            component="h4"
             sx={{
               fontSize: { xs: 20, md: 22, lg: 24 },
               mb: { xs: 5, lg: 7.5 },
             }}
           >
             <Box
-              component='span'
+              component="span"
               sx={{
                 fontWeight: Fonts.BOLD,
               }}
@@ -64,15 +64,10 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
             /{billingFormat}
           </Typography>
           {pricing.popular ? (
-            <Box className='popular'>
-              <Image
-                src='/assets/images/arrowleft.svg'
-                alt='arrowleft'
-                width={50}
-                height={46}
-              />
+            <Box className="popular">
+              <Image src="/assets/images/arrowleft.svg" alt="arrowleft" width={50} height={46} />
               <Typography
-                className='popularText'
+                className="popularText"
                 sx={{
                   fontSize: { xs: 12, xl: 14 },
                 }}
@@ -84,11 +79,11 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
         </Box>
         <Box sx={{ mb: 7.5 }}>
           <Button
-            variant='outlined'
-            sx={{
+            variant="outlined"
+            sx={(theme) => ({
               width: '100%',
               fontWeight: Fonts.BOLD,
-              color: (theme) => theme.palette.text.primary,
+              color: theme.palette.text.primary,
               minHeight: 46,
               borderRadius: 7.5,
               boxShadow: 'none',
@@ -98,7 +93,7 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
                 borderColor: pricing.tagColor,
                 borderWidth: 2,
               },
-            }}
+            })}
           >
             {pricing.btnText}
           </Button>
@@ -118,11 +113,11 @@ const PackageCard = ({ billingFormat, pricing }: Props) => {
             >
               <ListItemIcon sx={{ minWidth: 10, mr: 3.5 }}>
                 <CheckOutlinedIcon
-                  sx={{
+                  sx={(theme) => ({
                     fontSize: 16,
                     mt: 1,
-                    color: (theme) => theme.palette.text.primary,
-                  }}
+                    color: theme.palette.text.primary,
+                  })}
                 />
               </ListItemIcon>
               <ListItemText primary={data.title} />

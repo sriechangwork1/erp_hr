@@ -7,19 +7,15 @@ type DefaultLayoutWrapperProps = {
   [x: string]: any;
 };
 
-const DefaultLayoutWrapper: React.FC<DefaultLayoutWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const DefaultLayoutWrapper: React.FC<DefaultLayoutWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.appMainFixedFooter': {
           pb: { xs: 12, xl: 14.5 },
         },
@@ -36,7 +32,7 @@ const DefaultLayoutWrapper: React.FC<DefaultLayoutWrapperProps> = ({
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

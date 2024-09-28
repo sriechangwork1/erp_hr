@@ -5,9 +5,7 @@ import { AddressesType } from '@crema/types/models/ecommerce/EcommerceApp';
 import { addresses } from '@crema/fakedb';
 
 const DeliveryAddress = () => {
-  const [selectedAddress, setSelectAddress] = useState<AddressesType>(
-    addresses[1],
-  );
+  const [selectedAddress, setSelectAddress] = useState<AddressesType>(addresses[1]);
   return (
     <AppList
       delay={200}

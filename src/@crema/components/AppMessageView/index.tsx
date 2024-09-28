@@ -29,28 +29,22 @@ const StyledSnackbar = styled(Snackbar)(({ theme }) => ({
   [`& .${classes.success}`]: {
     backgroundColor: green[600],
   },
-
   [`& .${classes.error}`]: {
     backgroundColor: theme.palette.error.main,
   },
-
   [`& .${classes.info}`]: {
     backgroundColor: theme.palette.primary.light,
   },
-
   [`& .${classes.warning}`]: {
     backgroundColor: amber[700],
   },
-
   [`& .${classes.icon}`]: {
     fontSize: 20,
   },
-
   [`& .${classes.iconVariant}`]: {
     opacity: 0.9,
     marginRight: theme.spacing(1),
   },
-
   [`& .${classes.message}`]: {
     display: 'flex',
     alignItems: 'center',
@@ -65,7 +59,7 @@ const variantIcon = {
 };
 
 function TransitionLeft(props: any) {
-  return <Slide {...props} direction='left' />;
+  return <Slide {...props} direction="left" />;
 }
 
 type AppMessageViewProps = {
@@ -104,21 +98,15 @@ const AppMessageView: React.FC<AppMessageViewProps> = (props) => {
     >
       <SnackbarContent
         className={clsx(classes[variant], className)}
-        aria-describedby='client-snackbar'
+        aria-describedby="client-snackbar"
         message={
-          <span id='client-snackbar' className={classes.message}>
+          <span id="client-snackbar" className={classes.message}>
             <Icon className={clsx(classes.icon, classes.iconVariant)} />
             {message}
           </span>
         }
         action={[
-          <IconButton
-            key='close'
-            aria-label='close'
-            color='inherit'
-            onClick={onClose}
-            size='large'
-          >
+          <IconButton key="close" aria-label="close" color="inherit" onClick={onClose} size="large">
             <CloseIcon className={classes.icon} />
           </IconButton>,
         ]}

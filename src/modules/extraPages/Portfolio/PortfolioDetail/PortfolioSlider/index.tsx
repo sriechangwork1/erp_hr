@@ -73,10 +73,10 @@ const PortfolioSlider = ({ slide }: Props) => {
           >
             <Image
               src={data.srcImg}
-              alt='slide'
+              alt="slide"
               width={1247}
               height={468}
-              sizes='100vw'
+              sizes="100vw"
               style={{
                 width: '100%',
                 height: '100%',

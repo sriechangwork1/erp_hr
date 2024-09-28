@@ -1,12 +1,5 @@
 import AppGridContainer from '@crema/components/AppGridContainer';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import { Fonts } from '@crema/constants/AppEnums';
@@ -19,26 +12,20 @@ type Props = {
 const PricingFaq = ({ pricingFaq }: Props) => {
   const [expanded, setExpanded] = React.useState(0);
 
-  const handleChange =
-    (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : 0);
-    };
+  const handleChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : 0);
+  };
 
   return (
     <AppGridContainer spacing={8}>
       <Grid item xs={12} sm={5}>
-        <Box sx={{ color: 'primary.main', fontWeight: Fonts.BOLD }}>
-          Support
-        </Box>
-        <Typography variant='h2' sx={{ my: 2, fontSize: 36 }}>
+        <Box sx={{ color: 'primary.main', fontWeight: Fonts.BOLD }}>Support</Box>
+        <Typography variant="h2" sx={{ my: 2, fontSize: 36 }}>
           FAQs
         </Typography>
-        <Typography
-          variant='body1'
-          sx={{ my: 4, color: 'text.secondary', maxWidth: 500, fontSize: 16 }}
-        >
-          Everything you need to know about the product and billing. Can’t find
-          the answer you&apos;re looking for? Please chat to our friendly team.
+        <Typography variant="body1" sx={{ my: 4, color: 'text.secondary', maxWidth: 500, fontSize: 16 }}>
+          Everything you need to know about the product and billing. Can’t find the answer you&apos;re looking for?
+          Please chat to our friendly team.
         </Typography>
       </Grid>
       <Grid item xs={12} sm={7}>
@@ -48,16 +35,16 @@ const PricingFaq = ({ pricingFaq }: Props) => {
               key={item.id}
               expanded={expanded === item.id}
               onChange={handleChange(item.id)}
-              sx={{
+              sx={(theme) => ({
                 color: 'text.secondary',
                 marginBottom: 0.5,
                 padding: '10px 20px',
-                bgcolor: (theme) => theme.palette.background.default,
+                bgcolor: theme.palette.background.default,
                 boxShadow: 'none',
                 '&:before': {
                   display: 'none',
                 },
-              }}
+              })}
             >
               <AccordionSummary
                 sx={{
@@ -67,11 +54,7 @@ const PricingFaq = ({ pricingFaq }: Props) => {
                   padding: 0,
                 }}
                 expandIcon={
-                  expanded === item.id ? (
-                    <AiOutlineMinusCircle size={20} />
-                  ) : (
-                    <AiOutlinePlusCircle size={20} />
-                  )
+                  expanded === item.id ? <AiOutlineMinusCircle size={20} /> : <AiOutlinePlusCircle size={20} />
                 }
               >
                 <Box>{item.ques}</Box>

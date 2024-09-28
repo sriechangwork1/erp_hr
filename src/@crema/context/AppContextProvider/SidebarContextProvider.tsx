@@ -1,11 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import defaultConfig, { SidebarData } from '@crema/constants/defaultConfig';
 
@@ -52,32 +46,19 @@ interface SidebarContextProviderProps {
   children: ReactNode;
 }
 
-const SidebarContextProvider: React.FC<SidebarContextProviderProps> = ({
-  children,
-}) => {
-  const [menuStyle, updateMenuStyle] = useState<string>(
-    defaultConfig.sidebar.menuStyle,
-  );
-  const [sidebarColorSet, updateSidebarColorSet] = useState<SidebarData>(
-    defaultConfig.sidebar.colorSet,
-  );
-  const [isSidebarBgImage, updateImage] = useState<boolean>(
-    defaultConfig.sidebar.isSidebarBgImage,
-  );
-  const [sidebarBgImage, setSidebarImage] = useState<string | number>(
-    defaultConfig.sidebar.sidebarBgImage,
-  );
+const SidebarContextProvider: React.FC<SidebarContextProviderProps> = ({ children }) => {
+  const [menuStyle, updateMenuStyle] = useState<string>(defaultConfig.sidebar.menuStyle);
+  const [sidebarColorSet, updateSidebarColorSet] = useState<SidebarData>(defaultConfig.sidebar.colorSet);
+  const [isSidebarBgImage, updateImage] = useState<boolean>(defaultConfig.sidebar.isSidebarBgImage);
+  const [sidebarBgImage, setSidebarImage] = useState<string | number>(defaultConfig.sidebar.sidebarBgImage);
 
   const setSidebarBgImage = useCallback((isSidebarBgImage: boolean) => {
     updateImage(isSidebarBgImage);
   }, []);
 
-  const updateSidebarBgImage = useCallback(
-    (sidebarBgImage: string | number) => {
-      setSidebarImage(sidebarBgImage);
-    },
-    [],
-  );
+  const updateSidebarBgImage = useCallback((sidebarBgImage: string | number) => {
+    setSidebarImage(sidebarBgImage);
+  }, []);
 
   return (
     <SidebarContext.Provider

@@ -1,46 +1,46 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import AppSelect from "@crema/components/AppSelect";
-import { useIntl } from "react-intl";
-import { Box, Typography } from "@mui/material";
-import InquiriesChart from "./InquiriesChart";
-import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
-import AppList from "@crema/components/AppList";
-import type { TopInquiriesType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppSelect from '@crema/components/AppSelect';
+import { useIntl } from 'react-intl';
+import { Box, Typography } from '@mui/material';
+import InquiriesChart from './InquiriesChart';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import AppList from '@crema/components/AppList';
+import type { TopInquiriesType } from '@crema/types/models/dashboards/Ecommerce';
 
-const TopInquiryRow = styled("div")(({ theme }) => {
+const TopInquiryRow = styled('div')(({ theme }) => {
   return {
-    position: "relative",
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
+    position: 'relative',
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
     marginLeft: -8,
     marginRight: -8,
-    [theme.breakpoints.up("sm")]: {
-      flexDirection: "row",
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
     },
-    "& .top-inquiry-col": {
-      width: "100%",
+    '& .top-inquiry-col': {
+      width: '100%',
       paddingLeft: 8,
       paddingRight: 8,
-      [theme.breakpoints.up("sm")]: {
-        width: "50%",
-        display: "flex",
-        alignItems: "center",
+      [theme.breakpoints.up('sm')]: {
+        width: '50%',
+        display: 'flex',
+        alignItems: 'center',
       },
-      "& > div": {
-        width: "100%",
+      '& > div': {
+        width: '100%',
       },
     },
-    "& .top-inquiry-chart": {
-      [theme.breakpoints.up("sm")]: {
-        justifyContent: "center",
+    '& .top-inquiry-chart': {
+      [theme.breakpoints.up('sm')]: {
+        justifyContent: 'center',
       },
-      [theme.breakpoints.down("sm")]: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+      [theme.breakpoints.down('sm')]: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       },
     },
   };
@@ -55,7 +55,7 @@ const InquiriesCell = ({ inquiry }: InquiriesCellProps) => {
     <Box
       sx={{
         p: 2,
-        display: "flex",
+        display: 'flex',
       }}
       className="item-hover"
     >
@@ -65,21 +65,21 @@ const InquiriesCell = ({ inquiry }: InquiriesCellProps) => {
           bgcolor: inquiry.color,
           minWidth: 10,
           height: 10,
-          borderRadius: "50%",
+          borderRadius: '50%',
         }}
       />
       <Box
         sx={{
           ml: 2,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
       >
         <Typography
           variant="h5"
           sx={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           }}
           component="h5"
         >
@@ -88,7 +88,7 @@ const InquiriesCell = ({ inquiry }: InquiriesCellProps) => {
         <Box
           component="p"
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
             fontSize: 14,
           }}
         >
@@ -111,25 +111,21 @@ const TopInquiries = ({ topInquiries }: TopInquiriesProps) => {
   const { messages } = useIntl();
 
   const handleSelectionType = (data: string) => {
-    console.log("data: ", data);
+    console.log('data: ', data);
   };
 
   return (
     <AppCard
       contentStyle={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
-      title={messages["dashboard.eCommerce.topInquiries"] as string}
+      title={messages['dashboard.eCommerce.topInquiries'] as string}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }
@@ -142,9 +138,7 @@ const TopInquiries = ({ topInquiries }: TopInquiriesProps) => {
         <div className="top-inquiry-col">
           <AppList
             data={topInquiries}
-            renderRow={(data) => (
-              <InquiriesCell key={"inquiry-" + data.id} inquiry={data} />
-            )}
+            renderRow={(data) => <InquiriesCell key={'inquiry-' + data.id} inquiry={data} />}
           />
         </div>
       </TopInquiryRow>

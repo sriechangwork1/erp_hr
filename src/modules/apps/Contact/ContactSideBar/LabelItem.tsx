@@ -26,17 +26,14 @@ const ContactSidebarListItemWrapper = styled(ListItem)(({ theme }) => {
       paddingLeft: 24,
       paddingRight: 24,
     },
-
     '& .MuiSvgIcon-root': {
       marginRight: 14,
       fontSize: 20,
     },
-
     '&:hover,&:focus,&.active': {
       backgroundColor: alpha(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
     },
-
     '&.active': {
       color: theme.palette.primary.main,
       '& $listItemText': {
@@ -55,10 +52,7 @@ interface Props {
 const LabelItem = ({ label }: Props) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={`/apps/contact/label/${label.alias}`}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={`/apps/contact/label/${label.alias}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <ContactSidebarListItemWrapper
         className={clsx({
           active: `/apps/contact/label/${label.alias}` === pathname,

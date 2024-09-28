@@ -7,18 +7,15 @@ type UserMiniHeaderWrapperProps = {
   [x: string]: any;
 };
 
-const UserMiniHeaderWrapper: React.FC<UserMiniHeaderWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const UserMiniHeaderWrapper: React.FC<UserMiniHeaderWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         paddingTop: { xs: 14, sm: 17.5 },
         '& .mainContent': {
           display: 'flex',
@@ -82,7 +79,7 @@ const UserMiniHeaderWrapper: React.FC<UserMiniHeaderWrapperProps> = ({
         '&.appMainFixedFooter': {
           pb: { xs: 12, xl: 14.5 },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

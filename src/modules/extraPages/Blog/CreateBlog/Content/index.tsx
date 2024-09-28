@@ -13,12 +13,7 @@ type Props = {
   setFieldValue: (field: string, value: any) => void;
 };
 
-const BlogContent = ({
-  content,
-  uploadedFiles,
-  setUploadedFiles,
-  setFieldValue,
-}: Props) => {
+const BlogContent = ({ content, uploadedFiles, setUploadedFiles, setFieldValue }: Props) => {
   const editor = useRef(null);
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
@@ -88,35 +83,35 @@ const BlogContent = ({
     },
   };
   return (
-    <Slide direction='right' in mountOnEnter unmountOnExit>
+    <Slide direction="right" in mountOnEnter unmountOnExit>
       <Grid item xs={12} lg={8}>
         <AppCard>
           <AppTextField
-            name='title'
-            variant='outlined'
+            name="title"
+            variant="outlined"
             sx={{
               width: '100%',
               my: 2,
             }}
-            label='Blog Name'
+            label="Blog Name"
           />
 
-          <Box component='p' sx={{ mt: 3, fontSize: 16 }}>
+          <Box component="p" sx={{ mt: 3, fontSize: 16 }}>
             Description
           </Box>
           <AppTextField
             multiline
-            name='description'
-            variant='outlined'
+            name="description"
+            variant="outlined"
             rows={4}
             sx={{
               width: '100%',
               my: 2,
             }}
-            placeholder='Description here'
+            placeholder="Description here"
           />
 
-          <Box component='p' sx={{ mt: 3, fontSize: 16 }}>
+          <Box component="p" sx={{ mt: 3, fontSize: 16 }}>
             Content*
           </Box>
           <Box
@@ -133,13 +128,10 @@ const BlogContent = ({
               onChange={(value) => setFieldValue('content', value)}
             />
           </Box>
-          <Box component='p' sx={{ mt: 3, mb: 2, fontSize: 16 }}>
+          <Box component="p" sx={{ mt: 3, mb: 2, fontSize: 16 }}>
             Cover Image
           </Box>
-          <ImgUpload
-            uploadedFiles={uploadedFiles}
-            setUploadedFiles={setUploadedFiles}
-          />
+          <ImgUpload uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
         </AppCard>
       </Grid>
     </Slide>

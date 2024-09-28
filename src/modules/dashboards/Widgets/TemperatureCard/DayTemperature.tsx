@@ -17,7 +17,7 @@ const DayTemperature: React.FC<DayTemperatureProps> = ({ day }) => {
       }}
     >
       <Box
-        component='span'
+        component="span"
         sx={{
           mb: 3,
           display: 'block',
@@ -33,7 +33,7 @@ const DayTemperature: React.FC<DayTemperatureProps> = ({ day }) => {
           display: 'inline-block',
         }}
       >
-        <Image src={day.image} alt='weather' width={27} height={20} />
+        <Image src={day.image} alt="weather" width={27} height={20} />
       </Box>
     </Box>
   );

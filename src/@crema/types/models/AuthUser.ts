@@ -1,4 +1,4 @@
-export type AuthUserType ={
+export type AuthUserType = {
   id?: number;
   uid?: string;
   displayName?: string;
@@ -6,4 +6,4 @@ export type AuthUserType ={
   photoURL?: string;
   token?: string;
   role?: string[] | string;
-}
+};

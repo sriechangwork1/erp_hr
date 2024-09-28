@@ -31,16 +31,11 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
           },
         }}
       >
-        <Image
-          src={`${slide.srcImg}`}
-          alt={slide.title}
-          width={678}
-          height={414}
-        />
+        <Image src={`${slide.srcImg}`} alt={slide.title} width={678} height={414} />
       </Box>
       87
       <Box
-        sx={{
+        sx={(theme) => ({
           py: 3,
           px: 4,
           position: 'absolute',
@@ -48,14 +43,14 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
           right: 0,
           bottom: 0,
           zIndex: 1,
-          backgroundColor: (theme) => alpha(theme.palette.common.black, 0.65),
+          backgroundColor: alpha(theme.palette.common.black, 0.65),
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
-          color: (theme) => theme.palette.common.white,
-        }}
+          color: theme.palette.common.white,
+        })}
       >
         <Typography
-          component='h3'
+          component="h3"
           sx={{
             fontSize: 16,
             fontWeight: Fonts.SEMI_BOLD,

@@ -16,12 +16,8 @@ const AddressInfo: React.FC<AddressInfoProps> = ({ address }) => {
       <AppGridContainer>
         <Grid xs={12} md={6} item>
           <Box sx={{ px: 4 }}>
-            <Box sx={{ my: 4, fontSize: 16, fontWeight: Fonts.BOLD }}>
-              Delivery Address
-            </Box>
-            <Box sx={{ fontSize: 14, fontWeight: Fonts.BOLD }}>
-              {address.name}
-            </Box>
+            <Box sx={{ my: 4, fontSize: 16, fontWeight: Fonts.BOLD }}>Delivery Address</Box>
+            <Box sx={{ fontSize: 14, fontWeight: Fonts.BOLD }}>{address.name}</Box>
             <Box sx={{ fontSize: 14, fontWeight: Fonts.REGULAR }}>
               {address.addressLine}, {address.city}, {address.pin}
             </Box>
@@ -43,9 +39,7 @@ const AddressInfo: React.FC<AddressInfoProps> = ({ address }) => {
         </Grid>
         <Grid xs={12} md={6} item>
           <Box sx={{ p: 4 }}>
-            <Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>
-              Your Rewards
-            </Box>
+            <Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>Your Rewards</Box>
 
             <Box
               sx={{
@@ -66,19 +60,12 @@ const AddressInfo: React.FC<AddressInfoProps> = ({ address }) => {
                   mb: 1,
                 }}
               >
-                <Image
-                  src={'/assets/images/ecommerce/sms-icon.png'}
-                  alt='sms'
-                  width={36}
-                  height={36}
-                />
-                <Box sx={{ px: 3.5, fontSize: 14 }}>
-                  SMS updates at every step
-                </Box>
+                <Image src={'/assets/images/ecommerce/sms-icon.png'} alt="sms" width={36} height={36} />
+                <Box sx={{ px: 3.5, fontSize: 14 }}>SMS updates at every step</Box>
               </Box>
               <Box sx={{ mb: 1 }}>
                 <Button
-                  variant='contained'
+                  variant="contained"
                   sx={{
                     color: 'primary',
                     minWidth: 120,
@@ -107,19 +94,12 @@ const AddressInfo: React.FC<AddressInfoProps> = ({ address }) => {
                   mb: 1,
                 }}
               >
-                <Image
-                  src={'/assets/images/ecommerce/add-person.png'}
-                  alt='sms'
-                  height={36}
-                  width={36}
-                />
-                <Box sx={{ px: 3.5, fontSize: 14 }}>
-                  Order shared with 1 Person
-                </Box>
+                <Image src={'/assets/images/ecommerce/add-person.png'} alt="sms" height={36} width={36} />
+                <Box sx={{ px: 3.5, fontSize: 14 }}>Order shared with 1 Person</Box>
               </Box>
               <Box sx={{ mb: 1 }}>
                 <Button
-                  variant='contained'
+                  variant="contained"
                   sx={{
                     color: 'primary',
                     minWidth: 120,

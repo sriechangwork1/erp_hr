@@ -10,10 +10,7 @@ import { formatCurrency } from '@crema/helpers/StringHelper';
 import { DatePicker } from '@mui/x-date-pickers';
 import { GrClose } from 'react-icons/gr';
 import { quantityType } from '../data';
-import {
-  InvoiceCurrencyType,
-  InvoiceItemType,
-} from '@crema/types/models/invoice';
+import { InvoiceCurrencyType, InvoiceItemType } from '@crema/types/models/invoice';
 
 const StyledTableCell = styled(TableCell)(() => ({
   fontSize: 14,
@@ -31,21 +28,10 @@ type Props = {
   data: InvoiceItemType;
   index: number;
   currencyData: InvoiceCurrencyType;
-  onChangeLineItems: (
-    index: number,
-    key: string,
-    value: any,
-    nestedKey?: string,
-  ) => void;
+  onChangeLineItems: (index: number, key: string, value: any, nestedKey?: string) => void;
   onDeleteLineItem: (index: number) => void;
 };
-const TableItem = ({
-  data,
-  index,
-  currencyData,
-  onChangeLineItems,
-  onDeleteLineItem,
-}: Props) => {
+const TableItem = ({ data, index, currencyData, onChangeLineItems, onDeleteLineItem }: Props) => {
   return (
     <TableRow
       key={data?.id}
@@ -64,18 +50,18 @@ const TableItem = ({
         },
       }}
     >
-      <StyledTableCell align='left'>{data?.id}</StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">{data?.id}</StyledTableCell>
+      <StyledTableCell align="left">
         <TextField
           autoFocus
-          variant='standard'
+          variant="standard"
           value={data?.name || ''}
-          placeholder='Name'
+          placeholder="Name"
           onChange={(e) => onChangeLineItems(index, 'name', e.target.value)}
         />
       </StyledTableCell>
 
-      <StyledTableCell align='left' sx={{ whiteSpace: 'inherit !important' }}>
+      <StyledTableCell align="left" sx={{ whiteSpace: 'inherit !important' }}>
         {/* <DateRangePicker
             value={[data?.duration?.from, data?.duration?.to]}
             onChange={(newValue) => {
@@ -115,9 +101,7 @@ const TableItem = ({
               },
             }}
             value={getDateObject(data?.duration?.from)}
-            onChange={(value) =>
-              onChangeLineItems(index, 'from', value, 'duration')
-            }
+            onChange={(value) => onChangeLineItems(index, 'from', value, 'duration')}
           />
           <DatePicker
             sx={{
@@ -134,36 +118,30 @@ const TableItem = ({
               },
             }}
             value={getDateObject(data?.duration?.to)}
-            onChange={(value) =>
-              onChangeLineItems(index, 'to', value, 'duration')
-            }
+            onChange={(value) => onChangeLineItems(index, 'to', value, 'duration')}
           />
         </Box>
       </StyledTableCell>
       <StyledTableCell
-        align='left'
+        align="left"
         // sx={{ width: 300, whiteSpace: 'inherit !important' }}
       >
         <TextField
-          type='number'
+          type="number"
           sx={{ minWidth: 50 }}
-          variant='standard'
+          variant="standard"
           defaultValue={data?.quantity?.value}
-          placeholder='Value'
+          placeholder="Value"
           onChange={(e) => {
             onChangeLineItems(index, 'value', e.target.value, 'quantity');
-            onChangeLineItems(
-              index,
-              'total',
-              Number(e.target.value) * data?.unitPrice || 0,
-            );
+            onChangeLineItems(index, 'total', Number(e.target.value) * data?.unitPrice || 0);
           }}
         />
       </StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">
         <Select
           sx={{ mr: 2.5 }}
-          variant='standard'
+          variant="standard"
           value={data?.quantity?.type}
           onChange={(event) => {
             onChangeLineItems(index, 'type', event.target.value, 'quantity');
@@ -185,27 +163,20 @@ const TableItem = ({
           })}
         </Select>
       </StyledTableCell>
-      <StyledTableCell align='left'>
+      <StyledTableCell align="left">
         <TextField
-          type='number'
-          variant='standard'
+          type="number"
+          variant="standard"
           defaultValue={data?.unitPrice || 0}
-          placeholder='Unit Price'
+          placeholder="Unit Price"
           onChange={(e) => {
             onChangeLineItems(index, 'unitPrice', e.target.value);
-            onChangeLineItems(
-              index,
-              'total',
-              Number(e.target.value) * data?.quantity?.value || 0,
-            );
+            onChangeLineItems(index, 'total', Number(e.target.value) * data?.quantity?.value || 0);
           }}
         />
       </StyledTableCell>
 
-      <StyledTableCell
-        align='left'
-        sx={{ width: '100%', display: 'flex', alignItems: 'center' }}
-      >
+      <StyledTableCell align="left" sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
         {formatCurrency(
           data?.total || 0,
           {
@@ -214,7 +185,7 @@ const TableItem = ({
           },
           2,
         )}
-        <Box className='closeBtn' onClick={() => onDeleteLineItem(index)}>
+        <Box className="closeBtn" onClick={() => onDeleteLineItem(index)}>
           <GrClose size={15} />
         </Box>
       </StyledTableCell>

@@ -1,6 +1,5 @@
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
-import Hidden from '@mui/material/Hidden';
 import clsx from 'clsx';
 import AppScrollbar from '../../AppScrollbar';
 import VerticalNav from '../components/VerticalNav';
@@ -9,6 +8,7 @@ import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContex
 import UserInfo from '../components/UserInfo';
 import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import { RouterConfigData } from '@crema/types/models/Apps';
+import { Box, Theme } from '@mui/material';
 
 type AppSidebarProps = {
   position?: 'left' | 'top' | 'right' | 'bottom';
@@ -31,45 +31,41 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
 
   return (
     <>
-      <Hidden lgUp>
-        <Drawer
-          anchor={position}
-          open={isNavCollapsed}
-          onClose={() => toggleNavCollapsed()}
-          classes={{
-            root: clsx(variant),
-            paper: clsx(variant),
-          }}
-          style={{ position: 'absolute' }}
-        >
-          <MainSidebar>
-            <UserInfo color={sidebarTextColor} />
-            <AppScrollbar
-              sx={{
-                py: 2,
-                height: 'calc(100vh - 70px) !important',
-                borderTop: (theme: { palette: { divider: string } }) =>
-                  `solid 1px ${theme.palette.divider}`,
-                mt: 0.5,
-              }}
-            >
-              <VerticalNav routesConfig={routesConfig} />
-            </AppScrollbar>
-          </MainSidebar>
-        </Drawer>
-      </Hidden>
-      <Hidden lgDown>
+      <Drawer
+        anchor={position}
+        open={isNavCollapsed}
+        onClose={() => toggleNavCollapsed()}
+        classes={{
+          root: clsx(variant),
+          paper: clsx(variant),
+        }}
+        sx={{ position: 'absolute', display: { lg: 'none', xs: 'block' } }}
+      >
+        <MainSidebar>
+          <UserInfo color={sidebarTextColor} />
+          <AppScrollbar
+            sx={(theme: Theme) => ({
+              py: 2,
+              height: 'calc(100vh - 70px) !important',
+              borderTop: `solid 1px ${theme.palette.divider}`,
+              mt: 0.5,
+            })}
+          >
+            <VerticalNav routesConfig={routesConfig} />
+          </AppScrollbar>
+        </MainSidebar>
+      </Drawer>
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
         <MainSidebar>
           <UserInfo color={sidebarTextColor} />
           <AppScrollbar
             className={clsx({
               'has-footer-fixed': footer && footerType === 'fixed',
             })}
-            sx={{
+            sx={(theme: Theme) => ({
               py: 2,
               height: 'calc(100vh - 70px) !important',
-              borderTop: (theme: { palette: { divider: string } }) =>
-                `solid 1px ${theme.palette.divider}`,
+              borderTop: `solid 1px ${theme.palette.divider}`,
               mt: 0.5,
               '&.has-footer-fixed': {
                 height: {
@@ -77,12 +73,12 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                   xl: 'calc(100vh - 127px) !important',
                 },
               },
-            }}
+            })}
           >
             <VerticalNav routesConfig={routesConfig} />
           </AppScrollbar>
         </MainSidebar>
-      </Hidden>
+      </Box>
     </>
   );
 };

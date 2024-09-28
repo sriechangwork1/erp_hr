@@ -1,6 +1,6 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { EarningInMonthType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { EarningInMonthType } from '@crema/types/models/dashboards/Metrics';
 
 type CategoriesProps = {
   data: EarningInMonthType[];
@@ -10,9 +10,9 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
+        display: 'flex',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
         pl: { xl: 5 },
       }}
     >
@@ -21,10 +21,10 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
           <Box
             sx={{
               px: 3,
-              position: "relative",
-              display: "flex",
+              position: 'relative',
+              display: 'flex',
               flex: 1,
-              alignItems: "center",
+              alignItems: 'center',
             }}
             key={item.id}
           >
@@ -34,16 +34,16 @@ const Categories: React.FC<CategoriesProps> = ({ data }) => {
                 height: { xs: 12, xl: 16 },
                 width: { xs: 12, xl: 16 },
                 p: 1,
-                display: "block",
-                borderRadius: "50%",
+                display: 'block',
+                borderRadius: '50%',
                 backgroundColor: item.colorName as string,
               }}
             />
             <Box
               component="p"
               sx={{
-                textTransform: "uppercase",
-                color: "text.secondary",
+                textTransform: 'uppercase',
+                color: 'text.secondary',
                 ml: 3,
                 fontSize: 14,
               }}

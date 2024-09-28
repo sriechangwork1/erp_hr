@@ -1,21 +1,21 @@
-import React from "react";
-import Card from "@mui/material/Card";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import { grey } from "@mui/material/colors";
-import Chip from "@mui/material/Chip";
-import Button from "@mui/material/Button";
-import MailIcon from "@mui/icons-material/Mail";
-import PhoneIcon from "@mui/icons-material/Phone";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LanguageIcon from "@mui/icons-material/Language";
+import React from 'react';
+import Card from '@mui/material/Card';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import { grey } from '@mui/material/colors';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
+import MailIcon from '@mui/icons-material/Mail';
+import PhoneIcon from '@mui/icons-material/Phone';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LanguageIcon from '@mui/icons-material/Language';
 
-import { Fonts } from "@crema/constants/AppEnums";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { UserListProps } from "@crema/types/models/Apps";
+import { Fonts } from '@crema/constants/AppEnums';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { UserListProps } from '@crema/types/models/Apps';
 
 const ListItem = ({ user }: { user: UserListProps }) => {
   return (
@@ -23,20 +23,20 @@ const ListItem = ({ user }: { user: UserListProps }) => {
       <Card>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
           }}
         >
           <Box
             sx={{
-              color: "primary.contrastText",
-              width: { xs: "100%", sm: 200, xl: 256 },
+              color: 'primary.contrastText',
+              width: { xs: '100%', sm: 200, xl: 256 },
               p: { xs: 3, lg: 5 },
-              bgcolor: "primary.main",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
+              bgcolor: 'primary.main',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <Box sx={{ mb: 3 }}>
@@ -51,11 +51,11 @@ const ListItem = ({ user }: { user: UserListProps }) => {
             <Box
               component="h3"
               sx={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                width: "100%",
-                textAlign: "center",
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                width: '100%',
+                textAlign: 'center',
                 mb: 3,
                 fontSize: 16,
                 fontWeight: Fonts.BOLD,
@@ -65,13 +65,13 @@ const ListItem = ({ user }: { user: UserListProps }) => {
             </Box>
             <Chip
               label={`@${user.charge}/Hour`}
-              sx={{
-                backgroundColor: (theme) => theme.palette.primary.contrastText,
-                color: "#484848",
+              sx={(theme) => ({
+                backgroundColor: theme.palette.primary.contrastText,
+                color: '#484848',
                 paddingRight: 4,
                 paddingLeft: 4,
                 fontWeight: Fonts.MEDIUM,
-              }}
+              })}
             />
           </Box>
 
@@ -84,31 +84,31 @@ const ListItem = ({ user }: { user: UserListProps }) => {
             <Box
               sx={{
                 mb: { xs: 2, xl: 3 },
-                color: "grey.600",
-                display: "flex",
-                flexDirection: { xs: "column", lg: "row" },
-                alignItems: { lg: "center" },
+                color: 'grey.600',
+                display: 'flex',
+                flexDirection: { xs: 'column', lg: 'row' },
+                alignItems: { lg: 'center' },
               }}
             >
               <Box
                 sx={{
                   mx: -3,
                   mb: 2,
-                  color: "text.primary",
+                  color: 'text.primary',
                   pr: { xl: 32 },
-                  display: "flex",
+                  display: 'flex',
                   flex: 1,
                   fontSize: { xs: 14, xl: 16 },
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
+                  flexWrap: 'wrap',
+                  justifyContent: 'space-between',
                 }}
               >
                 <Box
                   sx={{
                     px: 3,
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
                   }}
                 >
                   <MailIcon />
@@ -124,9 +124,9 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 <Box
                   sx={{
                     px: 3,
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
                   }}
                 >
                   <LanguageIcon />
@@ -142,9 +142,9 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 <Box
                   sx={{
                     px: 3,
-                    display: "flex",
-                    alignItems: "center",
-                    cursor: "pointer",
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
                   }}
                 >
                   <PhoneIcon />
@@ -163,16 +163,16 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                   mx: { xs: -1, xl: -4 },
                   mb: 2,
                   pl: { lg: 6, xl: 10 },
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: { xs: "space-between", sm: "flex-start" },
-                  color: "text.primary",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: { xs: 'space-between', sm: 'flex-start' },
+                  color: 'text.primary',
                 }}
               >
                 <Box
                   component="span"
                   sx={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                     mx: { xs: 1, xl: 4 },
                   }}
                 >
@@ -181,7 +181,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 <Box
                   component="span"
                   sx={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                     mx: { xs: 1, xl: 4 },
                   }}
                 >
@@ -190,7 +190,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 <Box
                   component="span"
                   sx={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                     mx: { xs: 1, xl: 4 },
                   }}
                 >
@@ -199,7 +199,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 <Box
                   component="span"
                   sx={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                     mx: { xs: 1, xl: 4 },
                   }}
                 >
@@ -216,7 +216,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
               <Box
                 component="p"
                 sx={{
-                  color: "text.secondary",
+                  color: 'text.secondary',
                   mb: 4,
                   fontSize: 14,
                   fontWeight: Fonts.LIGHT,
@@ -228,9 +228,9 @@ const ListItem = ({ user }: { user: UserListProps }) => {
 
             <Box
               sx={{
-                display: "flex",
-                alignItems: { md: "center" },
-                flexDirection: { xs: "column", md: "row" },
+                display: 'flex',
+                alignItems: { md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
               }}
             >
               <Box
@@ -243,19 +243,19 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                     <Chip
                       key={index}
                       label={skill}
-                      sx={{
-                        backgroundColor: (theme) =>
-                          theme.palette.mode === "dark"
-                            ? theme.palette.grey[700]
-                            : theme.palette.grey[200],
-                        padding: "4px 12px",
+                      sx={(theme) => ({
+                        backgroundColor: theme.palette.grey[200],
+                        padding: '4px 12px',
                         marginTop: 2,
                         marginRight: { xs: 1, xl: 2 },
                         marginLeft: { xs: 1, xl: 2 },
-                        border: "1px solid",
+                        border: '1px solid',
                         borderColor: grey[500],
                         borderRadius: 2,
-                      }}
+                        ...theme.applyStyles('dark', {
+                          backgroundColor: theme.palette.grey[700],
+                        }),
+                      })}
                     />
                   );
                 })}
@@ -263,7 +263,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
 
               <Box
                 sx={{
-                  ml: { md: "auto" },
+                  ml: { md: 'auto' },
                 }}
               >
                 <Button
@@ -272,7 +272,7 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                   sx={{
                     marginRight: 5,
                     marginTop: 2,
-                    padding: "9px 12px",
+                    padding: '9px 12px',
                     lineHeight: 1,
                     width: 96,
                     fontWeight: Fonts.MEDIUM,
@@ -282,18 +282,17 @@ const ListItem = ({ user }: { user: UserListProps }) => {
                 </Button>
                 <Button
                   variant="contained"
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.primary.contrastText,
-                    color: "grey.500",
+                  sx={(theme) => ({
+                    backgroundColor: theme.palette.primary.contrastText,
+                    color: 'grey.500',
                     marginTop: 2,
-                    border: "1px solid",
-                    borderColor: "grey.500",
+                    border: '1px solid',
+                    borderColor: 'grey.500',
                     width: 96,
                     fontWeight: Fonts.MEDIUM,
-                    padding: "9px 12px",
+                    padding: '9px 12px',
                     lineHeight: 1,
-                  }}
+                  })}
                 >
                   <IntlMessages id="mailApp.remove" />
                 </Button>

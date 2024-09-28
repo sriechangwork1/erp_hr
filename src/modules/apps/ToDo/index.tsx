@@ -15,10 +15,7 @@ const ToDo = () => {
   const { messages } = useIntl();
   return (
     <TodoContextProvider>
-      <AppsContainer
-        title={messages['todo.detail'] as string}
-        sidebarContent={<TaskSideBar />}
-      >
+      <AppsContainer title={messages['todo.detail'] as string} sidebarContent={<TaskSideBar />}>
         <TasksList />
         <Box
           sx={{
@@ -40,9 +37,7 @@ const ToDo = () => {
             },
           }}
           className={clsx({
-            show: params?.all?.length
-              ? Number(params.all[params.all.length - 1]) > 0
-              : false,
+            show: params?.all?.length ? Number(params.all[params.all.length - 1]) > 0 : false,
           })}
         >
           <TaskDetail show={params.all[params.all.length - 1]} />

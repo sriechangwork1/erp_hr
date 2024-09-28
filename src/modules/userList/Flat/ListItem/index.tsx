@@ -22,7 +22,6 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           position: 'relative',
-
           '&:hover': {
             '& $crUserFlat:before': {
               left: '-150px',
@@ -40,13 +39,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             },
           }}
         >
-          <Image
-            src={user.image}
-            alt='user'
-            className='crUserImage'
-            width={130}
-            height={130}
-          />
+          <Image src={user.image} alt="user" className="crUserImage" width={130} height={130} />
         </Box>
 
         <Box
@@ -56,7 +49,6 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             position: 'relative',
             borderBottom: 'solid 2px',
             borderBottomColor: 'grey.400',
-
             '&:before': {
               content: '""',
               position: 'absolute',
@@ -71,7 +63,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: 3,
               fontSize: 16,
@@ -79,7 +71,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             }}
           >
             <Box
-              component='span'
+              component="span"
               sx={{
                 fontWeight: Fonts.BOLD,
                 color: 'text.primary',
@@ -88,9 +80,9 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             >
               {user.name}
             </Box>
-            <IntlMessages id='common.in' />
+            <IntlMessages id="common.in" />
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'primary.main',
                 fontWeight: Fonts.BOLD,
@@ -107,7 +99,7 @@ const ListItem: React.FC<ListItemProps> = ({ user }) => {
             }}
           >
             <Box
-              component='p'
+              component="p"
               sx={{
                 color: 'text.secondary',
                 fontSize: 14,

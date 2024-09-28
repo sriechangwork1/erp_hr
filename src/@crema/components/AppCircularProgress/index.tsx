@@ -1,11 +1,9 @@
 import React, { ReactNode } from 'react';
-import CircularProgress, {
-  circularProgressClasses,
-} from '@mui/material/CircularProgress';
+import CircularProgress, { circularProgressClasses } from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type AppCircularProgressProps ={
+type AppCircularProgressProps = {
   hidePercentage?: boolean;
   centerNode?: ReactNode;
   minWidth?: number;
@@ -17,7 +15,7 @@ type AppCircularProgressProps ={
   valueStyle?: React.CSSProperties;
 
   [x: string]: any;
-}
+};
 
 const AppCircularProgress: React.FC<AppCircularProgressProps> = ({
   value,
@@ -53,18 +51,27 @@ const AppCircularProgress: React.FC<AppCircularProgressProps> = ({
           {...props}
         />
         <CircularProgress
-          sx={{
-            color: activeColor,
-            animationDuration: '550ms',
-            position: 'absolute',
-            left: (theme) => (theme.direction === 'rtl' ? -2 : 2),
-            top: -2,
-            width: '100% !important',
-            height: '100% !important',
-            [`& .${circularProgressClasses.circle}`]: {
-              strokeLinecap: 'round',
+          sx={[
+            {
+              color: activeColor,
+              animationDuration: '550ms',
+              position: 'absolute',
+              top: -2,
+              width: '100% !important',
+              height: '100% !important',
+              [`& .${circularProgressClasses.circle}`]: {
+                strokeLinecap: 'round',
+              },
             },
-          }}
+            (theme) =>
+              theme.direction === 'rtl'
+                ? {
+                    left: -2,
+                  }
+                : {
+                    left: 2,
+                  },
+          ]}
           variant="determinate"
           value={value}
           thickness={thickness}
@@ -88,12 +95,12 @@ const AppCircularProgress: React.FC<AppCircularProgressProps> = ({
         {hidePercentage ? null : (
           <Box
             component="p"
-            sx={{
+            sx={(theme) => ({
               fontSize: 30,
               fontWeight: Fonts.MEDIUM,
-              color: (theme) => theme.palette.secondary.main,
+              color: theme.palette.secondary.main,
               ...valueStyle,
-            }}
+            })}
           >
             {value}%
           </Box>

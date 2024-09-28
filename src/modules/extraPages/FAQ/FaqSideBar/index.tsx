@@ -47,17 +47,11 @@ type FaqSideBarProps = {
   selectionId: number;
 };
 
-const FaqSideBar: React.FC<FaqSideBarProps> = ({
-  onGetFaqData,
-  selectionId,
-}) => {
+const FaqSideBar: React.FC<FaqSideBarProps> = ({ onGetFaqData, selectionId }) => {
   return (
     <AppCard>
       <AppScrollbar>
-        <Box
-          component="h3"
-          sx={{ mb: 4, fontWeight: Fonts.BOLD, fontSize: 16 }}
-        >
+        <Box component="h3" sx={{ mb: 4, fontWeight: Fonts.BOLD, fontSize: 16 }}>
           <IntlMessages id="faq.queries" />
         </Box>
         <List
@@ -72,26 +66,21 @@ const FaqSideBar: React.FC<FaqSideBarProps> = ({
               paddingTop: 1,
               paddingBottom: 1,
               backgroundColor: 'transparent',
-
               '& .MuiTypography-body1': {
                 fontSize: 14,
                 fontWeight: Fonts.MEDIUM,
               },
-
               '&:hover,&:focus,&.active': {
                 backgroundColor: 'transparent',
                 color: 'primary.main',
-
                 '& svg': {
                   fontSize: 18,
                   color: 'primary.main',
                 },
               },
-
               '&.active': {
                 color: 'primary.main',
               },
-
               '& svg': {
                 fontSize: 18,
               },
@@ -99,14 +88,7 @@ const FaqSideBar: React.FC<FaqSideBarProps> = ({
           }}
         >
           {faqFolderList.map((item) => {
-            return (
-              <SideBarItem
-                key={item.id}
-                item={item}
-                selectionId={selectionId}
-                onGetFaqData={onGetFaqData}
-              />
-            );
+            return <SideBarItem key={item.id} item={item} selectionId={selectionId} onGetFaqData={onGetFaqData} />;
           })}
         </List>
       </AppScrollbar>

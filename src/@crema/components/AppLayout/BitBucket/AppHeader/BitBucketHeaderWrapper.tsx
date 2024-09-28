@@ -7,13 +7,10 @@ type BitBucketHeaderWrapperProps = {
   [x: string]: any;
 };
 
-const BitBucketHeaderWrapper: React.FC<BitBucketHeaderWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const BitBucketHeaderWrapper: React.FC<BitBucketHeaderWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         height: { xs: 56, sm: 70 },
         display: 'flex',
         alignItems: 'center',
@@ -24,7 +21,7 @@ const BitBucketHeaderWrapper: React.FC<BitBucketHeaderWrapperProps> = ({
         position: 'fixed',
         px: { xs: 5, md: 7.5 },
         zIndex: 999,
-        backgroundColor: (theme) => theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper,
         '& .menu-btn': {
           mr: 2,
         },
@@ -35,7 +32,7 @@ const BitBucketHeaderWrapper: React.FC<BitBucketHeaderWrapperProps> = ({
         '& .logo-text': {
           display: { xs: 'none', sm: 'block' },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

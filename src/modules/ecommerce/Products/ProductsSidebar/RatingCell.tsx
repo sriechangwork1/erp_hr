@@ -9,11 +9,7 @@ type RatingCellProps = {
   onChange: (val: any) => void;
 };
 
-const RatingCell: React.FC<RatingCellProps> = ({
-  selected,
-  data,
-  onChange,
-}) => {
+const RatingCell: React.FC<RatingCellProps> = ({ selected, data, onChange }) => {
   return (
     <Box
       sx={{
@@ -31,10 +27,7 @@ const RatingCell: React.FC<RatingCellProps> = ({
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
       {data}
-      <StarIcon
-        style={{ fontSize: 16, marginRight: 5, marginLeft: 2, marginTop: 3 }}
-      />
-      & above
+      <StarIcon style={{ fontSize: 16, marginRight: 5, marginLeft: 2, marginTop: 3 }} />& above
     </Box>
   );
 };

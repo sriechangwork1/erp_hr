@@ -10,19 +10,13 @@ type AppsContentContainerProps = {
   [x: string]: any;
 };
 
-const AppsContentContainer: React.FC<AppsContentContainerProps> = styled(
-  SimpleBarReact
-)((props: AppsContentContainerProps) => {
+const AppsContentContainer = styled(SimpleBarReact)(() => {
   return {
     width: '100%',
     paddingTop: 8,
     paddingBottom: 8,
     display: 'flex',
     flexDirection: 'column',
-    height: `calc(100% - ${props.isDetailView ? 60 : 129}px)`,
-    [props.theme.breakpoints.up('sm')]: {
-      height: `calc(100% - ${props.fullView ? 0 : 60}px)`,
-    },
     '& .simplebar-content': {
       height: '100%',
     },
@@ -37,9 +31,45 @@ type AppsContentProps = {
   [x: string]: any;
 };
 
-const AppsContent = (props: AppsContentProps) => {
+const AppsContent = ({ isDetailView = false, fullView, children, ...props }: AppsContentProps) => {
   return (
-    <AppsContentContainer {...props}>{props.children}</AppsContentContainer>
+    <AppsContentContainer
+      {...props}
+      sx={[
+        isDetailView
+          ? {
+              height: {
+                xs: {
+                  xs: 60,
+                },
+              },
+            }
+          : {
+              height: {
+                xs: {
+                  xs: 129,
+                },
+              },
+            },
+        fullView
+          ? {
+              height: {
+                sm: {
+                  sm: 0,
+                },
+              },
+            }
+          : {
+              height: {
+                sm: {
+                  sm: 60,
+                },
+              },
+            },
+      ]}
+    >
+      {children}
+    </AppsContentContainer>
   );
 };
 

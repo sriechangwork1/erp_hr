@@ -31,12 +31,12 @@ const IllustrationDesign = () => {
         }}
       >
         <Image
-          className='widthFull'
+          className="widthFull"
           src={'/assets/images/illustration.png'}
-          alt='illustration'
+          alt="illustration"
           width={483}
           height={272}
-          sizes='100vw'
+          sizes="100vw"
           style={{
             width: '100%',
             height: '100%',
@@ -52,18 +52,17 @@ const IllustrationDesign = () => {
           }}
         >
           <Chip
-            sx={{
-              backgroundColor: (theme) => theme.palette.primary.main,
-              color: (theme) => theme.palette.primary.contrastText,
+            sx={(theme) => ({
+              backgroundColor: theme.palette.primary.main,
+              color: theme.palette.primary.contrastText,
               fontWeight: Fonts.LIGHT,
               textTransform: 'capitalize',
               fontSize: { xs: 16, sm: 18 },
-            }}
-            label={<IntlMessages id='dashboard.designs' />}
+            })}
+            label={<IntlMessages id="dashboard.designs" />}
           />
         </Box>
       </Box>
-
       <Box
         sx={{
           pt: { xs: 4, xl: 6 },
@@ -71,14 +70,14 @@ const IllustrationDesign = () => {
         }}
       >
         <Box
-          component='h4'
+          component="h4"
           sx={{
             mb: 4,
             fontSize: 16,
             fontWeight: Fonts.BOLD,
           }}
         >
-          <IntlMessages id='dashboard.illustrationDesign' />
+          <IntlMessages id="dashboard.illustrationDesign" />
         </Box>
         <Divider
           sx={{
@@ -96,14 +95,14 @@ const IllustrationDesign = () => {
           }}
         >
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 3,
               textAlign: 'center',
             }}
           >
             <Box
-              component='span'
+              component="span"
               sx={{
                 mr: 2,
                 verticalAlign: 'middle',
@@ -115,13 +114,13 @@ const IllustrationDesign = () => {
             11.7 K
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 3,
             }}
           >
             <Box
-              component='span'
+              component="span"
               sx={{
                 mr: 2,
                 verticalAlign: 'middle',
@@ -133,13 +132,13 @@ const IllustrationDesign = () => {
             2.6 K
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 3,
             }}
           >
             <Box
-              component='span'
+              component="span"
               sx={{
                 mr: 2,
                 verticalAlign: 'middle',

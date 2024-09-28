@@ -19,12 +19,7 @@ type StatusType = {
   label: string;
 };
 
-const OrderActions = ({
-  id,
-  data,
-  status,
-  onChangeStatus,
-}: OrderActionsProps) => {
+const OrderActions = ({ id, data, status, onChangeStatus }: OrderActionsProps) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -85,33 +80,22 @@ const OrderActions = ({
 
   return (
     <Box>
-      <IconButton
-        aria-controls='alpha-menu'
-        aria-haspopup='true'
-        onClick={handleClick}
-      >
+      <IconButton aria-controls="alpha-menu" aria-haspopup="true" onClick={handleClick}>
         <MoreVertIcon />
       </IconButton>
       <Menu
-        id='alpha-menu'
+        id="alpha-menu"
         anchorEl={anchorEl}
         keepMounted
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        <MenuItem
-          style={{ fontSize: 14 }}
-          onClick={() => router.push(`/invoice/pdf/${id}`)}
-        >
+        <MenuItem style={{ fontSize: 14 }} onClick={() => router.push(`/invoice/pdf/${id}`)}>
           View Invoice
         </MenuItem>
         {orderList?.map((item, index) => (
-          <MenuItem
-            key={index}
-            style={{ fontSize: 14 }}
-            onClick={() => onChangeStatus(data, item.status)}
-          >
+          <MenuItem key={index} style={{ fontSize: 14 }} onClick={() => onChangeStatus(data, item.status)}>
             {item.label}
           </MenuItem>
         ))}

@@ -23,38 +23,38 @@ const ReactPlayer = () => {
   return (
     <>
       <AppComponentHeader
-        title='ReactPlayer'
-        description='A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, and DailyMotion.'
-        refUrl='https://cookpete.com/react-player/'
+        title="ReactPlayer"
+        description="A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia, Mixcloud, and DailyMotion."
+        refUrl="https://cookpete.com/react-player/"
       />
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='YouTube' component={YouTube} />
+          <AppComponentCard title="YouTube" component={YouTube} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Facebook' component={Facebook} />
+          <AppComponentCard title="Facebook" component={Facebook} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Vimeo' component={Vimeo} />
+          <AppComponentCard title="Vimeo" component={Vimeo} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Daily Motion' component={DailyMotion} />
+          <AppComponentCard title="Daily Motion" component={DailyMotion} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Sound Cloud' component={SoundCloud} />
+          <AppComponentCard title="Sound Cloud" component={SoundCloud} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Streamable' component={Streamable} />
+          <AppComponentCard title="Streamable" component={Streamable} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Twitch' component={Twitch} />
+          <AppComponentCard title="Twitch" component={Twitch} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Wistia' component={Wistia} />
+          <AppComponentCard title="Wistia" component={Wistia} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Mixcloud' component={Mixcloud} />
+          <AppComponentCard title="Mixcloud" component={Mixcloud} />
         </Grid>
       </AppGridContainer>
     </>

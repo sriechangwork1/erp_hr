@@ -43,37 +43,27 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
               height: '100%',
             }}
           >
-            <Image
-              src={`${slide.srcImg}`}
-              alt={slide.title}
-              width={696}
-              height={150}
-            />
+            <Image src={`${slide.srcImg}`} alt={slide.title} width={696} height={150} />
           </Box>
         </Box>
 
         <Box
-          sx={{
+          sx={(theme) => ({
             position: 'absolute',
             bottom: 0,
             left: 16,
             width: 64,
             height: 64,
-            border: (theme) => `solid 2px ${theme.palette.common.white}`,
+            border: `solid 2px ${theme.palette.common.white}`,
             borderRadius: 2,
             '& img': {
               width: '100%',
               height: '100%',
               borderRadius: 2,
             },
-          }}
+          })}
         >
-          <Image
-            src={`${slide.srcImg}`}
-            alt={slide.title}
-            width={60}
-            height={60}
-          />
+          <Image src={`${slide.srcImg}`} alt={slide.title} width={60} height={60} />
         </Box>
       </Box>
       <Box
@@ -83,7 +73,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ slide }) => {
         }}
       >
         <Typography
-          component='h3'
+          component="h3"
           sx={{
             fontSize: 16,
             fontWeight: Fonts.SEMI_BOLD,

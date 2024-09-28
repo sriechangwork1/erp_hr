@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from '../../../AppSearchBar';
 import AppLogo from '../../components/AppLogo';
-import Hidden from '@mui/material/Hidden';
+
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,7 +12,7 @@ type Props = {
 };
 const AppHeader = ({ toggleNavCollapsed }: Props) => {
   return (
-    <Hidden lgUp>
+    <Box sx={{ display: { lg: 'none', xs: 'block' } }}>
       <BitBucketHeaderWrapper className="bit-bucket-header">
         <IconButton
           edge="start"
@@ -32,7 +32,7 @@ const AppHeader = ({ toggleNavCollapsed }: Props) => {
           <SearchBar borderLight placeholder="Search…" />
         </Box>
       </BitBucketHeaderWrapper>
-    </Hidden>
+    </Box>
   );
 };
 export default AppHeader;

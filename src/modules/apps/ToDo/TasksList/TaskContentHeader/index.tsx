@@ -5,13 +5,10 @@ import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import CheckedTasksActions from './CheckedTasksActions';
 import AppsPagination from '@crema/components/AppsPagination';
-import Hidden from '@mui/material/Hidden';
+
 import SelectTasksDropdown from './SelectTasksDropdown';
 import ViewSelectButtons from './ViewSelectButtons';
-import {
-  useTodoActionsContext,
-  useTodoContext,
-} from '../../../context/TodoContextProvider';
+import { useTodoActionsContext, useTodoContext } from '../../../context/TodoContextProvider';
 import { TodoType } from '@crema/types/models/apps/Todo';
 
 type Props = {
@@ -23,20 +20,12 @@ type Props = {
 };
 
 const TaskContentHeader = (props: Props) => {
-  const {
-    onUpdateTasks,
-    checkedTasks = [],
-    setCheckedTasks,
-    filterText = '',
-    onSetFilterText,
-  } = props;
+  const { onUpdateTasks, checkedTasks = [], setCheckedTasks, filterText = '', onSetFilterText } = props;
 
   const { taskLists, page = 0, viewMode } = useTodoContext();
   const { onPageChange, setViewMode } = useTodoActionsContext();
 
-  const onHandleMasterCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const onHandleMasterCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const taskIds = taskLists?.data?.map((task) => task.id);
       setCheckedTasks(taskIds);
@@ -55,19 +44,11 @@ const TaskContentHeader = (props: Props) => {
         break;
 
       case 2:
-        setCheckedTasks(
-          taskLists?.data
-            ?.filter((task) => task.isStarred)
-            .map((task) => task.id),
-        );
+        setCheckedTasks(taskLists?.data?.filter((task) => task.isStarred).map((task) => task.id));
         break;
 
       case 3:
-        setCheckedTasks(
-          taskLists?.data
-            ?.filter((task) => task.isAttachment)
-            .map((task) => task.id),
-        );
+        setCheckedTasks(taskLists?.data?.filter((task) => task.isAttachment).map((task) => task.id));
         break;
 
       default:
@@ -92,33 +73,24 @@ const TaskContentHeader = (props: Props) => {
             sx={{
               color: 'text.disabled',
             }}
-            indeterminate={
-              checkedTasks.length > 0 &&
-              checkedTasks?.length < taskLists?.data?.length
-            }
-            checked={
-              taskLists?.data?.length > 0 &&
-              checkedTasks?.length === taskLists?.data?.length
-            }
+            indeterminate={checkedTasks.length > 0 && checkedTasks?.length < taskLists?.data?.length}
+            checked={taskLists?.data?.length > 0 && checkedTasks?.length === taskLists?.data?.length}
             onChange={onHandleMasterCheckbox}
           />
         </span>
         <Box sx={{ mr: 3 }}>
           <AppSearchBar
-            iconPosition='right'
+            iconPosition="right"
             overlap={false}
             value={filterText}
             onChange={(event: any) => onSetFilterText(event.target.value)}
             placeholder={messages['common.searchHere'] as string}
           />
         </Box>
-        <SelectTasksDropdown
-          onSelectTasks={onSelectTasks}
-          checkedTasks={checkedTasks}
-        />
+        <SelectTasksDropdown onSelectTasks={onSelectTasks} checkedTasks={checkedTasks} />
         {checkedTasks.length > 0 ? (
           <Box
-            component='span'
+            component="span"
             sx={{
               mr: { sm: 4 },
               display: 'flex',
@@ -141,28 +113,27 @@ const TaskContentHeader = (props: Props) => {
         <ViewSelectButtons viewMode={viewMode} onViewModeSelect={setViewMode} />
       </Box>
 
-      <Hidden smDown>
-        {taskLists?.data?.length > 0 ? (
-          <AppsPagination
-            sx={{
-              paddingRight: 2,
-              paddingLeft: 2,
-              '& .MuiToolbar-root': {
-                paddingLeft: 0,
+      {taskLists?.data?.length > 0 ? (
+        <AppsPagination
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            paddingRight: 2,
+            paddingLeft: 2,
+            '& .MuiToolbar-root': {
+              paddingLeft: 0,
+            },
+            '& .MuiTablePagination-actions': {
+              marginLeft: 0,
+              '& .MuiButtonBase-root': {
+                padding: 2,
               },
-              '& .MuiTablePagination-actions': {
-                marginLeft: 0,
-                '& .MuiButtonBase-root': {
-                  padding: 2,
-                },
-              },
-            }}
-            count={taskLists?.count as number}
-            page={page}
-            onPageChange={onPageChange}
-          />
-        ) : null}
-      </Hidden>
+            },
+          }}
+          count={taskLists?.count as number}
+          page={page}
+          onPageChange={onPageChange}
+        />
+      ) : null}
     </>
   );
 };

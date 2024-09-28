@@ -1,9 +1,9 @@
-import React from "react";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import PackageCard from "./PackageCard";
-import AppCard from "@crema/components/AppCard";
-import type { PricingFourType } from "@crema/types/models/extrapages/Pricing";
+import React from 'react';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import PackageCard from './PackageCard';
+import AppCard from '@crema/components/AppCard';
+import type { PricingFourType } from '@crema/types/models/extrapages/Pricing';
 
 type Props = {
   pricing: PricingFourType[];
@@ -11,11 +11,11 @@ type Props = {
 
 const PackageThree = ({ pricing }: Props) => {
   return (
-    <AppCard title="Pricing Package Style 3" sxStyle={{ alignItems: "center" }}>
+    <AppCard title="Pricing Package Style 3" sxStyle={{ alignItems: 'center' }}>
       <AppGridContainer
         sx={{
           maxWidth: 1000,
-          justifyContent: "center",
+          justifyContent: 'center',
         }}
       >
         {pricing.map((data, index) => (

@@ -17,7 +17,7 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
   loader,
   placeholder,
   loading,
-  title = <IntlMessages id='common.noRecordFound' />,
+  title = <IntlMessages id="common.noRecordFound" />,
   actionTitle,
   content,
   onClick,
@@ -44,7 +44,7 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
             }}
           >
             <CircularProgress size={16} />
-            <Box component='span' sx={{ ml: 2 }}>
+            <Box component="span" sx={{ ml: 2 }}>
               Loading...
             </Box>
           </Box>
@@ -71,34 +71,28 @@ const ListEmptyResult: React.FC<ListEmptyResultProps> = ({
       >
         {title ? (
           <Typography
-            sx={{
+            sx={(theme) => ({
               fontSize: 14,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
               fontWeight: Fonts.MEDIUM,
               mb: 2,
-            }}
-            component='h4'
-            variant='h4'
+            })}
+            component="h4"
+            variant="h4"
           >
             {title}
           </Typography>
         ) : null}
         <Typography
-          sx={{
+          sx={(theme) => ({
             fontSize: 14,
-            color: (theme) => theme.palette.text.secondary,
-          }}
+            color: theme.palette.text.secondary,
+          })}
         >
           {content}
         </Typography>
-
         {actionTitle ? (
-          <Button
-            color='primary'
-            variant='contained'
-            sx={{ mt: 7.5, height: 45, minWidth: 150 }}
-            onClick={onClick}
-          >
+          <Button color="primary" variant="contained" sx={{ mt: 7.5, height: 45, minWidth: 150 }} onClick={onClick}>
             {actionTitle}
           </Button>
         ) : null}

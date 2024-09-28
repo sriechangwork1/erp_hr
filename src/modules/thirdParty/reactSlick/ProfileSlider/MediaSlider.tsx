@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Box } from "@mui/material";
+import React, { ReactNode } from 'react';
+import { Box } from '@mui/material';
 
 interface MediaSliderProps {
   children: ReactNode;
@@ -8,37 +8,37 @@ interface MediaSliderProps {
 const MediaSlider: React.FC<MediaSliderProps> = ({ children }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         maxWidth: 320,
-        mx: "auto",
-        border: (theme) => `solid 1px ${theme.palette.divider}`,
+        mx: 'auto',
+        border: `solid 1px ${theme.palette.divider}`,
         borderRadius: 2.5,
         py: 10,
-        "& .slick-slider": {
+        '& .slick-slider': {
           pb: 5,
         },
-        "& .slick-slide img": {
-          display: "inline-block",
+        '& .slick-slide img': {
+          display: 'inline-block',
         },
-        "& .slick-dots": {
-          "& li": {
+        '& .slick-dots': {
+          '& li': {
             width: 10,
             height: 10,
-            "& button": {
+            '& button': {
               width: 10,
               height: 10,
               padding: 0,
             },
-            "& button:before": {
+            '& button:before': {
               fontSize: 0,
-              backgroundColor: "primary.main",
+              backgroundColor: 'primary.main',
               width: 10,
               height: 10,
-              borderRadius: "50%",
+              borderRadius: '50%',
             },
           },
         },
-      }}
+      })}
     >
       {children}
     </Box>

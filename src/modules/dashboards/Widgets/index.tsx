@@ -34,18 +34,17 @@ import DateSelector from './DatePicker';
 import type { WidgetsType } from '@crema/types/models/dashboards/Widgets';
 
 const Widgets = () => {
-  const [{ apiData: widgetsData, loading }] =
-    useGetDataApi<WidgetsType>('/dashboard/widgets');
+  const [{ apiData: widgetsData, loading }] = useGetDataApi<WidgetsType>('/dashboard/widgets');
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <>
             <Box
-              component='h3'
+              component="h3"
               sx={{
                 color: 'text.primary',
                 mb: { xs: 4, sm: 4, xl: 6 },
@@ -53,7 +52,7 @@ const Widgets = () => {
                 fontWeight: Fonts.BOLD,
               }}
             >
-              <IntlMessages id='dashboard.widgets' />
+              <IntlMessages id="dashboard.widgets" />
             </Box>
 
             <AppGridContainer>
@@ -121,7 +120,7 @@ const Widgets = () => {
                 <CremaCard
                   data={widgetsData.mateInfo.facebookInfo}
                   bgColor={indigo[600]}
-                  color='white'
+                  color="white"
                   icon={
                     <Box
                       sx={{
@@ -141,7 +140,7 @@ const Widgets = () => {
                 <CremaCard
                   data={widgetsData.mateInfo.twitterInfo}
                   bgColor={blue[600]}
-                  color='white'
+                  color="white"
                   icon={
                     <Box
                       sx={{

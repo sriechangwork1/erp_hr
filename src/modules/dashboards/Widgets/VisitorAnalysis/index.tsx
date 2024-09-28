@@ -13,7 +13,13 @@ const VisitorAnalysis = () => {
       title={messages['dashboard.visitorAnalysis'] as string}
       sxStyle={{ height: 1 }}
       footer={
-        <Box color="text.secondary" display="flex" alignItems="center">
+        <Box
+          sx={{
+            color: 'text.secondary',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <Box
             sx={{
               backgroundColor: 'secondary.main',

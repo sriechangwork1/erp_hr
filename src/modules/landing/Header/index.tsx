@@ -6,7 +6,7 @@ import './index.css';
 const Header = () => {
   return (
     <Box
-      id='header'
+      id="header"
       sx={{
         background: `url(/assets/images/banner/header-background.png)`,
       }}

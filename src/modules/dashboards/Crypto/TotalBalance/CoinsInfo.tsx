@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { CoinInfoDataType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { CoinInfoDataType } from '@crema/types/models/dashboards/Crypto';
 
 type Props = {
   coins: CoinInfoDataType[];
@@ -12,9 +12,9 @@ const CoinsInfo = ({ coins = [] }: Props) => {
       sx={{
         mx: -2,
         mb: { xl: 1 },
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
       }}
     >
       {coins.map((coin: CoinInfoDataType) => {
@@ -31,7 +31,7 @@ const CoinsInfo = ({ coins = [] }: Props) => {
               sx={{
                 fontWeight: Fonts.BOLD,
                 fontSize: 20,
-                color: "primary.main",
+                color: 'primary.main',
               }}
             >
               {coin.value}
@@ -40,7 +40,7 @@ const CoinsInfo = ({ coins = [] }: Props) => {
               component="p"
               sx={{
                 fontSize: 14,
-                color: "text.secondary",
+                color: 'text.secondary',
               }}
             >
               {coin.name}

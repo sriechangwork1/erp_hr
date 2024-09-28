@@ -7,18 +7,15 @@ type StandardWrapperProps = {
   [x: string]: any;
 };
 
-const StandardWrapper: React.FC<StandardWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const StandardWrapper: React.FC<StandardWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         paddingTop: { xs: 14, sm: 17.5 },
         '& .mainContent': {
           display: 'flex',
@@ -31,7 +28,7 @@ const StandardWrapper: React.FC<StandardWrapperProps> = ({
         '&.appMainFixedFooter': {
           pb: { xs: 12, xl: 14.5 },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

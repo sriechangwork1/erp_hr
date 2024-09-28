@@ -12,8 +12,12 @@ const TaskDetail = ({ show }: any) => {
   const params: any = useParams();
   const { all } = params;
   const id = all.slice(-1)[0];
-  const [{ apiData: selectedTask }, { setQueryParams, setData }] =
-    useGetDataApi<TodoType>('/todo/detail', undefined, {}, false);
+  const [{ apiData: selectedTask }, { setQueryParams, setData }] = useGetDataApi<TodoType>(
+    '/todo/detail',
+    undefined,
+    {},
+    false,
+  );
 
   useEffect(() => {
     if (show) {
@@ -31,16 +35,10 @@ const TaskDetail = ({ show }: any) => {
   return (
     <>
       <AppsHeader>
-        <TaskDetailHeader
-          selectedTask={selectedTask}
-          onUpdateSelectedTask={onUpdateSelectedTask}
-        />
+        <TaskDetailHeader selectedTask={selectedTask} onUpdateSelectedTask={onUpdateSelectedTask} />
       </AppsHeader>
       <AppsContent isDetailView>
-        <TaskDetailBody
-          selectedTask={selectedTask}
-          onUpdateSelectedTask={onUpdateSelectedTask}
-        />
+        <TaskDetailBody selectedTask={selectedTask} onUpdateSelectedTask={onUpdateSelectedTask} />
       </AppsContent>
     </>
   );

@@ -45,65 +45,67 @@ const NavBar = () => {
     setOpen(false);
   };
   return (
-    <Box id='navbar' className={isScroll ? 'sticky' : 'nav_bar'}>
+    <Box id="navbar" className={isScroll ? 'sticky' : 'nav_bar'}>
       <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          fontSize: ' 16px',
-          maxWidth: ' 1370px',
-          margin: ' 0 auto',
-          width: '100%',
-          zIndex: 1250,
-          padding: isScroll ? 0 : '30px 0 16px',
-        }}
+        sx={[
+          {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            fontSize: ' 16px',
+            maxWidth: ' 1370px',
+            margin: ' 0 auto',
+            width: '100%',
+            zIndex: 1250,
+          },
+          isScroll
+            ? {
+                padding: 0,
+              }
+            : {
+                padding: '30px 0 16px',
+              },
+        ]}
       >
         <Box>
           <Image
-            src={`${
-              isScroll
-                ? '/assets/images/logo-with-name.png'
-                : '/assets/images/logo-white-with-name.png'
-            }`}
-            alt='logo'
+            src={`${isScroll ? '/assets/images/logo-with-name.png' : '/assets/images/logo-white-with-name.png'}`}
+            alt="logo"
             width={130}
             height={42}
           />
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
           {menuItems.map((items) => (
-            <Link
-              rel='stylesheet'
-              href={items.link}
-              key={items.name}
-              className={isScroll ? 'text_color' : 'nav_link'}
-            >
+            <Link rel="stylesheet" href={items.link} key={items.name} className={isScroll ? 'text_color' : 'nav_link'}>
               {items.name}
             </Link>
           ))}
           <Button
-            variant='contained'
+            variant="contained"
             href={isAuthenticated ? initialUrl : '/signin'}
-            sx={{
-              backgroundColor: isScroll ? '' : 'red',
-            }}
+            sx={[
+              isScroll
+                ? {
+                    backgroundColor: '',
+                  }
+                : {
+                    backgroundColor: 'red',
+                  },
+            ]}
           >
             {isAuthenticated ? 'Go to Dashboard' : 'Sign In'}
           </Button>
-          <span
-            style={{ fontSize: '32px', color: isScroll ? '#000' : '#fff' }}
-            className='menu_icon'
-          >
+          <span style={{ fontSize: '32px', color: isScroll ? '#000' : '#fff' }} className="menu_icon">
             <MenuSharpIcon onClick={showDrawer} />
           </span>
         </Box>
       </Box>
       <Drawer
-        anchor='right'
+        anchor="right"
         onClose={onClose}
         open={open}
-        key='left'
+        key="left"
         style={{ maxWidth: '420px', width: '100%', padding: '60px' }}
       >
         <Box
@@ -117,7 +119,7 @@ const NavBar = () => {
         >
           {menuItems.map((items) => (
             <Link
-              rel='stylesheet'
+              rel="stylesheet"
               href={items.link}
               key={items.name}
               onClick={onClose}

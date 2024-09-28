@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import Hidden from '@mui/material/Hidden';
 import Drawer from '@mui/material/Drawer';
 import Card from '@mui/material/Card';
 import { Box, drawerClasses, Slide } from '@mui/material';
@@ -24,26 +23,23 @@ const AppSidebar: React.FC<AppSidebarProps> = (props) => {
           },
         }}
       >
-        <Hidden lgUp>
-          <Drawer
-            open={isAppDrawerOpen}
-            onClose={toggleNavCollapsed}
-            sx={{
-              position: 'absolute',
-              [`& .${drawerClasses.paper}`]: {
-                width: 280,
-                '& .listItem': {
-                  zIndex: 1305,
-                },
+        <Drawer
+          open={isAppDrawerOpen}
+          onClose={toggleNavCollapsed}
+          sx={{
+            position: 'absolute',
+            display: { lg: 'none', xs: 'block' },
+            [`& .${drawerClasses.paper}`]: {
+              width: 280,
+              '& .listItem': {
+                zIndex: 1305,
               },
-            }}
-          >
-            {sidebarContent}
-          </Drawer>
-        </Hidden>
-        <Hidden lgDown>
-          <Card style={{ height: '100%' }}>{sidebarContent}</Card>
-        </Hidden>
+            },
+          }}
+        >
+          {sidebarContent}
+        </Drawer>
+        <Card sx={{ display: { lg: 'block', xs: 'none' }, height: '100%' }}>{sidebarContent}</Card>
       </Box>
     </Slide>
   );

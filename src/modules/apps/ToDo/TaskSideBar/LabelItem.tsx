@@ -25,17 +25,14 @@ const StyledListItem = styled(ListItem)(({ theme }) => ({
     paddingLeft: 24,
     paddingRight: 24,
   },
-
   '& .MuiSvgIcon-root': {
     marginRight: 14,
     fontSize: 20,
   },
-
   '&:hover,&:focus,&.active': {
     backgroundColor: alpha(theme.palette.primary.main, 0.1),
     color: theme.palette.primary.main,
   },
-
   '&.active': {
     color: theme.palette.primary.main,
     '& $listItemText': {
@@ -53,10 +50,7 @@ type Props = {
 const LabelItem = ({ label }: Props) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={`/apps/todo/label/${label.alias}`}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={`/apps/todo/label/${label.alias}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <StyledListItem
         key={label.id}
         className={clsx({

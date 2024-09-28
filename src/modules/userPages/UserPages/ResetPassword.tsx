@@ -16,19 +16,13 @@ const ResetPassword = () => {
   const { messages } = useIntl();
 
   const validationSchema = yup.object({
-    oldPassword: yup
-      .string()
-      .required(String(messages['validation.enterOldPassword'])),
-    newPassword: yup
-      .string()
-      .required(String(messages['validation.enterNewPassword'])),
-    confirmPassword: yup
-      .string()
-      .required(String(messages['validation.reTypePassword'])),
+    oldPassword: yup.string().required(String(messages['validation.enterOldPassword'])),
+    newPassword: yup.string().required(String(messages['validation.enterNewPassword'])),
+    confirmPassword: yup.string().required(String(messages['validation.reTypePassword'])),
   });
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           pb: 6,
@@ -47,8 +41,7 @@ const ResetPassword = () => {
             textAlign: 'center',
             padding: { xs: 8, lg: 12, xl: '48px 64px' },
             overflow: 'hidden',
-            boxShadow:
-              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           }}
         >
           <Box
@@ -68,10 +61,10 @@ const ResetPassword = () => {
               }}
             >
               <Image
-                className='logo'
+                className="logo"
                 src={'/assets/images/logo-icon-large.png'}
-                alt='crema'
-                title='crema'
+                alt="crema"
+                title="crema"
                 width={18}
                 height={24}
               />
@@ -83,7 +76,7 @@ const ResetPassword = () => {
                 fontSize: 20,
               }}
             >
-              <IntlMessages id='common.resetPassword' />
+              <IntlMessages id="common.resetPassword" />
             </Box>
           </Box>
 
@@ -98,9 +91,7 @@ const ResetPassword = () => {
             onSubmit={(data, { setErrors, resetForm }) => {
               if (data.newPassword !== data.confirmPassword) {
                 setErrors({
-                  confirmPassword: messages[
-                    'validation.passwordMisMatch'
-                  ] as string,
+                  confirmPassword: messages['validation.passwordMisMatch'] as string,
                 });
               } else {
                 resetForm();
@@ -108,20 +99,20 @@ const ResetPassword = () => {
             }}
           >
             {({ isSubmitting }) => (
-              <Form noValidate autoComplete='off'>
+              <Form noValidate autoComplete="off">
                 <Box
                   sx={{
                     mb: { xs: 6, xl: 8 },
                   }}
                 >
                   <AppTextField
-                    name='oldPassword'
-                    label={<IntlMessages id='common.oldPassword' />}
+                    name="oldPassword"
+                    label={<IntlMessages id="common.oldPassword" />}
                     sx={{
                       width: '100%',
                     }}
-                    variant='outlined'
-                    type='password'
+                    variant="outlined"
+                    type="password"
                   />
                 </Box>
                 <Box
@@ -130,13 +121,13 @@ const ResetPassword = () => {
                   }}
                 >
                   <AppTextField
-                    name='newPassword'
-                    label={<IntlMessages id='common.newPassword' />}
+                    name="newPassword"
+                    label={<IntlMessages id="common.newPassword" />}
                     sx={{
                       width: '100%',
                     }}
-                    variant='outlined'
-                    type='password'
+                    variant="outlined"
+                    type="password"
                   />
                 </Box>
                 <Box
@@ -145,27 +136,27 @@ const ResetPassword = () => {
                   }}
                 >
                   <AppTextField
-                    name='confirmPassword'
-                    label={<IntlMessages id='common.retypePassword' />}
+                    name="confirmPassword"
+                    label={<IntlMessages id="common.retypePassword" />}
                     sx={{
                       width: '100%',
                     }}
-                    variant='outlined'
-                    type='password'
+                    variant="outlined"
+                    type="password"
                   />
                 </Box>
 
                 <Button
-                  variant='contained'
-                  color='primary'
+                  variant="contained"
+                  color="primary"
                   disabled={isSubmitting}
                   sx={{
                     width: '100%',
                     height: 44,
                   }}
-                  type='submit'
+                  type="submit"
                 >
-                  <IntlMessages id='common.resetMyPassword' />
+                  <IntlMessages id="common.resetMyPassword" />
                 </Button>
               </Form>
             )}

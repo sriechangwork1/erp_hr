@@ -3,10 +3,7 @@ import React from 'react';
 import InvoiceSettings from './Settings';
 import { putDataApi, useGetDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
-import {
-  InvoiceSettingType,
-  InvoiceSettingItem,
-} from '@crema/types/models/invoice';
+import { InvoiceSettingType, InvoiceSettingItem } from '@crema/types/models/invoice';
 
 const InvoiceSettingsPage = () => {
   const [{ apiData }, { reCallAPI }] = useGetDataApi<InvoiceSettingType>(
@@ -32,12 +29,7 @@ const InvoiceSettingsPage = () => {
       });
   };
 
-  return (
-    <InvoiceSettings
-      defaultSettings={apiData}
-      onUpdateSettings={onUpdateSettings}
-    />
-  );
+  return <InvoiceSettings defaultSettings={apiData} onUpdateSettings={onUpdateSettings} />;
 };
 
 export default InvoiceSettingsPage;

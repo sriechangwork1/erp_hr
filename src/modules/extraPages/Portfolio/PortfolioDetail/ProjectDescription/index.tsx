@@ -1,11 +1,11 @@
-import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
-import { Fonts } from "@crema/constants/AppEnums";
-import { ProjectDescriptionType } from "@crema/types/models/extrapages/Portfolio";
+import React from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import { Fonts } from '@crema/constants/AppEnums';
+import { ProjectDescriptionType } from '@crema/types/models/extrapages/Portfolio';
 
 type Props = {
   projectDescription: ProjectDescriptionType;
@@ -15,16 +15,16 @@ const ProjectDescription = ({ projectDescription }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
         px: 7.5,
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           mb: { xs: 7.5, md: 15 },
           pb: { xs: 7.5, md: 15 },
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-        }}
+          borderBottom: `solid 1px ${theme.palette.divider}`,
+        })}
       >
         <AppGridContainer>
           <Grid item xs={12} md={4}>
@@ -41,12 +41,11 @@ const ProjectDescription = ({ projectDescription }: Props) => {
             <Box sx={{ md: 2 }}>
               {projectDescription.service.map((service, index) => (
                 <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    borderBottom: (theme) =>
-                      `solid 1px ${theme.palette.divider}`,
-                  }}
+                  sx={(theme) => ({
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderBottom: `solid 1px ${theme.palette.divider}`,
+                  })}
                   key={index}
                 >
                   <Box
@@ -54,19 +53,19 @@ const ProjectDescription = ({ projectDescription }: Props) => {
                       py: { xs: 2, md: 3.5 },
                       minWidth: { xs: 150, lg: 100, xl: 150 },
                       fontWeight: Fonts.SEMI_BOLD,
-                      textTransform: "uppercase",
+                      textTransform: 'uppercase',
                     }}
                     component="span"
                   >
                     {service.title}
                   </Box>
                   <Box
-                    sx={{
+                    sx={(theme) => ({
                       py: { xs: 2, md: 3.5 },
                       fontWeight: Fonts.MEDIUM,
-                      color: (theme) => theme.palette.text.secondary,
+                      color: theme.palette.text.secondary,
                       flex: 1,
-                    }}
+                    })}
                     component="span"
                   >
                     {service.subTitle}
@@ -82,28 +81,28 @@ const ProjectDescription = ({ projectDescription }: Props) => {
                 fontSize: 16,
                 fontWeight: Fonts.SEMI_BOLD,
                 mb: { xs: 3, md: 5 },
-                textTransform: "uppercase",
+                textTransform: 'uppercase',
               }}
             >
               <IntlMessages id="extraPages.sbonTimelessStaplesIdentity" />
             </Typography>
             <Box
               sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                flexWrap: "wrap",
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                flexWrap: 'wrap',
                 mx: { xs: -3.5, lg: -5, xl: -7.5 },
               }}
             >
               {projectDescription.content.map((data, index) => (
                 <Typography
-                  sx={{
+                  sx={(theme) => ({
                     fontSize: 12,
                     mb: { xs: 3, md: 5 },
                     px: { xs: 3.5, lg: 5, xl: 7.5 },
-                    width: { xs: "100%", md: "50%" },
-                    color: (theme) => theme.palette.text.secondary,
-                  }}
+                    width: { xs: '100%', md: '50%' },
+                    color: theme.palette.text.secondary,
+                  })}
                   key={index}
                 >
                   {data.line}
@@ -113,11 +112,11 @@ const ProjectDescription = ({ projectDescription }: Props) => {
             <Button
               variant="text"
               sx={{
-                textTransform: "uppercase",
-                boxShadow: "none",
-                textDecoration: "underline",
-                "&:hover, &:focus": {
-                  textDecoration: "none",
+                textTransform: 'uppercase',
+                boxShadow: 'none',
+                textDecoration: 'underline',
+                '&:hover, &:focus': {
+                  textDecoration: 'none',
                 },
               }}
             >

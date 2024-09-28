@@ -23,12 +23,9 @@ type CityInfoProps = {
 
 const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      contentStyle={{ p: 0, pb: '0 !important' }}
-    >
+    <AppCard sxStyle={{ height: 1 }} contentStyle={{ p: 0, pb: '0 !important' }}>
       <ImageCardSlideWrapper>
-        <Slider className='imageCardSlide' {...settings}>
+        <Slider className="imageCardSlide" {...settings}>
           {cityData.map((city) => {
             return (
               <Box
@@ -54,12 +51,12 @@ const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
                   }}
                 >
                   <Image
-                    className='imageSlideFull'
+                    className="imageSlideFull"
                     src={city.image}
-                    alt='building'
+                    alt="building"
                     quality={100}
                     fill
-                    sizes='100vw'
+                    sizes="100vw"
                     style={{
                       objectFit: 'cover',
                     }}
@@ -67,7 +64,7 @@ const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
                 </Box>
                 <SlideContentWrapper>
                   <Box
-                    component='h3'
+                    component="h3"
                     sx={{
                       mb: 4,
                       fontWeight: Fonts.BOLD,
@@ -82,7 +79,7 @@ const CityInfo: React.FC<CityInfoProps> = ({ cityData }) => {
                       mt: 'auto',
                     }}
                   >
-                    <Typography component='p'>{city.desc}</Typography>
+                    <Typography component="p">{city.desc}</Typography>
                   </Box>
                 </SlideContentWrapper>
               </Box>

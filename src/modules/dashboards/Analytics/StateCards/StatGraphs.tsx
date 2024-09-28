@@ -1,6 +1,6 @@
-import React from "react";
-import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
-import { GraphDaumType } from "@crema/types/models/dashboards/Analytics";
+import React from 'react';
+import { Area, AreaChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { GraphDaumType } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   data: GraphDaumType[];
@@ -17,7 +17,7 @@ const StatGraphs = ({ data = [], strokeColor }: Props) => {
             <stop offset="95%" stopColor={strokeColor} stopOpacity={0.01} />
           </linearGradient>
         </defs>
-        <Tooltip labelStyle={{ color: "black" }} />
+        <Tooltip labelStyle={{ color: 'black' }} />
         <Area
           type="monotone"
           dataKey="number"

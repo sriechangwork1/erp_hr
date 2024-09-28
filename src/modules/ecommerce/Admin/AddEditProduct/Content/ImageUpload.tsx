@@ -33,36 +33,25 @@ const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
   }, [dropzone.acceptedFiles]);
 
   const onDeleteUploadFile = (file: FileType) => {
-    dropzone.acceptedFiles.splice(
-      dropzone.acceptedFiles.indexOf(file as File),
-      1,
-    );
+    dropzone.acceptedFiles.splice(dropzone.acceptedFiles.indexOf(file as File), 1);
     setUploadedFiles([...dropzone.acceptedFiles]);
   };
 
   return (
-    <section className='container' style={{ cursor: 'pointer' }}>
+    <section className="container" style={{ cursor: 'pointer' }}>
       <UploadModern
         dropzone={dropzone}
         customContent={
           <>
-            <Image
-              src={'/assets/icon/upload.svg'}
-              width={40}
-              height={40}
-              alt='upload'
-            />
+            <Image src={'/assets/icon/upload.svg'} width={40} height={40} alt="upload" />
 
             <p>
-              <Box
-                component='span'
-                sx={{ color: 'primary.main', fontWeight: Fonts.MEDIUM }}
-              >
+              <Box component="span" sx={{ color: 'primary.main', fontWeight: Fonts.MEDIUM }}>
                 Click to upload
               </Box>{' '}
               or drag and drop
             </p>
-            <Box component='p' sx={{ mt: 1 }}>
+            <Box component="p" sx={{ mt: 1 }}>
               SVG, PNG, JPG or GIF (max. 800x400px)
             </Box>
           </>
@@ -76,11 +65,7 @@ const ImgUpload = ({ uploadedFiles, setUploadedFiles }: Props) => {
         column={4}
         itemPadding={5}
         renderRow={(file, index) => (
-          <PreviewThumb
-            file={file}
-            onDeleteUploadFile={onDeleteUploadFile}
-            key={index + file.path}
-          />
+          <PreviewThumb file={file} onDeleteUploadFile={onDeleteUploadFile} key={index + file.path} />
         )}
       />
     </section>

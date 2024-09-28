@@ -35,18 +35,14 @@ export const PUT = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
     const { postId, status } = reqBody;
-    const post = posts.find(
-      (item: PostObjType) => item?.id === postId,
-    ) as PostObjType;
+    const post = posts.find((item: PostObjType) => item?.id === postId) as PostObjType;
     post.liked = status as boolean;
     if (status) {
       post.likes += 1;
     } else {
       post.likes -= 1;
     }
-    posts = posts.map((item: PostObjType) =>
-      item?.id === post?.id ? post : item,
-    ) as PostObjType[];
+    posts = posts.map((item: PostObjType) => (item?.id === post?.id ? post : item)) as PostObjType[];
     return new Response(JSON.stringify(posts), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

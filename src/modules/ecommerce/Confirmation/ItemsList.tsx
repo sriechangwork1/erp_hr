@@ -25,10 +25,10 @@ const ItemsList: React.FC<ItemsListProps> = ({ cartItems }) => {
             renderRow={(data: any) => (
               <Box
                 key={data.id}
-                className='item-hover'
-                px={4}
-                py={3}
+                className="item-hover"
                 sx={{
+                  px: 4,
+                  py: 3,
                   display: 'flex',
                 }}
               >
@@ -37,9 +37,7 @@ const ItemsList: React.FC<ItemsListProps> = ({ cartItems }) => {
                   <Box sx={{ fontSize: 15, fontWeight: Fonts.BOLD }}>
                     {data.title} ({data.count})
                   </Box>
-                  <Box sx={{ color: 'text.secondary', fontSize: 14 }}>
-                    Brand: {data.brand}
-                  </Box>
+                  <Box sx={{ color: 'text.secondary', fontSize: 14 }}>Brand: {data.brand}</Box>
                 </Box>
               </Box>
             )}
@@ -48,17 +46,19 @@ const ItemsList: React.FC<ItemsListProps> = ({ cartItems }) => {
 
         <Grid xs={12} sm={6} item>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ p: 4, fontSize: 16, fontWeight: Fonts.BOLD }}>
-              Total ${getTotalPrice(cartItems)}
-            </Box>
+            <Box sx={{ p: 4, fontSize: 16, fontWeight: Fonts.BOLD }}>Total ${getTotalPrice(cartItems)}</Box>
             <Box sx={{ pl: 2, display: 'flex', alignItems: 'center', mb: 4 }}>
               <Box sx={{ px: 2 }}>
-                <Button color='secondary' variant='contained'>
+                <Button color="secondary" variant="contained">
                   Cancel
                 </Button>
               </Box>
-              <Box px={2}>
-                <Button color='primary' variant='contained'>
+              <Box
+                sx={{
+                  px: 2,
+                }}
+              >
+                <Button color="primary" variant="contained">
                   Need Help
                 </Button>
               </Box>
@@ -71,10 +71,10 @@ const ItemsList: React.FC<ItemsListProps> = ({ cartItems }) => {
                 alignItems: 'center',
               }}
             >
-              <Box component='span' sx={{ mr: 3, pt: 1.5 }}>
+              <Box component="span" sx={{ mr: 3, pt: 1.5 }}>
                 <AirportShuttleOutlinedIcon sx={{ color: 'primary.main' }} />
               </Box>
-              <Box component='span'>Delivery expected by 27 Jul</Box>
+              <Box component="span">Delivery expected by 27 Jul</Box>
             </Box>
           </Box>
         </Grid>

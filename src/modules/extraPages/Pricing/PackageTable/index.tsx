@@ -14,18 +14,15 @@ const PackageTable = ({ billingFormat, pricing }: Props) => {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         p: 6,
         borderRadius: cardRadius / 4,
-        backgroundColor: (theme) => theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper,
         boxShadow:
           '0px 4.00784px 8.01569px -2.00392px rgba(16, 24, 40, 0.1), 0px 2.00392px 4.00784px -2.00392px rgba(16, 24, 40, 0.06)',
-      }}
+      })}
     >
-      <Typography
-        variant='h3'
-        sx={{ mt: 8, width: '100%', fontSize: 48, textAlign: 'center' }}
-      >
+      <Typography variant="h3" sx={{ mt: 8, width: '100%', fontSize: 48, textAlign: 'center' }}>
         Compare Our Plans
       </Typography>
       <Box sx={{ mt: 4 }}>

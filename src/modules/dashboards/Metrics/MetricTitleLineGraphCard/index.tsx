@@ -1,10 +1,10 @@
-import React from "react";
-import LineGraph from "./LineGraph";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import type { MetricsLineGraphType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import LineGraph from './LineGraph';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import type { MetricsLineGraphType } from '@crema/types/models/dashboards/Metrics';
 
 type MetricTitleLineGraphCardProps = {
   title: any;
@@ -40,8 +40,8 @@ const MetricTitleLineGraphCard: React.FC<MetricTitleLineGraphCardProps> = ({
       </Box>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           mb: { xs: 3, xl: 0 },
         }}
       >

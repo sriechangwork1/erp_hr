@@ -22,15 +22,14 @@ const features = [
   {
     name: 'Slack',
     img: '/assets/images/features/slack.svg',
-    description:
-      'Share your idea and insights, for inspiration collaboration and great result.',
+    description: 'Share your idea and insights, for inspiration collaboration and great result.',
     but: 'Join Our Community',
     link: '/',
   },
 ];
 const Features = () => {
   return (
-    <section className='features_section'>
+    <section className="features_section">
       <Box>
         <h3
           style={{
@@ -41,9 +40,7 @@ const Features = () => {
         >
           Crema Theme
         </h3>
-        <h2 style={{ fontSize: '30px', fontWeight: 'bold' }}>
-          Crema Theme is a great kick-starter
-        </h2>
+        <h2 style={{ fontSize: '30px', fontWeight: 'bold' }}>Crema Theme is a great kick-starter</h2>
       </Box>
       <Box
         sx={{
@@ -57,7 +54,7 @@ const Features = () => {
         }}
       >
         {features.map((item) => (
-          <div key={item.name} className='features'>
+          <div key={item.name} className="features">
             <Box
               sx={{
                 // color: '#757575',
@@ -81,7 +78,7 @@ const Features = () => {
             </Box>
 
             <h3
-              className='featured_title'
+              className="featured_title"
               style={{
                 fontWeight: 'bold',
               }}
@@ -90,7 +87,7 @@ const Features = () => {
             </h3>
             <p style={{ color: '#757575' }}>{item.description}</p>
             <Button
-              variant='contained'
+              variant="contained"
               sx={{
                 padding: '10px 30px',
                 fontSize: '14px',

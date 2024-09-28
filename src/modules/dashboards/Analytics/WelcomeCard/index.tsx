@@ -14,11 +14,11 @@ import { WelcomeCardType } from '@crema/types/models/dashboards/Analytics';
 const getWelcomeIcon = (iconType: string) => {
   switch (iconType) {
     case 'HiOutlineMailOpen':
-      return <HiOutlineMailOpen color='#0A8FDC' className='icon' />;
+      return <HiOutlineMailOpen color="#0A8FDC" className="icon" />;
     case 'BiMessageDetail':
-      return <BiMessageDetail color='#0A8FDC' className='icon' />;
+      return <BiMessageDetail color="#0A8FDC" className="icon" />;
     default:
-      return <CgFileDocument color='#0A8FDC' className='icon' />;
+      return <CgFileDocument color="#0A8FDC" className="icon" />;
   }
 };
 
@@ -55,7 +55,7 @@ const WelcomeCard = ({ data }: Props) => {
             }}
           >
             <Box
-              component='h5'
+              component="h5"
               sx={{
                 color: 'text.secondary',
                 fontWeight: Fonts.REGULAR,
@@ -66,7 +66,7 @@ const WelcomeCard = ({ data }: Props) => {
               {messages['dashboard.analytics.welcome'] as string}
             </Box>
             <Box
-              component='h3'
+              component="h3"
               sx={{
                 color: 'text.primary',
                 fontWeight: Fonts.MEDIUM,
@@ -109,8 +109,7 @@ const WelcomeCard = ({ data }: Props) => {
                     <Box
                       sx={{
                         mr: 4,
-                        backgroundColor: (theme) =>
-                          alpha(theme.palette.primary.main, 0.1),
+                        backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
                         width: { xs: 46, md: 60 },
                         height: { xs: 46, md: 60 },
                         minWidth: { xs: 46, md: 60 },
@@ -138,12 +137,12 @@ const WelcomeCard = ({ data }: Props) => {
                           lineHeight: 1,
                           marginBottom: 0.5,
                         }}
-                        component='h5'
+                        component="h5"
                       >
                         {item.counts}
                       </Box>
 
-                      <Box component='p'>{item.type}</Box>
+                      <Box component="p">{item.type}</Box>
                     </Box>
                   </Box>
                 ))}
@@ -165,12 +164,7 @@ const WelcomeCard = ({ data }: Props) => {
             },
           }}
         >
-          <Image
-            alt='welcome'
-            src='/assets/images/dashboard/welcomImage.svg'
-            width={180}
-            height={212}
-          />
+          <Image alt="welcome" src="/assets/images/dashboard/welcomImage.svg" width={180} height={212} />
         </Box>
       </Box>
     </AppCard>

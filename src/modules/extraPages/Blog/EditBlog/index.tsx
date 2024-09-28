@@ -6,10 +6,7 @@ import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { isEmptyObject } from '@crema/helpers/ApiHelper';
 import CreateBlog from '../CreateBlog';
-import {
-  BlogContentType,
-  BlogSidebarType,
-} from '@crema/types/models/extrapages/Blog';
+import { BlogContentType, BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 
 const BlogEditPage = () => {
   const params = useParams();
@@ -29,7 +26,7 @@ const BlogEditPage = () => {
   return loading ? (
     <AppLoader />
   ) : !isEmptyObject(apiData?.blogDetail) ? (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <CreateBlog selectedBlog={apiData?.blogDetail} />
     </AppAnimate>
   ) : null;

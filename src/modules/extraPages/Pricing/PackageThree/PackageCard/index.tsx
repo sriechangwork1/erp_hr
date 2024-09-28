@@ -1,15 +1,15 @@
-import React from "react";
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import { Fonts } from "@crema/constants/AppEnums";
-import CardWrapper from "./CardWrapper";
-import type { PricingFourType } from "@crema/types/models/extrapages/Pricing";
+import React from 'react';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import { Fonts } from '@crema/constants/AppEnums';
+import CardWrapper from './CardWrapper';
+import type { PricingFourType } from '@crema/types/models/extrapages/Pricing';
 
 type Props = {
   pricing: PricingFourType;
@@ -29,9 +29,9 @@ const PackageCard = ({ pricing }: Props) => {
           sx={{
             fontWeight: Fonts.BOLD,
             fontSize: 16,
-            textTransform: "uppercase",
+            textTransform: 'uppercase',
             mb: { xs: 5, md: 7.5 },
-            letterSpacing: "0.2em",
+            letterSpacing: '0.2em',
           }}
         >
           {pricing.title}
@@ -52,11 +52,11 @@ const PackageCard = ({ pricing }: Props) => {
             >
               <ListItemIcon sx={{ minWidth: 10, mr: 3.5 }}>
                 <CheckOutlinedIcon
-                  sx={{
+                  sx={(theme) => ({
                     fontSize: 16,
                     mt: 1,
-                    color: (theme) => theme.palette.success.main,
-                  }}
+                    color: theme.palette.success.main,
+                  })}
                 />
               </ListItemIcon>
               <ListItemText primary={data.title} />
@@ -91,19 +91,19 @@ const PackageCard = ({ pricing }: Props) => {
       <Box sx={{ mt: 7.5 }}>
         <Button
           variant="contained"
-          sx={{
-            width: "100%",
+          sx={(theme) => ({
+            width: '100%',
             fontWeight: Fonts.BOLD,
-            color: (theme) => theme.palette.common.white,
+            color: theme.palette.common.white,
             minHeight: 46,
             borderRadius: 0,
-            boxShadow: "none",
+            boxShadow: 'none',
             backgroundColor: pricing.priceColor,
-            "&:hover, &:focus": {
+            '&:hover, &:focus': {
               backgroundColor: pricing.priceColor,
-              boxShadow: "none",
+              boxShadow: 'none',
             },
-          }}
+          })}
         >
           Get started
         </Button>

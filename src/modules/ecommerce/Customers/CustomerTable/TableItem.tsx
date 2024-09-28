@@ -1,19 +1,19 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import Box from "@mui/material/Box";
-import OrderActions from "./OrderActions";
-import StarRateIcon from "@mui/icons-material/StarRate";
-import { styled } from "@mui/material/styles";
-import { CustomersDataType } from "@crema/types/models/ecommerce/EcommerceApp";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
+import OrderActions from './OrderActions';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import { styled } from '@mui/material/styles';
+import { CustomersDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const StyledTableCell = styled(TableCell)(() => ({
   fontSize: 14,
   padding: 8,
-  "&:first-of-type": {
+  '&:first-of-type': {
     paddingLeft: 20,
   },
-  "&:last-of-type": {
+  '&:last-of-type': {
     paddingRight: 20,
   },
 }));
@@ -27,11 +27,11 @@ const TableItem: React.FC<TableItemProps> = ({ data }) => {
     <TableRow key={data.name} className="item-hover">
       <StyledTableCell component="th" scope="row">
         <Box
-          sx={{
-            color: "primary.main",
-            borderBottom: (theme) => `1px solid ${theme.palette.primary.main}`,
-            display: "inline-block",
-          }}
+          sx={(theme) => ({
+            color: 'primary.main',
+            borderBottom: `1px solid ${theme.palette.primary.main}`,
+            display: 'inline-block',
+          })}
         >
           {data.name}
         </Box>
@@ -43,15 +43,15 @@ const TableItem: React.FC<TableItemProps> = ({ data }) => {
         <Box
           component="span"
           sx={{
-            color: "white",
-            backgroundColor: "#388E3C",
+            color: 'white',
+            backgroundColor: '#388E3C',
             maxWidth: 55,
             mr: 2,
             px: 3,
             pt: 0.5,
             pb: 1,
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
             borderRadius: 10,
             fontSize: 12,
           }}

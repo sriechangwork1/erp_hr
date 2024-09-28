@@ -1,7 +1,7 @@
-import React from "react";
-import { Cell, Pie, PieChart } from "recharts";
-import { EarningInMonthType } from "@crema/types/models/dashboards/Metrics";
-import { Fonts } from "@crema/constants/AppEnums";
+import React from 'react';
+import { Cell, Pie, PieChart } from 'recharts';
+import { EarningInMonthType } from '@crema/types/models/dashboards/Metrics';
+import { Fonts } from '@crema/constants/AppEnums';
 
 const RADIAN = Math.PI / 180;
 
@@ -15,26 +15,13 @@ type CustomizedLabelProps = {
   index: number;
 };
 
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-}: CustomizedLabelProps) => {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: CustomizedLabelProps) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );

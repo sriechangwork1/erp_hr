@@ -1,15 +1,15 @@
-import React from "react";
-import Accordion from "@mui/material/Accordion";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Box } from "@mui/material";
-import AccordionSummary from "@mui/material/AccordionSummary";
+import React from 'react';
+import Accordion from '@mui/material/Accordion';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box } from '@mui/material';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
-import AppCard from "@crema/components/AppCard";
-import { Fonts } from "@crema/constants/AppEnums";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AppLinearProgress from "@crema/components/AppLinearProgress";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
-import { TicketType } from "@crema/types/models/dashboards/Analytics";
+import AppCard from '@crema/components/AppCard';
+import { Fonts } from '@crema/constants/AppEnums';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AppLinearProgress from '@crema/components/AppLinearProgress';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import { TicketType } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   tickets: TicketType[];
@@ -17,10 +17,9 @@ type Props = {
 const TicketsSupport = ({ tickets }: Props) => {
   const [expanded, setExpanded] = React.useState(1);
 
-  const handleChange =
-    (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : 0);
-    };
+  const handleChange = (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpanded(isExpanded ? panel : 0);
+  };
   return (
     <AppCard
       sxStyle={{
@@ -30,9 +29,9 @@ const TicketsSupport = ({ tickets }: Props) => {
       footer={
         <Box
           sx={{
-            color: "text.secondary",
-            display: "flex",
-            alignItems: "center",
+            color: 'text.secondary',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <WatchLaterIcon style={{ fontSize: 16 }} />
@@ -49,45 +48,45 @@ const TicketsSupport = ({ tickets }: Props) => {
     >
       {tickets.map((data) => (
         <Accordion
-          sx={{
-            position: "relative",
-            boxShadow: "none",
-            borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-            mb: "-1px",
-            "&:last-of-type": {
+          sx={(theme) => ({
+            position: 'relative',
+            boxShadow: 'none',
+            borderBottom: `solid 1px ${theme.palette.divider}`,
+            mb: '-1px',
+            '&:last-of-type': {
               borderRadius: 0,
             },
-          }}
+          })}
           key={data.id}
           expanded={expanded === data.id}
           onChange={handleChange(data.id)}
         >
           <AccordionSummary
-            sx={{
-              padding: "0 24px",
-              "& .MuiSvgIcon-root": {
-                color: (theme) => theme.palette.grey[500],
+            sx={(theme) => ({
+              padding: '0 24px',
+              '& .MuiSvgIcon-root': {
+                color: theme.palette.grey[500],
               },
-              "&.Mui-expanded": {
-                borderTop: (theme) => `solid 1px ${theme.palette.divider}`,
-                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+              '&.Mui-expanded': {
+                borderTop: `solid 1px ${theme.palette.divider}`,
+                borderBottom: `solid 1px ${theme.palette.divider}`,
               },
-            }}
+            })}
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 flex: 1,
               }}
             >
               <Box
                 component="h3"
                 sx={{
-                  color: "text.primary",
+                  color: 'text.primary',
                   fontWeight: Fonts.BOLD,
                   fontSize: 16,
                 }}
@@ -96,8 +95,8 @@ const TicketsSupport = ({ tickets }: Props) => {
               </Box>
               <Box
                 sx={{
-                  ml: "auto",
-                  color: "text.secondary",
+                  ml: 'auto',
+                  color: 'text.secondary',
                   fontWeight: Fonts.MEDIUM,
                 }}
               >
@@ -107,7 +106,7 @@ const TicketsSupport = ({ tickets }: Props) => {
           </AccordionSummary>
           <AccordionDetails
             sx={{
-              padding: "5px 24px",
+              padding: '5px 24px',
             }}
           >
             <Box
@@ -129,8 +128,8 @@ const TicketsSupport = ({ tickets }: Props) => {
                 </Box>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Box
@@ -138,15 +137,12 @@ const TicketsSupport = ({ tickets }: Props) => {
                       flex: 1,
                     }}
                   >
-                    <AppLinearProgress
-                      value={data.overAllPercentage.open}
-                      activeColor="#5ABE20"
-                    />
+                    <AppLinearProgress value={data.overAllPercentage.open} activeColor="#5ABE20" />
                   </Box>
                   <Box
                     sx={{
                       ml: 4,
-                      color: "text.secondary",
+                      color: 'text.secondary',
                     }}
                     component="span"
                   >
@@ -168,8 +164,8 @@ const TicketsSupport = ({ tickets }: Props) => {
                 </Box>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Box
@@ -177,15 +173,12 @@ const TicketsSupport = ({ tickets }: Props) => {
                       flex: 1,
                     }}
                   >
-                    <AppLinearProgress
-                      value={data.overAllPercentage.close}
-                      activeColor="#F44D54"
-                    />
+                    <AppLinearProgress value={data.overAllPercentage.close} activeColor="#F44D54" />
                   </Box>
                   <Box
                     sx={{
                       ml: 4,
-                      color: "text.secondary",
+                      color: 'text.secondary',
                     }}
                     component="span"
                   >
@@ -207,8 +200,8 @@ const TicketsSupport = ({ tickets }: Props) => {
                 </Box>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Box
@@ -216,15 +209,12 @@ const TicketsSupport = ({ tickets }: Props) => {
                       flex: 1,
                     }}
                   >
-                    <AppLinearProgress
-                      value={data.overAllPercentage.hold}
-                      activeColor="#F59821"
-                    />
+                    <AppLinearProgress value={data.overAllPercentage.hold} activeColor="#F59821" />
                   </Box>
                   <Box
                     sx={{
                       ml: 4,
-                      color: "text.secondary",
+                      color: 'text.secondary',
                     }}
                     component="span"
                   >

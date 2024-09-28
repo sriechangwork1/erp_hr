@@ -1,15 +1,15 @@
-import React from "react";
-import { Typography, useTheme } from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-import { Fonts } from "@crema/constants/AppEnums";
-import Card from "@mui/material/Card";
-import { PricingFourType } from "@crema/types/models/extrapages/Pricing";
+import React from 'react';
+import { Typography, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import { Fonts } from '@crema/constants/AppEnums';
+import Card from '@mui/material/Card';
+import { PricingFourType } from '@crema/types/models/extrapages/Pricing';
 
 type Props = {
   pricing: PricingFourType;
@@ -21,8 +21,8 @@ const PackageCard = ({ pricing }: Props) => {
   return (
     <Card
       sx={{
-        boxShadow: "none",
-        border: "1px solid #e8e5dd",
+        boxShadow: 'none',
+        border: '1px solid #e8e5dd',
       }}
     >
       <Box
@@ -33,8 +33,8 @@ const PackageCard = ({ pricing }: Props) => {
       >
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
+            display: 'flex',
+            justifyContent: 'center',
             mb: 7.5,
           }}
         >
@@ -44,12 +44,12 @@ const PackageCard = ({ pricing }: Props) => {
               height: 149,
               p: 2.5,
               backgroundColor: pricing.priceColor,
-              borderRadius: "50%",
+              borderRadius: '50%',
               color: theme.palette.common.white,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <Typography
@@ -77,7 +77,7 @@ const PackageCard = ({ pricing }: Props) => {
               sx={{
                 fontWeight: Fonts.BOLD,
                 fontSize: 16,
-                textTransform: "uppercase",
+                textTransform: 'uppercase',
               }}
             >
               {pricing.title}
@@ -85,19 +85,19 @@ const PackageCard = ({ pricing }: Props) => {
           </Box>
         </Box>
         <List
-          sx={{
+          sx={(theme) => ({
             py: 0,
             borderTop: `solid 1px ${theme.palette.divider}`,
-          }}
+          })}
         >
           {pricing.pricingList.map((data, index) => (
             <ListItem
               key={index}
-              sx={{
+              sx={(theme) => ({
                 px: 0,
                 py: 2.75,
                 borderBottom: `solid 1px ${theme.palette.divider}`,
-              }}
+              })}
             >
               <ListItemIcon sx={{ minWidth: 10, mr: 3.5 }}>
                 <CheckOutlinedIcon
@@ -117,16 +117,16 @@ const PackageCard = ({ pricing }: Props) => {
         <Button
           variant="contained"
           sx={{
-            width: "100%",
+            width: '100%',
             fontWeight: Fonts.BOLD,
             color: theme.palette.common.white,
             minHeight: 46,
             borderRadius: 0,
-            boxShadow: "none",
+            boxShadow: 'none',
             backgroundColor: pricing.priceColor,
-            "&:hover, &:focus": {
+            '&:hover, &:focus': {
               backgroundColor: pricing.priceColor,
-              boxShadow: "none",
+              boxShadow: 'none',
             },
           }}
         >

@@ -49,7 +49,7 @@ const Photos = ({ photos }: Props) => {
               className={clsx('card-hover')}
               key={index}
               src={`${photo.thumb}`}
-              alt='user'
+              alt="user"
             />
           )}
         />

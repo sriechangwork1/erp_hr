@@ -27,17 +27,14 @@ const LabelItemWrapper = styled(ListItem)(({ theme }) => {
       paddingLeft: 24,
       paddingRight: 24,
     },
-
     '& .MuiSvgIcon-root': {
       marginRight: 14,
       fontSize: 20,
     },
-
     '&:hover,&:focus,&.active': {
       backgroundColor: alpha(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
     },
-
     '&.active': {
       color: theme.palette.primary.main,
       '& $listItemText': {
@@ -52,10 +49,7 @@ const LabelItemWrapper = styled(ListItem)(({ theme }) => {
 const LabelItem = ({ label }: { label: LabelType }) => {
   const pathname = usePathname();
   return (
-    <Link
-      href={`/apps/mail/label/${label.alias}`}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={`/apps/mail/label/${label.alias}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <LabelItemWrapper
         key={label.id}
         className={clsx({

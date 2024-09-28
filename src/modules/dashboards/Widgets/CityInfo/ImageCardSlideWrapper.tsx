@@ -1,16 +1,14 @@
 import React from 'react';
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 
 type ImageCardSlideWrapperProp = {
   children: React.ReactNode;
 };
 
-const ImageCardSlideWrapper: React.FC<ImageCardSlideWrapperProp> = ({
-  children,
-}) => {
+const ImageCardSlideWrapper: React.FC<ImageCardSlideWrapperProp> = ({ children }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         height: '100%',
         '& .imageCardSlide': {
           position: 'relative',
@@ -38,8 +36,8 @@ const ImageCardSlideWrapper: React.FC<ImageCardSlideWrapperProp> = ({
             height: { xs: 10, xl: 14 },
           },
           '& .slick-dots li.slick-active button:before': {
-            backgroundColor: (theme) => theme.palette.primary.main,
-            borderColor: (theme) => theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main,
+            borderColor: theme.palette.primary.main,
           },
           '& .slick-prev': {
             top: 32,
@@ -52,7 +50,7 @@ const ImageCardSlideWrapper: React.FC<ImageCardSlideWrapperProp> = ({
             zIndex: 3,
           },
         },
-      }}
+      })}
     >
       {children}
     </Box>

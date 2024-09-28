@@ -5,16 +5,16 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import Button from '@mui/material/Button';
-import {Checkbox} from '@mui/material';
-import {Form, Formik} from 'formik';
+import { Checkbox } from '@mui/material';
+import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import IntlMessages from '@crema/helpers/IntlMessages';
-import {useIntl} from 'react-intl';
+import { useIntl } from 'react-intl';
 import Box from '@mui/material/Box';
-import {grey} from '@mui/material/colors';
-import {Fonts} from '@crema/constants/AppEnums';
+import { grey } from '@mui/material/colors';
+import { Fonts } from '@crema/constants/AppEnums';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppTextField from '@crema/components/AppFormComponents/AppTextField';
 import Image from 'next/image';
@@ -27,13 +27,11 @@ const Signin = () => {
       .string()
       .email(String(messages['validation.emailFormat']))
       .required(String(messages['validation.emailRequired'])),
-    password: yup
-      .string()
-      .required(String(messages['validation.passwordRequired'])),
+    password: yup.string().required(String(messages['validation.passwordRequired'])),
   });
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           pb: 6,
@@ -52,8 +50,7 @@ const Signin = () => {
             padding: 8,
             paddingLeft: { xs: 8, md: 2 },
             overflow: 'hidden',
-            boxShadow:
-              '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           }}
         >
           <Grid container spacing={5}>
@@ -73,7 +70,7 @@ const Signin = () => {
                 },
               }}
             >
-              <Image alt='login' src={'/assets/user/login.png'} width={442} height={442}/>;
+              <Image alt="login" src={'/assets/user/login.png'} width={442} height={442} />;
             </Grid>
             <Grid
               item
@@ -90,7 +87,7 @@ const Signin = () => {
                   fontSize: 20,
                 }}
               >
-                <IntlMessages id='common.login' />
+                <IntlMessages id="common.login" />
               </Box>
 
               <Formik
@@ -105,13 +102,13 @@ const Signin = () => {
                 }}
               >
                 {({ isSubmitting }) => (
-                  <Form noValidate autoComplete='off'>
+                  <Form noValidate autoComplete="off">
                     <Box sx={{ mb: { xs: 5, xl: 8 } }}>
                       <AppTextField
                         placeholder={messages['common.email'] as string}
                         label={messages['common.email'] as string}
-                        name='email'
-                        variant='outlined'
+                        name="email"
+                        variant="outlined"
                         sx={{
                           width: '100%',
                         }}
@@ -120,11 +117,11 @@ const Signin = () => {
 
                     <Box sx={{ mb: { xs: 5, xl: 8 } }}>
                       <AppTextField
-                        type='password'
+                        type="password"
                         placeholder={messages['common.password'] as string}
                         label={messages['common.password'] as string}
-                        name='password'
-                        variant='outlined'
+                        name="password"
+                        variant="outlined"
                         sx={{
                           width: '100%',
                         }}
@@ -154,16 +151,16 @@ const Signin = () => {
                           <Checkbox />
                         </Box>
                         <Box
-                          component='span'
+                          component="span"
                           sx={{
                             fontSize: 14,
                           }}
                         >
-                          <IntlMessages id='common.rememberMe' />
+                          <IntlMessages id="common.rememberMe" />
                         </Box>
                       </Box>
                       <Box
-                        component='span'
+                        component="span"
                         sx={{
                           cursor: 'pointer',
                           ml: { xs: 0, sm: 'auto' },
@@ -173,20 +170,20 @@ const Signin = () => {
                           fontSize: 14,
                         }}
                       >
-                        <IntlMessages id='common.forgetPassword' />
+                        <IntlMessages id="common.forgetPassword" />
                       </Box>
                     </Box>
                     <Button
-                      variant='contained'
-                      color='primary'
-                      type='submit'
+                      variant="contained"
+                      color="primary"
+                      type="submit"
                       disabled={isSubmitting}
                       sx={{
                         width: '100%',
                         height: 44,
                       }}
                     >
-                      <IntlMessages id='common.login' />
+                      <IntlMessages id="common.login" />
                     </Button>
                   </Form>
                 )}
@@ -203,16 +200,20 @@ const Signin = () => {
                 }}
               >
                 <Box
-                  component='span'
+                  component="span"
                   sx={{
                     color: grey[600],
                     fontSize: 14,
                     mr: 4,
                   }}
                 >
-                  <IntlMessages id='common.orLoginWith' />
+                  <IntlMessages id="common.orLoginWith" />
                 </Box>
-                <Box display='inline-block'>
+                <Box
+                  sx={{
+                    display: 'inline-block',
+                  }}
+                >
                   <IconButton>
                     <FacebookIcon sx={{ color: 'text.primary' }} />
                   </IconButton>
@@ -233,21 +234,21 @@ const Signin = () => {
                 }}
               >
                 <Box
-                  component='span'
+                  component="span"
                   sx={{
                     mr: 2,
                   }}
                 >
-                  <IntlMessages id='common.dontHaveAccount' />
+                  <IntlMessages id="common.dontHaveAccount" />
                 </Box>
                 <Box
-                  component='span'
+                  component="span"
                   sx={{
                     color: 'primary.main',
                     cursor: 'pointer',
                   }}
                 >
-                  <IntlMessages id='common.signup' />
+                  <IntlMessages id="common.signup" />
                 </Box>
               </Box>
             </Grid>

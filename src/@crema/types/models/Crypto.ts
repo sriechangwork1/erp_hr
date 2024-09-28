@@ -21,46 +21,46 @@ export type CoinGraphData = {
   };
 };
 
-export type BuySellDataProps={
+export type BuySellDataProps = {
   value: string;
   price: string;
   amount: string;
-}
+};
 
-export type BuySellProps={
+export type BuySellProps = {
   buyData: BuySellDataProps;
   sellData: BuySellDataProps;
-}
+};
 
-export type CoinData={
+export type CoinData = {
   price: string;
   increment: number;
-}
+};
 
-export type CoinsDataProps={
+export type CoinsDataProps = {
   bitcoin: CoinData;
   etherium: CoinData;
   liteCoin: CoinData;
   ripple: CoinData;
-}
+};
 
-export type MarketGraphData={
+export type MarketGraphData = {
   month: string;
   medium: number;
   low: number;
   high: number;
   amt: number;
-}
+};
 
-export type NewsData={
+export type NewsData = {
   id: number;
   news: string;
   created: string;
   image: string;
   by: string;
-}
+};
 
-export type PopularCoinsData={
+export type PopularCoinsData = {
   id: number;
   name: string;
   shortName: string;
@@ -69,27 +69,27 @@ export type PopularCoinsData={
   h: string;
   image: string;
   color: PaletteColorOptions;
-}
+};
 
-export type BalanceCoins={
+export type BalanceCoins = {
   id: number;
   name: string;
   value: number;
-}
+};
 
-export type TotalBalanceData={
+export type TotalBalanceData = {
   balance: string;
   coins: BalanceCoins[];
-}
+};
 
-export type BtcChartData={
+export type BtcChartData = {
   id: number;
   name: string;
   value: number;
   color: string;
-}
+};
 
-export type Crypto={
+export type Crypto = {
   coinGraphData: CoinGraphData;
   buySell: BuySellProps;
   coinsData: CoinsDataProps;
@@ -98,4 +98,4 @@ export type Crypto={
   popularCoins: PopularCoinsData[];
   totalBalanceData: TotalBalanceData;
   btcChartData: BtcChartData[];
-}
+};

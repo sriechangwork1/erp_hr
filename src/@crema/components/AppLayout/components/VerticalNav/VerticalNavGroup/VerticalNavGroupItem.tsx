@@ -11,12 +11,7 @@ type VerticalNavGroupItemProps = {
   [x: string]: any;
 };
 
-const VerticalNavGroupItem: React.FC<VerticalNavGroupItemProps> = ({
-  children,
-  sidebarTextColor,
-  level,
-  ...rest
-}) => {
+const VerticalNavGroupItem: React.FC<VerticalNavGroupItemProps> = ({ children, sidebarTextColor, level, ...rest }) => {
   return (
     <ListItem
       sx={{

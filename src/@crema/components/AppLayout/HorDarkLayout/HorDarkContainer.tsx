@@ -8,19 +8,15 @@ type HorDarkContainerProps = {
   [x: string]: any;
 };
 
-const HorDarkContainer: React.FC<HorDarkContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const HorDarkContainer: React.FC<HorDarkContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -28,7 +24,6 @@ const HorDarkContainer: React.FC<HorDarkContainerProps> = ({
           borderLeft: '1px solid #e8e5dd',
           borderRight: '1px solid #e8e5dd',
           pt: { xl: 0 },
-
           '& .mainContent': {
             position: { xl: 'static' },
           },
@@ -41,23 +36,19 @@ const HorDarkContainer: React.FC<HorDarkContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .horDarkWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .app-bar': {
             borderTopLeftRadius: { xl: 12 },
             borderTopRightRadius: { xl: 12 },
             overflow: 'hidden',
           },
-
           '& .footer': {
             borderBottomLeftRadius: { xl: 12 },
             borderBottomRightRadius: { xl: 12 },
           },
-
           '& .mainContent': {
             position: { xl: 'static' },
           },
@@ -68,7 +59,7 @@ const HorDarkContainer: React.FC<HorDarkContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

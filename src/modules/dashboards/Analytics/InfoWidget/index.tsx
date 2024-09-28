@@ -10,10 +10,7 @@ type Props = {
 };
 const InfoWidget = ({ data }: Props) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1, backgroundColor: data.bgColor }}
-      contentStyle={{ px: 2 }}
-    >
+    <AppCard sxStyle={{ height: 1, backgroundColor: data.bgColor }} contentStyle={{ px: 2 }}>
       <Box
         sx={{
           display: 'flex',
@@ -32,7 +29,7 @@ const InfoWidget = ({ data }: Props) => {
             },
           }}
         >
-          <Image src={data.icon} alt='icon' height={60} width={60} />
+          <Image src={data.icon} alt="icon" height={60} width={60} />
         </Box>
         <Box
           sx={{
@@ -40,7 +37,7 @@ const InfoWidget = ({ data }: Props) => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               color: 'text.primary',
               fontWeight: Fonts.MEDIUM,
@@ -50,7 +47,7 @@ const InfoWidget = ({ data }: Props) => {
             {data.count}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               color: 'text.secondary',
             }}

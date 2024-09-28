@@ -1,15 +1,15 @@
-import React from "react";
-import { Form, Formik } from "formik";
-import * as yup from "yup";
-import Button from "@mui/material/Button";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { useIntl } from "react-intl";
-import Box from "@mui/material/Box";
-import { red } from "@mui/material/colors";
-import AppCard from "@crema/components/AppCard";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
+import React from 'react';
+import { Form, Formik } from 'formik';
+import * as yup from 'yup';
+import Button from '@mui/material/Button';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { useIntl } from 'react-intl';
+import Box from '@mui/material/Box';
+import { red } from '@mui/material/colors';
+import AppCard from '@crema/components/AppCard';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
 
 const Subscribe = () => {
   const infoViewActionsContext = useInfoViewActionsContext();
@@ -19,8 +19,8 @@ const Subscribe = () => {
   const validationSchema = yup.object({
     email: yup
       .string()
-      .email(messages["validation.emailFormat"] as string)
-      .required(messages["validation.emailRequired"] as string),
+      .email(messages['validation.emailFormat'] as string)
+      .required(messages['validation.emailRequired'] as string),
   });
 
   return (
@@ -28,10 +28,10 @@ const Subscribe = () => {
       sxStyle={{
         height: 1,
         backgroundColor: red[600],
-        color: "white",
+        color: 'white',
       }}
-      titleStyle={{ color: "white" }}
-      title={messages["dashboard.subscribe"] as string}
+      titleStyle={{ color: 'white' }}
+      title={messages['dashboard.subscribe'] as string}
     >
       <Box
         component="p"
@@ -46,14 +46,12 @@ const Subscribe = () => {
       <Formik
         validateOnChange={true}
         initialValues={{
-          email: "",
+          email: '',
         }}
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          infoViewActionsContext.showMessage(
-            messages["message.thankYouSubscription"] as string
-          );
+          infoViewActionsContext.showMessage(messages['message.thankYouSubscription'] as string);
           setSubmitting(false);
           resetForm();
         }}
@@ -61,39 +59,39 @@ const Subscribe = () => {
         {({ isSubmitting }) => (
           <Box
             sx={{
-              textAlign: "left",
+              textAlign: 'left',
               mt: 8,
             }}
           >
             <Form>
               <Box
                 sx={{
-                  display: "flex",
+                  display: 'flex',
                 }}
               >
                 <Box
                   sx={{
-                    width: "75%",
+                    width: '75%',
                   }}
                 >
                   <AppTextField
-                    placeholder={messages["common.email"] as string}
+                    placeholder={messages['common.email'] as string}
                     name="email"
-                    label={messages["common.emailAddress"] as string}
+                    label={messages['common.emailAddress'] as string}
                     inputProps={{
-                      "aria-label": "naked",
+                      'aria-label': 'naked',
                     }}
                     sx={{
-                      width: "100%",
-                      height: "100%",
+                      width: '100%',
+                      height: '100%',
                       '& input[type="text"]': {
-                        backgroundColor: "white",
-                        color: "black",
+                        backgroundColor: 'white',
+                        color: 'black',
                         fontSize: 14,
                         borderRadius: 2,
                       },
-                      "& .MuiFormHelperText-root.Mui-error": {
-                        color: "white",
+                      '& .MuiFormHelperText-root.Mui-error': {
+                        color: 'white',
                       },
                     }}
                   />
@@ -102,7 +100,7 @@ const Subscribe = () => {
                   sx={{
                     ml: 5,
                     width: 80,
-                    color: "primary.contrastText",
+                    color: 'primary.contrastText',
                   }}
                 >
                   <Button
@@ -112,9 +110,9 @@ const Subscribe = () => {
                     disabled={isSubmitting}
                     type="submit"
                     sx={{
-                      width: "100%",
-                      height: "51.1px",
-                      padding: "5.3px 22px",
+                      width: '100%',
+                      height: '51.1px',
+                      padding: '5.3px 22px',
                     }}
                   >
                     <ChevronRightIcon

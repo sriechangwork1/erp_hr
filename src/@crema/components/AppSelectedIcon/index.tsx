@@ -5,17 +5,13 @@ import Box from '@mui/material/Box';
 import { Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 
-type AppSelectedIconProps ={
+type AppSelectedIconProps = {
   backgroundColor?: string;
   color?: string;
   isCenter?: boolean;
-}
+};
 
-const AppSelectedIcon: React.FC<AppSelectedIconProps> = ({
-  backgroundColor,
-  isCenter = true,
-  color,
-}) => {
+const AppSelectedIcon: React.FC<AppSelectedIconProps> = ({ backgroundColor, isCenter = true, color }) => {
   const centerStyle: SxProps<Theme> = isCenter
     ? {
         position: 'absolute',
@@ -32,21 +28,35 @@ const AppSelectedIcon: React.FC<AppSelectedIconProps> = ({
       };
   return (
     <Box
-      sx={{
-        width: 20,
-        height: 20,
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        backgroundColor: backgroundColor ? backgroundColor : 'primary.main',
-        color: color ? color : 'primary.contrastText',
-        ...centerStyle,
-        '& svg': {
-          fontSize: 16,
+      sx={[
+        {
+          width: 20,
+          height: 20,
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          ...centerStyle,
+          '& svg': {
+            fontSize: 16,
+          },
         },
-      }}
+        backgroundColor
+          ? {
+              backgroundColor: backgroundColor,
+            }
+          : {
+              backgroundColor: 'primary.main',
+            },
+        color
+          ? {
+              color: color,
+            }
+          : {
+              color: 'primary.contrastText',
+            },
+      ]}
     >
       <CheckIcon>
         <IntlMessages id="customizer.checked" />

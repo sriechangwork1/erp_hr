@@ -32,9 +32,7 @@ const SigninFirebase = () => {
       .string()
       .email(String(messages['validation.emailFormat']))
       .required(String(messages['validation.emailRequired'])),
-    password: yup
-      .string()
-      .required(String(messages['validation.passwordRequired'])),
+    password: yup.string().required(String(messages['validation.passwordRequired'])),
   });
 
   return (
@@ -54,13 +52,13 @@ const SigninFirebase = () => {
           }}
         >
           {({ isSubmitting }) => (
-            <Form style={{ textAlign: 'left' }} noValidate autoComplete='off'>
+            <Form style={{ textAlign: 'left' }} noValidate autoComplete="off">
               <Box sx={{ mb: { xs: 5, xl: 8 } }}>
                 <AppTextField
                   placeholder={messages['common.email'] as string}
-                  name='email'
-                  label={<IntlMessages id='common.email' />}
-                  variant='outlined'
+                  name="email"
+                  label={<IntlMessages id="common.email" />}
+                  variant="outlined"
                   sx={{
                     width: '100%',
                     '& .MuiInputBase-input': {
@@ -72,11 +70,11 @@ const SigninFirebase = () => {
 
               <Box sx={{ mb: { xs: 3, xl: 4 } }}>
                 <AppTextField
-                  type='password'
+                  type="password"
                   placeholder={messages['common.password'] as string}
-                  label={<IntlMessages id='common.password' />}
-                  name='password'
-                  variant='outlined'
+                  label={<IntlMessages id="common.password" />}
+                  name="password"
+                  variant="outlined"
                   sx={{
                     width: '100%',
                     '& .MuiInputBase-input': {
@@ -99,34 +97,34 @@ const SigninFirebase = () => {
                 >
                   <Checkbox sx={{ ml: -3 }} />
                   <Box
-                    component='span'
+                    component="span"
                     sx={{
                       color: 'grey.500',
                     }}
                   >
-                    <IntlMessages id='common.rememberMe' />
+                    <IntlMessages id="common.rememberMe" />
                   </Box>
                 </Box>
                 <Box
-                  component='span'
-                  sx={{
-                    color: (theme) => theme.palette.primary.main,
+                  component="span"
+                  sx={(theme) => ({
+                    color: theme.palette.primary.main,
                     fontWeight: Fonts.MEDIUM,
                     cursor: 'pointer',
                     display: 'block',
                     textAlign: 'right',
-                  }}
+                  })}
                   onClick={onGoToForgetPassword}
                 >
-                  <IntlMessages id='common.forgetPassword' />
+                  <IntlMessages id="common.forgetPassword" />
                 </Box>
               </Box>
 
               <div>
                 <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
+                  variant="contained"
+                  color="primary"
+                  type="submit"
                   disabled={isSubmitting}
                   sx={{
                     minWidth: 160,
@@ -136,14 +134,13 @@ const SigninFirebase = () => {
                     padding: '4px 16px 8px',
                   }}
                 >
-                  <IntlMessages id='common.login' />
+                  <IntlMessages id="common.login" />
                 </Button>
               </div>
             </Form>
           )}
         </Formik>
       </Box>
-
       <Box
         sx={{
           color: 'grey.500',
@@ -151,43 +148,42 @@ const SigninFirebase = () => {
         }}
       >
         <span style={{ marginRight: 4 }}>
-          <IntlMessages id='common.dontHaveAccount' />
+          <IntlMessages id="common.dontHaveAccount" />
         </span>
         <Box
-          component='span'
-          sx={{
+          component="span"
+          sx={(theme) => ({
             fontWeight: Fonts.MEDIUM,
             '& a': {
-              color: (theme) => theme.palette.primary.main,
+              color: theme.palette.primary.main,
               textDecoration: 'none',
             },
-          }}
+          })}
         >
-          <Link href='/signup'>
-            <IntlMessages id='common.signup' />
+          <Link href="/signup">
+            <IntlMessages id="common.signup" />
           </Link>
         </Box>
       </Box>
-
       <Box
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: (theme) => theme.palette.background.default,
+          backgroundColor: theme.palette.background.default,
           mx: { xs: -5, lg: -10 },
           mb: { xs: -6, lg: -11 },
           mt: 'auto',
           py: 2,
           px: { xs: 5, lg: 10 },
-        }}
+        })}
       >
         <Box
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
-          }}
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
+          })}
         >
-          <IntlMessages id='common.orLoginWith' />
+          <IntlMessages id="common.orLoginWith" />
         </Box>
         <Box
           sx={{
@@ -196,48 +192,47 @@ const SigninFirebase = () => {
           }}
         >
           <IconButton
-            sx={{
+            sx={(theme) => ({
               p: 2,
               '& svg': { fontSize: 18 },
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
             onClick={() => logInWithPopup('google')}
           >
             <AiOutlineGoogle />
           </IconButton>
           <IconButton
-            sx={{
+            sx={(theme) => ({
               p: 1.5,
               '& svg': { fontSize: 18 },
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
             onClick={() => logInWithPopup('facebook')}
           >
             <FaFacebookF />
           </IconButton>
           <IconButton
-            sx={{
+            sx={(theme) => ({
               p: 1.5,
               '& svg': { fontSize: 18 },
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
             onClick={() => logInWithPopup('github')}
           >
             <BsGithub />
           </IconButton>
           <IconButton
-            sx={{
+            sx={(theme) => ({
               p: 1.5,
               '& svg': { fontSize: 18 },
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
             onClick={() => logInWithPopup('twitter')}
           >
             <AiOutlineTwitter />
           </IconButton>
         </Box>
       </Box>
-
       <AppInfoView />
     </Box>
   );

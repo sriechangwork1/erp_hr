@@ -4,10 +4,7 @@ import { useGetDataApi } from '@crema/hooks/APIHooks';
 import AppLoader from '@crema/components/AppLoader';
 import BlogDetail from './BlogDetail';
 import { isEmptyObject } from '@crema/helpers/ApiHelper';
-import {
-  BlogDetailType,
-  BlogSidebarType,
-} from '@crema/types/models/extrapages/Blog';
+import { BlogDetailType, BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 import { useParams } from 'next/navigation';
 
 const BlogDetailPage = () => {
@@ -30,10 +27,7 @@ const BlogDetailPage = () => {
     <AppLoader />
   ) : (
     !isEmptyObject(apiData?.blogDetail) && (
-      <BlogDetail
-        blogSidebar={apiData?.blogSidebar}
-        blogDetail={apiData?.blogDetail}
-      />
+      <BlogDetail blogSidebar={apiData?.blogSidebar} blogDetail={apiData?.blogDetail} />
     )
   );
 };

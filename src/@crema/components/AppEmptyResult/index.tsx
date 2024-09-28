@@ -5,12 +5,12 @@ import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type AppEmptyResultProps= {
+type AppEmptyResultProps = {
   title?: string;
   onAction: () => void;
   description?: string;
   actionTitle: string;
-}
+};
 
 const AppEmptyResult: React.FC<AppEmptyResultProps> = ({
   title = <IntlMessages id="common.noRecordFound" />,
@@ -34,31 +34,26 @@ const AppEmptyResult: React.FC<AppEmptyResultProps> = ({
       <Typography
         variant="h4"
         component="h4"
-        sx={{
+        sx={(theme) => ({
           mb: 4,
           fontWeight: Fonts.REGULAR,
-          color: (theme) => theme.palette.text.secondary,
-        }}
+          color: theme.palette.text.secondary,
+        })}
       >
         {title}
       </Typography>
       {description ? (
         <Typography
-          sx={{
+          sx={(theme) => ({
             mb: 5,
-            color: (theme) => theme.palette.text.secondary,
-          }}
+            color: theme.palette.text.secondary,
+          })}
         >
           {description}
         </Typography>
       ) : null}
       {actionTitle ? (
-        <Button
-          sx={{ mb: 2 }}
-          variant="contained"
-          color="primary"
-          onClick={onAction}
-        >
+        <Button sx={{ mb: 2 }} variant="contained" color="primary" onClick={onAction}>
           {actionTitle}
         </Button>
       ) : null}

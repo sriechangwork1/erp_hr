@@ -8,28 +8,28 @@ import AppTooltip from '../AppTooltip';
 import { alpha } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 
-type AppNotificationsProps= {
-  drawerPosition?: "left" | "top" | "right" | "bottom";
+type AppNotificationsProps = {
+  drawerPosition?: 'left' | 'top' | 'right' | 'bottom';
   tooltipPosition?:
-    | "bottom-end"
-    | "bottom-start"
-    | "bottom"
-    | "left-end"
-    | "left-start"
-    | "left"
-    | "right-end"
-    | "right-start"
-    | "right"
-    | "top-end"
-    | "top-start"
-    | "top";
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'bottom'
+    | 'left-end'
+    | 'left-start'
+    | 'left'
+    | 'right-end'
+    | 'right-start'
+    | 'right'
+    | 'top-end'
+    | 'top-start'
+    | 'top';
   isMenu?: boolean;
   sxNotificationContentStyle?: SxProps<Theme>;
-}
+};
 
 const AppNotifications: React.FC<AppNotificationsProps> = ({
-  drawerPosition = "right",
-  tooltipPosition = "bottom",
+  drawerPosition = 'right',
+  tooltipPosition = 'bottom',
   isMenu = false,
   sxNotificationContentStyle = {},
 }) => {
@@ -45,22 +45,20 @@ const AppNotifications: React.FC<AppNotificationsProps> = ({
         <AppTooltip title="Notification" placement={tooltipPosition}>
           <IconButton
             className="icon-btn"
-            sx={{
-              borderRadius: "50%",
+            sx={(theme) => ({
+              borderRadius: '50%',
               width: 40,
               height: 40,
-              color: (theme) => theme.palette.text.secondary,
-              backgroundColor: (theme) => theme.palette.background.default,
+              color: theme.palette.text.secondary,
+              backgroundColor: theme.palette.background.default,
               border: 1,
-              borderColor: "transparent",
-              "&:hover, &:focus": {
-                color: (theme) => theme.palette.text.primary,
-                backgroundColor: (theme) =>
-                  alpha(theme.palette.background.default, 0.9),
-                borderColor: (theme) =>
-                  alpha(theme.palette.text.secondary, 0.25),
+              borderColor: 'transparent',
+              '&:hover, &:focus': {
+                color: theme.palette.text.primary,
+                backgroundColor: alpha(theme.palette.background.default, 0.9),
+                borderColor: alpha(theme.palette.text.secondary, 0.25),
               },
-            }}
+            })}
             onClick={() => setShowNotification(true)}
             size="large"
           >
@@ -68,16 +66,8 @@ const AppNotifications: React.FC<AppNotificationsProps> = ({
           </IconButton>
         </AppTooltip>
       )}
-
-      <Drawer
-        anchor={drawerPosition}
-        open={showNotification}
-        onClose={() => setShowNotification(false)}
-      >
-        <AppNotificationContent
-          sxStyle={sxNotificationContentStyle}
-          onClose={() => setShowNotification(false)}
-        />
+      <Drawer anchor={drawerPosition} open={showNotification} onClose={() => setShowNotification(false)}>
+        <AppNotificationContent sxStyle={sxNotificationContentStyle} onClose={() => setShowNotification(false)} />
       </Drawer>
     </>
   );

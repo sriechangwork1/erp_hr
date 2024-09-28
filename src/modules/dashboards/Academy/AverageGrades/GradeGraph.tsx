@@ -1,14 +1,6 @@
-import React from "react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import { GradeType } from "@crema/types/models/dashboards/Academy";
+import React from 'react';
+import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { GradeType } from '@crema/types/models/dashboards/Academy';
 
 type Props = {
   grades: GradeType[];
@@ -16,12 +8,9 @@ type Props = {
 const GradeGraph = ({ grades }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={220}>
-      <AreaChart
-        data={grades}
-        margin={{ top: 50, right: 0, left: 0, bottom: 0 }}
-      >
+      <AreaChart data={grades} margin={{ top: 50, right: 0, left: 0, bottom: 0 }}>
         <XAxis dataKey="month" tickLine={false} axisLine={false} />
-        <Tooltip labelStyle={{ color: "black" }} />
+        <Tooltip labelStyle={{ color: 'black' }} />
         <YAxis tickLine={false} axisLine={false} dataKey="grades" />
         <CartesianGrid />
         <defs>

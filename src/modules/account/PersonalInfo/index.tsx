@@ -23,9 +23,7 @@ const PersonalInfo = () => {
         validateOnBlur={true}
         initialValues={{
           ...user,
-          photoURL: user.photoURL
-            ? user.photoURL
-            : '/assets/images/placeholder.jpg',
+          photoURL: user.photoURL ? user.photoURL : '/assets/images/placeholder.jpg',
         }}
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting }) => {
@@ -35,9 +33,7 @@ const PersonalInfo = () => {
         }}
       >
         {({ values, setFieldValue }) => {
-          return (
-            <PersonalInfoForm values={values} setFieldValue={setFieldValue} />
-          );
+          return <PersonalInfoForm values={values} setFieldValue={setFieldValue} />;
         }}
       </Formik>
     </Box>

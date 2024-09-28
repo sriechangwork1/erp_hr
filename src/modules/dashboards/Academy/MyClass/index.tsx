@@ -24,7 +24,7 @@ const ClassItem = ({ item }: Props) => {
         display: 'flex',
         alignItems: 'center',
       }}
-      className='item-hover'
+      className="item-hover"
     >
       <Box
         sx={{
@@ -38,7 +38,7 @@ const ClassItem = ({ item }: Props) => {
           padding: 1.5,
         }}
       >
-        <Image alt='' src={item.icon} width={50} height={50} />
+        <Image alt="" src={item.icon} width={50} height={50} />
       </Box>
       <Box
         sx={{
@@ -59,7 +59,7 @@ const ClassItem = ({ item }: Props) => {
               fontSize: 14,
               mr: 1,
             }}
-            component='h3'
+            component="h3"
           >
             {item.name}
           </Box>
@@ -78,7 +78,7 @@ const ClassItem = ({ item }: Props) => {
             mt: 1,
           }}
         >
-          <AppLinearProgress value={item.percent} activeColor='#0A8FDC' />
+          <AppLinearProgress value={item.percent} activeColor="#0A8FDC" />
         </Box>
       </Box>
     </Box>
@@ -92,13 +92,9 @@ type MyClassProps = {
 const MyClass = ({ classData }: MyClassProps) => {
   const { messages } = useIntl();
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={<IntlMessages id='academy.myClass' />}
-      contentStyle={{ px: 0 }}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={<IntlMessages id="academy.myClass" />} contentStyle={{ px: 0 }}>
       <AppList
-        animation='transition.slideRightBigIn'
+        animation="transition.slideRightBigIn"
         data={classData}
         renderRow={(data, index) => <ClassItem key={index} item={data} />}
       />

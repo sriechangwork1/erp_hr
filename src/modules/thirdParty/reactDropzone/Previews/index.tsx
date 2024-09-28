@@ -30,11 +30,8 @@ const Previews = () => {
   };
 
   return (
-    <section className='container' style={{ cursor: 'pointer' }}>
-      <UploadModern
-        uploadText='Drag n drop some files here, or click to select files'
-        dropzone={dropzone}
-      />
+    <section className="container" style={{ cursor: 'pointer' }}>
+      <UploadModern uploadText="Drag n drop some files here, or click to select files" dropzone={dropzone} />
       <AppGrid
         sx={{
           maxWidth: 500,
@@ -43,11 +40,7 @@ const Previews = () => {
         column={4}
         itemPadding={5}
         renderRow={(file, index) => (
-          <PreviewThumb
-            file={file}
-            onDeleteUploadFile={onDeleteUploadFile}
-            key={index + file.path}
-          />
+          <PreviewThumb file={file} onDeleteUploadFile={onDeleteUploadFile} key={index + file.path} />
         )}
       />
     </section>

@@ -30,13 +30,7 @@ const Header = () => {
           },
         }}
       >
-        <Image
-          src={'/assets/images/logo.png'}
-          alt='logo'
-          width={100}
-          height={80}
-          style={{ objectFit: 'contain' }}
-        />
+        <Image src={'/assets/images/logo.png'} alt="logo" width={100} height={80} style={{ objectFit: 'contain' }} />
       </Box>
 
       <Box
@@ -67,13 +61,13 @@ const Header = () => {
           >
             {invoiceData.company.name}
           </Box>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             {invoiceData.company.address1}
           </Typography>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             {invoiceData.company.address2}
           </Typography>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             Phone: {invoiceData.company.phone}
           </Typography>
         </Box>
@@ -86,7 +80,7 @@ const Header = () => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               fontSize: 16,
               color: 'text.secondary',
@@ -94,15 +88,15 @@ const Header = () => {
               fontWeight: Fonts.BOLD,
             }}
           >
-            <IntlMessages id='invoice.client' />
+            <IntlMessages id="invoice.client" />
           </Box>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             {invoiceData.client.name}
           </Typography>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             {invoiceData.client.phone}
           </Typography>
-          <Typography component='p' sx={{ mb: 1 }}>
+          <Typography component="p" sx={{ mb: 1 }}>
             {invoiceData.client.email}
           </Typography>
         </Box>
@@ -116,7 +110,7 @@ const Header = () => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: 1,
               color: 'text.secondary',
@@ -124,16 +118,16 @@ const Header = () => {
               fontSize: 16,
             }}
           >
-            <IntlMessages id='invoice.invoice' />
+            <IntlMessages id="invoice.invoice" />
           </Box>
-          <Typography component='p' sx={{ mb: 1, fontWeight: Fonts.MEDIUM }}>
-            <IntlMessages id='invoice.id' />: {invoiceData.invoice.id}
+          <Typography component="p" sx={{ mb: 1, fontWeight: Fonts.MEDIUM }}>
+            <IntlMessages id="invoice.id" />: {invoiceData.invoice.id}
           </Typography>
-          <Typography component='p' sx={{ mb: 1 }}>
-            <IntlMessages id='invoice.issued' />: {invoiceData.invoice.date}
+          <Typography component="p" sx={{ mb: 1 }}>
+            <IntlMessages id="invoice.issued" />: {invoiceData.invoice.date}
           </Typography>
-          <Typography component='p' sx={{ mb: 1, fontWeight: Fonts.MEDIUM }}>
-            <IntlMessages id='invoice.dueOn' />: {invoiceData.invoice.dueDate}
+          <Typography component="p" sx={{ mb: 1, fontWeight: Fonts.MEDIUM }}>
+            <IntlMessages id="invoice.dueOn" />: {invoiceData.invoice.dueDate}
           </Typography>
         </Box>
       </Box>

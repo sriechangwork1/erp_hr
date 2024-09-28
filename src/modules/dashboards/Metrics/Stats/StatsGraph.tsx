@@ -1,14 +1,6 @@
-import React from "react";
-import {
-  CartesianGrid,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import type { StateGraphType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import { CartesianGrid, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from 'recharts';
+import type { StateGraphType } from '@crema/types/models/dashboards/Metrics';
 
 type StatsGraphProps = {
   data: {
@@ -21,11 +13,7 @@ const StatsGraph: React.FC<StatsGraphProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={370}>
       <ScatterChart margin={{ top: 20, right: 0, bottom: 20, left: 0 }}>
-        <CartesianGrid
-          strokeDasharray="5 5"
-          stroke="#E2E8F0"
-          vertical={false}
-        />
+        <CartesianGrid strokeDasharray="5 5" stroke="#E2E8F0" vertical={false} />
         <XAxis
           type="number"
           dataKey="number"
@@ -42,10 +30,7 @@ const StatsGraph: React.FC<StatsGraphProps> = ({ data }) => {
           axisLine={false}
           ticks={[1000, 2000, 3000, 4000, 5000, 6000]}
         />
-        <Tooltip
-          cursor={{ strokeDasharray: "3 3" }}
-          labelStyle={{ color: "black" }}
-        />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} labelStyle={{ color: 'black' }} />
         <Scatter data={data.stats1} fill="#E53E3E" />
         <Scatter data={data.stats2} fill="#0A8FDC" />
       </ScatterChart>

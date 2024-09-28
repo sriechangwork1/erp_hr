@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Hidden } from '@mui/material';
+import { Checkbox } from '@mui/material';
 import { useParams, useRouter } from 'next/navigation';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import Box from '@mui/material/Box';
@@ -21,13 +21,7 @@ type Props = {
   onDeleteTask: (task: TodoType) => void;
 };
 
-const TaskListItem = ({
-  task,
-  onChangeCheckedTasks,
-  checkedTasks = [],
-  onChangeStarred,
-  onDeleteTask,
-}: Props) => {
+const TaskListItem = ({ task, onChangeCheckedTasks, checkedTasks = [], onChangeStarred, onDeleteTask }: Props) => {
   const router = useRouter();
   const params = useParams();
   const { all } = params;
@@ -61,18 +55,24 @@ const TaskListItem = ({
             }}
             checked={checkedTasks.includes(task.id)}
             onChange={(event) => onChangeCheckedTasks(event, task.id)}
-            color='primary'
+            color="primary"
           />
         </span>
 
         <Box
-          mr={2.5}
-          component='span'
+          component="span"
           onClick={(event) => event.stopPropagation()}
+          sx={{
+            mr: 2.5,
+          }}
         >
           <AppsStarredIcon item={task} onChange={onChangeStarred} />
         </Box>
-        <Box mr={3.5}>
+        <Box
+          sx={{
+            mr: 3.5,
+          }}
+        >
           <Avatar
             sx={{
               width: 36,
@@ -84,7 +84,7 @@ const TaskListItem = ({
         </Box>
 
         <Box
-          component='p'
+          component="p"
           sx={{
             mr: 3,
             overflow: 'hidden',
@@ -95,19 +95,18 @@ const TaskListItem = ({
           {task.title}
         </Box>
 
-        <Hidden mdDown>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <Priority priority={task.priority} />
-        </Hidden>
+        </Box>
       </TaskInfoWrapper>
-
       <ActionWrapper>
-        <Hidden mdDown>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <Labels labels={task.label} />
-        </Hidden>
+        </Box>
 
         <Box
-          className='task-list-schedule'
-          component='span'
+          className="task-list-schedule"
+          component="span"
           sx={{
             ml: 2,
             overflow: 'hidden',
@@ -117,9 +116,9 @@ const TaskListItem = ({
             transform: 'translateX(60px)',
           }}
         >
-          <IntlMessages id='todo.scheduleFor' /> {task.startDate}
+          <IntlMessages id="todo.scheduleFor" /> {task.startDate}
         </Box>
-        <Box className='labelAction'>
+        <Box className="labelAction">
           <LabelOutlinedIcon onClick={(e) => e.stopPropagation()} />
           <DeleteOutlinedIcon
             onClick={(e) => {

@@ -3,9 +3,9 @@ import AppLoader from './AppLoader';
 import PropTypes from 'prop-types';
 import { useAuthUser } from '@crema/hooks/AuthHooks';
 
-type AuthRoutesProps= {
+type AuthRoutesProps = {
   children: ReactNode;
-}
+};
 
 const AuthRoutes: React.FC<AuthRoutesProps> = ({ children }) => {
   const { isLoading } = useAuthUser();

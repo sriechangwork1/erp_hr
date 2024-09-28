@@ -1,7 +1,7 @@
-import React from "react";
-import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { alpha, useTheme } from "@mui/material";
-import { OpportunitiesWonGraphDaumType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
+import { alpha, useTheme } from '@mui/material';
+import { OpportunitiesWonGraphDaumType } from '@crema/types/models/dashboards/CRM';
 
 type Props = {
   data: OpportunitiesWonGraphDaumType[];
@@ -14,13 +14,13 @@ const OpportunitiesWonGraph = ({ data = [] }: Props) => {
       <BarChart barGap={16} barSize={8} data={data}>
         <XAxis dataKey="name" />
         <Tooltip
-          labelStyle={{ color: "black" }}
+          labelStyle={{ color: 'black' }}
           contentStyle={{
             borderRadius: 12,
-            borderColor: "#31354188",
-            background: "#FFFFFFCA",
+            borderColor: '#31354188',
+            background: '#FFFFFFCA',
           }}
-          cursor={{ fill: "transparent" }}
+          cursor={{ fill: 'transparent' }}
         />
         <Bar
           dataKey="progress"

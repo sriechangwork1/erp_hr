@@ -7,8 +7,7 @@ import { useGetDataApi } from '@crema/hooks/APIHooks';
 import { UserListProps } from '@crema/types/models/Apps';
 
 const Standard = () => {
-  const [{ apiData: usersList, loading }] =
-    useGetDataApi<UserListProps[]>('/userList');
+  const [{ apiData: usersList, loading }] = useGetDataApi<UserListProps[]>('/userList');
   return (
     <>
       {loading ? (

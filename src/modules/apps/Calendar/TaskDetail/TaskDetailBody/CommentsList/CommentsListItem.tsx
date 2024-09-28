@@ -1,19 +1,19 @@
-import React from "react";
-import Avatar from "@mui/material/Avatar";
-import { Box, Typography } from "@mui/material";
-import clsx from "clsx";
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import { Box, Typography } from '@mui/material';
+import clsx from 'clsx';
 
-import { styled } from "@mui/material/styles";
-import { CommentType } from "@crema/types/models/apps/Todo";
+import { styled } from '@mui/material/styles';
+import { CommentType } from '@crema/types/models/apps/Todo';
 
 const CommentWrapper = styled(Box)(({ theme }: any) => ({
-  display: "flex",
+  display: 'flex',
   borderTopRightRadius: theme.cardRadius,
   borderBottomRightRadius: theme.cardRadius,
-  padding: "8px 12px",
+  padding: '8px 12px',
   border: `solid 1px ${theme.palette.divider}`,
   backgroundColor: theme.palette.background.paper,
-  ".last-chat-message &": {
+  '.last-chat-message &': {
     borderBottomLeftRadius: theme.cardRadius,
   },
 }));
@@ -24,38 +24,30 @@ type Props = {
   isLast: boolean;
 };
 
-const CommentsListItem = ({
-  item,
-  isPreviousSender = false,
-  isLast,
-}: Props) => {
+const CommentsListItem = ({ item, isPreviousSender = false, isLast }: Props) => {
   return (
     <Box
       sx={{
         marginTop: 1.5,
-        display: "flex",
-        position: "relative",
-
-        "&.hideUserInfo": {
-          position: "relative",
+        display: 'flex',
+        position: 'relative',
+        '&.hideUserInfo': {
+          position: 'relative',
           marginTop: 1,
-          "& .todo-comment-time, & .todo-comment-user": {
-            display: "none",
+          '& .todo-comment-time, & .todo-comment-user': {
+            display: 'none',
           },
-          "& .todo-comment-info": {
+          '& .todo-comment-info': {
             marginLeft: 11.5,
           },
         },
       }}
-      className={clsx(
-        isPreviousSender ? "hideUserInfo" : "first-chat-message",
-        isLast ? "last-chat-message" : ""
-      )}
+      className={clsx(isPreviousSender ? 'hideUserInfo' : 'first-chat-message', isLast ? 'last-chat-message' : '')}
     >
       <Box
         sx={{
           marginRight: 2.5,
-          position: "relative",
+          position: 'relative',
         }}
         className="todo-comment-user"
       >
@@ -80,17 +72,17 @@ const CommentsListItem = ({
       </Box>
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
         }}
         className="todo-comment-info"
       >
         <Box
           sx={{
-            display: "block",
+            display: 'block',
             marginBottom: 1.5,
-            color: "text.secondary",
+            color: 'text.secondary',
             fontSize: 12,
-            "& > span": {
+            '& > span': {
               marginRight: 1,
             },
           }}

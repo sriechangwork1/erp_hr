@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Grow,
-  Icon,
-  IconButton,
-  ListItem,
-  ListItemText,
-  Paper,
-} from '@mui/material';
+import { Grow, Icon, IconButton, ListItem, ListItemText, Paper } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import List from '@mui/material/List';
@@ -32,8 +25,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
   const { item, nestedLevel, dense } = props;
   const pathname = usePathname();
   const active = isUrlInChildren(item, pathname);
-  const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } =
-    useSidebarContext();
+  const { sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor } = useSidebarContext();
 
   const handleToggle = (open: boolean) => {
     setOpened(open);
@@ -51,10 +43,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
         }
       }
 
-      if (
-        parent.children[i].url === url ||
-        url.includes(parent!.children![i].url!)
-      ) {
+      if (parent.children[i].url === url || url.includes(parent!.children![i].url!)) {
         return true;
       }
     }
@@ -70,7 +59,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
           padding: '0 0 0 16px',
         },
       }}
-      className='navbarNavSubmenu'
+      className="navbarNavSubmenu"
     >
       <Manager>
         <Reference>
@@ -94,40 +83,48 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
                   },
                 },
               }}
-              className={clsx(
-                'navItemSubmenu',
-                opened && 'open',
-                dense && 'dense',
-                active && 'active',
-              )}
+              className={clsx('navItemSubmenu', opened && 'open', dense && 'dense', active && 'active')}
               onMouseEnter={() => handleToggle(true)}
               onMouseLeave={() => handleToggle(false)}
             >
               {item.icon && (
                 <Icon
-                  sx={{
-                    color: active ? sidebarMenuSelectedTextColor : 'action',
-                    mr: 3.5,
-                    fontSize: { xs: 16, xl: 18 },
-                  }}
+                  sx={[
+                    {
+                      mr: 3.5,
+                      fontSize: { xs: 16, xl: 18 },
+                    },
+                    active
+                      ? {
+                          color: sidebarMenuSelectedTextColor,
+                        }
+                      : {
+                          color: 'action',
+                        },
+                  ]}
                 >
                   {item.icon}
                 </Icon>
               )}
-              <ListItemText
-                className='navLinkTextSubmenu'
-                primary={<IntlMessages id={item.messageId} />}
-              />
-              <Box p={0}>
+              <ListItemText className="navLinkTextSubmenu" primary={<IntlMessages id={item.messageId} />} />
+              <Box
+                sx={{
+                  p: 0,
+                }}
+              >
                 <IconButton disableRipple>
                   <Icon
-                    sx={{
-                      color: active ? sidebarMenuSelectedTextColor : 'action',
-                    }}
+                    sx={[
+                      active
+                        ? {
+                            color: sidebarMenuSelectedTextColor,
+                          }
+                        : {
+                            color: 'action',
+                          },
+                    ]}
                   >
-                    {theme.direction === 'ltr'
-                      ? 'chevron_right'
-                      : 'chevron_left'}
+                    {theme.direction === 'ltr' ? 'chevron_right' : 'chevron_left'}
                   </Icon>
                 </IconButton>
               </Box>
@@ -135,7 +132,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
           )}
         </Reference>
         {/*<ClientOnlyPortal selector='#root'>*/}
-        <Popper placement='right'>
+        <Popper placement="right">
           {({ ref, style, placement }) =>
             opened && (
               <Box
@@ -154,10 +151,7 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
                 })}
               >
                 <Grow in={opened}>
-                  <Paper
-                    onMouseEnter={() => handleToggle(true)}
-                    onMouseLeave={() => handleToggle(false)}
-                  >
+                  <Paper onMouseEnter={() => handleToggle(true)} onMouseLeave={() => handleToggle(false)}>
                     {item.children && (
                       <List
                         sx={{
@@ -166,26 +160,13 @@ const HorizontalCollapse: React.FC<HorizontalCollapseProps> = (props) => {
                       >
                         {item.children.map((item) => (
                           <React.Fragment key={item.id}>
-                            {item.type === 'group' && (
-                              <HorizontalGroup
-                                item={item}
-                                nestedLevel={nestedLevel + 1}
-                              />
-                            )}
+                            {item.type === 'group' && <HorizontalGroup item={item} nestedLevel={nestedLevel + 1} />}
 
                             {item.type === 'collapse' && (
-                              <HorizontalCollapse
-                                item={item}
-                                nestedLevel={nestedLevel + 1}
-                              />
+                              <HorizontalCollapse item={item} nestedLevel={nestedLevel + 1} />
                             )}
 
-                            {item.type === 'item' && (
-                              <HorizontalItem
-                                item={item}
-                                nestedLevel={nestedLevel + 1}
-                              />
-                            )}
+                            {item.type === 'item' && <HorizontalItem item={item} nestedLevel={nestedLevel + 1} />}
                           </React.Fragment>
                         ))}
                       </List>

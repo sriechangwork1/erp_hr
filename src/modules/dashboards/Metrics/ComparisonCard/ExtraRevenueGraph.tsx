@@ -1,12 +1,12 @@
 import React from 'react';
-import {Area, AreaChart, ResponsiveContainer} from 'recharts';
+import { Area, AreaChart, ResponsiveContainer } from 'recharts';
 import Box from '@mui/material/Box';
 
 type ExtraRevenueGraphProps = {
   data: any[];
-}
+};
 
-const ExtraRevenueGraph: React.FC<ExtraRevenueGraphProps> = ({data}) => {
+const ExtraRevenueGraph: React.FC<ExtraRevenueGraphProps> = ({ data }) => {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ const ExtraRevenueGraph: React.FC<ExtraRevenueGraphProps> = ({data}) => {
         },
       }}
     >
-      <ResponsiveContainer height={200} className='containerGraph'>
+      <ResponsiveContainer height={200} className="containerGraph">
         <AreaChart
           width={500}
           height={100}
@@ -28,13 +28,7 @@ const ExtraRevenueGraph: React.FC<ExtraRevenueGraphProps> = ({data}) => {
             bottom: 0,
           }}
         >
-          <Area
-            type='monotone'
-            dataKey='revenue'
-            stroke='#4C51BF'
-            fill='#4C51BF'
-            strokeWidth={2}
-          />
+          <Area type="monotone" dataKey="revenue" stroke="#4C51BF" fill="#4C51BF" strokeWidth={2} />
         </AreaChart>
       </ResponsiveContainer>
     </Box>

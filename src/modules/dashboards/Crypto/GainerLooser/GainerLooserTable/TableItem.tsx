@@ -24,8 +24,8 @@ type Props = {
 };
 const TableItem = ({ data }: Props) => {
   return (
-    <TableRow key={data.name} className='item-hover'>
-      <TableCellWrapper align='left'>
+    <TableRow key={data.name} className="item-hover">
+      <TableCellWrapper align="left">
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Avatar
             sx={{ border: '0 none !important', width: 30, height: 30 }}
@@ -34,7 +34,7 @@ const TableItem = ({ data }: Props) => {
             src={data.icon}
           />
           <Box
-            component='h5'
+            component="h5"
             sx={{
               ml: 3,
             }}
@@ -43,26 +43,29 @@ const TableItem = ({ data }: Props) => {
           </Box>
         </Box>
       </TableCellWrapper>
-      <TableCellWrapper align='left'>
+      <TableCellWrapper align="left">
         <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            color: data.type === 'looser' ? '#EA3943' : '#16C784',
-          }}
+          sx={[
+            {
+              display: 'flex',
+              alignItems: 'center',
+            },
+            data.type === 'looser'
+              ? {
+                  color: '#EA3943',
+                }
+              : {
+                  color: '#16C784',
+                },
+          ]}
         >
-          <Box component='span' sx={{ mr: 2 }}>
+          <Box component="span" sx={{ mr: 2 }}>
             {data.percentage}
           </Box>
-          <Image
-            src={`/assets/icon/${data.type}.svg`}
-            alt={data.type}
-            width={20}
-            height={19}
-          />
+          <Image src={`/assets/icon/${data.type}.svg`} alt={data.type} width={20} height={19} />
         </Box>
       </TableCellWrapper>
-      <TableCellWrapper align='right'>{data.amount}</TableCellWrapper>
+      <TableCellWrapper align="right">{data.amount}</TableCellWrapper>
     </TableRow>
   );
 };

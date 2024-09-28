@@ -8,18 +8,15 @@ type StandardContainerProps = {
   [x: string]: any;
 };
 
-const StandardContainer: React.FC<StandardContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const StandardContainer: React.FC<StandardContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -62,8 +59,7 @@ const StandardContainer: React.FC<StandardContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .standardWrapper': {
             borderRadius: { xl: 3 },
             pt: { xl: 0 },
@@ -105,7 +101,7 @@ const StandardContainer: React.FC<StandardContainerProps> = ({
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

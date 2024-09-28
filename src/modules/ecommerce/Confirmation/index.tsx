@@ -11,16 +11,13 @@ import AppLoader from '@crema/components/AppLoader';
 import { CartItemsType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const Confirmation = () => {
-  const [{ apiData: cartItems, loading }] = useGetDataApi<CartItemsType[]>(
-    'ecommerce/cart',
-    [],
-  );
+  const [{ apiData: cartItems, loading }] = useGetDataApi<CartItemsType[]>('ecommerce/cart', []);
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <Box>
             <OrderPlaced cartItems={cartItems} />
             <AddressInfo address={addresses[0]} />

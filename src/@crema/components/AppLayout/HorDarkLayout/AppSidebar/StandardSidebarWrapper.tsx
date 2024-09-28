@@ -7,10 +7,7 @@ type StandardSidebarWrapperProps = {
   [x: string]: any;
 };
 
-const StandardSidebarWrapper: React.FC<StandardSidebarWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const StandardSidebarWrapper: React.FC<StandardSidebarWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
       sx={{

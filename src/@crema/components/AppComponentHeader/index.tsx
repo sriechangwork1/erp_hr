@@ -6,17 +6,13 @@ import Box from '@mui/material/Box';
 import AppAnimate from '../AppAnimate';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type AppComponentHeaderProps= {
+type AppComponentHeaderProps = {
   title: string;
   description?: string;
   refUrl?: string;
-}
+};
 
-const AppComponentHeader: React.FC<AppComponentHeaderProps> = ({
-  title,
-  description,
-  refUrl,
-}) => {
+const AppComponentHeader: React.FC<AppComponentHeaderProps> = ({ title, description, refUrl }) => {
   return (
     <AppAnimate animation="transition.slideDownIn" delay={300}>
       <Box
@@ -30,22 +26,22 @@ const AppComponentHeader: React.FC<AppComponentHeaderProps> = ({
         <Box sx={{ mb: 3, pr: { sm: 3 }, flex: { sm: 1 } }}>
           <Typography
             component="h3"
-            sx={{
-              color: (theme) => theme.palette.text.primary,
+            sx={(theme) => ({
+              color: theme.palette.text.primary,
               fontWeight: Fonts.MEDIUM,
               fontSize: { xs: 18, sm: 20 },
-            }}
+            })}
           >
             {title}
           </Typography>
           {description ? (
             <Typography
               variant="h6"
-              sx={{
+              sx={(theme) => ({
                 fontSize: 15,
                 fontWeight: Fonts.REGULAR,
-                color: (theme) => theme.palette.text.secondary,
-              }}
+                color: theme.palette.text.secondary,
+              })}
             >
               {description}
             </Typography>
@@ -53,12 +49,7 @@ const AppComponentHeader: React.FC<AppComponentHeaderProps> = ({
         </Box>
         {refUrl ? (
           <Box sx={{ height: 40 }}>
-            <Button
-              variant="outlined"
-              color="primary"
-              href={refUrl}
-              target="_blank"
-            >
+            <Button variant="outlined" color="primary" href={refUrl} target="_blank">
               Reference <LinkIcon sx={{ pl: 1 }} />
             </Button>
           </Box>

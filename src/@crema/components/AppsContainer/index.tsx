@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
 import AppInfoView from '../AppInfoView';
 import { Box, Slide, Theme, Zoom } from '@mui/material';
-import Hidden from '@mui/material/Hidden';
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Card from '@mui/material/Card';
@@ -50,44 +50,71 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
       }}
     >
       <Box
-        sx={{
-          marginTop: fullView ? 0 : -4,
-          display: 'flex',
-          alignItems: 'center',
-          mb: {
-            xs: fullView ? 4 : 2,
-            lg: 4,
+        sx={[
+          {
+            display: 'flex',
+            alignItems: 'center',
+            mb: {
+              lg: 4,
+            },
+            mt: {
+              lg: 0,
+            },
           },
-          mt: {
-            xs: fullView ? 0 : -4,
-            lg: 0,
-          },
-        }}
+          fullView
+            ? {
+                marginTop: 0,
+              }
+            : {
+                marginTop: -4,
+              },
+          fullView
+            ? {
+                mb: {
+                  xs: 4,
+                },
+              }
+            : {
+                mb: {
+                  xs: 2,
+                },
+              },
+          fullView
+            ? {
+                mt: {
+                  xs: 0,
+                },
+              }
+            : {
+                mt: {
+                  xs: -4,
+                },
+              },
+        ]}
       >
         {fullView ? null : (
-          <Hidden lgUp>
-            <IconButton
-              edge='start'
+          <IconButton
+            edge="start"
+            sx={(theme) => ({
+              display: { lg: 'none', xs: 'block' },
+              marginRight: theme.spacing(2),
+            })}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleNavCollapsed}
+            size="large"
+          >
+            <MenuIcon
               sx={{
-                marginRight: (theme) => theme.spacing(2),
+                width: 35,
+                height: 35,
               }}
-              color='inherit'
-              aria-label='open drawer'
-              onClick={toggleNavCollapsed}
-              size='large'
-            >
-              <MenuIcon
-                sx={{
-                  width: 35,
-                  height: 35,
-                }}
-              />
-            </IconButton>
-          </Hidden>
+            />
+          </IconButton>
         )}
         <Zoom in style={{ transitionDelay: '300ms' }}>
           <Box
-            component='h2'
+            component="h2"
             sx={{
               fontSize: 16,
               color: 'text.primary',
@@ -98,7 +125,6 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
           </Box>
         </Zoom>
       </Box>
-
       <AppContainerWrapper navStyle={navStyle as NavStyle} footer={footer}>
         {sidebarContent ? (
           <AppSidebar
@@ -111,19 +137,35 @@ const AppsContainer: React.FC<AppsContainerProps> = (props) => {
         ) : null}
 
         <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: {
-              xs: '100%',
-              lg: `calc(100% - ${fullView ? 0 : 280}px)`,
+          sx={[
+            {
+              display: 'flex',
+              flexDirection: 'column',
+              width: {
+                xs: '100%',
+              },
+              pl: {
+                lg: props.fullView ? 0 : 8,
+              },
             },
-            pl: {
-              lg: props.fullView ? 0 : 8,
-            },
-          }}
+            fullView
+              ? {
+                  width: {
+                    lg: {
+                      lg: 0,
+                    },
+                  },
+                }
+              : {
+                  width: {
+                    lg: {
+                      lg: 280,
+                    },
+                  },
+                },
+          ]}
         >
-          <Slide direction='left' in mountOnEnter unmountOnExit>
+          <Slide direction="left" in mountOnEnter unmountOnExit>
             <Card
               style={{
                 height: '100%',

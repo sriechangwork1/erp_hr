@@ -36,10 +36,7 @@ const AppCard: React.FC<AppCardProps> = ({
   ...rest
 }) => {
   return (
-    <Card
-      sx={{ display: 'flex', flexDirection: 'column', ...sxStyle }}
-      {...rest}
-    >
+    <Card sx={{ display: 'flex', flexDirection: 'column', ...sxStyle }} {...rest}>
       {title || action ? (
         <CardHeader
           sx={{
@@ -121,7 +118,15 @@ const AppCard: React.FC<AppCardProps> = ({
           ) : (
             <Box
               component="span"
-              sx={{ ml: footerPosition === 'right' ? 'auto' : 0 }}
+              sx={[
+                footerPosition === 'right'
+                  ? {
+                      ml: 'auto',
+                    }
+                  : {
+                      ml: 0,
+                    },
+              ]}
             >
               <Link
                 color="secondary"

@@ -1,9 +1,9 @@
-import React from "react";
-import { Avatar, Box, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
-import { Fonts } from "@crema/constants/AppEnums";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import type { BlogCommentType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Avatar, Box, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import { Fonts } from '@crema/constants/AppEnums';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import type { BlogCommentType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   comment: BlogCommentType;
@@ -13,21 +13,17 @@ const BlogCommentItem = ({ comment }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: 'flex',
       }}
     >
       <Box sx={{ mr: 4 }}>
-        <Avatar
-          sx={{ width: { md: 50 }, height: { md: 50 } }}
-          src={comment.image}
-          alt={comment.name}
-        />
+        <Avatar sx={{ width: { md: 50 }, height: { md: 50 } }} src={comment.image} alt={comment.name} />
       </Box>
       <Box sx={{ flex: 1 }}>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
             mb: { xs: 2, md: 3 },
           }}
         >
@@ -44,11 +40,11 @@ const BlogCommentItem = ({ comment }: Props) => {
             </Typography>
             <Box
               component="span"
-              sx={{
+              sx={(theme) => ({
                 fontSize: 11,
                 fontWeight: Fonts.MEDIUM,
-                color: (theme) => theme.palette.text.secondary,
-              }}
+                color: theme.palette.text.secondary,
+              })}
             >
               {comment.duration}
             </Box>
@@ -57,7 +53,7 @@ const BlogCommentItem = ({ comment }: Props) => {
             <Button
               variant="outlined"
               sx={{
-                textTransform: "uppercase",
+                textTransform: 'uppercase',
                 pt: 0.25,
                 pb: 0.75,
               }}
@@ -66,12 +62,15 @@ const BlogCommentItem = ({ comment }: Props) => {
             </Button>
           </Box>
         </Box>
-        <Typography sx={{ color: (theme) => theme.palette.text.secondary }}>
+        <Typography
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
+          })}
+        >
           {comment.comment}
         </Typography>
       </Box>
     </Box>
   );
 };
-
 export default BlogCommentItem;

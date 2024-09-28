@@ -15,17 +15,14 @@ import AppLoader from '@crema/components/AppLoader';
 import { CartItemsType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 const Checkout = () => {
-  const [{ apiData: cartItems, loading }] = useGetDataApi<CartItemsType[]>(
-    'ecommerce/cart',
-    [],
-  );
+  const [{ apiData: cartItems, loading }] = useGetDataApi<CartItemsType[]>('ecommerce/cart', []);
 
   return (
     <>
       {loading ? (
         <AppLoader />
       ) : (
-        <AppAnimate animation='transition.slideUpIn' delay={200}>
+        <AppAnimate animation="transition.slideUpIn" delay={200}>
           <Box>
             <Box
               sx={{
@@ -36,17 +33,11 @@ const Checkout = () => {
                 fontSize: 16,
               }}
             >
-              <IntlMessages id='sidebar.ecommerce.checkout' />
+              <IntlMessages id="sidebar.ecommerce.checkout" />
             </Box>
             <AppGridContainer>
               <Grid item xs={12} md={8}>
-                <AppCard
-                  title={
-                    <Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>
-                      Delivery Address
-                    </Box>
-                  }
-                >
+                <AppCard title={<Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>Delivery Address</Box>}>
                   <DeliveryAddress />
                 </AppCard>
               </Grid>

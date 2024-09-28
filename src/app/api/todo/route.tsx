@@ -18,9 +18,7 @@ const onGetTaskList = (name: string, data: TodoType[]) => {
     }
 
     case 'priority': {
-      return data.filter(
-        (task) => task.folderValue !== 126 && task.priority.type === 1,
-      );
+      return data.filter((task) => task.folderValue !== 126 && task.priority.type === 1);
     }
 
     case 'scheduled': {
@@ -34,9 +32,7 @@ const onGetTaskList = (name: string, data: TodoType[]) => {
     }
 
     case 'completed': {
-      return data.filter(
-        (task) => task.folderValue !== 126 && task.status === 3,
-      );
+      return data.filter((task) => task.folderValue !== 126 && task.status === 3);
     }
 
     case 'deleted': {
@@ -53,9 +49,7 @@ export const POST = async (request: NextRequest) => {
     const reqBody = await request.json();
     const { task } = reqBody;
     task.assignedTo = staffList.find((staff) => staff.id === task.assignedTo);
-    task.priority = priorityList.find(
-      (priority) => priority.type === task.priority,
-    );
+    task.priority = priorityList.find((priority) => priority.type === task.priority);
     todoData = [task, ...todoData];
     return new Response(JSON.stringify(task), { status: 200 });
   } catch (error) {
@@ -69,8 +63,7 @@ export const GET = async (request: NextRequest) => {
     if (params.type === 'folder') {
       folderTaskList = onGetTaskList(params.name, todoData);
     } else {
-      const labelType = labelList.find((label) => label.alias === params.name)
-        ?.id;
+      const labelType = labelList.find((label) => label.alias === params.name)?.id;
       folderTaskList = todoData.filter((task) => {
         const label = task.label.find((label) => label.id === labelType);
         if (label && task.folderValue !== 126) {
@@ -80,10 +73,7 @@ export const GET = async (request: NextRequest) => {
     }
     const index = params.page * 15;
     const count = folderTaskList.length;
-    const data =
-      folderTaskList.length > 15
-        ? folderTaskList.slice(index, index + 15)
-        : folderTaskList;
+    const data = folderTaskList.length > 15 ? folderTaskList.slice(index, index + 15) : folderTaskList;
 
     return new Response(JSON.stringify({ data: data, count: data.length }), {
       status: 200,
@@ -119,10 +109,7 @@ export const PUT = async (request: NextRequest) => {
     }
     const index = page * 15;
     const count = folderTaskList.length;
-    const data =
-      folderTaskList.length > 15
-        ? folderTaskList.slice(index, index + 15)
-        : folderTaskList;
+    const data = folderTaskList.length > 15 ? folderTaskList.slice(index, index + 15) : folderTaskList;
     return new Response(JSON.stringify({ data, count }), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });

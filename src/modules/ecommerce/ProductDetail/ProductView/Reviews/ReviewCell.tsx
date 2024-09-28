@@ -111,9 +111,7 @@ const ReviewCell = () => {
           <ThumbUpAltOutlinedIcon style={{ fontSize: 16 }} />
         </IconButton>
         345
-        <IconButton
-          style={{ marginRight: 5, marginLeft: 15, height: 25, width: 25 }}
-        >
+        <IconButton style={{ marginRight: 5, marginLeft: 15, height: 25, width: 25 }}>
           <ThumbDownAltOutlinedIcon style={{ fontSize: 16 }} />
         </IconButton>
         13

@@ -55,7 +55,7 @@ const ContactItem = (props: ConnectionItemProps) => {
         }}
       >
         <Box
-          component='h5'
+          component="h5"
           sx={{
             display: 'block',
             mb: 0.5,
@@ -64,7 +64,7 @@ const ContactItem = (props: ConnectionItemProps) => {
           {item.name}
         </Box>
         <Box
-          component='p'
+          component="p"
           sx={{
             color: 'text.secondary',
             display: 'block',

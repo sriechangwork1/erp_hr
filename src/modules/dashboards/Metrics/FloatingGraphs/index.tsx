@@ -1,12 +1,12 @@
-import React from "react";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import GraphFile from "./GraphFile";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { green } from "@mui/material/colors";
-import AppCard from "@crema/components/AppCard";
-import { MetricsFloatingChildType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import GraphFile from './GraphFile';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { green } from '@mui/material/colors';
+import AppCard from '@crema/components/AppCard';
+import { MetricsFloatingChildType } from '@crema/types/models/dashboards/Metrics';
 
 type FloatingGraphsProps = {
   data: MetricsFloatingChildType;
@@ -15,12 +15,12 @@ type FloatingGraphsProps = {
 
 const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
   return (
-    <AppCard sxStyle={{ height: 1, textAlign: "center" }}>
+    <AppCard sxStyle={{ height: 1, textAlign: 'center' }}>
       <Box
         component="p"
         sx={{
           mb: 3,
-          color: "text.secondary",
+          color: 'text.secondary',
           fontSize: 14,
         }}
       >
@@ -31,9 +31,9 @@ const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
         sx={{
           fontWeight: Fonts.MEDIUM,
           fontSize: 20,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Box
@@ -48,8 +48,8 @@ const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
           <Box
             component="span"
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
               color: green[500],
               fontWeight: Fonts.MEDIUM,
               mt: 1,
@@ -79,9 +79,9 @@ const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
           <Box
             component="span"
             sx={{
-              display: "flex",
-              alignItems: "center",
-              color: "secondary.main",
+              display: 'flex',
+              alignItems: 'center',
+              color: 'secondary.main',
               fontWeight: Fonts.MEDIUM,
               mt: 1,
               fontSize: 16,
@@ -114,11 +114,7 @@ const FloatingGraphs: React.FC<FloatingGraphsProps> = ({ data, title }) => {
           mt: -2,
         }}
       >
-        <GraphFile
-          data={data.graphData}
-          strokeColor={data.strokeColor}
-          areaColor={data.areaColor}
-        />
+        <GraphFile data={data.graphData} strokeColor={data.strokeColor} areaColor={data.areaColor} />
       </Box>
     </AppCard>
   );

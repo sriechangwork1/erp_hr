@@ -1,43 +1,37 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import { Button, Divider, Grid, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import * as yup from "yup";
-import { ClientType } from "@crema/types/models/invoice";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
+import { Button, Divider, Grid, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import * as yup from 'yup';
+import { ClientType } from '@crema/types/models/invoice';
 
 const validationSchema = yup.object({
-  name: yup
-    .string()
-    .required(String(<IntlMessages id="validation.nameRequired" />)),
-  firstName: yup
-    .string()
-    .required(String(<IntlMessages id="validation.firstNameRequired" />)),
-  lastName: yup
-    .string()
-    .required(String(<IntlMessages id="validation.lastNameRequired" />)),
+  name: yup.string().required(String(<IntlMessages id="validation.nameRequired" />)),
+  firstName: yup.string().required(String(<IntlMessages id="validation.firstNameRequired" />)),
+  lastName: yup.string().required(String(<IntlMessages id="validation.lastNameRequired" />)),
   mail: yup
     .string()
     .email(String(<IntlMessages id="validation.emailFormat" />))
     .required(String(<IntlMessages id="validation.emailRequired" />)),
-  phone: yup.string().matches(/^[0-9]{10}$/, "Enter a valid phone number!"),
+  phone: yup.string().matches(/^[0-9]{10}$/, 'Enter a valid phone number!'),
   zipCode: yup
     .string()
-    .matches(/^[0-9]{6}$/, "Enter a valid zip code!")
+    .matches(/^[0-9]{6}$/, 'Enter a valid zip code!')
     .required(String(<IntlMessages id="validation.zipCodeRequired" />)),
   city: yup
     .string()
-    .matches(/^[A-Za-z]+$/, "Enter a valid city!")
+    .matches(/^[A-Za-z]+$/, 'Enter a valid city!')
     .required(String(<IntlMessages id="validation.cityRequired" />)),
   state: yup
     .string()
-    .matches(/^[A-Za-z]+$/, "Enter a valid state!")
+    .matches(/^[A-Za-z]+$/, 'Enter a valid state!')
     .required(String(<IntlMessages id="validation.stateRequired" />)),
   country: yup
     .string()
-    .matches(/^[A-Za-z]+$/, "Enter a valid country!")
+    .matches(/^[A-Za-z]+$/, 'Enter a valid country!')
     .required(String(<IntlMessages id="validation.countryRequired" />)),
 });
 
@@ -47,36 +41,33 @@ type Props = {
 };
 const AddClient = ({ selectedClient, onSave }: Props) => {
   return (
-    <AppCard
-      title={selectedClient ? "Edit Client" : "Add Client"}
-      sxStyle={{ width: "70%", margin: "auto" }}
-    >
+    <AppCard title={selectedClient ? 'Edit Client' : 'Add Client'} sxStyle={{ width: '70%', margin: 'auto' }}>
       <Formik
         validateOnChange={true}
         initialValues={
           selectedClient
             ? selectedClient
             : {
-                name: "",
-                firstName: "",
-                lastName: "",
-                mail: "",
-                phone: "",
-                vatId: "",
-                taxId: "",
-                steetName: "",
-                zipCode: "",
-                city: "",
-                state: "",
-                country: "",
-                logo: "",
+                name: '',
+                firstName: '',
+                lastName: '',
+                mail: '',
+                phone: '',
+                vatId: '',
+                taxId: '',
+                steetName: '',
+                zipCode: '',
+                city: '',
+                state: '',
+                country: '',
+                logo: '',
               }
         }
         validationSchema={validationSchema}
         onSubmit={(data, { setSubmitting, resetForm }) => {
           let id;
           if (selectedClient) id = selectedClient.id;
-          else id = data.name.split(" ")[0].toLowerCase();
+          else id = data.name.split(' ')[0].toLowerCase();
           setSubmitting(true);
           onSave({ ...data, id });
           setSubmitting(false);
@@ -88,7 +79,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
             name="name"
             variant="outlined"
             sx={{
-              width: "100%",
+              width: '100%',
             }}
             label="Client Name"
           />
@@ -103,7 +94,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="firstName"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="First Name"
               />
@@ -113,7 +104,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="lastName"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Last Name"
               />
@@ -124,7 +115,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="mail"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Email"
               />
@@ -134,7 +125,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="phone"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Phone Number"
               />
@@ -150,7 +141,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="vatId"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="VAT ID"
               />
@@ -160,7 +151,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="taxId"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Tax ID"
               />
@@ -176,7 +167,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="steetName"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Street Name/Number"
               />
@@ -186,7 +177,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="zipCode"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Zip Code"
               />
@@ -196,7 +187,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="city"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="City"
               />
@@ -206,7 +197,7 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="state"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="State"
               />
@@ -216,19 +207,14 @@ const AddClient = ({ selectedClient, onSave }: Props) => {
                 name="country"
                 variant="outlined"
                 sx={{
-                  width: "100%",
+                  width: '100%',
                 }}
                 label="Country"
               />
             </Grid>
           </AppGridContainer>
-          <Button
-            sx={{ display: "block", mt: 6, ml: "auto" }}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            {selectedClient ? "Edit" : "Add"} Client
+          <Button sx={{ display: 'block', mt: 6, ml: 'auto' }} type="submit" variant="contained" color="primary">
+            {selectedClient ? 'Edit' : 'Add'} Client
           </Button>
         </Form>
       </Formik>

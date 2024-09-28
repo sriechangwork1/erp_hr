@@ -15,9 +15,7 @@ const AddClients = () => {
       client,
     })
       .then(() => {
-        infoViewActionsContext.showMessage(
-          'New Client has been created successfully!',
-        );
+        infoViewActionsContext.showMessage('New Client has been created successfully!');
       })
       .catch((error) => {
         infoViewActionsContext.fetchError(error.message);

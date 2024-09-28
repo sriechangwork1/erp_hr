@@ -1,9 +1,9 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import BlogCommentItem from "./BlogCommentItem";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { Fonts } from "@crema/constants/AppEnums";
-import type { BlogCommentType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import BlogCommentItem from './BlogCommentItem';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { Fonts } from '@crema/constants/AppEnums';
+import type { BlogCommentType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   comments: BlogCommentType[];
@@ -12,11 +12,11 @@ type Props = {
 const BlogCommentList = ({ comments }: Props) => {
   return (
     <Box
-      sx={{
-        borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+      sx={(theme) => ({
+        borderBottom: `solid 1px ${theme.palette.divider}`,
         mb: 7.5,
         pb: 7.5,
-      }}
+      })}
     >
       <Typography
         component="h3"
@@ -30,8 +30,8 @@ const BlogCommentList = ({ comments }: Props) => {
       </Typography>
       <Box
         sx={{
-          "& .blog-comment-item": {
-            "&:not(:last-of-type)": {
+          '& .blog-comment-item': {
+            '&:not(:last-of-type)': {
               mb: 7.5,
             },
           },

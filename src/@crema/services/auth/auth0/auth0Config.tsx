@@ -1,12 +1,12 @@
-import { createAuth0Client } from "@auth0/auth0-spa-js";
+import { createAuth0Client } from '@auth0/auth0-spa-js';
 
 const Auth0Config = async () => {
   return await createAuth0Client({
-    clientId: "617CCZ9ZFiNYIw9KLRy6qbkh1HK3KgOJ",
-    domain: "dev-obk84v4k.auth0.com",
+    clientId: '617CCZ9ZFiNYIw9KLRy6qbkh1HK3KgOJ',
+    domain: 'dev-obk84v4k.auth0.com',
     authorizationParams: {
-      redirect_uri: "https://crema-react.firebaseapp.com/dashboards/crm",
-      audience: "https://dev-obk84v4k.auth0.com/userinfo",
+      redirect_uri: 'https://crema-react.firebaseapp.com/dashboards/crm',
+      audience: 'https://dev-obk84v4k.auth0.com/userinfo',
     },
   });
 };

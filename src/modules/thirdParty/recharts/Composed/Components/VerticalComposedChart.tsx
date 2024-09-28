@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Area,
   Bar,
@@ -10,19 +10,15 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
-import data from "./data";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
+} from 'recharts';
+import data from './data';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 
 const VerticalComposedChart = () => {
   const { theme } = useThemeContext();
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <ComposedChart
-        layout="vertical"
-        data={data}
-        margin={{ top: 10, right: 0, left: -12, bottom: 0 }}
-      >
+      <ComposedChart layout="vertical" data={data} margin={{ top: 10, right: 0, left: -12, bottom: 0 }}>
         <XAxis type="number" />
         <YAxis dataKey="name" type="category" />
         <Tooltip />

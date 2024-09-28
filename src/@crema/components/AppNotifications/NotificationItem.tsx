@@ -4,13 +4,13 @@ import Avatar from '@mui/material/Avatar';
 import { Box, ListItem, Typography } from '@mui/material';
 import { Fonts } from '@crema/constants/AppEnums';
 
-type NotificationItemProps ={
+type NotificationItemProps = {
   item: {
     image: string;
     name: string;
     message: string;
   };
-}
+};
 
 const NotificationItem: React.FC<NotificationItemProps> = ({ item }) => {
   return (
@@ -36,22 +36,22 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ item }) => {
         />
       </ListItemAvatar>
       <Box
-        sx={{
+        sx={(theme) => ({
           fontSize: 14,
-          color: (theme) => theme.palette.text.secondary,
-        }}
+          color: theme.palette.text.secondary,
+        })}
       >
         <Typography>
           <Box
             component="span"
-            sx={{
+            sx={(theme) => ({
               fontSize: 14,
               fontWeight: Fonts.MEDIUM,
               mb: 0.5,
-              color: (theme) => theme.palette.text.primary,
+              color: theme.palette.text.primary,
               mr: 1,
               display: 'inline-block',
-            }}
+            })}
           >
             {item.name}
           </Box>

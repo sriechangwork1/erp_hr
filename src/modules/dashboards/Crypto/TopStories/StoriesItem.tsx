@@ -29,11 +29,11 @@ const StoriesItem = ({ stories }: Props) => {
           },
         }}
       >
-        <Image src={stories.srcImg} alt='stories' width={60} height={60} />
+        <Image src={stories.srcImg} alt="stories" width={60} height={60} />
       </Box>
       <Box>
         <Typography
-          component='h5'
+          component="h5"
           sx={{
             fontWeight: Fonts.MEDIUM,
             mb: 0.5,
@@ -52,13 +52,13 @@ const StoriesItem = ({ stories }: Props) => {
             fontWeight: Fonts.MEDIUM,
           }}
         >
-          <Box component='span' sx={{ mr: 1 }}>
+          <Box component="span" sx={{ mr: 1 }}>
             {stories.tag}
           </Box>
-          <Box component='span' sx={{ mr: 1 }}>
+          <Box component="span" sx={{ mr: 1 }}>
             .
           </Box>
-          <Box component='span'>{stories.time}</Box>
+          <Box component="span">{stories.time}</Box>
         </Box>
       </Box>
     </Box>

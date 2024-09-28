@@ -7,13 +7,10 @@ type BitBucketSidebarWrapperProps = {
   [x: string]: any;
 };
 
-const BitBucketSidebarWrapper: React.FC<BitBucketSidebarWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const BitBucketSidebarWrapper: React.FC<BitBucketSidebarWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         width: 320,
         display: 'flex',
         flexDirection: 'column',
@@ -31,8 +28,8 @@ const BitBucketSidebarWrapper: React.FC<BitBucketSidebarWrapperProps> = ({
           top: 20,
           right: '-12px',
           borderRadius: '50%',
-          backgroundColor: (theme) => theme.palette.primary.main,
-          color: (theme) => theme.palette.primary.contrastText,
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
           cursor: 'pointer',
           zIndex: 99,
           display: { xs: 'none', lg: 'block' },
@@ -40,7 +37,7 @@ const BitBucketSidebarWrapper: React.FC<BitBucketSidebarWrapperProps> = ({
             display: 'block',
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

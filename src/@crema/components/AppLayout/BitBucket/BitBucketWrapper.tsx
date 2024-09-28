@@ -7,18 +7,15 @@ type BitBucketWrapperProps = {
   [x: string]: any;
 };
 
-const BitBucketWrapper: React.FC<BitBucketWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const BitBucketWrapper: React.FC<BitBucketWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         paddingTop: { xs: 14, sm: 17.5, lg: 0 },
         '& .mainContent': {
           display: 'flex',
@@ -39,7 +36,7 @@ const BitBucketWrapper: React.FC<BitBucketWrapperProps> = ({
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

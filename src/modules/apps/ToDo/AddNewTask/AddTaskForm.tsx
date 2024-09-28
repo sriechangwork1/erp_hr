@@ -40,24 +40,14 @@ type Props = {
     startDate: dayjs.Dayjs;
     content: string;
   };
-  setFieldValue: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean | undefined,
-  ) => void;
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
   setTaskLabels: (data: any) => void;
   taskLabels: any;
   isSubmitting: boolean;
 };
 
 const AddTaskForm = (props: Props) => {
-  const {
-    values,
-    setFieldValue,
-    isSubmitting = false,
-    setTaskLabels,
-    taskLabels,
-  } = props;
+  const { values, setFieldValue, isSubmitting = false, setTaskLabels, taskLabels } = props;
 
   const { labelList, priorityList, staffList } = useTodoContext();
 
@@ -71,7 +61,7 @@ const AddTaskForm = (props: Props) => {
         width: '100%',
       }}
       noValidate
-      autoComplete='off'
+      autoComplete="off"
     >
       <div>
         <AppTextField
@@ -80,39 +70,37 @@ const AddTaskForm = (props: Props) => {
             fontWeight: Fonts.LIGHT,
             marginBottom: 5,
           }}
-          variant='outlined'
-          label={<IntlMessages id='todo.taskTitle' />}
-          name='title'
+          variant="outlined"
+          label={<IntlMessages id="todo.taskTitle" />}
+          name="title"
         />
 
-        <Box mb={5}>
+        <Box
+          sx={{
+            mb: 5,
+          }}
+        >
           <AppGridContainer spacing={5}>
             <Grid item xs={12} sm={6} md={3}>
               <FormControl
                 sx={{
                   width: '100%',
-
                   '& .MuiOutlinedInput-input': {
                     paddingTop: 2,
                     paddingBottom: 1.5,
                     minHeight: 42,
                   },
                 }}
-                variant='outlined'
+                variant="outlined"
               >
-                <InputLabel
-                  ref={inputLabel}
-                  id='assigned-to-select-outlined-label'
-                >
-                  <IntlMessages id='common.staff' />
+                <InputLabel ref={inputLabel} id="assigned-to-select-outlined-label">
+                  <IntlMessages id="common.staff" />
                 </InputLabel>
                 <Select
-                  labelId='assigned-to-select-outlined-label'
-                  name='assignedTo'
-                  label={<IntlMessages id='common.staff' />}
-                  onChange={(event) =>
-                    setFieldValue('assignedTo', event.target.value)
-                  }
+                  labelId="assigned-to-select-outlined-label"
+                  name="assignedTo"
+                  label={<IntlMessages id="common.staff" />}
+                  onChange={(event) => setFieldValue('assignedTo', event.target.value)}
                   sx={{
                     width: '100%',
                   }}
@@ -127,7 +115,12 @@ const AddTaskForm = (props: Props) => {
                           inputVariant: 'outlined',
                         }}
                       >
-                        <Box display='flex' alignItems='center'>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                          }}
+                        >
                           {staff.image ? (
                             <Avatar
                               sx={{
@@ -154,9 +147,13 @@ const AddTaskForm = (props: Props) => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Box width={1}>
+              <Box
+                sx={{
+                  width: 1,
+                }}
+              >
                 <DatePicker
-                  label={<IntlMessages id='common.startDate' />}
+                  label={<IntlMessages id="common.startDate" />}
                   value={values.startDate}
                   onChange={(value) => setFieldValue('startDate', value)}
                 />
@@ -168,15 +165,12 @@ const AddTaskForm = (props: Props) => {
                 sx={{
                   width: '100%',
                 }}
-                variant='outlined'
+                variant="outlined"
               >
-                <InputLabel
-                  ref={inputLabel}
-                  id='demo-simple-select-outlined-label'
-                >
-                  <IntlMessages id='common.priority' />
+                <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
+                  <IntlMessages id="common.priority" />
                 </InputLabel>
-                <Select label='priority' name='priority'>
+                <Select label="priority" name="priority">
                   {priorityList.map((priority) => {
                     return (
                       <MenuItem
@@ -198,36 +192,35 @@ const AddTaskForm = (props: Props) => {
             <Grid item xs={12} sm={6} md={3}>
               <Autocomplete
                 multiple
-                id='tags-outlined'
+                id="tags-outlined"
                 options={labelList}
                 getOptionLabel={(option) => option.name}
                 value={taskLabels}
                 onChange={(event, value) => setTaskLabels(value)}
                 filterSelectedOptions
                 renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant='outlined'
-                    label={<IntlMessages id='common.label' />}
-                    fullWidth
-                  />
+                  <TextField {...params} variant="outlined" label={<IntlMessages id="common.label" />} fullWidth />
                 )}
               />
             </Grid>
           </AppGridContainer>
         </Box>
 
-        <Box mb={5}>
+        <Box
+          sx={{
+            mb: 5,
+          }}
+        >
           <AppTextField
-            name='content'
+            name="content"
             multiline
             sx={{
               width: '100%',
               backgroundColor: 'background.paper',
               color: 'text.primary',
             }}
-            rows='6'
-            variant='outlined'
+            rows="6"
+            variant="outlined"
             placeholder={messages['common.description'] as string}
           />
         </Box>
@@ -240,12 +233,12 @@ const AddTaskForm = (props: Props) => {
             position: 'relative',
             minWidth: 100,
           }}
-          color='primary'
-          variant='outlined'
+          color="primary"
+          variant="outlined"
           disabled={isSubmitting}
-          type='submit'
+          type="submit"
         >
-          <IntlMessages id='common.save' />
+          <IntlMessages id="common.save" />
         </Button>
       </div>
     </Form>

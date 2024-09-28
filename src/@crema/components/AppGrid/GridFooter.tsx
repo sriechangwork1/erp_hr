@@ -10,16 +10,16 @@ const GridFooter: React.FC<GridFooterProps> = ({ loading, footerText }) => {
   if (loading) {
     return (
       <Box
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           display: 'flex',
-          color: (theme) => theme.palette.text.secondary,
+          color: theme.palette.text.secondary,
           justifyContent: 'center',
           padding: 8,
           '& .loading': {
             marginLeft: 8,
           },
-        }}
+        })}
       >
         <CircularProgress size={16} />
         <span className="loading">Loading...</span>
@@ -28,12 +28,12 @@ const GridFooter: React.FC<GridFooterProps> = ({ loading, footerText }) => {
   } else {
     return (
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: 10,
-          color: (theme) => theme.palette.text.secondary,
+          color: theme.palette.text.secondary,
           display: 'flex',
           justifyContent: 'center',
-        }}
+        })}
       >
         <Typography>{footerText}</Typography>
       </Box>

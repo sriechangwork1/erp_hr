@@ -1,10 +1,10 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import PropTypes from "prop-types";
-import { Typography } from "@mui/material";
-import type { UpcomingAppointmentType } from "@crema/types/models/dashboards/HealthCare";
-import { Fonts } from "@crema/constants/AppEnums";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
+import { Typography } from '@mui/material';
+import type { UpcomingAppointmentType } from '@crema/types/models/dashboards/HealthCare';
+import { Fonts } from '@crema/constants/AppEnums';
 
 type Props = {
   appointment: UpcomingAppointmentType;
@@ -14,9 +14,9 @@ const AppointmentCell = ({ appointment }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        padding: "8px 20px",
+        display: 'flex',
+        alignItems: 'center',
+        padding: '8px 20px',
       }}
       className="item-hover"
     >
@@ -43,22 +43,22 @@ const AppointmentCell = ({ appointment }: Props) => {
         >
           {appointment.name}
         </Box>
-        <Box component="p" sx={{ color: "primary.main" }}>
+        <Box component="p" sx={{ color: 'primary.main' }}>
           {appointment.speciality}
         </Box>
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          ml: "auto",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          ml: 'auto',
         }}
       >
         <Box
           component="p"
           sx={{
-            color: "primary.main",
+            color: 'primary.main',
             my: 1,
             fontSize: 13,
             fontWeight: Fonts.BOLD,

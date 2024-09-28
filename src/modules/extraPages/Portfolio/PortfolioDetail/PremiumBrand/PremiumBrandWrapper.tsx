@@ -1,24 +1,24 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-import {alpha, Box} from '@mui/material';
+import { alpha, Box } from '@mui/material';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const PremiumBrandWrapper = ({children}: Props) => {
+const PremiumBrandWrapper = ({ children }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
-        mb: {xs: 7.5, md: 15},
+        mb: { xs: 7.5, md: 15 },
         '& > img': {
           width: '100%',
           display: 'block',
         },
         '& .premium-brand-content': {
-          backgroundColor: (theme) => alpha(theme.palette.common.black, 0.6),
-          color: (theme) => theme.palette.common.white,
+          backgroundColor: alpha(theme.palette.common.black, 0.6),
+          color: theme.palette.common.white,
           position: 'absolute',
           left: 0,
           top: 0,
@@ -31,7 +31,7 @@ const PremiumBrandWrapper = ({children}: Props) => {
           justifyContent: 'center',
           p: 3,
         },
-      }}
+      })}
     >
       {children}
     </Box>

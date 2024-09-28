@@ -15,14 +15,11 @@ const PricingDetail = () => {
 
   return (
     <AppGridContainer>
-      <Typography
-        variant='h1'
-        sx={{ mt: 8, width: '100%', fontSize: 48, textAlign: 'center' }}
-      >
+      <Typography variant="h1" sx={{ mt: 8, width: '100%', fontSize: 48, textAlign: 'center' }}>
         Plans that fit your scale
       </Typography>
       <Typography
-        variant='body1'
+        variant="body1"
         sx={{
           width: '100%',
           fontSize: 20,
@@ -32,23 +29,21 @@ const PricingDetail = () => {
           mb: 6,
         }}
       >
-        Simple, transparent pricing that grows with you. Try any plan free for
-        30 days.
+        Simple, transparent pricing that grows with you. Try any plan free for 30 days.
       </Typography>
       <Box
-        sx={{
+        sx={(theme) => ({
           width: 'fit-content',
           m: 'auto',
           borderRadius: 1.5,
           p: 1,
-          bgcolor: (theme) => theme.palette.background.paper,
+          bgcolor: theme.palette.background.paper,
           display: 'flex',
           alignItems: 'center',
           '.active': {
-            boxShadow:
-              '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
+            boxShadow: '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)',
           },
-        }}
+        })}
       >
         <Box
           className={billingFormat === 'month' ? 'active' : ''}
@@ -77,10 +72,7 @@ const PricingDetail = () => {
         </Box>
       </Box>
       <Grid item xs={12}>
-        <PackageOneNew
-          billingFormat={billingFormat}
-          pricing={pricingData.pricingOneNew}
-        />
+        <PackageOneNew billingFormat={billingFormat} pricing={pricingData.pricingOneNew} />
       </Grid>
       <Box
         sx={{
@@ -91,15 +83,10 @@ const PricingDetail = () => {
         }}
       >
         <Box sx={{ m: '10px auto' }}>
-          <Image
-            src='/assets/images/heartglobe.svg'
-            alt='heartglobe'
-            width={52}
-            height={52}
-          />
+          <Image src="/assets/images/heartglobe.svg" alt="heartglobe" width={52} height={52} />
         </Box>
         <Typography
-          variant='h2'
+          variant="h2"
           sx={{
             m: 'auto',
             width: '40%',
@@ -115,10 +102,7 @@ const PricingDetail = () => {
         <GitPackage pricing={pricingData.gitPackage} />
       </Grid>
       <Grid item xs={12}>
-        <PackageTable
-          billingFormat={billingFormat}
-          pricing={pricingData.tableData}
-        />
+        <PackageTable billingFormat={billingFormat} pricing={pricingData.tableData} />
       </Grid>
       <Grid item xs={12} sx={{ mt: 7 }}>
         <PricingFaq pricingFaq={pricingFaq} />

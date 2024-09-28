@@ -15,19 +15,8 @@ type VerticalNavItemProps = {
   [x: string]: any;
 };
 
-const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
-  children,
-  item,
-  className,
-  level,
-  ...rest
-}) => {
-  const {
-    sidebarTextColor,
-    sidebarMenuSelectedBgColor,
-    sidebarMenuSelectedTextColor,
-    menuStyle,
-  } = useSidebarContext();
+const VerticalNavItem: React.FC<VerticalNavItemProps> = ({ children, item, className, level, ...rest }) => {
+  const { sidebarTextColor, sidebarMenuSelectedBgColor, sidebarMenuSelectedTextColor, menuStyle } = useSidebarContext();
 
   const pathname = usePathname();
   return (
@@ -39,7 +28,7 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
         'curved-menu': menuStyle === MenuStyle.CURVED_MENU,
         active: item.url === pathname,
       })}
-      sx={{
+      sx={(theme) => ({
         height: 40,
         my: 0.25,
         cursor: 'pointer',
@@ -62,7 +51,6 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
           fontWeight: Fonts.MEDIUM,
           fontSize: 14,
         },
-
         '& .MuiTouchRipple-root': {
           zIndex: 1,
         },
@@ -118,7 +106,7 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
             backgroundColor: 'transparent',
           },
           '&.active:after': {
-            backgroundColor: (theme) => theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main,
           },
         },
         '&.curved-menu': {
@@ -167,7 +155,7 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({
             display: 'none',
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

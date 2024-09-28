@@ -1,20 +1,7 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { useGetDataApi } from '@crema/hooks/APIHooks';
-import {
-  FolderType,
-  LabelType,
-  PriorityType,
-  StaffType,
-  StatusType,
-  TodoType,
-} from '@crema/types/models/apps/Todo';
+import { FolderType, LabelType, PriorityType, StaffType, StatusType, TodoType } from '@crema/types/models/apps/Todo';
 import { APIDataProps } from '@crema/types/models/APIDataProps';
 import { useParams, usePathname } from 'next/navigation';
 
@@ -41,10 +28,7 @@ export type TodoContextType = {
 export type TodoActionContextType = {
   setTodoData: (data: APIDataProps<TodoType[]>) => void;
   setQueryParams: (data: object) => void;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number,
-  ) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, data: number) => void;
   reCallAPI: () => void;
   setPage: (data: number) => void;
   setViewMode: (data: string) => void;
@@ -70,10 +54,7 @@ const TodoContext = createContext<TodoContextType>(ContextState);
 const TodoActionsContext = createContext<TodoActionContextType>({
   setTodoData: (data: APIDataProps<TodoType[]>) => {},
   setQueryParams: (data: object) => {},
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    data: number,
-  ) => {},
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, data: number) => {},
   reCallAPI: () => {},
   setPage: (data: number) => {},
   setViewMode: (data: string) => {},
@@ -100,23 +81,15 @@ export const TodoContextProvider = ({ children }: Props) => {
   }
   const [viewMode, setViewMode] = useState(ViewMode.List);
   const [{ apiData: labelList }] = useGetDataApi<LabelType[]>('/todo/labels');
-  const [{ apiData: priorityList }] =
-    useGetDataApi<PriorityType[]>('/todo/priority');
+  const [{ apiData: priorityList }] = useGetDataApi<PriorityType[]>('/todo/priority');
   const [{ apiData: staffList }] = useGetDataApi<StaffType[]>('todo/staff');
-  const [{ apiData: folderList }] = useGetDataApi<FolderType[]>(
-    'todo/folders',
-    [],
-  );
-  const [{ apiData: statusList }] = useGetDataApi<StatusType[]>(
-    '/todo/status',
-    [],
-  );
+  const [{ apiData: folderList }] = useGetDataApi<FolderType[]>('todo/folders', []);
+  const [{ apiData: statusList }] = useGetDataApi<StatusType[]>('/todo/status', []);
   const [page, setPage] = useState(0);
 
-  const [
-    { apiData: taskLists, loading },
-    { setQueryParams, setData: setTodoData, reCallAPI },
-  ] = useGetDataApi<APIDataProps<TodoType[]>>('todo', undefined, {}, false);
+  const [{ apiData: taskLists, loading }, { setQueryParams, setData: setTodoData, reCallAPI }] = useGetDataApi<
+    APIDataProps<TodoType[]>
+  >('todo', undefined, {}, false);
 
   useEffect(() => {
     setPage(0);
@@ -131,10 +104,7 @@ export const TodoContextProvider = ({ children }: Props) => {
       });
   }, [page, folder, label]);
 
-  const onPageChange = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    value: number,
-  ) => {
+  const onPageChange = (event: React.MouseEvent<HTMLButtonElement> | null, value: number) => {
     setPage(value);
   };
 

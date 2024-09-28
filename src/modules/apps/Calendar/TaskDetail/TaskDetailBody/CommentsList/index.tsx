@@ -44,8 +44,8 @@ const CommentsList = ({ comments = [] }: Props) => {
         marginBottom: 5,
       }}
     >
-      <Box sx={{ mb: 4, fontWeight: Fonts.SEMI_BOLD }} component='h4'>
-        <IntlMessages id='common.comments' />
+      <Box sx={{ mb: 4, fontWeight: Fonts.SEMI_BOLD }} component="h4">
+        <IntlMessages id="common.comments" />
       </Box>
       <StyledSimpleBarReact ref={_scrollBarRef}>
         <AppList
@@ -54,13 +54,9 @@ const CommentsList = ({ comments = [] }: Props) => {
             <CommentsListItem
               item={item}
               key={index}
-              isPreviousSender={
-                index > 0 && item.name === comments[index - 1].name
-              }
+              isPreviousSender={index > 0 && item.name === comments[index - 1].name}
               isLast={
-                (index + 1 < comments.length &&
-                  item.name !== comments[index + 1].name) ||
-                index + 1 === comments.length
+                (index + 1 < comments.length && item.name !== comments[index + 1].name) || index + 1 === comments.length
               }
             />
           )}

@@ -21,11 +21,7 @@ const HospitalActivity = ({ data = [] }: Props) => {
       title={messages['healthCare.hospitalActivity'] as string}
       action={
         <AppSelect
-          menus={[
-            messages['dashboard.thisWeek'],
-            messages['dashboard.lastWeeks'],
-            messages['dashboard.lastMonth'],
-          ]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
           defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />

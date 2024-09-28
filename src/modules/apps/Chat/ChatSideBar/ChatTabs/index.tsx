@@ -34,8 +34,8 @@ const TabLabel = styled(Tab)(() => {
 });
 
 const tabs = [
-  { id: 1, name: <IntlMessages id='dashboard.messages' /> },
-  { id: 2, name: <IntlMessages id='chatApp.contacts' /> },
+  { id: 1, name: <IntlMessages id="dashboard.messages" /> },
+  { id: 2, name: <IntlMessages id="chatApp.contacts" /> },
 ];
 
 type UserTabsProps = {
@@ -77,30 +77,24 @@ const UserTabs: React.FC<UserTabsProps> = ({
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor='primary'
-          textColor='primary'
-          variant='scrollable'
-          scrollButtons='auto'
-          aria-label='scrollable auto tabs example'
-          sx={{
-            borderBottom: (theme) => `1px solid ${theme.palette.grey[300]}`,
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+          sx={(theme) => ({
+            borderBottom: `1px solid ${theme.palette.grey[300]}`,
             position: 'relative',
             '& .MuiTabs-flexContainer': {
               justifyContent: 'center',
             },
-          }}
+          })}
         >
           {tabs.map((tab, index) => {
             return (
               <TabLabel
                 key={tab.id}
-                icon={
-                  tab.id === 1 ? (
-                    <ChatOutlinedIcon />
-                  ) : (
-                    <AccountBoxOutlinedIcon />
-                  )
-                }
+                icon={tab.id === 1 ? <ChatOutlinedIcon /> : <AccountBoxOutlinedIcon />}
                 label={tab.name}
                 {...a11yProps(index)}
               />
@@ -108,7 +102,6 @@ const UserTabs: React.FC<UserTabsProps> = ({
           })}
         </Tabs>
       </Box>
-
       <AppScrollbar
         sx={{
           display: 'flex',
@@ -132,7 +125,7 @@ const UserTabs: React.FC<UserTabsProps> = ({
                     px: 5,
                     fontWeight: Fonts.SEMI_BOLD,
                   }}
-                  component='h4'
+                  component="h4"
                 >
                   Connections
                 </Box>
@@ -155,7 +148,7 @@ const UserTabs: React.FC<UserTabsProps> = ({
                     px: 5,
                     fontWeight: Fonts.SEMI_BOLD,
                   }}
-                  component='h4'
+                  component="h4"
                 >
                   Contacts
                 </Box>

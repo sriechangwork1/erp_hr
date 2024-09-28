@@ -37,7 +37,7 @@ const WhatsHappenItem = ({ data }: Props) => {
   const { imgSrc, subTitle, title } = data;
   return (
     <Box
-      className='item-hover'
+      className="item-hover"
       sx={{
         position: 'relative',
         display: 'flex',
@@ -46,7 +46,7 @@ const WhatsHappenItem = ({ data }: Props) => {
       }}
     >
       <ThumbWrapper>
-        <Image src={`${imgSrc}`} alt='happen img' width={56} height={58} />
+        <Image src={`${imgSrc}`} alt="happen img" width={56} height={58} />
       </ThumbWrapper>
       <Box
         sx={{
@@ -54,12 +54,12 @@ const WhatsHappenItem = ({ data }: Props) => {
           width: 'calc(100% - 98px)',
         }}
       >
-        <StyledBox component='p' color='text.secondary'>
+        <StyledBox component="p" color="text.secondary">
           {subTitle}
         </StyledBox>
         <Typography
-          component='h5'
-          variant='h5'
+          component="h5"
+          variant="h5"
           sx={{
             fontWeight: Fonts.SEMI_BOLD,
             marginBottom: 1,
@@ -70,9 +70,15 @@ const WhatsHappenItem = ({ data }: Props) => {
         >
           {title}
         </Typography>
-        <StyledBox color='primary.main' component='p'>
+        <StyledBox color="primary.main" component="p">
           {data.tag.map((val) => (
-            <Box component='span' mr={1} key={val.id}>
+            <Box
+              component="span"
+              key={val.id}
+              sx={{
+                mr: 1,
+              }}
+            >
               #{val.name}
             </Box>
           ))}
@@ -90,7 +96,7 @@ const WhatsHappenItem = ({ data }: Props) => {
             marginTop: -2.5,
             marginRight: -3,
           }}
-          size='large'
+          size="large"
         >
           <MoreHorizIcon />
         </IconButton>

@@ -5,10 +5,7 @@ import clsx from 'clsx';
 import { CustomizerItemWrapper, StyledToggleButton } from '../index.style';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { ThemeMode } from '@crema/constants/AppEnums';
-import {
-  useThemeActionsContext,
-  useThemeContext,
-} from '@crema/context/AppContextProvider/ThemeContextProvider';
+import { useThemeActionsContext, useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import {
   backgroundDark,
@@ -31,8 +28,7 @@ const ThemeModes = () => {
           sidebarBgColor: LightSidebar.sidebarBgColor,
           sidebarTextColor: LightSidebar.sidebarTextColor,
           sidebarMenuSelectedBgColor: LightSidebar.sidebarMenuSelectedBgColor,
-          sidebarMenuSelectedTextColor:
-            LightSidebar.sidebarMenuSelectedTextColor,
+          sidebarMenuSelectedTextColor: LightSidebar.sidebarMenuSelectedTextColor,
           sidebarHeaderColor: LightSidebar.sidebarHeaderColor,
           mode: 'Light',
         });
@@ -41,8 +37,7 @@ const ThemeModes = () => {
           sidebarBgColor: DarkSidebar.sidebarBgColor,
           sidebarTextColor: DarkSidebar.sidebarTextColor,
           sidebarMenuSelectedBgColor: DarkSidebar.sidebarMenuSelectedBgColor,
-          sidebarMenuSelectedTextColor:
-            DarkSidebar.sidebarMenuSelectedTextColor,
+          sidebarMenuSelectedTextColor: DarkSidebar.sidebarMenuSelectedTextColor,
           sidebarHeaderColor: DarkSidebar.sidebarHeaderColor,
           mode: 'Dark',
         });
@@ -53,8 +48,7 @@ const ThemeModes = () => {
         palette: {
           ...theme.palette,
           mode: themeMode === ThemeMode.DARK ? ThemeMode.DARK : ThemeMode.LIGHT,
-          background:
-            themeMode === ThemeMode.DARK ? backgroundDark : backgroundLight,
+          background: themeMode === ThemeMode.DARK ? backgroundDark : backgroundLight,
           text: themeMode === ThemeMode.DARK ? textDark : textLight,
         },
       });
@@ -63,35 +57,28 @@ const ThemeModes = () => {
 
   return (
     <CustomizerItemWrapper>
-      <Box component='h4' sx={{ mb: 2 }}>
-        <IntlMessages id='customizer.themeMode' />
+      <Box component="h4" sx={{ mb: 2 }}>
+        <IntlMessages id="customizer.themeMode" />
       </Box>
-      <ToggleButtonGroup
-        value={themeMode}
-        exclusive
-        onChange={onModeChange}
-        aria-label='text alignment'
-      >
+      <ToggleButtonGroup value={themeMode} exclusive onChange={onModeChange} aria-label="text alignment">
         <StyledToggleButton
           value={ThemeMode.LIGHT}
           className={clsx({
             active: themeMode === ThemeMode.LIGHT,
           })}
-          aria-label='left aligned'
+          aria-label="left aligned"
         >
-          <IntlMessages id='customizer.light' />
+          <IntlMessages id="customizer.light" />
         </StyledToggleButton>
 
         <StyledToggleButton
           value={ThemeMode.DARK}
           className={clsx({
-            active:
-              themeMode === ThemeMode.DARK ||
-              theme.palette.type === ThemeMode.DARK,
+            active: themeMode === ThemeMode.DARK || theme.palette.type === ThemeMode.DARK,
           })}
-          aria-label='centered'
+          aria-label="centered"
         >
-          <IntlMessages id='customizer.dark' />
+          <IntlMessages id="customizer.dark" />
         </StyledToggleButton>
       </ToggleButtonGroup>
     </CustomizerItemWrapper>

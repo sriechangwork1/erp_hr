@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Box } from "@mui/material";
+import React, { ReactNode } from 'react';
+import { Box } from '@mui/material';
 
 interface MediaSliderProps {
   children: ReactNode;
@@ -8,83 +8,83 @@ interface MediaSliderProps {
 const MediaSlider: React.FC<MediaSliderProps> = ({ children }) => {
   return (
     <Box
-      sx={{
-        "& .slick-slider": {
+      sx={(theme) => ({
+        '& .slick-slider': {
           pb: 5,
         },
-        "& .slick-slide img": {
-          width: "100%",
+        '& .slick-slide img': {
+          width: '100%',
           borderRadius: 2.5,
         },
-        "& .slick-dots": {
+        '& .slick-dots': {
           bottom: 0,
-          "& li": {
+          '& li': {
             width: 10,
             height: 10,
-            transition: "all 0.4s ease",
-            "& button": {
+            transition: 'all 0.4s ease',
+            '& button': {
               width: 10,
               height: 10,
               padding: 0,
-              transition: "all 0.4s ease",
+              transition: 'all 0.4s ease',
             },
-            "& button:before": {
+            '& button:before': {
               fontSize: 0,
-              backgroundColor: "primary.main",
+              backgroundColor: 'primary.main',
               width: 10,
               height: 10,
-              borderRadius: "50%",
-              transition: "all 0.4s ease",
+              borderRadius: '50%',
+              transition: 'all 0.4s ease',
             },
-            "&.slick-active": {
+            '&.slick-active': {
               width: 20,
-              "& button": {
+              '& button': {
                 width: 20,
               },
-              "& button:before": {
+              '& button:before': {
                 width: 20,
                 borderRadius: 10,
               },
             },
           },
         },
-        "& .slick-prev, & .slick-next": {
-          backgroundColor: (theme) => theme.palette.common.white,
+        '& .slick-prev, & .slick-next': {
+          backgroundColor: theme.palette.common.white,
           width: 30,
           height: 30,
-          borderRadius: "50%",
-          display: "flex !important",
-          alignItems: "center",
-          justifyContent: "center",
-          "&:hover, &:focus": {
-            backgroundColor: (theme) => theme.palette.common.white,
+          borderRadius: '50%',
+          display: 'flex !important',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '&:hover, &:focus': {
+            backgroundColor: theme.palette.common.white,
           },
-          "&:before": {
-            color: (theme) => theme.palette.common.black,
+          '&:before': {
+            color: theme.palette.common.black,
             fontSize: 0,
             backgroundImage: `url('/assets/images/arrow-prev.svg')`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center",
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
             width: 20,
             height: 20,
-            display: "block",
+            display: 'block',
             mr: 1,
           },
         },
-        "& .slick-next": {
+        '& .slick-next': {
           right: 15,
           zIndex: 1,
-          "&:before": {
+          '&:before': {
             backgroundImage: `url('/assets/images/arrow-next.svg')`,
             mr: 0,
             ml: 0.75,
           },
         },
-        "& .slick-prev": {
+        '& .slick-prev': {
           left: 15,
           zIndex: 1,
         },
-      }}
+      })}
     >
       {children}
     </Box>

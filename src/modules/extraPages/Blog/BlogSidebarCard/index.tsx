@@ -1,12 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { useIntl } from "react-intl";
-import RecentPost from "./RecentPost";
-import Categories from "./Categories";
-import TagCloud from "./TagCloud";
-import AppCard from "@crema/components/AppCard";
-import AppSearchBar from "@crema/components/AppSearchBar";
-import { BlogSidebarType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { useIntl } from 'react-intl';
+import RecentPost from './RecentPost';
+import Categories from './Categories';
+import TagCloud from './TagCloud';
+import AppCard from '@crema/components/AppCard';
+import AppSearchBar from '@crema/components/AppSearchBar';
+import { BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   blogSidebar?: BlogSidebarType;
@@ -18,17 +18,17 @@ const BlogSidebarCard = ({ blogSidebar }: Props) => {
   return (
     <AppCard>
       <Box
-        sx={{
+        sx={(theme) => ({
           mb: 5.5,
           pb: 5,
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-        }}
+          borderBottom: `solid 1px ${theme.palette.divider}`,
+        })}
       >
         <AppSearchBar
           disableFocus
           iconPosition="right"
           overlap={false}
-          placeholder={messages["common.searchHere"] as string}
+          placeholder={messages['common.searchHere'] as string}
         />
       </Box>
       <RecentPost recentPost={blogSidebar?.recentPost} />

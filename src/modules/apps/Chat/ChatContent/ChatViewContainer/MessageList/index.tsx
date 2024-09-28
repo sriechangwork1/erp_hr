@@ -1,14 +1,10 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import SenderMessageItem from "./SenderMessageItem";
-import ReceiverMessageItem from "./ReceiverMessageItem";
-import AppList from "@crema/components/AppList";
-import {
-  ConnectionType,
-  MessageDataType,
-  MessageObjType,
-} from "@crema/types/models/apps/Chat";
-import { AuthUserType } from "@crema/types/models/AuthUser";
+import React from 'react';
+import Box from '@mui/material/Box';
+import SenderMessageItem from './SenderMessageItem';
+import ReceiverMessageItem from './ReceiverMessageItem';
+import AppList from '@crema/components/AppList';
+import { ConnectionType, MessageDataType, MessageObjType } from '@crema/types/models/apps/Chat';
+import { AuthUserType } from '@crema/types/models/AuthUser';
 
 type MessagesListProps = {
   userMessages: MessageObjType;
@@ -43,14 +39,10 @@ const MessageList = ({
                 key={item.id}
                 onClickEditMessage={onClickEditMessage}
                 deleteMessage={deleteMessage}
-                isPreviousSender={
-                  index > 0 &&
-                  item.sender === userMessages.messageData[index - 1].sender
-                }
+                isPreviousSender={index > 0 && item.sender === userMessages.messageData[index - 1].sender}
                 isLast={
                   (index + 1 < userMessages.messageData.length &&
-                    item.sender !==
-                      userMessages.messageData[index + 1].sender) ||
+                    item.sender !== userMessages.messageData[index + 1].sender) ||
                   index + 1 === userMessages.messageData.length
                 }
               />
@@ -61,14 +53,10 @@ const MessageList = ({
                 selectedUser={selectedUser}
                 item={item}
                 key={item.id}
-                isPreviousSender={
-                  index > 0 &&
-                  item.sender === userMessages.messageData[index - 1].sender
-                }
+                isPreviousSender={index > 0 && item.sender === userMessages.messageData[index - 1].sender}
                 isLast={
                   (index + 1 < userMessages.messageData.length &&
-                    item.sender !==
-                      userMessages.messageData[index + 1].sender) ||
+                    item.sender !== userMessages.messageData[index + 1].sender) ||
                   index + 1 === userMessages.messageData.length
                 }
               />

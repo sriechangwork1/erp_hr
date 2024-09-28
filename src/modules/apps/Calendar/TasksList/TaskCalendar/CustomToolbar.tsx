@@ -117,14 +117,14 @@ const CustomToolbar = (props: Props) => {
           mb: 2,
         }}
       >
-        <Stack spacing={2} direction='row' sx={{ alignItems: 'center' }}>
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
           <IconBtn
             className={clsx({
               active: viewState === 'month',
             })}
             onClick={goToMonthView}
           >
-            <AppTooltip title='Month'>
+            <AppTooltip title="Month">
               <CalendarViewMonthOutlinedIcon />
             </AppTooltip>
           </IconBtn>
@@ -134,43 +134,33 @@ const CustomToolbar = (props: Props) => {
             })}
             onClick={goToAgenda}
           >
-            <AppTooltip title='Agenda'>
+            <AppTooltip title="Agenda">
               <ViewAgendaOutlinedIcon />
             </AppTooltip>
           </IconBtn>
           <Box sx={{ mr: 3 }}>
             <AppSearchBar
-              iconPosition='right'
+              iconPosition="right"
               overlap={false}
-              onChange={(event: any) =>
-                props.onSetFilterText(event.target.value)
-              }
+              onChange={(event: any) => props.onSetFilterText(event.target.value)}
               placeholder={messages['common.searchHere'] as string}
             />
           </Box>
         </Stack>
 
-        <Box sx={{ fontWeight: Fonts.SEMI_BOLD }}>
-          {dayjs(props.date).format('DD/MM/YYYY')}
-        </Box>
+        <Box sx={{ fontWeight: Fonts.SEMI_BOLD }}>{dayjs(props.date).format('DD/MM/YYYY')}</Box>
 
-        <Stack spacing={2} direction='row' sx={{ alignItems: 'center' }}>
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'center' }}>
           <IconButton onClick={goToBack}>
-            <AppTooltip title='Next'>
+            <AppTooltip title="Next">
               <ArrowBackIosNewIcon />
             </AppTooltip>
           </IconButton>
-          <Button
-            sx={{ maxHeight: 36 }}
-            size='small'
-            color='primary'
-            variant='contained'
-            onClick={goToToday}
-          >
+          <Button sx={{ maxHeight: 36 }} size="small" color="primary" variant="contained" onClick={goToToday}>
             today
           </Button>
           <IconButton onClick={goToNext}>
-            <AppTooltip title='Next'>
+            <AppTooltip title="Next">
               <ArrowForwardIosIcon />
             </AppTooltip>
           </IconButton>

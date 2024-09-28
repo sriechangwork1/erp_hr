@@ -13,12 +13,7 @@ import { styled } from '@mui/material/styles';
 import { postDataApi, putDataApi, useGetDataApi } from '@crema/hooks/APIHooks';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 
-import {
-  ConnectionType,
-  MessageDataType,
-  MessageObjType,
-  MessageType,
-} from '@crema/types/models/apps/Chat';
+import { ConnectionType, MessageDataType, MessageObjType, MessageType } from '@crema/types/models/apps/Chat';
 import { useChatActionsContext } from '../../../context/ChatContextProvider';
 import MessagesList from './MessageList';
 
@@ -48,25 +43,18 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
   const { setConnectionData } = useChatActionsContext();
   const [isEdit, setIsEdit] = useState(false);
   const infoViewActionsContext = useInfoViewActionsContext();
-  const [selectedMessage, setSelectedMessage] =
-    useState<MessageDataType | null>(null);
+  const [selectedMessage, setSelectedMessage] = useState<MessageDataType | null>(null);
   const { user } = useAuthUser();
 
   const _scrollBarRef = useRef<any>(null);
-  const [{ apiData: userMessages }, { setQueryParams, setData }] =
-    useGetDataApi<MessageObjType>('/chat');
+  const [{ apiData: userMessages }, { setQueryParams, setData }] = useGetDataApi<MessageObjType>('/chat');
 
   useEffect(() => {
-    if (selectedUser?.channelId)
-      setQueryParams({ id: selectedUser?.channelId });
+    if (selectedUser?.channelId) setQueryParams({ id: selectedUser?.channelId });
   }, [selectedUser?.channelId]);
 
   useEffect(() => {
-    if (
-      userMessages &&
-      userMessages.messageData &&
-      userMessages.messageData.length > 0
-    ) {
+    if (userMessages && userMessages.messageData && userMessages.messageData.length > 0) {
       if (_scrollBarRef?.current) {
         const scrollEl = _scrollBarRef.current!.getScrollElement();
         scrollEl.scrollTop = scrollEl.scrollHeight;
@@ -165,13 +153,9 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
   };
 
   const deleteConversation = () => {
-    postDataApi<ConnectionType[]>(
-      '/chat/deleteUserMessages',
-      infoViewActionsContext,
-      {
-        channelId: selectedUser?.channelId,
-      },
-    )
+    postDataApi<ConnectionType[]>('/chat/deleteUserMessages', infoViewActionsContext, {
+      channelId: selectedUser?.channelId,
+    })
       .then((data) => {
         setSelectedUser(undefined as any);
         setConnectionData(data);
@@ -195,10 +179,7 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
       }}
     >
       <AppsHeader>
-        <Header
-          selectedUser={selectedUser}
-          deleteConversation={deleteConversation}
-        />
+        <Header selectedUser={selectedUser} deleteConversation={deleteConversation} />
       </AppsHeader>
 
       {userMessages && user ? (
@@ -214,23 +195,19 @@ const ChatViewContainer = ({ selectedUser, setSelectedUser }: Props) => {
       ) : (
         <ScrollChatNoMainWrapper>
           <Box
-            component='span'
+            component="span"
             sx={{
               fontSize: 18,
               color: 'grey.500',
             }}
           >
-            <IntlMessages id='chatApp.sayHi' /> {selectedUser.name}
+            <IntlMessages id="chatApp.sayHi" /> {selectedUser.name}
           </Box>
         </ScrollChatNoMainWrapper>
       )}
 
       <AppsFooter>
-        <SendMessage
-          currentMessage={message}
-          sendFileMessage={sendFileMessage}
-          onSendMessage={onSend}
-        />
+        <SendMessage currentMessage={message} sendFileMessage={sendFileMessage} onSendMessage={onSend} />
       </AppsFooter>
     </Box>
   );

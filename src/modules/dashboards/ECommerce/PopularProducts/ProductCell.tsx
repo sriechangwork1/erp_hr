@@ -1,10 +1,10 @@
-import React from "react";
-import Avatar from "@mui/material/Avatar";
-import PropTypes from "prop-types";
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { PopularProductType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { PopularProductType } from '@crema/types/models/dashboards/Ecommerce';
 
 type Props = {
   data: PopularProductType;
@@ -14,9 +14,9 @@ const ProductCell = ({ data }: Props) => {
   return (
     <Box
       sx={{
-        padding: "8px 20px",
-        display: "flex",
-        alignItems: "center",
+        padding: '8px 20px',
+        display: 'flex',
+        alignItems: 'center',
       }}
       key={data.id}
       className="item-hover"
@@ -31,13 +31,12 @@ const ProductCell = ({ data }: Props) => {
           mr: 4,
         }}
       />
-
       <Box sx={{ flex: 1 }}>
         <Typography
-          sx={{
-            color: (theme) => theme.palette.primary.main,
+          sx={(theme) => ({
+            color: theme.palette.primary.main,
             mb: 0.5,
-          }}
+          })}
           component="h5"
           variant="h5"
         >
@@ -46,19 +45,19 @@ const ProductCell = ({ data }: Props) => {
         <Typography
           sx={{
             fontWeight: Fonts.MEDIUM,
-            "& span": {
-              display: "inline-block",
+            '& span': {
+              display: 'inline-block',
             },
           }}
         >
           <span>${data.price}</span>
           <Box
             component="span"
-            sx={{
+            sx={(theme) => ({
               ml: 3,
-              color: (theme) => theme.palette.text.secondary,
-              textDecoration: "line-through",
-            }}
+              color: theme.palette.text.secondary,
+              textDecoration: 'line-through',
+            })}
           >
             ${data.mrp}
           </Box>

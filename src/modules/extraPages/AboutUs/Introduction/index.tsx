@@ -24,10 +24,10 @@ const Introduction = ({ introduction }: IntroductionProps) => {
       }}
     >
       <CardMedia
-        component='img'
+        component="img"
         sx={{ width: { xs: '100%', lg: '50%' } }}
         image={introduction.srcImg}
-        alt='introduction'
+        alt="introduction"
       />
       <CardContent
         sx={{
@@ -37,15 +37,19 @@ const Introduction = ({ introduction }: IntroductionProps) => {
       >
         <Box sx={{ mb: { xs: 5, sm: 8, md: 5, lg: 12, xl: 15 } }}>
           <Typography
-            component='h5'
-            color='primary.main'
-            sx={{ fontSize: 16, fontWeight: Fonts.SEMI_BOLD, mb: 2.5 }}
+            component="h5"
+            sx={{
+              color: 'primary.main',
+              fontSize: 16,
+              fontWeight: Fonts.SEMI_BOLD,
+              mb: 2.5,
+            }}
           >
             {introduction.subTitle}
           </Typography>
           <Typography
-            variant='h2'
-            component='h2'
+            variant="h2"
+            component="h2"
             sx={{
               fontWeight: Fonts.BOLD,
               fontSize: { xs: 20, sm: 24, md: 22, lg: 28, xl: 30 },
@@ -65,7 +69,7 @@ const Introduction = ({ introduction }: IntroductionProps) => {
           }}
         >
           {introduction.introductionList.map((introduction, index) => (
-            <Box className='introduction-item' key={index}>
+            <Box className="introduction-item" key={index}>
               <IntroductionItem data={introduction} />
             </Box>
           ))}

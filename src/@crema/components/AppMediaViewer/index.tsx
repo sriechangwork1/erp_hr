@@ -33,22 +33,14 @@ const renderRow = (data: any, index: number) => {
     );
   } else if (data.mime_type.startsWith('docs')) {
     return (
-      <div className='embed-responsive'>
-        <iframe
-          key={'DOC-' + index}
-          src={data.url}
-          title={data.name ? data.name : 'detail view'}
-        />
+      <div className="embed-responsive">
+        <iframe key={'DOC-' + index} src={data.url} title={data.name ? data.name : 'detail view'} />
       </div>
     );
   } else {
     return (
-      <div className='embed-responsive'>
-        <iframe
-          key={'DOC-' + index}
-          src={data.url}
-          title={data.name ? data.name : 'detail view'}
-        />
+      <div className="embed-responsive">
+        <iframe key={'DOC-' + index} src={data.url} title={data.name ? data.name : 'detail view'} />
       </div>
     );
   }
@@ -70,11 +62,7 @@ type AppMediaViewerProps = {
   onClose: () => void;
 };
 
-const AppMediaViewer: React.FC<AppMediaViewerProps> = ({
-  index,
-  medias,
-  onClose,
-}) => {
+const AppMediaViewer: React.FC<AppMediaViewerProps> = ({ index, medias, onClose }) => {
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
@@ -98,25 +86,25 @@ const AppMediaViewer: React.FC<AppMediaViewerProps> = ({
       TransitionComponent={Transition}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           position: 'relative',
           backgroundColor: 'rgb(49, 53, 65)',
-          color: (theme) => theme.palette.common.white,
+          color: theme.palette.common.white,
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-        }}
+        })}
       >
         <IconButton
-          sx={{
-            color: (theme) => theme.palette.common.white,
+          sx={(theme) => ({
+            color: theme.palette.common.white,
             position: 'absolute',
             left: 10,
             top: 10,
             zIndex: 1,
-          }}
+          })}
           onClick={onClose}
-          size='large'
+          size="large"
         >
           <HighlightOffIcon />
         </IconButton>

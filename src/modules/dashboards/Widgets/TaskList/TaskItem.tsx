@@ -1,9 +1,9 @@
-import React from "react";
-import ListItemText from "@mui/material/ListItemText";
-import Box from "@mui/material/Box";
-import ListItem from "@mui/material/ListItem";
-import { Fonts } from "@crema/constants/AppEnums";
-import { TaskListType } from "@crema/types/models/dashboards/Widgets";
+import React from 'react';
+import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
+import ListItem from '@mui/material/ListItem';
+import { Fonts } from '@crema/constants/AppEnums';
+import { TaskListType } from '@crema/types/models/dashboards/Widgets';
 
 type TaskItemPorps = {
   item: TaskListType;
@@ -14,7 +14,7 @@ const TaskItem: React.FC<TaskItemPorps> = ({ item }) => {
     <ListItem
       key={item.id}
       sx={{
-        padding: "8px 20px",
+        padding: '8px 20px',
       }}
       className="item-hover"
     >
@@ -23,7 +23,7 @@ const TaskItem: React.FC<TaskItemPorps> = ({ item }) => {
           <Box
             component="p"
             sx={{
-              color: "primary.main",
+              color: 'primary.main',
               fontWeight: Fonts.MEDIUM,
               fontSize: 14,
             }}
@@ -35,7 +35,7 @@ const TaskItem: React.FC<TaskItemPorps> = ({ item }) => {
           <Box
             component="span"
             sx={{
-              color: "text.secondary",
+              color: 'text.secondary',
               fontSize: 14,
             }}
           >

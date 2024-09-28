@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import MailContentHeader from './MailContentHeader';
-import { Hidden } from '@mui/material';
+import { Box } from '@mui/material';
 import AppsPagination from '@crema/components/AppsPagination';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
@@ -15,10 +15,7 @@ import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/Inf
 import { MailType } from '@crema/types/models/apps/Mail';
 import { putDataApi } from '@crema/hooks/APIHooks';
 import MailListItemMobile from './MailListItemMobile';
-import {
-  useMailActionsContext,
-  useMailContext,
-} from '../../context/MailContextProvider';
+import { useMailActionsContext, useMailContext } from '../../context/MailContextProvider';
 
 const MailsList = () => {
   const router = useRouter();
@@ -56,9 +53,7 @@ const MailsList = () => {
           onNavigatePage(mail);
           onUpdateItem(data);
           infoViewActionsContext.showMessage(
-            mail.isRead
-              ? 'Mail Marked as Read Successfully'
-              : 'Mail Marked as Unread Successfully',
+            mail.isRead ? 'Mail Marked as Read Successfully' : 'Mail Marked as Unread Successfully',
           );
         })
         .catch((error) => {
@@ -75,9 +70,7 @@ const MailsList = () => {
       .then((data) => {
         onUpdateItem(data[0]);
         infoViewActionsContext.showMessage(
-          checked
-            ? 'Mail Marked as Starred Successfully'
-            : 'Mail Marked as Unstarred Successfully',
+          checked ? 'Mail Marked as Starred Successfully' : 'Mail Marked as Unstarred Successfully',
         );
       })
       .catch((error) => {
@@ -132,19 +125,14 @@ const MailsList = () => {
         />
       </AppsHeader>
       <AppsContent>
-        <Hidden smDown>
+        <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
           <AppList
             sx={{
               paddingTop: 0,
               paddingBottom: 0,
             }}
             data={list}
-            ListEmptyComponent={
-              <ListEmptyResult
-                loading={loading}
-                placeholder={<EmailListSkeleton />}
-              />
-            }
+            ListEmptyComponent={<ListEmptyResult loading={loading} placeholder={<EmailListSkeleton />} />}
             renderRow={(mail) => (
               <MailListItem
                 key={mail.id}
@@ -158,20 +146,15 @@ const MailsList = () => {
               />
             )}
           />
-        </Hidden>
-        <Hidden smUp>
+        </Box>
+        <Box sx={{ display: { sm: 'none', xs: 'block' } }}>
           <AppList
             sx={{
               paddingTop: 0,
               paddingBottom: 0,
             }}
             data={list}
-            ListEmptyComponent={
-              <ListEmptyResult
-                loading={loading}
-                placeholder={<EmailListSkeleton />}
-              />
-            }
+            ListEmptyComponent={<ListEmptyResult loading={loading} placeholder={<EmailListSkeleton />} />}
             renderRow={(mail) => (
               <MailListItemMobile
                 key={mail.id}
@@ -183,19 +166,15 @@ const MailsList = () => {
               />
             )}
           />
-        </Hidden>
+        </Box>
       </AppsContent>
-      <Hidden smUp>
+      <Box sx={{ display: { sm: 'none', xs: 'block' } }}>
         {list?.length > 0 ? (
           <AppsFooter>
-            <AppsPagination
-              count={mailList?.count as number}
-              page={page}
-              onPageChange={onPageChange}
-            />
+            <AppsPagination count={mailList?.count as number} page={page} onPageChange={onPageChange} />
           </AppsFooter>
         ) : null}
-      </Hidden>
+      </Box>
     </>
   );
 };

@@ -23,9 +23,7 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
 
   const onChangePriority = (event: SelectChangeEvent<number>) => {
     setPriority(event.target.value as number);
-    const priority = priorityList.find(
-      (data) => data.type.toString() === event.target.value.toString(),
-    );
+    const priority = priorityList.find((data) => data.type.toString() === event.target.value.toString());
     const task = selectedTask;
     task.priority = priority as PriorityType;
     putDataApi<TodoType>('/calender/detail', infoViewActionsContext, {
@@ -41,14 +39,14 @@ const TaskPriority = ({ selectedTask, onUpdateSelectedTask }: Props) => {
   };
 
   return (
-    <FormControl variant='outlined'>
-      <InputLabel id='priority-select-outlined-label'>
-        <IntlMessages id='common.priority' />
+    <FormControl variant="outlined">
+      <InputLabel id="priority-select-outlined-label">
+        <IntlMessages id="common.priority" />
       </InputLabel>
       <Select
-        labelId='priority-select-outlined-label'
-        label={<IntlMessages id='common.priority' />}
-        name='priority'
+        labelId="priority-select-outlined-label"
+        label={<IntlMessages id="common.priority" />}
+        name="priority"
         value={priority}
         onChange={(event) => onChangePriority(event)}
         sx={{

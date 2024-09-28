@@ -1,20 +1,17 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import CheckIcon from "@mui/icons-material/Check";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
-import { ThemeColorsProps } from "./ThemeColors";
+import React from 'react';
+import Box from '@mui/material/Box';
+import CheckIcon from '@mui/icons-material/Check';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
+import { ThemeColorsProps } from './ThemeColors';
 
 type CustomColorCellTypes = {
   themeColorSet: ThemeColorsProps;
   updateThemeColors: (colorSet: ThemeColorsProps) => void;
 };
 
-const CustomColorCell: React.FC<CustomColorCellTypes> = ({
-  themeColorSet,
-  updateThemeColors,
-}) => {
+const CustomColorCell: React.FC<CustomColorCellTypes> = ({ themeColorSet, updateThemeColors }) => {
   const { theme } = useThemeContext();
   return (
     <Box
@@ -24,23 +21,23 @@ const CustomColorCell: React.FC<CustomColorCellTypes> = ({
     >
       <Box
         sx={{
-          width: "100%",
+          width: '100%',
           borderRadius: 1,
-          position: "relative",
-          overflow: "hidden",
-          cursor: "pointer",
+          position: 'relative',
+          overflow: 'hidden',
+          cursor: 'pointer',
         }}
       >
         <Box
-          sx={{
+          sx={(theme) => ({
             px: 2.5,
             py: 2,
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
             backgroundColor: themeColorSet.primary.main,
-            color: (theme) => theme.palette.common.white,
-          }}
+            color: theme.palette.common.white,
+          })}
         >
           Primary
           {theme.palette.primary.main === themeColorSet.primary.main &&
@@ -48,15 +45,15 @@ const CustomColorCell: React.FC<CustomColorCellTypes> = ({
           theme.palette.mode === themeColorSet.mode ? (
             <Box
               sx={{
-                ml: "auto",
+                ml: 'auto',
                 width: 20,
                 height: 20,
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
-                backgroundColor: "#fff",
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                overflow: 'hidden',
+                backgroundColor: '#fff',
                 color: theme.palette.primary.main,
               }}
             >
@@ -83,33 +80,32 @@ const CustomColorCell: React.FC<CustomColorCellTypes> = ({
               py: 1.5,
               px: 2.5,
               mb: 2.5,
-              boxShadow:
-                "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px",
+              boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px',
               borderRadius: 1,
               backgroundColor: themeColorSet.background.paper,
               color: themeColorSet.text.primary,
-              display: "flex",
-              flexDirection: "column",
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
             Paper
             <Box
-              sx={{
+              sx={(theme) => ({
                 width: 30,
                 height: 30,
-                borderRadius: "50%",
+                borderRadius: '50%',
                 p: 1,
                 backgroundColor: themeColorSet.secondary.main,
-                color: (theme) => theme.palette.common.white,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                mt: "auto",
-                ml: "auto",
-                "& svg": {
+                color: theme.palette.common.white,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mt: 'auto',
+                ml: 'auto',
+                '& svg': {
                   fontSize: 20,
                 },
-              }}
+              })}
             >
               <AddOutlinedIcon />
             </Box>

@@ -19,11 +19,7 @@ const AppDatePicker = ({ date, isEndDate, setDate }: Props) => {
       }}
     >
       <DatePicker
-        label={
-          <IntlMessages
-            id={isEndDate ? 'common.endDate' : 'common.startDate'}
-          />
-        }
+        label={<IntlMessages id={isEndDate ? 'common.endDate' : 'common.startDate'} />}
         value={date}
         onChange={(newValue) => setDate(newValue as Dayjs)}
       />

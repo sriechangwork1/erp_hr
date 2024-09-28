@@ -59,13 +59,7 @@ interface Props {
   onChangeStarred: (message: MessageType, isStarred: boolean) => void;
 }
 
-const MessageItem = ({
-  message,
-  mailLength,
-  index,
-  onSubmitMail,
-  onChangeStarred,
-}: Props) => {
+const MessageItem = ({ message, mailLength, index, onSubmitMail, onChangeStarred }: Props) => {
   const [isExpanded, setExpanded] = useState(mailLength === index + 1);
 
   const [{ isReply, isForward }, onSelectMethod] = useState({
@@ -120,29 +114,29 @@ const MessageItem = ({
   const mailDescription = () => {
     return (
       <Box
-        sx={{
+        sx={(theme) => ({
           position: 'relative',
           padding: '12px 16px',
-          color: (theme) => theme.palette.text.primary,
-        }}
+          color: theme.palette.text.primary,
+        })}
       >
         <MailDescriptionItem>
-          <span className='mail-description-name'>from:</span>
+          <span className="mail-description-name">from:</span>
           <span>
             <strong>{message.sender.name}</strong>
             <span style={{ fontSize: 12 }}> {`<${message.sender.email}>`}</span>
           </span>
         </MailDescriptionItem>
         <MailDescriptionItem>
-          <span className='mail-description-name'>reply-to:</span>
+          <span className="mail-description-name">reply-to:</span>
           <span>{message.to[0].email}</span>
         </MailDescriptionItem>
         <MailDescriptionItem>
-          <span className='mail-description-name'>date:</span>
+          <span className="mail-description-name">date:</span>
           <span>{onGetMailDate(message.sentOn)}</span>
         </MailDescriptionItem>
         <MailDescriptionItem>
-          <span className='mail-description-name'>subject:</span>
+          <span className="mail-description-name">subject:</span>
           <span>how you get new orders easily</span>
         </MailDescriptionItem>
       </Box>
@@ -161,10 +155,7 @@ const MessageItem = ({
               cursor: 'pointer',
             }}
           >
-            <AppTooltip
-              title={message.to.map((user) => user.name)}
-              placement='bottom'
-            >
+            <AppTooltip title={message.to.map((user) => user.name)} placement="bottom">
               <>
                 {`to ${message.to.map((user) => user.email).toString()}`}
                 <span style={{ marginTop: 0, fontSize: 18 }}>
@@ -205,12 +196,12 @@ const MessageItem = ({
   };
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         '&:not(:last-of-type)': {
-          borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+          borderBottom: `solid 1px ${theme.palette.divider}`,
           mb: 3.75,
         },
-      }}
+      })}
     >
       <Box
         sx={{
@@ -243,29 +234,25 @@ const MessageItem = ({
             }}
           >
             <Typography
-              component='h3'
-              sx={{
+              component="h3"
+              sx={(theme) => ({
                 mb: 0.5,
-                color: (theme) => theme.palette.primary.main,
+                color: theme.palette.primary.main,
                 fontSize: 14,
                 fontWeight: Fonts.MEDIUM,
                 '& span': {
-                  color: (theme) => theme.palette.text.secondary,
+                  color: theme.palette.text.secondary,
                   fontSize: 12,
                   wordBreak: 'break-all',
                   ml: 1,
                 },
-              }}
+              })}
             >
               {message.sender.name}
-              {isExpanded ? (
-                <span>{`<${message.sender.email}>`}</span>
-              ) : (
-                <span>{onGetMailDate(message.sentOn)}</span>
-              )}
+              {isExpanded ? <span>{`<${message.sender.email}>`}</span> : <span>{onGetMailDate(message.sentOn)}</span>}
             </Typography>
             <Box
-              component='span'
+              component="span"
               sx={{
                 color: 'text.secondary',
                 wordBreak: 'break-all',
@@ -293,9 +280,9 @@ const MessageItem = ({
               justifyContent: { md: 'flex-end' },
             }}
           >
-            <Box component='span'>{onGetMailDate(message.sentOn)}</Box>,
+            <Box component="span">{onGetMailDate(message.sentOn)}</Box>,
             <Box
-              component='span'
+              component="span"
               sx={{
                 ml: 1,
               }}
@@ -310,25 +297,23 @@ const MessageItem = ({
                 mr: -3,
               }}
             >
-              <AppTooltip title={<IntlMessages id='common.starred' />}>
+              <AppTooltip title={<IntlMessages id="common.starred" />}>
                 <Checkbox
-                  sx={{
-                    color: (theme) => theme.palette.warning.main,
+                  sx={(theme) => ({
+                    color: theme.palette.warning.main,
                     padding: 1.5,
                     '&.Mui-checked': {
-                      color: (theme) => theme.palette.warning.main,
+                      color: theme.palette.warning.main,
                     },
-                  }}
+                  })}
                   icon={<StarBorderIcon />}
                   checkedIcon={<StarIcon />}
                   checked={message.isStarred}
-                  onChange={(event) =>
-                    onChangeStarred(message, !message.isStarred)
-                  }
+                  onChange={(event) => onChangeStarred(message, !message.isStarred)}
                 />
               </AppTooltip>
 
-              <AppTooltip title={<IntlMessages id='common.reply' />}>
+              <AppTooltip title={<IntlMessages id="common.reply" />}>
                 <IconButton
                   sx={{
                     padding: 1.75,
@@ -337,13 +322,13 @@ const MessageItem = ({
                     },
                   }}
                   onClick={onReplyToMail}
-                  size='large'
+                  size="large"
                 >
-                  <IoArrowUndoOutline className='pointer' />
+                  <IoArrowUndoOutline className="pointer" />
                 </IconButton>
               </AppTooltip>
 
-              <AppTooltip title={<IntlMessages id='common.more' />}>
+              <AppTooltip title={<IntlMessages id="common.more" />}>
                 <IconButton
                   sx={{
                     padding: 1.75,
@@ -351,16 +336,15 @@ const MessageItem = ({
                       fontSize: 22,
                     },
                   }}
-                  size='large'
+                  size="large"
                 >
-                  <MoreVertIcon className='pointer' />
+                  <MoreVertIcon className="pointer" />
                 </IconButton>
               </AppTooltip>
             </Box>
           </Box>
         ) : null}
       </Box>
-
       {isExpanded ? (
         <Box
           sx={{
@@ -373,12 +357,8 @@ const MessageItem = ({
           <div dangerouslySetInnerHTML={{ __html: `${message.description}` }} />
         </Box>
       ) : null}
-
       {isForward || isReply ? (
-        <ForwardMail
-          selectedMail={message}
-          onSubmitForwardedMail={onSubmitForwardedMail}
-        />
+        <ForwardMail selectedMail={message} onSubmitForwardedMail={onSubmitForwardedMail} />
       ) : null}
     </Box>
   );

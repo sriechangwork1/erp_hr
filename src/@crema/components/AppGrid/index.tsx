@@ -24,12 +24,7 @@ const AppGrid: React.FC<AppCardProps> = ({ footerProps, ...rest }) => {
     <GridView
       {...rest}
       ListFooterComponent={
-        footerProps ? (
-          <GridFooter
-            loading={footerProps.loading}
-            footerText={footerProps.footerText}
-          />
-        ) : null
+        footerProps ? <GridFooter loading={footerProps.loading} footerText={footerProps.footerText} /> : null
       }
     />
   );

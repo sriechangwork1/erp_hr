@@ -1,13 +1,13 @@
-import React, { ChangeEvent } from "react";
-import Box from "@mui/material/Box";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import PropTypes from "prop-types";
-import AppCard from "@crema/components/AppCard";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import ExchangeForm from "./ExchangeForm";
-import { BuySellType } from "@crema/types/models/dashboards/Crypto";
-import { SelectChangeEvent } from "@mui/material";
+import React, { ChangeEvent } from 'react';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import PropTypes from 'prop-types';
+import AppCard from '@crema/components/AppCard';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import ExchangeForm from './ExchangeForm';
+import { BuySellType } from '@crema/types/models/dashboards/Crypto';
+import { SelectChangeEvent } from '@mui/material';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -20,9 +20,7 @@ function TabPanel(props: any) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ width: "100%", px: 5, py: 6 }}>{children}</Box>
-      )}
+      {value === index && <Box sx={{ width: '100%', px: 5, py: 6 }}>{children}</Box>}
     </div>
   );
 }
@@ -36,7 +34,7 @@ TabPanel.propTypes = {
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -58,23 +56,23 @@ const BuySell = ({ buySell }: Props) => {
     <AppCard
       contentStyle={{
         p: 0,
-        "&:last-of-type": {
-          pb: "0 !important",
+        '&:last-of-type': {
+          pb: '0 !important',
         },
       }}
     >
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
-            sx={{
-              position: "relative",
+            sx={(theme) => ({
+              position: 'relative',
               minHeight: 52,
-              "& .MuiTab-root": {
-                "&:not(:first-child)": {
-                  borderLeft: (theme) => `solid 1px ${theme.palette.divider}`,
+              '& .MuiTab-root': {
+                '&:not(:first-child)': {
+                  borderLeft: `solid 1px ${theme.palette.divider}`,
                 },
               },
-            }}
+            })}
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
@@ -82,8 +80,8 @@ const BuySell = ({ buySell }: Props) => {
             {tabs.map((tab, index) => (
               <Tab
                 sx={{
-                  width: "50%",
-                  textTransform: "capitalize",
+                  width: '50%',
+                  textTransform: 'capitalize',
                   py: 2,
                   px: 2,
                   minHeight: 52,

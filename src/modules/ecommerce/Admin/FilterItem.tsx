@@ -1,15 +1,7 @@
 import AppCard from '@crema/components/AppCard';
 import React from 'react';
 import FormControl from '@mui/material/FormControl';
-import {
-  Box,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Switch,
-  TextField,
-} from '@mui/material';
+import { Box, Grid, InputLabel, MenuItem, Select, Switch, TextField } from '@mui/material';
 import AppGridContainer from '@crema/components/AppGridContainer';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -35,21 +27,21 @@ type Props = {
 const FilterItem = ({ filterData, setFilterData }: Props) => {
   const inputLabel = React.useRef(null);
   return (
-    <AppCard title='Filter Item'>
+    <AppCard title="Filter Item">
       <AppGridContainer spacing={5}>
         <Grid item xs={12}>
           <FormControl
             sx={{
               width: '100%',
             }}
-            variant='outlined'
+            variant="outlined"
           >
-            <InputLabel ref={inputLabel} id='demo-simple-select-outlined-label'>
+            <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
               Status
             </InputLabel>
             <Select
-              label='status'
-              name='status'
+              label="status"
+              name="status"
               onChange={(e) => {
                 setFilterData((prev: any) => ({
                   ...prev,
@@ -87,8 +79,8 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
               backgroundColor: 'background.paper',
               color: 'text.primary',
             }}
-            variant='outlined'
-            placeholder='Start Price'
+            variant="outlined"
+            placeholder="Start Price"
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -104,13 +96,13 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
               backgroundColor: 'background.paper',
               color: 'text.primary',
             }}
-            variant='outlined'
-            placeholder='End Price'
+            variant="outlined"
+            placeholder="End Price"
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <DatePicker
-            label='Creation Start Date'
+            label="Creation Start Date"
             value={filterData.createdAt?.start}
             onChange={(value) =>
               setFilterData((prev: any) => ({
@@ -125,7 +117,7 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <DatePicker
-            label='Creation End Date'
+            label="Creation End Date"
             value={filterData.createdAt?.end}
             onChange={(value) =>
               setFilterData((prev: any) => ({
@@ -139,11 +131,8 @@ const FilterItem = ({ filterData, setFilterData }: Props) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Switch
-            value='checkedA'
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
-          />
-          <Box component='span'>Notifications</Box>
+          <Switch value="checkedA" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+          <Box component="span">Notifications</Box>
         </Grid>
       </AppGridContainer>
     </AppCard>

@@ -45,8 +45,8 @@ type Props = {
 };
 const TableItem = ({ data }: Props) => {
   return (
-    <TableRow key={data.name} className='item-hover'>
-      <TableCellWrapper component='th' scope='row'>
+    <TableRow key={data.name} className="item-hover">
+      <TableCellWrapper component="th" scope="row">
         <NumberWrapper
           sx={{
             display: 'flex',
@@ -54,15 +54,15 @@ const TableItem = ({ data }: Props) => {
           }}
         >
           <NumberBox>{data.id}</NumberBox>
-          <Typography variant='h5' component='h5'>
+          <Typography variant="h5" component="h5">
             {data.name}
           </Typography>
         </NumberWrapper>
       </TableCellWrapper>
-      <TableCellWrapper align='left'>{data.date}</TableCellWrapper>
-      <TableCellWrapper align='left'>{data.start_time}</TableCellWrapper>
-      <TableCellWrapper align='left'>{data.end_time}</TableCellWrapper>
-      <TableCellWrapper align='left'>{data.duration}</TableCellWrapper>
+      <TableCellWrapper align="left">{data.date}</TableCellWrapper>
+      <TableCellWrapper align="left">{data.start_time}</TableCellWrapper>
+      <TableCellWrapper align="left">{data.end_time}</TableCellWrapper>
+      <TableCellWrapper align="left">{data.duration}</TableCellWrapper>
     </TableRow>
   );
 };

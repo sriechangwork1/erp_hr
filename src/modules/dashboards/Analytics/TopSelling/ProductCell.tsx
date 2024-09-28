@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { Fonts } from '@crema/constants/AppEnums';
 import AppCircularProgress from '@crema/components/AppCircularProgress';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import Hidden from '@mui/material/Hidden';
+
 import { TopSellingProductType } from '@crema/types/models/dashboards/Analytics';
 import Image from 'next/image';
 
@@ -20,7 +20,7 @@ const ProductCell = ({ data }: Props) => {
         py: 2,
         px: 5,
       }}
-      className='item-hover'
+      className="item-hover"
     >
       <Box
         sx={{
@@ -33,7 +33,7 @@ const ProductCell = ({ data }: Props) => {
           },
         }}
       >
-        <Image className='logo' alt='' src={data.icon} height={70} width={70} />
+        <Image className="logo" alt="" src={data.icon} height={70} width={70} />
 
         <Box
           sx={{
@@ -49,12 +49,12 @@ const ProductCell = ({ data }: Props) => {
               mb: 0.5,
               fontSize: 14,
             }}
-            component='h3'
+            component="h3"
           >
             {data.name}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 12,
               color: 'text.secondary',
@@ -64,7 +64,7 @@ const ProductCell = ({ data }: Props) => {
             {data.description}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               fontWeight: Fonts.MEDIUM,
@@ -74,61 +74,59 @@ const ProductCell = ({ data }: Props) => {
           </Box>
         </Box>
       </Box>
-      <Hidden xsDown>
+      <Box
+        sx={{
+          ml: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}
+      >
         <Box
           sx={{
-            ml: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
+            height: 50,
+            width: 50,
           }}
         >
-          <Box
-            sx={{
-              height: 50,
-              width: 50,
-            }}
-          >
-            <AppCircularProgress
-              minWidth={50}
-              maxWidth={50}
-              activeColor={data.color}
-              thickness={4}
-              hidePercentage
-              value={data.rate}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              ml: 2,
-              mr: -2,
-              p: 2,
-              pr: 0,
-            }}
-          >
-            <Box>
-              <Box
-                sx={{
-                  color: 'text.secondary',
-                }}
-              >
-                Sales
-              </Box>
-              <Box>{data.rate}%</Box>
-            </Box>
+          <AppCircularProgress
+            minWidth={50}
+            maxWidth={50}
+            activeColor={data.color}
+            thickness={4}
+            hidePercentage
+            value={data.rate}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            ml: 2,
+            mr: -2,
+            p: 2,
+            pr: 0,
+          }}
+        >
+          <Box>
             <Box
               sx={{
-                ml: 2,
-                color: 'grey.400',
+                color: 'text.secondary',
               }}
             >
-              <NavigateNextIcon />
+              Sales
             </Box>
+            <Box>{data.rate}%</Box>
+          </Box>
+          <Box
+            sx={{
+              ml: 2,
+              color: 'grey.400',
+            }}
+          >
+            <NavigateNextIcon />
           </Box>
         </Box>
-      </Hidden>
+      </Box>
     </Box>
   );
 };

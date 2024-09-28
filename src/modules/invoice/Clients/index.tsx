@@ -11,18 +11,13 @@ import { ClientType } from '@crema/types/models/invoice';
 
 const Clients = () => {
   const router = useRouter();
-  const [{ apiData: clientsList, loading }] = useGetDataApi<ClientType[]>(
-    '/invoice/clients',
-    [],
-    {},
-    true,
-  );
+  const [{ apiData: clientsList, loading }] = useGetDataApi<ClientType[]>('/invoice/clients', [], {}, true);
   return !isEmptyObject(clientsList) ? (
     <Box>
       <Box>
         <Button
-          color='primary'
-          variant='contained'
+          color="primary"
+          variant="contained"
           sx={{ display: 'block', ml: 'auto', mb: 3 }}
           onClick={() => router.push('/invoice/clients/add')}
         >

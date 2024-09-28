@@ -64,42 +64,42 @@ type Props = {
 const TodoCell = ({ todo }: Props) => {
   return (
     <TodoCellWrapper>
-      <div className='date-view'>
-        <Typography variant='h1' component='h1'>
+      <div className="date-view">
+        <Typography variant="h1" component="h1">
           {todo.date.split(' ')[0]}
         </Typography>
-        <Typography variant='body1'>{todo.date.split(' ')[1]}</Typography>
+        <Typography variant="body1">{todo.date.split(' ')[1]}</Typography>
       </div>
-      <div className='contentArea'>
+      <div className="contentArea">
         <Box
           sx={{
             flex: 1,
             mr: 1,
           }}
         >
-          <Typography variant='h5' component='h5'>
+          <Typography variant="h5" component="h5">
             {todo.title}
           </Typography>
           <Typography
-            sx={{
+            sx={(theme) => ({
               mt: 1,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
               fontSize: 12,
-            }}
+            })}
           >
             {todo.time_from}
           </Typography>
         </Box>
         <Box
-          component='span'
+          component="span"
           sx={{
             position: 'relative',
           }}
         >
-          <IconButton size='small' className='icon-btn icon-btn-pencil'>
+          <IconButton size="small" className="icon-btn icon-btn-pencil">
             <BiPencil />
           </IconButton>
-          <IconButton size='small' className='icon-btn'>
+          <IconButton size="small" className="icon-btn">
             <BsCheck />
           </IconButton>
         </Box>

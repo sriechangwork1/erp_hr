@@ -44,9 +44,7 @@ const TaskDetailBody = (props: Props) => {
 
   const [comment, setComment] = useState('');
 
-  const [scheduleDate, setScheduleDate] = useState(
-    getDateObject(selectedTask.startDate),
-  );
+  const [scheduleDate, setScheduleDate] = useState(getDateObject(selectedTask.startDate));
 
   const [selectedStaff, setStaff] = useState(selectedTask.assignedTo);
 
@@ -119,8 +117,8 @@ const TaskDetailBody = (props: Props) => {
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
-            component='h2'
-            variant='h2'
+            component="h2"
+            variant="h2"
             sx={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -134,16 +132,19 @@ const TaskDetailBody = (props: Props) => {
             {selectedTask.title}
           </Typography>
 
-          <Box mr={1} mb={{ xs: 3, sm: 0 }}>
+          <Box
+            sx={{
+              mr: 1,
+              mb: { xs: 3, sm: 0 },
+            }}
+          >
             <Box
-              component='span'
+              component="span"
               sx={{
                 px: 3,
                 py: 1,
                 color: selectedTask?.priority?.color,
-                bgcolor:
-                  selectedTask?.priority?.color &&
-                  alpha(selectedTask?.priority?.color, 0.1),
+                bgcolor: selectedTask?.priority?.color && alpha(selectedTask?.priority?.color, 0.1),
                 fontSize: 14,
                 borderRadius: 30,
                 display: 'inline-block',
@@ -154,28 +155,48 @@ const TaskDetailBody = (props: Props) => {
           </Box>
         </Box>
 
-        <Box display='flex' alignItems='center' ml={{ sm: 'auto' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            ml: { sm: 'auto' },
+          }}
+        >
           <TaskLabels labels={selectedTask.label} />
-          <Box component='span' color='text.secondary' fontSize={14} ml={2}>
+          <Box
+            component="span"
+            sx={{
+              color: 'text.secondary',
+              fontSize: 14,
+              ml: 2,
+            }}
+          >
             Nov 21, 2020, 9:46 AM
           </Box>
         </Box>
       </Box>
-
-      <Box mb={0.5} display='flex'>
+      <Box
+        sx={{
+          mb: 0.5,
+          display: 'flex',
+        }}
+      >
         <Box
-          display='flex'
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          mr={2}
-          alignItems={{ sm: 'center' }}
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            mr: 2,
+            alignItems: { sm: 'center' },
+          }}
         >
           {isEdit ? (
             <>
-              <Box mb={{ xs: 3, sm: 0 }}>
-                <ChangeStaff
-                  selectedStaff={selectedStaff}
-                  handleStaffChange={handleStaffChange}
-                />
+              <Box
+                sx={{
+                  mb: { xs: 3, sm: 0 },
+                }}
+              >
+                <ChangeStaff selectedStaff={selectedStaff} handleStaffChange={handleStaffChange} />
               </Box>
               <TodoDatePicker date={scheduleDate} setDate={setScheduleDate} />
             </>
@@ -184,7 +205,11 @@ const TaskDetailBody = (props: Props) => {
           )}
         </Box>
 
-        <Box ml='auto'>
+        <Box
+          sx={{
+            ml: 'auto',
+          }}
+        >
           {!isEdit ? (
             <EditButton
               action={onClickEditButton}
@@ -210,14 +235,12 @@ const TaskDetailBody = (props: Props) => {
           )}
         </Box>
       </Box>
-
       <Divider
         sx={{
           marginTop: 4,
           marginBottom: 5,
         }}
       />
-
       {!isEdit ? (
         <Typography sx={{ color: 'text.secondary' }}>{content}</Typography>
       ) : (
@@ -229,15 +252,14 @@ const TaskDetailBody = (props: Props) => {
               padding: '10px 15px',
             },
           }}
-          rows='6'
-          variant='outlined'
+          rows="6"
+          variant="outlined"
           placeholder={messages['common.description'] as string}
-          name='content'
+          name="content"
           value={content}
           onChange={(event) => setContent(event.target.value)}
         />
       )}
-
       <Box
         sx={{
           display: 'flex',
@@ -247,39 +269,31 @@ const TaskDetailBody = (props: Props) => {
           pt: 5,
         }}
       >
-        <Box
-          sx={{ display: 'flex', alignItems: 'center', mb: { xs: 3, sm: 0 } }}
-        >
-          <Box mr={5}>
-            <TaskStatus
-              selectedTask={selectedTask}
-              onUpdateSelectedTask={onUpdateSelectedTask}
-            />
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: { xs: 3, sm: 0 } }}>
+          <Box
+            sx={{
+              mr: 5,
+            }}
+          >
+            <TaskStatus selectedTask={selectedTask} onUpdateSelectedTask={onUpdateSelectedTask} />
           </Box>
-
-          <Box mr={5}>
-            <TaskPriority
-              selectedTask={selectedTask}
-              onUpdateSelectedTask={onUpdateSelectedTask}
-            />
+          <Box
+            sx={{
+              mr: 5,
+            }}
+          >
+            <TaskPriority selectedTask={selectedTask} onUpdateSelectedTask={onUpdateSelectedTask} />
           </Box>
         </Box>
-
-        <TaskCreatedByInfo
-          createdBy={selectedTask.createdBy}
-          createdOn={selectedTask.createdOn}
-        />
+        <TaskCreatedByInfo createdBy={selectedTask.createdBy} createdOn={selectedTask.createdOn} />
       </Box>
-
       <Divider
         sx={{
           marginTop: 4,
           marginBottom: 5,
         }}
       />
-
       <CommentsLists comments={selectedTask.comments} />
-
       <Box
         sx={{
           position: 'relative',
@@ -298,7 +312,7 @@ const TaskDetailBody = (props: Props) => {
           }}
           minRows={2}
           maxRows={4}
-          variant='outlined'
+          variant="outlined"
           placeholder={messages['common.writeComment'] as string}
           value={comment}
           onChange={(event) => setComment(event.target.value)}
@@ -315,8 +329,8 @@ const TaskDetailBody = (props: Props) => {
               marginLeft: 0.75,
             },
           }}
-          variant='contained'
-          color='primary'
+          variant="contained"
+          color="primary"
           disabled={!comment}
           onClick={onAddComments}
         >

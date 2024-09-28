@@ -29,34 +29,18 @@ const BucketMinibar = () => {
             color: 'white',
             mb: 2.5,
           }}
-          aria-label='show 17 new notifications'
+          aria-label="show 17 new notifications"
         >
-          <Image
-            src={'/assets/icon/logo.svg'}
-            alt='logo'
-            width={46}
-            height={44}
-          />
+          <Image src={'/assets/icon/logo.svg'} alt="logo" width={46} height={44} />
         </IconButton>
 
-        <IconButton
-          className='search-icon-btn'
-          aria-label='show 17 new notifications'
-        >
+        <IconButton className="search-icon-btn" aria-label="show 17 new notifications">
           <SearchIcon />
         </IconButton>
-        <AppLngSwitcher iconOnly={true} tooltipPosition='right' />
+        <AppLngSwitcher iconOnly={true} tooltipPosition="right" />
 
-        <AppNotifications
-          drawerPosition='left'
-          tooltipPosition='right'
-          sxNotificationContentStyle={{ width: 320 }}
-        />
-        <AppMessages
-          drawerPosition='left'
-          tooltipPosition='right'
-          sxMessageContentStyle={{ width: 320 }}
-        />
+        <AppNotifications drawerPosition="left" tooltipPosition="right" sxNotificationContentStyle={{ width: 320 }} />
+        <AppMessages drawerPosition="left" tooltipPosition="right" sxMessageContentStyle={{ width: 320 }} />
       </Box>
       <Box
         sx={{

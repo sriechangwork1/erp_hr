@@ -1,12 +1,9 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import BlogSidebarCard from "../BlogSidebarCard";
-import Blogs from "./Blogs";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import {
-  BlogContentType,
-  BlogSidebarType,
-} from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import BlogSidebarCard from '../BlogSidebarCard';
+import Blogs from './Blogs';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import { BlogContentType, BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   blogSidebar: BlogSidebarType;
@@ -24,12 +21,12 @@ const BlogContent = ({ blogSidebar, blogContent }: Props) => {
         xl={3}
         sx={{
           order: { md: 2 },
-          position: { md: "sticky" },
+          position: { md: 'sticky' },
           top: { md: 70 },
           bottom: { md: 0 },
           zIndex: 2,
-          alignSelf: { md: "flex-start" },
-          ".bit-bucket-sidebar + .mainContent &": {
+          alignSelf: { md: 'flex-start' },
+          '.bit-bucket-sidebar + .mainContent &': {
             top: { md: 0 },
           },
         }}
@@ -42,5 +39,4 @@ const BlogContent = ({ blogSidebar, blogContent }: Props) => {
     </AppGridContainer>
   );
 };
-
 export default BlogContent;

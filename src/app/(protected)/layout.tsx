@@ -1,15 +1,12 @@
 'use client';
 import React, { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '../../@crema/hooks/AuthHooks';
 import AppLoader from '@crema/components/AppLoader';
 import routesConfig from '@crema/core/AppRoutes/routeConfig';
 import { Layouts } from '@crema/components/AppLayout';
 import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
-import {
-  useLayoutActionsContext,
-  useLayoutContext,
-} from '@crema/context/AppContextProvider/LayoutContextProvider';
+import { useLayoutActionsContext, useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 

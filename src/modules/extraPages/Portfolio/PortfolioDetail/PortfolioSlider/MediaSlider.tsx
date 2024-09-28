@@ -1,25 +1,25 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 
 type Props = {
   children: React.ReactNode;
-}
+};
 
-const MediaSlider = ({children}:Props) => {
+const MediaSlider = ({ children }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
-        mb: {xs: 7.5, md: 15},
+        mb: { xs: 7.5, md: 15 },
         '& .slick-slider': {
           '& .slick-prev, & .slick-next': {
-            width: {xs: 30, lg: 40},
-            height: {xs: 30, lg: 40},
+            width: { xs: 30, lg: 40 },
+            height: { xs: 30, lg: 40 },
             backgroundImage: `url('/assets/images/arrow-prev.svg')`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center center',
-            backgroundColor: (theme) => theme.palette.common.white,
+            backgroundColor: theme.palette.common.white,
             borderRadius: '50%',
             zIndex: 3,
             p: 1,
@@ -37,7 +37,7 @@ const MediaSlider = ({children}:Props) => {
             backgroundPositionX: '54%',
           },
         },
-      }}
+      })}
     >
       {children}
     </Box>

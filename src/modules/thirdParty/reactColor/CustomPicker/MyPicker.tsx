@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { CustomPicker } from "react-color";
-import { EditableInput, Hue } from "react-color/lib/components/common";
-import { Box } from "@mui/material";
+import { CustomPicker } from 'react-color';
+import { EditableInput, Hue } from 'react-color/lib/components/common';
+import { Box } from '@mui/material';
 
 interface MyPickerProps {
   onChange: (color: any) => void;
@@ -15,8 +15,7 @@ export const MyPicker: React.FC<MyPickerProps> = ({ color, onChange }) => {
   return (
     <Box
       sx={{
-        boxShadow:
-          "rgba(0, 0, 0, 0.01) 0px 2px 10px, rgba(0, 0, 0, 0.1) 0px 2px 5px",
+        boxShadow: 'rgba(0, 0, 0, 0.01) 0px 2px 10px, rgba(0, 0, 0, 0.1) 0px 2px 5px',
         p: 4,
         borderRadius: 1,
       }}
@@ -24,14 +23,14 @@ export const MyPicker: React.FC<MyPickerProps> = ({ color, onChange }) => {
       <Box
         sx={{
           height: 10,
-          position: "relative",
+          position: 'relative',
           marginBottom: 10,
         }}
       >
         <Hue color={color} onChange={onChange} />
       </Box>
 
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <EditableInput
           style={{
             input: {

@@ -74,13 +74,13 @@ const Header = () => {
           </Button>
           <Button
             variant="outlined"
-            sx={{
+            sx={(theme) => ({
               fontWeight: Fonts.LIGHT,
               fontSize: 14,
               border: '1px solid',
-              borderColor: (theme) => theme.palette.primary.contrastText,
-              color: (theme) => theme.palette.primary.contrastText,
-            }}
+              borderColor: theme.palette.primary.contrastText,
+              color: theme.palette.primary.contrastText,
+            })}
           >
             <IntlMessages id="dashboard.readMore" />
           </Button>

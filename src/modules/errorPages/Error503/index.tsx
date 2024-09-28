@@ -20,7 +20,7 @@ const Error503 = () => {
   };
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           py: { xl: 8 },
@@ -42,7 +42,7 @@ const Error503 = () => {
             },
           }}
         >
-          <Image alt='503' src={Logo} width={400} height={400} />;
+          <Image alt="503" src={Logo} width={400} height={400} />;
         </Box>
         <Box
           sx={{
@@ -50,14 +50,14 @@ const Error503 = () => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: { xs: 3, xl: 4 },
               fontSize: { xs: 20, md: 24 },
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <IntlMessages id='error.500Error' />.
+            <IntlMessages id="error.500Error" />.
           </Box>
           <Box
             sx={{
@@ -68,15 +68,15 @@ const Error503 = () => {
             }}
           >
             <Typography>
-              <IntlMessages id='error.500Message1' />
+              <IntlMessages id="error.500Message1" />
             </Typography>
             <Typography>
-              <IntlMessages id='error.500Message2' />
+              <IntlMessages id="error.500Message2" />
             </Typography>
           </Box>
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             sx={{
               fontWeight: Fonts.MEDIUM,
               fontSize: 16,
@@ -84,7 +84,7 @@ const Error503 = () => {
             }}
             onClick={onGoBackToHome}
           >
-            <IntlMessages id='error.goBackToHome' />
+            <IntlMessages id="error.goBackToHome" />
           </Button>
         </Box>
       </Box>

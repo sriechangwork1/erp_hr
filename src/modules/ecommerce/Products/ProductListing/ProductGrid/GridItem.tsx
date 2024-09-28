@@ -29,7 +29,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
         display: 'flex',
         flexDirection: 'column',
       }}
-      className='item-hover'
+      className="item-hover"
       onClick={() => {
         router.push('/ecommerce/product_detail/' + item.id);
       }}
@@ -43,7 +43,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
         }}
       >
         <Box
-          component='span'
+          component="span"
           sx={{
             maxHeight: 28,
             width: 48,
@@ -60,11 +60,11 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
             fontSize: 14,
           }}
         >
-          <Box component='span' sx={{ pb: 1.25 }}>
+          <Box component="span" sx={{ pb: 1.25 }}>
             {item.rating}
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               ml: 1,
             }}
@@ -93,10 +93,10 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
         >
           <Image
             src={`${item.image[0].src}`}
-            alt='watch'
+            alt="watch"
             width={191}
             height={259}
-            sizes='100vw'
+            sizes="100vw"
             style={{
               width: '100%',
             }}
@@ -107,10 +107,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
             mt: -3,
           }}
         >
-          <Checkbox
-            icon={<FavoriteBorderIcon />}
-            checkedIcon={<FavoriteOutlinedIcon />}
-          />
+          <Checkbox icon={<FavoriteBorderIcon />} checkedIcon={<FavoriteOutlinedIcon />} />
         </Box>
       </Box>
 
@@ -124,13 +121,13 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
         }}
-        component='h3'
+        component="h3"
       >
         {item.title}
       </Box>
 
       <Box
-        component='p'
+        component="p"
         sx={{
           mb: 3,
           color: 'text.secondary',
@@ -156,7 +153,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
       >
         <Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 1,
               mb: 2,
@@ -166,7 +163,7 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
             $ {+item.mrp - Math.round((+item.mrp * +item.discount) / 100)}
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 1,
               mb: 2,
@@ -177,14 +174,14 @@ const GridItem: React.FC<GridItemProps> = ({ item }) => {
             ${item.mrp}
           </Box>
           <Box
-            component='span'
+            component="span"
             sx={{
               px: 1,
               mb: 2,
               color: green[500],
             }}
           >
-            {item.discount}% <IntlMessages id='ecommerce.off' />
+            {item.discount}% <IntlMessages id="ecommerce.off" />
           </Box>
         </Box>
         <Box sx={{ ml: 2 }}>

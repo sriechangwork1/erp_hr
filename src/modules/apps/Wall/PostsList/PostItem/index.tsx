@@ -1,15 +1,15 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import Avatar from "@mui/material/Avatar";
-import Attachments from "./Attachments";
-import PostStats from "./PostStats";
-import AddComment from "./AddComment";
-import CommentsList from "./CommentsList";
-import { timeFromNow } from "@crema/helpers/DateHelper";
-import { PostObjType, WallDataType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Avatar from '@mui/material/Avatar';
+import Attachments from './Attachments';
+import PostStats from './PostStats';
+import AddComment from './AddComment';
+import CommentsList from './CommentsList';
+import { timeFromNow } from '@crema/helpers/DateHelper';
+import { PostObjType, WallDataType } from '@crema/types/models/apps/Wall';
 
 type Props = {
   wallData: WallDataType;
@@ -21,7 +21,12 @@ const PostItem = ({ post, wallData, setPostList }: Props) => {
   const { owner, message, date, attachments, comments } = post;
 
   const getTitle = () => (
-    <Box display="flex" alignItems="center">
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
       <Avatar
         sx={{
           width: 44,
@@ -29,11 +34,26 @@ const PostItem = ({ post, wallData, setPostList }: Props) => {
         }}
         src={owner.profilePic}
       />
-      <Box ml={3.5}>
-        <Box component="h4" mb={0.5}>
+      <Box
+        sx={{
+          ml: 3.5,
+        }}
+      >
+        <Box
+          component="h4"
+          sx={{
+            mb: 0.5,
+          }}
+        >
           {owner.name}
         </Box>
-        <Box component="p" color="text.secondary" fontSize={14}>
+        <Box
+          component="p"
+          sx={{
+            color: 'text.secondary',
+            fontSize: 14,
+          }}
+        >
           {timeFromNow(date)}
         </Box>
       </Box>
@@ -43,7 +63,7 @@ const PostItem = ({ post, wallData, setPostList }: Props) => {
   return (
     <AppCard
       sxStyle={{
-        "&:not(:last-of-type)": {
+        '&:not(:last-of-type)': {
           marginBottom: 8,
         },
       }}
@@ -63,17 +83,19 @@ const PostItem = ({ post, wallData, setPostList }: Props) => {
       }
     >
       {message ? (
-        <Box component="p" mb={2} fontSize={14}>
+        <Box
+          component="p"
+          sx={{
+            mb: 2,
+            fontSize: 14,
+          }}
+        >
           {message}
         </Box>
       ) : null}
       <Attachments attachments={attachments} />
       <PostStats post={post} setPostList={setPostList} />
-      <AddComment
-        postId={post.id}
-        wallData={wallData}
-        setPostList={setPostList}
-      />
+      <AddComment postId={post.id} wallData={wallData} setPostList={setPostList} />
       {comments.length > 0 && <CommentsList comments={comments} />}
     </AppCard>
   );

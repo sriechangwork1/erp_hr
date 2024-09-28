@@ -52,7 +52,7 @@ const MyProfile = ({ profile }: Props) => {
             src={profile_pic}
           />
           <Box
-            component='p'
+            component="p"
             sx={{
               mb: 2,
               fontSize: 16,
@@ -62,7 +62,7 @@ const MyProfile = ({ profile }: Props) => {
             {name}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               mb: 2,
               color: 'text.secondary',
@@ -100,7 +100,7 @@ const MyProfile = ({ profile }: Props) => {
             >
               <Image
                 src={'/assets/images/dashboard/academy/achievements.svg'}
-                alt='achievements'
+                alt="achievements"
                 width={27}
                 height={31}
               />
@@ -111,12 +111,12 @@ const MyProfile = ({ profile }: Props) => {
                 fontSize: 20,
                 fontWeight: Fonts.BOLD,
               }}
-              component='p'
+              component="p"
             >
               {achievements}
             </Box>
             <Box
-              component='p'
+              component="p"
               sx={{
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -152,12 +152,12 @@ const MyProfile = ({ profile }: Props) => {
                 fontSize: 20,
                 fontWeight: Fonts.BOLD,
               }}
-              component='p'
+              component="p"
             >
               {friends}
             </Box>
             <Box
-              component='p'
+              component="p"
               sx={{
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',

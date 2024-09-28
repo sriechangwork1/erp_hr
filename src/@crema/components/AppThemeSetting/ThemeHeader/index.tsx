@@ -1,15 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import { CustomizerItemWrapper } from "../index.style";
-import { HeaderType } from "@crema/constants/AppEnums";
-import {
-  useLayoutActionsContext,
-  useLayoutContext,
-} from "@crema/context/AppContextProvider/LayoutContextProvider";
+import React from 'react';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { CustomizerItemWrapper } from '../index.style';
+import { HeaderType } from '@crema/constants/AppEnums';
+import { useLayoutActionsContext, useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 
 const ThemeHeader = () => {
   const { headerType } = useLayoutContext();
@@ -17,20 +14,20 @@ const ThemeHeader = () => {
 
   return (
     <CustomizerItemWrapper>
-      <Box sx={{ display: "flex", alignItems: "center", mb: 4 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
         <Box component="h4">Header</Box>
       </Box>
       <FormControl
         variant="outlined"
         sx={{
-          width: "100%",
+          width: '100%',
         }}
       >
         <InputLabel id="select-header">Header Type</InputLabel>
         <Select
           sx={{
-            "& .MuiOutlinedInput-input": {
-              padding: "12px 32px 12px 14px",
+            '& .MuiOutlinedInput-input': {
+              padding: '12px 32px 12px 14px',
             },
           }}
           labelId="select-header"

@@ -32,7 +32,7 @@ const PackageCard = ({ pricing }: Props) => {
       >
         <Image src={pricing.src} alt={pricing.title} width={106} height={106} />
         <Typography
-          component='h3'
+          component="h3"
           sx={{
             fontWeight: Fonts.BOLD,
             fontSize: 36,

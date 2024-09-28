@@ -39,7 +39,7 @@ const ConnectionListItem = (props: Props) => {
         px: 0,
         cursor: 'pointer',
       }}
-      alignItems='flex-start'
+      alignItems="flex-start"
     >
       <ListItemAvatar
         sx={{
@@ -60,7 +60,7 @@ const ConnectionListItem = (props: Props) => {
       <ListItemTextWrapper
         primary={
           <Box
-            component='span'
+            component="span"
             sx={{
               mb: 0,
               fontWeight: Fonts.MEDIUM,

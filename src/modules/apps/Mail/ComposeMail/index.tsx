@@ -104,9 +104,7 @@ const CcBccFieldWrapper = styled('div')(() => {
 });
 
 export const isValidEmail = (value: string): string => {
-  return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'primary'
-    : 'secondary';
+  return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ? 'primary' : 'secondary';
 };
 
 type Props = {
@@ -155,7 +153,7 @@ const ComposeMail = (props: Props) => {
       dividers
       open={isComposeMail}
       onClose={() => onCloseComposeMail(false)}
-      title={<IntlMessages id='mailApp.compose' />}
+      title={<IntlMessages id="mailApp.compose" />}
     >
       <Formik
         initialValues={{
@@ -228,7 +226,7 @@ const ComposeMail = (props: Props) => {
               flexDirection: 'column',
             }}
             noValidate
-            autoComplete='off'
+            autoComplete="off"
           >
             <Box
               sx={{
@@ -238,12 +236,12 @@ const ComposeMail = (props: Props) => {
               <CcBccFieldWrapper>
                 {!isShowChip ? (
                   <AppTextField
-                    className='ccBccTextField'
+                    className="ccBccTextField"
                     fullWidth
                     label={messages['common.to'] as string}
-                    variant='outlined'
-                    margin='normal'
-                    name='to'
+                    variant="outlined"
+                    margin="normal"
+                    name="to"
                     onBlur={() => handleBlur(values.to)}
                   />
                 ) : (
@@ -251,31 +249,31 @@ const ComposeMail = (props: Props) => {
                     label={values.to}
                     color={isValidEmail(values.to) ? 'primary' : 'secondary'}
                     onDelete={() => onShowChip(false)}
-                    variant='outlined'
+                    variant="outlined"
                   />
                 )}
 
-                <div className='ccBccView'>
+                <div className="ccBccView">
                   <Box
-                    component='span'
+                    component="span"
                     sx={{
                       ml: 4,
                       cursor: 'pointer',
                     }}
                     onClick={() => onShowCC(!isShowCC)}
                   >
-                    <IntlMessages id='common.cc' />
+                    <IntlMessages id="common.cc" />
                   </Box>
 
                   <Box
-                    component='span'
+                    component="span"
                     sx={{
                       ml: 4,
                       cursor: 'pointer',
                     }}
                     onClick={() => onShowBcc(!isShowBcc)}
                   >
-                    <IntlMessages id='common.bcc' />
+                    <IntlMessages id="common.bcc" />
                   </Box>
                 </div>
               </CcBccFieldWrapper>
@@ -287,12 +285,12 @@ const ComposeMail = (props: Props) => {
                   }}
                 >
                   <AppTextField
-                    variant='outlined'
+                    variant="outlined"
                     label={messages['common.cc'] as string}
                     placeholder={messages['common.cc'] as string}
                     fullWidth
-                    margin='normal'
-                    name='cc'
+                    margin="normal"
+                    name="cc"
                   />
                 </Box>
               ) : null}
@@ -304,12 +302,12 @@ const ComposeMail = (props: Props) => {
                   }}
                 >
                   <AppTextField
-                    variant='outlined'
+                    variant="outlined"
                     label={messages['common.bcc'] as string}
                     placeholder={messages['common.bcc'] as string}
                     fullWidth
-                    margin='normal'
-                    name='bcc'
+                    margin="normal"
+                    name="bcc"
                   />
                 </Box>
               ) : null}
@@ -319,12 +317,12 @@ const ComposeMail = (props: Props) => {
                 }}
               >
                 <AppTextField
-                  variant='outlined'
+                  variant="outlined"
                   placeholder={messages['common.subject'] as string}
                   label={messages['common.subject'] as string}
                   fullWidth
-                  margin='normal'
-                  name='subject'
+                  margin="normal"
+                  name="subject"
                 />
               </Box>
 
@@ -354,12 +352,12 @@ const ComposeMail = (props: Props) => {
                   position: 'relative',
                   minWidth: 100,
                 }}
-                variant='outlined'
-                color='primary'
-                type='submit'
+                variant="outlined"
+                color="primary"
+                type="submit"
                 disabled={isSubmitting}
               >
-                <IntlMessages id='common.send' />
+                <IntlMessages id="common.send" />
               </Button>
             </Box>
           </Form>

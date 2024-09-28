@@ -7,10 +7,7 @@ type UserHeaderSidebarWrapperProps = {
   [x: string]: any;
 };
 
-const UserHeaderSidebarWrapper: React.FC<UserHeaderSidebarWrapperProps> = ({
-  children,
-  ...rest
-}) => {
+const UserHeaderSidebarWrapper: React.FC<UserHeaderSidebarWrapperProps> = ({ children, ...rest }) => {
   return (
     <Box
       sx={{

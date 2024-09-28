@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(
     children: React.ReactElement<any, any>;
   },
   // eslint-disable-next-line no-undef
-  ref: React.Ref<unknown>
+  ref: React.Ref<unknown>,
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -91,14 +91,28 @@ const AppDialog: React.FC<AppDialogProps> = ({
       </DialogTitle>
       <DialogContent dividers={dividers}>
         <AppScrollbar
-          sx={{
-            paddingTop: 1,
-            height: fullHeight ? '70vh' : '100%',
-            minHeight: '300px',
-            maxHeight: maxScrollHeight ? maxScrollHeight : '400px',
-            paddingRight: 6,
-            paddingLeft: 6,
-          }}
+          sx={[
+            {
+              paddingTop: 1,
+              minHeight: '300px',
+              paddingRight: 6,
+              paddingLeft: 6,
+            },
+            fullHeight
+              ? {
+                  height: '70vh',
+                }
+              : {
+                  height: '100%',
+                },
+            maxScrollHeight
+              ? {
+                  maxHeight: maxScrollHeight,
+                }
+              : {
+                  maxHeight: '400px',
+                },
+          ]}
         >
           {children}
         </AppScrollbar>

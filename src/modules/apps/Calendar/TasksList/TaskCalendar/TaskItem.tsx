@@ -69,11 +69,7 @@ const TaskItem = ({ item }: Props) => {
             alignItems: 'center',
           }}
         >
-          {item.hasAttachments ? (
-            <StarIcon sx={{ fontSize: 14 }} />
-          ) : (
-            <StarBorderIcon sx={{ fontSize: 14 }} />
-          )}
+          {item.hasAttachments ? <StarIcon sx={{ fontSize: 14 }} /> : <StarBorderIcon sx={{ fontSize: 14 }} />}
         </Box>
         <Box
           sx={{
@@ -96,16 +92,8 @@ const TaskItem = ({ item }: Props) => {
           </Box>
         </Box>
         <AvatarGroup max={4}>
-          <Avatar
-            alt={item?.createdBy?.name}
-            src={item?.assignedTo?.image}
-            sx={{ width: 24, height: 24 }}
-          />
-          <Avatar
-            alt={item?.createdBy?.name}
-            src={item?.createdBy?.image}
-            sx={{ width: 24, height: 24 }}
-          />
+          <Avatar alt={item?.createdBy?.name} src={item?.assignedTo?.image} sx={{ width: 24, height: 24 }} />
+          <Avatar alt={item?.createdBy?.name} src={item?.createdBy?.image} sx={{ width: 24, height: 24 }} />
         </AvatarGroup>
       </Box>
     </Box>

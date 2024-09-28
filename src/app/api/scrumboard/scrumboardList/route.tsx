@@ -20,9 +20,11 @@ export const POST = async (request: NextRequest) => {
         return data;
       }
     });
-    const updatedBoard = updatedBoardList.find(
-      (data) => data.id === boardId,
-    ) || { id: boardId, name: list.name, list: [...list] };
+    const updatedBoard = updatedBoardList.find((data) => data.id === boardId) || {
+      id: boardId,
+      name: list.name,
+      list: [...list],
+    };
     return new Response(JSON.stringify(updatedBoard), { status: 200 });
   } catch (error) {
     return new Response('Internal Server Error', { status: 500 });
@@ -35,9 +37,7 @@ export const PUT = async (request: NextRequest) => {
     const { boardId, list } = reqBody;
     const updatedBoardList = boardData.map((data) => {
       if (data.id === boardId) {
-        data.list = data.list.map((item) =>
-          item.id === list.id ? list : item,
-        );
+        data.list = data.list.map((item) => (item.id === list.id ? list : item));
         return data;
       } else {
         return data;

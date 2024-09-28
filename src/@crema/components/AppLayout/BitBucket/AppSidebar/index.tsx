@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import AppScrollbar from '../../../AppScrollbar';
 import MainSidebar from '../../components/MainSidebar';
 import Box from '@mui/material/Box';
-import Hidden from '@mui/material/Hidden';
 import Drawer from '@mui/material/Drawer';
 import VerticalNav from '../../components/VerticalNav';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -32,13 +31,13 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
 }) => {
   const sideBarComponent = () => {
     return (
-      <BitBucketSidebarWrapper className='bit-bucket-sidebar'>
-        <Box className='bit-bucket-sidebar-fixed'>
-          <Box className='bit-bucket-btn' onClick={() => toggleNavCollapsed()}>
+      <BitBucketSidebarWrapper className="bit-bucket-sidebar">
+        <Box className="bit-bucket-sidebar-fixed">
+          <Box className="bit-bucket-btn" onClick={() => toggleNavCollapsed()}>
             {isNavCollapsed ? <NavigateNextIcon /> : <NavigateBeforeIcon />}
           </Box>
           <BucketMinibar />
-          <AppSidebarContainer className='app-sidebar-container'>
+          <AppSidebarContainer className="app-sidebar-container">
             <MainSidebar>
               <Box
                 sx={{
@@ -51,7 +50,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
                     fontSize: 22,
                     fontWeight: Fonts.MEDIUM,
                   }}
-                  component='h2'
+                  component="h2"
                 >
                   Crema
                 </Typography>
@@ -73,21 +72,19 @@ const AppSidebar: React.FC<AppSidebarProps> = ({
   };
   return (
     <>
-      <Hidden xlUp>
-        <Drawer
-          anchor={position}
-          open={isNavCollapsed}
-          onClose={() => toggleNavCollapsed()}
-          classes={{
-            root: clsx(variant),
-            paper: clsx(variant),
-          }}
-          style={{ position: 'absolute' }}
-        >
-          {sideBarComponent()}
-        </Drawer>
-      </Hidden>
-      <Hidden lgDown>{sideBarComponent()}</Hidden>
+      <Drawer
+        anchor={position}
+        open={isNavCollapsed}
+        onClose={() => toggleNavCollapsed()}
+        classes={{
+          root: clsx(variant),
+          paper: clsx(variant),
+        }}
+        sx={{ position: 'absolute', display: { lg: 'none', xs: 'block' } }}
+      >
+        {sideBarComponent()}
+      </Drawer>
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>{sideBarComponent()}</Box>
     </>
   );
 };

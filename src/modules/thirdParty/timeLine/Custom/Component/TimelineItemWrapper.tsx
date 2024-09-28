@@ -16,7 +16,6 @@ const TimelineItemWrapper = ({ children }: Props) => {
         position: 'relative',
         margin: '10px 0',
         width: { xs: '100%', sm: '50%' },
-
         '&:nth-child(odd)': {
           alignSelf: 'flex-end',
           justifyContent: 'flex-start',
@@ -27,14 +26,12 @@ const TimelineItemWrapper = ({ children }: Props) => {
             xl: '65px',
           },
           paddingRight: 0,
-
           '& .timelineItemContent': {
             '&:after': {
               right: 'auto',
               left: '-15px',
               transform: 'rotate(180deg)',
             },
-
             '& .circle': {
               right: 'auto',
               left: {

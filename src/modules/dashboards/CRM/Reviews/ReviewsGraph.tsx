@@ -12,15 +12,9 @@ const ReviewsGraph = ({ reviewGraphData = [] }) => {
         flexDirection: 'column',
       }}
     >
-      <ResponsiveContainer height={160} width='100%'>
+      <ResponsiveContainer height={160} width="100%">
         <LineChart data={reviewGraphData}>
-          <Line
-            type='monotone'
-            dataKey='value'
-            stroke='#C6F6D5'
-            strokeWidth={3}
-            dot={false}
-          />
+          <Line type="monotone" dataKey="value" stroke="#C6F6D5" strokeWidth={3} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </Box>

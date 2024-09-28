@@ -1,13 +1,13 @@
-import React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import FormControl from "@mui/material/FormControl";
-import { useTodoContext } from "../../../context/TodoContextProvider";
-import { StaffType } from "@crema/types/models/apps/Todo";
+import React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import FormControl from '@mui/material/FormControl';
+import { useTodoContext } from '../../../context/TodoContextProvider';
+import { StaffType } from '@crema/types/models/apps/Todo';
 
 type Props = {
   selectedStaff: StaffType;
@@ -20,7 +20,7 @@ const ChangeStaff = ({ selectedStaff, handleStaffChange }: Props) => {
       variant="outlined"
       sx={{
         minWidth: 100,
-        width: "100%",
+        width: '100%',
       }}
     >
       <InputLabel id="selected-staff-select-outlined-label">
@@ -29,8 +29,8 @@ const ChangeStaff = ({ selectedStaff, handleStaffChange }: Props) => {
       <Select
         labelId="selected-staff-select-outlined-label"
         sx={{
-          cursor: "pointer",
-          "& .MuiOutlinedInput-input": {
+          cursor: 'pointer',
+          '& .MuiOutlinedInput-input': {
             paddingBottom: 2.5,
             paddingTop: 2.5,
           },
@@ -45,10 +45,15 @@ const ChangeStaff = ({ selectedStaff, handleStaffChange }: Props) => {
               value={staff.id}
               key={staff.id}
               sx={{
-                cursor: "pointer",
+                cursor: 'pointer',
               }}
             >
-              <Box display="flex" alignItems="center">
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 {staff.image ? (
                   <Avatar
                     sx={{

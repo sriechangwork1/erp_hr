@@ -25,10 +25,10 @@ function a11yProps(index: number) {
 }
 
 const tabs = [
-  { id: 1, name: <IntlMessages id='common.all' /> },
-  { id: 2, name: <IntlMessages id='extra.branding' /> },
-  { id: 3, name: <IntlMessages id='extra.graphics' /> },
-  { id: 4, name: <IntlMessages id='extra.logos' /> },
+  { id: 1, name: <IntlMessages id="common.all" /> },
+  { id: 2, name: <IntlMessages id="extra.branding" /> },
+  { id: 3, name: <IntlMessages id="extra.graphics" /> },
+  { id: 4, name: <IntlMessages id="extra.logos" /> },
 ];
 
 type Props = {
@@ -72,11 +72,7 @@ const PortfolioTabs = ({ portfolio }: Props) => {
           },
         }}
       >
-        <Tabs
-          value={value}
-          onChange={onTabsChange}
-          aria-label='basic tabs example'
-        >
+        <Tabs value={value} onChange={onTabsChange} aria-label="basic tabs example">
           {tabs.map((tab, index) => (
             <Tab label={tab.name} key={index} {...a11yProps(index)} />
           ))}
@@ -93,11 +89,7 @@ const PortfolioTabs = ({ portfolio }: Props) => {
             xl: 4,
           }}
           renderRow={(data: AllPortfolioType, index) => (
-            <PortfolioCard
-              key={index}
-              onViewPortfolioDetail={onViewPortfolioDetail}
-              portfolio={data}
-            />
+            <PortfolioCard key={index} onViewPortfolioDetail={onViewPortfolioDetail} portfolio={data} />
           )}
         />
       )}
@@ -112,11 +104,7 @@ const PortfolioTabs = ({ portfolio }: Props) => {
             xl: 4,
           }}
           renderRow={(data: BrandingPortfolioType, index) => (
-            <PortfolioCard
-              key={index}
-              onViewPortfolioDetail={onViewPortfolioDetail}
-              portfolio={data}
-            />
+            <PortfolioCard key={index} onViewPortfolioDetail={onViewPortfolioDetail} portfolio={data} />
           )}
         />
       )}
@@ -131,11 +119,7 @@ const PortfolioTabs = ({ portfolio }: Props) => {
             xl: 4,
           }}
           renderRow={(data: GraphicsPortfolioType, index) => (
-            <PortfolioCard
-              key={index}
-              onViewPortfolioDetail={onViewPortfolioDetail}
-              portfolio={data}
-            />
+            <PortfolioCard key={index} onViewPortfolioDetail={onViewPortfolioDetail} portfolio={data} />
           )}
         />
       )}
@@ -150,11 +134,7 @@ const PortfolioTabs = ({ portfolio }: Props) => {
             xl: 4,
           }}
           renderRow={(data: LogosPortfolioType, index) => (
-            <PortfolioCard
-              key={index}
-              onViewPortfolioDetail={onViewPortfolioDetail}
-              portfolio={data}
-            />
+            <PortfolioCard key={index} onViewPortfolioDetail={onViewPortfolioDetail} portfolio={data} />
           )}
         />
       )}

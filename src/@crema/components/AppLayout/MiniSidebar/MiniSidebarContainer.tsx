@@ -8,19 +8,15 @@ type MiniSidebarContainerProps = {
   [x: string]: any;
 };
 
-const MiniSidebarContainer: React.FC<MiniSidebarContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const MiniSidebarContainer: React.FC<MiniSidebarContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -66,12 +62,10 @@ const MiniSidebarContainer: React.FC<MiniSidebarContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .miniSidebarWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .mini-sidebar': {
             position: { xl: 'sticky' },
             height: { xl: '100%' },
@@ -117,7 +111,7 @@ const MiniSidebarContainer: React.FC<MiniSidebarContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

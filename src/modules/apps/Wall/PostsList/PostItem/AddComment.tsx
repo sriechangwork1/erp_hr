@@ -75,14 +75,10 @@ const AddComment = ({ postId, wallData, setPostList }: Props) => {
           mime_type: acceptedFiles[0].type,
         },
       };
-      postDataApi<PostObjType[]>(
-        '/wall/posts/comments',
-        infoViewActionsContext,
-        {
-          postId,
-          comment: newComment,
-        },
-      )
+      postDataApi<PostObjType[]>('/wall/posts/comments', infoViewActionsContext, {
+        postId,
+        comment: newComment,
+      })
         .then((data) => {
           setPostList(data);
           infoViewActionsContext.showMessage('Comment Added Successfully!');
@@ -139,14 +135,19 @@ const AddComment = ({ postId, wallData, setPostList }: Props) => {
         }}
       >
         <CommentTextField
-          placeholder='Write a comment'
+          placeholder="Write a comment"
           fullWidth
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           onKeyPress={submitComment}
         />
 
-        <Box display='flex' alignItems='center'>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {comment === '' ? (
             <>
               <IconButton

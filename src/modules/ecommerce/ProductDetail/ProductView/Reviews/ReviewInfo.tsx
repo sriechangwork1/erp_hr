@@ -76,12 +76,7 @@ const ReviewInfo = () => {
         >
           <Box component="span">5</Box>
           <StarRateIcon style={{ fontSize: 16 }} />
-          <AppLinearProgress
-            activeColor="#49BD65"
-            value={70}
-            thickness={6}
-            style={{ minWidth: 200, maxWidth: 500 }}
-          />
+          <AppLinearProgress activeColor="#49BD65" value={70} thickness={6} style={{ minWidth: 200, maxWidth: 500 }} />
           <Box
             component="span"
             sx={{
@@ -103,12 +98,7 @@ const ReviewInfo = () => {
         >
           <Box component="span">4</Box>
           <StarRateIcon style={{ fontSize: 16 }} />
-          <AppLinearProgress
-            activeColor="#49BD65"
-            value={30}
-            thickness={6}
-            style={{ minWidth: 200, maxWidth: 500 }}
-          />
+          <AppLinearProgress activeColor="#49BD65" value={30} thickness={6} style={{ minWidth: 200, maxWidth: 500 }} />
           <Box
             component="span"
             sx={{
@@ -130,12 +120,7 @@ const ReviewInfo = () => {
         >
           <Box component="span">3</Box>
           <StarRateIcon style={{ fontSize: 16 }} />
-          <AppLinearProgress
-            activeColor="#FF9F00"
-            value={20}
-            thickness={6}
-            style={{ minWidth: 200, maxWidth: 500 }}
-          />
+          <AppLinearProgress activeColor="#FF9F00" value={20} thickness={6} style={{ minWidth: 200, maxWidth: 500 }} />
           <Box
             component="span"
             sx={{
@@ -157,12 +142,7 @@ const ReviewInfo = () => {
         >
           <Box component="span">2</Box>
           <StarRateIcon style={{ fontSize: 16 }} />
-          <AppLinearProgress
-            activeColor="#FF9F00"
-            value={30}
-            thickness={6}
-            style={{ minWidth: 200, maxWidth: 500 }}
-          />
+          <AppLinearProgress activeColor="#FF9F00" value={30} thickness={6} style={{ minWidth: 200, maxWidth: 500 }} />
           <Box
             component="span"
             sx={{
@@ -184,12 +164,7 @@ const ReviewInfo = () => {
         >
           <Box component="span">1</Box>
           <StarRateIcon style={{ fontSize: 16 }} />
-          <AppLinearProgress
-            activeColor="#FF6161"
-            value={40}
-            thickness={6}
-            style={{ minWidth: 200, maxWidth: 500 }}
-          />
+          <AppLinearProgress activeColor="#FF6161" value={40} thickness={6} style={{ minWidth: 200, maxWidth: 500 }} />
           <Box
             component="span"
             sx={{

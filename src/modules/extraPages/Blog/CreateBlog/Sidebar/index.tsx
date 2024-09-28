@@ -1,29 +1,21 @@
-import React from "react";
-import {
-  Autocomplete,
-  Box,
-  Button,
-  Grid,
-  Slide,
-  Switch,
-  TextField,
-} from "@mui/material";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import AppCard from "@crema/components/AppCard";
-import { TagType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Autocomplete, Box, Button, Grid, Slide, Switch, TextField } from '@mui/material';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
+import AppCard from '@crema/components/AppCard';
+import { TagType } from '@crema/types/models/extrapages/Blog';
 
 const TagList: TagType[] = [
   {
     id: 1,
-    name: "Fashion",
+    name: 'Fashion',
   },
   {
     id: 2,
-    name: "Hotel",
+    name: 'Hotel',
   },
   {
     id: 3,
-    name: "Event",
+    name: 'Event',
   },
 ];
 
@@ -38,26 +30,20 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
         <AppCard title="Blog Details">
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            <Switch
-              value="checkedA"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-            />
+            <Switch value="checkedA" inputProps={{ 'aria-label': 'secondary checkbox' }} />
             <Box component="p">Publish</Box>
           </Box>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            <Switch
-              value="checkedA"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-            />
+            <Switch value="checkedA" inputProps={{ 'aria-label': 'secondary checkbox' }} />
             <Box component="p">Comments</Box>
           </Box>
 
@@ -65,7 +51,7 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
             multiple
             id="tags-outlined"
             sx={{
-              width: "100%",
+              width: '100%',
               my: 2,
             }}
             options={TagList}
@@ -74,30 +60,25 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
             value={selectedTags}
             onChange={(event, value) => setSelectedTags(value as TagType[])}
             renderOption={(props, option) => (
-              <Box
-                component="li"
-                sx={{ display: "flex", alignItems: "center" }}
-                {...props}
-              >
-                <Box ml={4}>{option?.name}</Box>
+              <Box component="li" sx={{ display: 'flex', alignItems: 'center' }} {...props}>
+                <Box
+                  sx={{
+                    ml: 4,
+                  }}
+                >
+                  {option?.name}
+                </Box>
               </Box>
             )}
             filterSelectedOptions
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="outlined"
-                label="Tags"
-                fullWidth
-              />
-            )}
+            renderInput={(params) => <TextField {...params} variant="outlined" label="Tags" fullWidth />}
           />
 
           <AppTextField
             name="metatitle"
             variant="outlined"
             sx={{
-              width: "100%",
+              width: '100%',
               my: 2,
             }}
             label="Meta Title"
@@ -108,7 +89,7 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
             variant="outlined"
             rows={4}
             sx={{
-              width: "100%",
+              width: '100%',
               my: 2,
             }}
             label="Meta Description"
@@ -117,7 +98,7 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
             name="keywords"
             variant="outlined"
             sx={{
-              width: "100%",
+              width: '100%',
               my: 2,
             }}
             label="Meta Keywords"
@@ -126,10 +107,10 @@ const BlogSidebar = ({ selectedTags, setSelectedTags }: Props) => {
 
         <Button
           sx={{
-            display: "block",
+            display: 'block',
             minWidth: 100,
             mt: 4,
-            ml: "auto",
+            ml: 'auto',
           }}
           color="primary"
           variant="contained"

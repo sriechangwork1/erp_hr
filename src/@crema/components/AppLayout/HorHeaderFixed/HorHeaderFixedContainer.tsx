@@ -9,18 +9,15 @@ type HorHeaderFixedContainerProps = {
   [x: string]: any;
 };
 
-const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         pt: { xs: 14, sm: 17.5 },
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
@@ -29,7 +26,6 @@ const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({
           borderLeft: '1px solid #e8e5dd',
           borderRight: '1px solid #e8e5dd',
           pt: { xl: 0 },
-
           '& .app-bar': {
             position: { xl: 'sticky' },
           },
@@ -45,24 +41,20 @@ const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .horHeaderFixedWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .app-bar': {
             borderTopLeftRadius: { xl: 12 },
             borderTopRightRadius: { xl: 12 },
             overflow: 'hidden',
             position: { xl: 'sticky' },
           },
-
           '& .footer': {
             borderBottomLeftRadius: { xl: 12 },
             borderBottomRightRadius: { xl: 12 },
           },
-
           '& .mainContent': {
             position: { xl: 'static' },
           },
@@ -73,7 +65,7 @@ const HorHeaderFixedContainer: React.FC<HorHeaderFixedContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

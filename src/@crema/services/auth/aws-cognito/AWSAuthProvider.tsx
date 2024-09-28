@@ -1,14 +1,15 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { Amplify } from 'aws-amplify';
-import Auth, { getCurrentUser } from '@aws-amplify/auth';
+import {
+  getCurrentUser,
+  signIn,
+  signOut,
+  signUp,
+  confirmSignUp,
+  signInWithRedirect,
+  fetchUserAttributes,
+} from 'aws-amplify/auth';
 // import { CognitoUser } from '@aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 import { awsConfig } from './aws-exports';
@@ -96,10 +97,10 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       );
   }, [auth]);
 
-  const signIn = async ({ username, password }: SignInProps) => {
+  const signin = async ({ username, password }: SignInProps) => {
     infoViewActionsContext.fetchStart();
     try {
-      const user: any = await Auth.signIn({ username, password });
+      const user: any = await signIn({ username, password });
 
       infoViewActionsContext.fetchSuccess();
       setAwsCognitoData({
@@ -119,7 +120,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const signUpCognitoUser = async ({ email, password, name }: SignUpProps) => {
     infoViewActionsContext.fetchStart();
     try {
-      await Auth.signUp({
+      await signUp({
         username: email,
         password,
         options: {
@@ -146,7 +147,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const confirmCognitoUserSignup = async (username: string, code: string) => {
     infoViewActionsContext.fetchStart();
     try {
-      await Auth.confirmSignUp({
+      await confirmSignUp({
         username,
         confirmationCode: code,
         options: {
@@ -169,7 +170,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const forgotPassword = async (username: string, code: string) => {
     infoViewActionsContext.fetchStart();
     try {
-      await Auth.confirmSignUp({
+      await confirmSignUp({
         username,
         confirmationCode: code,
         options: {
@@ -193,7 +194,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
   const logout = async () => {
     setAwsCognitoData({ ...awsCognitoData, isLoading: true });
     try {
-      await Auth.signOut();
+      await signOut();
       setAwsCognitoData({
         user: null,
         isLoading: false,
@@ -218,7 +219,7 @@ const AwsAuthProvider: React.FC<AwsAuthProviderProps> = ({ children }) => {
       <AwsCognitoActionsContext.Provider
         value={{
           logout,
-          signIn,
+          signIn: signin,
           signUpCognitoUser,
           confirmCognitoUserSignup,
           forgotPassword,

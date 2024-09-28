@@ -12,9 +12,9 @@ type Props = {
 
 const Graph = ({ data = [], color }: Props) => {
   return (
-    <ResponsiveContainer width='100%' height={70}>
+    <ResponsiveContainer width="100%" height={70}>
       <BarChart barSize={4} data={data}>
-        <Bar dataKey='users' fill={color} />
+        <Bar dataKey="users" fill={color} />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -1,11 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import PropTypes from "prop-types";
-import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Fonts } from "@crema/constants/AppEnums";
-import { NewCustomersType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import PropTypes from 'prop-types';
+import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Fonts } from '@crema/constants/AppEnums';
+import { NewCustomersType } from '@crema/types/models/dashboards/Ecommerce';
 
 type Props = {
   item: NewCustomersType;
@@ -14,20 +14,20 @@ type Props = {
 const CustomerItem = ({ item }: Props) => {
   const getStatusColor = () => {
     if (item.orders === 0) {
-      return "#F84E4E";
+      return '#F84E4E';
     } else if (item.orders > 0) {
-      return "#43C888";
+      return '#43C888';
     }
   };
 
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: { xs: "flex-start", sm: "center" },
-        padding: "8px 20px",
-        "&:not(:last-of-type)": {
-          borderBottom: "1px solid #ECEDF1",
+        display: 'flex',
+        alignItems: { xs: 'flex-start', sm: 'center' },
+        padding: '8px 20px',
+        '&:not(:last-of-type)': {
+          borderBottom: '1px solid #ECEDF1',
         },
       }}
       className="item-hover"
@@ -43,9 +43,9 @@ const CustomerItem = ({ item }: Props) => {
       <Box
         sx={{
           flex: 1,
-          display: "flex",
-          alignItems: { sm: "center" },
-          flexDirection: { xs: "column", sm: "row" },
+          display: 'flex',
+          alignItems: { sm: 'center' },
+          flexDirection: { xs: 'column', sm: 'row' },
         }}
       >
         <Box
@@ -66,7 +66,7 @@ const CustomerItem = ({ item }: Props) => {
           <Box
             sx={{
               fontSize: 14,
-              color: "text.secondary",
+              color: 'text.secondary',
             }}
           >
             {item.message}
@@ -74,28 +74,23 @@ const CustomerItem = ({ item }: Props) => {
         </Box>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Box
             sx={{
               color: getStatusColor(),
-              backgroundColor: getStatusColor() + "44",
-              padding: "3px 10px",
-              borderRadius: "15px",
-              display: "inline-block",
-              whiteSpace: "nowrap",
+              backgroundColor: getStatusColor() + '44',
+              padding: '3px 10px',
+              borderRadius: '15px',
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
             }}
           >
             {item.orders} orders
           </Box>
-          <IconButton
-            aria-label="more"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            onClick={() => {}}
-          >
+          <IconButton aria-label="more" aria-controls="long-menu" aria-haspopup="true" onClick={() => {}}>
             <MoreVertIcon />
           </IconButton>
         </Box>

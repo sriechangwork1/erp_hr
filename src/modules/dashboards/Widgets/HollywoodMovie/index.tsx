@@ -50,19 +50,14 @@ const HollywoodMovie = () => {
           }}
         >
           <Box
-            component='span'
+            component="span"
             sx={{
               width: { xs: 50, sm: 70, md: 90, xl: 110 },
               height: { xs: 50, sm: 70, md: 90, xl: 110 },
               cursor: 'pointer',
             }}
           >
-            <Image
-              src={'/assets/images/playbutton.png'}
-              alt='play'
-              width={110}
-              height={110}
-            />
+            <Image src={'/assets/images/playbutton.png'} alt="play" width={110} height={110} />
           </Box>
         </Box>
         <Box
@@ -71,14 +66,14 @@ const HollywoodMovie = () => {
           }}
         >
           <Box
-            component='h1'
+            component="h1"
             sx={{
               color: 'primary.contrastText',
               fontWeight: Fonts.MEDIUM,
               fontSize: { xs: 20, sm: 24, xl: 30 },
             }}
           >
-            <IntlMessages id='dashboard.hollywoodMovie' />
+            <IntlMessages id="dashboard.hollywoodMovie" />
           </Box>
         </Box>
       </Box>

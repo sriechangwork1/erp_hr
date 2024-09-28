@@ -15,38 +15,26 @@ const AreaChart = () => {
   return (
     <>
       <AppComponentHeader
-        title='Area Chart'
-        description='All svg elements can be added into the AreaChart component, such as defs, linearGradient, etc.'
-        refUrl='http://recharts.org/en-US/api/AreaChart/'
+        title="Area Chart"
+        description="All svg elements can be added into the AreaChart component, such as defs, linearGradient, etc."
+        refUrl="http://recharts.org/en-US/api/AreaChart/"
       />
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Simple modal' component={SimpleAreaChart} />
+          <AppComponentCard title="Simple modal" component={SimpleAreaChart} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Stacked Area Chart'
-            component={StackedAreaChart}
-          />
+          <AppComponentCard title="Stacked Area Chart" component={StackedAreaChart} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='AreaChart Connect Nulls'
-            component={AreaChartConnectNulls}
-          />
+          <AppComponentCard title="AreaChart Connect Nulls" component={AreaChartConnectNulls} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Synchronized Area Chart'
-            component={SynchronizedAreaChart}
-          />
+          <AppComponentCard title="Synchronized Area Chart" component={SynchronizedAreaChart} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Percent Area Chart'
-            component={PercentAreaChart}
-          />
+          <AppComponentCard title="Percent Area Chart" component={PercentAreaChart} />
         </Grid>
       </AppGridContainer>
     </>

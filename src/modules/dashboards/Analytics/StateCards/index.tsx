@@ -36,7 +36,7 @@ const StateCard = ({ data }: Props) => {
               mr: 4,
             }}
           >
-            <Image alt='icon' src={data.icon} height={50} width={50} />
+            <Image alt="icon" src={data.icon} height={50} width={50} />
           </IconButton>
           <Box
             sx={{
@@ -49,7 +49,7 @@ const StateCard = ({ data }: Props) => {
               }}
             >
               <Box
-                component='h3'
+                component="h3"
                 sx={{
                   display: 'inline-block',
                   fontWeight: Fonts.MEDIUM,
@@ -59,19 +59,27 @@ const StateCard = ({ data }: Props) => {
                 {data.value}
               </Box>
               <Box
-                sx={{
-                  ml: 3,
-                  fontSize: 14,
-                  fontWeight: Fonts.MEDIUM,
-                  color: data.growth > 0.0 ? green[500] : red[500],
-                }}
-                component='span'
+                sx={[
+                  {
+                    ml: 3,
+                    fontSize: 14,
+                    fontWeight: Fonts.MEDIUM,
+                  },
+                  data.growth > 0.0
+                    ? {
+                        color: green[500],
+                      }
+                    : {
+                        color: red[500],
+                      },
+                ]}
+                component="span"
               >
                 {data.growth}%
               </Box>
             </Box>
             <Box
-              component='p'
+              component="p"
               sx={{
                 fontSize: 14,
                 color: 'text.secondary',

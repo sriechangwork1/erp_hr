@@ -7,10 +7,7 @@ import BlogDetailContent from './BlogDetailContent';
 import BlogComment from './BlogComment';
 import AppAnimate from '@crema/components/AppAnimate';
 import AppGridContainer from '@crema/components/AppGridContainer';
-import {
-  BlogDetailType,
-  BlogSidebarType,
-} from '@crema/types/models/extrapages/Blog';
+import { BlogDetailType, BlogSidebarType } from '@crema/types/models/extrapages/Blog';
 
 type Props = {
   blogDetail?: BlogDetailType;
@@ -19,7 +16,7 @@ type Props = {
 
 const BlogDetail = ({ blogDetail, blogSidebar }: Props) => {
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <AppGridContainer>
         <Grid item xs={12}>
           <BlogDetailHeader
@@ -45,14 +42,11 @@ const BlogDetail = ({ blogDetail, blogSidebar }: Props) => {
           <BlogSidebarCard blogSidebar={blogSidebar} />
         </Grid>
         <Grid item xs={12} md={8} lg={8} xl={9} sx={{ order: { md: 1 } }}>
-          <BlogDetailContent
-            blogDetailContent={blogDetail?.blogDetailContent}
-          />
+          <BlogDetailContent blogDetailContent={blogDetail?.blogDetailContent} />
           <BlogComment comment={blogDetail?.blogComment} />
         </Grid>
       </AppGridContainer>
     </AppAnimate>
   );
 };
-
 export default BlogDetail;

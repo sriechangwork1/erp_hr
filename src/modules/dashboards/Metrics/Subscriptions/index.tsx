@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import SubscriptionGraph from "./SubscriptionGraph";
-import { useIntl } from "react-intl";
-import Box from "@mui/material/Box";
-import AppSelect from "@crema/components/AppSelect";
-import AppCard from "@crema/components/AppCard";
-import { SubscriptionType } from "@crema/types/models/dashboards/Metrics";
+import React, { useState } from 'react';
+import SubscriptionGraph from './SubscriptionGraph';
+import { useIntl } from 'react-intl';
+import Box from '@mui/material/Box';
+import AppSelect from '@crema/components/AppSelect';
+import AppCard from '@crema/components/AppCard';
+import { SubscriptionType } from '@crema/types/models/dashboards/Metrics';
 
 type SubscriptionsProps = {
   data: SubscriptionType;
@@ -31,13 +31,13 @@ const Subscriptions: React.FC<SubscriptionsProps> = ({ data }) => {
 
   const handleMonthChange = (value: string) => {
     switch (value) {
-      case "June":
+      case 'June':
         setGraphData(data.dataTwo);
         break;
-      case "July":
+      case 'July':
         setGraphData(data.dataThree);
         break;
-      case "August":
+      case 'August':
         setGraphData(data.dataOne);
         break;
       default:
@@ -50,25 +50,17 @@ const Subscriptions: React.FC<SubscriptionsProps> = ({ data }) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      title={messages["dashboard.subscriptions"] as string}
+      title={messages['dashboard.subscriptions'] as string}
       action={
         <Box
           sx={{
-            textAlign: { sm: "right" },
+            textAlign: { sm: 'right' },
           }}
         >
+          <AppSelect menus={[2019, 2018, 2017]} defaultValue={2019} onChange={handleYearChange} />
           <AppSelect
-            menus={[2019, 2018, 2017]}
-            defaultValue={2019}
-            onChange={handleYearChange}
-          />
-          <AppSelect
-            menus={[
-              messages["common.june"],
-              messages["common.july"],
-              messages["common.august"],
-            ]}
-            defaultValue={messages["common.june"]}
+            menus={[messages['common.june'], messages['common.july'], messages['common.august']]}
+            defaultValue={messages['common.june']}
             onChange={handleMonthChange}
           />
         </Box>

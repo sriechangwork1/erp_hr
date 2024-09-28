@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import AddNewTask from '../AddNewTask';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import TaskCalender from './TaskCalendar';
-import {
-  useCalendarActionsContext,
-  useCalendarContext,
-} from '../../context/CalendarContextProvider';
+import { useCalendarActionsContext, useCalendarContext } from '../../context/CalendarContextProvider';
 
 const TasksList = () => {
   const { taskLists } = useCalendarContext();
@@ -23,9 +20,7 @@ const TasksList = () => {
     if (filterText === '') {
       return taskLists?.data;
     } else {
-      return taskLists?.data.filter((task) =>
-        task.title.toUpperCase().includes(filterText.toUpperCase()),
-      );
+      return taskLists?.data.filter((task) => task.title.toUpperCase().includes(filterText.toUpperCase()));
     }
   };
 
@@ -41,19 +36,10 @@ const TasksList = () => {
   return (
     <>
       <AppsContent fullView>
-        <TaskCalender
-          taskList={list}
-          onUpdateTask={onUpdateTask}
-          onSetFilterText={onSetFilterText}
-        />
+        <TaskCalender taskList={list} onUpdateTask={onUpdateTask} onSetFilterText={onSetFilterText} />
       </AppsContent>
 
-      {isAddTaskOpen ? (
-        <AddNewTask
-          isAddTaskOpen={isAddTaskOpen}
-          onCloseAddTask={onCloseAddTask}
-        />
-      ) : null}
+      {isAddTaskOpen ? <AddNewTask isAddTaskOpen={isAddTaskOpen} onCloseAddTask={onCloseAddTask} /> : null}
     </>
   );
 };

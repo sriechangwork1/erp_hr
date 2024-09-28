@@ -20,7 +20,7 @@ const Error401 = () => {
   };
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           py: { xl: 8 },
@@ -43,11 +43,11 @@ const Error401 = () => {
             },
           }}
         >
-          <Image alt='401' src={Logo} width={400} height={400} />;
+          <Image alt="401" src={Logo} width={400} height={400} />;
         </Box>
         <Box sx={{ mb: { xs: 4, xl: 5 } }}>
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: { xs: 3, xl: 4 },
               fontSize: { xs: 20, md: 24 },
@@ -67,8 +67,8 @@ const Error401 = () => {
             <Typography>You are not authorized for this page</Typography>
           </Box>
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             sx={{
               fontWeight: Fonts.MEDIUM,
               fontSize: 16,
@@ -76,7 +76,7 @@ const Error401 = () => {
             }}
             onClick={onGoBackToHome}
           >
-            <IntlMessages id='error.goBackToHome' />
+            <IntlMessages id="error.goBackToHome" />
           </Button>
         </Box>
       </Box>

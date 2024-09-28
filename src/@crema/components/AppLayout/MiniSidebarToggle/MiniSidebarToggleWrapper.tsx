@@ -10,12 +10,12 @@ type Props = {
 const MiniSidebarToggleWrapper = ({ children, ...rest }: Props) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
+        backgroundColor: theme.palette.background.default,
         '& .mainContent': {
           display: 'flex',
           flexDirection: 'column',
@@ -94,7 +94,7 @@ const MiniSidebarToggleWrapper = ({ children, ...rest }: Props) => {
             },
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

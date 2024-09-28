@@ -1,7 +1,7 @@
-import React from "react";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import PropTypes from "prop-types";
-import { AgeOfAudienceType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import PropTypes from 'prop-types';
+import { AgeOfAudienceType } from '@crema/types/models/dashboards/Ecommerce';
 
 const RADIAN = Math.PI / 180;
 
@@ -29,14 +29,7 @@ const renderCustomizedLabel = ({
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text
-      key={index}
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
+    <text key={index} x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
@@ -67,11 +60,11 @@ const AudienceChart = ({ audienceData }: Props) => {
           ))}
         </Pie>
         <Tooltip
-          labelStyle={{ color: "black" }}
+          labelStyle={{ color: 'black' }}
           contentStyle={{
             borderRadius: 12,
-            borderColor: "#31354188",
-            background: "#FFFFFFCA",
+            borderColor: '#31354188',
+            background: '#FFFFFFCA',
           }}
         />
       </PieChart>

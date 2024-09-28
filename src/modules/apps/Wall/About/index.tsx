@@ -1,56 +1,56 @@
-import React from "react";
-import { styled } from "@mui/material/styles";
-import AppCard from "@crema/components/AppCard";
-import Box from "@mui/material/Box";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import IconButton from "@mui/material/IconButton";
-import AppList from "@crema/components/AppList";
-import { useIntl } from "react-intl";
-import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
-import { BiErrorCircle, BiPhone } from "react-icons/bi";
-import { FiThumbsUp } from "react-icons/fi";
-import { MdPublic } from "react-icons/md";
-import { AbutDataType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import { styled } from '@mui/material/styles';
+import AppCard from '@crema/components/AppCard';
+import Box from '@mui/material/Box';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import IconButton from '@mui/material/IconButton';
+import AppList from '@crema/components/AppList';
+import { useIntl } from 'react-intl';
+import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
+import { BiErrorCircle, BiPhone } from 'react-icons/bi';
+import { FiThumbsUp } from 'react-icons/fi';
+import { MdPublic } from 'react-icons/md';
+import { AbutDataType } from '@crema/types/models/apps/Wall';
 
-const AboutItemRoot = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  "&:not(:last-of-type)": {
+const AboutItemRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  '&:not(:last-of-type)': {
     marginBottom: 16,
   },
-  "&:first-of-type": {
-    alignItems: "flex-start",
+  '&:first-of-type': {
+    alignItems: 'flex-start',
   },
-  "&:hover $editBtnRoot": {
+  '&:hover $editBtnRoot': {
     opacity: 1,
-    visibility: "visible",
+    visibility: 'visible',
   },
-  "&:hover a, &:focus a": {
+  '&:hover a, &:focus a': {
     color: theme.palette.primary.main,
   },
-  "& a": {
-    textDecoration: "none",
-    wordBreak: "break-all",
+  '& a': {
+    textDecoration: 'none',
+    wordBreak: 'break-all',
     color: theme.palette.text.primary,
   },
-  "& .material-icons": {
-    display: "block",
+  '& .material-icons': {
+    display: 'block',
   },
 }));
 
 const getIconByName = (iconName: string) => {
   switch (iconName) {
-    case "person":
+    case 'person':
       return <AiOutlineUser />;
-    case "phone":
+    case 'phone':
       return <BiPhone />;
-    case "email":
+    case 'email':
       return <AiOutlineMail />;
-    case "error":
+    case 'error':
       return <BiErrorCircle />;
-    case "thumb":
+    case 'thumb':
       return <FiThumbsUp />;
-    case "public":
+    case 'public':
       return <MdPublic />;
     default:
       return <AiOutlineUser />;
@@ -60,13 +60,13 @@ const getIconByName = (iconName: string) => {
 const AboutItem = ({ item }: { item: AbutDataType }) => {
   const getLinkAddress = () => {
     switch (item.linkType) {
-      case "link": {
+      case 'link': {
         return <a href={item.text}>{item.text}</a>;
       }
-      case "phone": {
+      case 'phone': {
         return <a href={`tel:${item.text}`}>{item.text}</a>;
       }
-      case "email": {
+      case 'email': {
         return <a href={`mailto:${item.text}`}>{item.text}</a>;
       }
       default:
@@ -80,14 +80,21 @@ const AboutItem = ({ item }: { item: AbutDataType }) => {
         {getIconByName(item.icon)}
       </Box>
       {getLinkAddress()}
-      <Box component="span" ml="auto" mr={-2} mt={-2}>
+      <Box
+        component="span"
+        sx={{
+          ml: 'auto',
+          mr: -2,
+          mt: -2,
+        }}
+      >
         <IconButton
           sx={{
-            color: "primary.main",
+            color: 'primary.main',
             padding: 2,
             opacity: 0,
-            visibility: "hidden",
-            "& .MuiSvgIcon-root": {
+            visibility: 'hidden',
+            '& .MuiSvgIcon-root': {
               fontSize: 20,
             },
           }}
@@ -109,15 +116,13 @@ const About = (props: AboutProps) => {
   return (
     <AppCard
       sxStyle={{ mb: 8 }}
-      title={messages["wall.about"] as string}
-      action={messages["wall.editPageInfo"] as string}
+      title={messages['wall.about'] as string}
+      action={messages['wall.editPageInfo'] as string}
     >
       <AppList
         animation="transition.slideRightBigIn"
         data={props.about}
-        renderRow={(data: AbutDataType, index: number) => (
-          <AboutItem key={index} item={data} />
-        )}
+        renderRow={(data: AbutDataType, index: number) => <AboutItem key={index} item={data} />}
       />
     </AppCard>
   );

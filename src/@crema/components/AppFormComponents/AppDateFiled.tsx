@@ -18,9 +18,7 @@ const AppDateFiled = (props: AppDateFiledProps) => {
       mask="____-__-__"
       autoOk
       {...props}
-      renderInput={(params: any) => (
-        <TextField className={props.className} {...params} />
-      )}
+      renderInput={(params: any) => <TextField className={props.className} {...params} />}
     />
   );
 };

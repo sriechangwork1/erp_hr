@@ -12,11 +12,7 @@ type Props = {
 
 const InfoWidget = ({ data }: Props) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      className='card-hover'
-      contentStyle={{ paddingLeft: 8, paddingRight: 8 }}
-    >
+    <AppCard sxStyle={{ height: 1 }} className="card-hover" contentStyle={{ paddingLeft: 8, paddingRight: 8 }}>
       <Box
         sx={{
           display: 'flex',
@@ -32,7 +28,7 @@ const InfoWidget = ({ data }: Props) => {
             mb: 3,
           }}
         >
-          <Image src={data.icon} alt='icon' height={60} width={60} />
+          <Image src={data.icon} alt="icon" height={60} width={60} />
         </Box>
         <Box
           sx={{
@@ -48,7 +44,7 @@ const InfoWidget = ({ data }: Props) => {
             {data.name}
           </Box>
           <Box
-            component='p'
+            component="p"
             sx={{
               fontSize: 14,
               fontWeight: Fonts.BOLD,

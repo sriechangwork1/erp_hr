@@ -1,10 +1,10 @@
-import React from "react";
-import Slider from "react-slick";
-import Box from "@mui/material/Box";
-import AppCard from "@crema/components/AppCard";
-import SlideItem from "./SlideItem";
-import MediaSlider from "./MediaSlider";
-import { SlideBasicFourType } from "@crema/types/models/thirdParty/reactSlick";
+import React from 'react';
+import Slider from 'react-slick';
+import Box from '@mui/material/Box';
+import AppCard from '@crema/components/AppCard';
+import SlideItem from './SlideItem';
+import MediaSlider from './MediaSlider';
+import { SlideBasicFourType } from '@crema/types/models/thirdParty/reactSlick';
 
 const settings = {
   dots: true,
@@ -20,9 +20,7 @@ interface SlideBasicFourProps {
   slideBasicFour: SlideBasicFourType[];
 }
 
-const SlideBasicDemoFour: React.FC<SlideBasicFourProps> = ({
-  slideBasicFour,
-}) => {
+const SlideBasicDemoFour: React.FC<SlideBasicFourProps> = ({ slideBasicFour }) => {
   return (
     <AppCard>
       <MediaSlider>

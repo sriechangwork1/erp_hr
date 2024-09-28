@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { TiFolderOpen } from "react-icons/ti";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
-import { DropzoneState } from "react-dropzone";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { TiFolderOpen } from 'react-icons/ti';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
+import { DropzoneState } from 'react-dropzone';
 
 type Props = {
   uploadText?: string;
@@ -15,25 +15,25 @@ const UploadModern = ({ customContent, uploadText, dropzone }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
-        "& ul": {
-          listStyle: "none",
+        position: 'relative',
+        '& ul': {
+          listStyle: 'none',
           padding: 0,
         },
       }}
     >
       <Box
-        {...dropzone.getRootProps({ className: "dropzone" })}
-        sx={{
-          cursor: "pointer",
-          border: (theme) => `dashed 2px ${theme.palette.divider}`,
+        {...dropzone.getRootProps({ className: 'dropzone' })}
+        sx={(theme) => ({
+          cursor: 'pointer',
+          border: `dashed 2px ${theme.palette.divider}`,
           borderRadius: 2.5,
           p: 5,
-          textAlign: "center",
+          textAlign: 'center',
           mb: 4,
-          color: "text.secondary",
-          backgroundColor: "background.default",
-        }}
+          color: 'text.secondary',
+          backgroundColor: 'background.default',
+        })}
       >
         <input {...dropzone.getInputProps()} />
         {customContent ? (

@@ -1,9 +1,9 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import Slider from "react-slick";
-import ProfileItem from "./ProfileItem";
-import MediaSlider from "./MediaSlider";
-import { ProfileSlideType } from "@crema/types/models/thirdParty/reactSlick";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import Slider from 'react-slick';
+import ProfileItem from './ProfileItem';
+import MediaSlider from './MediaSlider';
+import { ProfileSlideType } from '@crema/types/models/thirdParty/reactSlick';
 
 const settings = {
   dots: true,
@@ -23,7 +23,7 @@ const ProfileSlider: React.FC<ProfileSliderProps> = ({ profile }) => {
   return (
     <AppCard
       sxStyle={{
-        height: "100%",
+        height: '100%',
       }}
     >
       <MediaSlider>

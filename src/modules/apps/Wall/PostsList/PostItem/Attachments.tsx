@@ -54,23 +54,19 @@ const Attachments = ({ attachments }: Props) => {
   };
 
   return (
-    <Box mb={4}>
+    <Box
+      sx={{
+        mb: 4,
+      }}
+    >
       <AppGrid
         itemPadding={8}
         data={attachments.length > 4 ? attachments.slice(0, 4) : attachments}
         column={attachments.length > 3 ? 2 : attachments.length}
         renderRow={(item, index) => (
           <ImageView key={index}>
-            <Image
-              src={`${item.preview}`}
-              alt='attachment'
-              width={706}
-              height={200}
-              onClick={() => setIndex(index)}
-            />
-            {attachments.length > 4 && index === 3 && (
-              <ImageCountView>+ {attachments.length - 3}</ImageCountView>
-            )}
+            <Image src={`${item.preview}`} alt="attachment" width={706} height={200} onClick={() => setIndex(index)} />
+            {attachments.length > 4 && index === 3 && <ImageCountView>+ {attachments.length - 3}</ImageCountView>}
           </ImageView>
         )}
       />

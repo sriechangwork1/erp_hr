@@ -1,28 +1,20 @@
-import React from "react";
-import { Button } from "@mui/material";
-import { Form } from "formik";
-import Grid from "@mui/material/Grid";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppTextField from "@crema/components/AppFormComponents/AppTextField";
-import AppGridContainer from "@crema/components/AppGridContainer";
+import React from 'react';
+import { Button } from '@mui/material';
+import { Form } from 'formik';
+import Grid from '@mui/material/Grid';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppTextField from '@crema/components/AppFormComponents/AppTextField';
+import AppGridContainer from '@crema/components/AppGridContainer';
 
 const BlogCommentForm = () => {
   return (
     <Form autoComplete="off">
       <AppGridContainer spacing={4}>
         <Grid item xs={12} md={6}>
-          <AppTextField
-            fullWidth
-            name="name"
-            label={<IntlMessages id="common.fullName" />}
-          />
+          <AppTextField fullWidth name="name" label={<IntlMessages id="common.fullName" />} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <AppTextField
-            name="email"
-            fullWidth
-            label={<IntlMessages id="common.email" />}
-          />
+          <AppTextField name="email" fullWidth label={<IntlMessages id="common.email" />} />
         </Grid>
         <Grid item xs={12} md={12}>
           <AppTextField
@@ -37,7 +29,7 @@ const BlogCommentForm = () => {
         <Grid item xs={12} md={12}>
           <Button
             sx={{
-              position: "relative",
+              position: 'relative',
               minWidth: 100,
             }}
             color="primary"

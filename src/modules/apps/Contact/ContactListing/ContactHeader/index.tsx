@@ -1,17 +1,13 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import AppSearchBar from '@crema/components/AppSearchBar';
-import { Hidden } from '@mui/material';
 import { useIntl } from 'react-intl';
 import CheckBox from './CheckBox';
 import ContactCheckedActions from './ContactCheckedActions';
 import AppsPagination from '@crema/components/AppsPagination';
 import ViewSelectButtons from './ViewSelectButtons';
 import { ContactObjType } from '@crema/types/models/apps/Contact';
-import {
-  useContactActionsContext,
-  useContactContext,
-} from '../../../context/ContactContextProvider';
+import { useContactActionsContext, useContactContext } from '../../../context/ContactContextProvider';
 
 type Props = {
   checkedContacts: number[];
@@ -47,18 +43,13 @@ const ContactHeader = (props: Props) => {
           alignItems: 'center',
         }}
       >
-        <CheckBox
-          checkedContacts={checkedContacts}
-          setCheckedContacts={setCheckedContacts}
-        />
+        <CheckBox checkedContacts={checkedContacts} setCheckedContacts={setCheckedContacts} />
 
         <AppSearchBar
-          iconPosition='right'
+          iconPosition="right"
           overlap={false}
           value={filterText}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            onSetFilterText(event.target.value)
-          }
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => onSetFilterText(event.target.value)}
           placeholder={messages['common.searchHere'] as string}
         />
         {checkedContacts.length > 0 ? (
@@ -72,16 +63,11 @@ const ContactHeader = (props: Props) => {
 
         <ViewSelectButtons pageView={pageView} onChangePageView={setPageView} />
       </Box>
-      <Hidden smDown>
+      <Box sx={{ display: { sm: 'block', xs: 'none' } }}>
         {contactList?.data?.length > 0 ? (
-          <AppsPagination
-            sx={{ ml: 2 }}
-            count={contactList?.count}
-            page={page}
-            onPageChange={onPageChange}
-          />
+          <AppsPagination sx={{ ml: 2 }} count={contactList?.count} page={page} onPageChange={onPageChange} />
         ) : null}
-      </Hidden>
+      </Box>
     </>
   );
 };

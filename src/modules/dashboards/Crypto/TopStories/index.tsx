@@ -24,20 +24,20 @@ const TopStories = ({ stories }: Props) => {
     >
       <AppScrollbar sx={{ maxHeight: 388, px: 5 }}>
         <Box
-          sx={{
+          sx={(theme) => ({
             position: 'relative',
             '& .stories-item': {
               '&:not(:last-child)': {
-                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+                borderBottom: `solid 1px ${theme.palette.divider}`,
                 pb: 2.5,
                 mb: 2.5,
               },
             },
-          }}
+          })}
         >
           {stories.map((stories: StoryType, index: number) => {
             return (
-              <Box key={index} className='stories-item'>
+              <Box key={index} className="stories-item">
                 <StoriesItem stories={stories} />
               </Box>
             );

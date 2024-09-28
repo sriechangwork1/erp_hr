@@ -1,11 +1,11 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { alpha, Box } from "@mui/material";
-import CoinsInfo from "./CoinsInfo";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppCard from "@crema/components/AppCard";
-import type { TotalBalanceDataType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import Button from '@mui/material/Button';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { alpha, Box } from '@mui/material';
+import CoinsInfo from './CoinsInfo';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppCard from '@crema/components/AppCard';
+import type { TotalBalanceDataType } from '@crema/types/models/dashboards/Crypto';
 
 type Props = {
   totalBalanceData: TotalBalanceDataType;
@@ -17,9 +17,9 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
       <Box
         component="h2"
         sx={{
-          color: "text.primary",
+          color: 'text.primary',
           fontSize: 16,
-          textTransform: "uppercase",
+          textTransform: 'uppercase',
           mb: { xs: 4, sm: 4, xl: 6 },
           fontWeight: Fonts.BOLD,
         }}
@@ -30,14 +30,14 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
         <Box
           sx={{
             mb: { xs: 3 },
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
           }}
         >
           <Box
             sx={{
-              position: "relative",
+              position: 'relative',
             }}
           >
             <Box
@@ -52,9 +52,9 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
             <Box
               component="p"
               sx={{
-                color: "text.secondary",
+                color: 'text.secondary',
                 fontSize: 14,
-                whiteSpace: "nowrap",
+                whiteSpace: 'nowrap',
                 mb: 1,
               }}
             >
@@ -63,25 +63,23 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
           </Box>
           <Box
             sx={{
-              display: "flex",
+              display: 'flex',
             }}
           >
             <Box>
               <Button
                 sx={{
-                  backgroundColor: (theme) =>
-                    alpha(theme.palette.primary.main, 0.1),
-                  color: "primary.main",
+                  backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
+                  color: 'primary.main',
                   fontWeight: Fonts.LIGHT,
-                  textTransform: "capitalize",
+                  textTransform: 'capitalize',
                   width: 96,
                   fontSize: 16,
-                  "&:hover, &:focus": {
-                    backgroundColor: (theme) =>
-                      alpha(theme.palette.primary.main, 0.15),
-                    color: "primary.main",
+                  '&:hover, &:focus': {
+                    backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.15),
+                    color: 'primary.main',
                   },
-                  lineHeight: { xs: "16px", sm: "20px", xl: "26px" },
+                  lineHeight: { xs: '16px', sm: '20px', xl: '26px' },
                 }}
               >
                 <IntlMessages id="common.send" />
@@ -96,10 +94,10 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
                 variant="contained"
                 sx={{
                   fontWeight: Fonts.LIGHT,
-                  textTransform: "capitalize",
+                  textTransform: 'capitalize',
                   width: 96,
                   fontSize: 16,
-                  lineHeight: { xs: "16px", sm: "20px", xl: "26px" },
+                  lineHeight: { xs: '16px', sm: '20px', xl: '26px' },
                 }}
               >
                 <IntlMessages id="common.receive" />
@@ -111,7 +109,7 @@ const TotalBalance = ({ totalBalanceData }: Props) => {
           component="p"
           sx={{
             fontSize: 16,
-            color: "text.secondary",
+            color: 'text.secondary',
           }}
         >
           <IntlMessages id="dashboard.buyCurrency" />

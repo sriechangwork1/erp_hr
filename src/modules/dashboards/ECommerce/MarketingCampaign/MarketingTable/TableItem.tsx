@@ -30,7 +30,7 @@ type Props = {
 
 const TableItem = (props: Props) => {
   return (
-    <TableRowWrapper key={props.data.name} className='item-hover'>
+    <TableRowWrapper key={props.data.name} className="item-hover">
       <TableCell>
         <Box
           sx={{
@@ -47,19 +47,19 @@ const TableItem = (props: Props) => {
             src={props.data.icon}
           />
           <Box
-            sx={{
+            sx={(theme) => ({
               fontSize: 14,
               flex: 1,
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              color: theme.palette.text.secondary,
+            })}
           >
             <Typography
-              sx={{
+              sx={(theme) => ({
                 mb: 0.5,
-                color: (theme) => theme.palette.text.primary,
-              }}
-              variant='h5'
-              component='h5'
+                color: theme.palette.text.primary,
+              })}
+              variant="h5"
+              component="h5"
             >
               {props.data.name}
             </Typography>
@@ -72,22 +72,12 @@ const TableItem = (props: Props) => {
       <TableCell>{props.data.budget}</TableCell>
       <TableCell>
         {props.data.growth ? (
-          <Image
-            src={'/assets/images/dashboard/growth_icon.svg'}
-            alt='growth_icon'
-            width={19}
-            height={12}
-          />
+          <Image src={'/assets/images/dashboard/growth_icon.svg'} alt="growth_icon" width={19} height={12} />
         ) : (
-          <Image
-            src={'/assets/images/dashboard/decries_icon.svg'}
-            alt='decries_icon'
-            width={19}
-            height={12}
-          />
+          <Image src={'/assets/images/dashboard/decries_icon.svg'} alt="decries_icon" width={19} height={12} />
         )}
         <Box
-          component='span'
+          component="span"
           sx={{
             display: 'inline-block',
             ml: 2,
@@ -97,12 +87,12 @@ const TableItem = (props: Props) => {
           {props.data.graph}
         </Box>
         <Box
-          component='span'
-          sx={{
+          component="span"
+          sx={(theme) => ({
             display: 'inline-block',
-            color: (theme) => theme.palette.text.secondary,
+            color: theme.palette.text.secondary,
             ml: 2,
-          }}
+          })}
         >
           {props.data.growth ? 'Up' : 'Down'}
         </Box>

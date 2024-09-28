@@ -5,24 +5,17 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
-import {Fonts} from "@crema/constants/AppEnums";
+import { Fonts } from '@crema/constants/AppEnums';
 
-type Props={
+type Props = {
   label: React.ReactNode;
   value: number;
-  onChange: (arg: any)=>any;
+  onChange: (arg: any) => any;
   coinColor: string;
   shortName: string;
   hideUSD?: boolean;
-}
-const CurrencyField = ({
-  label,
-  value,
-  onChange,
-  coinColor,
-  shortName,
-  hideUSD = false,
-}:Props) => {
+};
+const CurrencyField = ({ label, value, onChange, coinColor, shortName, hideUSD = false }: Props) => {
   return (
     <FormControl
       fullWidth
@@ -35,25 +28,25 @@ const CurrencyField = ({
         },
       }}
     >
-      <InputLabel htmlFor='outlined-adornment-amount'>{`Amount (${shortName})`}</InputLabel>
+      <InputLabel htmlFor="outlined-adornment-amount">{`Amount (${shortName})`}</InputLabel>
       <OutlinedInput
         sx={{
           '& .MuiOutlinedInput-input': {
             pt: 7.5,
           },
         }}
-        id='outlined-adornment-amount'
+        id="outlined-adornment-amount"
         label={`Amount (${shortName})`}
-        type='number'
+        type="number"
         value={value}
         onChange={(e) => onChange(+e.target.value)}
         startAdornment={
           hideUSD ? (
             ''
           ) : (
-            <InputAdornment position='start'>
+            <InputAdornment position="start">
               <Box
-                component='span'
+                component="span"
                 sx={{
                   pt: 3.5,
                   fontWeight: Fonts.MEDIUM,
@@ -66,13 +59,13 @@ const CurrencyField = ({
           )
         }
         endAdornment={
-          <InputAdornment position='end'>
+          <InputAdornment position="end">
             <Box
               sx={{
                 color: coinColor,
                 pt: 3.5,
               }}
-              component='span'
+              component="span"
             >
               {shortName}
             </Box>
@@ -84,4 +77,3 @@ const CurrencyField = ({
 };
 
 export default CurrencyField;
-

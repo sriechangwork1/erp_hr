@@ -1,47 +1,44 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { TiFolderOpen } from "react-icons/ti";
-import Button from "@mui/material/Button";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { TiFolderOpen } from 'react-icons/ti';
+import Button from '@mui/material/Button';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 
 interface UploadClassicProps {
   uploadText: string;
   dropzone: any;
 }
 
-const UploadClassic: React.FC<UploadClassicProps> = ({
-  uploadText,
-  dropzone,
-}) => {
+const UploadClassic: React.FC<UploadClassicProps> = ({ uploadText, dropzone }) => {
   const { theme } = useThemeContext();
   return (
     <Box
       sx={{
-        position: "relative",
-        "& ul": {
-          listStyle: "none",
+        position: 'relative',
+        '& ul': {
+          listStyle: 'none',
           padding: 0,
         },
       }}
     >
       <Box
-        sx={{
-          cursor: "pointer",
-          border: (theme) => `dashed 2px ${theme.palette.divider}`,
+        sx={(theme) => ({
+          cursor: 'pointer',
+          border: `dashed 2px ${theme.palette.divider}`,
           borderRadius: 2.5,
           p: 5,
-          textAlign: "center",
+          textAlign: 'center',
           mb: 4,
-          color: "text.secondary",
-          backgroundColor: "background.default",
-        }}
+          color: 'text.secondary',
+          backgroundColor: 'background.default',
+        })}
       >
         <Box
           sx={{
             maxWidth: 200,
-            mx: "auto",
+            mx: 'auto',
           }}
-          {...dropzone.getRootProps({ className: "dropzone" })}
+          {...dropzone.getRootProps({ className: 'dropzone' })}
         >
           <input {...dropzone.getInputProps()} />
           <TiFolderOpen
@@ -56,28 +53,28 @@ const UploadClassic: React.FC<UploadClassicProps> = ({
           </Box>
           <Box
             component="p"
-            sx={{
+            sx={(theme) => ({
               mb: 3,
-              position: "relative",
-              "&:before": {
+              position: 'relative',
+              '&:before': {
                 content: '""',
-                position: "absolute",
+                position: 'absolute',
                 left: 0,
                 right: 0,
-                top: "55%",
-                transform: "translateY(-50%)",
-                height: "1px",
-                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+                top: '55%',
+                transform: 'translateY(-50%)',
+                height: '1px',
+                borderBottom: `solid 1px ${theme.palette.divider}`,
               },
-            }}
+            })}
           >
             <Box
               component="span"
-              sx={{
-                backgroundColor: (theme) => theme.palette.background.default,
+              sx={(theme) => ({
+                backgroundColor: theme.palette.background.default,
                 p: 2,
-                position: "relative",
-              }}
+                position: 'relative',
+              })}
             >
               Or
             </Box>

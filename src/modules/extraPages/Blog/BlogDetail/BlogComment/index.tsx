@@ -51,14 +51,14 @@ const BlogComment = ({ comment }: Props) => {
       <BlogCommentList comments={comments} />
       <Box sx={{ position: 'relative' }}>
         <Typography
-          component='h3'
+          component="h3"
           sx={{
             mb: 7.5,
             fontSize: { xs: 18, md: 20 },
             fontWeight: Fonts.BOLD,
           }}
         >
-          <IntlMessages id='extraPages.writeComments' />
+          <IntlMessages id="extraPages.writeComments" />
         </Typography>
         <Formik
           validateOnChange={false}

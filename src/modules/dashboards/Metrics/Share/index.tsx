@@ -1,8 +1,8 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import AppCard from "@crema/components/AppCard";
-import AppGrid from "@crema/components/AppGrid";
-import { ShareDataType } from "@crema/types/models/dashboards/Metrics";
+import React from 'react';
+import Box from '@mui/material/Box';
+import AppCard from '@crema/components/AppCard';
+import AppGrid from '@crema/components/AppGrid';
+import { ShareDataType } from '@crema/types/models/dashboards/Metrics';
 
 type ShareProps = {
   data: ShareDataType[];
@@ -24,18 +24,18 @@ const Share: React.FC<ShareProps> = ({ data }) => {
         renderRow={(data, index) => (
           <Box
             key={index}
-            sx={{
+            sx={(theme) => ({
               backgroundColor: data.color,
               width: { xs: 50, xl: 65 },
-              color: (theme) => theme.palette.primary.contrastText,
-              padding: "6px 5px",
+              color: theme.palette.primary.contrastText,
+              padding: '6px 5px',
               borderRadius: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            })}
           >
-            <i className={"zmdi zmdi-" + data.icon} />
+            <i className={'zmdi zmdi-' + data.icon} />
             <Box
               component="span"
               sx={{

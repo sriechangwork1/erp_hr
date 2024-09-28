@@ -39,10 +39,7 @@ const FormWrapper = styled(Form)(() => {
 });
 
 const validationSchema = yup.object({
-  email: yup
-    .string()
-    .email('The Email you entered is not a valid format!')
-    .required('Please enter Email Address!'),
+  email: yup.string().email('The Email you entered is not a valid format!').required('Please enter Email Address!'),
 });
 
 const ComingSoon = () => {
@@ -50,7 +47,7 @@ const ComingSoon = () => {
   const infoViewActionsContext = useInfoViewActionsContext();
   const { messages } = useIntl();
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <>
         <Box
           sx={{
@@ -74,18 +71,18 @@ const ComingSoon = () => {
               },
             }}
           >
-            <Image alt='coming-soon' src={Logo} width={400} height={400} />;
+            <Image alt="coming-soon" src={Logo} width={400} height={400} />;
           </Box>
 
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: { xs: 3, xl: 4 },
               fontSize: { xs: 20, md: 24 },
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <IntlMessages id='error.comingSoon' />!
+            <IntlMessages id="error.comingSoon" />!
           </Box>
 
           <Box
@@ -95,10 +92,10 @@ const ComingSoon = () => {
             }}
           >
             <Typography style={{ fontSize: 18, marginTop: 3 }}>
-              <IntlMessages id='error.comingSoonMessage1' />
+              <IntlMessages id="error.comingSoonMessage1" />
             </Typography>
             <Typography style={{ fontSize: 18 }}>
-              <IntlMessages id='error.comingSoonMessage2' />
+              <IntlMessages id="error.comingSoonMessage2" />
             </Typography>
           </Box>
         </Box>
@@ -116,29 +113,22 @@ const ComingSoon = () => {
             }}
             validationSchema={validationSchema}
             onSubmit={(data, { resetForm }) => {
-              infoViewActionsContext.showMessage(
-                messages['error.comingSoonNotification'] as string,
-              );
+              infoViewActionsContext.showMessage(messages['error.comingSoonNotification'] as string);
               resetForm();
             }}
           >
             {() => (
               <FormWrapper>
                 <AppTextField
-                  placeholder='Email'
-                  name='email'
-                  label={<IntlMessages id='common.emailAddress' />}
-                  className='text-field'
-                  variant='outlined'
+                  placeholder="Email"
+                  name="email"
+                  label={<IntlMessages id="common.emailAddress" />}
+                  className="text-field"
+                  variant="outlined"
                 />
 
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
-                  className='button'
-                >
-                  <IntlMessages id='error.notifyMe' />
+                <Button variant="contained" color="primary" type="submit" className="button">
+                  <IntlMessages id="error.notifyMe" />
                 </Button>
               </FormWrapper>
             )}

@@ -1,10 +1,10 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import AppList from "@crema/components/AppList";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { NotificationType } from "@crema/types/models/dashboards/Academy";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppList from '@crema/components/AppList';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { NotificationType } from '@crema/types/models/dashboards/Academy';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   notification: NotificationType;
@@ -13,8 +13,8 @@ const NotificationItem = ({ notification }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
         px: 5,
         py: 2,
       }}
@@ -23,12 +23,12 @@ const NotificationItem = ({ notification }: Props) => {
       <Box
         sx={{
           mr: 4,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           fontSize: 20,
           width: 50,
-          textAlign: "center",
+          textAlign: 'center',
           height: 50,
           backgroundColor: notification.bgcolor,
           color: notification.color,
@@ -39,14 +39,14 @@ const NotificationItem = ({ notification }: Props) => {
       </Box>
       <Box
         sx={{
-          width: "calc(100% - 66px)",
-          overflow: "hidden",
+          width: 'calc(100% - 66px)',
+          overflow: 'hidden',
         }}
       >
         <Box
           component="h3"
           sx={{
-            display: "inline-block",
+            display: 'inline-block',
             fontWeight: Fonts.MEDIUM,
             mb: 0.5,
             fontSize: 14,
@@ -58,11 +58,11 @@ const NotificationItem = ({ notification }: Props) => {
           component="p"
           sx={{
             fontSize: 14,
-            color: "text.secondary",
+            color: 'text.secondary',
             mb: 1,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           }}
         >
           {notification.date}
@@ -77,17 +77,11 @@ type NotificationsProps = {
 };
 const Notifications = ({ notifications }: NotificationsProps) => {
   return (
-    <AppCard
-      sxStyle={{ height: 1 }}
-      title={<IntlMessages id="academy.notifications" />}
-      contentStyle={{ px: 0 }}
-    >
+    <AppCard sxStyle={{ height: 1 }} title={<IntlMessages id="academy.notifications" />} contentStyle={{ px: 0 }}>
       <AppList
         animation="transition.slideRightBigIn"
         data={notifications}
-        renderRow={(data, index) => (
-          <NotificationItem key={index} notification={data} />
-        )}
+        renderRow={(data, index) => <NotificationItem key={index} notification={data} />}
       />
     </AppCard>
   );

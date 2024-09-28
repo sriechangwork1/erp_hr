@@ -6,9 +6,7 @@ let boardData = boardList;
 export const GET = async (config: NextRequest) => {
   try {
     const params = Object.fromEntries(config.nextUrl.searchParams);
-    const response = boardData.find(
-      (board) => board.id === parseInt(params.id),
-    ) || {
+    const response = boardData.find((board) => board.id === parseInt(params.id)) || {
       id: params.id,
       name: 'New Board',
       list: [],

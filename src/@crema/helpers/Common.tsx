@@ -26,9 +26,7 @@ export const getBreakPointsValue = (valueSet: any, breakpoint: Breakpoint) => {
     case 'lg':
       return valueSet.lg || valueSet.md || valueSet.sm || valueSet.xs;
     default:
-      return (
-        valueSet.xl || valueSet.lg || valueSet.md || valueSet.sm || valueSet.xs
-      );
+      return valueSet.xl || valueSet.lg || valueSet.md || valueSet.sm || valueSet.xs;
   }
 };
 
@@ -41,27 +39,18 @@ export const getFileSize = (bytes: number) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-export const multiPropsFilter = (
-  products: any[],
-  filters: any,
-  stringKey = 'title'
-) => {
+export const multiPropsFilter = (products: any[], filters: any, stringKey = 'title') => {
   const filterKeys = Object.keys(filters);
   return products.filter((product) => {
     return filterKeys.every((key) => {
       if (filters[key].length === 0) return true;
       // Loops again if product[key] is an array (for material attribute).
       if (Array.isArray(product[key])) {
-        return product[key].some((keyEle: any) =>
-          filters[key].includes(keyEle)
-        );
+        return product[key].some((keyEle: any) => filters[key].includes(keyEle));
       }
       if (filters[key].end) {
         if (key === 'mrp') {
-          return (
-            product[key] >= filters[key].start &&
-            product[key] < filters[key].end
-          );
+          return product[key] >= filters[key].start && product[key] < filters[key].end;
         } else {
           const start = new Date(filters[key].start).getTime();
           const end = new Date(filters[key].end).getTime();
@@ -80,11 +69,7 @@ export const multiPropsFilter = (
 
 // 'intl' service singleton reference
 let intl: IntlShape;
-export const IntlGlobalProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}): any => {
+export const IntlGlobalProvider = ({ children }: { children: ReactNode }): any => {
   intl = useIntl();
   // Keep the 'intl' service reference
   return children;
@@ -101,7 +86,7 @@ export const generateRandomUniqueNumber = (): number => {
   if (numbers.includes(number)) {
     return generateRandomUniqueNumber();
   } else {
-    numbers.push(number)
+    numbers.push(number);
     return number;
   }
 };

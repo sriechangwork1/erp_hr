@@ -14,44 +14,26 @@ import AppGridContainer from '@crema/components/AppGridContainer';
 const PieChart = () => {
   return (
     <>
-      <AppComponentHeader
-        title='Pie Chart'
-        refUrl='http://recharts.org/en-US/api/PieChart/'
-      />
+      <AppComponentHeader title="Pie Chart" refUrl="http://recharts.org/en-US/api/PieChart/" />
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Two Level Pie Chart'
-            component={TwoLevelPieChart}
-          />
+          <AppComponentCard title="Two Level Pie Chart" component={TwoLevelPieChart} />
         </Grid>
 
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Straight Angle Pie Chart'
-            component={StraightAnglePieChart}
-          />
+          <AppComponentCard title="Straight Angle Pie Chart" component={StraightAnglePieChart} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Custom Active Shape Pie Chart'
-            component={CustomActiveShapePieChart}
-          />
+          <AppComponentCard title="Custom Active Shape Pie Chart" component={CustomActiveShapePieChart} />
         </Grid>
 
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Two Simple Pie Chart'
-            component={TwoSimplePieChart}
-          />
+          <AppComponentCard title="Two Simple Pie Chart" component={TwoSimplePieChart} />
         </Grid>
 
         <Grid item xs={12} lg={6}>
-          <AppComponentCard
-            title='Pie Chart With Padding Angle'
-            component={PieChartWithPaddingAngle}
-          />
+          <AppComponentCard title="Pie Chart With Padding Angle" component={PieChartWithPaddingAngle} />
         </Grid>
       </AppGridContainer>
     </>

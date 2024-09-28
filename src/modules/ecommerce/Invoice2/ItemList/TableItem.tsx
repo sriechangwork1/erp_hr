@@ -22,7 +22,6 @@ const TableItem: React.FC<TableItemProps> = ({ product }) => {
         <Box
           sx={{
             mb: 2,
-
             fontSize: 13,
             fontWeight: Fonts.MEDIUM,
           }}
@@ -41,7 +40,6 @@ const TableItem: React.FC<TableItemProps> = ({ product }) => {
         <Box
           sx={{
             mb: 2,
-
             textAlign: 'right',
             fontSize: 13,
             fontWeight: Fonts.MEDIUM,
@@ -58,7 +56,6 @@ const TableItem: React.FC<TableItemProps> = ({ product }) => {
         <Box
           sx={{
             mb: 2,
-
             textAlign: 'right',
             fontSize: 13,
             fontWeight: Fonts.MEDIUM,
@@ -75,7 +72,6 @@ const TableItem: React.FC<TableItemProps> = ({ product }) => {
         <Box
           sx={{
             mb: 2,
-
             textAlign: 'right',
             fontSize: 13,
             fontWeight: Fonts.MEDIUM,

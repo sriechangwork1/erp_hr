@@ -1,11 +1,11 @@
-import React from "react";
-import Table from "@mui/material/Table";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
-import TableHeading from "./TableHeading";
-import TableItem from "./TableItem";
-import AppTableContainer from "@crema/components/AppTableContainer";
-import { TransactionDaumType } from "@crema/types/models/dashboards/Analytics";
+import React from 'react';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableHeading from './TableHeading';
+import TableItem from './TableItem';
+import AppTableContainer from '@crema/components/AppTableContainer';
+import { TransactionDaumType } from '@crema/types/models/dashboards/Analytics';
 
 type Props = {
   transactionData: TransactionDaumType[];

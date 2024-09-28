@@ -1,9 +1,9 @@
-import React from "react";
-import Card from "@mui/material/Card";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppLogo from "@crema/components/AppLayout/components/AppLogo";
+import React from 'react';
+import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppLogo from '@crema/components/AppLayout/components/AppLogo';
 
 type AuthWrapperProps = {
   children: any;
@@ -14,38 +14,38 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
     <Box
       sx={{
         flex: 1,
-        display: "flex",
-        height: "100vh",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        height: '100vh',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Card
         sx={{
           maxWidth: 900,
           minHeight: { xs: 320, sm: 450 },
-          width: "100%",
-          overflow: "hidden",
-          position: "relative",
-          display: "flex",
+          width: '100%',
+          overflow: 'hidden',
+          position: 'relative',
+          display: 'flex',
         }}
       >
         <Box
           sx={{
-            width: { xs: "100%", sm: "50%", lg: "40%" },
+            width: { xs: '100%', sm: '50%', lg: '40%' },
             padding: { xs: 5, lg: 10 },
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
           }}
         >
           <Box sx={{ mb: { xs: 6, xl: 8 } }}>
             <Box
               sx={{
                 mb: 5,
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
               <AppLogo />
@@ -54,18 +54,18 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
           {children}
         </Box>
         <Box
-          sx={{
-            width: { xs: "100%", sm: "50%", lg: "60%" },
-            position: "relative",
+          sx={(theme) => ({
+            width: { xs: '100%', sm: '50%', lg: '60%' },
+            position: 'relative',
             padding: { xs: 5, lg: 10 },
-            display: { xs: "none", sm: "flex" },
-            alignItems: { sm: "center" },
-            justifyContent: { sm: "center" },
-            flexDirection: { sm: "column" },
-            backgroundColor: (theme) => theme.palette.grey[900],
-            color: (theme) => theme.palette.common.white,
+            display: { xs: 'none', sm: 'flex' },
+            alignItems: { sm: 'center' },
+            justifyContent: { sm: 'center' },
+            flexDirection: { sm: 'column' },
+            backgroundColor: theme.palette.grey[900],
+            color: theme.palette.common.white,
             fontSize: 14,
-          }}
+          })}
         >
           <Box
             sx={{
@@ -82,10 +82,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
             >
               Welcome to Crema!
             </Typography>
-            <Typography>
-              Crema is purely based on Material ui components and follows
-              Material ui guidelines.
-            </Typography>
+            <Typography>Crema is purely based on Material ui components and follows Material ui guidelines.</Typography>
           </Box>
         </Box>
       </Card>

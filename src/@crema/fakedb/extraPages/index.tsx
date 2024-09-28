@@ -12,4 +12,4 @@ export * from './portFolio/installation';
 export * from './portFolio';
 export * from './portFolio/sales';
 export * from './pricing';
-export * from './blog'
+export * from './blog';

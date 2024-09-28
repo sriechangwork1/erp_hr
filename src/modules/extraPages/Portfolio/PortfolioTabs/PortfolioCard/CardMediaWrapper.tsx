@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {alpha, Card} from '@mui/material';
+import { alpha, Card } from '@mui/material';
 
 type Props = {
-  children: React.ReactNode
-  onClick: () => void
-}
+  children: React.ReactNode;
+  onClick: () => void;
+};
 
-const CardWrapper = ({children, ...rest}: Props) => {
+const CardWrapper = ({ children, ...rest }: Props) => {
   return (
     <Card
-      sx={{
+      sx={(theme) => ({
         position: 'relative',
         cursor: 'pointer',
         '& .card-media-wrapper': {
@@ -33,8 +33,8 @@ const CardWrapper = ({children, ...rest}: Props) => {
           '& .icon': {
             width: 40,
             height: 40,
-            backgroundColor: (theme) => theme.palette.background.paper,
-            color: (theme) => theme.palette.text.primary,
+            backgroundColor: theme.palette.background.paper,
+            color: theme.palette.text.primary,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -51,7 +51,7 @@ const CardWrapper = ({children, ...rest}: Props) => {
             transform: 'scale(1)',
           },
         },
-      }}
+      })}
       {...rest}
     >
       {children}

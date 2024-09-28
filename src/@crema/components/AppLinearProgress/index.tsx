@@ -1,20 +1,18 @@
 import React from 'react';
-import LinearProgress, {
-  linearProgressClasses,
-} from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
-type CustomLinearProgressProps ={
+type CustomLinearProgressProps = {
   pathColor: string;
   activeColor: string;
   thickness: number;
   borderRadius: number;
 
   [x: string]: any;
-}
+};
 
 const CustomLinearProgress: React.FC<CustomLinearProgressProps> = ({
-  pathColor = "#d6d6d6",
-  activeColor = "#1a90ff",
+  pathColor = '#d6d6d6',
+  activeColor = '#1a90ff',
   thickness = 5,
   borderRadius = 10,
   ...rest
@@ -24,7 +22,6 @@ const CustomLinearProgress: React.FC<CustomLinearProgressProps> = ({
       sx={{
         height: thickness,
         borderRadius: borderRadius,
-
         [`&.${linearProgressClasses.colorPrimary}`]: {
           backgroundColor: pathColor,
         },
@@ -38,22 +35,22 @@ const CustomLinearProgress: React.FC<CustomLinearProgressProps> = ({
   );
 };
 
-type AppLinearProgressProps ={
+type AppLinearProgressProps = {
   thickness?: number;
   borderRadius?: number;
   pathColor?: string;
   activeColor?: string;
-  variant?: "buffer" | "determinate" | "indeterminate" | "query";
+  variant?: 'buffer' | 'determinate' | 'indeterminate' | 'query';
 
   [x: string]: any;
-}
+};
 
 const AppLinearProgress: React.FC<AppLinearProgressProps> = ({
   thickness = 3,
   borderRadius = 10,
-  pathColor = "#F5F6FA",
-  activeColor = "#00905F",
-  variant = "determinate",
+  pathColor = '#F5F6FA',
+  activeColor = '#00905F',
+  variant = 'determinate',
   ...rest
 }) => {
   return (

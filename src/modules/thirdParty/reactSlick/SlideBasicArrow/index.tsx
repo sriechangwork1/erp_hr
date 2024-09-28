@@ -20,9 +20,7 @@ interface SlideBasicArrowProps {
   slideBasicArrow: SlideBasicType[];
 }
 
-const SlideBasicArrow: React.FC<SlideBasicArrowProps> = ({
-  slideBasicArrow,
-}) => {
+const SlideBasicArrow: React.FC<SlideBasicArrowProps> = ({ slideBasicArrow }) => {
   return (
     <AppCard>
       <MediaSlider>
@@ -50,12 +48,7 @@ const SlideBasicArrow: React.FC<SlideBasicArrowProps> = ({
                   },
                 }}
               >
-                <Image
-                  src={`${slide.srcImg}`}
-                  alt={slide.title}
-                  width={698}
-                  height={310}
-                />
+                <Image src={`${slide.srcImg}`} alt={slide.title} width={698} height={310} />
               </Box>
             </Box>
           ))}

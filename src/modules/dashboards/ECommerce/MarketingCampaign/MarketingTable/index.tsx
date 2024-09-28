@@ -32,9 +32,7 @@ const OrderTable = ({ marketingCampaign = [] }: Props) => {
     </AppTableContainer>
   );
 };
-
 export default OrderTable;
-
 OrderTable.propTypes = {
   marketingCampaign: PropTypes.array,
 };

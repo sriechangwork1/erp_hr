@@ -16,16 +16,11 @@ const Mail = () => {
 
   return (
     <MailContextProvider>
-      <AppsContainer
-        title={messages['mailApp.mail'] as string}
-        sidebarContent={<MailSidebar />}
-      >
+      <AppsContainer title={messages['mailApp.mail'] as string} sidebarContent={<MailSidebar />}>
         <MailsList />
         <MailDetailViewWrapper
           className={clsx({
-            show: params?.all?.length
-              ? Number(params.all[params.all.length - 1]) > 0
-              : false,
+            show: params?.all?.length ? Number(params.all[params.all.length - 1]) > 0 : false,
           })}
         >
           <MailDetail />

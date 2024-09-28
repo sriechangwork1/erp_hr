@@ -1,16 +1,16 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { Fonts } from "@crema/constants/AppEnums";
-import BlogDetailHeaderWrapper from "./BlogDetailHeaderWrapper";
-import { BiCommentDetail, BiUserCircle } from "react-icons/bi";
-import { AiOutlineCalendar } from "react-icons/ai";
-import { BlogDetailHeaderType } from "@crema/types/models/extrapages/Blog";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import { Fonts } from '@crema/constants/AppEnums';
+import BlogDetailHeaderWrapper from './BlogDetailHeaderWrapper';
+import { BiCommentDetail, BiUserCircle } from 'react-icons/bi';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { BlogDetailHeaderType } from '@crema/types/models/extrapages/Blog';
 
 const getBlogDetailHeaderIcon = (icon: string) => {
   switch (icon) {
-    case "BiUserCircle":
+    case 'BiUserCircle':
       return <BiUserCircle />;
-    case "AiOutlineCalendar":
+    case 'AiOutlineCalendar':
       return <AiOutlineCalendar />;
     default:
       return <BiCommentDetail />;
@@ -27,10 +27,10 @@ const BlogDetailHeader = ({ title, blogDetailHeader }: Props) => {
       <Box
         sx={{
           maxWidth: 650,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Typography
@@ -46,18 +46,18 @@ const BlogDetailHeader = ({ title, blogDetailHeader }: Props) => {
 
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
             mx: { xs: -2, md: -4 },
           }}
         >
           {blogDetailHeader?.map((data, index) => (
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 px: { xs: 2, md: 4 },
                 mb: 2,
                 fontSize: 14,
@@ -65,9 +65,7 @@ const BlogDetailHeader = ({ title, blogDetailHeader }: Props) => {
               }}
               key={index}
             >
-              <Box sx={{ fontSize: 16, mt: 1, mr: 2 }}>
-                {getBlogDetailHeaderIcon(data.icon)}
-              </Box>
+              <Box sx={{ fontSize: 16, mt: 1, mr: 2 }}>{getBlogDetailHeaderIcon(data.icon)}</Box>
               <Box component="span">{data.title}</Box>
             </Box>
           ))}

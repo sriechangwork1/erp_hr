@@ -1,19 +1,16 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import AppCard from "@crema/components/AppCard";
-import AppSelect from "@crema/components/AppSelect";
-import { useIntl } from "react-intl";
-import AppList from "@crema/components/AppList";
-import Avatar from "@mui/material/Avatar";
-import MixBarChart from "./MixBarChart";
-import {
-  SalesChartDaumType,
-  SalesStateType,
-} from "@crema/types/models/dashboards/Analytics";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React from 'react';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import AppCard from '@crema/components/AppCard';
+import AppSelect from '@crema/components/AppSelect';
+import { useIntl } from 'react-intl';
+import AppList from '@crema/components/AppList';
+import Avatar from '@mui/material/Avatar';
+import MixBarChart from './MixBarChart';
+import { SalesChartDaumType, SalesStateType } from '@crema/types/models/dashboards/Analytics';
+import IntlMessages from '@crema/helpers/IntlMessages';
 
 type Props = {
   salesState: SalesStateType[];
@@ -21,7 +18,7 @@ type Props = {
 };
 const SalesState = ({ salesState = [], chartData }: Props) => {
   const handleSelectionType = (data: SalesStateType) => {
-    console.log("data: ", data);
+    console.log('data: ', data);
   };
   const getData = (data: SalesStateType[]) => {
     return data;
@@ -33,38 +30,34 @@ const SalesState = ({ salesState = [], chartData }: Props) => {
       sxStyle={{ height: 1 }}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleSelectionType}
         />
       }
     >
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
         }}
       >
         <Box
           component="p"
           sx={{
-            textAlign: { xs: "center", sm: "left" },
-            color: "text.secondary",
+            textAlign: { xs: 'center', sm: 'left' },
+            color: 'text.secondary',
             mt: -3,
             mb: 2,
           }}
         >
-          <> 1343 {messages["dashboard.analytics.salesThisWeek"]}</>
+          <> 1343 {messages['dashboard.analytics.salesThisWeek']}</>
         </Box>
 
         <Box
           sx={{
-            mt: "auto",
+            mt: 'auto',
           }}
         >
           <AppGridContainer>
@@ -73,10 +66,10 @@ const SalesState = ({ salesState = [], chartData }: Props) => {
                 sx={{
                   width: 1,
                   height: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: { xs: "center", sm: "flex-start" },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: { xs: 'center', sm: 'flex-start' },
                 }}
               >
                 <MixBarChart data={chartData} />
@@ -88,47 +81,43 @@ const SalesState = ({ salesState = [], chartData }: Props) => {
                 sx={{
                   width: 1,
                   ml: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
                 }}
               >
                 <AppList
                   animation="transition.slideRightBigIn"
                   delay={200}
                   duration={400}
-                  containerStyle={{ width: "100%", overflow: "hidden" }}
+                  containerStyle={{ width: '100%', overflow: 'hidden' }}
                   data={getData(salesState)}
                   renderRow={(item) => (
                     <Box
-                      key={"salesState-" + item.id}
+                      key={'salesState-' + item.id}
                       sx={{
                         pl: { xl: 6 },
                         py: { xs: 2, md: 4 },
-                        display: "flex",
-                        alignItems: "center",
-                        width: "100%",
-                        overflow: "hidden",
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        overflow: 'hidden',
                       }}
                     >
-                      <Avatar
-                        src={item.icon}
-                        alt="icon"
-                        sx={{ height: 50, width: 50 }}
-                      />
+                      <Avatar src={item.icon} alt="icon" sx={{ height: 50, width: 50 }} />
 
                       <Box
-                        position="relative"
                         sx={{
+                          position: 'relative',
                           ml: 4,
-                          overflow: "hidden",
-                          width: "calc(100% - 66px)",
+                          overflow: 'hidden',
+                          width: 'calc(100% - 66px)',
                         }}
                       >
                         <Box
                           component="h3"
                           sx={{
-                            display: "inline-block",
+                            display: 'inline-block',
                             fontWeight: Fonts.MEDIUM,
                             mb: 0.5,
                             fontSize: 16,
@@ -139,12 +128,12 @@ const SalesState = ({ salesState = [], chartData }: Props) => {
                         <Box
                           component="p"
                           sx={{
-                            color: "text.secondary",
+                            color: 'text.secondary',
                             fontSize: 14,
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
-                            width: "100%",
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                            width: '100%',
                           }}
                         >
                           {item.type}

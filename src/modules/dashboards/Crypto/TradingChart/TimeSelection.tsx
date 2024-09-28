@@ -20,7 +20,7 @@ const TimeSelection = () => {
               className={clsx({
                 active: data === '1D',
               })}
-              sx={{
+              sx={(theme) => ({
                 my: 5,
                 p: 1,
                 cursor: 'pointer',
@@ -30,13 +30,12 @@ const TimeSelection = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: (theme) => `solid 1px ${theme.palette.divider}`,
+                border: `solid 1px ${theme.palette.divider}`,
                 borderRadius: 2.5,
                 '&.active': {
-                  backgroundColor: (theme) =>
-                    alpha(theme.palette.primary.main, 0.3),
+                  backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.3),
                 },
-              }}
+              })}
             >
               {data}
             </Box>

@@ -1,7 +1,7 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import { RecentNewsType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import { RecentNewsType } from '@crema/types/models/apps/Wall';
 
 type Props = {
   item: RecentNewsType;
@@ -9,7 +9,14 @@ type Props = {
 
 const NewsItem = ({ item }: Props) => {
   return (
-    <Box className="item-hover" display="flex" px={5} py={2}>
+    <Box
+      className="item-hover"
+      sx={{
+        display: 'flex',
+        px: 5,
+        py: 2,
+      }}
+    >
       <Avatar
         sx={{
           width: 36,
@@ -17,18 +24,34 @@ const NewsItem = ({ item }: Props) => {
         }}
         src={item.user.profilePic}
       />
-      <Box ml={3.5}>
-        <Box component="h5" mb={0.5}>
+      <Box
+        sx={{
+          ml: 3.5,
+        }}
+      >
+        <Box
+          component="h5"
+          sx={{
+            mb: 0.5,
+          }}
+        >
           {item.title}
         </Box>
-        <Box component="p" color="text.secondary">
+        <Box
+          component="p"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           {item.desc}
           <Box
-            ml={2}
             component="span"
-            fontSize={13}
-            color="primary.main"
             className="pointer"
+            sx={{
+              ml: 2,
+              fontSize: 13,
+              color: 'primary.main',
+            }}
           >
             Read More
           </Box>

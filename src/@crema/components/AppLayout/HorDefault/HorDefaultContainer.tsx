@@ -8,19 +8,15 @@ type HorDefaultContainerProps = {
   [x: string]: any;
 };
 
-const HorDefaultContainer: React.FC<HorDefaultContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const HorDefaultContainer: React.FC<HorDefaultContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'row',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -28,7 +24,6 @@ const HorDefaultContainer: React.FC<HorDefaultContainerProps> = ({
           borderLeft: '1px solid #e8e5dd',
           borderRight: '1px solid #e8e5dd',
           pt: { xl: 0 },
-
           '& .mainContent': {
             position: { xl: 'static' },
           },
@@ -41,23 +36,19 @@ const HorDefaultContainer: React.FC<HorDefaultContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .horDefaultWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .app-bar': {
             borderTopLeftRadius: { xl: 12 },
             borderTopRightRadius: { xl: 12 },
             overflow: 'hidden',
           },
-
           '& .footer': {
             borderBottomLeftRadius: { xl: 12 },
             borderBottomRightRadius: { xl: 12 },
           },
-
           '& .mainContent': {
             position: { xl: 'static' },
           },
@@ -68,7 +59,7 @@ const HorDefaultContainer: React.FC<HorDefaultContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

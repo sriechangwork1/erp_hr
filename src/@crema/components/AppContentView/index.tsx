@@ -11,10 +11,7 @@ type AppContentViewProps = {
   sxStyle?: SxProps;
 };
 
-const AppContentView: React.FC<AppContentViewProps> = ({
-  children,
-  sxStyle,
-}) => {
+const AppContentView: React.FC<AppContentViewProps> = ({ children, sxStyle }) => {
   return (
     <AppContentViewWrapper>
       <Box

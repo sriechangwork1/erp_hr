@@ -25,16 +25,10 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
   );
 
   useEffect(() => {
-    if (
-      (process as any).browser &&
-      pathname === item.url &&
-      document.getElementById(pathname)
-    ) {
+    if ((process as any).browser && pathname === item.url && document.getElementById(pathname)) {
       setTimeout(() => {
         if (document.getElementById(pathname)) {
-          (document as any)
-            .getElementById(pathname)
-            .scrollIntoView({ behavior: 'smooth', block: 'center' });
+          (document as any).getElementById(pathname).scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 1);
     }
@@ -55,7 +49,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
     >
       <VerticalNavItem item={item} level={level} exact={item.exact}>
         {item.icon && (
-          <Box component='span'>
+          <Box component="span">
             <Icon
               sx={{
                 fontSize: 18,
@@ -63,19 +57,19 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
                 mr: 4,
               }}
               className={clsx('nav-item-icon', 'material-icons-outlined')}
-              color='action'
+              color="action"
             >
               {item.icon}
             </Icon>
           </Box>
         )}
         <ListItemText
-          className='nav-item-content'
+          className="nav-item-content"
           primary={<IntlMessages id={item.messageId} />}
           classes={{ primary: 'nav-item-text' }}
         />
         {item.count && (
-          <Box sx={{ mr: 3.5 }} className='menu-badge'>
+          <Box sx={{ mr: 3.5 }} className="menu-badge">
             <AppBadge count={item.count} color={item.color} />
           </Box>
         )}

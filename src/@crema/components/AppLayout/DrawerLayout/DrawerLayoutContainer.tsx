@@ -8,19 +8,15 @@ type DrawerLayoutContainerProps = {
   [x: string]: any;
 };
 
-const DrawerLayoutContainer: React.FC<DrawerLayoutContainerProps> = ({
-  children,
-  ...rest
-}) => {
+const DrawerLayoutContainer: React.FC<DrawerLayoutContainerProps> = ({ children, ...rest }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '&.boxedLayout': {
           maxWidth: { xl: 1480 },
           mx: { xl: 'auto' },
@@ -45,22 +41,18 @@ const DrawerLayoutContainer: React.FC<DrawerLayoutContainerProps> = ({
         },
         '&.framedLayout': {
           padding: { xl: 5 },
-          backgroundColor: (theme) => theme.palette.primary.main,
-
+          backgroundColor: theme.palette.primary.main,
           '& .drawerLayoutWrapper': {
             borderRadius: { xl: 3 },
           },
-
           '& .app-bar': {
             borderTopLeftRadius: { xl: 12 },
             borderTopRightRadius: { xl: 12 },
           },
-
           '& .footer': {
             borderBottomLeftRadius: { xl: 12 },
             borderBottomRightRadius: { xl: 12 },
           },
-
           '& .appMainFixedHeader': {
             pt: { xl: 0 },
             '& .app-bar': {
@@ -77,7 +69,7 @@ const DrawerLayoutContainer: React.FC<DrawerLayoutContainerProps> = ({
             pb: { xl: 0 },
           },
         },
-      }}
+      })}
       {...rest}
     >
       <AppScrollbar sx={{ maxHeight: '100vh' }}>{children}</AppScrollbar>

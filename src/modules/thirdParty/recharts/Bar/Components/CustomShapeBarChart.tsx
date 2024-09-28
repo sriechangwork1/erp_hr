@@ -1,24 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts";
-import data from "./data";
-import { useThemeContext } from "@crema/context/AppContextProvider/ThemeContextProvider";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import data from './data';
+import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 
 const getPath = (x: number, y: number, width: number, height: number) => {
   return `M${x},${y + height}
-          C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${
-    x + width / 2
-  }, ${y}
-          C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${
-    y + height
-  } ${x + width}, ${y + height}
+          C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${x + width / 2}, ${y}
+          C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width}, ${y + height}
           Z`;
 };
 
@@ -39,19 +28,11 @@ const CustomShapeBarChart = () => {
   const { theme } = useThemeContext();
   return (
     <ResponsiveContainer width="100%" height={200}>
-      <BarChart
-        data={data}
-        margin={{ top: 10, right: 0, left: -25, bottom: 0 }}
-      >
+      <BarChart data={data} margin={{ top: 10, right: 0, left: -25, bottom: 0 }}>
         <XAxis dataKey="name" />
         <YAxis />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar
-          dataKey="uv"
-          fill={theme.palette.primary.main}
-          shape={<TriangleBar />}
-          label
-        />
+        <Bar dataKey="uv" fill={theme.palette.primary.main} shape={<TriangleBar />} label />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -8,8 +8,8 @@ type AddressWrapperProps = {
 const AddressWrapper: React.FC<AddressWrapperProps> = ({ children }) => {
   return (
     <Box
-      sx={{
-        backgroundColor: (theme) => theme.palette.background.default,
+      sx={(theme) => ({
+        backgroundColor: theme.palette.background.default,
         borderRadius: 1,
         display: 'flex',
         alignItems: 'center',
@@ -19,8 +19,8 @@ const AddressWrapper: React.FC<AddressWrapperProps> = ({ children }) => {
         '& .avatar-icon': {
           width: { xs: 40, md: 48 },
           height: { xs: 40, md: 48 },
-          backgroundColor: (theme) => theme.palette.background.paper,
-          color: (theme) => theme.palette.primary.main,
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.primary.main,
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
@@ -30,7 +30,7 @@ const AddressWrapper: React.FC<AddressWrapperProps> = ({ children }) => {
             fontSize: 20,
           },
         },
-      }}
+      })}
     >
       {children}
     </Box>

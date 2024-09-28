@@ -18,15 +18,15 @@ const PremiumBrand = ({ premiumBrand }: Props) => {
         alt={premiumBrand.subTitle}
         width={1543}
         height={468}
-        sizes='100vw'
+        sizes="100vw"
         style={{
           width: '100%',
           height: '100%',
         }}
       />
-      <Box className='premium-brand-content'>
+      <Box className="premium-brand-content">
         <Typography
-          component='h5'
+          component="h5"
           sx={{
             fontSize: { xs: 16, md: 18 },
             fontWeight: Fonts.BOLD,
@@ -36,7 +36,7 @@ const PremiumBrand = ({ premiumBrand }: Props) => {
           {premiumBrand.subTitle}
         </Typography>
         <Typography
-          component='h2'
+          component="h2"
           sx={{
             fontSize: { xs: 26, sm: 30, md: 36, lg: 44, xl: 50 },
             fontWeight: Fonts.BOLD,

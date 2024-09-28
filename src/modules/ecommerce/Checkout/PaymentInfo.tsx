@@ -14,9 +14,7 @@ const PaymentInfo = () => {
     <AppCard
       sxStyle={{ mt: 6 }}
       footerStyle={{ marginTop: 2.5 }}
-      title={
-        <Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>Payment Info</Box>
-      }
+      title={<Box sx={{ fontSize: 16, fontWeight: Fonts.BOLD }}>Payment Info</Box>}
       footer={
         <Button variant="contained" color="primary" fullWidth>
           Place Order
@@ -35,11 +33,7 @@ const PaymentInfo = () => {
             COD
           </Box>
         </Box>
-        {paymentMode === 'COD' ? (
-          <Box sx={{ ml: 3, mb: 4, color: 'text.secondary' }}>
-            Cash on delivery
-          </Box>
-        ) : null}
+        {paymentMode === 'COD' ? <Box sx={{ ml: 3, mb: 4, color: 'text.secondary' }}>Cash on delivery</Box> : null}
       </Box>
       <Box>
         <Box onClick={() => setPaymentMode('CARD')} className="pointer">
@@ -55,22 +49,8 @@ const PaymentInfo = () => {
         </Box>
         {paymentMode === 'CARD' ? (
           <Box sx={{ ml: 3, color: 'text.secondary' }}>
-            <TextField
-              margin="dense"
-              fullWidth
-              id="user-name"
-              label="Full Name"
-              type="search"
-              variant="outlined"
-            />
-            <TextField
-              margin="dense"
-              fullWidth
-              id="card-number"
-              label="Card Number"
-              type="search"
-              variant="outlined"
-            />
+            <TextField margin="dense" fullWidth id="user-name" label="Full Name" type="search" variant="outlined" />
+            <TextField margin="dense" fullWidth id="card-number" label="Card Number" type="search" variant="outlined" />
             <Box sx={{ display: 'flex' }}>
               <TextField
                 margin="dense"
@@ -80,13 +60,7 @@ const PaymentInfo = () => {
                 style={{ marginRight: 20 }}
                 variant="outlined"
               />
-              <TextField
-                margin="dense"
-                id="card-cvv"
-                label="CVV"
-                type="password"
-                variant="outlined"
-              />
+              <TextField margin="dense" id="card-cvv" label="CVV" type="password" variant="outlined" />
             </Box>
           </Box>
         ) : null}

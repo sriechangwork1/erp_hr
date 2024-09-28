@@ -16,15 +16,7 @@ const TwoSimplePieChart = () => (
         fill="#4299E1"
         label
       />
-      <Pie
-        dataKey="value"
-        data={data02}
-        cx="70%"
-        cy="50%"
-        innerRadius={40}
-        outerRadius={80}
-        fill="#F04F47"
-      />
+      <Pie dataKey="value" data={data02} cx="70%" cy="50%" innerRadius={40} outerRadius={80} fill="#F04F47" />
       <Tooltip />
     </PieChart>
   </ResponsiveContainer>

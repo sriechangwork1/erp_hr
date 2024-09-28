@@ -1,18 +1,24 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import MenuItem from "@mui/material/MenuItem";
-import { CoinListType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import MenuItem from '@mui/material/MenuItem';
+import { CoinListType } from '@crema/types/models/dashboards/Crypto';
 
 const CurrencyCell = (coin: CoinListType) => {
   return (
     <MenuItem
+      key={coin.id}
       value={coin.id}
       sx={{
-        cursor: "pointer",
+        cursor: 'pointer',
       }}
     >
-      <Box display="flex" alignItems="center">
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
         {coin.icon ? (
           <Avatar
             sx={{
@@ -38,7 +44,7 @@ const CurrencyCell = (coin: CoinListType) => {
           component="span"
           sx={{
             ml: 3,
-            color: "text.secondary",
+            color: 'text.secondary',
           }}
         >
           {coin.shortName}

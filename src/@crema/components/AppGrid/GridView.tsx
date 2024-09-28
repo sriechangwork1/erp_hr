@@ -1,9 +1,9 @@
-import React, { CSSProperties, ReactNode, useEffect, useState } from "react";
-import { useBottomScrollListener } from "react-bottom-scroll-listener";
-import { Box, Theme, useTheme } from "@mui/material";
-import AppAnimateGroup from "../AppAnimateGroup";
-import { SxProps } from "@mui/system";
-import { useWidth } from "@crema/helpers/Common";
+import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
+import { useBottomScrollListener } from 'react-bottom-scroll-listener';
+import { Box, Theme, useTheme } from '@mui/material';
+import AppAnimateGroup from '../AppAnimateGroup';
+import { SxProps } from '@mui/system';
+import { useWidth } from '@crema/helpers/Common';
 
 type GridViewProps = {
   sx?: SxProps<Theme>;
@@ -30,22 +30,13 @@ type GridViewProps = {
 };
 
 const getEmptyContainer = (ListEmptyComponent: any) => {
-  if (ListEmptyComponent)
-    return React.isValidElement(ListEmptyComponent) ? (
-      ListEmptyComponent
-    ) : (
-      <ListEmptyComponent />
-    );
+  if (ListEmptyComponent) return React.isValidElement(ListEmptyComponent) ? ListEmptyComponent : <ListEmptyComponent />;
   return null;
 };
 
 const getFooterContainer = (ListFooterComponent: any) => {
   if (ListFooterComponent)
-    return React.isValidElement(ListFooterComponent) ? (
-      ListFooterComponent
-    ) : (
-      <ListFooterComponent />
-    );
+    return React.isValidElement(ListFooterComponent) ? ListFooterComponent : <ListFooterComponent />;
   return null;
 };
 
@@ -54,7 +45,7 @@ const GridView: React.FC<GridViewProps> = ({
   column = 3,
   responsive,
   itemPadding = 12,
-  animation = "transition.expandIn",
+  animation = 'transition.expandIn',
   renderRow,
   onEndReached,
   data = [],
@@ -69,7 +60,7 @@ const GridView: React.FC<GridViewProps> = ({
     border: `1px solid ${theme.palette.divider}`,
     backgroundColor: theme.palette.background.paper,
     borderRadius: 4,
-    overflow: "hidden",
+    overflow: 'hidden',
   };
 
   const [displayColumn, setColumn] = useState<number>(column);
@@ -84,29 +75,16 @@ const GridView: React.FC<GridViewProps> = ({
   useEffect(() => {
     const getColumnCount = () => {
       if (responsive) {
-        if (width === "xs") {
+        if (width === 'xs') {
           return responsive.xs || column;
-        } else if (width === "sm") {
+        } else if (width === 'sm') {
           return responsive.sm || responsive.xs || column;
-        } else if (width === "md") {
+        } else if (width === 'md') {
           return responsive.md || responsive.sm || responsive.xs || column;
-        } else if (width === "lg") {
-          return (
-            responsive.lg ||
-            responsive.md ||
-            responsive.sm ||
-            responsive.xs ||
-            column
-          );
-        } else if (width === "xl") {
-          return (
-            responsive.xl ||
-            responsive.lg ||
-            responsive.md ||
-            responsive.sm ||
-            responsive.xs ||
-            column
-          );
+        } else if (width === 'lg') {
+          return responsive.lg || responsive.md || responsive.sm || responsive.xs || column;
+        } else if (width === 'xl') {
+          return responsive.xl || responsive.lg || responsive.md || responsive.sm || responsive.xs || column;
         }
       } else {
         return column;
@@ -123,7 +101,7 @@ const GridView: React.FC<GridViewProps> = ({
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '100%',
         ...sx,
       }}
     >
@@ -132,9 +110,9 @@ const GridView: React.FC<GridViewProps> = ({
           animation,
         }}
         style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
           margin: -itemPadding,
           ...style,
         }}
@@ -147,9 +125,9 @@ const GridView: React.FC<GridViewProps> = ({
                 maxWidth: `${100 / displayColumn}%`,
                 flexBasis: `${100 / displayColumn}%`,
                 padding: itemPadding,
-                boxSizing: "border-box",
+                boxSizing: 'border-box',
               }}
-              key={"grid-" + index}
+              key={'grid-' + index}
             >
               {renderRow(item, index)}
             </Box>

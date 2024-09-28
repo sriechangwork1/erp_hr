@@ -28,24 +28,13 @@ const sanitizeArrayObject = (arrayOrObject: any) => {
     if (typeof item === 'object' && item instanceof FormData) {
       // @ts-ignore
       output[key] = item;
-    } else if (
-      typeof item === 'object' &&
-      item !== null &&
-      dayjs.isDayjs(item)
-    ) {
+    } else if (typeof item === 'object' && item !== null && dayjs.isDayjs(item)) {
       // @ts-ignore
       output[key] = item;
-    } else if (
-      typeof item === 'object' &&
-      item !== null &&
-      typeof item.getMonth === 'function'
-    ) {
+    } else if (typeof item === 'object' && item !== null && typeof item.getMonth === 'function') {
       // @ts-ignore
       output[key] = item;
-    } else if (
-      Array.isArray(item) ||
-      (typeof item === 'object' && item !== null)
-    ) {
+    } else if (Array.isArray(item) || (typeof item === 'object' && item !== null)) {
       // @ts-ignore
       output[key] = sanitizeArrayObject(item);
     } else {
@@ -63,10 +52,7 @@ export const sanitizeData = (inputVal: any) => {
       return inputVal;
     }
 
-    if (
-      Array.isArray(inputVal) ||
-      (typeof inputVal === 'object' && inputVal !== null)
-    ) {
+    if (Array.isArray(inputVal) || (typeof inputVal === 'object' && inputVal !== null)) {
       return sanitizeArrayObject(inputVal);
     }
 

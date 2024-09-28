@@ -29,7 +29,6 @@ const AppsSideBarFolderList = styled(ListItem)(({ theme }) => {
     marginBottom: 1,
     marginTop: 1,
     color: theme.palette.text.primary,
-
     [theme.breakpoints.up('md')]: {
       paddingLeft: 20,
       paddingRight: 20,
@@ -38,23 +37,18 @@ const AppsSideBarFolderList = styled(ListItem)(({ theme }) => {
       paddingLeft: 24,
       paddingRight: 24,
     },
-
     '& svg': {
       fontSize: '18px',
     },
-
     '&:hover,&:focus,&.active': {
       backgroundColor: alpha(theme.palette.primary.main, 0.1),
       color: theme.palette.primary.main,
-
       '& .material-icons, & svg, & .MuiTypography-root': {
         color: theme.palette.primary.main,
       },
     },
-
     '&.active': {
       color: theme.palette.primary.main,
-
       '& .material-icons, & .MuiTypography-root': {
         color: theme.palette.primary.main,
       },
@@ -107,10 +101,7 @@ type AppsSideBarFolderItemProps = {
   path: string;
 };
 
-const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
-  item,
-  path,
-}) => {
+const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({ item, path }) => {
   const pathname = usePathname();
 
   return (
@@ -122,14 +113,14 @@ const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
         })}
       >
         <ListItemIcon
-          sx={{
+          sx={(theme) => ({
             minWidth: 10,
             mr: 3.5,
             '& .material-icons, & svg': {
               fontSize: 22,
-              color: (theme) => theme.palette.text.secondary,
+              color: theme.palette.text.secondary,
             },
-          }}
+          })}
         >
           {getIconByName(item.alias)}
         </ListItemIcon>
@@ -142,7 +133,7 @@ const AppsSideBarFolderItem: React.FC<AppsSideBarFolderItemProps> = ({
               mb: 0.5,
             },
           }}
-          className='data-item-text'
+          className="data-item-text"
         />
       </AppsSideBarFolderList>
     </Link>

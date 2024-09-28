@@ -42,8 +42,8 @@ const MailSidebar = () => {
           >
             <Zoom in style={{ transitionDelay: '300ms' }}>
               <Button
-                variant='outlined'
-                color='primary'
+                variant="outlined"
+                color="primary"
                 sx={{
                   padding: '8px 28px',
                   borderRadius: 30,
@@ -54,7 +54,7 @@ const MailSidebar = () => {
                 startIcon={<AddIcon />}
                 onClick={onOpenComposeMail}
               >
-                <IntlMessages id='common.compose' />
+                <IntlMessages id="common.compose" />
               </Button>
             </Zoom>
           </Box>
@@ -74,8 +74,8 @@ const MailSidebar = () => {
                 sx={{
                   mb: { xs: 2, xl: 5 },
                 }}
-                component='nav'
-                aria-label='main mailbox folders'
+                component="nav"
+                aria-label="main mailbox folders"
               >
                 <AppList
                   data={folderList}
@@ -94,32 +94,28 @@ const MailSidebar = () => {
                     />
                   }
                   renderRow={(item) => (
-                    <AppsSideBarFolderItem
-                      key={item.id}
-                      item={item}
-                      path={`/apps/mail/${item.alias}`}
-                    />
+                    <AppsSideBarFolderItem key={item.id} item={item} path={`/apps/mail/${item.alias}`} />
                   )}
                 />
               </List>
 
               <Box
-                component='h4'
+                component="h4"
                 sx={{
                   mt: { xs: 4, xl: 5 },
                   px: { xs: 4, md: 5, lg: 6.2 },
                   fontWeight: Fonts.SEMI_BOLD,
                 }}
               >
-                <IntlMessages id='common.labels' />
+                <IntlMessages id="common.labels" />
               </Box>
 
               <List
                 sx={{
                   mb: { xs: 2, xl: 5 },
                 }}
-                component='nav'
-                aria-label='main mailbox folders'
+                component="nav"
+                aria-label="main mailbox folders"
               >
                 <AppList
                   data={labelList}
@@ -137,21 +133,19 @@ const MailSidebar = () => {
                       }
                     />
                   }
-                  renderRow={(label) => (
-                    <LabelItem key={label.id} label={label} />
-                  )}
+                  renderRow={(label) => <LabelItem key={label.id} label={label} />}
                 />
               </List>
 
               <Box
-                component='h4'
+                component="h4"
                 sx={{
                   mt: { xs: 4, xl: 5 },
                   px: { xs: 4, md: 5, lg: 6.2 },
                   fontWeight: Fonts.SEMI_BOLD,
                 }}
               >
-                <IntlMessages id='common.connections' />
+                <IntlMessages id="common.connections" />
               </Box>
 
               <List style={{ paddingBottom: 0 }}>
@@ -188,10 +182,7 @@ const MailSidebar = () => {
         </>
       ) : null}
 
-      <ComposeMail
-        isComposeMail={isComposeMail}
-        onCloseComposeMail={onCloseComposeMail}
-      />
+      <ComposeMail isComposeMail={isComposeMail} onCloseComposeMail={onCloseComposeMail} />
     </>
   );
 };

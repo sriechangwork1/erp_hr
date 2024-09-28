@@ -352,8 +352,7 @@ const ecommerceData: ProductDataType[] = [
   },
   {
     id: 4,
-    title:
-      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
+    title: 'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     mrp: 100,
@@ -501,8 +500,7 @@ const ecommerceData: ProductDataType[] = [
   },
   {
     id: 8,
-    title:
-      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
+    title: 'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     mrp: 100,
@@ -687,8 +685,7 @@ const ecommerceData: ProductDataType[] = [
   },
   {
     id: 12,
-    title:
-      'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
+    title: 'SONY WH-CH510 Google Assistant enabled Bluetooth Headset  (Black, On the Ear)',
     description:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters',
     mrp: 100,

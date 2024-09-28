@@ -1,9 +1,9 @@
-import React from "react";
-import Avatar from "@mui/material/Avatar";
-import { Typography } from "@mui/material";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { RecentActivityType } from "@crema/types/models/dashboards/CRM";
+import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { RecentActivityType } from '@crema/types/models/dashboards/CRM';
 
 type Props = {
   activity: RecentActivityType;
@@ -12,8 +12,8 @@ const RecentActivityCell = ({ activity }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        padding: "3px 20px",
+        display: 'flex',
+        padding: '3px 20px',
       }}
       className="item-hover"
     >
@@ -33,23 +33,23 @@ const RecentActivityCell = ({ activity }: Props) => {
       >
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           <Typography
-            sx={{
+            sx={(theme) => ({
               fontWeight: Fonts.MEDIUM,
-              color: (theme) => theme.palette.text.primary,
-            }}
+              color: theme.palette.text.primary,
+            })}
           >
             {activity.name}
           </Typography>
           <Box
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-              ml: "auto",
-            }}
+            sx={(theme) => ({
+              color: theme.palette.text.secondary,
+              ml: 'auto',
+            })}
           >
             <Typography
               sx={{
@@ -61,11 +61,11 @@ const RecentActivityCell = ({ activity }: Props) => {
           </Box>
         </Box>
         <Typography
-          sx={{
-            color: (theme) => theme.palette.text.secondary,
+          sx={(theme) => ({
+            color: theme.palette.text.secondary,
             fontSize: 13,
             mb: 1,
-          }}
+          })}
         >
           {activity.message}
         </Typography>

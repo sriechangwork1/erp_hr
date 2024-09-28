@@ -36,7 +36,7 @@ const DrCard = ({ data }: Props) => {
   return (
     <AppCard
       sxStyle={{ height: 1 }}
-      className='card-hover'
+      className="card-hover"
       contentStyle={{
         p: 0,
         '&:last-of-type': {
@@ -48,7 +48,7 @@ const DrCard = ({ data }: Props) => {
     >
       <Box sx={{ display: 'flex', padding: 4 }}>
         <Box sx={{ mr: 3, alignSelf: 'center', minWidth: 46 }}>
-          <Image src={icon} alt='icon' width={46} height={46} />
+          <Image src={icon} alt="icon" width={46} height={46} />
         </Box>
         <Box
           sx={{
@@ -73,7 +73,7 @@ const DrCard = ({ data }: Props) => {
                 fontWeight: Fonts.SEMI_BOLD,
                 color: 'text.primary',
               }}
-              component='h5'
+              component="h5"
             >
               {category}
             </Box>
@@ -85,7 +85,7 @@ const DrCard = ({ data }: Props) => {
                 width: '100%',
                 color: 'text.secondary',
               }}
-              component='p'
+              component="p"
             >
               {name}
             </Box>

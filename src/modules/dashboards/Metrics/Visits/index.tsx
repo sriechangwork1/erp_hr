@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import VisitsGraph from "./VisitsGraph";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { useIntl } from "react-intl";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import AppSelect from "@crema/components/AppSelect";
-import AppCard from "@crema/components/AppCard";
-import type { VisitsType } from "@crema/types/models/dashboards/Metrics";
+import React, { useState } from 'react';
+import VisitsGraph from './VisitsGraph';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { useIntl } from 'react-intl';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import AppSelect from '@crema/components/AppSelect';
+import AppCard from '@crema/components/AppCard';
+import type { VisitsType } from '@crema/types/models/dashboards/Metrics';
 
 type VisitsProps = {
   data: VisitsType;
@@ -17,13 +17,13 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
 
   const handleWeekChange = (value: string) => {
     switch (value) {
-      case "This Week":
+      case 'This Week':
         setGraphData(data.graphData.dataTwo);
         break;
-      case "Last Weeks":
+      case 'Last Weeks':
         setGraphData(data.graphData.dataOne);
         break;
-      case "Last Month":
+      case 'Last Month':
         setGraphData(data.graphData.dataThree);
         break;
       default:
@@ -35,15 +35,11 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
 
   return (
     <AppCard
-      title={messages["dashboard.visits"] as string}
+      title={messages['dashboard.visits'] as string}
       action={
         <AppSelect
-          menus={[
-            messages["dashboard.thisWeek"],
-            messages["dashboard.lastWeeks"],
-            messages["dashboard.lastMonth"],
-          ]}
-          defaultValue={messages["dashboard.thisWeek"]}
+          menus={[messages['dashboard.thisWeek'], messages['dashboard.lastWeeks'], messages['dashboard.lastMonth']]}
+          defaultValue={messages['dashboard.thisWeek']}
           onChange={handleWeekChange}
         />
       }
@@ -51,19 +47,19 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
       footer={
         <Box
           sx={{
-            textTransform: "uppercase",
+            textTransform: 'uppercase',
             width: 1,
             mb: 1,
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
             fontWeight: Fonts.MEDIUM,
-            justifyContent: "space-between",
+            justifyContent: 'space-between',
           }}
         >
           <Box
             component="p"
             sx={{
-              color: "text.primary",
+              color: 'text.primary',
               fontSize: 14,
             }}
           >
@@ -72,7 +68,7 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
               component="span"
               sx={{
                 ml: 2,
-                color: "primary.main",
+                color: 'primary.main',
               }}
             >
               {data.new}
@@ -81,7 +77,7 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
           <Box
             component="p"
             sx={{
-              color: "text.primary",
+              color: 'text.primary',
               fontSize: 14,
             }}
           >
@@ -90,7 +86,7 @@ const Visits: React.FC<VisitsProps> = ({ data }) => {
               component="span"
               sx={{
                 ml: 2,
-                color: "primary.main",
+                color: 'primary.main',
               }}
             >
               {data.returning}

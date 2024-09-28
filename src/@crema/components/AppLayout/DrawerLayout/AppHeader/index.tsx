@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import AppLngSwitcher from '../../../AppLngSwitcher';
 import Box from '@mui/material/Box';
 import AppSearchBar from '../../../AppSearchBar';
-import Hidden from '@mui/material/Hidden';
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppMessages from '../../../AppMessages';
@@ -32,15 +32,15 @@ const AppHeader = ({ toggleNavCollapsed }: Props) => {
 
   return (
     <AppBar
-      position='relative'
-      color='inherit'
-      sx={{
+      position="relative"
+      color="inherit"
+      sx={(theme) => ({
         boxShadow: 'none',
-        borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+        borderBottom: `solid 1px ${theme.palette.divider}`,
         backgroundColor: 'background.paper',
         width: '100%',
-      }}
-      className='app-bar'
+      })}
+      className="app-bar"
     >
       <Toolbar
         sx={{
@@ -54,12 +54,12 @@ const AppHeader = ({ toggleNavCollapsed }: Props) => {
           sx={{
             color: 'text.secondary',
           }}
-          edge='start'
-          className='menu-btn'
-          color='inherit'
-          aria-label='open drawer'
+          edge="start"
+          className="menu-btn"
+          color="inherit"
+          aria-label="open drawer"
           onClick={() => toggleNavCollapsed()}
-          size='large'
+          size="large"
         >
           <MenuIcon
             sx={{
@@ -89,7 +89,7 @@ const AppHeader = ({ toggleNavCollapsed }: Props) => {
             },
           }}
         >
-          <AppSearchBar iconPosition='right' placeholder='Search…' />
+          <AppSearchBar iconPosition="right" placeholder="Search…" />
         </Box>
         <Box
           sx={{
@@ -97,87 +97,74 @@ const AppHeader = ({ toggleNavCollapsed }: Props) => {
           }}
         />
         <Box sx={{ ml: 4 }}>
-          <AppLngSwitcher iconOnly={true} tooltipPosition='bottom' />
+          <AppLngSwitcher iconOnly={true} tooltipPosition="bottom" />
         </Box>
 
         <Box sx={{ ml: 4 }}>
-          <Hidden smDown>
-            <Box
-              sx={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: -2,
-                marginRight: -2,
-              }}
-            >
-              <Box
-                sx={{
-                  px: 1.85,
-                }}
-              >
-                <AppNotifications />
-              </Box>
-              <Box
-                sx={{
-                  px: 1.85,
-                }}
-              >
-                <AppMessages />
-              </Box>
-            </Box>
-          </Hidden>
-
-          <Hidden smUp>
-            <Box
-              sx={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                marginLeft: -2,
-                marginRight: -2,
-              }}
-            >
-              <Box
-                sx={{
-                  px: 1.85,
-                }}
-              >
-                <AppTooltip title='More'>
-                  <IconButton
-                    sx={{
-                      borderRadius: '50%',
-                      width: 40,
-                      height: 40,
-                      color: (theme) => theme.palette.text.secondary,
-                      backgroundColor: (theme) =>
-                        theme.palette.background.default,
-                      border: 1,
-                      borderColor: 'transparent',
-                      '&:hover, &:focus': {
-                        color: (theme) => theme.palette.text.primary,
-                        backgroundColor: (theme) =>
-                          alpha(theme.palette.background.default, 0.9),
-                        borderColor: (theme) =>
-                          alpha(theme.palette.text.secondary, 0.25),
-                      },
-                    }}
-                    onClick={handleClick}
-                    size='large'
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                </AppTooltip>
-              </Box>
-            </Box>
-          </Hidden>
-          <Menu
-            id='simple-menu'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
+          <Box
+            sx={{
+              position: 'relative',
+              display: { xs: 'none', sm: 'flex' },
+              alignItems: 'center',
+              marginLeft: -2,
+              marginRight: -2,
+            }}
           >
+            <Box
+              sx={{
+                px: 1.85,
+              }}
+            >
+              <AppNotifications />
+            </Box>
+            <Box
+              sx={{
+                px: 1.85,
+              }}
+            >
+              <AppMessages />
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              position: 'relative',
+              display: { sm: 'none', xs: 'flex' },
+              alignItems: 'center',
+              marginLeft: -2,
+              marginRight: -2,
+            }}
+          >
+            <Box
+              sx={{
+                px: 1.85,
+              }}
+            >
+              <AppTooltip title="More">
+                <IconButton
+                  sx={(theme) => ({
+                    borderRadius: '50%',
+                    width: 40,
+                    height: 40,
+                    color: theme.palette.text.secondary,
+                    backgroundColor: theme.palette.background.default,
+                    border: 1,
+                    borderColor: 'transparent',
+                    '&:hover, &:focus': {
+                      color: theme.palette.text.primary,
+                      backgroundColor: (theme) => alpha(theme.palette.background.default, 0.9),
+                      borderColor: (theme) => alpha(theme.palette.text.secondary, 0.25),
+                    },
+                  })}
+                  onClick={handleClick}
+                  size="large"
+                >
+                  <MoreVertIcon />
+                </IconButton>
+              </AppTooltip>
+            </Box>
+          </Box>
+          <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
             <MenuItem>
               <AppNotifications isMenu />
             </MenuItem>

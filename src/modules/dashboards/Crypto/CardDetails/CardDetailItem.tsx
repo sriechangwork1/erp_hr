@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import PropTypes from "prop-types";
-import { Fonts } from "@crema/constants/AppEnums";
-import { CardDetailType } from "@crema/types/models/dashboards/Crypto";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Fonts } from '@crema/constants/AppEnums';
+import { CardDetailType } from '@crema/types/models/dashboards/Crypto';
 
 type Props = {
   cardDetail: CardDetailType;
@@ -11,13 +11,13 @@ const CardDetailItem = ({ cardDetail }: Props) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: 'relative',
       }}
     >
       <Typography
         component="h5"
         sx={{
-          color: "text.secondary",
+          color: 'text.secondary',
         }}
       >
         {cardDetail.title}

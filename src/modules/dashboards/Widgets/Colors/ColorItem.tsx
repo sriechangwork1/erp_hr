@@ -1,15 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import { Fonts } from "@crema/constants/AppEnums";
-import { ColorsListType } from "@crema/types/models/dashboards/Widgets";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import { Fonts } from '@crema/constants/AppEnums';
+import { ColorsListType } from '@crema/types/models/dashboards/Widgets';
 
 type ColorItemProps = {
   item: ColorsListType;
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    item: ColorsListType
-  ) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>, item: ColorsListType) => void;
 };
 
 const ColorItem: React.FC<ColorItemProps> = (props) => {
@@ -18,8 +15,8 @@ const ColorItem: React.FC<ColorItemProps> = (props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
         px: 5,
       }}
       key={item.id}

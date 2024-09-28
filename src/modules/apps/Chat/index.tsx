@@ -9,26 +9,16 @@ import { ConnectionType } from '@crema/types/models/apps/Chat';
 import ChatContextProvider from '../context/ChatContextProvider';
 
 const Chat = () => {
-  const [selectedUser, setSelectedUser] = useState<ConnectionType>(
-    {} as ConnectionType,
-  );
+  const [selectedUser, setSelectedUser] = useState<ConnectionType>({} as ConnectionType);
 
   const { messages } = useIntl();
   return (
     <ChatContextProvider>
       <AppsContainer
         title={messages['chatApp.chat'].toString()}
-        sidebarContent={
-          <ChatSideBar
-            selectedUser={selectedUser as ConnectionType}
-            setSelectedUser={setSelectedUser}
-          />
-        }
+        sidebarContent={<ChatSideBar selectedUser={selectedUser as ConnectionType} setSelectedUser={setSelectedUser} />}
       >
-        <ChatContent
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
-        />
+        <ChatContent selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
       </AppsContainer>
     </ChatContextProvider>
   );

@@ -1,8 +1,8 @@
-import React from "react";
-import AppGridContainer from "@crema/components/AppGridContainer";
-import Grid from "@mui/material/Grid";
-import PackageCard from "./PackageCard";
-import type { PricingOneNewType } from "@crema/types/models/extrapages/Pricing";
+import React from 'react';
+import AppGridContainer from '@crema/components/AppGridContainer';
+import Grid from '@mui/material/Grid';
+import PackageCard from './PackageCard';
+import type { PricingOneNewType } from '@crema/types/models/extrapages/Pricing';
 
 type Props = {
   billingFormat: string;

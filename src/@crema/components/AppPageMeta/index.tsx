@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NextSeo } from 'next-seo';
 
-const SITE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://cra.cremawork.com';
+const SITE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://cra.cremawork.com';
 
 const defaultTitle = 'Crema- React Material Admin Template';
 const defaultDescription =
@@ -19,21 +16,9 @@ type Props = {
   [key: string]: any;
 };
 const AppPageMeta = ({ children, ...rest }: Props) => {
-  const {
-    title,
-    description,
-    image,
-    category = 'Admin Theme',
-    tags = ['Material Admin', 'MUI Nextjs'],
-  } = rest;
-  const theTitle = title
-    ? title?.length > 48
-      ? title
-      : title + defaultSep + defaultTitle
-    : defaultTitle;
-  const theDescription = description
-    ? description.substring(0, 155)
-    : defaultDescription;
+  const { title, description, image, category = 'Admin Theme', tags = ['Material Admin', 'MUI Nextjs'] } = rest;
+  const theTitle = title ? (title?.length > 48 ? title : title + defaultSep + defaultTitle) : defaultTitle;
+  const theDescription = description ? description.substring(0, 155) : defaultDescription;
   const theImage = image ? `${SITE_URL}${image}` : defaultImage;
 
   return (

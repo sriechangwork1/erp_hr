@@ -13,7 +13,13 @@ const AssignedStaff = ({ assignedStaff }: Props) => {
   return (
     <>
       {assignedStaff ? (
-        <Box mr={4} display='flex' alignItems='center'>
+        <Box
+          sx={{
+            mr: 4,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           {assignedStaff.image ? (
             <Avatar
               sx={{
@@ -32,23 +38,39 @@ const AssignedStaff = ({ assignedStaff }: Props) => {
               {assignedStaff.name[0]}
             </Avatar>
           )}
-          <Box ml={3.5} fontSize={14}>
+          <Box
+            sx={{
+              ml: 3.5,
+              fontSize: 14,
+            }}
+          >
             <Box
-              component='p'
+              component="p"
               sx={{
                 mb: 0.5,
                 fontWeight: Fonts.MEDIUM,
               }}
             >
-              <IntlMessages id='todo.assignedTo' />
+              <IntlMessages id="todo.assignedTo" />
             </Box>
-            <Box component='p' color='text.secondary'>
+            <Box
+              component="p"
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
               {assignedStaff.name}
             </Box>
           </Box>
         </Box>
       ) : (
-        <Box mr={4} display='flex' alignItems='center'>
+        <Box
+          sx={{
+            mr: 4,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <Avatar
             sx={{
               height: 36,
@@ -56,16 +78,20 @@ const AssignedStaff = ({ assignedStaff }: Props) => {
             }}
             src={'/assets/images/placeholder.jpg'}
           />
-          <Box ml={4}>
+          <Box
+            sx={{
+              ml: 4,
+            }}
+          >
             <Box
-              component='p'
+              component="p"
               sx={{
                 mb: 0,
                 fontWeight: Fonts.MEDIUM,
                 color: 'primary.main',
               }}
             >
-              <IntlMessages id='todo.currentlyUnassigned' />
+              <IntlMessages id="todo.currentlyUnassigned" />
             </Box>
           </Box>
         </Box>

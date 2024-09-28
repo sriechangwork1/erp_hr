@@ -8,14 +8,13 @@ type AuthWrapperProps = {
 const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         flex: 1,
         display: 'flex',
         position: 'relative',
         minHeight: '100vh',
         minWidth: '100%',
-        backgroundColor: (theme) => theme.palette.background.default,
-
+        backgroundColor: theme.palette.background.default,
         '& .app-content-view': {
           flex: 1,
           display: 'flex',
@@ -26,7 +25,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
           marginRight: 0,
           marginLeft: 0,
         },
-      }}
+      })}
     >
       {children}
     </Box>

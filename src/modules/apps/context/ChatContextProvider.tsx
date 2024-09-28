@@ -29,8 +29,10 @@ type Props = {
   children: ReactNode;
 };
 export const ChatContextProvider = ({ children }: Props) => {
-  const [{ apiData: connectionList, loading }, { setData: setConnectionData }] =
-    useGetDataApi<ConnectionType[]>('/chat/connections', []);
+  const [{ apiData: connectionList, loading }, { setData: setConnectionData }] = useGetDataApi<ConnectionType[]>(
+    '/chat/connections',
+    [],
+  );
 
   return (
     <ChatContext.Provider

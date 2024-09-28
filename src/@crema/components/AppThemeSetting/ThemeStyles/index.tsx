@@ -1,14 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import clsx from "clsx";
-import { CustomizerItemWrapper, StyledToggleButton } from "../index.style";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import { ThemeStyle } from "@crema/constants/AppEnums";
-import {
-  useThemeActionsContext,
-  useThemeContext,
-} from "@crema/context/AppContextProvider/ThemeContextProvider";
+import React from 'react';
+import Box from '@mui/material/Box';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import clsx from 'clsx';
+import { CustomizerItemWrapper, StyledToggleButton } from '../index.style';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import { ThemeStyle } from '@crema/constants/AppEnums';
+import { useThemeActionsContext, useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 
 const ThemeStyles = () => {
   const { themeStyle } = useThemeContext();
@@ -22,12 +19,7 @@ const ThemeStyles = () => {
       <Box component="h4" sx={{ mb: 2 }}>
         <IntlMessages id="customizer.themeStyle" />
       </Box>
-      <ToggleButtonGroup
-        value={themeStyle}
-        exclusive
-        onChange={onStyleChange}
-        aria-label="text alignment"
-      >
+      <ToggleButtonGroup value={themeStyle} exclusive onChange={onStyleChange} aria-label="text alignment">
         <StyledToggleButton
           value={ThemeStyle.MODERN}
           className={clsx({

@@ -15,10 +15,7 @@ import { Zoom } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FilterItem from './FilterItem';
 import TaskLabelItem from './LabelItem';
-import {
-  useCalendarActionsContext,
-  useCalendarContext,
-} from '../../context/CalendarContextProvider';
+import { useCalendarActionsContext, useCalendarContext } from '../../context/CalendarContextProvider';
 
 const ListWrapper = styled(List)(({ theme }) => ({
   marginBottom: 8,
@@ -28,8 +25,7 @@ const ListWrapper = styled(List)(({ theme }) => ({
 }));
 
 const TaskSideBar = () => {
-  const { labelList, folderList, priorityList, statusList, filterData } =
-    useCalendarContext();
+  const { labelList, folderList, priorityList, statusList, filterData } = useCalendarContext();
   const { setFilterData } = useCalendarActionsContext();
 
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
@@ -47,8 +43,8 @@ const TaskSideBar = () => {
       <Box sx={{ px: { xs: 4, md: 5 }, pt: { xs: 4, md: 5 }, pb: 2.5 }}>
         <Zoom in style={{ transitionDelay: '300ms' }}>
           <Button
-            variant='outlined'
-            color='primary'
+            variant="outlined"
+            color="primary"
             sx={{
               padding: '8px 28px',
               borderRadius: 30,
@@ -59,7 +55,7 @@ const TaskSideBar = () => {
             startIcon={<AddIcon />}
             onClick={onOpenAddTask}
           >
-            <IntlMessages id='todo.addNewTask' />
+            <IntlMessages id="todo.addNewTask" />
           </Button>
         </Zoom>
       </Box>
@@ -74,70 +70,80 @@ const TaskSideBar = () => {
             pb: { xs: 4, md: 5, lg: 6.2 },
           }}
         >
-          <ListWrapper aria-label='main task folders'>
+          <ListWrapper aria-label="main task folders">
             <AppList
               data={folderList}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={true}
                   placeholder={
-                    <Box px={{ xs: 4, md: 5, lg: 6.2 }}>
+                    <Box
+                      sx={{
+                        px: { xs: 4, md: 5, lg: 6.2 },
+                      }}
+                    >
                       <SidebarPlaceholder />
                     </Box>
                   }
                 />
               }
               renderRow={(item) => (
-                <AppsSideBarFolderItem
-                  key={item.id}
-                  item={item}
-                  path={`/apps/calender/${item.alias}`}
-                />
+                <AppsSideBarFolderItem key={item.id} item={item} path={`/apps/calender/${item.alias}`} />
               )}
             />
           </ListWrapper>
           <Box
-            component='h4'
-            mt={{ xs: 4, xl: 5 }}
-            px={{ xs: 4, md: 5, lg: 6.2 }}
-            fontWeight={Fonts.SEMI_BOLD}
+            component="h4"
+            sx={{
+              mt: { xs: 4, xl: 5 },
+              px: { xs: 4, md: 5, lg: 6.2 },
+              fontWeight: Fonts.SEMI_BOLD,
+            }}
           >
             Labels
           </Box>
-          <List component='nav' aria-label='main mailbox folders'>
+          <List component="nav" aria-label="main mailbox folders">
             <AppList
               data={labelList}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={true}
                   placeholder={
-                    <Box px={{ xs: 4, md: 5, lg: 6.2 }}>
+                    <Box
+                      sx={{
+                        px: { xs: 4, md: 5, lg: 6.2 },
+                      }}
+                    >
                       <SidebarPlaceholder />
                     </Box>
                   }
                 />
               }
-              renderRow={(label) => (
-                <TaskLabelItem key={label.id} label={label} />
-              )}
+              renderRow={(label) => <TaskLabelItem key={label.id} label={label} />}
             />
           </List>
           <Box
-            component='h4'
-            mt={{ xs: 4, xl: 5 }}
-            px={{ xs: 4, md: 5, lg: 6.2 }}
-            fontWeight={Fonts.SEMI_BOLD}
+            component="h4"
+            sx={{
+              mt: { xs: 4, xl: 5 },
+              px: { xs: 4, md: 5, lg: 6.2 },
+              fontWeight: Fonts.SEMI_BOLD,
+            }}
           >
             Priority
           </Box>
-          <List component='nav' aria-label='main mailbox folders'>
+          <List component="nav" aria-label="main mailbox folders">
             <AppList
               data={priorityList}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={true}
                   placeholder={
-                    <Box px={{ xs: 4, md: 5, lg: 6.2 }}>
+                    <Box
+                      sx={{
+                        px: { xs: 4, md: 5, lg: 6.2 },
+                      }}
+                    >
                       <SidebarPlaceholder />
                     </Box>
                   }
@@ -161,21 +167,27 @@ const TaskSideBar = () => {
             />
           </List>
           <Box
-            component='h4'
-            mt={{ xs: 4, xl: 5 }}
-            px={{ xs: 4, md: 5, lg: 6.2 }}
-            fontWeight={Fonts.SEMI_BOLD}
+            component="h4"
+            sx={{
+              mt: { xs: 4, xl: 5 },
+              px: { xs: 4, md: 5, lg: 6.2 },
+              fontWeight: Fonts.SEMI_BOLD,
+            }}
           >
             Status
           </Box>
-          <List component='nav' aria-label='main mailbox folders'>
+          <List component="nav" aria-label="main mailbox folders">
             <AppList
               data={statusList}
               ListEmptyComponent={
                 <ListEmptyResult
                   loading={true}
                   placeholder={
-                    <Box px={{ xs: 4, md: 5, lg: 6.2 }}>
+                    <Box
+                      sx={{
+                        px: { xs: 4, md: 5, lg: 6.2 },
+                      }}
+                    >
                       <SidebarPlaceholder />
                     </Box>
                   }
@@ -189,9 +201,7 @@ const TaskSideBar = () => {
                   onChange={(checked, id) =>
                     setFilterData({
                       ...filterData,
-                      status: checked
-                        ? filterData.status.concat(id)
-                        : filterData.status.filter((data) => data !== id),
+                      status: checked ? filterData.status.concat(id) : filterData.status.filter((data) => data !== id),
                     })
                   }
                 />
@@ -200,10 +210,7 @@ const TaskSideBar = () => {
           </List>
         </Box>
       </AppScrollbar>
-      <AddNewTask
-        isAddTaskOpen={isAddTaskOpen}
-        onCloseAddTask={onCloseAddTask}
-      />
+      <AddNewTask isAddTaskOpen={isAddTaskOpen} onCloseAddTask={onCloseAddTask} />
     </>
   );
 };

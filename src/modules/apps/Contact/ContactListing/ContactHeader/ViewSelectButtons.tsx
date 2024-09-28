@@ -22,12 +22,12 @@ const IconBtn = styled(IconButton)(({ theme }) => {
     },
   };
 });
-type Props= {
+type Props = {
   pageView: string;
   onChangePageView: (pageView: string) => void;
-}
+};
 
-const ViewSelectButtons = ({ pageView, onChangePageView }:Props) => {
+const ViewSelectButtons = ({ pageView, onChangePageView }: Props) => {
   return (
     <Box
       sx={{

@@ -3,30 +3,19 @@ import { NextRequest } from 'next/server';
 
 let ecommerceListingData = ecommerceData;
 export const GET = async (request: NextRequest) => {
-  const { page, ...filterData }: any = Object.fromEntries(
-    request.nextUrl.searchParams,
-  );
-  const multiPropsFilter = (
-    products: any[],
-    filters: any,
-    stringKey = 'title',
-  ) => {
+  const { page, ...filterData }: any = Object.fromEntries(request.nextUrl.searchParams);
+  const multiPropsFilter = (products: any[], filters: any, stringKey = 'title') => {
     const filterKeys = Object.keys(filters);
     return products.filter((product) => {
       return filterKeys.every((key) => {
         if (filters[key].length === 0) return true;
         // Loops again if product[key] is an array (for material attribute).
         if (Array.isArray(product[key])) {
-          return product[key].some((keyEle: any) =>
-            filters[key].includes(keyEle),
-          );
+          return product[key].some((keyEle: any) => filters[key].includes(keyEle));
         }
         if (filters[key].end) {
           if (key === 'mrp') {
-            return (
-              product[key] >= filters[key].start &&
-              product[key] < filters[key].end
-            );
+            return product[key] >= filters[key].start && product[key] < filters[key].end;
           } else {
             const start = new Date(filters[key].start).getTime();
             const end = new Date(filters[key].end).getTime();
@@ -36,9 +25,7 @@ export const GET = async (request: NextRequest) => {
           }
         }
         if (key === stringKey) {
-          return product[key]
-            .toLowerCase()
-            .includes(filters[key].toLowerCase());
+          return product[key].toLowerCase().includes(filters[key].toLowerCase());
         }
         return filters[key].includes(product[key]);
       });

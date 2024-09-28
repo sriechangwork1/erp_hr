@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, Button } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { Fonts } from "@crema/constants/AppEnums";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import IconButton from "@mui/material/IconButton";
-import { AddressesType } from "@crema/types/models/ecommerce/EcommerceApp";
+import React from 'react';
+import { Box, Button } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import { Fonts } from '@crema/constants/AppEnums';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import IconButton from '@mui/material/IconButton';
+import { AddressesType } from '@crema/types/models/ecommerce/EcommerceApp';
 
 type AddressCellProps = {
   address: AddressesType;
@@ -14,11 +14,7 @@ type AddressCellProps = {
   setSelectAddress: (val: AddressesType) => void;
 };
 
-const AddressCell: React.FC<AddressCellProps> = ({
-  address,
-  selectedAddress,
-  setSelectAddress,
-}) => {
+const AddressCell: React.FC<AddressCellProps> = ({ address, selectedAddress, setSelectAddress }) => {
   const isActive = selectedAddress.id === address.id;
   return (
     <Box
@@ -30,13 +26,13 @@ const AddressCell: React.FC<AddressCellProps> = ({
         py: 2,
         mb: 4,
         borderRadius: 4,
-        borderColor: "#D9DBE3",
+        borderColor: '#D9DBE3',
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           fontSize: 14,
           fontWeight: Fonts.MEDIUM,
         }}
@@ -50,16 +46,14 @@ const AddressCell: React.FC<AddressCellProps> = ({
         <Box sx={{ mx: 3.5 }}>{address.name}</Box>
         <Box>{address.mobile}</Box>
         {isActive ? (
-          <Box sx={{ ml: "auto" }}>
+          <Box sx={{ ml: 'auto' }}>
             <IconButton size="small">
               <EditOutlinedIcon />
             </IconButton>
           </Box>
         ) : null}
       </Box>
-      <Box
-        sx={{ fontSize: 14, fontWeight: Fonts.REGULAR, ml: 14, mt: -2, mb: 4 }}
-      >
+      <Box sx={{ fontSize: 14, fontWeight: Fonts.REGULAR, ml: 14, mt: -2, mb: 4 }}>
         {address.addressLine}, {address.city}, {address.pin}
       </Box>
       {isActive ? (

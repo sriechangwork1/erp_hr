@@ -2,9 +2,7 @@ import { customersData } from '@crema/fakedb/ecommerce/ecommerceData';
 import { NextRequest } from 'next/server';
 
 export const GET = async (request: NextRequest) => {
-  const { search, page }: any = Object.fromEntries(
-    request.nextUrl.searchParams,
-  );
+  const { search, page }: any = Object.fromEntries(request.nextUrl.searchParams);
   try {
     let customers = [...customersData];
 

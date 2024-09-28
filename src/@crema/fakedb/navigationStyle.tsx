@@ -1,9 +1,4 @@
-import {
-  LayoutType,
-  MenuStyle,
-  NavStyle,
-  ThemeMode,
-} from '@crema/constants/AppEnums';
+import { LayoutType, MenuStyle, NavStyle, ThemeMode } from '@crema/constants/AppEnums';
 
 export type NavStyleType = { image: string; alias: NavStyle; id: number };
 export const navStyles: NavStyleType[] = [

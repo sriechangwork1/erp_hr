@@ -4,7 +4,7 @@ import AppContentView from '../../AppContentView';
 import AppThemeSetting from '../../AppThemeSetting';
 import AppHeader from './AppHeader';
 import clsx from 'clsx';
-import Hidden from '@mui/material/Hidden';
+
 import Box from '@mui/material/Box';
 import BitBucketWrapper from './BitBucketWrapper';
 import { LayoutType } from '@crema/constants/AppEnums';
@@ -40,15 +40,13 @@ const BitBucket = ({ children, routesConfig }: Props) => {
           bitBucketCollapsed: isNavCollapsed,
         })}
       >
-        <Hidden lgUp>
-          <AppHeader toggleNavCollapsed={toggleNavCollapsed} />
-        </Hidden>
+        <AppHeader toggleNavCollapsed={toggleNavCollapsed} />
         <AppSidebar
           routesConfig={routesConfig}
           isNavCollapsed={isNavCollapsed}
           toggleNavCollapsed={toggleNavCollapsed}
         />
-        <Box className='mainContent'>
+        <Box className="mainContent">
           <AppContentView>{children}</AppContentView>
         </Box>
         <AppThemeSetting />

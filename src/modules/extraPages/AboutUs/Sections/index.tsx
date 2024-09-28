@@ -18,17 +18,16 @@ const Sections = ({ data }: SectionProps) => {
         }}
       >
         <Avatar
-          sx={{
+          sx={(theme) => ({
             backgroundColor: data.avatarColor,
-            color: (theme) => theme.palette.common.white,
-          }}
+            color: theme.palette.common.white,
+          })}
         >
           {data.icon}
         </Avatar>
       </Box>
-
       <Typography
-        component='h3'
+        component="h3"
         sx={{
           mb: 2.5,
           fontWeight: Fonts.SEMI_BOLD,
@@ -37,12 +36,11 @@ const Sections = ({ data }: SectionProps) => {
       >
         {data.title}
       </Typography>
-
       <Typography
-        sx={{
+        sx={(theme) => ({
           mb: 2,
-          color: (theme) => theme.palette.text.secondary,
-        }}
+          color: theme.palette.text.secondary,
+        })}
       >
         {data.content}
       </Typography>

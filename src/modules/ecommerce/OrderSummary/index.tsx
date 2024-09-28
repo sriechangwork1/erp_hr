@@ -16,10 +16,15 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ cartItems }) => {
   const { messages } = useIntl();
   const totalPrice = getTotalPrice(cartItems);
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <AppCard
         title={
-          <Box fontSize={16} fontWeight={Fonts.BOLD}>
+          <Box
+            sx={{
+              fontSize: 16,
+              fontWeight: Fonts.BOLD,
+            }}
+          >
             {messages['ecommerce.orderSummary'] as string}
           </Box>
         }

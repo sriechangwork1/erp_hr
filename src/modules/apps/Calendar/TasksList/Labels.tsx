@@ -11,7 +11,7 @@ type Props = {
 const Labels = ({ labels }: Props) => {
   return (
     <Box
-      className='labelIcon'
+      className="labelIcon"
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -19,7 +19,7 @@ const Labels = ({ labels }: Props) => {
     >
       {labels?.map((label) => {
         return (
-          <AppTooltip title={label.name} placement='top' key={label.id}>
+          <AppTooltip title={label.name} placement="top" key={label.id}>
             <LabelOutlinedIcon
               sx={{
                 color: `${label.color}`,

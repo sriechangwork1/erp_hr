@@ -11,17 +11,17 @@ const FileStack = () => {
   return (
     <>
       <AppComponentHeader
-        title='Filestack File Uploader & File Upload API'
-        description='Simple file uploader & powerful APIs to upload, transform & deliver any file into your app.'
-        refUrl='https://www.filestack.com/'
+        title="Filestack File Uploader & File Upload API"
+        description="Simple file uploader & powerful APIs to upload, transform & deliver any file into your app."
+        refUrl="https://www.filestack.com/"
       />
 
       <AppGridContainer>
         <Grid item xs={12}>
-          <AppComponentCard title='Inline Picker' component={InlinePicker} />
+          <AppComponentCard title="Inline Picker" component={InlinePicker} />
         </Grid>
         <Grid item xs={12}>
-          <AppComponentCard title='Drop Pane Picker' component={DNDPicker} />
+          <AppComponentCard title="Drop Pane Picker" component={DNDPicker} />
         </Grid>
       </AppGridContainer>
     </>

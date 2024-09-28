@@ -1,23 +1,23 @@
-import React from "react";
-import TableCell from "@mui/material/TableCell";
-import { Typography } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import TableRow from "@mui/material/TableRow";
-import { blue, green, red } from "@mui/material/colors";
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import { Typography } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import TableRow from '@mui/material/TableRow';
+import { blue, green, red } from '@mui/material/colors';
 
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import { Fonts } from "@crema/constants/AppEnums";
-import { DealsTableDaumType } from "@crema/types/models/dashboards/CRM";
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { Fonts } from '@crema/constants/AppEnums';
+import { DealsTableDaumType } from '@crema/types/models/dashboards/CRM';
 
 const TableCellWrapper = styled(TableCell)(() => {
   return {
     fontSize: 14,
     padding: 8,
-    "&:first-of-type": {
+    '&:first-of-type': {
       paddingLeft: 20,
     },
-    "&:last-of-type": {
+    '&:last-of-type': {
       paddingRight: 20,
     },
   };
@@ -25,13 +25,13 @@ const TableCellWrapper = styled(TableCell)(() => {
 
 const getProgressColor = (progress: string) => {
   switch (progress) {
-    case "Pending":
+    case 'Pending':
       return `${red[600]}`;
 
-    case "Approved":
+    case 'Approved':
       return `${blue[500]}`;
 
-    case "Application":
+    case 'Application':
       return `${green[600]}`;
 
     default:
@@ -50,8 +50,8 @@ const TableItem = ({ row }: Props) => {
       <TableCellWrapper>
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           {row.logo ? (
@@ -89,14 +89,14 @@ const TableItem = ({ row }: Props) => {
         <Box
           component="span"
           sx={{
-            padding: "5px 14px",
+            padding: '5px 14px',
             borderRadius: 30,
             fontSize: 12,
             fontWeight: Fonts.SEMI_BOLD,
             minWidth: 85,
-            textAlign: "center",
+            textAlign: 'center',
             color: getProgressColor(row.progress),
-            backgroundColor: getProgressColor(row.progress) + "33",
+            backgroundColor: getProgressColor(row.progress) + '33',
           }}
         >
           {row.progress}

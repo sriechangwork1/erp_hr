@@ -27,16 +27,11 @@ const RecentPostItem = ({ recentPost }: Props) => {
           },
         }}
       >
-        <Image
-          src={`${recentPost.srcImg}`}
-          alt='Recent Post'
-          width={100}
-          height={69}
-        />
+        <Image src={`${recentPost.srcImg}`} alt="Recent Post" width={100} height={69} />
       </Box>
       <Box sx={{ flex: 1 }}>
         <Typography
-          component='h4'
+          component="h4"
           sx={{
             fontSize: 12,
             fontWeight: Fonts.MEDIUM,
@@ -46,10 +41,10 @@ const RecentPostItem = ({ recentPost }: Props) => {
           {recentPost.title}
         </Typography>
         <Typography
-          sx={{
+          sx={(theme) => ({
             fontSize: 12,
-            color: (theme) => theme.palette.text.secondary,
-          }}
+            color: theme.palette.text.secondary,
+          })}
         >
           {recentPost.duration}
         </Typography>

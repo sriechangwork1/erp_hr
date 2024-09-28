@@ -28,12 +28,7 @@ const ActivitiesItem = ({ activities }: Props) => {
           },
         }}
       >
-        <Image
-          src={activities.srcImg}
-          alt={activities.name}
-          width={60}
-          height={60}
-        />
+        <Image src={activities.srcImg} alt={activities.name} width={60} height={60} />
       </Box>
       <Box>
         <Typography

@@ -20,7 +20,7 @@ const Maintenance = () => {
   };
 
   return (
-    <AppAnimate animation='transition.slideUpIn' delay={200}>
+    <AppAnimate animation="transition.slideUpIn" delay={200}>
       <Box
         sx={{
           py: { xl: 8 },
@@ -37,14 +37,13 @@ const Maintenance = () => {
             mb: { xs: 4, xl: 8 },
             width: '100%',
             maxWidth: { xs: 200, sm: 300, xl: 706 },
-
             '& img': {
               width: '100%',
               maxWidth: 400,
             },
           }}
         >
-          <Image alt='maintenance' src={Logo} width={400} height={400} />;
+          <Image alt="maintenance" src={Logo} width={400} height={400} />;
         </Box>
         <Box
           sx={{
@@ -52,14 +51,14 @@ const Maintenance = () => {
           }}
         >
           <Box
-            component='h3'
+            component="h3"
             sx={{
               mb: { xs: 3, xl: 4 },
               fontSize: { xs: 20, md: 24 },
               fontWeight: Fonts.MEDIUM,
             }}
           >
-            <IntlMessages id='error.mantainanceMessage1' />
+            <IntlMessages id="error.mantainanceMessage1" />
           </Box>
           <Box
             sx={{
@@ -70,15 +69,15 @@ const Maintenance = () => {
             }}
           >
             <Typography>
-              <IntlMessages id='error.mantainanceMessage2' />
+              <IntlMessages id="error.mantainanceMessage2" />
             </Typography>
             <Typography>
-              <IntlMessages id='error.mantainanceMessage3' />.
+              <IntlMessages id="error.mantainanceMessage3" />.
             </Typography>
           </Box>
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             sx={{
               fontWeight: Fonts.MEDIUM,
               fontSize: 16,
@@ -86,7 +85,7 @@ const Maintenance = () => {
             }}
             onClick={onGoBackToHome}
           >
-            <IntlMessages id='error.goBackToHome' />
+            <IntlMessages id="error.goBackToHome" />
           </Button>
         </Box>
       </Box>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import AppsContainer from '@crema/components/AppsContainer';
 import { useIntl } from 'react-intl';
-import { Button, Hidden } from '@mui/material';
+import { Button } from '@mui/material';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import AppsPagination from '@crema/components/AppsPagination';
@@ -40,43 +40,45 @@ const Orders = () => {
     setPage(0);
   };
   return (
-    <AppsContainer
-      title={messages['eCommerce.recentOrders'] as string}
-      fullView
-    >
+    <AppsContainer title={messages['eCommerce.recentOrders'] as string} fullView>
       <AppsHeader>
         <Box
-          display='flex'
-          flexDirection='row'
-          alignItems='center'
-          width={1}
-          justifyContent='space-between'
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: 1,
+            justifyContent: 'space-between',
+          }}
         >
           <AppSearchBar
-            iconPosition='right'
+            iconPosition="right"
             overlap={false}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              onSearchOrder(event)
-            }
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => onSearchOrder(event)}
             placeholder={messages['common.searchHere'] as string}
           />
-          <Box display='flex' flexDirection='row' alignItems='center'>
-            <Button variant='contained' color='primary'>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <Button variant="contained" color="primary">
               Add Order
             </Button>
 
-            <Hidden smDown>
-              <AppsPagination
-                rowsPerPage={10}
-                count={apiData?.count}
-                page={page}
-                onPageChange={onPageChange}
-              />
-            </Hidden>
+            <Box
+              component="span"
+              sx={{
+                display: { xs: 'none', sm: 'block' },
+              }}
+            >
+              <AppsPagination rowsPerPage={10} count={apiData?.count} page={page} onPageChange={onPageChange} />
+            </Box>
           </Box>
         </Box>
       </AppsHeader>
-
       <AppsContent
         sx={{
           paddingTop: 2.5,
@@ -85,15 +87,14 @@ const Orders = () => {
       >
         <OrderTable orderData={apiData?.data || []} />
       </AppsContent>
-
-      <Hidden smUp>
-        <AppsPagination
-          rowsPerPage={10}
-          count={apiData?.count}
-          page={page}
-          onPageChange={onPageChange}
-        />
-      </Hidden>
+      <Box
+        component="span"
+        sx={{
+          display: { sm: 'none', xs: 'block' },
+        }}
+      >
+        <AppsPagination rowsPerPage={10} count={apiData?.count} page={page} onPageChange={onPageChange} />
+      </Box>
     </AppsContainer>
   );
 };

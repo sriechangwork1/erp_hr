@@ -22,7 +22,6 @@ const FaqList: React.FC<FaqListProps> = ({ faqList }) => {
               color: 'text.secondary',
               marginBottom: 0.5,
               padding: '10px 20px',
-
               '&:before': {
                 display: 'none',
               },

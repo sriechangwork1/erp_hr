@@ -1,16 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
-import {
-  InfoViewActions,
-  useInfoViewActionsContext,
-} from '@crema/context/AppContextProvider/InfoViewContextProvider';
+import { InfoViewActions, useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { isRequestSuccessful, sanitizeData } from '@crema/helpers/ApiHelper';
 import jwtAxios from '@crema/services/axios';
-import {
-  APIErrorProps,
-  APIErrorResProps,
-} from '@crema/types/models/APIDataProps';
+import { APIErrorProps, APIErrorResProps } from '@crema/types/models/APIDataProps';
 import { AxiosResponse } from 'axios';
 
 export const useGetDataApi = <T,>(

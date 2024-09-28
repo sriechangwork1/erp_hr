@@ -12,7 +12,7 @@ const PackageWrapper = ({ children, ...rest }: Props) => {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         pt: 2.5,
         position: 'relative',
         '& .tag': {
@@ -25,11 +25,11 @@ const PackageWrapper = ({ children, ...rest }: Props) => {
           fontSize: 12,
           fontWeight: Fonts.BOLD,
           textTransform: 'uppercase',
-          color: (theme) => theme.palette.common.white,
+          color: theme.palette.common.white,
           textAlign: 'center',
           borderRadius: cardRadius / 16,
         },
-      }}
+      })}
       {...rest}
     >
       {children}

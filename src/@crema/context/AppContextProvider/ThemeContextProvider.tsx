@@ -1,12 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import defaultConfig, { defaultTheme } from '@crema/constants/defaultConfig';
 import PropTypes from 'prop-types';
 import { LayoutDirection } from '@crema/constants/AppEnums';
@@ -43,16 +36,10 @@ interface ThemeContextProviderProps {
   children: ReactNode;
 }
 
-const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
-  children,
-}) => {
+const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<any>(defaultTheme.theme);
-  const [themeMode, updateThemeMode] = useState<string>(
-    defaultConfig.themeMode,
-  );
-  const [themeStyle, updateThemeStyle] = useState<string>(
-    defaultConfig.themeStyle,
-  );
+  const [themeMode, updateThemeMode] = useState<string>(defaultConfig.themeMode);
+  const [themeStyle, updateThemeStyle] = useState<string>(defaultConfig.themeStyle);
 
   const updateTheme = useCallback((theme: any) => {
     setTheme(theme);

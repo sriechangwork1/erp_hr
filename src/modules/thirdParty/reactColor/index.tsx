@@ -1,13 +1,6 @@
 'use client';
 import React from 'react';
-import {
-  BlockPicker,
-  ChromePicker,
-  CirclePicker,
-  CompactPicker,
-  GithubPicker,
-  TwitterPicker,
-} from 'react-color';
+import { BlockPicker, ChromePicker, CirclePicker, CompactPicker, GithubPicker, TwitterPicker } from 'react-color';
 
 import Basic from './Basic';
 
@@ -20,34 +13,34 @@ const ColorPicker = () => {
   return (
     <>
       <AppComponentHeader
-        title='React Color'
-        description='13 Different Pickers - Sketch, Photoshop, Chrome and many more, Use the building block components to make your own '
-        refUrl='http://casesandberg.github.io/react-color/'
+        title="React Color"
+        description="13 Different Pickers - Sketch, Photoshop, Chrome and many more, Use the building block components to make your own "
+        refUrl="http://casesandberg.github.io/react-color/"
       />
 
       <AppGridContainer>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Circle Picker' component={CirclePicker} />
+          <AppComponentCard title="Circle Picker" component={CirclePicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Compact Picker' component={CompactPicker} />
+          <AppComponentCard title="Compact Picker" component={CompactPicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Block Picker' component={BlockPicker} />
+          <AppComponentCard title="Block Picker" component={BlockPicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Chrome Picker' component={ChromePicker} />
+          <AppComponentCard title="Chrome Picker" component={ChromePicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Github Picker' component={GithubPicker} />
+          <AppComponentCard title="Github Picker" component={GithubPicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <AppComponentCard title='Twitter Picker' component={TwitterPicker} />
+          <AppComponentCard title="Twitter Picker" component={TwitterPicker} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <AppGridContainer>
             <Grid item xs={12}>
-              <AppComponentCard title='Basic Picker' component={Basic} />
+              <AppComponentCard title="Basic Picker" component={Basic} />
             </Grid>
           </AppGridContainer>
         </Grid>

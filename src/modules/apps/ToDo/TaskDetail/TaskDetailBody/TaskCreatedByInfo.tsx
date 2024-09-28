@@ -52,11 +52,22 @@ const TaskCreatedByInfo = ({ createdBy, createdOn }: Props) => {
         >
           {createdBy?.name}
         </Box>
-        <Box component="p" mb={0}>
+        <Box
+          component="p"
+          sx={{
+            mb: 0,
+          }}
+        >
           <Box component="span">
             <IntlMessages id="todo.createdThisTask" />
           </Box>
-          <Box component="span" color="text.secondary" ml={1}>
+          <Box
+            component="span"
+            sx={{
+              color: 'text.secondary',
+              ml: 1,
+            }}
+          >
             on {createdOn}
           </Box>
         </Box>

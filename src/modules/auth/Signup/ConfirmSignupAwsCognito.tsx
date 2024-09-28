@@ -30,13 +30,9 @@ const ConfirmSignupAwsCognito = (props: any) => {
       confirmCognitoUserSignup(email, pin);
     } else if (!email) {
       router.push('/signup');
-      infoViewActionsContext.fetchError(
-        messages['validation.tryAgain'] as string,
-      );
+      infoViewActionsContext.fetchError(messages['validation.tryAgain'] as string);
     } else {
-      infoViewActionsContext.fetchError(
-        messages['validation.pinLength'] as string,
-      );
+      infoViewActionsContext.fetchError(messages['validation.pinLength'] as string);
     }
   };
 
@@ -52,16 +48,16 @@ const ConfirmSignupAwsCognito = (props: any) => {
         <AppLogo />
       </Box>
       <Typography
-        variant='h2'
-        component='h2'
-        sx={{
+        variant="h2"
+        component="h2"
+        sx={(theme) => ({
           mb: 1.5,
-          color: (theme) => theme.palette.text.primary,
+          color: theme.palette.text.primary,
           fontWeight: Fonts.SEMI_BOLD,
           fontSize: { xs: 14, xl: 16 },
-        }}
+        })}
       >
-        <IntlMessages id='common.emailVerification' />
+        <IntlMessages id="common.emailVerification" />
       </Typography>
       <Box
         sx={{
@@ -70,29 +66,27 @@ const ConfirmSignupAwsCognito = (props: any) => {
         }}
       >
         <Typography>
-          <IntlMessages id='common.verificationMessage' />
+          <IntlMessages id="common.verificationMessage" />
         </Typography>
       </Box>
-
       <Box
         sx={{
           mb: { xs: 6, xl: 10 },
         }}
       >
         <ReactCodeInput
-          name='password'
-          type='password'
-          inputMode='numeric'
+          name="password"
+          type="password"
+          inputMode="numeric"
           value={pin}
           fields={6}
           onChange={(value) => setPin(value)}
         />
       </Box>
-
       <Button
-        variant='contained'
-        color='primary'
-        type='submit'
+        variant="contained"
+        color="primary"
+        type="submit"
         sx={{
           fontWeight: Fonts.REGULAR,
           textTransform: 'capitalize',
@@ -101,7 +95,7 @@ const ConfirmSignupAwsCognito = (props: any) => {
         }}
         onClick={handleSubmit}
       >
-        <IntlMessages id='common.submit' />
+        <IntlMessages id="common.submit" />
       </Button>
       <AppInfoView />
     </Box>

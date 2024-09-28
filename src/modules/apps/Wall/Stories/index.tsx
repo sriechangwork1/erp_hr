@@ -1,10 +1,10 @@
-import React from "react";
-import AppCard from "@crema/components/AppCard";
-import PropTypes from "prop-types";
-import StoriesItem from "./StoriesItem";
-import { useIntl } from "react-intl";
-import { Box } from "@mui/material";
-import { StoriesDataType } from "@crema/types/models/apps/Wall";
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import PropTypes from 'prop-types';
+import StoriesItem from './StoriesItem';
+import { useIntl } from 'react-intl';
+import { Box } from '@mui/material';
+import { StoriesDataType } from '@crema/types/models/apps/Wall';
 
 type Props = {
   stories: StoriesDataType[];
@@ -16,12 +16,12 @@ const Stories = ({ stories }: Props) => {
   return (
     <AppCard
       sxStyle={{ mb: 8 }}
-      title={messages["wall.stories"] as string}
-      action={messages["common.viewAll"] as string}
+      title={messages['wall.stories'] as string}
+      action={messages['common.viewAll'] as string}
     >
       <Box
         sx={{
-          display: "flex",
+          display: 'flex',
           marginLeft: -1.25,
           marginRight: -1.25,
         }}
@@ -30,7 +30,7 @@ const Stories = ({ stories }: Props) => {
           <Box
             key={data.id}
             sx={{
-              width: "50%",
+              width: '50%',
               paddingLeft: 1.25,
               paddingRight: 1.25,
             }}

@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import AppCard from "@crema/components/AppCard";
-import Box from "@mui/material/Box";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Button from "@mui/material/Button";
-import ReactPlayer from "react-player";
-import { Fonts } from "@crema/constants/AppEnums";
-import { VideoPromoType } from "@crema/types/models/dashboards/Academy";
+import React, { useState } from 'react';
+import AppCard from '@crema/components/AppCard';
+import Box from '@mui/material/Box';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Button from '@mui/material/Button';
+import ReactPlayer from 'react-player';
+import { Fonts } from '@crema/constants/AppEnums';
+import { VideoPromoType } from '@crema/types/models/dashboards/Academy';
 
 const tabs = [
-  { id: 1, title: "Class Detail", slug: "class" },
-  { id: 2, title: "Assignments", slug: "assignments" },
-  { id: 3, title: "Projects", slug: "projects" },
-  { id: 4, title: "Exams", slug: "exams" },
+  { id: 1, title: 'Class Detail', slug: 'class' },
+  { id: 2, title: 'Assignments', slug: 'assignments' },
+  { id: 3, title: 'Projects', slug: 'projects' },
+  { id: 4, title: 'Exams', slug: 'exams' },
 ];
 type Props = {
   videoPromo: VideoPromoType;
 };
 const VideoPromo = ({ videoPromo }: Props) => {
-  const [tabValue, setTabValue] = useState("assignments");
+  const [tabValue, setTabValue] = useState('assignments');
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);
@@ -32,16 +32,12 @@ const VideoPromo = ({ videoPromo }: Props) => {
         sx={{
           mt: -5,
           mx: -6,
-          "& .react-player": {
-            width: "100% !important",
+          '& .react-player': {
+            width: '100% !important',
           },
         }}
       >
-        <ReactPlayer
-          className="react-player"
-          controls={true}
-          url="https://www.youtube.com/watch?v=X1dz0xRbSJc"
-        />
+        <ReactPlayer className="react-player" controls={true} url="https://www.youtube.com/watch?v=X1dz0xRbSJc" />
       </Box>
       <Box
         sx={{
@@ -50,9 +46,9 @@ const VideoPromo = ({ videoPromo }: Props) => {
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            alignItems: { sm: "center" },
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { sm: 'center' },
             mb: 1,
           }}
         >
@@ -74,48 +70,48 @@ const VideoPromo = ({ videoPromo }: Props) => {
             </Box>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
               }}
               component="p"
             >
               <Box
                 component="span"
-                sx={{
-                  color: "text.secondary",
-                  position: "relative",
-                  paddingRight: "6px",
-                  "&:before": {
+                sx={(theme) => ({
+                  color: 'text.secondary',
+                  position: 'relative',
+                  paddingRight: '6px',
+                  '&:before': {
                     content: '""',
-                    position: "absolute",
+                    position: 'absolute',
                     right: 0,
                     top: 5,
-                    width: "1px",
+                    width: '1px',
                     height: 10,
-                    backgroundColor: (theme) => theme.palette.grey[400],
+                    backgroundColor: theme.palette.grey[400],
                   },
-                }}
+                })}
               >
                 {videoPromo.owner}
               </Box>
               <Box
                 component="span"
-                sx={{
-                  color: "text.secondary",
+                sx={(theme) => ({
+                  color: 'text.secondary',
                   ml: 2,
-                  position: "relative",
-                  paddingRight: "6px",
-                  "&:before": {
+                  position: 'relative',
+                  paddingRight: '6px',
+                  '&:before': {
                     content: '""',
-                    position: "absolute",
+                    position: 'absolute',
                     right: 0,
                     top: 5,
-                    width: "1px",
+                    width: '1px',
                     height: 10,
-                    backgroundColor: (theme) => theme.palette.grey[400],
+                    backgroundColor: theme.palette.grey[400],
                   },
-                }}
+                })}
               >
                 {videoPromo.category}
               </Box>
@@ -123,7 +119,7 @@ const VideoPromo = ({ videoPromo }: Props) => {
                 component="span"
                 sx={{
                   ml: 2,
-                  color: "primary.main",
+                  color: 'primary.main',
                 }}
               >
                 + Follow Mentor
@@ -133,19 +129,19 @@ const VideoPromo = ({ videoPromo }: Props) => {
           <Box
             sx={{
               mb: 2,
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 height: 40,
                 width: 40,
-                border: "1px solid #E5E4EA",
-                borderRadius: "5px",
+                border: '1px solid #E5E4EA',
+                borderRadius: '5px',
               }}
             >
               <AccessTimeIcon />
@@ -153,14 +149,14 @@ const VideoPromo = ({ videoPromo }: Props) => {
             <Box
               sx={{
                 ml: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 height: 40,
                 width: 40,
-                border: "1px solid #E5E4EA",
-                borderRadius: "5px",
-                backgroundColor: "#EFEFEF",
+                border: '1px solid #E5E4EA',
+                borderRadius: '5px',
+                backgroundColor: '#EFEFEF',
               }}
             >
               <CloudDownloadIcon />
@@ -170,13 +166,13 @@ const VideoPromo = ({ videoPromo }: Props) => {
 
         <Box
           sx={{
-            display: "flex",
-            borderBottom: "1px solid #E5E4EA",
+            display: 'flex',
+            borderBottom: '1px solid #E5E4EA',
           }}
         >
           <Tabs
             sx={{
-              position: "relative",
+              position: 'relative',
               minHeight: 10,
             }}
             value={tabValue}
@@ -187,16 +183,16 @@ const VideoPromo = ({ videoPromo }: Props) => {
             {tabs.map((item, index) => {
               return (
                 <Tab
-                  sx={{
-                    maxWidth: "none",
+                  sx={(theme) => ({
+                    maxWidth: 'none',
                     minWidth: 10,
                     minHeight: 10,
-                    padding: "5px 10px",
-                    textTransform: "capitalize",
+                    padding: '5px 10px',
+                    textTransform: 'capitalize',
                     fontSize: 14,
-                    color: (theme) => theme.palette.text.secondary,
+                    color: theme.palette.text.secondary,
                     fontWeight: Fonts.MEDIUM,
-                  }}
+                  })}
                   key={index}
                   value={item.slug}
                   label={item.title}
@@ -209,16 +205,16 @@ const VideoPromo = ({ videoPromo }: Props) => {
         {videoPromo.assignments.map((item, index) => (
           <Box
             key={index}
-            sx={{
+            sx={(theme) => ({
               mt: 5,
               p: 4,
-              border: (theme) => `solid 1px ${theme.palette.grey[300]}`,
-              color: (theme) => theme.palette.text.secondary,
-            }}
+              border: `solid 1px ${theme.palette.grey[300]}`,
+              color: theme.palette.text.secondary,
+            })}
           >
             <Box
               sx={{
-                color: "text.primary",
+                color: 'text.primary',
                 fontSize: 14,
                 mb: 2,
                 fontWeight: Fonts.MEDIUM,
@@ -235,26 +231,21 @@ const VideoPromo = ({ videoPromo }: Props) => {
             </Box>
             <Box
               sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: { xs: "column", sm: "row" },
-                alignItems: { sm: "center" },
+                display: 'flex',
+                flexWrap: 'wrap',
+                flexDirection: { xs: 'column', sm: 'row' },
+                alignItems: { sm: 'center' },
               }}
             >
               <Box
                 sx={{
                   my: 1,
-                  mr: { sm: "auto" },
-                  display: "flex",
-                  alignItems: "center",
+                  mr: { sm: 'auto' },
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
-                <Button
-                  size="small"
-                  sx={{ fontSize: 10, whiteSpace: "nowrap" }}
-                  variant="outlined"
-                  color="primary"
-                >
+                <Button size="small" sx={{ fontSize: 10, whiteSpace: 'nowrap' }} variant="outlined" color="primary">
                   See Calendar
                 </Button>
                 <Box
@@ -262,12 +253,7 @@ const VideoPromo = ({ videoPromo }: Props) => {
                     ml: 2,
                   }}
                 >
-                  <Button
-                    size="small"
-                    sx={{ fontSize: 10, whiteSpace: "nowrap" }}
-                    variant="contained"
-                    color="primary"
-                  >
+                  <Button size="small" sx={{ fontSize: 10, whiteSpace: 'nowrap' }} variant="contained" color="primary">
                     View details
                   </Button>
                 </Box>
@@ -275,8 +261,8 @@ const VideoPromo = ({ videoPromo }: Props) => {
               <Box
                 sx={{
                   my: 1,
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <Box component="span">{item.students} Students enrolled</Box>
@@ -284,7 +270,7 @@ const VideoPromo = ({ videoPromo }: Props) => {
                   component="span"
                   sx={{
                     ml: 2,
-                    color: "#F66F71",
+                    color: '#F66F71',
                   }}
                 >
                   {item.daysLeft} Days left

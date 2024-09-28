@@ -1,11 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import {
   auth,
   createUserWithEmailAndPassword,
@@ -152,10 +146,7 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
     }
   };
 
-  const logInWithEmailAndPassword = async ({
-    email,
-    password,
-  }: SignInProps) => {
+  const logInWithEmailAndPassword = async ({ email, password }: SignInProps) => {
     fetchStart();
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -174,18 +165,10 @@ const FirebaseAuthProvider: React.FC<FirebaseAuthProviderProps> = ({
       fetchError(error.message as string);
     }
   };
-  const registerUserWithEmailAndPassword = async ({
-    name,
-    email,
-    password,
-  }: SignUpProps) => {
+  const registerUserWithEmailAndPassword = async ({ name, email, password }: SignUpProps) => {
     fetchStart();
     try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await sendEmailVerification(auth.currentUser!, {
         url: window.location.href,
         handleCodeInApp: true,

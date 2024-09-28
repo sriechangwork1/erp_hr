@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import AppCard from "@crema/components/AppCard";
-import RecentContact from "./RecentContact";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import { SelectChangeEvent, Typography } from "@mui/material";
-import AppScrollbar from "@crema/components/AppScrollbar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import CoinDropdown from "./CoinDropdown";
-import { useIntl } from "react-intl";
-import { QuickTransferType } from "@crema/types/models/dashboards/Crypto";
-import IntlMessages from "@crema/helpers/IntlMessages";
+import React, { useState } from 'react';
+import AppCard from '@crema/components/AppCard';
+import RecentContact from './RecentContact';
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import { SelectChangeEvent, Typography } from '@mui/material';
+import AppScrollbar from '@crema/components/AppScrollbar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import CoinDropdown from './CoinDropdown';
+import { useIntl } from 'react-intl';
+import { QuickTransferType } from '@crema/types/models/dashboards/Crypto';
+import IntlMessages from '@crema/helpers/IntlMessages';
 type Props = {
   quickTransfer: QuickTransferType;
 };
 const QuickTransfer = ({ quickTransfer }: Props) => {
-  const [selectedCoinId, setSelectedCoinID] = useState(
-    quickTransfer.coinList[0].id
-  );
+  const [selectedCoinId, setSelectedCoinID] = useState(quickTransfer.coinList[0].id);
 
   const selectedCoin = () => {
     return quickTransfer.coinList.find((coin) => coin.id === selectedCoinId);
@@ -40,16 +38,16 @@ const QuickTransfer = ({ quickTransfer }: Props) => {
     >
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
           mb: 5,
         }}
       >
         <TextField
           sx={{
-            "& .MuiInputBase-input": {
+            '& .MuiInputBase-input': {
               pl: 40,
-              textAlign: "right",
-              color: "text.secondary",
+              textAlign: 'right',
+              color: 'text.secondary',
             },
           }}
           fullWidth
@@ -58,16 +56,16 @@ const QuickTransfer = ({ quickTransfer }: Props) => {
         />
         <Box
           sx={{
-            position: "absolute",
+            position: 'absolute',
             left: 0,
             top: 0,
             width: 150,
             height: 52,
-            backgroundColor: "primary.main",
-            color: "common.white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            backgroundColor: 'primary.main',
+            color: 'common.white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             borderTopLeftRadius: 8,
             borderBottomLeftRadius: 8,
           }}
@@ -78,13 +76,13 @@ const QuickTransfer = ({ quickTransfer }: Props) => {
       </Box>
       <Box
         sx={{
-          position: "relative",
+          position: 'relative',
           mb: 3,
         }}
       >
         <Typography
           sx={{
-            color: "text.secondary",
+            color: 'text.secondary',
             mb: 4,
           }}
         >
@@ -93,9 +91,9 @@ const QuickTransfer = ({ quickTransfer }: Props) => {
         <AppScrollbar>
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
               mx: -4,
             }}
           >
@@ -115,7 +113,7 @@ const QuickTransfer = ({ quickTransfer }: Props) => {
       </Box>
       <Box
         sx={{
-          textAlign: "right",
+          textAlign: 'right',
         }}
       >
         <Button variant="contained">TRANSFER NOW</Button>

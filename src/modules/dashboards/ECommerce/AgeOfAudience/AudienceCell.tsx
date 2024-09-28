@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import PropTypes from "prop-types";
-import { AgeOfAudienceType } from "@crema/types/models/dashboards/Ecommerce";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import PropTypes from 'prop-types';
+import { AgeOfAudienceType } from '@crema/types/models/dashboards/Ecommerce';
 
 type Props = {
   audience: AgeOfAudienceType;
@@ -11,9 +11,9 @@ const AudienceCell = ({ audience }: Props) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        padding: "8px 20px",
+        display: 'flex',
+        alignItems: 'center',
+        padding: '8px 20px',
       }}
       className="item-hover"
     >
@@ -22,7 +22,7 @@ const AudienceCell = ({ audience }: Props) => {
         sx={{
           width: 10,
           height: 10,
-          borderRadius: "50%",
+          borderRadius: '50%',
           marginRight: 2.5,
           marginTop: 0.75,
           backgroundColor: audience.color,
@@ -31,7 +31,7 @@ const AudienceCell = ({ audience }: Props) => {
       <Typography variant="h5" component="h5">
         {audience.title}
       </Typography>
-      <Box sx={{ ml: "auto" }} component="h4">
+      <Box sx={{ ml: 'auto' }} component="h4">
         {audience.value}%
       </Box>
     </Box>

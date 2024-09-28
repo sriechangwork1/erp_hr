@@ -39,7 +39,7 @@ const BlogDetailContent = ({ blogDetailContent }: Props) => {
         </Box>
 
         <Box
-          sx={{
+          sx={(theme) => ({
             display: 'flex',
             alignItems: 'center',
             ml: 2,
@@ -57,16 +57,14 @@ const BlogDetailContent = ({ blogDetailContent }: Props) => {
               display: 'block',
               mt: 1,
             },
-          }}
+          })}
         >
           <AiFillHeart /> {blogDetailContent?.likeCount} Likes
         </Box>
       </Box>
-
       <Box sx={{ mb: { xs: 5, sm: 7, md: 10, lg: 15 } }}>
         <BlogPost post={blogDetailContent?.post} />
       </Box>
-
       <Box
         sx={{
           mb: { xs: 2, sm: 4, md: 8, lg: 10 },

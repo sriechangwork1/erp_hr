@@ -1,11 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useReducer } from 'react';
 import { contextReducer, InFoViewActions } from './InfoViewReducer';
 
 export type InfoViewData = {
@@ -38,20 +32,13 @@ const InfoViewActionsContext = createContext<InfoViewActions>({
 });
 
 export const useInfoViewContext = () => useContext(InfoViewContext);
-export const useInfoViewActionsContext = () =>
-  useContext(InfoViewActionsContext);
+export const useInfoViewActionsContext = () => useContext(InfoViewActionsContext);
 
 type InfoViewContextProviderProps = {
   children: ReactNode;
 };
-const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = (
-  props,
-) => {
-  const [state, dispatch] = useReducer(
-    contextReducer,
-    ContextState,
-    () => ContextState,
-  );
+const InfoViewContextProvider: React.FC<InfoViewContextProviderProps> = (props) => {
+  const [state, dispatch] = useReducer(contextReducer, ContextState, () => ContextState);
 
   const fetchStart = useCallback(() => {
     dispatch({ type: InFoViewActions.FETCH_STARTS });

@@ -101,13 +101,13 @@ const GraphTabs: React.FC<GraphTabsProps> = (props) => {
         }}
       >
         <Box
-          component='h3'
+          component="h3"
           sx={{
             fontWeight: Fonts.BOLD,
             fontSize: 16,
           }}
         >
-          <IntlMessages id='dashboard.statistics' />
+          <IntlMessages id="dashboard.statistics" />
         </Box>
 
         <Box
@@ -122,9 +122,9 @@ const GraphTabs: React.FC<GraphTabsProps> = (props) => {
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor='primary'
-            textColor='primary'
-            aria-label='simple tabs example'
+            indicatorColor="primary"
+            textColor="primary"
+            aria-label="simple tabs example"
             sx={{
               flex: '1',
               position: 'relative',
@@ -140,38 +140,18 @@ const GraphTabs: React.FC<GraphTabsProps> = (props) => {
               },
             }}
           >
-            <Tab
-              className='crMuiTab'
-              label={<IntlMessages id='dashboard.project' />}
-              {...a11yProps(0)}
-            />
-            <Tab
-              className='crMuiTab'
-              label={<IntlMessages id='dashboard.newClients' />}
-              {...a11yProps(1)}
-            />
-            <Tab
-              className='crMuiTab'
-              label={<IntlMessages id='dashboard.income' />}
-              {...a11yProps(2)}
-            />
+            <Tab className="crMuiTab" label={<IntlMessages id="dashboard.project" />} {...a11yProps(0)} />
+            <Tab className="crMuiTab" label={<IntlMessages id="dashboard.newClients" />} {...a11yProps(1)} />
+            <Tab className="crMuiTab" label={<IntlMessages id="dashboard.income" />} {...a11yProps(2)} />
           </Tabs>
           <Box
             sx={{
               mt: 2,
             }}
           >
+            <AppSelect menus={[2019, 2018, 2017]} defaultValue={2019} onChange={handleYearChange} />
             <AppSelect
-              menus={[2019, 2018, 2017]}
-              defaultValue={2019}
-              onChange={handleYearChange}
-            />
-            <AppSelect
-              menus={[
-                messages['common.june'],
-                messages['common.july'],
-                messages['common.august'],
-              ]}
+              menus={[messages['common.june'], messages['common.july'], messages['common.august']]}
               defaultValue={messages['common.june']}
               onChange={handleMonthChange}
             />
