@@ -1,5 +1,14 @@
 
 
+## [4.2.2](https://github.com/crema-git/crema-mui-nextjs-ts-4.x/compare/4.1.1...4.2.2) (2024-09-28)
+
+
+### Bug Fixes
+
+* Update to MUI-v-6 and fixed some minor issues ([f8e48a8](https://github.com/crema-git/crema-mui-nextjs-ts-4.x/commit/f8e48a806cbb49ebb94e2d664637ccd796cfeb97))
+* Update to MUI-v-6 and fixed some minor issues ([be2b0c6](https://github.com/crema-git/crema-mui-nextjs-ts-4.x/commit/be2b0c606adf622e9a032245c42e1486a2d6393b))
+* Update to MUI-v-6 and fixed some minor issues ([45d0ba5](https://github.com/crema-git/crema-mui-nextjs-ts-4.x/commit/45d0ba53f14d960c4b16db16adfc4e55fd1c9fff))
+
 ## [4.2.1](https://github.com/crema-git/crema-mui-nextjs-ts-4.x/compare/4.1.1...4.2.1) (2024-09-28)
 
 
