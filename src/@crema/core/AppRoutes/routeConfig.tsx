@@ -662,6 +662,13 @@ const routesConfig = [
             url: '/third-party/recharts/composed',
           },
           {
+            id: 'composed',
+            title: 'Composed Chart',
+            messageId: 'sidebar.recharts.composedChart',
+            type: 'item',
+            url: '/third-party/recharts/composed',
+          },
+          {
             id: 'line',
             title: 'Line Chart',
             messageId: 'sidebar.recharts.lineChart',
