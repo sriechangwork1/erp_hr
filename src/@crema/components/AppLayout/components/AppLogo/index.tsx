@@ -27,9 +27,9 @@ const AppLogo: React.FC<AppLogoProps> = ({ hasSidebarColor }) => {
       className="app-logo"
     >
       {hasSidebarColor && mode === 'dark' ? (
-        <AppImage src="/assets/images/logo-white-with-name.png" alt="crema-logo" width={146} height={50} />
+        <AppImage src="/assets/ERP_LOGO/9.png" alt="crema-logo" width={146} height={50} />
       ) : (
-        <AppImage src="/assets/images/logo-with-name.png" alt="crema-logo" width={146} height={50} />
+        <AppImage src="/assets/ERP_LOGO/9.png" alt="crema-logo" width={146} height={50} />
       )}
       {/* <Logo fill={theme.palette.primary.main} />
       <Box

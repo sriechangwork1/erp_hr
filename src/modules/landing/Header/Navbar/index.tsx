@@ -69,7 +69,7 @@ const NavBar = () => {
       >
         <Box>
           <Image
-            src={`${isScroll ? '/assets/images/logo-with-name.png' : '/assets/images/logo-white-with-name.png'}`}
+            src={`${isScroll ? '/assets/ERP_LOGO/9.png' : '/assets/ERP_LOGO/9.png'}`}
             alt="logo"
             width={130}
             height={42}
