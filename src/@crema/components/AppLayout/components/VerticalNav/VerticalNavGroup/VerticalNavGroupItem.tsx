@@ -15,13 +15,15 @@ const VerticalNavGroupItem: React.FC<VerticalNavGroupItemProps> = ({ children, s
   return (
     <ListItem
       sx={{
-        height: 40,
+        height: 50,
         my: 0.25,
-        pl: 31 + 33 * level + 'px',
+        //pl: 31 + 33 * level + 'px',
+        pl: 10 + 33 * level + 'px',
         pr: 3,
+        background: 'gold', // Remove the semicolon
         color: alpha(sidebarTextColor, 0.7),
         fontWeight: Fonts.SEMI_BOLD,
-        fontSize: 14,
+        fontSize: 16,
         cursor: 'pointer',
         textDecoration: 'none!important',
         whiteSpace: 'nowrap',

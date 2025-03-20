@@ -84,7 +84,7 @@ export const defaultTheme: any = {
     },
     divider: 'rgba(224, 224, 224, 1)',
     typography: {
-      fontFamily: ['Be Vietnam', 'sans-serif'].join(','),
+      fontFamily: ["IBM Plex Sans Thai",'Be Vietnam', 'sans-serif'].join(','),
       fontSize: 14,
       fontWeight: 400,
       h1: {
@@ -228,7 +228,7 @@ const defaultConfig = {
   },
   themeStyle: ThemeStyle.STANDARD,
   themeMode: ThemeMode.LIGHT,
-  navStyle: NavStyle.DEFAULT,
+  navStyle: NavStyle.MINI_SIDEBAR_TOGGLE,
   layoutType: LayoutType.FULL_WIDTH,
   footerType: FooterType.FLUID,
   headerType: HeaderType.FIXED,

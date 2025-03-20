@@ -16,8 +16,10 @@ const VerticalCollapseItem: React.FC<VerticalCollapseItemProps> = ({ children, s
       sx={{
         height: 40,
         my: 0.25,
-        pl: '31px',
-        pr: 3.75,
+        //pl: '31px',
+        pl: '10px',
+        //pr: 3.75,
+        pr: 0,
         whiteSpace: 'nowrap',
         transition: 'all 0.4s ease',
         '& .nav-item-text': {

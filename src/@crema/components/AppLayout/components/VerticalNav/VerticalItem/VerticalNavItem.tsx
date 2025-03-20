@@ -29,18 +29,21 @@ const VerticalNavItem: React.FC<VerticalNavItemProps> = ({ children, item, class
         active: item.url === pathname,
       })}
       sx={(theme) => ({
-        height: 40,
+        //height: 40,
         my: 0.25,
         cursor: 'pointer',
         textDecoration: 'none !important',
         mx: 2,
         width: 'calc(100% - 16px)',
-        pl: 22 + 33 * level + 'px',
+        //pl: 22 + 33 * level + 'px',
+        pl: 20 * level + 'px',
         pr: 3,
         borderRadius: 1,
         position: 'relative',
         transition: 'all 0.4s ease',
-        whiteSpace: 'nowrap',
+        //whiteSpace: 'nowrap',
+        overflowWrap: 'break-word', // Correct way to wrap text
+        whiteSpace: 'normal', // Allows text wrapping
         '& .nav-item-icon': {
           color: alpha(sidebarTextColor, 0.7),
           fontSize: 20,
