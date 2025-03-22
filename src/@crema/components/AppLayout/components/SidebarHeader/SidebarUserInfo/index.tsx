@@ -11,6 +11,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import Status from './Status';
 import { useRouter } from 'next/navigation';
 import AppLoader from '../../../../AppLoader';
+import { signOut } from 'next-auth/react';
 
 const SidebarUserInfo = () => {
   const { borderColor, sidebarTextColor } = useSidebarContext();
@@ -136,9 +137,19 @@ const SidebarUserInfo = () => {
             router.push('/account/my-profile');
           }}
         >
-          My account
+          My accountff
         </MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose(); // ปิดเมนู
+            signOut({
+              callbackUrl:
+                'http://localhost:8080/realms/erp_npu/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/api/auth/signin',
+            });
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </Box>
   );

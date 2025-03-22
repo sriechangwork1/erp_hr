@@ -1,4 +1,5 @@
 'use client';
+import { signIn, signOut, useSession } from 'next-auth/react'
 import React from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -38,6 +39,7 @@ const SigninFirebase = () => {
   return (
     <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', mb: 5 }}>
+        <button onClick={() => signIn('keycloak', {callbackUrl: '/',})}>Sign in with Keycloak</button>
         <Formik
           validateOnChange={true}
           initialValues={{

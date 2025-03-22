@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Fonts } from '@crema/constants/AppEnums';
 import { useRouter } from 'next/navigation';
 import { orange } from '@mui/material/colors';
+import { signOut } from 'next-auth/react';
 
 const UserInfo = () => {
   const { logout } = useAuthMethod();
@@ -147,14 +148,16 @@ const UserInfo = () => {
             py: 1.5,
           }}
         >
-          My account
+          My account 4
         </MenuItem>
         <MenuItem
-          sx={{
-            px: 6,
-            py: 1.5,
+          onClick={() => {
+            handleClose(); // ปิดเมนู
+            signOut({
+              callbackUrl:
+                'http://localhost:8080/realms/erp_npu/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/signin',
+            });
           }}
-          onClick={logout}
         >
           Logout
         </MenuItem>

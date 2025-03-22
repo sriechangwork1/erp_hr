@@ -9,6 +9,7 @@ import { Fonts } from '@crema/constants/AppEnums';
 import { useRouter } from 'next/navigation';
 import { orange } from '@mui/material/colors';
 import AppLoader from '../../../AppLoader';
+import { signOut } from 'next-auth/react';
 
 type UserInfoProps = {
   color?: string;
@@ -151,9 +152,19 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
             router.push('/account/my-profile');
           }}
         >
-          My account
+          My account ห
         </MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose(); // ปิดเมนู
+            signOut({
+              callbackUrl:
+                'http://localhost:8080/realms/erp_npu/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/signin',
+            });
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );

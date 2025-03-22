@@ -27,13 +27,23 @@ export const useAuthMethod = () => {
 
 import { useFirebase, useFirebaseActions } from '@crema/services/auth/firebase/FirebaseAuthProvider';
 import { getUserFromFirebase } from '@crema/helpers/AuthHelper';
+import { useSession } from 'next-auth/react';
+
+// export const useAuthUser = () => {
+//   const { user, isAuthenticated, isLoading } = useFirebase();
+//   return {
+//     isLoading,
+//     isAuthenticated,
+//     user: getUserFromFirebase(user),
+//   };
+// };
 
 export const useAuthUser = () => {
-  const { user, isAuthenticated, isLoading } = useFirebase();
+  const { data: session, status } = useSession();
+
   return {
-    isLoading,
-    isAuthenticated,
-    user: getUserFromFirebase(user),
+    user: session?.user ?? null,
+    isLoading: status === 'loading',
   };
 };
 

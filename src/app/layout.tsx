@@ -12,6 +12,8 @@ import AuthRoutes from '@crema/components/AuthRoutes';
 import AppPageMeta from '@crema/components/AppPageMeta';
 import InfoViewContextProvider from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import AppAuthProvider from '@crema/core/AppAuthProvider';
+import { SessionProvider } from 'next-auth/react';
+
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../public/styles/vendors/index.css';
@@ -37,25 +39,27 @@ export default function RootLayout({ children }: Props) {
         />
       </head>
       <body>
-        <CacheProvider value={clientSideEmotionCache}>
-          <AppContextProvider>
-            <AppThemeProvider>
-              <AppStyleProvider>
-                <AppLocaleProvider>
-                  <InfoViewContextProvider>
-                    <AppAuthProvider>
-                      <AuthRoutes>
-                        <CssBaseline />
-                        <AppPageMeta />
-                        {children}
-                      </AuthRoutes>
-                    </AppAuthProvider>
-                  </InfoViewContextProvider>
-                </AppLocaleProvider>
-              </AppStyleProvider>
-            </AppThemeProvider>
-          </AppContextProvider>
-        </CacheProvider>
+        <SessionProvider>
+          <CacheProvider value={clientSideEmotionCache}>
+            <AppContextProvider>
+              <AppThemeProvider>
+                <AppStyleProvider>
+                  <AppLocaleProvider>
+                    <InfoViewContextProvider>
+                      <AppAuthProvider>
+                        <AuthRoutes>
+                          <CssBaseline />
+                          <AppPageMeta />
+                          {children}
+                        </AuthRoutes>
+                      </AppAuthProvider>
+                    </InfoViewContextProvider>
+                  </AppLocaleProvider>
+                </AppStyleProvider>
+              </AppThemeProvider>
+            </AppContextProvider>
+          </CacheProvider>
+        </SessionProvider>
       </body>
     </html>
   );
