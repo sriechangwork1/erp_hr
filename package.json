@@ -44,6 +44,8 @@
     "froala-editor": "^4.1.4",
     "fusioncharts": "^3.21.1",
     "jodit-react": "^4.0.4",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "next": "^14.2.13",
