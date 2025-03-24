@@ -39,17 +39,28 @@ const SigninFirebase = () => {
   return (
     <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', mb: 5 }}>
-        <button onClick={() => signIn('keycloak', {callbackUrl: '/',})}>Sign in with Keycloak</button>
-        <Formik
+        {/* <Formik
           validateOnChange={true}
           initialValues={{
-            email: 'crema.demo@gmail.com',
-            password: 'Pass@1!@all',
+            username: 'jamel3oy',
+            password: '1234',
           }}
-          validationSchema={validationSchema}
-          onSubmit={(data, { setSubmitting }) => {
+          // validationSchema={validationSchema}
+          onSubmit={async (data, { setSubmitting }) => {
             setSubmitting(true);
-            logInWithEmailAndPassword(data);
+            const res = await signIn('credentials', {
+              redirect: false, // ไม่ให้ redirect อัตโนมัติ
+              username: data.username,
+              password: data.password,
+            });
+          
+            if (res?.ok) {
+              router.push('/'); // ล็อกอินสำเร็จ กลับหน้าแรก หรือหน้า dashboard
+            } else {
+              // ล็อกอินไม่สำเร็จ: แจ้ง error ได้ที่นี่
+              alert('Invalid credentials');
+            }
+          
             setSubmitting(false);
           }}
         >
@@ -57,9 +68,9 @@ const SigninFirebase = () => {
             <Form style={{ textAlign: 'left' }} noValidate autoComplete="off">
               <Box sx={{ mb: { xs: 5, xl: 8 } }}>
                 <AppTextField
-                  placeholder={messages['common.email'] as string}
-                  name="email"
-                  label={<IntlMessages id="common.email" />}
+                  placeholder={'Username'}
+                  name="username"
+                  label={'Username'}
                   variant="outlined"
                   sx={{
                     width: '100%',
@@ -73,8 +84,8 @@ const SigninFirebase = () => {
               <Box sx={{ mb: { xs: 3, xl: 4 } }}>
                 <AppTextField
                   type="password"
-                  placeholder={messages['common.password'] as string}
-                  label={<IntlMessages id="common.password" />}
+                  placeholder={'Password'}
+                  label={'Password'}
                   name="password"
                   variant="outlined"
                   sx={{
@@ -141,7 +152,21 @@ const SigninFirebase = () => {
               </div>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
+          <Box
+            component="span"
+            sx={(theme) => ({
+              fontWeight: Fonts.MEDIUM,
+              '& a': {
+                color: theme.palette.primary.main,
+                textDecoration: 'none',
+              },
+            })}
+          >
+            <Link href="http://localhost:3000/">
+            กรุณาเข้าระบบด้วยหน้า ERPNPU AUTH
+            </Link>
+          </Box>
       </Box>
       <Box
         sx={{
@@ -185,54 +210,13 @@ const SigninFirebase = () => {
             color: theme.palette.text.secondary,
           })}
         >
-          <IntlMessages id="common.orLoginWith" />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <IconButton
-            sx={(theme) => ({
-              p: 2,
-              '& svg': { fontSize: 18 },
-              color: theme.palette.text.secondary,
-            })}
-            onClick={() => logInWithPopup('google')}
-          >
-            <AiOutlineGoogle />
-          </IconButton>
-          <IconButton
-            sx={(theme) => ({
-              p: 1.5,
-              '& svg': { fontSize: 18 },
-              color: theme.palette.text.secondary,
-            })}
-            onClick={() => logInWithPopup('facebook')}
-          >
-            <FaFacebookF />
-          </IconButton>
-          <IconButton
-            sx={(theme) => ({
-              p: 1.5,
-              '& svg': { fontSize: 18 },
-              color: theme.palette.text.secondary,
-            })}
-            onClick={() => logInWithPopup('github')}
-          >
-            <BsGithub />
-          </IconButton>
-          <IconButton
-            sx={(theme) => ({
-              p: 1.5,
-              '& svg': { fontSize: 18 },
-              color: theme.palette.text.secondary,
-            })}
-            onClick={() => logInWithPopup('twitter')}
-          >
-            <AiOutlineTwitter />
-          </IconButton>
+          <IntlMessages id="common.orLoginWith" /> 
+                <a
+                  color="primary"
+                  onClick={() => signIn('keycloak', {callbackUrl: '/',})}
+                >
+                  Sign in with Keycloak
+                </a>
         </Box>
       </Box>
       <AppInfoView />

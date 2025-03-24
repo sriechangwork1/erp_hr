@@ -142,10 +142,7 @@ const SidebarUserInfo = () => {
         <MenuItem
           onClick={() => {
             handleClose(); // ปิดเมนู
-            signOut({
-              callbackUrl:
-                'http://localhost:8080/realms/erp_npu/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/api/auth/signin',
-            });
+            logout();
           }}
         >
           Logout

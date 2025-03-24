@@ -40,7 +40,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
             justifyContent: 'center',
           }}
         >
-          <Box sx={{ mb: { xs: 6, xl: 8 } }}>
+          <Box sx={{ mb: { xs: 2, xl: 2 } }}>
             <Box
               sx={{
                 mb: 5,
@@ -57,32 +57,53 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
           sx={(theme) => ({
             width: { xs: '100%', sm: '50%', lg: '60%' },
             position: 'relative',
-            padding: { xs: 5, lg: 10 },
+            padding: { xs: 5, lg: 5 },
             display: { xs: 'none', sm: 'flex' },
             alignItems: { sm: 'center' },
             justifyContent: { sm: 'center' },
             flexDirection: { sm: 'column' },
-            backgroundColor: theme.palette.grey[900],
+            backgroundColor: theme.palette.grey[600],
             color: theme.palette.common.white,
             fontSize: 14,
           })}
         >
           <Box
             sx={{
-              maxWidth: 320,
+              maxWidth: 400,
             }}
           >
             <Typography
               component="h2"
               sx={{
                 fontWeight: Fonts.BOLD,
-                fontSize: 30,
+                fontSize: 60,
                 mb: 4,
               }}
             >
-              Welcome to Crema!
+              <Box component="span" sx={{ color: 'grey.800' }}>ERP</Box>
+              <Box component="span" sx={{ color: 'gold', ml: 1 }}>NPU</Box>
             </Typography>
-            <Typography>Crema is purely based on Material ui components and follows Material ui guidelines.</Typography>
+            <Typography
+              sx={{
+                fontWeight: Fonts.BOLD,
+                fontSize: 25,
+                mb: 4,
+              }}
+            >Enterprise Resource Planning </Typography>
+            <Typography
+              sx={{
+                fontWeight: Fonts.BOLD,
+                fontSize: 20,
+                mb: 4,
+              }}
+            >มหาวิทยาลัยนครพนม </Typography>
+            <Typography
+              sx={{
+                fontWeight: Fonts.BOLD,
+                fontSize: 20,
+                mb: 4,
+              }}
+            >npu.ac.th</Typography>
           </Box>
         </Box>
       </Card>

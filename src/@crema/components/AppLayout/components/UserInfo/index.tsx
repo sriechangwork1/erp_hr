@@ -157,10 +157,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
         <MenuItem
           onClick={() => {
             handleClose(); // ปิดเมนู
-            signOut({
-              callbackUrl:
-                'http://localhost:8080/realms/erp_npu/protocol/openid-connect/logout?redirect_uri=http://localhost:3000/signin',
-            });
+            logout();
           }}
         >
           Logout
