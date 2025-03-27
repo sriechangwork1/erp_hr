@@ -19,7 +19,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
   const { logout } = useAuthMethod();
   const { user } = useAuthUser();
   const router = useRouter();
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: any) => {
@@ -107,7 +106,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
               }}
               component="span"
             >
-              {user.displayName ? user.displayName : 'Admin User '}
+              {user.displayName ? user.displayName : ''}
             </Box>
             <Box
               sx={{
@@ -127,7 +126,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
               color: 'inherit',
             }}
           >
-            System Manager
+            {user.email ? user.email : ''}
           </Box>
         </Box>
       </Box>
@@ -152,12 +151,12 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
             router.push('/account/my-profile');
           }}
         >
-          My account ห
+          My account
         </MenuItem>
         <MenuItem
           onClick={() => {
             handleClose(); // ปิดเมนู
-            logout();
+            signOut();
           }}
         >
           Logout

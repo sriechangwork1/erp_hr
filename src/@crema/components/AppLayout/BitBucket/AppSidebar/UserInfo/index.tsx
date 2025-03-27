@@ -15,6 +15,9 @@ const UserInfo = () => {
   const { user } = useAuthUser();
   const router = useRouter();
 
+  console.log(user);
+  
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -154,7 +157,7 @@ const UserInfo = () => {
         <MenuItem
           onClick={() => {
             handleClose(); // ปิดเมนู
-            logout();
+            signOut();
           }}
         >
           Logout

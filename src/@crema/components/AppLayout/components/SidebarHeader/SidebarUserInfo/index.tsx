@@ -137,7 +137,7 @@ const SidebarUserInfo = () => {
             router.push('/account/my-profile');
           }}
         >
-          My accountff
+          My account
         </MenuItem>
         <MenuItem
           onClick={() => {
