@@ -49,6 +49,108 @@ const SigninFirebase = () => {
           mt: 2,
         }}
       >
+                <Formik
+          validateOnChange={true}
+          initialValues={{
+            email: 'crema.demo@gmail.com',
+            password: 'Pass@1!@all',
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(data, { setSubmitting }) => {
+            setSubmitting(true);
+            logInWithEmailAndPassword(data);
+            setSubmitting(false);
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form style={{ textAlign: 'left' }} noValidate autoComplete="off">
+              <Box sx={{ mb: { xs: 5, xl: 8 } }}>
+                <AppTextField
+                  placeholder={messages['common.email'] as string}
+                  name="email"
+                  label={<IntlMessages id="common.email" />}
+                  variant="outlined"
+                  sx={{
+                    width: '100%',
+                    '& .MuiInputBase-input': {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Box>
+
+              <Box sx={{ mb: { xs: 3, xl: 4 } }}>
+                <AppTextField
+                  type="password"
+                  placeholder={messages['common.password'] as string}
+                  label={<IntlMessages id="common.password" />}
+                  name="password"
+                  variant="outlined"
+                  sx={{
+                    width: '100%',
+                    '& .MuiInputBase-input': {
+                      fontSize: 14,
+                    },
+                  }}
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  mb: { xs: 3, xl: 4 },
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Checkbox sx={{ ml: -3 }} />
+                  <Box
+                    component="span"
+                    sx={{
+                      color: 'grey.500',
+                    }}
+                  >
+                    <IntlMessages id="common.rememberMe" />
+                  </Box>
+                </Box>
+                <Box
+                  component="span"
+                  sx={(theme) => ({
+                    color: theme.palette.primary.main,
+                    fontWeight: Fonts.MEDIUM,
+                    cursor: 'pointer',
+                    display: 'block',
+                    textAlign: 'right',
+                  })}
+                  onClick={onGoToForgetPassword}
+                >
+                  <IntlMessages id="common.forgetPassword" />
+                </Box>
+              </Box>
+
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  disabled={isSubmitting}
+                  sx={{
+                    minWidth: 160,
+                    fontWeight: Fonts.REGULAR,
+                    fontSize: 16,
+                    textTransform: 'capitalize',
+                    padding: '4px 16px 8px',
+                  }}
+                >
+                  <IntlMessages id="common.login" />
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
         <AppImage src="/assets/user/login.png" alt="crema-logo" width={146} height={50} />
         <div>
         <Button

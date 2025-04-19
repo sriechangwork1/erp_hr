@@ -1,6 +1,6 @@
 import React from 'react';
-//import { useAuthMethod, useAuthUser } from '@crema/hooks/AuthHooks';
-import { useAuthUser, } from '@crema/hooks/AuthHooks';
+import { useAuthMethod, useAuthUser } from '@crema/hooks/AuthHooks';
+//import { useAuthUser, } from '@crema/hooks/AuthHooks';
 import { alpha, Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -11,7 +11,7 @@ import { orange } from '@mui/material/colors';
 import { signOut } from 'next-auth/react';
 
 const UserInfo = () => {
-  //const { logout } = useAuthMethod();
+  const { logout } = useAuthMethod();
   const { user } = useAuthUser();
   const router = useRouter();
 
@@ -155,10 +155,11 @@ const UserInfo = () => {
           My account
         </MenuItem>
         <MenuItem
-          onClick={() => {
-            handleClose(); // ปิดเมนู
-            signOut();
-          }}
+          // onClick={() => {
+          //   handleClose(); // ปิดเมนู
+          //   signOut();
+          // }}
+          onClick={logout}
         >
           Logout
         </MenuItem>
