@@ -11,12 +11,21 @@ import AppDialog from '@crema/components/AppDialog';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-const Hr01Page = () => {
+const Hr02Page = () => {
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
 
   const onOpenAddTask = () => {
     setAddTaskOpen(true);
   };
+
+  const labeltext =()=>{
+    const intl = useIntl();
+    const label = intl.formatMessage({ id: 'sidebar.hr01.02' });
+    const words = label.split("HR102 ");
+    let   labletext = words[1];
+    return labletext;    
+  };
+ 
 
   const onCloseAddTask = () => {
     setAddTaskOpen(false);
@@ -39,7 +48,7 @@ const Hr01Page = () => {
         startIcon={<AddIcon />}
         onClick={onOpenAddTask}
       >
-        เพิ่มประเภทตำแหน่ง
+        เพิ่ม{labeltext()}
       </Button>
       }
     >
@@ -49,25 +58,25 @@ const Hr01Page = () => {
         maxWidth="md"
         open={isAddTaskOpen}
         onClose={onCloseAddTask}
-        title="เพิ่มประเภทตำแหน่ง"
+        title={"เพิ่ม"+labeltext()}
       >
         <Box>
           <TextField
-            label="รหัสประเภทตำแหน่ง"
+            label={"รหัส"+labeltext()}
             variant="outlined"
             margin="normal"
             size="small"
           />
           <TextField
             fullWidth
-            label="ชื่อประเภทตำแหน่ง"
+            label={"ชื่อ"+labeltext()}
             variant="outlined"
             margin="normal"
             size="small"
           />
           <TextField
             fullWidth
-            label="รายละเอียดประเภทตำแหน่ง"
+            label={"รายละเอียด"+labeltext()}
             variant="outlined"
             margin="normal"
             size="small"
@@ -89,4 +98,4 @@ const Hr01Page = () => {
   );
 };
 
-export default Hr01Page;
+export default Hr02Page;

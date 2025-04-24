@@ -6,6 +6,7 @@ import Skeleton from '@mui/material/Skeleton';
 import AppMenu from '@crema/components/AppMenu';
 import AppStatus from '@crema/components/AppStatus';
 
+
 const TableCellWrapper = styled(TableCell)(() => ({
   fontSize: 14,
   padding: 8,
@@ -34,7 +35,6 @@ type Props = {
 
 const TableItem = ({ data }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 500); // หน่วง 0.5 วินาที
     return () => clearTimeout(timer); // เคลียร์ timeout ถ้าคอมโพเนนต์ถูก unmount

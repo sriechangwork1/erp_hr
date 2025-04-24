@@ -41,8 +41,8 @@ const dataDetail = [
 
 const labeltext =()=>{
   const intl = useIntl();
-  const label = intl.formatMessage({ id: 'sidebar.hr01.02' });
-  const words = label.split("HR102 ");
+  const label = intl.formatMessage({ id: 'sidebar.hr01.06' });
+  const words = label.split("HR106 ");
   let   labletext = words[1];
   return labletext;     
 };                            

@@ -11,7 +11,7 @@ import AppDialog from '@crema/components/AppDialog';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-const Hr01Page = () => {
+const Hr05Page = () => {
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
 
   const onOpenAddTask = () => {
@@ -20,8 +20,8 @@ const Hr01Page = () => {
 
   const labeltext =()=>{
     const intl = useIntl();
-    const label = intl.formatMessage({ id: 'sidebar.hr01.01' });
-    const words = label.split("HR101 ");
+    const label = intl.formatMessage({ id: 'sidebar.hr01.05' });
+    const words = label.split("HR105 ");
     let   labletext = words[1];
     return labletext;    
   };
@@ -33,7 +33,7 @@ const Hr01Page = () => {
   return (
     <AppCard
       contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr01.01" />}
+      title={<IntlMessages id="sidebar.hr01.05" />}
       action={
         <Button
         variant="outlined"
@@ -98,4 +98,4 @@ const Hr01Page = () => {
   );
 };
 
-export default Hr01Page;
+export default Hr05Page;

@@ -7,6 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableItem from './TableItem';
 import AppTableContainer from '@crema/components/AppTableContainer';
 import AppScrollbar from '@crema/components/AppScrollbar';
+import { useIntl } from 'react-intl';
 
 const dataDetail = [
   {
@@ -38,16 +39,25 @@ const dataDetail = [
   },
 ];
 
+const labeltext =()=>{
+  const intl = useIntl();
+  const label = intl.formatMessage({ id: 'sidebar.hr01.01' });
+  const words = label.split("HR101 ");
+  let   labletext = words[1];
+  return labletext;     
+};                            
+
 const DataTable = () => {
+
   return (
     <AppTableContainer>
       <AppScrollbar style={{ height: 300 }}>
         <Table>
           <TableHead>
             <TableHeader>
-              <TableCell>รหัสตำแหน่งงาน</TableCell>
-              <TableCell>ชื่อตำแหน่งงาน</TableCell>
-              <TableCell>รายละเอียดตำแหน่งงาน</TableCell>
+              <TableCell>รหัส{labeltext()}</TableCell>
+              <TableCell>ชื่อ{labeltext()}</TableCell>
+              <TableCell>รายละเอียด{labeltext()}</TableCell>
               <TableCell>วันที่ล่าสุด</TableCell>
               <TableCell>ผู้บันทึก</TableCell>
               <TableCell>สถานะ</TableCell>
