@@ -1,3 +1,4 @@
+//@crema/components/AppMenu/index.tsx
 import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
@@ -13,7 +14,13 @@ const options = [
   { label: 'ลบข้อมูล', icon: <DeleteIcon sx={{ color: 'red' }} />, action: 'delete' },
 ];
 
-const AppMenu = () => {
+type AppMenuProps = {
+  onView?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
+}
+
+const AppMenu = ({ onView, onEdit, onDelete }: AppMenuProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -24,7 +31,13 @@ const AppMenu = () => {
   const handleClose = (action?: string) => {
     setAnchorEl(null);
     if (action) {
-      console.log(`Selected action: ${action}`); // สามารถเปลี่ยนเป็นฟังก์ชันจริงได้
+      if (action === 'view' && onView) {
+        onView();
+      } else if (action === 'edit' && onEdit) {
+        onEdit();
+      } else if (action === 'delete' && onDelete) {
+        onDelete();
+      }
     }
   };
 
@@ -34,11 +47,13 @@ const AppMenu = () => {
         <MoreVertIcon />
       </IconButton>
       <Menu id="long-menu" anchorEl={anchorEl} keepMounted open={open} onClose={() => handleClose()}>
-        {options.map((option) => (
-          <MenuItem key={option.label} onClick={() => handleClose(option.action)}>
-            {option.icon} <span style={{ marginLeft: 10 }}>{option.label}</span>
-          </MenuItem>
-        ))}
+        {
+          options.map((option) => (
+            <MenuItem key={option.label} onClick={() => handleClose(option.action)}>
+              {option.icon} <span style={{ marginLeft: 10 }}>{option.label}</span>
+            </MenuItem>
+          ))
+        }
       </Menu>
     </>
   );

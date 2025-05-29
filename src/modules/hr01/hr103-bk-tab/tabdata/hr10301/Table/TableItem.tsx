@@ -3,6 +3,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
+import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import AppMenu from '@crema/components/AppMenu';
 import AppStatus from '@crema/components/AppStatus';
 

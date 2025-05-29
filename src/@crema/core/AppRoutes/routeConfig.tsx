@@ -118,6 +118,24 @@ const routesConfig = [
               icon: <MdOutlineSettingsSuggest />,
               url: '/hr01/hr107',
             },
+            {
+              id: 'hr108',
+              title: 'sidebar.hr01.08',
+              messageId: 'sidebar.hr01.08',
+              type: 'item',
+              icon: <MdOutlineSettingsSuggest />,
+              url: '/hr01/hr108',
+            },
+                        {
+              id: 'hr109',
+              title: 'sidebar.hr01.09',
+              messageId: 'sidebar.hr01.09',
+              type: 'item',
+              icon: <MdOutlineSettingsSuggest />,
+              url: '/hr01/hr109',
+            },
+
+
           ],
         },
 

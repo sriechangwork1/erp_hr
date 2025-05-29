@@ -7,6 +7,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import { styled } from '@mui/material/styles';
 import { CustomersDataType } from '@crema/types/models/ecommerce/EcommerceApp';
 
+
 const StyledTableCell = styled(TableCell)(() => ({
   fontSize: 14,
   padding: 8,

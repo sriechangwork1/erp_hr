@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+//hr102/table/tableitem.tsx
+import React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
 import AppMenu from '@crema/components/AppMenu';
-import AppStatus from '@crema/components/AppStatus';
+import { MdCalendarMonth } from "react-icons/md";
+import { MdOutlinePersonalInjury } from "react-icons/md";
 
+// นำเข้า Data interface จากไฟล์หลัก
+import { Data } from '../index'; // ตรวจสอบเส้นทางให้ถูกต้อง
 
 const TableCellWrapper = styled(TableCell)(() => ({
   fontSize: 14,
@@ -19,49 +23,42 @@ const TableCellWrapper = styled(TableCell)(() => ({
   },
 }));
 
-type JobPositionType = {
-  id: number;
-  jobCode: string;
-  jobTitle: string;
-  jobDescription: string;
-  lastUpdated: string;
-  recordedBy: string;
-  status: string;
-};
-
 type Props = {
-  data: JobPositionType;
+  data: Data; // ใช้ Data interface ที่นำเข้า
+  onView: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
+  isLoading: boolean; // เพิ่ม prop สำหรับบอกสถานะการโหลด
 };
 
-const TableItem = ({ data }: Props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 500); // หน่วง 0.5 วินาที
-    return () => clearTimeout(timer); // เคลียร์ timeout ถ้าคอมโพเนนต์ถูก unmount
-  }, []);
+const TableItem = ({ data, onView, onEdit, onDelete, isLoading }: Props) => {
+  // ไม่จำเป็นต้องมี useState และ useEffect สำหรับ isLoading ใน TableItem แล้ว
+  // เพราะสถานะ isLoading จะถูกส่งมาจากคอมโพเนนต์แม่ (Table) โดยตรง
 
   return (
-    <TableRow key={data.id} className="item-hover">
+    <TableRow hover key={data.id} className="item-hover">
       <TableCellWrapper component="th" scope="row">
-        {isLoading ? <Skeleton width={80} /> : data.jobCode}
+        {isLoading ? <Skeleton width={80} /> : data.id}
       </TableCellWrapper>
       <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={150} /> : data.jobTitle}
-      </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={200} /> : data.jobDescription}
+        {isLoading ? <Skeleton width={150} /> : data.staff_type_name}
       </TableCellWrapper>
       <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={100} /> : data.lastUpdated}
+        {isLoading ? <Skeleton width={120} /> : (
+          <>
+            {data.create_at} <MdCalendarMonth />
+          </>
+        )}
       </TableCellWrapper>
       <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.recordedBy}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={90} height={30} /> : <AppStatus status={data.status} />}
+        {isLoading ? <Skeleton width={120} /> : (
+          <>
+            {data.officer_id} <MdOutlinePersonalInjury />
+          </>
+        )}
       </TableCellWrapper>
       <TableCellWrapper align="right">
-        {isLoading ? <Skeleton variant="circular" width={30} height={30} /> : <AppMenu />}
+        {isLoading ? <Skeleton variant="circular" width={30} height={30} /> : <AppMenu onView={onView} onEdit={onEdit} onDelete={onDelete} />}
       </TableCellWrapper>
     </TableRow>
   );
