@@ -28,7 +28,7 @@ interface Data {
 const initialAllRows: Data[] = [
   {
     name_change_id: 1,
-    staff_id: 101,
+    staff_id: 1001,
     previous_name: 'สมหญิง ใจดี',
     change_date: '2020-05-15',
     create_at: '2025-05-26', // CURRENT_DATE
@@ -37,7 +37,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 2,
-    staff_id: 102,
+    staff_id: 1002,
     previous_name: 'ประเสริฐ สุขศรี',
     change_date: '2019-11-20',
     create_at: '2025-05-26',
@@ -46,7 +46,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 3,
-    staff_id: 103,
+    staff_id: 1003,
     previous_name: 'ทวีป มังกรทอง',
     change_date: '2021-02-28',
     create_at: '2025-05-26',
@@ -55,7 +55,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 4,
-    staff_id: 104,
+    staff_id: 1004,
     previous_name: 'อรุณี ชัยวัฒน์',
     change_date: '2018-08-10',
     create_at: '2025-05-26',
@@ -64,7 +64,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 5,
-    staff_id: 105,
+    staff_id: 1005,
     previous_name: 'สมศักดิ์ แก้วประเสริฐ',
     change_date: '2022-01-05',
     create_at: '2025-05-26',
@@ -73,7 +73,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 6,
-    staff_id: 106,
+    staff_id: 1006,
     previous_name: 'บุญเลิศ เกียรติก้อง',
     change_date: '2020-07-22',
     create_at: '2025-05-26',
@@ -82,7 +82,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 7,
-    staff_id: 107,
+    staff_id: 1007,
     previous_name: 'สมหมาย วัฒนานนท์',
     change_date: '2021-09-30',
     create_at: '2025-05-26',
@@ -91,7 +91,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 8,
-    staff_id: 108,
+    staff_id: 1008,
     previous_name: 'เพชรา รุ่งเรือง',
     change_date: '2019-04-18',
     create_at: '2025-05-26',
@@ -100,7 +100,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 9,
-    staff_id: 109,
+    staff_id: 1009,
     previous_name: 'เกียรติศักดิ์ มหาชัย',
     change_date: '2022-03-12',
     create_at: '2025-05-26',
@@ -109,7 +109,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 10,
-    staff_id: 110,
+    staff_id: 1010,
     previous_name: 'สุธีร์ สุขใจ',
     change_date: '2021-12-01',
     create_at: '2025-05-26',
@@ -118,7 +118,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 11,
-    staff_id: 111,
+    staff_id: 1011,
     previous_name: 'วรรณา ศรีสมร',
     change_date: '2020-10-25',
     create_at: '2025-05-26',
@@ -127,7 +127,7 @@ const initialAllRows: Data[] = [
   },
   {
     name_change_id: 12,
-    staff_id: 112,
+    staff_id: 1012,
     previous_name: 'ศิริลักษณ์ จันทราวดี',
     change_date: '2022-06-15',
     create_at: '2025-05-26',

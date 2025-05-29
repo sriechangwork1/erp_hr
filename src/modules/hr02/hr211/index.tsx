@@ -40,16 +40,16 @@ const formatDate = (dateString: string | undefined): string => {
 
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง AcademicExpertise
 const initialAllRows: AcademicExpertiseData[] = [
-  { expertise_id: 1, staff_id: 301, expertise_name: 'ปัญญาประดิษฐ์และเรียนรู้ของเครื่อง', isced_code: '0613', subject_code: 'CS101', teaching_level: 'ปริญญาตรี', create_at: '2023-01-15', update_at: '2023-06-20', officer_id: 601 },
-  { expertise_id: 2, staff_id: 302, expertise_name: 'ระบบสมองกลฝังตัวและ IoT', isced_code: '0714', subject_code: 'EE205', teaching_level: 'ปริญญาโท', create_at: '2022-11-10', update_at: '2023-05-15', officer_id: 602 },
-  { expertise_id: 3, staff_id: 303, expertise_name: 'การตลาดดิจิทัลและธุรกิจออนไลน์', isced_code: '0414', subject_code: 'BA301', teaching_level: 'ปริญญาตรี', create_at: '2023-02-20', update_at: '2023-06-25', officer_id: 603 },
-  { expertise_id: 4, staff_id: 304, expertise_name: 'เทคโนโลยีชีวภาพและการปรับปรุงพันธุ์', isced_code: '0512', subject_code: 'BI202', teaching_level: 'ปริญญาเอก', create_at: '2022-09-05', update_at: '2023-04-10', officer_id: 601 },
-  { expertise_id: 5, staff_id: 305, expertise_name: 'ภาษาศาสตร์คอมพิวเตอร์และการประมวลผลภาษา', isced_code: '0232', subject_code: 'LN401', teaching_level: 'ปริญญาโท-เอก', create_at: '2023-03-12', update_at: '2023-06-18', officer_id: 602 },
-  { expertise_id: 6, staff_id: 306, expertise_name: 'คณิตศาสตร์ประยุกต์สำหรับวิทยาศาสตร์ข้อมูล', isced_code: '0541', subject_code: 'MA305', teaching_level: 'ปริญญาตรี-โท', create_at: '2023-01-25', update_at: '2023-06-30', officer_id: 603 },
-  { expertise_id: 7, staff_id: 307, expertise_name: 'การผลิตสื่อดิจิทัลและสื่อสารมวลชน', isced_code: '0321', subject_code: 'CO201', teaching_level: 'ปริญญาตรี', create_at: '2022-12-15', update_at: '2023-05-20', officer_id: 601 },
-  { expertise_id: 8, staff_id: 308, expertise_name: 'จิตวิทยาอุตสาหกรรมและองค์กร', isced_code: '0314', subject_code: 'PS302', teaching_level: 'ปริญญาโท', create_at: '2023-02-28', update_at: '2023-06-22', officer_id: 602 },
-  { expertise_id: 9, staff_id: 309, expertise_name: 'การออกแบบเมืองอัจฉริยะและยั่งยืน', isced_code: '0731', subject_code: 'AR401', teaching_level: 'ปริญญาตรี-เอก', create_at: '2023-04-10', update_at: '2023-06-28', officer_id: 603 },
-  { expertise_id: 10, staff_id: 310, expertise_name: 'เทคโนโลยีสิ่งแวดล้อมและการพัฒนาที่ยั่งยืน', isced_code: '0522', subject_code: 'EN303', teaching_level: 'ปริญญาโท-เอก', create_at: '2022-10-05', update_at: '2023-06-15', officer_id: 601 }
+  { expertise_id: 1, staff_id: 1006, expertise_name: 'ปัญญาประดิษฐ์และเรียนรู้ของเครื่อง', isced_code: '0613', subject_code: 'CS101', teaching_level: 'ปริญญาตรี', create_at: '2023-01-15', update_at: '2023-06-20', officer_id: 601 },
+  { expertise_id: 2, staff_id: 1007, expertise_name: 'ระบบสมองกลฝังตัวและ IoT', isced_code: '0714', subject_code: 'EE205', teaching_level: 'ปริญญาโท', create_at: '2022-11-10', update_at: '2023-05-15', officer_id: 602 },
+  { expertise_id: 3, staff_id: 1008, expertise_name: 'การตลาดดิจิทัลและธุรกิจออนไลน์', isced_code: '0414', subject_code: 'BA301', teaching_level: 'ปริญญาตรี', create_at: '2023-02-20', update_at: '2023-06-25', officer_id: 603 },
+  { expertise_id: 4, staff_id: 1009, expertise_name: 'เทคโนโลยีชีวภาพและการปรับปรุงพันธุ์', isced_code: '0512', subject_code: 'BI202', teaching_level: 'ปริญญาเอก', create_at: '2022-09-05', update_at: '2023-04-10', officer_id: 601 },
+  { expertise_id: 5, staff_id: 1010, expertise_name: 'ภาษาศาสตร์คอมพิวเตอร์และการประมวลผลภาษา', isced_code: '0232', subject_code: 'LN401', teaching_level: 'ปริญญาโท-เอก', create_at: '2023-03-12', update_at: '2023-06-18', officer_id: 602 },
+  { expertise_id: 6, staff_id: 1003, expertise_name: 'คณิตศาสตร์ประยุกต์สำหรับวิทยาศาสตร์ข้อมูล', isced_code: '0541', subject_code: 'MA305', teaching_level: 'ปริญญาตรี-โท', create_at: '2023-01-25', update_at: '2023-06-30', officer_id: 603 },
+  { expertise_id: 7, staff_id: 1004, expertise_name: 'การผลิตสื่อดิจิทัลและสื่อสารมวลชน', isced_code: '0321', subject_code: 'CO201', teaching_level: 'ปริญญาตรี', create_at: '2022-12-15', update_at: '2023-05-20', officer_id: 601 },
+  { expertise_id: 8, staff_id: 1005, expertise_name: 'จิตวิทยาอุตสาหกรรมและองค์กร', isced_code: '0314', subject_code: 'PS302', teaching_level: 'ปริญญาโท', create_at: '2023-02-28', update_at: '2023-06-22', officer_id: 602 },
+  { expertise_id: 9, staff_id: 1002, expertise_name: 'การออกแบบเมืองอัจฉริยะและยั่งยืน', isced_code: '0731', subject_code: 'AR401', teaching_level: 'ปริญญาตรี-เอก', create_at: '2023-04-10', update_at: '2023-06-28', officer_id: 603 },
+  { expertise_id: 10, staff_id: 1001, expertise_name: 'เทคโนโลยีสิ่งแวดล้อมและการพัฒนาที่ยั่งยืน', isced_code: '0522', subject_code: 'EN303', teaching_level: 'ปริญญาโท-เอก', create_at: '2022-10-05', update_at: '2023-06-15', officer_id: 601 }
 ];
 
 const Hr211 = () => {

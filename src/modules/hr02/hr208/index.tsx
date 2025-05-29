@@ -40,34 +40,34 @@ const formatDate = (dateString: string | undefined): string => {
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง Passport
 const initialAllRows: PassportData[] = [
   {
-    passport_id: 1, staff_id: 101, issue_date: '2022-01-15', expiry_date: '2027-01-14', document_file: '/documents/passports/101_passport.pdf', create_at: '2022-01-20', update_at: '2023-05-10', officer_id: 1001
+    passport_id: 1, staff_id: 1001, issue_date: '2022-01-15', expiry_date: '2027-01-14', document_file: '/documents/passports/101_passport.pdf', create_at: '2022-01-20', update_at: '2023-05-10', officer_id: 1001
   },
   {
-    passport_id: 2, staff_id: 102, issue_date: '2021-11-10', expiry_date: '2026-11-09', document_file: '/documents/passports/102_passport.pdf', create_at: '2021-11-15', update_at: '2023-04-05', officer_id: 1002
+    passport_id: 2, staff_id: 1002, issue_date: '2021-11-10', expiry_date: '2026-11-09', document_file: '/documents/passports/102_passport.pdf', create_at: '2021-11-15', update_at: '2023-04-05', officer_id: 1002
   },
   {
-    passport_id: 3, staff_id: 103, issue_date: '2023-03-01', expiry_date: '2028-02-28', document_file: '/documents/passports/103_passport.pdf', create_at: '2023-03-05', update_at: '2023-06-15', officer_id: 1003
+    passport_id: 3, staff_id: 1003, issue_date: '2023-03-01', expiry_date: '2028-02-28', document_file: '/documents/passports/103_passport.pdf', create_at: '2023-03-05', update_at: '2023-06-15', officer_id: 1003
   },
   {
-    passport_id: 4, staff_id: 104, issue_date: '2020-08-20', expiry_date: '2025-08-19', document_file: '/documents/passports/104_passport.pdf', create_at: '2020-08-25', update_at: '2023-01-30', officer_id: 1004
+    passport_id: 4, staff_id: 1004, issue_date: '2020-08-20', expiry_date: '2025-08-19', document_file: '/documents/passports/104_passport.pdf', create_at: '2020-08-25', update_at: '2023-01-30', officer_id: 1004
   },
   {
-    passport_id: 5, staff_id: 105, issue_date: '2021-05-12', expiry_date: '2026-05-11', document_file: '/documents/passports/105_passport.pdf', create_at: '2021-05-18', update_at: '2023-03-22', officer_id: 1005
+    passport_id: 5, staff_id: 1005, issue_date: '2021-05-12', expiry_date: '2026-05-11', document_file: '/documents/passports/105_passport.pdf', create_at: '2021-05-18', update_at: '2023-03-22', officer_id: 1005
   },
   {
-    passport_id: 6, staff_id: 106, issue_date: '2022-09-05', expiry_date: '2027-09-04', document_file: '/documents/passports/106_passport.pdf', create_at: '2022-09-10', update_at: '2023-04-18', officer_id: 1006
+    passport_id: 6, staff_id: 1006, issue_date: '2022-09-05', expiry_date: '2027-09-04', document_file: '/documents/passports/106_passport.pdf', create_at: '2022-09-10', update_at: '2023-04-18', officer_id: 1006
   },
   {
-    passport_id: 7, staff_id: 107, issue_date: '2023-01-30', expiry_date: '2028-01-29', document_file: '/documents/passports/107_passport.pdf', create_at: '2023-02-05', update_at: '2023-06-20', officer_id: 1007
+    passport_id: 7, staff_id: 1007, issue_date: '2023-01-30', expiry_date: '2028-01-29', document_file: '/documents/passports/107_passport.pdf', create_at: '2023-02-05', update_at: '2023-06-20', officer_id: 1007
   },
   {
-    passport_id: 8, staff_id: 108, issue_date: '2020-12-15', expiry_date: '2025-12-14', document_file: '/documents/passports/108_passport.pdf', create_at: '2020-12-20', update_at: '2023-02-15', officer_id: 1008
+    passport_id: 8, staff_id: 1008, issue_date: '2020-12-15', expiry_date: '2025-12-14', document_file: '/documents/passports/108_passport.pdf', create_at: '2020-12-20', update_at: '2023-02-15', officer_id: 1008
   },
   {
-    passport_id: 9, staff_id: 109, issue_date: '2021-07-22', expiry_date: '2026-07-21', document_file: '/documents/passports/109_passport.pdf', create_at: '2021-07-28', update_at: '2023-05-30', officer_id: 1009
+    passport_id: 9, staff_id: 1009, issue_date: '2021-07-22', expiry_date: '2026-07-21', document_file: '/documents/passports/109_passport.pdf', create_at: '2021-07-28', update_at: '2023-05-30', officer_id: 1009
   },
   {
-    passport_id: 10, staff_id: 110, issue_date: '2022-04-10', expiry_date: '2027-04-09', document_file: '/documents/passports/110_passport.pdf', create_at: '2022-04-15', update_at: '2023-06-10', officer_id: 1010
+    passport_id: 10, staff_id: 1010, issue_date: '2022-04-10', expiry_date: '2027-04-09', document_file: '/documents/passports/110_passport.pdf', create_at: '2022-04-15', update_at: '2023-06-10', officer_id: 1010
   }
 ];
 

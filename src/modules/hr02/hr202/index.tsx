@@ -84,7 +84,7 @@ const formatDate = (dateString: string | undefined): string => {
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง Staff
 const initialAllStaffs: StaffData[] = [
   {
-    staff_id: 1, citizen_id: '1100501234567', foreigner_id: '101', prefixname_id: 1, academic_title: 'รองศาสตราจารย์',
+    staff_id: 1001, citizen_id: '1100501234567', foreigner_id: '101', prefixname_id: 1, academic_title: 'รองศาสตราจารย์',
     first_name_th: 'สมชาย', last_name_th: 'วงศ์สวัสดิ์', middle_name_th: 'เกียรติ', first_name_en: 'Somchai', last_name_en: 'Wongsawat', middle_name_en: 'Kiat',
     gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1975-08-15', birth_province: 'กรุงเทพมหานคร',
     current_address: '123 ถนนพหลโยธิน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900',
@@ -98,7 +98,7 @@ const initialAllStaffs: StaffData[] = [
     create_at: '2010-05-15', update_at: '2023-06-20', officer_id: 1001
   },
   {
-    staff_id: 2, citizen_id: '3100507654321', foreigner_id: '101', prefixname_id: 2, academic_title: 'test',
+    staff_id: 1002, citizen_id: '3100507654321', foreigner_id: '101', prefixname_id: 2, academic_title: 'test',
     first_name_th: 'สมหญิง', last_name_th: 'ศรีสุข', middle_name_th: '', first_name_en: 'Somying', last_name_en: 'Srisuk', middle_name_en: '',
     gender: 'หญิง', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1985-11-22', birth_province: 'เชียงใหม่',
     current_address: '456 หมู่ 5 ตำบลสุเทพ อำเภอเมือง จังหวัดเชียงใหม่ 50200',
@@ -112,7 +112,7 @@ const initialAllStaffs: StaffData[] = [
     create_at: '2015-03-10', update_at: '2023-06-18', officer_id: 1001
   },
   {
-    staff_id: 3, citizen_id: '1460255525547', foreigner_id: 'PASSPORT123456', prefixname_id: 1, academic_title: 'ศาสตราจารย์',
+    staff_id: 1003, citizen_id: '1460255525547', foreigner_id: 'PASSPORT123456', prefixname_id: 1, academic_title: 'ศาสตราจารย์',
     first_name_th: 'นายเทสดี', last_name_th: 'มีรวย', middle_name_th: '', first_name_en: 'David', last_name_en: 'Wilson', middle_name_en: 'James',
     gender: 'ชาย', ethnicity: 'Caucasian', nationality: 'American', religion: 'Christian', date_of_birth: '1968-03-30', birth_province: 'New York',
     current_address: '789 Faculty Village, University Campus',
@@ -125,7 +125,7 @@ const initialAllStaffs: StaffData[] = [
     create_at: '2012-07-20', update_at: '2023-06-15', officer_id: 1001
   },
   {
-    staff_id: 4, citizen_id: '5100509876543', foreigner_id: '101', prefixname_id: 3, academic_title: 'test',
+    staff_id: 1004, citizen_id: '5100509876543', foreigner_id: '101', prefixname_id: 3, academic_title: 'test',
     first_name_th: 'นงลักษณ์', last_name_th: 'แก้วมณี', middle_name_th: 'รัตน์', first_name_en: 'Nonglak', last_name_en: 'Kaewmanee', middle_name_en: 'Rat',
     gender: 'หญิง', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1990-05-18', birth_province: 'นนทบุรี',
     current_address: '321 หมู่ 4 ตำบลบางกระสอ อำเภอเมือง จังหวัดนนทบุรี 11000',
@@ -139,12 +139,110 @@ const initialAllStaffs: StaffData[] = [
     create_at: '2018-09-05', update_at: '2023-06-22', officer_id: 1001
   },
   {
-    staff_id: 5, citizen_id: '2100504567890', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    staff_id: 1005, citizen_id: '2100504567890', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
     first_name_th: 'สุเทพ', last_name_th: 'อินทร์พรหม', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
     gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
     current_address: '555 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
     house_registration_address: '222 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
     domicile_address: '222 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1006, citizen_id: '1458555525584', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'สุดใจ', last_name_th: 'อิ่มเอม', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '666 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '222 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '666 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1007, citizen_id: '3658588858885', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'สุดสาคร', last_name_th: 'ใจดี', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '777 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '222 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '777 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1008, citizen_id: '1458544478852', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'สีดา', last_name_th: 'สีใจ', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'หญิง', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '888 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '888 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '888 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1009, citizen_id: '1458555525584', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'กฤกนก', last_name_th: 'กกกนิส', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '999 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '999 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '999 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1010, citizen_id: '2369854441254', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'สุกสา', last_name_th: 'สุพล', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'ชาย', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '11 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '11 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '11 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1011, citizen_id: '2552522225441', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'สมใจ', last_name_th: 'ใสจม', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'หญิง', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '333 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '333 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '333 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
+    marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
+    blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
+    email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',
+    budget_type: 'งบประมาณแผ่นดิน', profile_picture: '/profiles/5.jpg', hobbies: 'เลี้ยงปลา, ทำสวน',
+    language_skills: 'ไทย, อังกฤษ', computer_skills: 'Medical Software, Laboratory Equipment',
+    create_at: '2016-11-30', update_at: '2023-06-25', officer_id: 1001
+  },
+  {
+    staff_id: 1012, citizen_id: '2568569998852', foreigner_id: '101', prefixname_id: 1, academic_title: 'test',
+    first_name_th: 'หฤทัย', last_name_th: 'ใจตรง', middle_name_th: '', first_name_en: 'Suthep', last_name_en: 'Inprom', middle_name_en: '',
+    gender: 'หญิง', ethnicity: 'ไทย', nationality: 'ไทย', religion: 'พุทธ', date_of_birth: '1982-12-10', birth_province: 'นครราชสีมา',
+    current_address: '44 หมู่ 9 ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    house_registration_address: '44 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000',
+    domicile_address: '44 หมู่ 3 ตำบลโพธิ์กลาง อำเภอเมือง จังหวัดนครราชสีมา 30000', country: 'ไทย',
     marital_status: 'สมรส', military_status: 'ได้รับการยกเว้น', enlistment_date: '2025-05-28', ordained_temple: 'วัดสระแก้ว', ordained_date: '2001-07-15',
     blood_type: 'B', weight: 68.0, height: 170.0, phone_number: '044333444', mobile_number1: '0878912345', mobile_number2: '-',
     email1: 'suthep.i@university.ac.th', email2: '-', line_id: 'suthep_i',

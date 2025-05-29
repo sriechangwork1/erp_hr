@@ -38,16 +38,16 @@ const formatDate = (dateString: string | undefined): string => {
 
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง SupportExpertise
 const initialAllRows: SupportExpertiseData[] = [
-  { expertise_id: 1, staff_id: 201, expertise_name: 'การจัดการระบบเครือข่ายคอมพิวเตอร์', isced_code: '0613', create_at: '2023-01-10', update_at: '2023-06-15', officer_id: 501 },
-  { expertise_id: 2, staff_id: 202, expertise_name: 'การบัญชีและการเงินองค์กร', isced_code: '0414', create_at: '2023-02-15', update_at: '2023-05-20', officer_id: 502 },
-  { expertise_id: 3, staff_id: 203, expertise_name: 'การบริหารงานบุคคลและพัฒนาบุคลากร', isced_code: '0415', create_at: '2022-11-05', update_at: '2023-04-10', officer_id: 503 },
-  { expertise_id: 4, staff_id: 204, expertise_name: 'การบริหารงานทั่วไปและเลขานุการ', isced_code: '0416', create_at: '2023-03-20', update_at: '2023-06-25', officer_id: 501 },
-  { expertise_id: 5, staff_id: 205, expertise_name: 'กฎหมายแรงงานและกฎหมายองค์กร', isced_code: '0421', create_at: '2022-09-12', update_at: '2023-05-18', officer_id: 502 },
-  { expertise_id: 6, staff_id: 206, expertise_name: 'การบริหารงานสารบรรณและเอกสาร', isced_code: '0417', create_at: '2023-04-05', update_at: '2023-06-30', officer_id: 503 },
-  { expertise_id: 7, staff_id: 207, expertise_name: 'การประชาสัมพันธ์และสื่อสารองค์กร', isced_code: '0322', create_at: '2023-01-25', update_at: '2023-06-10', officer_id: 501 },
-  { expertise_id: 8, staff_id: 208, expertise_name: 'การบริหารจัดการพัสดุและครุภัณฑ์', isced_code: '0418', create_at: '2022-12-10', update_at: '2023-05-15', officer_id: 502 },
-  { expertise_id: 9, staff_id: 209, expertise_name: 'การจัดการอาคารและสถานที่', isced_code: '0732', create_at: '2023-02-28', update_at: '2023-06-20', officer_id: 503 },
-  { expertise_id: 10, staff_id: 210, expertise_name: 'การสนับสนุนงานบริการวิชาการ', isced_code: '0914', create_at: '2023-03-15', update_at: '2023-06-28', officer_id: 501 }
+  { expertise_id: 1, staff_id: 1001, expertise_name: 'การจัดการระบบเครือข่ายคอมพิวเตอร์', isced_code: '0613', create_at: '2023-01-10', update_at: '2023-06-15', officer_id: 501 },
+  { expertise_id: 2, staff_id: 1002, expertise_name: 'การบัญชีและการเงินองค์กร', isced_code: '0414', create_at: '2023-02-15', update_at: '2023-05-20', officer_id: 502 },
+  { expertise_id: 3, staff_id: 1003, expertise_name: 'การบริหารงานบุคคลและพัฒนาบุคลากร', isced_code: '0415', create_at: '2022-11-05', update_at: '2023-04-10', officer_id: 503 },
+  { expertise_id: 4, staff_id: 1004, expertise_name: 'การบริหารงานทั่วไปและเลขานุการ', isced_code: '0416', create_at: '2023-03-20', update_at: '2023-06-25', officer_id: 501 },
+  { expertise_id: 5, staff_id: 1005, expertise_name: 'กฎหมายแรงงานและกฎหมายองค์กร', isced_code: '0421', create_at: '2022-09-12', update_at: '2023-05-18', officer_id: 502 },
+  { expertise_id: 6, staff_id: 1006, expertise_name: 'การบริหารงานสารบรรณและเอกสาร', isced_code: '0417', create_at: '2023-04-05', update_at: '2023-06-30', officer_id: 503 },
+  { expertise_id: 7, staff_id: 1007, expertise_name: 'การประชาสัมพันธ์และสื่อสารองค์กร', isced_code: '0322', create_at: '2023-01-25', update_at: '2023-06-10', officer_id: 501 },
+  { expertise_id: 8, staff_id: 1008, expertise_name: 'การบริหารจัดการพัสดุและครุภัณฑ์', isced_code: '0418', create_at: '2022-12-10', update_at: '2023-05-15', officer_id: 502 },
+  { expertise_id: 9, staff_id: 1009, expertise_name: 'การจัดการอาคารและสถานที่', isced_code: '0732', create_at: '2023-02-28', update_at: '2023-06-20', officer_id: 503 },
+  { expertise_id: 10, staff_id: 1010, expertise_name: 'การสนับสนุนงานบริการวิชาการ', isced_code: '0914', create_at: '2023-03-15', update_at: '2023-06-28', officer_id: 501 }
 ];
 
 const Hr210 = () => {

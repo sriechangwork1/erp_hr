@@ -40,34 +40,34 @@ const formatDate = (dateString: string | undefined): string => {
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง WorkPermit
 const initialAllRows: WorkPermitData[] = [
   {
-    work_permit_id: 1, staff_id: 1, issue_date: '2023-01-01', expiry_date: '2024-12-31', document_file: '/documents/work_permits/wp_001.pdf', create_at: '2023-01-05', update_at: '2023-06-10', officer_id: 1001
+    work_permit_id: 1, staff_id: 1001, issue_date: '2023-01-01', expiry_date: '2024-12-31', document_file: '/documents/work_permits/wp_001.pdf', create_at: '2023-01-05', update_at: '2023-06-10', officer_id: 1001
   },
   {
-    work_permit_id: 2, staff_id: 2, issue_date: '2022-03-15', expiry_date: '2024-03-14', document_file: '/documents/work_permits/wp_002.pdf', create_at: '2022-03-20', update_at: '2023-05-20', officer_id: 1002
+    work_permit_id: 2, staff_id: 1002, issue_date: '2022-03-15', expiry_date: '2024-03-14', document_file: '/documents/work_permits/wp_002.pdf', create_at: '2022-03-20', update_at: '2023-05-20', officer_id: 1002
   },
   {
-    work_permit_id: 3, staff_id: 3, issue_date: '2023-07-01', expiry_date: '2025-06-30', document_file: '/documents/work_permits/wp_003.pdf', create_at: '2023-07-05', update_at: '2024-01-15', officer_id: 1003
+    work_permit_id: 3, staff_id: 1003, issue_date: '2023-07-01', expiry_date: '2025-06-30', document_file: '/documents/work_permits/wp_003.pdf', create_at: '2023-07-05', update_at: '2024-01-15', officer_id: 1003
   },
   {
-    work_permit_id: 4, staff_id: 4, issue_date: '2021-09-10', expiry_date: '2024-09-09', document_file: '/documents/work_permits/wp_004.pdf', create_at: '2021-09-15', update_at: '2023-02-28', officer_id: 1004
+    work_permit_id: 4, staff_id: 1004, issue_date: '2021-09-10', expiry_date: '2024-09-09', document_file: '/documents/work_permits/wp_004.pdf', create_at: '2021-09-15', update_at: '2023-02-28', officer_id: 1004
   },
   {
-    work_permit_id: 5, staff_id: 5, issue_date: '2022-11-20', expiry_date: '2025-11-19', document_file: '/documents/work_permits/wp_005.pdf', create_at: '2022-11-25', update_at: '2023-04-10', officer_id: 1005
+    work_permit_id: 5, staff_id: 1005, issue_date: '2022-11-20', expiry_date: '2025-11-19', document_file: '/documents/work_permits/wp_005.pdf', create_at: '2022-11-25', update_at: '2023-04-10', officer_id: 1005
   },
   {
-    work_permit_id: 6, staff_id: 6, issue_date: '2023-02-01', expiry_date: '2025-01-31', document_file: '/documents/work_permits/wp_006.pdf', create_at: '2023-02-05', update_at: '2023-07-01', officer_id: 1006
+    work_permit_id: 6, staff_id: 1006, issue_date: '2023-02-01', expiry_date: '2025-01-31', document_file: '/documents/work_permits/wp_006.pdf', create_at: '2023-02-05', update_at: '2023-07-01', officer_id: 1006
   },
   {
-    work_permit_id: 7, staff_id: 7, issue_date: '2022-06-01', expiry_date: '2024-05-31', document_file: '/documents/work_permits/wp_007.pdf', create_at: '2022-06-05', update_at: '2023-03-01', officer_id: 1007
+    work_permit_id: 7, staff_id: 1007, issue_date: '2022-06-01', expiry_date: '2024-05-31', document_file: '/documents/work_permits/wp_007.pdf', create_at: '2022-06-05', update_at: '2023-03-01', officer_id: 1007
   },
   {
-    work_permit_id: 8, staff_id: 8, issue_date: '2021-12-01', expiry_date: '2024-11-30', document_file: '/documents/work_permits/wp_008.pdf', create_at: '2021-12-05', update_at: '2023-05-15', officer_id: 1008
+    work_permit_id: 8, staff_id: 1008, issue_date: '2021-12-01', expiry_date: '2024-11-30', document_file: '/documents/work_permits/wp_008.pdf', create_at: '2021-12-05', update_at: '2023-05-15', officer_id: 1008
   },
   {
-    work_permit_id: 9, staff_id: 9, issue_date: '2023-04-01', expiry_date: '2025-03-31', document_file: '/documents/work_permits/wp_009.pdf', create_at: '2023-04-05', update_at: '2023-08-20', officer_id: 1009
+    work_permit_id: 9, staff_id: 1009, issue_date: '2023-04-01', expiry_date: '2025-03-31', document_file: '/documents/work_permits/wp_009.pdf', create_at: '2023-04-05', update_at: '2023-08-20', officer_id: 1009
   },
   {
-    work_permit_id: 10, staff_id: 10, issue_date: '2022-08-01', expiry_date: '2025-07-31', document_file: '/documents/work_permits/wp_010.pdf', create_at: '2022-08-05', update_at: '2023-06-01', officer_id: 1010
+    work_permit_id: 10, staff_id: 1010, issue_date: '2022-08-01', expiry_date: '2025-07-31', document_file: '/documents/work_permits/wp_010.pdf', create_at: '2022-08-05', update_at: '2023-06-01', officer_id: 1010
   }
 ];
 

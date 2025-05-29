@@ -36,7 +36,7 @@ interface Data {
 const initialAllRows: Data[] = [
   {
     salary_id: 1,
-    staff_id: 101,
+    staff_id: 1001,
     salary_amount: 45000.00,
     salary_account: 'บัญชี ก.',
     salary_detail: 'ขั้น 4 ระดับ 3',
@@ -52,7 +52,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 2,
-    staff_id: 102,
+    staff_id: 1002,
     salary_amount: 65000.00,
     salary_account: 'บัญชี ข.',
     salary_detail: 'ขั้น 6 ระดับ 4',
@@ -68,7 +68,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 3,
-    staff_id: 103,
+    staff_id: 1003,
     salary_amount: 75000.00,
     salary_account: 'บัญชี ค.',
     salary_detail: 'ขั้น 7 ระดับ 5',
@@ -84,7 +84,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 4,
-    staff_id: 104,
+    staff_id: 1004,
     salary_amount: 58000.00,
     salary_account: 'บัญชี ง.',
     salary_detail: 'ขั้น 5 ระดับ 4',
@@ -100,7 +100,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 5,
-    staff_id: 105,
+    staff_id: 1005,
     salary_amount: 32000.00,
     salary_account: 'บัญชี จ.',
     salary_detail: 'ขั้น 3 ระดับ 2',
@@ -116,7 +116,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 6,
-    staff_id: 106,
+    staff_id: 1006,
     salary_amount: 85000.00,
     salary_account: 'บัญชี ฉ.',
     salary_detail: 'ขั้น 8 ระดับ 6',
@@ -132,7 +132,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 7,
-    staff_id: 107,
+    staff_id: 1007,
     salary_amount: 90000.00,
     salary_account: 'บัญชี ช.',
     salary_detail: 'ขั้น 9 ระดับ 7',
@@ -148,7 +148,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 8,
-    staff_id: 108,
+    staff_id: 1008,
     salary_amount: 38000.00,
     salary_account: 'บัญชี ซ.',
     salary_detail: 'ขั้น 4 ระดับ 2',
@@ -164,7 +164,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 9,
-    staff_id: 109,
+    staff_id: 1009,
     salary_amount: 70000.00,
     salary_account: 'บัญชี ญ.',
     salary_detail: 'ขั้น 7 ระดับ 5',
@@ -180,7 +180,7 @@ const initialAllRows: Data[] = [
   },
   {
     salary_id: 10,
-    staff_id: 110,
+    staff_id: 1010,
     salary_amount: 50000.00,
     salary_account: 'บัญชี ฎ.',
     salary_detail: 'ขั้น 5 ระดับ 3',

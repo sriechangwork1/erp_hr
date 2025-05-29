@@ -38,6 +38,21 @@ type Props = {
   onDelete: () => void;
 };
 
+  const staffDetail = [
+  {staff_id:1001,prefixname_id:'นาย',first_name_th:'สมชาย',last_name_th:'วงศ์สวัสดิ์'},
+  {staff_id:1002,prefixname_id:'นางสาว',first_name_th:'สมหญิง',last_name_th:'ศรีสุข'},
+  {staff_id:1003,prefixname_id:'นาย',first_name_th:'นายเทสดี',last_name_th:'มีรวย'},
+  {staff_id:1004,prefixname_id:'นางสาว',first_name_th:'นงลักษณ์',last_name_th:'แก้วมณี'},
+  {staff_id:1005,prefixname_id:'นาย',first_name_th:'สุเทพ',last_name_th:'อินทร์พรหม'},
+  {staff_id:1006,prefixname_id:'นาย',first_name_th:'สุดใจ',last_name_th:'อิ่มเอม'},
+  {staff_id:1007,prefixname_id:'นาย',first_name_th:'สุดสาคร',last_name_th:'ใจดี'},
+  {staff_id:1008,prefixname_id:'นางสาว',first_name_th:'สีดา',last_name_th:'สีใจ'},
+  {staff_id:1009,prefixname_id:'นาย',first_name_th:'กฤกนก',last_name_th:'กกกนิส'},
+  {staff_id:1010,prefixname_id:'นาย',first_name_th:'สุกสา',last_name_th:'สุพล'},
+  {staff_id:1011,prefixname_id:'นางสาว',first_name_th:'สมใจ',last_name_th:'ใสจม'},
+  {staff_id:1012,prefixname_id:'นางสาว',first_name_th:'หฤทัย',last_name_th:'ใจตรง'}
+];
+
 const TableItem = ({ data, onView, onEdit, onDelete }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -50,9 +65,18 @@ const TableItem = ({ data, onView, onEdit, onDelete }: Props) => {
       <TableCellWrapper component="th" scope="row">
         {isLoading ? <Skeleton width={80} /> : data.name_change_id}
       </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={100} /> : data.staff_id}
-      </TableCellWrapper>
+  <TableCellWrapper align="left">
+      {isLoading ? (
+        <Skeleton width={150} />
+      ) : (
+        (() => {
+          const staff = staffDetail.find(s => s.staff_id === data.staff_id);
+          return staff 
+            ? `${staff.prefixname_id} ${staff.first_name_th} ${staff.last_name_th}`
+            : `ไม่พบข้อมูลพนักงาน (ID: ${data.staff_id})`;
+        })()
+      )}
+    </TableCellWrapper>
       <TableCellWrapper align="left">
         {isLoading ? <Skeleton width={200} /> : data.previous_name} <MdDriveFileRenameOutline />
       </TableCellWrapper>

@@ -45,34 +45,34 @@ const formatDate = (dateString: string | undefined): string => {
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง Family
 const initialAllRows: FamilyData[] = [
   {
-    family_id: 1, staff_id: 101, relationship: 'บิดา', full_name: 'สมชาย ดีมาก', date_of_birth: '1950-06-15', occupation: 'รับราชการเกษียณ', fam_tel: '0811111111', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+    family_id: 1, staff_id: 1001, relationship: 'บิดา', full_name: 'สมชาย ดีมาก', date_of_birth: '1950-06-15', occupation: 'รับราชการเกษียณ', fam_tel: '0811111111', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
   },
   {
-    family_id: 2, staff_id: 101, relationship: 'มารดา', full_name: 'สมหญิง ดีมาก', date_of_birth: '1955-08-20', occupation: 'แม่บ้าน', fam_tel: '0822222222', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+    family_id: 2, staff_id: 1001, relationship: 'มารดา', full_name: 'สมหญิง ดีมาก', date_of_birth: '1955-08-20', occupation: 'แม่บ้าน', fam_tel: '0822222222', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
   },
   {
-    family_id: 3, staff_id: 101, relationship: 'คู่สมรส', full_name: 'สุนิสา ดีมาก', date_of_birth: '1980-03-25', occupation: 'ครู', fam_tel: '0833333333', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+    family_id: 3, staff_id: 1001, relationship: 'คู่สมรส', full_name: 'สุนิสา ดีมาก', date_of_birth: '1980-03-25', occupation: 'ครู', fam_tel: '0833333333', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
   },
   {
-    family_id: 4, staff_id: 101, relationship: 'บุตร', full_name: 'เด็กชายดีมาก ดีมาก', date_of_birth: '2010-11-05', occupation: 'นักเรียน', fam_tel: '0800000000', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+    family_id: 4, staff_id: 1001, relationship: 'บุตร', full_name: 'เด็กชายดีมาก ดีมาก', date_of_birth: '2010-11-05', occupation: 'นักเรียน', fam_tel: '0800000000', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
   },
   {
-    family_id: 5, staff_id: 102, relationship: 'บิดา', full_name: 'ประเสริฐ ศรีสุข', date_of_birth: '1948-12-10', occupation: 'ธุรกิจส่วนตัว', fam_tel: '0844444444', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
+    family_id: 5, staff_id: 1002, relationship: 'บิดา', full_name: 'ประเสริฐ ศรีสุข', date_of_birth: '1948-12-10', occupation: 'ธุรกิจส่วนตัว', fam_tel: '0844444444', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
   },
   {
-    family_id: 6, staff_id: 102, relationship: 'คู่สมรส', full_name: 'เพชรา ศรีสุข', date_of_birth: '1982-07-30', occupation: 'แพทย์', fam_tel: '0855555555', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
+    family_id: 6, staff_id: 1002, relationship: 'คู่สมรส', full_name: 'เพชรา ศรีสุข', date_of_birth: '1982-07-30', occupation: 'แพทย์', fam_tel: '0855555555', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
   },
   {
-    family_id: 7, staff_id: 103, relationship: 'ผู้ติดต่อกรณีฉุกเฉิน', full_name: 'นพดล รักเพื่อน', date_of_birth: '1975-09-12', occupation: 'วิศวกร', fam_tel: '0866666666', fam_address: '789/8 ถนนสีลม แขวงสีลม เขตบางรัก กรุงเทพฯ 10500', create_at: '2021-02-20', update_at: '2023-06-10', officer_id: 1003
+    family_id: 7, staff_id: 1003, relationship: 'ผู้ติดต่อกรณีฉุกเฉิน', full_name: 'นพดล รักเพื่อน', date_of_birth: '1975-09-12', occupation: 'วิศวกร', fam_tel: '0866666666', fam_address: '789/8 ถนนสีลม แขวงสีลม เขตบางรัก กรุงเทพฯ 10500', create_at: '2021-02-20', update_at: '2023-06-10', officer_id: 1003
   },
   {
-    family_id: 8, staff_id: 104, relationship: 'มารดา', full_name: 'วรรณา จิตดี', date_of_birth: '1952-04-18', occupation: 'แม่บ้าน', fam_tel: '0877777777', fam_address: '321/9 ถนนพระราม 4 แขวงสุริยวงศ์ เขตบางรัก กรุงเทพฯ 10500', create_at: '2018-11-05', update_at: '2023-03-15', officer_id: 1004
+    family_id: 8, staff_id: 1004, relationship: 'มารดา', full_name: 'วรรณา จิตดี', date_of_birth: '1952-04-18', occupation: 'แม่บ้าน', fam_tel: '0877777777', fam_address: '321/9 ถนนพระราม 4 แขวงสุริยวงศ์ เขตบางรัก กรุงเทพฯ 10500', create_at: '2018-11-05', update_at: '2023-03-15', officer_id: 1004
   },
   {
-    family_id: 9, staff_id: 105, relationship: 'คู่สมรส', full_name: 'วิไลลักษณ์ ใจกล้า', date_of_birth: '1985-01-22', occupation: 'นักบัญชี', fam_tel: '0888888888', fam_address: '555/10 ถนนเพชรบุรี แขวงถนนเพชรบุรี เขตราชเทวี กรุงเทพฯ 10400', create_at: '2020-07-30', update_at: '2023-05-05', officer_id: 1005
+    family_id: 9, staff_id: 1005, relationship: 'คู่สมรส', full_name: 'วิไลลักษณ์ ใจกล้า', date_of_birth: '1985-01-22', occupation: 'นักบัญชี', fam_tel: '0888888888', fam_address: '555/10 ถนนเพชรบุรี แขวงถนนเพชรบุรี เขตราชเทวี กรุงเทพฯ 10400', create_at: '2020-07-30', update_at: '2023-05-05', officer_id: 1005
   },
   {
-    family_id: 10, staff_id: 106, relationship: 'บุตร', full_name: 'เด็กหญิงน้ำทิพย์ เก่งมาก', date_of_birth: '2015-08-08', occupation: 'นักเรียน', fam_tel: '0899999999', fam_address: '999/11 ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400', create_at: '2022-03-12', update_at: '2023-04-20', officer_id: 1006
+    family_id: 10, staff_id: 1006, relationship: 'บุตร', full_name: 'เด็กหญิงน้ำทิพย์ เก่งมาก', date_of_birth: '2015-08-08', occupation: 'นักเรียน', fam_tel: '0899999999', fam_address: '999/11 ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400', create_at: '2022-03-12', update_at: '2023-04-20', officer_id: 1006
   }
 ];
 

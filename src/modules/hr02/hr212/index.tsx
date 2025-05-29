@@ -40,16 +40,16 @@ const formatDate = (dateString: string | undefined): string => {
 
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง Document
 const initialAllRows: DocumentData[] = [
-  { document_id: 1, staff_id: 401, document_name: 'สัญญาจ้างงานปี 2565', document_type: 'สัญญาจ้าง', document_path: '/documents/contracts/401_contract_2565.pdf', create_at: '2022-05-15', update_at: '2023-06-10', officer_id: 701 },
-  { document_id: 2, staff_id: 402, document_name: 'ใบประกาศนียบัตรปริญญาโท', document_type: 'หลักฐานการศึกษา', document_path: '/documents/certificates/402_master_degree.pdf', create_at: '2023-01-20', update_at: '2023-05-15', officer_id: 702 },
-  { document_id: 3, staff_id: 403, document_name: 'ผลการตรวจสุขภาพประจำปี 2566', document_type: 'เอกสารสุขภาพ', document_path: '/documents/health/403_health_check_2566.pdf', create_at: '2023-03-10', update_at: '2023-06-20', officer_id: 703 },
-  { document_id: 4, staff_id: 404, document_name: 'สำเนาทะเบียนบ้าน', document_type: 'เอกสารส่วนตัว', document_path: '/documents/personal/404_house_registration.pdf', create_at: '2022-11-05', update_at: '2023-04-18', officer_id: 701 },
-  { document_id: 5, staff_id: 405, document_name: 'ใบอนุญาตประกอบวิชาชีพวิศวกรรม', document_type: 'ใบอนุญาต', document_path: '/documents/licenses/405_engineering_license.pdf', create_at: '2023-02-28', update_at: '2023-06-25', officer_id: 702 },
-  { document_id: 6, staff_id: 406, document_name: 'สลิปเงินเดือน มิถุนายน 2566', document_type: 'เอกสารการเงิน', document_path: '/documents/finance/406_payroll_256606.pdf', create_at: '2023-06-05', update_at: '2023-06-30', officer_id: 703 },
-  { document_id: 7, staff_id: 407, document_name: 'ประวัติย่อ (CV) อัปเดต 2566', document_type: 'ประวัติส่วนตัว', document_path: '/documents/resumes/407_cv_2566.pdf', create_at: '2023-01-15', update_at: '2023-05-20', officer_id: 701 },
-  { document_id: 8, staff_id: 408, document_name: 'ใบรับรองการทำงานปี 2565', document_type: 'ใบรับรอง', document_path: '/documents/certificates/408_employment_cert_2565.pdf', create_at: '2022-12-20', update_at: '2023-06-15', officer_id: 702 },
-  { document_id: 9, staff_id: 409, document_name: 'สำเนาบัตรประชาชน', document_type: 'เอกสารประจำตัว', document_path: '/documents/identification/409_id_card.pdf', create_at: '2023-04-01', update_at: '2023-06-28', officer_id: 703 },
-  { document_id: 10, staff_id: 410, document_name: 'ผลประเมินงานประจำปี 2565', document_type: 'เอกสารประเมิน', document_path: '/documents/evaluations/410_performance_2565.pdf', create_at: '2022-10-10', update_at: '2023-05-30', officer_id: 701 }
+  { document_id: 1, staff_id: 1001, document_name: 'สัญญาจ้างงานปี 2565', document_type: 'สัญญาจ้าง', document_path: '/documents/contracts/401_contract_2565.pdf', create_at: '2022-05-15', update_at: '2023-06-10', officer_id: 701 },
+  { document_id: 2, staff_id: 1002, document_name: 'ใบประกาศนียบัตรปริญญาโท', document_type: 'หลักฐานการศึกษา', document_path: '/documents/certificates/402_master_degree.pdf', create_at: '2023-01-20', update_at: '2023-05-15', officer_id: 702 },
+  { document_id: 3, staff_id: 1003, document_name: 'ผลการตรวจสุขภาพประจำปี 2566', document_type: 'เอกสารสุขภาพ', document_path: '/documents/health/403_health_check_2566.pdf', create_at: '2023-03-10', update_at: '2023-06-20', officer_id: 703 },
+  { document_id: 4, staff_id: 1004, document_name: 'สำเนาทะเบียนบ้าน', document_type: 'เอกสารส่วนตัว', document_path: '/documents/personal/404_house_registration.pdf', create_at: '2022-11-05', update_at: '2023-04-18', officer_id: 701 },
+  { document_id: 5, staff_id: 1005, document_name: 'ใบอนุญาตประกอบวิชาชีพวิศวกรรม', document_type: 'ใบอนุญาต', document_path: '/documents/licenses/405_engineering_license.pdf', create_at: '2023-02-28', update_at: '2023-06-25', officer_id: 702 },
+  { document_id: 6, staff_id: 1006, document_name: 'สลิปเงินเดือน มิถุนายน 2566', document_type: 'เอกสารการเงิน', document_path: '/documents/finance/406_payroll_256606.pdf', create_at: '2023-06-05', update_at: '2023-06-30', officer_id: 703 },
+  { document_id: 7, staff_id: 1007, document_name: 'ประวัติย่อ (CV) อัปเดต 2566', document_type: 'ประวัติส่วนตัว', document_path: '/documents/resumes/407_cv_2566.pdf', create_at: '2023-01-15', update_at: '2023-05-20', officer_id: 701 },
+  { document_id: 8, staff_id: 1008, document_name: 'ใบรับรองการทำงานปี 2565', document_type: 'ใบรับรอง', document_path: '/documents/certificates/408_employment_cert_2565.pdf', create_at: '2022-12-20', update_at: '2023-06-15', officer_id: 702 },
+  { document_id: 9, staff_id: 1009, document_name: 'สำเนาบัตรประชาชน', document_type: 'เอกสารประจำตัว', document_path: '/documents/identification/409_id_card.pdf', create_at: '2023-04-01', update_at: '2023-06-28', officer_id: 703 },
+  { document_id: 10, staff_id: 1010, document_name: 'ผลประเมินงานประจำปี 2565', document_type: 'เอกสารประเมิน', document_path: '/documents/evaluations/410_performance_2565.pdf', create_at: '2022-10-10', update_at: '2023-05-30', officer_id: 701 }
 ];
 
 const Hr212 = () => {

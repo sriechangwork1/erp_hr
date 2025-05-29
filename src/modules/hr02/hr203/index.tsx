@@ -37,7 +37,7 @@ interface Data {
 const initialAllRows: Data[] = [
   {
     education_id: 1,
-    staff_id: 1,
+    staff_id: 1001,
     isced_code: '0203',
     academic_degree_name: 'วิทยาศาสตรบัณฑิต',
     academic_degree_abb: 'วท.บ.',
@@ -54,7 +54,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 2,
-    staff_id: 2,
+    staff_id: 1002,
     isced_code: '0413',
     academic_degree_name: 'บริหารธุรกิจมหาบัณฑิต',
     academic_degree_abb: 'บธ.ม.',
@@ -71,7 +71,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 3,
-    staff_id: 3,
+    staff_id: 1003,
     isced_code: '1011',
     academic_degree_name: 'ปรัชญาดุษฎีบัณฑิต',
     academic_degree_abb: 'ปร.ด.',
@@ -88,7 +88,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 4,
-    staff_id: 4,
+    staff_id: 1004,
     isced_code: '0314',
     academic_degree_name: 'ศิลปศาสตรบัณฑิต',
     academic_degree_abb: 'ศศ.บ.',
@@ -105,7 +105,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 5,
-    staff_id: 5,
+    staff_id: 1005,
     isced_code: '0710',
     academic_degree_name: 'วิศวกรรมศาสตรมหาบัณฑิต',
     academic_degree_abb: 'วศ.ม.',
@@ -122,7 +122,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 6,
-    staff_id: 6,
+    staff_id: 1006,
     isced_code: '0222',
     academic_degree_name: 'วิทยาศาสตรมหาบัณฑิต',
     academic_degree_abb: 'วท.ม.',
@@ -139,7 +139,7 @@ const initialAllRows: Data[] = [
   },
   {
     education_id: 7,
-    staff_id: 7,
+    staff_id: 1007,
     isced_code: '0514',
     academic_degree_name: 'นิติศาสตรบัณฑิต',
     academic_degree_abb: 'น.บ.',

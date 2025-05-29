@@ -49,7 +49,7 @@ const formatDate = (dateString: string | undefined): string => {
 const initialAllRows: Data[] = [
   {
     work_history_id: 1,
-    staff_id: 101,
+    staff_id: 1001,
     manpower_framework_id: 1001,
     academic_position_id: 201,
     support_position_id: 301,
@@ -71,7 +71,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 2,
-    staff_id: 102,
+    staff_id: 1002,
     manpower_framework_id: 1002,
     academic_position_id: 201,
     support_position_id: 301,
@@ -93,7 +93,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 3,
-    staff_id: 103,
+    staff_id: 1003,
     manpower_framework_id: 1003,
     academic_position_id: 201,
     support_position_id: 301,
@@ -115,7 +115,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 4,
-    staff_id: 104,
+    staff_id: 1004,
     manpower_framework_id: 1004,
     academic_position_id: 202,
     support_position_id: 301,
@@ -137,7 +137,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 5,
-    staff_id: 105,
+    staff_id: 1005,
     manpower_framework_id: 1005,
     academic_position_id: 0,
     support_position_id: 302,
@@ -159,7 +159,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 6,
-    staff_id: 106,
+    staff_id: 1006,
     manpower_framework_id: 1006,
     academic_position_id: 203,
     support_position_id: 302,
@@ -181,7 +181,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 7,
-    staff_id: 107,
+    staff_id: 1007,
     manpower_framework_id: 1007,
     academic_position_id: 203,
     support_position_id: 301,
@@ -203,7 +203,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 8,
-    staff_id: 108,
+    staff_id: 1008,
     manpower_framework_id: 1008,
     academic_position_id: 203,
     support_position_id: 303,
@@ -225,7 +225,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 9,
-    staff_id: 109,
+    staff_id: 1009,
     manpower_framework_id: 1009,
     academic_position_id: 204,
     support_position_id: 0,
@@ -247,7 +247,7 @@ const initialAllRows: Data[] = [
   },
   {
     work_history_id: 10,
-    staff_id: 110,
+    staff_id: 1010,
     manpower_framework_id: 1010,
     academic_position_id: 202,
     support_position_id: 304,
