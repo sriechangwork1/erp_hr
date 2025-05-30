@@ -221,7 +221,7 @@ export const LightSidebar: SidebarData = {
 const defaultConfig = {
   sidebar: {
     borderColor: '#757575',
-    menuStyle: MenuStyle.STANDARD,
+    menuStyle: MenuStyle.DEFAULT,
     isSidebarBgImage: false,
     sidebarBgImage: 1,
     colorSet: LightSidebar,

@@ -401,7 +401,7 @@ const Hr204 = () => {
       />
       <AppDialog
         dividers
-        maxWidth="md"
+        maxWidth="lg"
         open={isAddTaskOpen}
         onClose={onCloseAddTask}
         title={dialogTitle}
