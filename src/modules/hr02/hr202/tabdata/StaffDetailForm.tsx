@@ -690,24 +690,6 @@ const StaffDetailForm: React.FC<StaffDetailFormProps> = ({
           />
         </Grid>
       </Grid>
-      <Box mt={2} display="flex" justifyContent="flex-end" gap={2}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSave}
-          sx={{ px: 4 }}
-        >
-          บันทึก
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={handleCancel}
-          sx={{ px: 4 }}
-        >
-          ยกเลิก
-        </Button>
-      </Box>
     </Box>
   );
 };

@@ -1,9 +1,10 @@
-//tabdata/DocumentInfo.tsx
+//tabdata/Family.tsx
 'use client';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import AppCard from '@crema/components/AppCard';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
+import AppSelect from '@crema/components/AppSelect';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import AppDialog from '@crema/components/AppDialog';
@@ -24,17 +25,19 @@ import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import { styled } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
-import Chip from '@mui/material/Chip'; // สำหรับแสดง document_path เป็นลิงก์
-import { MdInsertDriveFile, MdPersonOutline, MdLink } from "react-icons/md"; // ไอคอนสำหรับเอกสาร
+import { MdCalendarToday, MdPersonOutline, MdHome, MdPhone } from "react-icons/md"; // เพิ่มไอคอนที่เกี่ยวข้อง
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-// Data Interface for Document Data
-interface DocumentData {
-  document_id: number;
+// Data Interface for Family History
+interface FamilyData {
+  family_id: number;
   staff_id?: number;
-  document_name?: string;
-  document_type?: string;
-  document_path?: string;
+  relationship?: string;
+  full_name?: string;
+  date_of_birth?: string;
+  occupation?: string;
+  fam_tel?: string;
+  fam_address?: string;
   create_at?: string;
   update_at?: string;
   officer_id?: number;
@@ -53,25 +56,43 @@ const staffDetailForTableDisplay = [
   { staff_id: 1008, prefixname_id: 'นางสาว', first_name_th: 'สีดา', last_name_th: 'สีใจ' },
   { staff_id: 1009, prefixname_id: 'นาย', first_name_th: 'กฤกนก', last_name_th: 'กกกนิส' },
   { staff_id: 1010, prefixname_id: 'นาย', first_name_th: 'สุกสา', last_name_th: 'สุพล' },
-  { staff_id: 701, prefixname_id: 'นาย', first_name_th: 'ผู้บันทึก', last_name_th: 'หนึ่ง' },
-  { staff_id: 702, prefixname_id: 'นาง', first_name_th: 'ผู้บันทึก', last_name_th: 'สอง' },
-  { staff_id: 703, prefixname_id: 'นางสาว', first_name_th: 'ผู้บันทึก', last_name_th: 'สาม' },
+  { staff_id: 1011, prefixname_id: 'นางสาว', first_name_th: 'สมใจ', last_name_th: 'ใสจม' },
+  { staff_id: 1012, prefixname_id: 'นางสาว', first_name_th: 'หฤทัย', last_name_th: 'ใจตรง' }
 ];
 
-// Mock Data for Document Information
-const initialAllRows: DocumentData[] = [
-  { document_id: 1, staff_id: 1001, document_name: 'สัญญาจ้างงานปี 2565', document_type: 'สัญญาจ้าง', document_path: '/documents/contracts/401_contract_2565.pdf', create_at: '2022-05-15', update_at: '2023-06-10', officer_id: 701 },
-  { document_id: 2, staff_id: 1002, document_name: 'ใบประกาศนียบัตรปริญญาโท', document_type: 'หลักฐานการศึกษา', document_path: '/documents/certificates/402_master_degree.pdf', create_at: '2023-01-20', update_at: '2023-05-15', officer_id: 702 },
-  { document_id: 3, staff_id: 1003, document_name: 'ผลการตรวจสุขภาพประจำปี 2566', document_type: 'เอกสารสุขภาพ', document_path: '/documents/health/403_health_check_2566.pdf', create_at: '2023-03-10', update_at: '2023-06-20', officer_id: 703 },
-  { document_id: 4, staff_id: 1004, document_name: 'สำเนาทะเบียนบ้าน', document_type: 'เอกสารส่วนตัว', document_path: '/documents/personal/404_house_registration.pdf', create_at: '2022-11-05', update_at: '2023-04-18', officer_id: 701 },
-  { document_id: 5, staff_id: 1005, document_name: 'ใบอนุญาตประกอบวิชาชีพวิศวกรรม', document_type: 'ใบอนุญาต', document_path: '/documents/licenses/405_engineering_license.pdf', create_at: '2023-02-28', update_at: '2023-06-25', officer_id: 702 },
-  { document_id: 6, staff_id: 1006, document_name: 'สลิปเงินเดือน มิถุนายน 2566', document_type: 'เอกสารการเงิน', document_path: '/documents/finance/406_payroll_256606.pdf', create_at: '2023-06-05', update_at: '2023-06-30', officer_id: 703 },
-  { document_id: 7, staff_id: 1007, document_name: 'ประวัติย่อ (CV) อัปเดต 2566', document_type: 'ประวัติส่วนตัว', document_path: '/documents/resumes/407_cv_2566.pdf', create_at: '2023-01-15', update_at: '2023-05-20', officer_id: 701 },
-  { document_id: 8, staff_id: 1008, document_name: 'ใบรับรองการทำงานปี 2565', document_type: 'ใบรับรอง', document_path: '/documents/certificates/408_employment_cert_2565.pdf', create_at: '2022-12-20', update_at: '2023-06-15', officer_id: 702 },
-  { document_id: 9, staff_id: 1009, document_name: 'สำเนาบัตรประชาชน', document_type: 'เอกสารประจำตัว', document_path: '/documents/identification/409_id_card.pdf', create_at: '2023-04-01', update_at: '2023-06-28', officer_id: 703 },
-  { document_id: 10, staff_id: 1010, document_name: 'ผลประเมินงานประจำปี 2565', document_type: 'เอกสารประเมิน', document_path: '/documents/evaluations/410_performance_2565.pdf', create_at: '2022-10-10', update_at: '2023-05-30', officer_id: 701 }
+// Mock Data for Family History (จาก me code4.txt)
+const initialAllRows: FamilyData[] = [
+  {
+    family_id: 1, staff_id: 1001, relationship: 'บิดา', full_name: 'สมชาย ดีมาก', date_of_birth: '1950-06-15', occupation: 'รับราชการเกษียณ', fam_tel: '0811111111', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+  },
+  {
+    family_id: 2, staff_id: 1001, relationship: 'มารดา', full_name: 'สมหญิง ดีมาก', date_of_birth: '1955-08-20', occupation: 'แม่บ้าน', fam_tel: '0822222222', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+  },
+  {
+    family_id: 3, staff_id: 1001, relationship: 'คู่สมรส', full_name: 'สุนิสา ดีมาก', date_of_birth: '1980-03-25', occupation: 'ครู', fam_tel: '0833333333', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+  },
+  {
+    family_id: 4, staff_id: 1001, relationship: 'บุตร', full_name: 'เด็กชายดีมาก ดีมาก', date_of_birth: '2010-11-05', occupation: 'นักเรียน', fam_tel: '0800000000', fam_address: '123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110', create_at: '2020-01-10', update_at: '2023-05-20', officer_id: 1001
+  },
+  {
+    family_id: 5, staff_id: 1002, relationship: 'บิดา', full_name: 'ประเสริฐ ศรีสุข', date_of_birth: '1948-12-10', occupation: 'ธุรกิจส่วนตัว', fam_tel: '0844444444', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
+  },
+  {
+    family_id: 6, staff_id: 1002, relationship: 'คู่สมรส', full_name: 'เพชรา ศรีสุข', date_of_birth: '1982-07-30', occupation: 'แพทย์', fam_tel: '0855555555', fam_address: '456/7 ถนนราชดำริ แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330', create_at: '2019-05-15', update_at: '2023-04-18', officer_id: 1002
+  },
+  {
+    family_id: 7, staff_id: 1003, relationship: 'ผู้ติดต่อกรณีฉุกเฉิน', full_name: 'นพดล รักเพื่อน', date_of_birth: '1975-09-12', occupation: 'วิศวกร', fam_tel: '0866666666', fam_address: '789/8 ถนนสีลม แขวงสีลม เขตบางรัก กรุงเทพฯ 10500', create_at: '2021-02-20', update_at: '2023-06-10', officer_id: 1003
+  },
+  {
+    family_id: 8, staff_id: 1004, relationship: 'มารดา', full_name: 'วรรณา จิตดี', date_of_birth: '1952-04-18', occupation: 'แม่บ้าน', fam_tel: '0877777777', fam_address: '321/9 ถนนพระราม 4 แขวงสุริยวงศ์ เขตบางรัก กรุงเทพฯ 10500', create_at: '2018-11-05', update_at: '2023-03-15', officer_id: 1004
+  },
+  {
+    family_id: 9, staff_id: 1005, relationship: 'คู่สมรส', full_name: 'วิไลลักษณ์ ใจกล้า', date_of_birth: '1985-01-22', occupation: 'นักบัญชี', fam_tel: '0888888888', fam_address: '555/10 ถนนเพชรบุรี แขวงถนนเพชรบุรี เขตราชเทวี กรุงเทพฯ 10400', create_at: '2020-07-30', update_at: '2023-05-05', officer_id: 1005
+  },
+  {
+    family_id: 10, staff_id: 1006, relationship: 'บุตร', full_name: 'เด็กหญิงน้ำทิพย์ เก่งมาก', date_of_birth: '2015-08-08', occupation: 'นักเรียน', fam_tel: '0899999999', fam_address: '999/11 ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400', create_at: '2022-03-12', update_at: '2023-04-20', officer_id: 1006
+  }
 ];
-
 
 const TableCellWrapper = styled(TableCell)(() => ({
   fontSize: 14,
@@ -86,8 +107,8 @@ const TableCellWrapper = styled(TableCell)(() => ({
 }));
 
 type TableItemProps = {
-  data: DocumentData;
-  onView: (data: DocumentData) => void;
+  data: FamilyData;
+  onView: (data: FamilyData) => void;
 };
 
 const TableItem = ({ data, onView }: TableItemProps) => {
@@ -99,9 +120,9 @@ const TableItem = ({ data, onView }: TableItemProps) => {
   }, []);
 
   return (
-    <TableRow hover key={data.document_id} className="item-hover">
+    <TableRow hover key={data.family_id} className="item-hover">
       <TableCellWrapper component="th" scope="row">
-        {isLoading ? <Skeleton width={80} /> : data.document_id}
+        {isLoading ? <Skeleton width={80} /> : data.family_id}
       </TableCellWrapper>
       <TableCellWrapper align="left">
         {isLoading ? (
@@ -116,28 +137,16 @@ const TableItem = ({ data, onView }: TableItemProps) => {
         )}
       </TableCellWrapper>
       <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={200} /> : data.document_name} <MdInsertDriveFile />
+        {isLoading ? <Skeleton width={200} /> : data.relationship} <MdPersonOutline />
       </TableCellWrapper>
       <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={120} /> : data.document_type}
+        {isLoading ? <Skeleton width={200} /> : data.full_name}
       </TableCellWrapper>
       <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={150} /> :
-          (data.document_path ? (
-            <Chip
-              label="ดูเอกสาร"
-              component="a"
-              href={data.document_path}
-              target="_blank"
-              clickable
-              color="primary"
-              size="small"
-              icon={<MdLink />}
-            />
-          ) : 'ไม่มีเอกสาร')}
+        {isLoading ? <Skeleton width={120} /> : data.date_of_birth} <MdCalendarToday />
       </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={80} /> : data.officer_id} <MdPersonOutline />
+      <TableCellWrapper align="left">
+        {isLoading ? <Skeleton width={150} /> : data.occupation}
       </TableCellWrapper>
       <TableCellWrapper align="right">
         {isLoading ? <Skeleton variant="circular" width={30} height={30} /> :
@@ -158,7 +167,7 @@ const TableItem = ({ data, onView }: TableItemProps) => {
 type Order = 'asc' | 'desc';
 
 interface Column {
-  id: keyof DocumentData | 'actions';
+  id: keyof FamilyData | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';
@@ -201,8 +210,8 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 type DataTableProps = {
-  data: DocumentData[];
-  onView: (data: DocumentData) => void;
+  data: FamilyData[];
+  onView: (data: FamilyData) => void;
   selectedStaffId: number | null;
 }
 
@@ -210,23 +219,23 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof DocumentData>('document_id');
+  const [orderBy, setOrderBy] = useState<keyof FamilyData>('family_id');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const intl = useIntl();
   const labeltext = useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr02.10' }); // สมมติว่ามี ID สำหรับเมนูนี้ (อ้างอิงจาก Document Info)
+    const label = intl.formatMessage({ id: 'sidebar.hr02.05' }); // สมมติว่ามี ID สำหรับเมนูนี้ (อ้างอิงจาก Family History)
     return label;
   }, [intl]);
 
   const columns: readonly Column[] = useMemo(
     () => [
-      { id: 'document_id', label: 'รหัสเอกสาร', minWidth: 100, sortable: true },
+      { id: 'family_id', label: 'รหัสสมาชิกครอบครัว', minWidth: 100, sortable: true },
       { id: 'staff_id', label: 'ชื่อบุคลากร', minWidth: 150, sortable: true },
-      { id: 'document_name', label: 'ชื่อเอกสาร', minWidth: 250, sortable: true },
-      { id: 'document_type', label: 'ประเภทเอกสาร', minWidth: 120, sortable: true },
-      { id: 'document_path', label: 'ไฟล์เอกสาร', minWidth: 150, align: 'center', sortable: false },
-      { id: 'officer_id', label: 'ผู้บันทึก', minWidth: 80, sortable: true },
+      { id: 'relationship', label: 'ความสัมพันธ์', minWidth: 150, sortable: true },
+      { id: 'full_name', label: 'ชื่อ-นามสกุล', minWidth: 200, sortable: true },
+      { id: 'date_of_birth', label: 'วันเกิด', minWidth: 120, sortable: true },
+      { id: 'occupation', label: 'อาชีพ', minWidth: 150, sortable: true },
       { id: 'actions', label: 'Actions', minWidth: 50, align: 'right', sortable: false },
     ],
     [labeltext]
@@ -243,7 +252,7 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof DocumentData,
+    property: keyof FamilyData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -261,12 +270,15 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
     if (searchQuery) {
       const lowerCaseQuery = searchQuery.toLowerCase();
       currentFilteredData = currentFilteredData.filter((row) => {
-        // Search in document_id, document_name, document_type, document_path, officer_id
+        // Search in family_id, relationship, full_name, occupation, fam_tel, fam_address, date_of_birth, officer_id
         const rowMatches =
-          String(row.document_id).toLowerCase().includes(lowerCaseQuery) ||
-          (row.document_name && String(row.document_name).toLowerCase().includes(lowerCaseQuery)) ||
-          (row.document_type && String(row.document_type).toLowerCase().includes(lowerCaseQuery)) ||
-          (row.document_path && String(row.document_path).toLowerCase().includes(lowerCaseQuery)) ||
+          String(row.family_id).toLowerCase().includes(lowerCaseQuery) ||
+          (row.relationship && String(row.relationship).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.full_name && String(row.full_name).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.occupation && String(row.occupation).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.fam_tel && String(row.fam_tel).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.fam_address && String(row.fam_address).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.date_of_birth && String(row.date_of_birth).toLowerCase().includes(lowerCaseQuery)) ||
           (row.officer_id && String(row.officer_id).toLowerCase().includes(lowerCaseQuery));
 
         // Search in staffDetailForTableDisplay (prefixname_id, first_name_th, last_name_th)
@@ -311,7 +323,7 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
                     <TableSortLabel
                       active={orderBy === column.id}
                       direction={orderBy === column.id ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, column.id as keyof DocumentData)}
+                      onClick={(event) => handleRequestSort(event, column.id as keyof FamilyData)}
                     >
                       {column.label}
                       {orderBy === column.id ? (
@@ -331,12 +343,12 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
             {filteredRows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <TableItem key={row.document_id} data={row} onView={onView} />
+                <TableItem key={row.family_id} data={row} onView={onView} />
               ))}
             {filteredRows.length === 0 && (
               <TableRow>
                 <TableCell colSpan={columns.length} align="center">
-                  ไม่พบข้อมูลเอกสารสำหรับบุคลากรคนนี้
+                  ไม่พบข้อมูลสมาชิกครอบครัวสำหรับบุคลากรคนนี้
                 </TableCell>
               </TableRow>
             )}
@@ -356,16 +368,16 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
   );
 };
 
-// Main DocumentInfo Component
-interface DocumentInfoProps {
+// Main Family Component
+interface FamilyProps {
   selectedStaffIdProp: number | null;
 }
 
-const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
-  const [currentViewTask, setCurrentViewTask] = useState<DocumentData | null>(null);
+const Family: React.FC<FamilyProps> = ({ selectedStaffIdProp }) => {
+  const [currentViewTask, setCurrentViewTask] = useState<FamilyData | null>(null);
   const [openViewTask, setOpenViewTask] = useState<boolean>(false);
 
-  const onViewTask = (data: DocumentData) => {
+  const onViewTask = (data: FamilyData) => {
     setCurrentViewTask(data);
     setOpenViewTask(true);
   };
@@ -383,17 +395,17 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
         dividers
         open={openViewTask}
         onClose={onCloseViewTask}
-        title={<IntlMessages id="common.documentInfoDetail" defaultMessage="รายละเอียดข้อมูลเอกสาร" />}
+        title={<IntlMessages id="common.familyDetail" defaultMessage="รายละเอียดข้อมูลสมาชิกครอบครัว" />}
       >
         <Box sx={{ width: '100%', padding: '20px' }}>
           <TextField
             fullWidth
-            label="รหัสเอกสาร"
+            label="รหัสสมาชิกครอบครัว"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_id || ''}
-            name="document_id"
+            value={currentViewTask?.family_id || ''}
+            name="family_id"
             disabled
           />
           <TextField
@@ -425,45 +437,69 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
           />
           <TextField
             fullWidth
-            label="ชื่อเอกสาร"
+            label="ความสัมพันธ์"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_name || ''}
-            name="document_name"
+            value={currentViewTask?.relationship || ''}
+            name="relationship"
             disabled
           />
           <TextField
             fullWidth
-            label="ประเภทเอกสาร"
+            label="ชื่อ-นามสกุล"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_type || ''}
-            name="document_type"
+            value={currentViewTask?.full_name || ''}
+            name="full_name"
             disabled
           />
           <TextField
             fullWidth
-            label="ที่อยู่ไฟล์เอกสาร"
+            label="วันเกิด"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_path || ''}
-            name="document_path"
+            type="date"
+            value={currentViewTask?.date_of_birth || ''}
+            name="date_of_birth"
+            disabled
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            fullWidth
+            label="อาชีพ"
+            variant="outlined"
+            margin="normal"
+            size="small"
+            value={currentViewTask?.occupation || ''}
+            name="occupation"
             disabled
           />
           <TextField
             fullWidth
-            label="ผู้บันทึกข้อมูล"
+            label="เบอร์โทรศัพท์"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.officer_id || ''}
-            name="officer_id"
+            value={currentViewTask?.fam_tel || ''}
+            name="fam_tel"
             disabled
           />
-           <TextField
+          <TextField
+            fullWidth
+            label="ที่อยู่"
+            variant="outlined"
+            margin="normal"
+            size="small"
+            value={currentViewTask?.fam_address || ''}
+            name="fam_address"
+            disabled
+          />
+          <TextField
             fullWidth
             label="สร้างเมื่อ"
             variant="outlined"
@@ -491,6 +527,16 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
               shrink: true,
             }}
           />
+          <TextField
+            fullWidth
+            label="ผู้บันทึกข้อมูล"
+            variant="outlined"
+            margin="normal"
+            size="small"
+            value={currentViewTask?.officer_id || ''}
+            name="officer_id"
+            disabled
+          />
 
           <Box mt={2} display="flex" justifyContent="flex-end">
             <Button onClick={onCloseViewTask} color="secondary">
@@ -503,4 +549,5 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
   );
 };
 
-export default DocumentInfo;
+export default Family;
+

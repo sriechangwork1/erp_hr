@@ -13,8 +13,9 @@ import EducationReference from './tabdata/EducationReference';
 import SalaryInfo from './tabdata/SalaryInfo';
 import NameChangeHistory from './tabdata/NameChangeHistory';
 import WorkHistory from './tabdata/WorkHistory';
-import FamilyPassportInfo from './tabdata/FamilyPassportInfo';
-import WorkPermitSupportSkills from './tabdata/WorkPermitSupportSkills';
+import Family from './tabdata/Family';
+import PassportInfo from './tabdata/PassportInfo';
+import WorkPermit from './tabdata/WorkPermit';
 import AcademicSkills from './tabdata/AcademicSkills';
 import SupportExpertise from './tabdata/SupportExpertise';
 import AcademicExpertise from './tabdata/AcademicExpertise';
@@ -353,15 +354,17 @@ const Hr202 = () => {
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={currentTab} onChange={handleTabChange} aria-label="ข้อมูลบุคลากร" variant="scrollable" scrollButtons="auto">
-            <Tab label="รายละเอียดบุคลากร" {...a11yProps(0)} />
+            <Tab label="ข้อมูลทั่วไป" {...a11yProps(0)} />
             <Tab label="ข้อมูลอ้างอิงการศึกษา" {...a11yProps(1)} />
             <Tab label="ข้อมูลเงินเดือน" {...a11yProps(2)} />
             <Tab label="ข้อมูลประวัติการเปลี่ยนชื่อ-สกุล" {...a11yProps(3)} />
             <Tab label="ข้อมูลประวัติการทำงาน" {...a11yProps(4)} />
-            <Tab label="ข้อมูลครอบครัวหนังสือเดินทาง" {...a11yProps(5)} />
-            <Tab label="ใบอนุญาตทำงานความเชี่ยวชาญในสายงานสนับสนุน" {...a11yProps(6)} />
-            <Tab label="ความเชี่ยวชาญในสายงานวิชาการ" {...a11yProps(7)} />
-            <Tab label="ข้อมูลเอกสาร" {...a11yProps(8)} />
+            <Tab label="ข้อมูลครอบครัว" {...a11yProps(5)} />
+            <Tab label="ข้อมูลหนังสือเดินทาง" {...a11yProps(6)} />
+            <Tab label="ใบอนุญาตทำงาน" {...a11yProps(7)} />
+            <Tab label="ความเชี่ยวชาญในสายงานสนับสนุน" {...a11yProps(8)} />
+            <Tab label="ความเชี่ยวชาญในสายงานวิชาการ" {...a11yProps(9)} />
+            <Tab label="ข้อมูลเอกสาร" {...a11yProps(10)} />
           </Tabs>
         </Box>
         <TabPanel value={currentTab} index={0}>
@@ -373,28 +376,34 @@ const Hr202 = () => {
           />
         </TabPanel>
       <TabPanel value={currentTab} index={1}>
-          <EducationReference />
+           <EducationReference selectedStaffIdProp={selectedStaffOption?.staff_id || null} />
         </TabPanel>
         <TabPanel value={currentTab} index={2}>
-          <SalaryInfo />
+          <SalaryInfo  selectedStaffIdProp={selectedStaffOption?.staff_id || null} />
         </TabPanel>
         <TabPanel value={currentTab} index={3}>
-          <NameChangeHistory />
+          <NameChangeHistory selectedStaffIdProp={selectedStaffOption?.staff_id || null} />
         </TabPanel>
         <TabPanel value={currentTab} index={4}>
-          <WorkHistory />
+          <WorkHistory selectedStaffIdProp={selectedStaffOption?.staff_id || null} />
         </TabPanel>
         <TabPanel value={currentTab} index={5}>
-          <FamilyPassportInfo />
+          <Family selectedStaffIdProp={selectedStaffOption?.staff_id || null}/>
         </TabPanel>
         <TabPanel value={currentTab} index={6}>
-          <WorkPermitSupportSkills />
+          <PassportInfo selectedStaffIdProp={selectedStaffOption?.staff_id || null}/>
         </TabPanel>
         <TabPanel value={currentTab} index={7}>
-          <AcademicSkills />
+          <WorkPermit selectedStaffIdProp={selectedStaffOption?.staff_id || null}/>
         </TabPanel>
         <TabPanel value={currentTab} index={8}>
-          <DocumentInfo />
+          <SupportExpertise selectedStaffIdProp={selectedStaffOption?.staff_id || null}/>
+        </TabPanel>
+        <TabPanel value={currentTab} index={9}>
+          <AcademicExpertise selectedStaffIdProp={selectedStaffOption?.staff_id || null} />
+        </TabPanel>
+        <TabPanel value={currentTab} index={10}>
+          <DocumentInfo selectedStaffIdProp={selectedStaffOption?.staff_id || null}/>
         </TabPanel>
       </Box>
     </AppCard>

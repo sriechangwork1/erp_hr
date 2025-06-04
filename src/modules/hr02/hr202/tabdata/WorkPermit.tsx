@@ -1,9 +1,10 @@
-//tabdata/DocumentInfo.tsx
+//tabdata/WorkPermit.tsx
 'use client';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import AppCard from '@crema/components/AppCard';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
+import AppSelect from '@crema/components/AppSelect';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import AppDialog from '@crema/components/AppDialog';
@@ -24,17 +25,16 @@ import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import { styled } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
-import Chip from '@mui/material/Chip'; // สำหรับแสดง document_path เป็นลิงก์
-import { MdInsertDriveFile, MdPersonOutline, MdLink } from "react-icons/md"; // ไอคอนสำหรับเอกสาร
+import { MdCalendarToday, MdPersonOutline, MdDescription, MdFileDownload } from "react-icons/md"; // เพิ่มไอคอนที่เกี่ยวข้อง
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-// Data Interface for Document Data
-interface DocumentData {
-  document_id: number;
+// Data Interface for Work Permit Data
+interface WorkPermitData {
+  work_permit_id: number;
   staff_id?: number;
-  document_name?: string;
-  document_type?: string;
-  document_path?: string;
+  issue_date?: string;
+  expiry_date?: string;
+  document_file?: string;
   create_at?: string;
   update_at?: string;
   officer_id?: number;
@@ -53,25 +53,43 @@ const staffDetailForTableDisplay = [
   { staff_id: 1008, prefixname_id: 'นางสาว', first_name_th: 'สีดา', last_name_th: 'สีใจ' },
   { staff_id: 1009, prefixname_id: 'นาย', first_name_th: 'กฤกนก', last_name_th: 'กกกนิส' },
   { staff_id: 1010, prefixname_id: 'นาย', first_name_th: 'สุกสา', last_name_th: 'สุพล' },
-  { staff_id: 701, prefixname_id: 'นาย', first_name_th: 'ผู้บันทึก', last_name_th: 'หนึ่ง' },
-  { staff_id: 702, prefixname_id: 'นาง', first_name_th: 'ผู้บันทึก', last_name_th: 'สอง' },
-  { staff_id: 703, prefixname_id: 'นางสาว', first_name_th: 'ผู้บันทึก', last_name_th: 'สาม' },
+  { staff_id: 1011, prefixname_id: 'นางสาว', first_name_th: 'สมใจ', last_name_th: 'ใสจม' },
+  { staff_id: 1012, prefixname_id: 'นางสาว', first_name_th: 'หฤทัย', last_name_th: 'ใจตรง' }
 ];
 
-// Mock Data for Document Information
-const initialAllRows: DocumentData[] = [
-  { document_id: 1, staff_id: 1001, document_name: 'สัญญาจ้างงานปี 2565', document_type: 'สัญญาจ้าง', document_path: '/documents/contracts/401_contract_2565.pdf', create_at: '2022-05-15', update_at: '2023-06-10', officer_id: 701 },
-  { document_id: 2, staff_id: 1002, document_name: 'ใบประกาศนียบัตรปริญญาโท', document_type: 'หลักฐานการศึกษา', document_path: '/documents/certificates/402_master_degree.pdf', create_at: '2023-01-20', update_at: '2023-05-15', officer_id: 702 },
-  { document_id: 3, staff_id: 1003, document_name: 'ผลการตรวจสุขภาพประจำปี 2566', document_type: 'เอกสารสุขภาพ', document_path: '/documents/health/403_health_check_2566.pdf', create_at: '2023-03-10', update_at: '2023-06-20', officer_id: 703 },
-  { document_id: 4, staff_id: 1004, document_name: 'สำเนาทะเบียนบ้าน', document_type: 'เอกสารส่วนตัว', document_path: '/documents/personal/404_house_registration.pdf', create_at: '2022-11-05', update_at: '2023-04-18', officer_id: 701 },
-  { document_id: 5, staff_id: 1005, document_name: 'ใบอนุญาตประกอบวิชาชีพวิศวกรรม', document_type: 'ใบอนุญาต', document_path: '/documents/licenses/405_engineering_license.pdf', create_at: '2023-02-28', update_at: '2023-06-25', officer_id: 702 },
-  { document_id: 6, staff_id: 1006, document_name: 'สลิปเงินเดือน มิถุนายน 2566', document_type: 'เอกสารการเงิน', document_path: '/documents/finance/406_payroll_256606.pdf', create_at: '2023-06-05', update_at: '2023-06-30', officer_id: 703 },
-  { document_id: 7, staff_id: 1007, document_name: 'ประวัติย่อ (CV) อัปเดต 2566', document_type: 'ประวัติส่วนตัว', document_path: '/documents/resumes/407_cv_2566.pdf', create_at: '2023-01-15', update_at: '2023-05-20', officer_id: 701 },
-  { document_id: 8, staff_id: 1008, document_name: 'ใบรับรองการทำงานปี 2565', document_type: 'ใบรับรอง', document_path: '/documents/certificates/408_employment_cert_2565.pdf', create_at: '2022-12-20', update_at: '2023-06-15', officer_id: 702 },
-  { document_id: 9, staff_id: 1009, document_name: 'สำเนาบัตรประชาชน', document_type: 'เอกสารประจำตัว', document_path: '/documents/identification/409_id_card.pdf', create_at: '2023-04-01', update_at: '2023-06-28', officer_id: 703 },
-  { document_id: 10, staff_id: 1010, document_name: 'ผลประเมินงานประจำปี 2565', document_type: 'เอกสารประเมิน', document_path: '/documents/evaluations/410_performance_2565.pdf', create_at: '2022-10-10', update_at: '2023-05-30', officer_id: 701 }
+// Mock Data for Work Permit Information
+const initialAllRows: WorkPermitData[] = [
+  {
+    work_permit_id: 1, staff_id: 1001, issue_date: '2023-01-01', expiry_date: '2024-12-31', document_file: '/documents/work_permits/wp_001.pdf', create_at: '2023-01-05', update_at: '2023-06-10', officer_id: 1001
+  },
+  {
+    work_permit_id: 2, staff_id: 1002, issue_date: '2022-03-15', expiry_date: '2024-03-14', document_file: '/documents/work_permits/wp_002.pdf', create_at: '2022-03-20', update_at: '2023-05-20', officer_id: 1002
+  },
+  {
+    work_permit_id: 3, staff_id: 1003, issue_date: '2023-07-01', expiry_date: '2025-06-30', document_file: '/documents/work_permits/wp_003.pdf', create_at: '2023-07-05', update_at: '2024-01-15', officer_id: 1003
+  },
+  {
+    work_permit_id: 4, staff_id: 1004, issue_date: '2021-09-10', expiry_date: '2024-09-09', document_file: '/documents/work_permits/wp_004.pdf', create_at: '2021-09-15', update_at: '2023-02-28', officer_id: 1004
+  },
+  {
+    work_permit_id: 5, staff_id: 1005, issue_date: '2022-11-20', expiry_date: '2025-11-19', document_file: '/documents/work_permits/wp_005.pdf', create_at: '2022-11-25', update_at: '2023-04-10', officer_id: 1005
+  },
+  {
+    work_permit_id: 6, staff_id: 1006, issue_date: '2023-02-01', expiry_date: '2025-01-31', document_file: '/documents/work_permits/wp_006.pdf', create_at: '2023-02-05', update_at: '2023-07-01', officer_id: 1006
+  },
+  {
+    work_permit_id: 7, staff_id: 1007, issue_date: '2022-06-01', expiry_date: '2024-05-31', document_file: '/documents/work_permits/wp_007.pdf', create_at: '2022-06-05', update_at: '2023-03-01', officer_id: 1007
+  },
+  {
+    work_permit_id: 8, staff_id: 1008, issue_date: '2021-12-01', expiry_date: '2024-11-30', document_file: '/documents/work_permits/wp_008.pdf', create_at: '2021-12-05', update_at: '2023-05-15', officer_id: 1008
+  },
+  {
+    work_permit_id: 9, staff_id: 1009, issue_date: '2023-04-01', expiry_date: '2025-03-31', document_file: '/documents/work_permits/wp_009.pdf', create_at: '2023-04-05', update_at: '2023-08-20', officer_id: 1009
+  },
+  {
+    work_permit_id: 10, staff_id: 1010, issue_date: '2022-08-01', expiry_date: '2025-07-31', document_file: '/documents/work_permits/wp_010.pdf', create_at: '2022-08-05', update_at: '2023-06-01', officer_id: 1010
+  }
 ];
-
 
 const TableCellWrapper = styled(TableCell)(() => ({
   fontSize: 14,
@@ -86,8 +104,8 @@ const TableCellWrapper = styled(TableCell)(() => ({
 }));
 
 type TableItemProps = {
-  data: DocumentData;
-  onView: (data: DocumentData) => void;
+  data: WorkPermitData;
+  onView: (data: WorkPermitData) => void;
 };
 
 const TableItem = ({ data, onView }: TableItemProps) => {
@@ -99,9 +117,9 @@ const TableItem = ({ data, onView }: TableItemProps) => {
   }, []);
 
   return (
-    <TableRow hover key={data.document_id} className="item-hover">
+    <TableRow hover key={data.work_permit_id} className="item-hover">
       <TableCellWrapper component="th" scope="row">
-        {isLoading ? <Skeleton width={80} /> : data.document_id}
+        {isLoading ? <Skeleton width={80} /> : data.work_permit_id}
       </TableCellWrapper>
       <TableCellWrapper align="left">
         {isLoading ? (
@@ -115,29 +133,23 @@ const TableItem = ({ data, onView }: TableItemProps) => {
           })()
         )}
       </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={200} /> : data.document_name} <MdInsertDriveFile />
-      </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={120} /> : data.document_type}
+      <TableCellWrapper align="center">
+        {isLoading ? <Skeleton width={120} /> : data.issue_date} <MdCalendarToday />
       </TableCellWrapper>
       <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={150} /> :
-          (data.document_path ? (
-            <Chip
-              label="ดูเอกสาร"
-              component="a"
-              href={data.document_path}
-              target="_blank"
-              clickable
-              color="primary"
-              size="small"
-              icon={<MdLink />}
-            />
-          ) : 'ไม่มีเอกสาร')}
+        {isLoading ? <Skeleton width={120} /> : data.expiry_date} <MdCalendarToday />
+      </TableCellWrapper>
+      <TableCellWrapper align="left">
+        {isLoading ? <Skeleton width={200} /> : (
+          data.document_file ? (
+            <a href={data.document_file} target="_blank" rel="noopener noreferrer">
+              ดูเอกสาร <MdDescription />
+            </a>
+          ) : 'ไม่มีเอกสาร'
+        )}
       </TableCellWrapper>
       <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={80} /> : data.officer_id} <MdPersonOutline />
+        {isLoading ? <Skeleton width={120} /> : data.officer_id} <MdPersonOutline />
       </TableCellWrapper>
       <TableCellWrapper align="right">
         {isLoading ? <Skeleton variant="circular" width={30} height={30} /> :
@@ -158,7 +170,7 @@ const TableItem = ({ data, onView }: TableItemProps) => {
 type Order = 'asc' | 'desc';
 
 interface Column {
-  id: keyof DocumentData | 'actions';
+  id: keyof WorkPermitData | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';
@@ -201,8 +213,8 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 type DataTableProps = {
-  data: DocumentData[];
-  onView: (data: DocumentData) => void;
+  data: WorkPermitData[];
+  onView: (data: WorkPermitData) => void;
   selectedStaffId: number | null;
 }
 
@@ -210,22 +222,22 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [order, setOrder] = useState<Order>('asc');
-  const [orderBy, setOrderBy] = useState<keyof DocumentData>('document_id');
+  const [orderBy, setOrderBy] = useState<keyof WorkPermitData>('work_permit_id');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const intl = useIntl();
   const labeltext = useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr02.10' }); // สมมติว่ามี ID สำหรับเมนูนี้ (อ้างอิงจาก Document Info)
+    const label = intl.formatMessage({ id: 'sidebar.hr02.07' }); // สมมติว่ามี ID สำหรับเมนูนี้ (อ้างอิงจาก Work Permit)
     return label;
   }, [intl]);
 
   const columns: readonly Column[] = useMemo(
     () => [
-      { id: 'document_id', label: 'รหัสเอกสาร', minWidth: 100, sortable: true },
+      { id: 'work_permit_id', label: 'รหัสใบอนุญาตทำงาน', minWidth: 100, sortable: true },
       { id: 'staff_id', label: 'ชื่อบุคลากร', minWidth: 150, sortable: true },
-      { id: 'document_name', label: 'ชื่อเอกสาร', minWidth: 250, sortable: true },
-      { id: 'document_type', label: 'ประเภทเอกสาร', minWidth: 120, sortable: true },
-      { id: 'document_path', label: 'ไฟล์เอกสาร', minWidth: 150, align: 'center', sortable: false },
+      { id: 'issue_date', label: 'วันที่ออก', minWidth: 120, sortable: true },
+      { id: 'expiry_date', label: 'วันหมดอายุ', minWidth: 120, sortable: true },
+      { id: 'document_file', label: 'ไฟล์เอกสาร', minWidth: 200, sortable: false },
       { id: 'officer_id', label: 'ผู้บันทึก', minWidth: 80, sortable: true },
       { id: 'actions', label: 'Actions', minWidth: 50, align: 'right', sortable: false },
     ],
@@ -243,7 +255,7 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof DocumentData,
+    property: keyof WorkPermitData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -261,12 +273,11 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
     if (searchQuery) {
       const lowerCaseQuery = searchQuery.toLowerCase();
       currentFilteredData = currentFilteredData.filter((row) => {
-        // Search in document_id, document_name, document_type, document_path, officer_id
+        // Search in work_permit_id, issue_date, expiry_date, officer_id
         const rowMatches =
-          String(row.document_id).toLowerCase().includes(lowerCaseQuery) ||
-          (row.document_name && String(row.document_name).toLowerCase().includes(lowerCaseQuery)) ||
-          (row.document_type && String(row.document_type).toLowerCase().includes(lowerCaseQuery)) ||
-          (row.document_path && String(row.document_path).toLowerCase().includes(lowerCaseQuery)) ||
+          String(row.work_permit_id).toLowerCase().includes(lowerCaseQuery) ||
+          (row.issue_date && String(row.issue_date).toLowerCase().includes(lowerCaseQuery)) ||
+          (row.expiry_date && String(row.expiry_date).toLowerCase().includes(lowerCaseQuery)) ||
           (row.officer_id && String(row.officer_id).toLowerCase().includes(lowerCaseQuery));
 
         // Search in staffDetailForTableDisplay (prefixname_id, first_name_th, last_name_th)
@@ -311,7 +322,7 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
                     <TableSortLabel
                       active={orderBy === column.id}
                       direction={orderBy === column.id ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, column.id as keyof DocumentData)}
+                      onClick={(event) => handleRequestSort(event, column.id as keyof WorkPermitData)}
                     >
                       {column.label}
                       {orderBy === column.id ? (
@@ -331,12 +342,12 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
             {filteredRows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <TableItem key={row.document_id} data={row} onView={onView} />
+                <TableItem key={row.work_permit_id} data={row} onView={onView} />
               ))}
             {filteredRows.length === 0 && (
               <TableRow>
                 <TableCell colSpan={columns.length} align="center">
-                  ไม่พบข้อมูลเอกสารสำหรับบุคลากรคนนี้
+                  ไม่พบข้อมูลใบอนุญาตทำงานสำหรับบุคลากรคนนี้
                 </TableCell>
               </TableRow>
             )}
@@ -356,16 +367,16 @@ const DataTable = ({ data, onView, selectedStaffId }: DataTableProps) => {
   );
 };
 
-// Main DocumentInfo Component
-interface DocumentInfoProps {
+// Main WorkPermit Component
+interface WorkPermitProps {
   selectedStaffIdProp: number | null;
 }
 
-const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
-  const [currentViewTask, setCurrentViewTask] = useState<DocumentData | null>(null);
+const WorkPermit: React.FC<WorkPermitProps> = ({ selectedStaffIdProp }) => {
+  const [currentViewTask, setCurrentViewTask] = useState<WorkPermitData | null>(null);
   const [openViewTask, setOpenViewTask] = useState<boolean>(false);
 
-  const onViewTask = (data: DocumentData) => {
+  const onViewTask = (data: WorkPermitData) => {
     setCurrentViewTask(data);
     setOpenViewTask(true);
   };
@@ -383,17 +394,17 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
         dividers
         open={openViewTask}
         onClose={onCloseViewTask}
-        title={<IntlMessages id="common.documentInfoDetail" defaultMessage="รายละเอียดข้อมูลเอกสาร" />}
+        title={<IntlMessages id="common.workPermitDetail" defaultMessage="รายละเอียดข้อมูลใบอนุญาตทำงาน" />}
       >
         <Box sx={{ width: '100%', padding: '20px' }}>
           <TextField
             fullWidth
-            label="รหัสเอกสาร"
+            label="รหัสใบอนุญาตทำงาน"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_id || ''}
-            name="document_id"
+            value={currentViewTask?.work_permit_id || ''}
+            name="work_permit_id"
             disabled
           />
           <TextField
@@ -425,33 +436,48 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
           />
           <TextField
             fullWidth
-            label="ชื่อเอกสาร"
+            label="วันที่ออก"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_name || ''}
-            name="document_name"
+            type="date"
+            value={currentViewTask?.issue_date || ''}
+            name="issue_date"
             disabled
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
           <TextField
             fullWidth
-            label="ประเภทเอกสาร"
+            label="วันหมดอายุ"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_type || ''}
-            name="document_type"
+            type="date"
+            value={currentViewTask?.expiry_date || ''}
+            name="expiry_date"
             disabled
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
           <TextField
             fullWidth
-            label="ที่อยู่ไฟล์เอกสาร"
+            label="ไฟล์เอกสาร"
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentViewTask?.document_path || ''}
-            name="document_path"
+            value={currentViewTask?.document_file || ''}
+            name="document_file"
             disabled
+            InputProps={{
+              endAdornment: currentViewTask?.document_file ? (
+                <a href={currentViewTask.document_file} target="_blank" rel="noopener noreferrer">
+                  <MdFileDownload />
+                </a>
+              ) : null,
+            }}
           />
           <TextField
             fullWidth
@@ -503,4 +529,5 @@ const DocumentInfo: React.FC<DocumentInfoProps> = ({ selectedStaffIdProp }) => {
   );
 };
 
-export default DocumentInfo;
+export default WorkPermit;
+

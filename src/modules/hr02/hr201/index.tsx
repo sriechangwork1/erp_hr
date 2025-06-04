@@ -1,4 +1,4 @@
-// hr202/index.tsx
+// hr201/index.tsx
 'use client';
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
@@ -46,7 +46,8 @@ interface StaffData {
   military_status?: string;
   enlistment_date?: string; // เปลี่ยนเป็น string สำหรับ input type="date"
   ordained_temple?: string;
-  ordained_date?: string; // เปลี่ยนเป็น string สำหรับ input type="date"
+  ordained_date?: string;
+  // เปลี่ยนเป็น string สำหรับ input type="date"
   blood_type?: string;
   weight?: number;
   height?: number;
@@ -61,13 +62,14 @@ interface StaffData {
   hobbies?: string;
   language_skills?: string;
   computer_skills?: string;
-  create_at?: string; // เปลี่ยนเป็น string สำหรับ input type="date"
+  create_at?: string;
+  // เปลี่ยนเป็น string สำหรับ input type="date"
   update_at?: string; // เปลี่ยนเป็น string สำหรับ input type="date"
   officer_id?: number;
   [key: string]: any;
 }
 
-// Helper to format date to YYYY-MM-DD or return empty string for '1900-01-01'
+// Helper to format date toYYYY-MM-DD or return empty string for '1900-01-01'
 const formatDate = (dateString: string | undefined): string => {
     if (!dateString || dateString === '1900-01-01T00:00:00.000Z' || dateString === '1900-01-01' || dateString.startsWith('0000-00-00')) {
         return '';
@@ -269,7 +271,6 @@ const Hr201 = () => {
     const words = label.split("HR202 ");
     return words.length > 1 ? words[1] : label;
   };
-
   const dialogTitle = React.useMemo(() => {
     if (dialogMode === 'add') return "เพิ่ม" + labeltext();
     if (dialogMode === 'edit') return "แก้ไข" + labeltext();
@@ -354,6 +355,8 @@ const Hr201 = () => {
 
   const validateData = () => {
     const newErrors: { [key: string]: string } = {};
+
+    // Required fields
     if (!currentData?.first_name_th) {
       newErrors.first_name_th = 'กรุณากรอกชื่อ (ภาษาไทย)';
     }
@@ -363,28 +366,102 @@ const Hr201 = () => {
     if (!currentData?.gender) {
         newErrors.gender = 'กรุณาเลือกเพศ';
     }
+    if (!currentData?.prefixname_id) {
+        newErrors.prefixname_id = 'กรุณาเลือกคำนำหน้าชื่อ';
+    }
     if (!currentData?.date_of_birth) {
         newErrors.date_of_birth = 'กรุณาเลือกวันเกิด';
     }
     if (!currentData?.citizen_id && !currentData?.foreigner_id) {
         newErrors.citizen_id = 'กรุณากรอกเลขประจำตัวประชาชน หรือ เลขประจำตัวคนต่างด้าว';
-        newErrors.foreigner_id = 'กรุณากรอกเลขประจำตัวประชาชน หรือ เลขประจำตัวคนต่างด้าว';
+        newErrors.foreigner_id = 'กรุณากรอกเลขประจำตัวประชาชน หรือ เลขประจำตัวคนต่างด้าว'; // เพิ่มเพื่อให้แสดง error ที่ทั้งสองช่อง
     }
     if (currentData?.officer_id === undefined || currentData?.officer_id === null || currentData?.officer_id <= 0) {
         newErrors.officer_id = 'กรุณากรอกรหัสผู้จัดการข้อมูล';
     }
- 
+
+    // New validations for other fields
+    if (!currentData?.academic_title) {
+      newErrors.academic_title = 'กรุณากรอกตำแหน่งทางวิชาการ';
+    }
+    if (!currentData?.first_name_en) {
+      newErrors.first_name_en = 'กรุณากรอกชื่อ (ภาษาอังกฤษ)';
+    }
+    if (!currentData?.last_name_en) {
+      newErrors.last_name_en = 'กรุณากรอกนามสกุล (ภาษาอังกฤษ)';
+    }
+    if (!currentData?.middle_name_th) {
+      newErrors.middle_name_th = 'กรุณากรอกชื่อกลาง (ภาษาไทย)';
+    }
+
+
+    if (!currentData?.ethnicity) {
+      newErrors.ethnicity = 'กรุณากรอกเชื้อชาติ';
+    }
+    if (!currentData?.nationality) {
+      newErrors.nationality = 'กรุณากรอกสัญชาติ';
+    }
+    if (!currentData?.religion) {
+      newErrors.religion = 'กรุณากรอกศาสนา';
+    }
+    if (!currentData?.birth_province) {
+      newErrors.birth_province = 'กรุณากรอกจังหวัดที่เกิด';
+    }
+    if (!currentData?.current_address) {
+      newErrors.current_address = 'กรุณากรอกที่อยู่ปัจจุบัน';
+    }
+    if (!currentData?.house_registration_address) {
+      newErrors.house_registration_address = 'กรุณากรอกที่อยู่ตามทะเบียนบ้าน';
+    }
+    if (!currentData?.domicile_address) {
+      newErrors.domicile_address = 'กรุณากรอกที่อยู่ภูมิลำเนา';
+    }
+    if (!currentData?.country) {
+      newErrors.country = 'กรุณากรอกประเทศ';
+    }
+    if (!currentData?.marital_status) {
+      newErrors.marital_status = 'กรุณาเลือกสถานภาพการสมรส';
+    }
+    if (!currentData?.military_status) {
+      newErrors.military_status = 'กรุณาเลือกสถานภาพทางการทหาร';
+    }
+    if (!currentData?.blood_type) {
+      newErrors.blood_type = 'กรุณาเลือกหมู่โลหิต';
+    }
+    
+    // Validate weight and height as numbers and greater than 0
+    if (currentData?.weight === undefined || currentData?.weight === null || currentData?.weight <= 0) {
+      newErrors.weight = 'กรุณากรอกน้ำหนักที่ถูกต้อง';
+    }
+    if (currentData?.height === undefined || currentData?.height === null || currentData?.height <= 0) {
+      newErrors.height = 'กรุณากรอกส่วนสูงที่ถูกต้อง';
+    }
+
+    if (!currentData?.mobile_number1) {
+      newErrors.mobile_number1 = 'กรุณากรอกเบอร์มือถือ 1';
+    }
+
+    // Basic email validation
+    if (!currentData?.email1 || !/\S+@\S+\.\S+/.test(currentData.email1)) {
+      newErrors.email1 = 'กรุณากรอกอีเมล 1 ที่ถูกต้อง';
+    }
+
+    if (!currentData?.budget_type) {
+      newErrors.budget_type = 'กรุณาเลือกประเภทงบประมาณ';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSaveData = () => {
-     if (!validateData()) {
+    if (!validateData()) {
       return;
     }
 
     if (dialogMode === 'add') {
-      const newId = tableData.length > 0 ? Math.max(...tableData.map(d => d.staff_id)) + 1 : 1;
+      const newId = tableData.length > 0 ?
+        Math.max(...tableData.map(d => d.staff_id)) + 1 : 1;
       const newData: StaffData = {
         ...currentData!,
         staff_id: newId,
@@ -518,6 +595,7 @@ const Hr201 = () => {
       }
     >
       <Table data={tableData} onView={handleViewData} onEdit={handleEditData} onDelete={handleDeleteData} />
+
       <Dialog
         maxWidth="md"
         open={isAddTaskOpen}
@@ -534,17 +612,21 @@ const Hr201 = () => {
           }
         }}
       >
-          <AppBar sx={{ position: 'relative', backgroundColor: '#1976d2' }}>
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={onCloseAddTask} aria-label="close">
-                            <CloseIcon />
-                        </IconButton>
-                        <Typography sx={{ ml: 2, flex: 1 }} variant="h3" component="div">
-                            {dialogTitle}ข้อมูลประวัติบุคลากร <strong style={{ color: 'darkorange' }}></strong>   
-                        </Typography>
-                    </Toolbar>
-                </AppBar> 
-                
+        <AppBar sx={{ position: 'relative', backgroundColor: '#1976d2' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={onCloseAddTask}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h3" component="div">
+              {dialogTitle}ข้อมูลประวัติบุคลากร <strong style={{ color: 'darkorange' }}></strong>
+            </Typography>
+          </Toolbar>
+        </AppBar>
         <Box sx={{ p: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -601,6 +683,8 @@ const Hr201 = () => {
                 name="prefixname_id"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.prefixname_id}
+                helperText={errors.prefixname_id}
               >
                 {prefixnameOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -612,7 +696,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="คำนำหน้านามตำแหน่งวิชาการ"
+                label="ตำแหน่งทางวิชาการ"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -620,12 +704,14 @@ const Hr201 = () => {
                 name="academic_title"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.academic_title}
+                helperText={errors.academic_title}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ชื่อ (ไทย)"
+                label="ชื่อ (ภาษาไทย)"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -640,20 +726,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ชื่อกลาง (ไทย)"
-                variant="outlined"
-                margin="normal"
-                size="small"
-                value={currentData?.middle_name_th || ''}
-                name="middle_name_th"
-                onChange={handleInputChange}
-                disabled={dialogMode === 'view'}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="นามสกุล (ไทย)"
+                label="นามสกุล (ภาษาไทย)"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -668,7 +741,22 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ชื่อ (อังกฤษ)"
+                label="ชื่อกลาง (ภาษาไทย)"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={currentData?.middle_name_th || ''}
+                name="middle_name_th"
+                onChange={handleInputChange}
+                disabled={dialogMode === 'view'}
+                error={!!errors.middle_name_th}
+                helperText={errors.middle_name_th}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="ชื่อ (ภาษาอังกฤษ)"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -676,30 +764,34 @@ const Hr201 = () => {
                 name="first_name_en"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.first_name_en}
+                helperText={errors.first_name_en}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ชื่อกลาง (อังกฤษ)"
-                variant="outlined"
-                margin="normal"
-                size="small"
-                value={currentData?.middle_name_en || ''}
-                name="middle_name_en"
-                onChange={handleInputChange}
-                disabled={dialogMode === 'view'}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                label="นามสกุล (อังกฤษ)"
+                label="นามสกุล (ภาษาอังกฤษ)"
                 variant="outlined"
                 margin="normal"
                 size="small"
                 value={currentData?.last_name_en || ''}
                 name="last_name_en"
+                onChange={handleInputChange}
+                disabled={dialogMode === 'view'}
+                error={!!errors.last_name_en}
+                helperText={errors.last_name_en}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="ชื่อกลาง (ภาษาอังกฤษ)"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={currentData?.middle_name_en || ''}
+                name="middle_name_en"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
               />
@@ -737,6 +829,8 @@ const Hr201 = () => {
                 name="ethnicity"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.ethnicity}
+                helperText={errors.ethnicity}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -750,6 +844,8 @@ const Hr201 = () => {
                 name="nationality"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.nationality}
+                helperText={errors.nationality}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -763,6 +859,8 @@ const Hr201 = () => {
                 name="religion"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.religion}
+                helperText={errors.religion}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -793,51 +891,53 @@ const Hr201 = () => {
                 name="birth_province"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.birth_province}
+                helperText={errors.birth_province}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="ที่อยู่ปัจจุบัน"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.current_address || ''}
                 name="current_address"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.current_address}
+                helperText={errors.current_address}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="ที่อยู่ตามทะเบียนบ้าน"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.house_registration_address || ''}
                 name="house_registration_address"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.house_registration_address}
+                helperText={errors.house_registration_address}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ที่อยู่ตามภูมิลำเนา"
+                label="ที่อยู่ภูมิลำเนา"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.domicile_address || ''}
                 name="domicile_address"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.domicile_address}
+                helperText={errors.domicile_address}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -851,13 +951,15 @@ const Hr201 = () => {
                 name="country"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.country}
+                helperText={errors.country}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 select
                 fullWidth
-                label="สถานภาพสมรส"
+                label="สถานภาพการสมรส"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -865,6 +967,8 @@ const Hr201 = () => {
                 name="marital_status"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.marital_status}
+                helperText={errors.marital_status}
               >
                 {maritalStatusOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -885,6 +989,8 @@ const Hr201 = () => {
                 name="military_status"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.military_status}
+                helperText={errors.military_status}
               >
                 {militaryStatusOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -896,7 +1002,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="วันที่เข้ารับการเกณฑ์ทหาร"
+                label="วันที่เกณฑ์ทหาร"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -940,7 +1046,7 @@ const Hr201 = () => {
               <TextField
                 select
                 fullWidth
-                label="กรุ๊ปเลือด"
+                label="หมู่โลหิต"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -948,6 +1054,8 @@ const Hr201 = () => {
                 name="blood_type"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.blood_type}
+                helperText={errors.blood_type}
               >
                 {bloodTypeOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -968,6 +1076,8 @@ const Hr201 = () => {
                 name="weight"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.weight}
+                helperText={errors.weight}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -982,12 +1092,14 @@ const Hr201 = () => {
                 name="height"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.height}
+                helperText={errors.height}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="เบอร์โทรศัพท์บ้าน"
+                label="เบอร์โทรศัพท์"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -1000,7 +1112,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="เบอร์โทรศัพท์มือถือ 1"
+                label="เบอร์มือถือ 1"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -1008,12 +1120,14 @@ const Hr201 = () => {
                 name="mobile_number1"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.mobile_number1}
+                helperText={errors.mobile_number1}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="เบอร์โทรศัพท์มือถือ 2"
+                label="เบอร์มือถือ 2"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -1030,11 +1144,12 @@ const Hr201 = () => {
                 variant="outlined"
                 margin="normal"
                 size="small"
-                type="email"
                 value={currentData?.email1 || ''}
                 name="email1"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.email1}
+                helperText={errors.email1}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -1044,7 +1159,6 @@ const Hr201 = () => {
                 variant="outlined"
                 margin="normal"
                 size="small"
-                type="email"
                 value={currentData?.email2 || ''}
                 name="email2"
                 onChange={handleInputChange}
@@ -1076,6 +1190,8 @@ const Hr201 = () => {
                 name="budget_type"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
+                error={!!errors.budget_type}
+                helperText={errors.budget_type}
               >
                 {budgetTypeOptions.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -1097,45 +1213,39 @@ const Hr201 = () => {
                 disabled={dialogMode === 'view'}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="งานอดิเรก"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.hobbies || ''}
                 name="hobbies"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="ทักษะภาษา"
+                label="ทักษะทางภาษา"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.language_skills || ''}
                 name="language_skills"
                 onChange={handleInputChange}
                 disabled={dialogMode === 'view'}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="ทักษะคอมพิวเตอร์"
                 variant="outlined"
                 margin="normal"
                 size="small"
-                multiline
-                rows={2}
                 value={currentData?.computer_skills || ''}
                 name="computer_skills"
                 onChange={handleInputChange}
@@ -1145,7 +1255,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="วันที่สร้าง"
+                label="สร้างเมื่อ"
                 variant="outlined"
                 margin="normal"
                 size="small"
@@ -1160,7 +1270,7 @@ const Hr201 = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="วันที่อัปเดต"
+                label="อัปเดตเมื่อ"
                 variant="outlined"
                 margin="normal"
                 size="small"
