@@ -95,7 +95,7 @@ const DataTable = ({ data, onView, onEdit, onDelete }: DataTableProps) => {
 
   const labelText = useMemo(() => {
     const label = intl.formatMessage({ id: 'sidebar.hr01.15' }); // เปลี่ยน ID
-    const words = label.split("HR115 "); // ปรับการตัดคำ
+    const words = label.split("HR112 "); // ปรับการตัดคำ
     return words.length > 1 ? words[1] : label;
   }, [intl]);
 

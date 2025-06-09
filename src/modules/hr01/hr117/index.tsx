@@ -74,7 +74,7 @@ const Hr01Page = () => { // เปลี่ยนชื่อเป็น AwardN
   // ฟังก์ชันสำหรับดึงข้อความ label จาก intl
   const labelText = useMemo(() => {
     const label = intl.formatMessage({ id: 'sidebar.hr01.17' }); // สมมติว่าใช้ id นี้
-    const words = label.split("HR117 "); // ตัวอย่างการตัด HR117 ออก
+    const words = label.split("HR114 "); // ตัวอย่างการตัด HR117 ออก
     return words.length > 1 ? words[1] : label;
   }, [intl]);
 

@@ -99,7 +99,7 @@ const Hr01Page = () => {
   // ฟังก์ชันสำหรับดึงข้อความ label จาก intl
   const labelText = useMemo(() => {
     const label = intl.formatMessage({ id: 'sidebar.hr01.15' }); // สมมติว่าใช้ id นี้
-    const words = label.split("HR115 "); // ตัวอย่างการตัด HR115 ออก
+    const words = label.split("HR112 "); // ตัวอย่างการตัด HR115 ออก
     return words.length > 1 ? words[1] : label;
   }, [intl]);
 

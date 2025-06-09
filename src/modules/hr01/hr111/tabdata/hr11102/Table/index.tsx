@@ -1,4 +1,4 @@
-//hr117/table/index.tsx
+//hr11102/table/index.tsx
 import React, { useState, useMemo } from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -17,12 +17,12 @@ import TableRow from '@mui/material/TableRow';
 import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
-// นำเข้า Data interface จากไฟล์หลักของ hr117
+// นำเข้า Data interface จากไฟล์หลักของ hr112
 import { Data } from '../index'; 
 
 // กำหนดประเภทสำหรับทิศทางการจัดเรียง
 type Order = 'asc' | 'desc';
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง AwardName ---
+// --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง District ---
 interface Column {
   id: keyof Data | 'actions';
   label: string;
@@ -75,7 +75,7 @@ type DataTableProps = {
   data: Data[];
   onView: (data: Data) => void;
   onEdit: (data: Data) => void;
-  onDelete: (id: number) => void; // id เป็น number
+  onDelete: (id: string) => void; // id เป็น string
 }
 
 const DataTable = ({ data, onView, onEdit, onDelete }: DataTableProps) => {
@@ -94,16 +94,15 @@ const DataTable = ({ data, onView, onEdit, onDelete }: DataTableProps) => {
   }, [data]);
 
   const labelText = useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr01.17' }); // เปลี่ยน ID
-    const words = label.split("HR114 "); // ปรับการตัดคำ
+    const label = intl.formatMessage({ id: 'sidebar.hr01.1102' }); // เปลี่ยน ID
+    const words = label.split("HR11102 "); // ปรับการตัดคำ
     return words.length > 1 ? words[1] : label;
   }, [intl]);
 
   const columns: readonly Column[] = useMemo(
     () => [
       { id: 'id', label: 'รหัส' + labelText, minWidth: 100, sortable: true },
-      { id: 'award_name', label: 'ชื่อ' + labelText + 'ไทย', minWidth: 200, sortable: true },
-      { id: 'awardname_abb', label: 'ชื่อย่อภาษาไทย', minWidth: 150, align: 'center', sortable: true },
+      { id: 'district_name', label: 'ชื่อ' + labelText, minWidth: 200, sortable: true },
       { id: 'create_at', label: 'วันที่สร้าง', minWidth: 170, align: 'center', sortable: true },
       { id: 'officer_id', label: 'ผู้บันทึก', minWidth: 120, align: 'center', sortable: true },
       { id: 'actions', label: 'Actions', minWidth: 80, align: 'right', sortable: false },

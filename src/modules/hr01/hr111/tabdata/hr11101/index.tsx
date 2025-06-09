@@ -1,4 +1,4 @@
-//hr116/index.tsx
+//hr11101/index.tsx
 'use client';
 import React, { useState, useMemo } from 'react';
 import AppCard from '@crema/components/AppCard';
@@ -10,42 +10,43 @@ import AppDialog from '@crema/components/AppDialog';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
-import Table from './Table'; // ใช้ Table ของ hr117
+import Table from './Table'; // ใช้ Table ของ hr112
 
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตาราง Religion ---
+// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตาราง SubDistrict ---
 export interface Data {
-  id: number; // religion_id (เป็น number)
-  religion_name: string;
+  id: string; // sub_district_id (เป็น string)
+  sub_district_name: string;
   create_at: string;
   update_at: string;
   officer_id: number;
   [key: string]: any;
 }
 
-// ข้อมูลจำลองเริ่มต้นสำหรับตาราง Religion
+// ข้อมูลจำลองเริ่มต้นสำหรับตาราง SubDistrict
 const initialAllRows: Data[] = [
-  { religion_id: 0, religion_name: 'ไม่นับถือศาสนาใด', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 1, religion_name: 'ศาสนาพุทธ', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 2, religion_name: 'ศาสนาอิสลาม', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 3, religion_name: 'ศาสนาฮินดู', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 4, religion_name: 'ศาสนายิว', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 5, religion_name: 'ศาสนาซิกซ์', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 6, religion_name: 'ศาสนาคริสต์', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 7, religion_name: 'ศาสนาเชน', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 8, religion_name: 'ศาสนาโซโรอัสเตอร์', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 9, religion_name: 'ศาสนาบาไฮ', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 10, religion_name: 'ศาสนาอื่นๆ', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-  { religion_id: 11, religion_name: 'ไม่ทราบ', create_at: '2025-06-05', update_at: '2025-06-05', officer_id: 6800001 },
-].map(item => ({
-  id: item.religion_id, // เปลี่ยนชื่อ religion_id เป็น id
-  religion_name: item.religion_name,
-  create_at: item.create_at,
-  update_at: item.update_at,
-  officer_id: item.officer_id,
-}));
+  { id: '090000', sub_district_name: 'ต่างประเทศ', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100101', sub_district_name: 'พระบรมมหาราชวัง', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100102', sub_district_name: 'วังบูรพาภิรมย์', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100103', sub_district_name: 'วัดราชบพิธ', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100104', sub_district_name: 'สำราญราษฎร์', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100105', sub_district_name: 'ศาลเจ้าพ่อเสือ', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100106', sub_district_name: 'เสาชิงช้า', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100107', sub_district_name: 'บวรนิเวศ', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100108', sub_district_name: 'ตลาดยอด', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100109', sub_district_name: 'ชนะสงคราม', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100110', sub_district_name: 'บ้านพานถม', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100111', sub_district_name: 'บางขุนพรหม', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100112', sub_district_name: 'วัดสามพระยา', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100201', sub_district_name: 'ดุสิต', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100202', sub_district_name: 'วชิรพยาบาล', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100203', sub_district_name: 'สวนจิตรลดา', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100204', sub_district_name: 'สี่แยกมหานาค', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100205', sub_district_name: 'บางซื่อ*', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100206', sub_district_name: 'ถนนนครไชยศรี', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+  { id: '100299', sub_district_name: 'สามเสนใน*', create_at: '2025-06-06', update_at: '2025-06-06', officer_id: 680001 },
+];
 
-
-const Hr01Page = () => {  
+const Hr01Page = () => { // สามารถเปลี่ยนชื่อเป็น SubDistrictPage หรือ Hr112Page เพื่อความชัดเจน
   const [isAddTaskOpen, setAddTaskOpen] = useState(false);
   const [dialogMode, setDialogMode] = useState<'add' | 'edit' | 'view'>('add');
   const [currentData, setCurrentData] = useState<Data | null>(null);
@@ -56,8 +57,9 @@ const Hr01Page = () => {
 
   // ฟังก์ชันสำหรับดึงข้อความ label จาก intl
   const labelText = useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr01.16' }); // สมมติว่าใช้ id นี้
-    const words = label.split("HR113 "); // ตัวอย่างการตัด HR116 ออก
+    // สมมติว่าคุณมี id สำหรับ SubDistrict ในไฟล์ IntlMessages ของคุณ
+    const label = intl.formatMessage({ id: 'sidebar.hr01.11' }); // สมมติว่าใช้ id นี้
+    const words = label.split("HR111 "); 
     return words.length > 1 ? words[1] : label;
   }, [intl]);
 
@@ -76,11 +78,11 @@ const Hr01Page = () => {
   const onOpenAddTask = () => {
     setDialogMode('add');
     setCurrentData({
-      id: 0, // ค่าเริ่มต้นสำหรับ religion_id
-      religion_name: '',
+      id: '', // sub_district_id จะถูกกำหนดเมื่อบันทึก
+      sub_district_name: '',
       create_at: getFormattedDate(),
       update_at: getFormattedDate(),
-      officer_id: 6800001 // ค่าเริ่มต้นผู้บันทึก
+      officer_id: 680001 // ค่าเริ่มต้นผู้บันทึก
     });
     setAddTaskOpen(true);
     setErrors({}); // เคลียร์ข้อผิดพลาดเมื่อเปิด Dialog
@@ -96,7 +98,7 @@ const Hr01Page = () => {
     const { name, value } = e.target;
     setCurrentData(prevData => ({
       ...prevData!,
-      [name]: name === 'id' || name === 'officer_id' ? parseInt(value, 10) || 0 : value
+      [name]: name === 'officer_id' ? parseInt(value, 10) || 0 : value
     }));
     if (errors[name]) {
       setErrors(prevErrors => {
@@ -110,11 +112,11 @@ const Hr01Page = () => {
   // ฟังก์ชันสำหรับตรวจสอบข้อมูล
   const validateData = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!currentData?.id && currentData?.id !== 0) { // ตรวจสอบ id ด้วย (เนื่องจาก 0 เป็นค่าเริ่มต้น)
-      newErrors.id = 'กรุณากรอกรหัสศาสนา';
+    if (!currentData?.id) {
+      newErrors.id = 'กรุณากรอกรหัสตำบล';
     }
-    if (!currentData?.religion_name) {
-      newErrors.religion_name = 'กรุณากรอกชื่อศาสนา';
+    if (!currentData?.sub_district_name) {
+      newErrors.sub_district_name = 'กรุณากรอกชื่อตำบล';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -134,7 +136,7 @@ const Hr01Page = () => {
     if (dialogMode === 'add') {
       // ตรวจสอบว่ารหัสซ้ำหรือไม่
       if (tableData.some(d => d.id === currentData!.id)) {
-        Swal.fire('ข้อผิดพลาด!', 'รหัสศาสนานี้มีอยู่แล้ว', 'error');
+        Swal.fire('ข้อผิดพลาด!', 'รหัสตำบลนี้มีอยู่แล้ว', 'error');
         return;
       }
       const newData: Data = {
@@ -172,7 +174,7 @@ const Hr01Page = () => {
     setAddTaskOpen(true);
   };
 
-  const handleDeleteData = async (id: number) => { // id เป็น number
+  const handleDeleteData = async (id: string) => { // id เป็น string
     const result = await Swal.fire({
       title: 'คุณแน่ใจหรือไม่?',
       text: "คุณต้องการลบข้อมูลนี้ใช่ไหม?",
@@ -196,7 +198,7 @@ const Hr01Page = () => {
   return (
     <AppCard
       contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr01.16" />}
+      title={<IntlMessages id="sidebar.hr01.1101" />}
       action={
         <Button
           variant="outlined"
@@ -240,7 +242,6 @@ const Hr01Page = () => {
             disabled={dialogMode === 'view' || dialogMode === 'edit'} // รหัสเพิ่มได้อย่างเดียว แก้ไขไม่ได้
             error={!!errors.id}
             helperText={errors.id}
-            type="number" // กำหนด type เป็น number
           />
           <TextField
             fullWidth
@@ -248,12 +249,12 @@ const Hr01Page = () => {
             variant="outlined"
             margin="normal"
             size="small"
-            value={currentData?.religion_name || ''}
-            name="religion_name"
+            value={currentData?.sub_district_name || ''}
+            name="sub_district_name"
             onChange={handleInputChange}
             disabled={dialogMode === 'view'}
-            error={!!errors.religion_name}
-            helperText={errors.religion_name}
+            error={!!errors.sub_district_name}
+            helperText={errors.sub_district_name}
           />
           <TextField
             fullWidth
@@ -265,7 +266,6 @@ const Hr01Page = () => {
             name="officer_id"
             onChange={handleInputChange}
             disabled={dialogMode === 'view'}
-            type="number" // กำหนด type เป็น number
           />
 
           <Box mt={2} display="flex" justifyContent="flex-end">
@@ -284,4 +284,4 @@ const Hr01Page = () => {
   );
 };
 
-export default Hr01Page;
+export default Hr01Page; // สามารถเปลี่ยนชื่อ export ได้
