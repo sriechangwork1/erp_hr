@@ -55,6 +55,18 @@ export interface StaffData {
   create_at?: string;
   update_at?: string;
   officer_id?: number;
+  faculty_id?: number;
+  department_id?: number;
+  program_id?: number;
+  staff_status?: number;
+  staff_type_id?: number;
+  position_type_id?: number;
+  job_title_id?: number;
+  work_line_id?: number;
+  position_level_id?: number;
+  academic_position_id?: number;
+  support_position_id?: number;
+  admin_position_id?: number;
   [key: string]: any;
 }
 
@@ -92,6 +104,85 @@ const budgetTypeOptions = [
   { value: 'งบประมาณแผ่นดิน', label: 'งบประมาณแผ่นดิน' },
   { value: 'เงินงบประมาณรายได้', label: 'เงินงบประมาณรายได้' },
 ];
+
+
+  const faculty_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const department_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const program_id_Options = [
+    { value: '0', label: 'ไม่มีหลักสูตร' },
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const staff_status_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const staff_type_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const position_type_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' }, 
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const job_title_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const work_line_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ]; 
+  const position_level_id_Options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const academic_position_id_Options = [
+    { value: '0', label: 'ไม่มี'},
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const support_position_id_Options = [
+    { value: '0', label: 'ไม่มี'},
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];
+  const admin_position_id_Options = [
+    { value: '0', label: 'ไม่มี'},
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+  ];  
+   
 
 // --- StaffDetailForm Component ---
 interface StaffDetailFormProps {
@@ -648,6 +739,239 @@ const StaffDetailForm: React.FC<StaffDetailFormProps> = ({
             onChange={handleInputChange}
           />
         </Grid>
+
+
+              <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="คณะหน่วยงาน"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.faculty_id || ''}
+                name="faculty_id"
+                onChange={handleInputChange}
+              >
+                {faculty_id_Options.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ภาควิชา/สาขาวิชา"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.department_id || ''}
+                name="department_id"
+                onChange={handleInputChange}
+              >
+                {department_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="หลักสูตร"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.program_id || ''}
+                name="program_id"
+                onChange={handleInputChange}
+              >
+                {program_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="สถานะบุคลากร"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.staff_status || ''} 
+                name="staff_status"
+                onChange={handleInputChange}
+              >
+                {staff_status_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ประเภทบุคลากร"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.staff_type_id || ''}  
+                name="staff_type_id"
+                onChange={handleInputChange}
+              >
+                {staff_type_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ตำแหน่งประเภท"
+                 variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.position_type_id || ''}  
+                name="position_type_id"
+                onChange={handleInputChange}
+              >
+                {position_type_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ตำแหน่งสายงาน"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.job_title_id || ''}  
+                name="job_title_id"
+                onChange={handleInputChange}
+              >
+                {job_title_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="รายชื่อสายงาน"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.work_line_id || ''}  
+                name="work_line_id"
+                onChange={handleInputChange}
+              >
+                {work_line_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ระดับตำแหน่ง"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.position_level_id || ''}  
+                name="position_level_id"
+                onChange={handleInputChange}
+              >
+                {position_level_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ตำแหน่งทางสายวิชาการ"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.academic_position_id || ''}  
+                name="academic_position_id"
+                onChange={handleInputChange}
+              >
+                {academic_position_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ตำแหน่งทางสายสนับสนุน"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.support_position_id || ''}  
+                name="support_position_id"
+                onChange={handleInputChange}
+              >
+                {support_position_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                select
+                fullWidth
+                label="ตำแหน่งบริหาร"
+                variant="outlined"
+                margin="normal"
+                size="small"
+                value={formData?.admin_position_id || ''}  
+                name="admin_position_id"
+                onChange={handleInputChange}
+              >
+                {admin_position_id_Options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+
+
+
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
