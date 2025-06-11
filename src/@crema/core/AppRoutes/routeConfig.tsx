@@ -371,6 +371,22 @@ const routesConfig = [
             //icon: <MdOutlineSettingsAccessibility />,
             url: '/hr07/hr702',
           },
+          {
+            id: 'hr703',
+            title: 'sidebar.hr07',
+            messageId: 'sidebar.hr07.03',
+            type: 'item',
+            //icon: <MdOutlineSettingsAccessibility />,
+            url: '/hr07/hr703',
+          },
+          {
+            id: 'hr704',
+            title: 'sidebar.hr07',
+            messageId: 'sidebar.hr07.04',
+            type: 'item',
+            //icon: <MdOutlineSettingsAccessibility />,
+            url: '/hr07/hr704',
+          },
         ],
       },
       {
