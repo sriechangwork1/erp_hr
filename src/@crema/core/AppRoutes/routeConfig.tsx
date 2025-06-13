@@ -299,21 +299,59 @@ const routesConfig = [
         title: 'sidebar.hr03',
         messageId: 'sidebar.hr03',
         type: 'collapse',
-        icon: <MdOutlineTransferWithinAStation />
+        icon: <MdOutlineTransferWithinAStation />,
+        children: [
+          {
+            id: 'hr301',
+            title: 'sidebar.hr03',
+            messageId: 'sidebar.hr03.01',
+            type: 'item',
+            //icon: <MdOutlineSupervisorAccount />,
+            url: '/hr03/hr301',
+          },
+        ],
       },
       {
         id: 'hr04',
         title: 'sidebar.hr04',
         messageId: 'sidebar.hr04',
         type: 'collapse',
-        icon: <MdEditDocument />
+        icon: <MdEditDocument />,
+        children: [
+          {
+            id: 'hr401',
+            title: 'sidebar.hr04',
+            messageId: 'sidebar.hr04.01',
+            type: 'item',
+            url: '/hr04/hr401',
+          },
+        ],
       },
       {
         id: 'hr05',
         title: 'Ecommerce',
         messageId: 'sidebar.hr05',
         type: 'collapse',
-        icon: <MdOutlineSwitchAccessShortcutAdd />
+        icon: <MdOutlineSwitchAccessShortcutAdd />,
+        children: [
+          {
+            id: 'hr501',
+            title: 'sidebar.hr05',
+            messageId: 'sidebar.hr05.01',
+            type: 'item',
+            //icon: <MdOutlineSupervisorAccount />,
+            url: '/hr05/hr501',
+          },
+          {
+            id: 'hr502',
+            title: 'sidebar.hr05',
+            messageId: 'sidebar.hr05.02',
+            type: 'item',
+            //icon: <MdOutlineSupervisorAccount />,
+            url: '/hr05/hr502',
+          },
+        ],
+
       },
       {
         id: 'hr06',
@@ -328,23 +366,7 @@ const routesConfig = [
             messageId: 'sidebar.hr06.01',
             type: 'item',
             //icon: <MdOutlineSupervisorAccount />,
-            url: '/hr06/601',
-          },
-          {
-            id: 'hr602',
-            title: 'sidebar.hr06',
-            messageId: 'sidebar.hr06.02',
-            type: 'item',
-            //icon: <MdOutlineSupervisorAccount />,
-            url: '/hr06/602',
-          },
-          {
-            id: 'hr603',
-            title: 'sidebar.hr06',
-            messageId: 'sidebar.hr06.03',
-            type: 'item',
-            //icon: <MdOutlineSupervisorAccount />,
-            url: '/hr06/603',
+            url: '/hr06/hr601',
           },
         ],
       },
