@@ -1,366 +1,457 @@
- //hr902/index.tsx
+// hr906/index.tsx
 'use client';
-import React, { useState, useCallback, useMemo } from 'react';
-import AppCard from '@crema/components/AppCard';
+import React, { useState, useMemo, useCallback } from 'react';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
-import Hr903Table from './Table'; // ตรวจสอบว่าชื่อไฟล์และ path ถูกต้อง
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Swal from 'sweetalert2';
-import MenuItem from '@mui/material/MenuItem';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import AppInfoView from '@crema/components/AppInfoView';
+import { Box, Typography, TextField, Button } from '@mui/material';
+import Swal from 'sweetalert2';
 
-// สำหรับ Export PDF
+// Import the new Table component from the table folder
+import Table from './Table';
+
+// Exporting types directly from types.ts
+import { FacultyData, PositionStaffing, StaffTypeStaffing, FacultyStaffingDetail, SummaryRow } from './types';
+
+// สำหรับ Export ทั้งหมด (อาจจะรวมหลายชีท/หลายหน้า)
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-// *** สำคัญมากสำหรับภาษาไทย: ตั้งค่า Font ***
-// หากคุณใช้ jspdf-autotable-font-loader และได้ติดตั้ง Font THSarabunNew แล้ว
 // import 'jspdf-autotable-font-loader/font/THSarabunNew'; // อย่าลืมติดตั้งและตั้งค่า Font
-
-// สำหรับ Export Excel
 import * as XLSX from 'xlsx';
 
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
-// ควรจะดึงมาจากไฟล์กลาง หรือนิยามซ้ำหากยังไม่มีไฟล์กลาง
-interface AwardData {
-  award_id: number;
-  staff_id: number; // เพิ่มเข้ามาสำหรับแสดงในรายละเอียด
-  award_name: string;
-  award_date: string;
-  award_type: string;
-  announcement_details: string;
-  announcement_date: string;
-  gazette_volume: string;
-  gazette_number: string;
-  gazette_section: string;
-  return_date?: string;
-  create_at: string;
-  update_at: string;
-  officer_id: number;
-  award_status: string;
-  [key: string]: any;
-}
-
-// ข้อมูลเริ่มต้นที่ให้มาใหม่
-const initialAwardRows: AwardData[] = [
-  {
-    award_id: 1,
-    staff_id: 101,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือก ชั้นที่ 1 ประถมาภรณ์ช้างเผือก (ป.ช.)',
-    award_date: '2023-12-05',
-    award_type: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือกและมหาวชิรมงกุฎ ประจำปี ๒๕๖๖',
-    announcement_date: '2024-01-20',
-    gazette_volume: '141',
-    gazette_number: '3 ข',
-    gazette_section: 'หน้า 1',
-    return_date: undefined, // ยังไม่ส่งคืน
-    create_at: '2024-01-25',
-    update_at: '2024-01-25',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 2,
-    staff_id: 102,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันมีเกียรติยศยิ่งมงกุฎไทย ชั้นที่ 5 เบญจมาภรณ์มงกุฎไทย (บ.ม.)',
-    award_date: '2022-12-05',
-    award_type: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือกและมหาวชิรมงกุฎ ประจำปี ๒๕๖๕',
-    announcement_date: '2023-01-15',
-    gazette_volume: '140',
-    gazette_number: '2 ข',
-    gazette_section: 'หน้า 5',
-    return_date: undefined,
-    create_at: '2023-01-20',
-    update_at: '2023-01-20',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 3,
-    staff_id: 103,
-    award_name: 'เหรียญจักรพรรดิมาลา (ร.จ.พ.)',
-    award_date: '2023-05-10',
-    award_type: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเหรียญจักรพรรดิมาลา',
-    announcement_date: '2023-07-01',
-    gazette_volume: '140',
-    gazette_number: 'พิเศษ 100 ง',
-    gazette_section: 'หน้า 2',
-    return_date: undefined,
-    create_at: '2023-07-05',
-    update_at: '2023-07-05',
-    officer_id: 2,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 4,
-    staff_id: 104,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือก ชั้นที่ 5 เบญจมาภรณ์ช้างเผือก (บ.ช.)',
-    award_date: '2024-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'อยู่ระหว่างดำเนินการ',
-    announcement_date: '2025-01-01',
-    gazette_volume: '142',
-    gazette_number: '1 ข',
-    gazette_section: 'หน้า 10',
-    return_date: undefined,
-    create_at: '2024-12-10',
-    update_at: '2024-12-10',
-    officer_id: 3,
-    award_status: 'อยู่ในระหว่างยื่นขอ',
-  },
-  {
-    award_id: 5,
-    staff_id: 105,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันมีเกียรติยศยิ่งมงกุฎไทย ชั้นที่ 4 จตุรถาภรณ์มงกุฎไทย (จ.ม.)',
-    award_date: '2024-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'รอประกาศราชกิจจานุเบกษา',
-    announcement_date: '2025-02-15',
-    gazette_volume: '142',
-    gazette_number: '2 ข',
-    gazette_section: 'หน้า 3',
-    return_date: undefined,
-    create_at: '2024-12-12',
-    update_at: '2024-12-12',
-    officer_id: 4,
-    award_status: 'รอประกาศราชกิจจานุเบกษา',
-  },
-  {
-    award_id: 6,
-    staff_id: 101,
-    award_name: 'เหรียญรัตนาภรณ์ รัชกาลที่ ๙ ชั้นที่ ๔ (ร.ร.๙ ๔)',
-    award_date: '2020-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเหรียญรัตนาภรณ์',
-    announcement_date: '2021-01-10',
-    gazette_volume: '138',
-    gazette_number: '1 ข',
-    gazette_section: 'หน้า 8',
-    return_date: '2023-03-01', // ตัวอย่างการส่งคืน
-    create_at: '2021-01-15',
-    update_at: '2023-03-01',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-];
-
-// ประเภทของ award_type ที่คุณระบุ
-const predefinedAwardTypes = [
-  'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น',
-  'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ',
-  'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ',
-  'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ' // เพิ่มจากข้อมูลที่ให้มาใหม่
+// ข้อมูล FacultyData (จาก sys_faculty_202506192125.json)
+const initialFacultyData: FacultyData[] = [
+    { "FACULTYID": "1", "FACULTYNAME": "สำนักงานอธิการบดี-กองบริหารงานทั่วไป", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001702", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "2", "FACULTYNAME": "สำนักงานอธิการบดี-กองนโยบายและแผน", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001703", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "3", "FACULTYNAME": "สำนักงานอธิการบดี-กองพัฒนานักศึกษา", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001704", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "4", "FACULTYNAME": "สำนักงานอธิการบดี-กองกลาง", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001705", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "5", "FACULTYNAME": "สำนักงานอธิการบดี-กองอาคารและสถานที่", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001706", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "6", "FACULTYNAME": "สำนักงานอธิการบดี-กองบริหารงานบุคคล", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001707", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "7", "FACULTYNAME": "สำนักงานอธิการบดี-กองวิเทศสัมพันธ์และสื่อสารองค์กร", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001708", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "8", "FACULTYNAME": "สำนักงานอธิการบดี-ศูนย์เทคโนโลยีสารสนเทศ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001709", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "9", "FACULTYNAME": "สำนักงานอธิการบดี-หน่วยตรวจสอบภายใน", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001710", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "10", "FACULTYNAME": "สำนักงานอธิการบดี-งานนิติการ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001711", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "11", "FACULTYNAME": "สำนักงานอธิการบดี-กองแผนงาน", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001712", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "12", "FACULTYNAME": "คณะครุศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001713", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "13", "FACULTYNAME": "คณะมนุษยศาสตร์และสังคมศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001714", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "14", "FACULTYNAME": "คณะวิทยาศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001715", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "15", "FACULTYNAME": "คณะวิทยาการจัดการ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001716", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "16", "FACULTYNAME": "คณะเทคโนโลยีอุตสาหกรรม", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001717", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "17", "FACULTYNAME": "คณะเกษตรศาสตร์และเทคโนโลยี", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001718", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "18", "FACULTYNAME": "คณะนิติศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001719", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "19", "FACULTYNAME": "บัณฑิตวิทยาลัย", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001720", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "20", "FACULTYNAME": "วิทยาลัยการเมืองการปกครอง", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001721", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "21", "FACULTYNAME": "คณะเภสัชศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001722", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "22", "FACULTYNAME": "คณะวิศวกรรมศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001723", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "23", "FACULTYNAME": "คณะพยาบาลศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001724", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "24", "FACULTYNAME": "คณะการท่องเที่ยวและการโรงแรม", "FACULTYNAMEENG": null, "FACULTYTYPEID": 1, "BUILDING": "26001725", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "25", "FACULTYNAME": "สำนักวิทยบริการและเทคโนโลยีสารสนเทศ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 2, "BUILDING": "26001726", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "26", "FACULTYNAME": "สำนักศิลปะและวัฒนธรรม", "FACULTYNAMEENG": null, "FACULTYTYPEID": 2, "BUILDING": "26001727", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "27", "FACULTYNAME": "สถาบันวิจัยและพัฒนา", "FACULTYNAMEENG": null, "FACULTYTYPEID": 2, "BUILDING": "26001728", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "28", "FACULTYNAME": "ศูนย์ภาษา", "FACULTYNAMEENG": null, "FACULTYTYPEID": 2, "BUILDING": "26001729", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "29", "FACULTYNAME": "โรงเรียนสาธิตมหาวิทยาลัยราชภัฏมหาสารคาม", "FACULTYNAMEENG": null, "FACULTYTYPEID": 3, "BUILDING": "26001730", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "30", "FACULTYNAME": "ศูนย์วิทยาศาสตร์", "FACULTYNAMEENG": null, "FACULTYTYPEID": 2, "BUILDING": "26001731", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "31", "FACULTYNAME": "หน่วยเรือนจำชั่วคราว", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001732", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "32", "FACULTYNAME": "สำนักงานอธิการบดี-กองพัฒนาระบบ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001733", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "33", "FACULTYNAME": "สำนักงานอธิการบดี-กองงานบริหารงานทั่วไป", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001734", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "34", "FACULTYNAME": "สำนักงานอธิการบดี-งานทะเบียนและประเมินผล", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001735", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "35", "FACULTYNAME": "สำนักงานอธิการบดี-งานพัสดุ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001736", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "36", "FACULTYNAME": "สำนักงานอธิการบดี-กองนโยบายและแผน", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001737", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "37", "FACULTYNAME": "สำนักงานอธิการบดี-กองคลัง", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001738", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "38", "FACULTYNAME": "สำนักงานอธิการบดี-กองงานบริหารงานทั่วไป", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001739", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "39", "FACULTYNAME": "สำนักงานอธิการบดี-กองคลังและพัสดุ", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": "26001720", "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" },
+    { "FACULTYID": "40", "FACULTYNAME": "มหาวิทยาลัยนครพนม", "FACULTYNAMEENG": null, "FACULTYTYPEID": 0, "BUILDING": null, "SUBDISTRICT": null, "DISTRICT": null, "PROVINCE": null, "POSTCODE": 0, "PHONE": null, "FAX": null, "PHONEIN": null, "EMAIL": null, "FACSTATUS": null, "REMARK": null, "STAFFID": null, "CREATEDATE": null, "BUDGETTYPEID": null, "GROUPID": null, "REF_FAC": "00320" }
 ];
 
 
-const Hr903Page = () => {
-  const { messages } = useIntl();
-  const [awardData] = useState<AwardData[]>(initialAwardRows); // ไม่จำเป็นต้องใช้ setAwardData ถ้าข้อมูลไม่เปลี่ยน
-  const [filterAwardType, setFilterAwardType] = useState<string>('');
-  const [filterAwardName, setFilterAwardName] = useState<string>('');
+// กำหนดตำแหน่งสำหรับสายวิชาการและสายสนับสนุน
+const academicPositions = ['ศาสตราจารย์', 'รองศาสตราจารย์', 'ผู้ช่วยศาสตราจารย์', 'อาจารย์'];
+const supportPositions = ['นักวิชาการศึกษา', 'เจ้าหน้าที่ห้องปฏิบัติการ', 'เลขานุการคณะ', 'นักทรัพยากรบุคคล', 'เจ้าหน้าที่ธุรการ', 'ผู้อำนวยการกอง', 'นักวิเคราะห์นโยบายและแผน', 'บุคลากรวิทยาศาสตร์', 'พนักงานขับรถ', 'ยาม'];
 
-  // สรุปข้อมูลสำหรับ Dashboard
-  const summaryData = useMemo(() => {
-    const totalAwards = awardData.length;
-    const received = awardData.filter(item => item.award_status === 'ได้รับแล้ว').length;
-    const pending = awardData.filter(item => item.award_status === 'อยู่ในระหว่างยื่นขอ' || item.award_status === 'รอประกาศราชกิจจานุเบกษา').length;
-    const returned = awardData.filter(item => item.return_date !== undefined && item.return_date !== null && item.return_date !== '').length;
+// ฟังก์ชันจำลองข้อมูลอัตรากำลังตามตำแหน่งสำหรับ 1 หน่วยงาน
+const generateStaffingByPositionData = (facultyId: string): StaffTypeStaffing[] => {
+  const staffingDetails: StaffTypeStaffing[] = [];
 
-    return {
-      totalAwards,
-      received,
-      pending,
-      returned,
-    };
-  }, [awardData]);
-
-  // ดึงรายการชื่อเครื่องราชฯ ที่ไม่ซ้ำกัน
-  const uniqueAwardNames = useMemo(() => {
-    const names = new Set<string>();
-    awardData.forEach(item => names.add(item.award_name));
-    return Array.from(names);
-  }, [awardData]);
-
-  // ฟังก์ชันสำหรับการดูรายละเอียด (ส่งไปให้ Hr903TableItem)
-  const handleView = useCallback((data: AwardData) => {
-    Swal.fire({
-      title: 'รายละเอียดเครื่องราชอิสริยาภรณ์',
-      html: `
-        <p><strong>รหัสเครื่องราชฯ:</strong> ${data.award_id}</p>
-        <p><strong>รหัสพนักงาน:</strong> ${data.staff_id}</p>
-        <p><strong>ชื่อเครื่องราชฯ:</strong> ${data.award_name}</p>
-        <p><strong>วันที่ได้รับ:</strong> ${data.award_date}</p>
-        <p><strong>ประเภท:</strong> ${data.award_type}</p>
-        <p><strong>สถานะ:</strong> ${data.award_status}</p>
-        <p><strong>รายละเอียดประกาศ:</strong> ${data.announcement_details}</p>
-        <p><strong>วันที่ประกาศ:</strong> ${data.announcement_date}</p>
-        <p><strong>เล่มที่:</strong> ${data.gazette_volume}</p>
-        <p><strong>ตอนที่:</strong> ${data.gazette_number}</p>
-        <p><strong>หน้า:</strong> ${data.gazette_section}</p>
-        <p><strong>วันที่ส่งคืน:</strong> ${data.return_date || '-'}</p>
-        <p><strong>สร้างเมื่อ:</strong> ${data.create_at}</p>
-        <p><strong>แก้ไขล่าสุด:</strong> ${data.update_at}</p>
-        <p><strong>รหัสผู้บันทึก:</strong> ${data.officer_id}</p>
-      `,
-      icon: 'info',
-      confirmButtonText: 'ปิด'
-    });
-  }, []);
-
-  // กรองข้อมูลตามเงื่อนไข (award_type, award_name)
-  const filteredData = useMemo(() => {
-    let currentData = awardData;
-
-    if (filterAwardType) {
-      currentData = currentData.filter(item => item.award_type === filterAwardType);
-    }
-
-    if (filterAwardName) {
-      currentData = currentData.filter(item => item.award_name === filterAwardName);
-    }
-    return currentData;
-  }, [awardData, filterAwardType, filterAwardName]);
-
-  // Handle Copy Table Data
-  const handleCopyTable = () => {
-    let tableString = '';
-    // Headers
-    const headers = [
-      'รหัส', 'รหัสพนักงาน', 'ชื่อเครื่องราชอิสริยาภรณ์', 'วันที่ได้รับ', 'ประเภท', 'วันที่ประกาศ',
-      'เล่มที่', 'ตอนที่', 'หน้า', 'สถานะ', 'สร้างเมื่อ', 'แก้ไขล่าสุด', 'รหัสผู้บันทึก', 'วันที่ส่งคืน'
-    ];
-    tableString += headers.join('\t') + '\n';
-
-    // Data Rows
-    filteredData.forEach(row => { // ใช้ filteredData
-      const rowValues = [
-        row.award_id,
-        row.staff_id,
-        row.award_name,
-        row.award_date,
-        row.award_type,
-        row.announcement_date,
-        row.gazette_volume,
-        row.gazette_number,
-        row.gazette_section,
-        row.award_status,
-        row.create_at,
-        row.update_at,
-        row.officer_id,
-        row.return_date || '-',
-      ];
-      tableString += rowValues.join('\t') + '\n';
-    });
-
-    navigator.clipboard.writeText(tableString)
-      .then(() => {
-        Swal.fire('คัดลอกสำเร็จ!', 'ข้อมูลตารางถูกคัดลอกไปยังคลิปบอร์ดแล้ว', 'success');
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err);
-        Swal.fire('คัดลอกไม่สำเร็จ!', 'ไม่สามารถคัดลอกข้อมูลตารางได้', 'error');
-      });
+  // Random function for approved/actual
+  const getRandomNumbers = (baseApproved: number) => {
+    const approved = baseApproved + Math.floor(Math.random() * 5); // +0-4
+    const actual = Math.min(approved, approved - Math.floor(Math.random() * (approved * 0.2))); // ไม่เกิน approved, ว่าง 0-20%
+    const vacant = approved - actual;
+    return { approved, actual, vacant };
   };
 
-  // Handle Export to PDF
-  const handleExportPdf = () => {
-    const doc = new jsPDF();
-    
-    // *** สำคัญสำหรับภาษาไทย: ตั้งค่า Font ***
-    // doc.setFont('THSarabunNew'); // ยกเลิกคอมเมนต์บรรทัดนี้ถ้าคุณตั้งค่า Font เรียบร้อยแล้ว
+  // 1. สายวิชาการ
+  let academicApprovedTotal = 0;
+  let academicActualTotal = 0;
+  let academicVacantTotal = 0;
+  const academicPosDetails: PositionStaffing[] = [];
+
+  // ให้คณะมีอาจารย์เยอะกว่าสำนักงาน
+  const isFaculty = initialFacultyData.find(f => f.FACULTYID === facultyId)?.FACULTYTYPEID === 1;
+
+  academicPositions.forEach(pos => {
+    let baseApproved = 0;
+    if (isFaculty) {
+      if (pos === 'ศาสตราจารย์') baseApproved = Math.floor(Math.random() * 3) + 2; // 2-4
+      else if (pos === 'รองศาสตราจารย์') baseApproved = Math.floor(Math.random() * 5) + 5; // 5-9
+      else if (pos === 'ผู้ช่วยศาสตราจารย์') baseApproved = Math.floor(Math.random() * 10) + 10; // 10-19
+      else if (pos === 'อาจารย์') baseApproved = Math.floor(Math.random() * 20) + 20; // 20-39
+    } else { // สำนักงาน หรืออื่นๆ อาจมีสายวิชาการน้อยมากหรือไม่มี
+      if (Math.random() < 0.1) { // 10% ที่จะมีศาสตราจารย์ในสำนักงาน
+        baseApproved = Math.floor(Math.random() * 2) + 1; // 1-2
+      } else {
+        baseApproved = 0;
+      }
+    }
+
+    if (baseApproved > 0) {
+      const { approved, actual, vacant } = getRandomNumbers(baseApproved);
+      academicPosDetails.push({ positionName: pos, approved, actual, vacant });
+      academicApprovedTotal += approved;
+      academicActualTotal += actual;
+      academicVacantTotal += vacant;
+    }
+  });
+
+  if (academicPosDetails.length > 0) {
+    staffingDetails.push({
+      staffType: 'สายวิชาการ',
+      positions: academicPosDetails,
+      approvedTotal: academicApprovedTotal,
+      actualTotal: academicActualTotal,
+      vacantTotal: academicVacantTotal,
+    });
+  }
+
+  // 2. สายสนับสนุนวิชาการ
+  let supportApprovedTotal = 0;
+  let supportActualTotal = 0;
+  let supportVacantTotal = 0;
+  const supportPosDetails: PositionStaffing[] = [];
+
+  supportPositions.forEach(pos => {
+    let baseApproved = 0;
+    if (isFaculty) { // คณะมีสายสนับสนุนทั่วไป
+      if (pos === 'เลขานุการคณะ') baseApproved = 1;
+      else if (['นักวิชาการศึกษา', 'เจ้าหน้าที่ห้องปฏิบัติการ', 'บุคลากรวิทยาศาสตร์'].includes(pos)) {
+        baseApproved = Math.floor(Math.random() * 5) + 3; // 3-7
+      } else {
+        baseApproved = Math.floor(Math.random() * 3) + 1; // 1-3
+      }
+    } else { // สำนักงานมีสายสนับสนุนหลากหลายและเยอะ
+      if (['ผู้อำนวยการกอง', 'นักทรัพยากรบุคคล', 'นักวิเคราะห์นโยบายและแผน'].includes(pos)) {
+        baseApproved = Math.floor(Math.random() * 3) + 1; // 1-3
+      } else {
+        baseApproved = Math.floor(Math.random() * 10) + 5; // 5-14
+      }
+    }
+
+    if (baseApproved > 0) {
+      const { approved, actual, vacant } = getRandomNumbers(baseApproved);
+      supportPosDetails.push({ positionName: pos, approved, actual, vacant });
+      supportApprovedTotal += approved;
+      supportActualTotal += actual;
+      supportVacantTotal += vacant;
+    }
+  });
+
+  if (supportPosDetails.length > 0) {
+    staffingDetails.push({
+      staffType: 'สายสนับสนุนวิชาการ',
+      positions: supportPosDetails,
+      approvedTotal: supportApprovedTotal,
+      actualTotal: supportActualTotal,
+      vacantTotal: supportVacantTotal,
+    });
+  }
+
+  return staffingDetails;
+};
+
+const Hr906Page = () => {
+  const { messages } = useIntl();
+  const [filterFacultyName, setFilterFacultyName] = useState<string>('');
+  const [filterFacultyTypeId, setFilterFacultyTypeId] = useState<string>('');
+
+  // รวมข้อมูล FacultyData กับ StaffingByPositionData
+  const combinedStaffingData: FacultyStaffingDetail[] = useMemo(() => {
+    return initialFacultyData.map(faculty => {
+      const staffingDetails = generateStaffingByPositionData(faculty.FACULTYID);
+
+      const facultyApprovedTotal = staffingDetails.reduce((sum, type) => sum + type.approvedTotal, 0);
+      const facultyActualTotal = staffingDetails.reduce((sum, type) => sum + type.actualTotal, 0);
+      const facultyVacantTotal = staffingDetails.reduce((sum, type) => sum + type.vacantTotal, 0);
+
+      return {
+        ...faculty,
+        staffingDetails,
+        facultyApprovedTotal,
+        facultyActualTotal,
+        facultyVacantTotal,
+      };
+    }).filter(f => f.facultyApprovedTotal > 0); // กรองเฉพาะหน่วยงานที่มีอัตรากำลัง
+  }, []);
+
+  // สรุปข้อมูลสำหรับ Summary Overview
+  const summaryData: SummaryRow[] = useMemo(() => {
+    let totalAcademicApproved = 0;
+    let totalAcademicActual = 0;
+    let totalAcademicVacant = 0;
+
+    let totalSupportApproved = 0;
+    let totalSupportActual = 0;
+    let totalSupportVacant = 0;
+
+    combinedStaffingData.forEach(faculty => {
+      faculty.staffingDetails.forEach(staffType => {
+        if (staffType.staffType === 'สายวิชาการ') {
+          totalAcademicApproved += staffType.approvedTotal;
+          totalAcademicActual += staffType.actualTotal;
+          totalAcademicVacant += staffType.vacantTotal;
+        } else if (staffType.staffType === 'สายสนับสนุนวิชาการ') {
+          totalSupportApproved += staffType.approvedTotal;
+          totalSupportActual += staffType.actualTotal;
+          totalSupportVacant += staffType.vacantTotal;
+        }
+      });
+    });
+
+    const totalOverallApproved = totalAcademicApproved + totalSupportApproved;
+    const totalOverallActual = totalAcademicActual + totalSupportActual;
+    const totalOverallVacant = totalAcademicVacant + totalSupportVacant;
+
+    const calculateFillRate = (actual: number, approved: number) => {
+      return approved > 0 ? (actual / approved) * 100 : 0;
+    };
+
+    return [
+      {
+        staffType: 'สายวิชาการ',
+        approved: totalAcademicApproved,
+        actual: totalAcademicActual,
+        vacant: totalAcademicVacant,
+        fillRate: calculateFillRate(totalAcademicActual, totalAcademicApproved),
+      },
+      {
+        staffType: 'สายสนับสนุนวิชาการ',
+        approved: totalSupportApproved,
+        actual: totalSupportActual,
+        vacant: totalSupportVacant,
+        fillRate: calculateFillRate(totalSupportActual, totalSupportApproved),
+      },
+      {
+        staffType: 'รวมทั้งหมด',
+        approved: totalOverallApproved,
+        actual: totalOverallActual,
+        vacant: totalOverallVacant,
+        fillRate: calculateFillRate(totalOverallActual, totalOverallApproved),
+      },
+    ];
+  }, [combinedStaffingData]);
+
+  // กรองข้อมูลตามเงื่อนไขทั้งหมด
+  const filteredData = useMemo(() => {
+    let currentData = combinedStaffingData;
+
+    if (filterFacultyName) {
+      const lowerCaseFilter = filterFacultyName.toLowerCase();
+      currentData = currentData.filter(item =>
+        item.FACULTYNAME.toLowerCase().includes(lowerCaseFilter)
+      );
+    }
+
+    if (filterFacultyTypeId) {
+      currentData = currentData.filter(item =>
+        String(item.FACULTYTYPEID).includes(filterFacultyTypeId)
+      );
+    }
+    return currentData;
+  }, [combinedStaffingData, filterFacultyName, filterFacultyTypeId]);
+
+
+  const handleExportAllToPdf = useCallback(() => {
+    const doc = new jsPDF('p', 'mm', 'a4');
+    // doc.setFont('THSarabunNew');
     // doc.setR2L(false);
 
-    const columns = [
-      { header: 'รหัส', dataKey: 'award_id' },
-      { header: 'รหัสพนักงาน', dataKey: 'staff_id' },
-      { header: 'ชื่อเครื่องราชอิสริยาภรณ์', dataKey: 'award_name' },
-      { header: 'วันที่ได้รับ', dataKey: 'award_date' },
-      { header: 'ประเภท', dataKey: 'award_type' },
-      { header: 'วันที่ประกาศ', dataKey: 'announcement_date' },
-      { header: 'เล่มที่', dataKey: 'gazette_volume' },
-      { header: 'ตอนที่', dataKey: 'gazette_number' },
-      { header: 'หน้า', dataKey: 'gazette_section' },
-      { header: 'สถานะ', dataKey: 'award_status' },
-      { header: 'สร้างเมื่อ', dataKey: 'create_at' },
-      { header: 'แก้ไขล่าสุด', dataKey: 'update_at' },
-      { header: 'รหัสผู้บันทึก', dataKey: 'officer_id' },
-      { header: 'วันที่ส่งคืน', dataKey: 'return_date' },
-    ];
+    let currentY = 10;
 
-    const rows = filteredData.map(row => ({ // ใช้ filteredData
-      award_id: row.award_id,
-      staff_id: row.staff_id,
-      award_name: row.award_name,
-      award_date: row.award_date,
-      award_type: row.award_type,
-      announcement_date: row.announcement_date,
-      gazette_volume: row.gazette_volume,
-      gazette_number: row.gazette_number,
-      gazette_section: row.gazette_section,
-      award_status: row.award_status,
-      create_at: row.create_at,
-      update_at: row.update_at,
-      officer_id: row.officer_id,
-      return_date: row.return_date || '-',
+    // --- Add Summary Section ---
+    doc.setFontSize(14);
+    doc.text('รายงานอัตรากำลังบุคลากร ประจำปีงบประมาณ 2567', 14, currentY);
+    currentY += 7;
+    doc.setFontSize(12);
+    doc.text('ณ วันที่ 31 พฤษภาคม 2567', 14, currentY);
+    currentY += 7;
+    doc.text('1. สรุปภาพรวมอัตรากำลัง', 14, currentY);
+    currentY += 5;
+
+    const summaryColumns = [
+      { header: 'ประเภทบุคลากร', dataKey: 'staffType' },
+      { header: 'อัตรากำลังที่ได้รับอนุมัติ (คน)', dataKey: 'approved' },
+      { header: 'อัตรากำลังที่มีอยู่จริง (คน)', dataKey: 'actual' },
+      { header: 'อัตรากำลังว่าง (คน)', dataKey: 'vacant' },
+      { header: 'สัดส่วนการบรรจุ (%)', dataKey: 'fillRate' },
+    ];
+    const summaryRows = summaryData.map(row => ({
+      staffType: row.staffType,
+      approved: row.approved,
+      actual: row.actual,
+      vacant: row.vacant,
+      fillRate: row.fillRate.toFixed(2),
     }));
 
     (doc as any).autoTable({
-      head: [columns.map(col => col.header)],
-      body: rows.map(row => columns.map(col => row[col.dataKey as keyof AwardData])),
-      startY: 20,
-      styles: {
-        font: 'THSarabunNew', // ชี้ไปที่ชื่อ Font ที่คุณเพิ่มเข้าไป
-        fontSize: 8,
-      },
-      headStyles: {
-        fillColor: [200, 200, 200],
-        textColor: [0, 0, 0],
-        fontStyle: 'bold',
-      },
+      head: [summaryColumns.map(col => col.header)],
+      body: summaryRows.map(row => summaryColumns.map(col => row[col.dataKey as keyof typeof row])),
+      startY: currentY,
+      margin: { left: 14, right: 14 },
+      styles: { font: 'THSarabunNew', fontSize: 8 },
+      headStyles: { fillColor: [200, 200, 200], textColor: [0,0,0] },
       didDrawPage: (data: any) => {
-        doc.text("รายงานข้อมูลเครื่องราชอิสริยาภรณ์", data.settings.margin.left, 10);
+        currentY = data.cursor.y;
       }
     });
+    currentY = (doc as any).autoTable.previous.finalY + 10;
 
-    doc.save('รายงานเครื่องราชอิสริยาภรณ์.pdf');
-  };
+    // --- Add Faculty Details Sections ---
+    doc.setFontSize(12);
+    doc.text('2. อัตรากำลังแยกตามคณะ/สำนัก', 14, currentY);
+    currentY += 7;
 
-  // Handle Export to Excel
-  const handleExportExcel = () => {
-    const dataForExcel = filteredData.map(row => ({ // ใช้ filteredData
-      'รหัส': row.award_id,
-      'รหัสพนักงาน': row.staff_id,
-      'ชื่อเครื่องราชอิสริยาภรณ์': row.award_name,
-      'วันที่ได้รับ': row.award_date,
-      'ประเภท': row.award_type,
-      'วันที่ประกาศ': row.announcement_date,
-      'เล่มที่': row.gazette_volume,
-      'ตอนที่': row.gazette_number,
-      'หน้า': row.gazette_section,
-      'สถานะ': row.award_status,
-      'สร้างเมื่อ': row.create_at,
-      'แก้ไขล่าสุด': row.update_at,
-      'รหัสผู้บันทึก': row.officer_id,
-      'วันที่ส่งคืน': row.return_date || '-',
-    }));
+    filteredData.forEach((faculty, index) => {
+      if (currentY > 270) { // Check if new page is needed (A4 height is 297mm)
+        doc.addPage();
+        currentY = 14;
+      }
 
-    const ws = XLSX.utils.json_to_sheet(dataForExcel);
+      doc.setFontSize(10);
+      doc.text(`${index + 2}. ${faculty.FACULTYID} ${faculty.FACULTYNAME}`, 14, currentY);
+      currentY += 5;
+
+      faculty.staffingDetails.forEach(staffTypeDetail => {
+        if (currentY > 270) { // Check again for new page within a faculty
+          doc.addPage();
+          currentY = 14;
+        }
+        doc.setFontSize(9);
+        doc.text(staffTypeDetail.staffType, 20, currentY);
+        currentY += 5;
+
+        const detailColumns = [
+          { header: 'ตำแหน่ง', dataKey: 'positionName' },
+          { header: 'อัตรากำลังที่ได้รับอนุมัติ', dataKey: 'approved' },
+          { header: 'อัตรากำลังที่มีอยู่จริง', dataKey: 'actual' },
+          { header: 'อัตรากำลังว่าง', dataKey: 'vacant' },
+        ];
+        const detailRows = staffTypeDetail.positions.map(pos => ({
+          positionName: `- ${pos.positionName}`,
+          approved: pos.approved,
+          actual: pos.actual,
+          vacant: pos.vacant,
+        }));
+
+        (doc as any).autoTable({
+          head: [detailColumns.map(col => col.header)],
+          body: detailRows.map(row => detailColumns.map(col => row[col.dataKey as keyof typeof row])),
+          startY: currentY,
+          margin: { left: 20, right: 14 },
+          styles: { font: 'THSarabunNew', fontSize: 7 },
+          headStyles: { fillColor: [230, 230, 230], textColor: [0,0,0] },
+          didDrawPage: (data: any) => {
+            currentY = data.cursor.y;
+          }
+        });
+        currentY = (doc as any).autoTable.previous.finalY + 2;
+
+        doc.setFontSize(8);
+        doc.text(`รวม${staffTypeDetail.staffType}: ${staffTypeDetail.approvedTotal} (อนุมัติ) | ${staffTypeDetail.actualTotal} (มีอยู่จริง) | ${staffTypeDetail.vacantTotal} (ว่าง)`, 20, currentY);
+        currentY += 5;
+      });
+
+      // Add faculty overall total
+      doc.setFontSize(9);
+      // doc.setFont('THSarabunNew', 'bold'); // Enable if font is set up
+      doc.text(`รวม${faculty.FACULTYNAME}: ${faculty.facultyApprovedTotal} (อนุมัติ) | ${faculty.facultyActualTotal} (มีอยู่จริง) | ${faculty.facultyVacantTotal} (ว่าง)`, 14, currentY);
+      currentY += 10;
+    });
+
+    doc.save('รายงานอัตรากำลังตามตำแหน่ง.pdf');
+  }, [summaryData, filteredData]);
+
+  const handleExportAllToExcel = useCallback(() => {
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "รายงานเครื่องราชอิสริยาภรณ์");
-    XLSX.writeFile(wb, "รายงานเครื่องราชอิสริยาภรณ์.xlsx");
-  };
+
+    // 1. Summary Sheet
+    const summaryHeader = [
+      'ประเภทบุคลากร',
+      'อัตรากำลังที่ได้รับอนุมัติ (คน)',
+      'อัตรากำลังที่มีอยู่จริง (คน)',
+      'อัตรากำลังว่าง (คน)',
+      'สัดส่วนการบรรจุ (%)'
+    ];
+    const summaryDataForExcel = [
+      summaryHeader,
+      ...summaryData.map(row => [
+        row.staffType,
+        row.approved,
+        row.actual,
+        row.vacant,
+        row.fillRate.toFixed(2)
+      ])
+    ];
+    const wsSummary = XLSX.utils.aoa_to_sheet(summaryDataForExcel);
+    XLSX.utils.book_append_sheet(wb, wsSummary, "สรุปภาพรวม");
+
+    // 2. Faculty Detail Sheets
+    filteredData.forEach(faculty => {
+      const facultyDataForExcel: any[] = [];
+      facultyDataForExcel.push(['รหัสหน่วยงาน', faculty.FACULTYID]);
+      facultyDataForExcel.push(['ชื่อหน่วยงาน', faculty.FACULTYNAME]);
+      facultyDataForExcel.push([]); // Empty row for spacing
+
+      const detailColumns = ['ตำแหน่ง', 'อัตรากำลังที่ได้รับอนุมัติ', 'อัตรากำลังที่มีอยู่จริง', 'อัตรากำลังว่าง'];
+
+      faculty.staffingDetails.forEach(staffTypeDetail => {
+        facultyDataForExcel.push([staffTypeDetail.staffType]);
+        facultyDataForExcel.push(detailColumns);
+        staffTypeDetail.positions.forEach(pos => {
+          facultyDataForExcel.push([
+            `- ${pos.positionName}`,
+            pos.approved,
+            pos.actual,
+            pos.vacant,
+          ]);
+        });
+        facultyDataForExcel.push([
+          `รวม${staffTypeDetail.staffType}`,
+          staffTypeDetail.approvedTotal,
+          staffTypeDetail.actualTotal,
+          staffTypeDetail.vacantTotal,
+        ]);
+        facultyDataForExcel.push([]); // Spacing
+      });
+
+      facultyDataForExcel.push([
+        `รวม${faculty.FACULTYNAME}`,
+        faculty.facultyApprovedTotal,
+        faculty.facultyActualTotal,
+        faculty.facultyVacantTotal,
+      ]);
+
+      const wsFaculty = XLSX.utils.aoa_to_sheet(facultyDataForExcel);
+      XLSX.utils.book_append_sheet(wb, wsFaculty, faculty.FACULTYNAME.substring(0, 30)); // Max 31 chars for sheet name
+    });
+
+    XLSX.writeFile(wb, "รายงานอัตรากำลังตามตำแหน่ง.xlsx");
+
+  }, [summaryData, filteredData]);
+
 
   return (
     <AppsContent
-      title={
-        <IntlMessages id="sidebar.hr09.903" /> // เปลี่ยน id เป็น 903
-      }
+      title={<IntlMessages id="sidebar.hr09.906" />} // เปลี่ยน id เป็น 906
       sx={{
         mt: 2,
         height: 1,
@@ -368,98 +459,47 @@ const Hr903Page = () => {
     >
       <AppInfoView />
 
-      {/* Dashboard/Summary Cards */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 4 }}>
-        <AppCard sx={{ minWidth: 200, flexGrow: 1 }}>
-          <Box sx={{ fontSize: 16, color: 'text.secondary', mb: 1 }}>
-            รวมเครื่องราชฯ ทั้งหมด
-          </Box>
-          <Box sx={{ fontSize: 24, fontWeight: 'bold' }}>
-            {summaryData.totalAwards} รายการ
-          </Box>
-        </AppCard>
-        <AppCard sx={{ minWidth: 200, flexGrow: 1 }}>
-          <Box sx={{ fontSize: 16, color: 'text.secondary', mb: 1 }}>
-            สถานะ: ได้รับแล้ว
-          </Box>
-          <Box sx={{ fontSize: 24, fontWeight: 'bold', color: 'green' }}>
-            {summaryData.received} รายการ
-          </Box>
-        </AppCard>
-        <AppCard sx={{ minWidth: 200, flexGrow: 1 }}>
-          <Box sx={{ fontSize: 16, color: 'text.secondary', mb: 1 }}>
-            สถานะ: อยู่ระหว่างดำเนินการ
-          </Box>
-          <Box sx={{ fontSize: 24, fontWeight: 'bold', color: 'orange' }}>
-            {summaryData.pending} รายการ
-          </Box>
-        </AppCard>
-        <AppCard sx={{ minWidth: 200, flexGrow: 1 }}>
-          <Box sx={{ fontSize: 16, color: 'text.secondary', mb: 1 }}>
-            สถานะ: ส่งคืนแล้ว
-          </Box>
-          <Box sx={{ fontSize: 24, fontWeight: 'bold', color: 'red' }}>
-            {summaryData.returned} รายการ
-          </Box>
-        </AppCard>
-      </Box>
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="h5" sx={{mb: 2}}>
+          รายงานอัตรากำลังบุคลากร ประจำปีงบประมาณ 2567
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
+          ณ วันที่ 31 พฤษภาคม 2567
+        </Typography>
 
-      {/* Filter and Export Buttons */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 2, mb: 2 }}>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          {/* Filter by Award Type (Select) */}
+        {/* Filter Section */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 4, alignItems: 'center' }}>
           <TextField
-            select
-            label="ประเภทเครื่องราชฯ"
-            value={filterAwardType}
-            onChange={(e) => setFilterAwardType(e.target.value)}
-            sx={{ minWidth: 350 }} // ปรับความกว้างให้รองรับข้อความยาว
-          >
-            <MenuItem value="">ทั้งหมด</MenuItem>
-            {predefinedAwardTypes.map((type) => (
-              <MenuItem key={type} value={type}>
-                {type}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          {/* Filter by Award Name (Select) */}
+            label="ชื่อหน่วยงาน"
+            value={filterFacultyName}
+            onChange={(e) => setFilterFacultyName(e.target.value)}
+            sx={{ minWidth: 200 }}
+          />
           <TextField
-            select
-            label="ชื่อเครื่องราชฯ"
-            value={filterAwardName}
-            onChange={(e) => setFilterAwardName(e.target.value)}
-            sx={{ minWidth: 350 }} // ปรับความกว้างให้รองรับข้อความยาว
-          >
-            <MenuItem value="">ทั้งหมด</MenuItem>
-            {uniqueAwardNames.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Box>
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button variant="outlined" onClick={handleCopyTable}>
-            คัดลอกตาราง
-          </Button>
-          <Button variant="outlined" onClick={handleExportPdf}>
-            ส่งออก PDF
-          </Button>
-          <Button variant="outlined" onClick={handleExportExcel}>
-            ส่งออก Excel
+            label="ประเภทหน่วยงาน ID"
+            value={filterFacultyTypeId}
+            onChange={(e) => setFilterFacultyTypeId(e.target.value)}
+            sx={{ minWidth: 180 }}
+          />
+           <Button variant="contained" onClick={() => {
+            setFilterFacultyName('');
+            setFilterFacultyTypeId('');
+            Swal.fire('รีเซ็ตสำเร็จ!', 'ล้างตัวกรองทั้งหมดแล้ว', 'info');
+          }}>
+            รีเซ็ตตัวกรอง
           </Button>
         </Box>
       </Box>
 
-      {/* Table Component */}
-      <Hr903Table
-        data={filteredData} // ส่งข้อมูลที่ผ่านการกรองไปให้ตาราง
-        onView={handleView}
+      {/* Main Table Component */}
+      <Table
+        filteredData={filteredData}
+        summaryData={summaryData}
+        handleExportAllToPdf={handleExportAllToPdf}
+        handleExportAllToExcel={handleExportAllToExcel}
       />
     </AppsContent>
   );
 };
 
-export default Hr903Page;
+export default Hr906Page;

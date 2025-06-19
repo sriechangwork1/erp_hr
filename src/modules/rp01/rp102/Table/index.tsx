@@ -1,10 +1,10 @@
-//hr902/table/index.tsx
+// rp102/table/index.tsx
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import Hr902TableItem from './TableItem'; // เปลี่ยนชื่อ Component เป็น Hr902TableItem
+import Hr905TableItem from './TableItem'; // ตรวจสอบชื่อและ path
 import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Box from '@mui/material/Box';
@@ -18,32 +18,46 @@ import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 
-//  --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
-interface AwardData {
-  award_id: number;
-  staff_id: number;
-  award_name: string;
-  award_date: string;
-  award_type: string;
-  announcement_details: string;
-  announcement_date: string;
-  gazette_volume: string;
-  gazette_number: string;
-  gazette_section: string;
-  return_date?: string;
-  create_at: string;
-  update_at: string;
-  officer_id: number;
-  award_status: string;
-  [key: string]: any;
+// --- กำหนดประเภทข้อมูลสำหรับ FacultyData (จาก sys_faculty_202506192125.json) ---
+interface FacultyData {
+  FACULTYID: string;
+  FACULTYNAME: string;
+  FACULTYNAMEENG: string | null;
+  FACULTYTYPEID: number;
+  BUILDING: string | null;
+  SUBDISTRICT: string | null;
+  DISTRICT: string | null;
+  PROVINCE: string | null;
+  POSTCODE: number;
+  PHONE: string | null;
+  FAX: string | null;
+  PHONEIN: string | null;
+  EMAIL: string | null;
+  FACSTATUS: string | null;
+  REMARK: string | null;
+  STAFFID: string | null;
+  CREATEDATE: string | null;
+  BUDGETTYPEID: string | null;
+  GROUPID: string | null;
+  REF_FAC: string | null;
 }
 
-//  กำหนดประเภทสำหรับทิศทางการจัดเรียง
+// --- กำหนดประเภทข้อมูลสำหรับ StaffingData (จำลองขึ้นมา) ---
+interface StaffingData {
+  FACULTYID: string; // ผูกกับ FACULTYID ของ FacultyData
+  staff_type_officer: number; // ข้าราชการ
+  staff_type_university_employee: number; // พนักงานมหาวิทยาลัย
+  staff_type_permanent_employee: number; // ลูกจ้างประจำ
+  total_staff: number; // รวมทั้งหมด
+}
+
+// --- กำหนดประเภทข้อมูลสำหรับข้อมูลรวมที่จะแสดงในตาราง ---
+interface CombinedStaffingData extends FacultyData, StaffingData {}
+
 type Order = 'asc' | 'desc';
 
-//  --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง ---
 interface Column {
-  id: keyof AwardData | 'actions';
+  id: keyof CombinedStaffingData | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';
@@ -51,7 +65,6 @@ interface Column {
   sortable?: boolean;
 }
 
-//  ฟังก์ชันเปรียบเทียบสำหรับจัดเรียง
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -62,21 +75,27 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-//  ฟังก์ชันรับ comparator ที่เหมาะสมกับการจัดเรียง
 function getComparator<Key extends keyof any>(
   order: Order,
   orderBy: Key,
 ): (
-  a: { [key in Key]: number | string | boolean | undefined },
-  b: { [key in Key]: number | string | boolean | undefined },
+  a: { [key in Key]: number | string | boolean | undefined | null },
+  b: { [key in Key]: number | string | boolean | undefined | null },
 ) => number {
   return order === 'desc'
     ?
-    (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    (a, b) => {
+        const valA = a[orderBy] === null || a[orderBy] === undefined ? '' : String(a[orderBy]);
+        const valB = b[orderBy] === null || b[orderBy] === undefined ? '' : String(b[orderBy]);
+        return descendingComparator(valA, valB, '0' as any); // ต้องเทียบ String ด้วย String
+    }
+    : (a, b) => {
+        const valA = a[orderBy] === null || a[orderBy] === undefined ? '' : String(a[orderBy]);
+        const valB = b[orderBy] === null || b[orderBy] === undefined ? '' : String(b[orderBy]);
+        return -descendingComparator(valA, valB, '0' as any);
+    };
 }
 
-//  ฟังก์ชันจัดเรียงข้อมูล
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
@@ -90,43 +109,28 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 type DataTableProps = {
-  data: AwardData[];
-  setTableData: React.Dispatch<React.SetStateAction<AwardData[]>>;
-  onView: (data: AwardData) => void;
-  onEdit: (data: AwardData) => void;
-  onDelete: (id: number) => void;
+  data: CombinedStaffingData[]; // ข้อมูลที่ถูกกรองจาก parent
+  onView: (data: CombinedStaffingData) => void;
 }
 
-const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableProps) => {
+const Hr905Table = ({ data, onView }: DataTableProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof AwardData>('award_id');
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [orderBy, setOrderBy] = React.useState<keyof CombinedStaffingData>('FACULTYID');
+  const [searchQuery, setSearchQuery] = React.useState<string>(''); // Search Bar ภายในตาราง
 
-  const intl = useIntl();
-  const labeltext = React.useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr02.01' });
-    const words = label.split("HR902 ");
-    return words[1] || '';
-  }, [intl]);
+  const { messages } = useIntl();
 
   const columns: readonly Column[] = React.useMemo(
     () => [
-      { id: 'award_id', label: 'รหัส', minWidth: 50, sortable: true },
-      { id: 'staff_id', label: 'รหัสบุคลากร', minWidth: 50, sortable: true },
-      { id: 'award_name', label: 'ชื่อเครื่องราชอิสริยาภรณ์', minWidth: 150, sortable: true },
-      { id: 'award_date', label: 'วันที่ได้รับ', minWidth: 100, sortable: true },
-      { id: 'award_type', label: 'ประเภท', minWidth: 100, sortable: true },
-      { id: 'announcement_date', label: 'วันที่ประกาศ', minWidth: 100, sortable: true },
-      { id: 'gazette_volume', label: 'เล่มที่', minWidth: 70, sortable: true },
-      { id: 'gazette_number', label: 'ตอนที่', minWidth: 70, sortable: true },
-      { id: 'gazette_section', label: 'หน้า', minWidth: 70, sortable: true },
-      { id: 'award_status', label: 'สถานะ', minWidth: 80, sortable: true },
-     /* { id: 'create_at', label: 'สร้างเมื่อ', minWidth: 100, sortable: true },
-      { id: 'update_at', label: 'แก้ไขล่าสุด', minWidth: 100, sortable: true },
-      { id: 'officer_id', label: 'รหัสผู้บันทึก', minWidth: 80, sortable: true },*/
-      { id: 'actions', label: 'Actions', minWidth: 100, align: 'center', sortable: false },
+      { id: 'FACULTYID', label: 'รหัสหน่วยงาน', minWidth: 100, sortable: true },
+      { id: 'FACULTYNAME', label: 'ชื่อหน่วยงาน', minWidth: 250, sortable: true },
+      { id: 'staff_type_officer', label: 'ข้าราชการ', minWidth: 100, sortable: true, align: 'center' },
+      { id: 'staff_type_university_employee', label: 'พนักงาน มหาวิทยาลัย', minWidth: 100, sortable: true, align: 'center' },
+      { id: 'staff_type_permanent_employee', label: 'ลูกจ้างประจำ', minWidth: 100, sortable: true, align: 'center' },
+      { id: 'total_staff', label: 'รวมทั้งหมด', minWidth: 100, sortable: true, align: 'center' },
+     // { id: 'actions', label: 'Actions', minWidth: 80, align: 'right', sortable: false },
     ],
     [],
   );
@@ -142,30 +146,28 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof AwardData,
+    property: keyof CombinedStaffingData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const { messages } = useIntl();
-
-  //  ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงค่าใน Search Bar
+  // ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงค่าใน Search Bar ภายในตาราง
   const onSearchCustomer = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     setPage(0);
   };
 
-  //  กรองข้อมูลตาม searchQuery
+  // กรองข้อมูลตาม searchQuery ภายในตาราง (จากข้อมูลที่ได้รับมา)
   const filteredRows = React.useMemo(() => {
     if (!searchQuery) {
-      return data;
+      return data; // ถ้าไม่มี search query ก็คืนข้อมูลที่ได้รับมาทั้งหมด
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
     return data.filter((row) =>
       Object.values(row).some((value) =>
-        String(value).toLowerCase().includes(lowerCaseQuery)
+        String(value || '').toLowerCase().includes(lowerCaseQuery)
       )
     );
   }, [data, searchQuery]);
@@ -185,7 +187,7 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
             iconPosition="right"
             overlap={false}
             onChange={onSearchCustomer}
-            placeholder="ค้นหา"
+            placeholder="ค้นหา (ในผลลัพธ์ที่กรองแล้ว)"
           />
         </Box>
       </AppsHeader>
@@ -205,7 +207,7 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
                     <TableSortLabel
                       active={orderBy === column.id}
                       direction={orderBy === column.id ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, column.id as keyof AwardData)}
+                      onClick={(event) => handleRequestSort(event, column.id as keyof CombinedStaffingData)}
                     >
                       {column.label}
                       {orderBy === column.id ? (
@@ -225,12 +227,10 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
             {stableSort(filteredRows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <Hr902TableItem
-                  key={row.award_id}
+                <Hr905TableItem
+                  key={row.FACULTYID}
                   data={row}
                   onView={() => onView(row)}
-                  onEdit={() => onEdit(row)}
-                  onDelete={() => onDelete(row.award_id)}
                 />
               ))}
           </TableBody>
@@ -248,4 +248,4 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
     </Paper>
   );
 }
-export default Hr902Table;
+export default Hr905Table;

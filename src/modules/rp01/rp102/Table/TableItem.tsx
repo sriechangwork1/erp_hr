@@ -1,124 +1,82 @@
-//hr903/table/tableitem
- import React, { useState, useEffect } from 'react'; // 
-import TableCell from '@mui/material/TableCell'; // 
-import TableRow from '@mui/material/TableRow'; // 
-import { styled } from '@mui/material/styles'; // 
-import Skeleton from '@mui/material/Skeleton'; // 
-import AppMenu from '@crema/components/AppMenu'; // 
-import AppStatus from '@crema/components/AppStatus'; // 
-import { MdCalendarMonth } from "react-icons/md"; // 
-import { MdOutlinePersonalInjury } from "react-icons/md"; // 
-import { MdOutlineDateRange } from "react-icons/md"; // 
-import { GiAchievement } from "react-icons/gi"; //  // icon สำหรับชื่อเครื่องราชอิสริยาภรณ์
-import { MdOutlineLocalOffer } from "react-icons/md"; // 
-import { FaBookOpen } from "react-icons/fa"; //  // icon สำหรับเล่มที่/ตอนที่/หน้า
-import Button from '@mui/material/Button';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+// rp102/table/tableitem.tsx
+import React from 'react';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import AppMenu from '@crema/components/AppMenu'; // ตรวจสอบ Path ให้ถูกต้อง
+import { useIntl } from 'react-intl';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import Skeleton from '@mui/material/Skeleton';
 
+// --- กำหนดประเภทข้อมูลสำหรับ FacultyData (จาก sys_faculty_202506192125.json) ---
+interface FacultyData {
+  FACULTYID: string;
+  FACULTYNAME: string;
+  FACULTYNAMEENG: string | null;
+  FACULTYTYPEID: number;
+  BUILDING: string | null;
+  SUBDISTRICT: string | null;
+  DISTRICT: string | null;
+  PROVINCE: string | null;
+  POSTCODE: number;
+  PHONE: string | null;
+  FAX: string | null;
+  PHONEIN: string | null;
+  EMAIL: string | null;
+  FACSTATUS: string | null;
+  REMARK: string | null;
+  STAFFID: string | null;
+  CREATEDATE: string | null;
+  BUDGETTYPEID: string | null;
+  GROUPID: string | null;
+  REF_FAC: string | null;
+}
 
-const TableCellWrapper = styled(TableCell)(() => ({ // 
-  fontSize: 14, // 
-  padding: 8, // 
-  whiteSpace: 'nowrap', // 
-  '&:first-of-type': { // 
-    paddingLeft: 20, // 
-  }, // 
-  '&:last-of-type': { // 
-    paddingRight: 20, // 
-  }, // 
-})); // 
+// --- กำหนดประเภทข้อมูลสำหรับ StaffingData (จำลองขึ้นมา) ---
+interface StaffingData {
+  FACULTYID: string;
+  staff_type_officer: number; // ข้าราชการ
+  staff_type_university_employee: number; // พนักงานมหาวิทยาลัย
+  staff_type_permanent_employee: number; // ลูกจ้างประจำ
+  total_staff: number; // รวมทั้งหมด
+}
 
-interface AwardData { //  // เปลี่ยนชื่อ Interface เป็น AwardData
-  award_id: number; // 
-  staff_id: number; // 
-  award_name: string; // 
-  award_date: string; // 
-  award_type: string; // 
-  announcement_details: string; // 
-  announcement_date: string; // 
-  gazette_volume: string; // 
-  gazette_number: string; // 
-  gazette_section: string; // 
-  return_date?: string; // 
-  create_at: string; // 
-  update_at: string; // 
-  officer_id: number; // 
-  award_status: string; // 
-  [key: string]: any; // 
-} // 
+// --- กำหนดประเภทข้อมูลสำหรับข้อมูลรวมที่จะแสดงในตาราง ---
+interface CombinedStaffingData extends FacultyData, StaffingData {}
 
-type Props = {
-  data: AwardData; //  // เปลี่ยนเป็น AwardData
-  onView: () => void; // 
-  onEdit: () => void; // 
-  onDelete: () => void; // 
-}; // 
+const TableCellWrapper = (props: any) => <TableCell {...props} />;
 
-const Hr902TableItem = ({ data, onView, onEdit, onDelete }: Props) => { // เปลี่ยนชื่อ Component เป็น Hr902TableItem
-  const [isLoading, setIsLoading] = useState(true); // 
-  useEffect(() => { // 
-    const timer = setTimeout(() => setIsLoading(false), 200); // 
-    return () => clearTimeout(timer); // 
-  }, []); // 
+type Hr905TableItemProps = {
+  data: CombinedStaffingData;
+  onView: (data: CombinedStaffingData) => void;
+  isLoading?: boolean;
+};
+
+const Hr905TableItem = ({ data, onView, isLoading }: Hr905TableItemProps) => {
+  const { messages } = useIntl();
+
+  if (isLoading) {
+    return (
+      <TableRow>
+        <TableCellWrapper align="left"> <Skeleton width={80} /> </TableCellWrapper>
+        <TableCellWrapper align="left"> <Skeleton width={200} /> </TableCellWrapper>
+        <TableCellWrapper align="center"> <Skeleton width={50} /> </TableCellWrapper>
+        <TableCellWrapper align="center"> <Skeleton width={50} /> </TableCellWrapper>
+        <TableCellWrapper align="center"> <Skeleton width={50} /> </TableCellWrapper>
+        <TableCellWrapper align="center"> <Skeleton width={70} /> </TableCellWrapper>
+      </TableRow>
+    );
+  }
 
   return (
-    <TableRow hover key={data.award_id} className="item-hover"> {/*  เปลี่ยน key เป็น data.award_id */}
-      <TableCellWrapper component="th" scope="row">
-        {isLoading ? <Skeleton width={80} /> : data.award_id} {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={100} /> : data.staff_id} <MdOutlinePersonalInjury /> {/*  */} 
-      </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={150} /> : data.award_name} <GiAchievement /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="left">
-        {isLoading ? <Skeleton width={100} /> : data.award_date} <MdCalendarMonth /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={100} /> : data.award_type} <MdOutlineLocalOffer /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.announcement_date} <MdOutlineDateRange /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : `${data.gazette_volume}`} <FaBookOpen /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : `${data.gazette_number}`} <FaBookOpen /> {/*  */}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : `${data.gazette_section}`} <FaBookOpen /> {/*  */}
-      </TableCellWrapper>
-
-
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.award_status} 
-      </TableCellWrapper>
-    {/*  <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.create_at} 
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.update_at}
-      </TableCellWrapper>
-      <TableCellWrapper align="center">
-        {isLoading ? <Skeleton width={120} /> : data.officer_id} <MdOutlinePersonalInjury /> 
-      </TableCellWrapper>
-*/}
-       <TableCellWrapper align="right">
-        {isLoading ? <Skeleton variant="circular" width={30} height={30} /> :
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={() => onView()}
-            startIcon={<VisibilityIcon />}
-          >
-            รายละเอียด
-          </Button>
-        }
-      </TableCellWrapper>
+    <TableRow hover role="checkbox" tabIndex={-1} key={data.FACULTYID}>
+      <TableCellWrapper>{data.FACULTYID}</TableCellWrapper>
+      <TableCellWrapper>{data.FACULTYNAME}</TableCellWrapper>
+      <TableCellWrapper align="center">{data.staff_type_officer}</TableCellWrapper>
+      <TableCellWrapper align="center">{data.staff_type_university_employee}</TableCellWrapper>
+      <TableCellWrapper align="center">{data.staff_type_permanent_employee}</TableCellWrapper>
+      <TableCellWrapper align="center">{data.total_staff}</TableCellWrapper>
     </TableRow>
   );
 };
 
-export default Hr902TableItem; 
+export default Hr905TableItem;
