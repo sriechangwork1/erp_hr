@@ -1,5 +1,5 @@
-//hr901/table/index.tsx
-import * as React from 'react';
+//hr118/table/index.tsx
+import React, { useState, useMemo } from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -16,35 +16,15 @@ import TableRow from '@mui/material/TableRow';
 
 import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
-import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
-
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
-interface AwardData {
-  award_id: number;
-  staff_id: number;
-  award_name: string;
-  award_date: string;
-  award_type: string;
-  announcement_details: string;
-  announcement_date: string;
-  gazette_volume: string;
-  gazette_number: string;
-  gazette_section: string;
-  return_date?: string; 
-  create_at: string;
-  update_at: string;
-  officer_id: number;
-  award_status: string;
-  [key: string]: any;
-}
+// นำเข้า Data interface จากไฟล์หลักของ hr117
+import { Data } from '../index'; 
 
 // กำหนดประเภทสำหรับทิศทางการจัดเรียง
 type Order = 'asc' | 'desc';
-
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง ---
+// --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง AwardName ---
 interface Column {
-  id: keyof AwardData | 'actions'; // เปลี่ยนเป็น keyof AwardData
+  id: keyof Data | 'actions';
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';
@@ -54,6 +34,8 @@ interface Column {
 
 // ฟังก์ชันเปรียบเทียบสำหรับจัดเรียง
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+  if (b[orderBy] === undefined || b[orderBy] === null) return 1;
+  if (a[orderBy] === undefined || a[orderBy] === null) return -1;
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -64,12 +46,12 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 }
 
 // ฟังก์ชันรับ comparator ที่เหมาะสมกับการจัดเรียง
-function getComparator<Key extends keyof any>(
+function getComparator<Key extends keyof Data>(
   order: Order,
   orderBy: Key,
 ): (
-  a: { [key in Key]: number | string | boolean | undefined },
-  b: { [key in Key]: number | string | boolean | undefined },
+  a: Data,
+  b: Data,
 ) => number {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -90,46 +72,43 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 type DataTableProps = {
-  data: AwardData[]; // เปลี่ยนเป็น AwardData[]
-  setTableData: React.Dispatch<React.SetStateAction<AwardData[]>>; // เปลี่ยนเป็น AwardData[]
-  onView: (data: AwardData) => void;
-  onEdit: (data: AwardData) => void;
-  onDelete: (id: number) => void;
+  data: Data[];
+  onView: (data: Data) => void;
+  onEdit: (data: Data) => void;
+  onDelete: (id: number) => void; // id เป็น number
 }
 
-const DataTable = ({ data, setTableData, onView, onEdit, onDelete }: DataTableProps) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof AwardData>('award_id'); // เปลี่ยนเป็น award_id
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
+const DataTable = ({ data, onView, onEdit, onDelete }: DataTableProps) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [order, setOrder] = useState<Order>('asc');
+  const [orderBy, setOrderBy] = useState<keyof Data>('id');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isLoadingTable, setIsLoadingTable] = useState(true);
 
   const intl = useIntl();
 
-  const labeltext = React.useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr09.01' }); // เปลี่ยน id
-    const words = label.split("HR902 "); // เปลี่ยน HR101 เป็น HR102
-    return words[1] || '';
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoadingTable(false), 500);
+    return () => clearTimeout(timer);
+  }, [data]);
+
+  const labelText = useMemo(() => {
+    const label = intl.formatMessage({ id: 'sidebar.hr01.18' }); // เปลี่ยน ID
+    const words = label.split("HR115 "); // ปรับการตัดคำ
+    return words.length > 1 ? words[1] : label;
   }, [intl]);
 
-  const columns: readonly Column[] = React.useMemo(
+  const columns: readonly Column[] = useMemo(
     () => [
-      { id: 'award_id', label: 'รหัส', minWidth: 50, sortable: true },
-      { id: 'staff_id', label: 'รหัสบุคลากร', minWidth: 150, sortable: true },
-      { id: 'award_name', label: 'ชื่อเครื่องราชอิสริยาภรณ์', minWidth: 150, sortable: true },
-      { id: 'award_date', label: 'วันที่ได้รับ', minWidth: 100, sortable: true },
-      { id: 'award_type', label: 'ประเภท', minWidth: 100, sortable: true },
-      { id: 'announcement_date', label: 'วันที่ประกาศ', minWidth: 100, sortable: true },
-      { id: 'gazette_volume', label: 'เล่มที่', minWidth: 70, sortable: true },
-      { id: 'gazette_number', label: 'ตอนที่', minWidth: 70, sortable: true },
-      { id: 'gazette_section', label: 'หน้า', minWidth: 70, sortable: true },
-      { id: 'award_status', label: 'สถานะ', minWidth: 80, sortable: true },
-      { id: 'create_at', label: 'สร้างเมื่อ', minWidth: 100, sortable: true },
-      { id: 'update_at', label: 'แก้ไขล่าสุด', minWidth: 100, sortable: true },
-      { id: 'officer_id', label: 'รหัสผู้บันทึก', minWidth: 80, sortable: true },
-      { id: 'actions', label: 'Actions', minWidth: 100, align: 'right', sortable: false },
+      { id: 'id', label: 'รหัส' + labelText, minWidth: 100, sortable: true },
+      { id: 'award_name', label: 'ชื่อ' + labelText + 'ไทย', minWidth: 200, sortable: true },
+      { id: 'awardname_abb', label: 'ชื่อย่อภาษาไทย', minWidth: 150, align: 'center', sortable: true },
+      { id: 'create_at', label: 'วันที่สร้าง', minWidth: 170, align: 'center', sortable: true },
+      { id: 'officer_id', label: 'ผู้บันทึก', minWidth: 120, align: 'center', sortable: true },
+      { id: 'actions', label: 'Actions', minWidth: 80, align: 'right', sortable: false },
     ],
-    [], // ไม่มี labeltext ใน dependency เพราะ label ถูกกำหนดตายตัวแล้ว
+    [labelText]
   );
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -143,33 +122,29 @@ const DataTable = ({ data, setTableData, onView, onEdit, onDelete }: DataTablePr
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
-    property: keyof AwardData, // เปลี่ยนเป็น keyof AwardData
+    property: keyof Data,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const { messages } = useIntl();
-
-  // ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงค่าใน Search Bar
   const onSearchCustomer = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     setPage(0);
   };
 
-  // กรองข้อมูลตาม searchQuery
-  const filteredRows = React.useMemo(() => {
+  const filteredRows = useMemo(() => {
     if (!searchQuery) {
-      return data; 
+      return data;
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
-    return data.filter((row) => 
+    return data.filter((row) =>
       Object.values(row).some((value) =>
         String(value).toLowerCase().includes(lowerCaseQuery)
       )
     );
-  }, [data, searchQuery]); 
+  }, [data, searchQuery]);
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -206,7 +181,7 @@ const DataTable = ({ data, setTableData, onView, onEdit, onDelete }: DataTablePr
                     <TableSortLabel
                       active={orderBy === column.id}
                       direction={orderBy === column.id ? order : 'asc'}
-                      onClick={(event) => handleRequestSort(event, column.id as keyof AwardData)} // เปลี่ยนเป็น keyof AwardData
+                      onClick={(event) => handleRequestSort(event, column.id as keyof Data)}
                     >
                       {column.label}
                       {orderBy === column.id ? (
@@ -223,17 +198,25 @@ const DataTable = ({ data, setTableData, onView, onEdit, onDelete }: DataTablePr
             </TableRow>
           </TableHead>
           <TableBody>
-            {stableSort(filteredRows, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <TableItem
-                  key={row.award_id} // เปลี่ยน key เป็น award_id
-                  data={row}
-                  onView={() => onView(row)}
-                  onEdit={() => onEdit(row)}
-                  onDelete={() => onDelete(row.award_id)} // เปลี่ยน onDelete เป็น award_id
-                />
-              ))}
+            {isLoadingTable ? (
+              Array.from({ length: rowsPerPage }).map((_, index) => (
+                <TableItem key={`skeleton-${index}`} data={{} as Data} isLoading={true}
+                  onView={() => { }} onEdit={() => { }} onDelete={() => { }} />
+              ))
+            ) : (
+              stableSort(filteredRows, getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <TableItem
+                    key={row.id}
+                    data={row}
+                    onView={() => onView(row)}
+                    onEdit={() => onEdit(row)}
+                    onDelete={() => onDelete(row.id)}
+                    isLoading={false}
+                  />
+                ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>

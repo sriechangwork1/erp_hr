@@ -381,10 +381,6 @@ const Hr902Page = () => {
   };
 
   return (
-      <AppCard
-      contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr09.02" />} 
-    >
     <AppsContent
       title={
         <IntlMessages id="sidebar.hr09.902" /> // อ้างอิง id ที่ถูกต้องสำหรับชื่อหน้า
@@ -609,7 +605,6 @@ const Hr902Page = () => {
         </Box>
       </AppDialog>
     </AppsContent>
-    </AppCard> 
   );
 };
 

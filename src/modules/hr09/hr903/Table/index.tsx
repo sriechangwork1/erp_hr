@@ -4,7 +4,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import Hr902TableItem from './TableItem'; // เปลี่ยนชื่อ Component เป็น Hr902TableItem
+import Hr903TableItem from './TableItem'; // ตรวจสอบชื่อและ path
 import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Box from '@mui/material/Box';
@@ -18,7 +18,8 @@ import { useIntl } from 'react-intl';
 import AppSearchBar from '@crema/components/AppSearchBar';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 
-//  --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
+// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
+// ควรดึงมาจากไฟล์กลาง หรือนิยามซ้ำ
 interface AwardData {
   award_id: number;
   staff_id: number;
@@ -38,10 +39,8 @@ interface AwardData {
   [key: string]: any;
 }
 
-//  กำหนดประเภทสำหรับทิศทางการจัดเรียง
 type Order = 'asc' | 'desc';
 
-//  --- กำหนดประเภทข้อมูลสำหรับแต่ละคอลัมน์ของตาราง ---
 interface Column {
   id: keyof AwardData | 'actions';
   label: string;
@@ -51,7 +50,6 @@ interface Column {
   sortable?: boolean;
 }
 
-//  ฟังก์ชันเปรียบเทียบสำหรับจัดเรียง
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -62,7 +60,6 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-//  ฟังก์ชันรับ comparator ที่เหมาะสมกับการจัดเรียง
 function getComparator<Key extends keyof any>(
   order: Order,
   orderBy: Key,
@@ -76,7 +73,6 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-//  ฟังก์ชันจัดเรียงข้อมูล
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
@@ -90,43 +86,35 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 }
 
 type DataTableProps = {
-  data: AwardData[];
-  setTableData: React.Dispatch<React.SetStateAction<AwardData[]>>;
-  onView: (data: AwardData) => void;
-  onEdit: (data: AwardData) => void;
-  onDelete: (id: number) => void;
+  data: AwardData[]; // ข้อมูลที่ถูกกรองจาก parent
+  onView: (data: AwardData) => void; // เหลือแค่ onView
 }
 
-const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableProps) => {
+const Hr903Table = ({ data, onView }: DataTableProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof AwardData>('award_id');
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [searchQuery, setSearchQuery] = React.useState<string>(''); // Search Bar ภายในตาราง
 
-  const intl = useIntl();
-  const labeltext = React.useMemo(() => {
-    const label = intl.formatMessage({ id: 'sidebar.hr02.01' });
-    const words = label.split("HR902 ");
-    return words[1] || '';
-  }, [intl]);
+  const { messages } = useIntl();
 
   const columns: readonly Column[] = React.useMemo(
     () => [
-      { id: 'award_id', label: 'รหัส', minWidth: 50, sortable: true },
-      { id: 'staff_id', label: 'รหัสบุคลากร', minWidth: 50, sortable: true },
-      { id: 'award_name', label: 'ชื่อเครื่องราชอิสริยาภรณ์', minWidth: 150, sortable: true },
+      { id: 'award_id', label: 'รหัสเครื่องราชฯ', minWidth: 50, sortable: true },
+      { id: 'staff_id', label: 'รหัสพนักงาน', minWidth: 100, sortable: true }, // เพิ่มคอลัมน์รหัสพนักงาน
+      { id: 'award_name', label: 'ชื่อเครื่องราชอิสริยาภรณ์', minWidth: 200, sortable: true },
       { id: 'award_date', label: 'วันที่ได้รับ', minWidth: 100, sortable: true },
-      { id: 'award_type', label: 'ประเภท', minWidth: 100, sortable: true },
+      { id: 'award_type', label: 'ประเภท', minWidth: 250, sortable: true },
       { id: 'announcement_date', label: 'วันที่ประกาศ', minWidth: 100, sortable: true },
       { id: 'gazette_volume', label: 'เล่มที่', minWidth: 70, sortable: true },
       { id: 'gazette_number', label: 'ตอนที่', minWidth: 70, sortable: true },
       { id: 'gazette_section', label: 'หน้า', minWidth: 70, sortable: true },
       { id: 'award_status', label: 'สถานะ', minWidth: 80, sortable: true },
-     /* { id: 'create_at', label: 'สร้างเมื่อ', minWidth: 100, sortable: true },
+    /*  { id: 'create_at', label: 'สร้างเมื่อ', minWidth: 100, sortable: true },
       { id: 'update_at', label: 'แก้ไขล่าสุด', minWidth: 100, sortable: true },
-      { id: 'officer_id', label: 'รหัสผู้บันทึก', minWidth: 80, sortable: true },*/
-      { id: 'actions', label: 'Actions', minWidth: 100, align: 'center', sortable: false },
+      { id: 'officer_id', label: 'รหัสผู้บันทึก', minWidth: 80, sortable: true },
+      { id: 'actions', label: 'Actions', minWidth: 100, align: 'right', sortable: false },*/
     ],
     [],
   );
@@ -149,18 +137,16 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
     setOrderBy(property);
   };
 
-  const { messages } = useIntl();
-
-  //  ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงค่าใน Search Bar
+  // ฟังก์ชันสำหรับจัดการการเปลี่ยนแปลงค่าใน Search Bar ภายในตาราง
   const onSearchCustomer = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
     setPage(0);
   };
 
-  //  กรองข้อมูลตาม searchQuery
+  // กรองข้อมูลตาม searchQuery ภายในตาราง (จากข้อมูลที่ได้รับมา)
   const filteredRows = React.useMemo(() => {
     if (!searchQuery) {
-      return data;
+      return data; // ถ้าไม่มี search query ก็คืนข้อมูลที่ได้รับมาทั้งหมด
     }
     const lowerCaseQuery = searchQuery.toLowerCase();
     return data.filter((row) =>
@@ -168,7 +154,7 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
         String(value).toLowerCase().includes(lowerCaseQuery)
       )
     );
-  }, [data, searchQuery]);
+  }, [data, searchQuery]); // data เป็น dependency เพราะจะกรองจาก data ที่ได้รับ
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -185,7 +171,7 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
             iconPosition="right"
             overlap={false}
             onChange={onSearchCustomer}
-            placeholder="ค้นหา"
+            placeholder="ค้นหา (ในผลลัพธ์ที่กรองแล้ว)"
           />
         </Box>
       </AppsHeader>
@@ -225,12 +211,11 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
             {stableSort(filteredRows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <Hr902TableItem
+                <Hr903TableItem
                   key={row.award_id}
                   data={row}
                   onView={() => onView(row)}
-                  onEdit={() => onEdit(row)}
-                  onDelete={() => onDelete(row.award_id)}
+                  // onEdit และ onDelete ถูกลบออกไปจาก props
                 />
               ))}
           </TableBody>
@@ -248,4 +233,4 @@ const Hr902Table = ({ data, setTableData, onView, onEdit, onDelete }: DataTableP
     </Paper>
   );
 }
-export default Hr902Table;
+export default Hr903Table;
