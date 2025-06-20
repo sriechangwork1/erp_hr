@@ -34,13 +34,13 @@ interface FacultyData {
 // อาจมี Component ชื่อ TableCellWrapper ถ้าคุณสร้างไว้ (จากโค้ดเก่า)
 const TableCellWrapper = (props: any) => <TableCell {...props} />; // Mock component ถ้าไม่มีจริง
 
-type Hr904TableItemProps = {
+type Rp101TableItemProps = {
   data: FacultyData;
   onView: (data: FacultyData) => void;
   isLoading?: boolean; // จากโค้ดเก่า
 };
 
-const Hr904TableItem = ({ data, onView, isLoading }: Hr904TableItemProps) => {
+const Rp101TableItem = ({ data, onView, isLoading }: Rp101TableItemProps) => {
   const { messages } = useIntl();
 
   if (isLoading) {
@@ -71,4 +71,4 @@ const Hr904TableItem = ({ data, onView, isLoading }: Hr904TableItemProps) => {
   );
 };
 
-export default Hr904TableItem;
+export default Rp101TableItem;

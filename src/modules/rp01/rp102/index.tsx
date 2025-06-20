@@ -307,15 +307,11 @@ const Hr905Page = () => {
   };
 
   return (
-    <AppsContent
-      title={
-        <IntlMessages id="sidebar.hr09.905" /> // เปลี่ยน id เป็น 905
-      }
-      sx={{
-        mt: 2,
-        height: 1,
-      }}
+    <AppCard
+      contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
+      title={<IntlMessages id="sidebar.rp01.02" />} 
     >
+    <AppsContent>
       <AppInfoView />
 
       {/* Dashboard/Summary Cards */}
@@ -407,6 +403,7 @@ const Hr905Page = () => {
         onView={handleView}
       />
     </AppsContent>
+    </AppCard>
   );
 };
 

@@ -19,6 +19,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 // import 'jspdf-autotable-font-loader/font/THSarabunNew'; // อย่าลืมติดตั้งและตั้งค่า Font
 import * as XLSX from 'xlsx';
+import AppCard from '@crema/components/AppCard';
 
 // ข้อมูล FacultyData (จาก sys_faculty_202506192125.json)
 const initialFacultyData: FacultyData[] = [
@@ -450,18 +451,16 @@ const Hr906Page = () => {
 
 
   return (
-    <AppsContent
-      title={<IntlMessages id="sidebar.hr09.906" />} // เปลี่ยน id เป็น 906
-      sx={{
-        mt: 2,
-        height: 1,
-      }}
+    <AppCard
+      contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
+      title={<IntlMessages id="sidebar.rp01.03" />} 
     >
+    <AppsContent>
       <AppInfoView />
 
       <Box sx={{ mb: 4 }}>
         <Typography variant="h5" sx={{mb: 2}}>
-          รายงานอัตรากำลังบุคลากร ประจำปีงบประมาณ 2567
+          รายงานอัตรากำลังบุคลากร ประจำปีงบประมาณ 2568
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
           ณ วันที่ 31 พฤษภาคม 2567
@@ -499,6 +498,7 @@ const Hr906Page = () => {
         handleExportAllToExcel={handleExportAllToExcel}
       />
     </AppsContent>
+    </AppCard>
   );
 };
 

@@ -4,7 +4,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import Hr904TableItem from './TableItem'; // ตรวจสอบชื่อและ path
+import Rp101TableItem from './TableItem'; // ตรวจสอบชื่อและ path
 import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Box from '@mui/material/Box';
@@ -101,7 +101,7 @@ type DataTableProps = {
   onView: (data: FacultyData) => void;
 }
 
-const Hr904Table = ({ data, onView }: DataTableProps) => {
+const Rp101Table = ({ data, onView }: DataTableProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [order, setOrder] = React.useState<Order>('asc');
@@ -218,7 +218,7 @@ const Hr904Table = ({ data, onView }: DataTableProps) => {
             {stableSort(filteredRows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => (
-                <Hr904TableItem
+                <Rp101TableItem
                   key={row.FACULTYID} // ใช้ FACULTYID เป็น key
                   data={row}
                   onView={() => onView(row)}
@@ -239,4 +239,4 @@ const Hr904Table = ({ data, onView }: DataTableProps) => {
     </Paper>
   );
 }
-export default Hr904Table;
+export default Rp101Table;

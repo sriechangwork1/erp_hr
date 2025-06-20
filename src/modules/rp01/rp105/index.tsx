@@ -1,560 +1,563 @@
- //hr901/index.tsx
+// rp105/index.tsx
 'use client';
-import React from 'react';
-import AppCard from '@crema/components/AppCard';
+import React, { useState, useMemo, useCallback } from 'react';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
-import AppSelect from '@crema/components/AppSelect'; // ยังไม่ได้ใช้งานแต่คงไว้
-import Table from './Table';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-import AppDialog from '@crema/components/AppDialog';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppInfoView from '@crema/components/AppInfoView';
+import { Box, Typography, TextField, Button, MenuItem } from '@mui/material';
 import Swal from 'sweetalert2';
-import MenuItem from '@mui/material/MenuItem'; // สำหรับ Select/Dropdown
 
-// --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
-interface AwardData {
-  award_id: number;
-  staff_id: number;
-  award_name: string;
-  award_date: string;
-  award_type: string;
-  announcement_details: string;
-  announcement_date: string;
-  gazette_volume: string;
-  gazette_number: string;
-  gazette_section: string;
-  return_date?: string; // อาจเป็นค่าว่างได้
-  create_at: string;
-  update_at: string;
-  officer_id: number;
-  award_status: string;
-  [key: string]: any;
-}
+import Table from './Table'; // Import the new Table component for hr908
+import { StaffDataRaw, StaffDetailByFaculty, FacultySummaryRow } from './types';
 
-// ข้อมูลจำลองเริ่มต้นสำหรับตาราง erp_hr."Award"
-const initialAwardRows: AwardData[] = [
- {
-    award_id: 1,
-    staff_id: 101,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือก ชั้นที่ 1 ประถมาภรณ์ช้างเผือก (ป.ช.)',
-    award_date: '2023-12-05',
-    award_type: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือกและมหาวชิรมงกุฎ ประจำปี ๒๕๖๖',
-    announcement_date: '2024-01-20',
-    gazette_volume: '141',
-    gazette_number: '3 ข',
-    gazette_section: 'หน้า 1',
-    return_date: undefined, // ยังไม่ส่งคืน
-    create_at: '2024-01-25',
-    update_at: '2024-01-25',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 2,
-    staff_id: 102,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันมีเกียรติยศยิ่งมงกุฎไทย ชั้นที่ 5 เบญจมาภรณ์มงกุฎไทย (บ.ม.)',
-    award_date: '2022-12-05',
-    award_type: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือกและมหาวชิรมงกุฎ ประจำปี ๒๕๖๕',
-    announcement_date: '2023-01-15',
-    gazette_volume: '140',
-    gazette_number: '2 ข',
-    gazette_section: 'หน้า 5',
-    return_date: undefined,
-    create_at: '2023-01-20',
-    update_at: '2023-01-20',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 3,
-    staff_id: 103,
-    award_name: 'เหรียญจักรพรรดิมาลา (ร.จ.พ.)',
-    award_date: '2023-05-10',
-    award_type: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเหรียญจักรพรรดิมาลา',
-    announcement_date: '2023-07-01',
-    gazette_volume: '140',
-    gazette_number: 'พิเศษ 100 ง',
-    gazette_section: 'หน้า 2',
-    return_date: undefined,
-    create_at: '2023-07-05',
-    update_at: '2023-07-05',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
-  {
-    award_id: 4,
-    staff_id: 104,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือก ชั้นที่ 5 เบญจมาภรณ์ช้างเผือก (บ.ช.)',
-    award_date: '2024-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'อยู่ระหว่างดำเนินการ',
-    announcement_date: '2025-01-01',
-    gazette_volume: '142',
-    gazette_number: '1 ข',
-    gazette_section: 'หน้า 10',
-    return_date: undefined,
-    create_at: '2024-12-10',
-    update_at: '2024-12-10',
-    officer_id: 680001,
-    award_status: 'อยู่ในระหว่างยื่นขอ',
-  },
-  {
-    award_id: 5,
-    staff_id: 105,
-    award_name: 'เครื่องราชอิสริยาภรณ์อันมีเกียรติยศยิ่งมงกุฎไทย ชั้นที่ 4 จตุรถาภรณ์มงกุฎไทย (จ.ม.)',
-    award_date: '2024-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'รอประกาศราชกิจจานุเบกษา',
-    announcement_date: '2025-02-15',
-    gazette_volume: '142',
-    gazette_number: '2 ข',
-    gazette_section: 'หน้า 3',
-    return_date: undefined,
-    create_at: '2024-12-12',
-    update_at: '2024-12-12',
-    officer_id: 680001,
-    award_status: 'รอประกาศราชกิจจานุเบกษา',
-  },
-  {
-    award_id: 6,
-    staff_id: 101,
-    award_name: 'เหรียญรัตนาภรณ์ รัชกาลที่ ๙ ชั้นที่ ๔ (ร.ร.๙ ๔)',
-    award_date: '2020-12-05',
-    award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
-    announcement_details: 'ประกาศสำนักนายกรัฐมนตรี เรื่อง พระราชทานเหรียญรัตนาภรณ์',
-    announcement_date: '2021-01-10',
-    gazette_volume: '138',
-    gazette_number: '1 ข',
-    gazette_section: 'หน้า 8',
-    return_date: '2023-03-01', // ตัวอย่างการส่งคืน
-    create_at: '2021-01-15',
-    update_at: '2023-03-01',
-    officer_id: 680001,
-    award_status: 'ได้รับแล้ว',
-  },
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+// import 'jspdf-autotable-font-loader/font/THSarabunNew'; // Enable if font is set up.
+
+import * as XLSX from 'xlsx';
+
+// --- Static Faculty Data (from sys_faculty_202506192125.json) ---
+// Note: In a real app, this might come from an API
+const faculties = [
+  { FACULTYID: "1", FACULTYNAME: "สำนักงานอธิการบดี-กองบริหารงานทั่วไป" },
+  { FACULTYID: "2", FACULTYNAME: "สำนักงานอธิการบดี-กองนโยบายและแผน" },
+  { FACULTYID: "3", FACULTYNAME: "สำนักงานอธิการบดี-กองพัฒนานักศึกษา" },
+  { FACULTYID: "12", FACULTYNAME: "คณะครุศาสตร์" },
+  { FACULTYID: "13", FACULTYNAME: "คณะมนุษยศาสตร์และสังคมศาสตร์" },
+  { FACULTYID: "14", FACULTYNAME: "คณะวิทยาศาสตร์" },
+  { FACULTYID: "15", FACULTYNAME: "คณะวิทยาการจัดการ" },
+  { FACULTYID: "16", FACULTYNAME: "คณะเทคโนโลยี" },
+  { FACULTYID: "17", FACULTYNAME: "บัณฑิตวิทยาลัย" },
+  { FACULTYID: "18", FACULTYNAME: "คณะนิติศาสตร์" },
+  { FACULTYID: "19", FACULTYNAME: "คณะพยาบาลศาสตร์" },
+  { FACULTYID: "20", FACULTYNAME: "คณะแพทยศาสตร์" },
+  // ... (Full list from sys_faculty_202506192125.json)
 ];
 
+// Helper for generating random data (reused from hr907)
+const getRandomInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-const Hr09Page = () => { // เปลี่ยนชื่อ Component เป็น Hr02Page
-  const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
-  const [dialogMode, setDialogMode] = React.useState<'add' | 'edit' | 'view'>('add');
-  const [currentData, setCurrentData] = React.useState<AwardData | null>(null); // ใช้ AwardData
-  const [tableData, setTableData] = React.useState<AwardData[]>(initialAwardRows); // ใช้ initialAwardRows
-  const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+const getRandomItem = <T extends unknown>(arr: T[]): T => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
 
-  const intl = useIntl();
+// --- Simulated Raw Staff Data Generation (similar to hr907 but with more fields) ---
+const generateSimulatedStaffData = (count: number): StaffDataRaw[] => {
+  const staffData: StaffDataRaw[] = [];
+  const firstNames = ["สมชาย", "สมหญิง", "วีระ", "อรุณี", "ปรีชา", "กัญญา", "มานะ", "ดวงใจ", "ทรงชัย", "สุพรรณี"];
+  const lastNames = ["สุขใจ", "ดีเยี่ยม", "คงทน", "งามยิ่ง", "พอเพียง", "รักชาติ", "เมตตา", "เจริญสุข", "มั่นคง", "สุขสม"];
+  const academicPositions = ["ศาสตราจารย์", "รองศาสตราจารย์", "ผู้ช่วยศาสตราจารย์", "อาจารย์"];
+  const adminPositions = ["นักวิชาการศึกษา", "เจ้าหน้าที่บริหารงานทั่วไป", "นักวิเคราะห์นโยบายและแผน", "เจ้าหน้าที่ธุรการ", "ผู้อำนวยการกอง"];
 
-  // ฟังก์ชันสำหรับดึงข้อความ label จาก intl
-  const labeltext = () => {
-    const label = intl.formatMessage({ id: 'sidebar.hr09.01' }); 
-    const words = label.split("HR901 ");
-    return words[1];
-  };
+  for (let i = 1; i <= count; i++) {
+    const genderCode = getRandomItem(["1", "2"]);
+    const birthYear = getRandomInt(1970, 2000);
+    const birthMonth = getRandomInt(1, 12);
+    const birthDay = getRandomInt(1, 28);
+    const dateOfBirth = `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`;
 
-  const dialogTitle = React.useMemo(() => {
-    if (dialogMode === 'add') return "เพิ่ม" + labeltext();
-    if (dialogMode === 'edit') return "แก้ไข" + labeltext();
-    if (dialogMode === 'view') return "รายละเอียด" + labeltext();
-    return "";
-  }, [dialogMode, labeltext]);
+    const faculty = getRandomItem(faculties);
+    const staffTypeId = getRandomInt(1, 4);
+    const budgetId = getRandomInt(1, 2);
 
-  const onOpenAddTask = () => {
-    setDialogMode('add');
-    setCurrentData({ // กำหนดค่าเริ่มต้นสำหรับข้อมูลใหม่
-      award_id: 0, // id จะถูกกำหนดเมื่อบันทึก
-      staff_id: 0,
-      award_name: '',
-      award_date: '',
-      award_type: '',
-      announcement_details: '',
-      announcement_date: '',
-      gazette_volume: '',
-      gazette_number: '',
-      gazette_section: '',
-      return_date: undefined,
-      create_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
-      update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
-      officer_id: 0, 
-      award_status: 'อยู่ในระหว่างยื่นขอ' // ค่าเริ่มต้นสถานะ
+    let positionAcademic = null;
+    let positionAdmin = null;
+    let positionWork = null;
+
+    if (staffTypeId === 1 || staffTypeId === 2) {
+      if (Math.random() > 0.5) {
+        positionAcademic = getRandomItem(academicPositions);
+      } else {
+        positionAdmin = getRandomItem(adminPositions);
+      }
+    } else {
+      positionAdmin = getRandomItem(adminPositions);
+    }
+    if (!positionAcademic && !positionAdmin) {
+        positionWork = getRandomItem(adminPositions);
+    }
+
+    const startYear = getRandomInt(1990, 2024);
+    const startMonth = getRandomInt(1, 12);
+    const startDay = getRandomInt(1, 28);
+    const dateOfAppointment = `${startYear}-${String(startMonth).padStart(2, '0')}-${String(startDay).padStart(2, '0')}`;
+
+    staffData.push({
+      staff_id: 6000000 + i, // Use a different range for new staff IDs
+      citizen_id: `1${String(getRandomInt(10000000000, 99999999999))}`,
+      prefixname_id: genderCode === "1" ? 1 : 2,
+      academic_title: positionAcademic ? getRandomItem(["", "ผศ.", "รศ.", "ศ."]) : "",
+      first_name_th: getRandomItem(firstNames),
+      last_name_th: getRandomItem(lastNames),
+      middle_name_th: "",
+      first_name_en: "",
+      last_name_en: "",
+      middle_name_en: "",
+      gender: genderCode,
+      date_of_birth: dateOfBirth,
+      faculty_id: parseInt(faculty.FACULTYID),
+      faculty_name_th: faculty.FACULTYNAME,
+      STAFFTYPE_ID: staffTypeId,
+      BUDGET_ID: budgetId,
+      position_academic_name_th: positionAcademic,
+      position_admin_name_th: positionAdmin,
+      POSITION_WORK: positionWork,
+      date_of_appointment: dateOfAppointment, // Simulated date of appointment
+      phone_number: `08${getRandomInt(10000000, 99999999)}`, // Simulated phone
+      email1: `staff${i}@example.com`, // Simulated email
+      is_active: Math.random() > 0.1, // 90% active, 10% inactive for demonstration
     });
-    setAddTaskOpen(true);
-    setErrors({}); // เคลียร์ข้อผิดพลาดเมื่อเปิด Dialog
-  };
+  }
+  return staffData;
+};
 
-  const onCloseAddTask = () => {
-    setAddTaskOpen(false);
-    setCurrentData(null); // เคลียร์ข้อมูลเมื่อปิด Dialog
-    setErrors({}); // เคลียร์ข้อผิดพลาดเมื่อปิด Dialog
-  };
+const initialStaffData: StaffDataRaw[] = generateSimulatedStaffData(200); // Generate 200 staff records
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setCurrentData(prevData => ({
-      ...prevData!,
-      [name]: value
-    }));
-    // ลบข้อผิดพลาดสำหรับช่องที่ผู้ใช้กำลังพิมพ์
-    if (errors[name]) {
-      setErrors(prevErrors => {
-        const newErrors = { ...prevErrors };
-        delete newErrors[name];
-        return newErrors;
-      });
-    }
-  };
 
-  // ฟังก์ชันสำหรับตรวจสอบข้อมูล
-  const validateData = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!currentData?.award_name) {
-      newErrors.award_name = 'กรุณากรอกข้อมูลชื่อเครื่องราชอิสริยาภรณ์';
-    }
-    if (!currentData?.award_date) {
-      newErrors.award_date = 'กรุณากรอกข้อมูลวันที่ได้รับเครื่องราชอิสริยาภรณ์';
-    }
-    if (!currentData?.award_type) {
-      newErrors.award_type = 'กรุณากรอกข้อมูลประเภทเครื่องราชอิสริยาภรณ์';
-    }
-    if (!currentData?.announcement_details) {
-      newErrors.announcement_details = 'กรุณากรอกข้อมูลรายละเอียดประกาศ';
-    }
-    if (!currentData?.announcement_date) {
-      newErrors.announcement_date = 'กรุณากรอกข้อมูลวันที่ประกาศ';
-    }
-    if (!currentData?.gazette_volume) {
-      newErrors.gazette_volume = 'กรุณากรอกข้อมูลเล่มที่ราชกิจจานุเบกษา';
-    }
-    if (!currentData?.gazette_number) {
-      newErrors.gazette_number = 'กรุณากรอกข้อมูลตอนที่ราชกิจจานุเบกษา';
-    }
-    if (!currentData?.gazette_section) {
-      newErrors.gazette_section = 'กรุณากรอกข้อมูลหน้าประกาศราชกิจจานุเบกษา';
-    }
-    if (!currentData?.award_status) {
-      newErrors.award_status = 'กรุณากรอกข้อมูลสถานะเครื่องราชอิสริยาภรณ์';
-    }
+// Helper functions (reused from hr907 or adapted)
+const mapGender = (genderCode: string): 'ชาย' | 'หญิง' | 'ไม่ระบุ' => {
+  if (genderCode === '1') return 'ชาย';
+  if (genderCode === '2') return 'หญิง';
+  return 'ไม่ระบุ';
+};
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+const mapStaffType = (staffTypeId: number): string => {
+  switch (staffTypeId) {
+    case 1: return 'ข้าราชการ';
+    case 2: return 'พนักงานมหาวิทยาลัย';
+    case 3: return 'พนักงานราชการ';
+    case 4: return 'ลูกจ้างประจำ';
+    default: return 'อื่นๆ';
+  }
+};
 
-  const handleSaveData = () => {
-     if (!validateData()) {
-       Swal.fire({
-         icon: 'warning',
-         title: 'คำเตือน!',
-         text: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน',
-         confirmButtonText: 'ตกลง'
-       });
-       return;
-    }
+const mapBudget = (budgetId: number): string => {
+  switch (budgetId) {
+    case 1: return 'เงินงบประมาณ';
+    case 2: return 'เงินรายได้';
+    default: return 'ไม่ระบุ';
+  }
+};
 
-    if (dialogMode === 'add') {
-      // เพิ่มข้อมูลใหม่
-      const newId = tableData.length > 0 ? Math.max(...tableData.map(d => d.award_id)) + 1 : 1;
-      const newData: AwardData = {
-        ...currentData!,
-        award_id: newId,
-        create_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
-        update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
+const getPositionName = (staff: StaffDataRaw): string => {
+  if (staff.position_academic_name_th) return staff.position_academic_name_th;
+  if (staff.position_admin_name_th) return staff.position_admin_name_th;
+  if (staff.POSITION_WORK) return staff.POSITION_WORK;
+  return 'ไม่ระบุตำแหน่ง';
+};
+
+
+const Hr908Page = () => {
+  const { messages } = useIntl();
+  const [filterFacultyName, setFilterFacultyName] = useState<string>('');
+  const [filterStaffType, setFilterStaffType] = useState<string>('');
+  const [filterIsActive, setFilterIsActive] = useState<string>(''); // For active/inactive filter
+
+  // Pagination states
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
+
+  const handleChangePage = useCallback((event: unknown, newPage: number) => {
+    setPage(newPage);
+  }, []);
+
+  const handleChangeRowsPerPage = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  }, []);
+
+
+  // Process raw staff data into StaffDetailByFaculty objects
+  const processedStaffData: StaffDetailByFaculty[] = useMemo(() => {
+    return initialStaffData.map((staff, index) => {
+      return {
+        id: staff.staff_id || index,
+        staffId: staff.staff_id,
+        fullNameTh: `${staff.first_name_th} ${staff.last_name_th}`,
+        gender: mapGender(staff.gender),
+        positionName: getPositionName(staff),
+        staffTypeName: mapStaffType(staff.STAFFTYPE_ID),
+        budgetName: mapBudget(staff.BUDGET_ID),
+        facultyName: staff.faculty_name_th,
+        dateOfAppointment: staff.date_of_appointment,
+        phoneNumber: staff.phone_number,
+        email: staff.email1,
+        // Add other fields as needed
       };
-      setTableData(prevData => [...prevData, newData]);
-      Swal.fire('สำเร็จ!', 'เพิ่มข้อมูลเรียบร้อยแล้ว', 'success');
-    } else if (dialogMode === 'edit') {
-      // แก้ไขข้อมูล
-      setTableData(prevData =>
-        prevData.map(data =>
-          data.award_id === currentData!.award_id ? {
-            ...currentData!,
-            update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' })
-          } : data
-        )
+    }).filter(staff => {
+      // Only include active staff by default for this report, unless explicitly filtered otherwise
+      // This is an example, you might adjust based on 'is_active' from initialStaffData
+      const originalStaff = initialStaffData.find(s => s.staff_id === staff.staffId);
+      return originalStaff ? originalStaff.is_active : true; // Assume active if not found
+    });
+  }, []);
+
+  // Filtered Staff Data (before pagination)
+  const allFilteredStaff = useMemo(() => {
+    let currentData = processedStaffData;
+
+    // Filter by faculty name
+    if (filterFacultyName) {
+      const lowerCaseFilter = filterFacultyName.toLowerCase();
+      currentData = currentData.filter(staff =>
+        staff.facultyName.toLowerCase().includes(lowerCaseFilter)
       );
-      Swal.fire('สำเร็จ!', 'แก้ไขข้อมูลเรียบร้อยแล้ว', 'success');
     }
-    onCloseAddTask();
-  };
 
-  const handleViewData = (data: AwardData) => { // ใช้ AwardData
-    setDialogMode('view');
-    setCurrentData(data);
-    setErrors({}); 
-    setAddTaskOpen(true);
-  };
+    // Filter by staff type
+    if (filterStaffType) {
+      const lowerCaseFilter = filterStaffType.toLowerCase();
+      currentData = currentData.filter(staff =>
+        staff.staffTypeName.toLowerCase().includes(lowerCaseFilter)
+      );
+    }
 
-  const handleEditData = (data: AwardData) => { // ใช้ AwardData
-    setDialogMode('edit');
-    setCurrentData(data);
-    setErrors({}); 
-    setAddTaskOpen(true);
-  };
+    // Filter by active status
+    if (filterIsActive !== '') {
+        const isActive = filterIsActive === 'true';
+        currentData = currentData.filter(staff => {
+            const originalStaff = initialStaffData.find(s => s.staff_id === staff.staffId);
+            return originalStaff ? originalStaff.is_active === isActive : false; // Default to inactive if original not found
+        });
+    }
 
-  const handleDeleteData = async (id: number) => {
-    const result = await Swal.fire({
-      title: 'คุณแน่ใจหรือไม่?',
-      text: "คุณต้องการลบข้อมูลนี้ใช่ไหม?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ใช่, ลบเลย!',
-      cancelButtonText: 'ยกเลิก'
+
+    return currentData.sort((a, b) => a.facultyName.localeCompare(b.facultyName) || a.fullNameTh.localeCompare(b.fullNameTh));
+  }, [processedStaffData, filterFacultyName, filterStaffType, filterIsActive]);
+
+  // Data for current page (paginated)
+  const paginatedStaff = useMemo(() => {
+    return allFilteredStaff.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+  }, [allFilteredStaff, page, rowsPerPage]);
+
+
+  // Calculate Faculty Summary
+  const facultySummary: FacultySummaryRow[] = useMemo(() => {
+    const summaryMap = new Map<string, { total: number; academic: number; support: number; male: number; female: number }>();
+    const academicStaffTypes = ['ข้าราชการ', 'พนักงานมหาวิทยาลัย'];
+    const supportStaffTypes = ['พนักงานราชการ', 'ลูกจ้างประจำ'];
+
+    allFilteredStaff.forEach(staff => {
+      if (!summaryMap.has(staff.facultyName)) {
+        summaryMap.set(staff.facultyName, { total: 0, academic: 0, support: 0, male: 0, female: 0 });
+      }
+      const facultyStats = summaryMap.get(staff.facultyName)!;
+      facultyStats.total++;
+
+      if (academicStaffTypes.includes(staff.staffTypeName)) {
+        facultyStats.academic++;
+      } else if (supportStaffTypes.includes(staff.staffTypeName)) {
+        facultyStats.support++;
+      }
+
+      if (staff.gender === 'ชาย') {
+        facultyStats.male++;
+      } else if (staff.gender === 'หญิง') {
+        facultyStats.female++;
+      }
     });
 
-    if (result.isConfirmed) {
-      setTableData(prevData => prevData.filter(data => data.award_id !== id));
-      Swal.fire(
-        'ลบแล้ว!',
-        'ข้อมูลของคุณถูกลบเรียบร้อยแล้ว',
-        'success'
-      );
-    }
-  };
+    const summaryRows: FacultySummaryRow[] = Array.from(summaryMap.entries()).map(([facultyName, stats]) => ({
+      facultyName: facultyName,
+      totalStaff: stats.total,
+      academicStaffCount: stats.academic,
+      supportStaffCount: stats.support,
+      maleCount: stats.male,
+      femaleCount: stats.female,
+    })).sort((a, b) => a.facultyName.localeCompare(b.facultyName));
 
-    const award_typeOptions = [
-    { value: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น', label: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น' },
-    { value: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ', label: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ' },
-    { value: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ', label: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ' },
-    { value: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ', label: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ' },
+    // Add "รวมทั้งหมด" row
+    const totalRow: FacultySummaryRow = {
+      facultyName: 'รวมทั้งหมด',
+      totalStaff: summaryRows.reduce((sum, row) => sum + row.totalStaff, 0),
+      academicStaffCount: summaryRows.reduce((sum, row) => sum + row.academicStaffCount, 0),
+      supportStaffCount: summaryRows.reduce((sum, row) => sum + row.supportStaffCount, 0),
+      maleCount: summaryRows.reduce((sum, row) => sum + row.maleCount, 0),
+      femaleCount: summaryRows.reduce((sum, row) => sum + row.femaleCount, 0),
+    };
 
-  ];
+    return [totalRow, ...summaryRows]; // "รวมทั้งหมด" always at the top
+  }, [allFilteredStaff]);
+
+
+  // Options for filter dropdowns
+  const facultyOptions = useMemo(() => {
+    return faculties.map(f => ({ value: f.FACULTYID, label: f.FACULTYNAME }));
+  }, []);
+
+  const staffTypeOptions = useMemo(() => {
+    const types = new Set<string>();
+    initialStaffData.forEach(staff => types.add(mapStaffType(staff.STAFFTYPE_ID)));
+    return Array.from(types).sort().map(type => ({ value: type, label: type }));
+  }, []);
+
+  const handleExportAllToPdf = useCallback(() => {
+    const doc = new jsPDF('p', 'mm', 'a4');
+    // doc.setFont('THSarabunNew'); // Enable if font is set up.
+    // doc.setR2L(false);
+
+    let currentY = 10;
+    const margin = 14;
+
+    // --- Report Header ---
+    doc.setFontSize(14);
+    doc.text('รายงานรายชื่อบุคลากรแยกตามหน่วยงาน', margin, currentY);
+    currentY += 7;
+    doc.setFontSize(12);
+    doc.text(`ข้อมูล ณ วันที่ ${new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' })}`, margin, currentY);
+    currentY += 10;
+
+    // --- Summary Section ---
+    doc.setFontSize(12);
+    doc.text('1. สรุปจำนวนบุคลากรแยกตามหน่วยงาน', margin, currentY);
+    currentY += 5;
+
+    const summaryColumnsForPdf = [
+      { header: 'หน่วยงาน', dataKey: 'facultyName' },
+      { header: 'รวม (คน)', dataKey: 'totalStaff' },
+      { header: 'สายวิชาการ', dataKey: 'academicStaffCount' },
+      { header: 'สายสนับสนุน', dataKey: 'supportStaffCount' },
+      { header: 'ชาย', dataKey: 'maleCount' },
+      { header: 'หญิง', dataKey: 'femaleCount' },
+    ];
+    const summaryRowsForPdf = facultySummary.map(row => ({
+      facultyName: row.facultyName,
+      totalStaff: row.totalStaff,
+      academicStaffCount: row.academicStaffCount,
+      supportStaffCount: row.supportStaffCount,
+      maleCount: row.maleCount,
+      femaleCount: row.femaleCount,
+    }));
+
+    (doc as any).autoTable({
+      head: [summaryColumnsForPdf.map(col => col.header)],
+      body: summaryRowsForPdf.map(row => summaryColumnsForPdf.map(col => row[col.dataKey as keyof typeof row])),
+      startY: currentY,
+      margin: { left: margin, right: margin },
+      styles: { font: 'THSarabunNew', fontSize: 8, cellPadding: 1, overflow: 'linebreak' }, // Add font style if installed
+      headStyles: { fillColor: [200, 200, 200], textColor: [0,0,0] },
+      didDrawPage: (data: any) => {
+        currentY = data.cursor.y;
+      }
+    });
+    currentY = (doc as any).autoTable.previous.finalY + 10;
+
+    // --- Detailed List Section ---
+    doc.setFontSize(12);
+    doc.text('2. รายชื่อบุคลากร', margin, currentY);
+    currentY += 5;
+
+    const detailColumnsForPdf = [
+      { header: 'ลำดับ', dataKey: 'index' },
+      { header: 'หน่วยงาน', dataKey: 'facultyName' },
+      { header: 'รหัสบุคลากร', dataKey: 'staffId' },
+      { header: 'ชื่อ-นามสกุล', dataKey: 'fullNameTh' },
+      { header: 'เพศ', dataKey: 'gender' },
+      { header: 'ตำแหน่ง', dataKey: 'positionName' },
+      { header: 'ประเภทบุคลากร', dataKey: 'staffTypeName' },
+      { header: 'ประเภทเงิน', dataKey: 'budgetName' },
+      // { header: 'วันที่บรรจุ', dataKey: 'dateOfAppointment' }, // Add if used
+      // { header: 'เบอร์โทร', dataKey: 'phoneNumber' }, // Add if used
+      // { header: 'อีเมล', dataKey: 'email' }, // Add if used
+    ];
+
+    const detailRowsForPdf = allFilteredStaff.map((staff, index) => ({
+      index: index + 1,
+      facultyName: staff.facultyName,
+      staffId: staff.staffId,
+      fullNameTh: staff.fullNameTh,
+      gender: staff.gender,
+      positionName: staff.positionName,
+      staffTypeName: staff.staffTypeName,
+      budgetName: staff.budgetName,
+      // dateOfAppointment: staff.dateOfAppointment, // Add if used
+      // phoneNumber: staff.phoneNumber, // Add if used
+      // email: staff.email, // Add if used
+    }));
+
+    (doc as any).autoTable({
+      head: [detailColumnsForPdf.map(col => col.header)],
+      body: detailRowsForPdf.map(row => detailColumnsForPdf.map(col => row[col.dataKey as keyof typeof row])),
+      startY: currentY,
+      margin: { left: margin, right: margin },
+      styles: { font: 'THSarabunNew', fontSize: 7, cellPadding: 1, overflow: 'linebreak' }, // Add font style if installed
+      headStyles: { fillColor: [200, 200, 200], textColor: [0,0,0] },
+      columnStyles: {
+        0: { cellWidth: 10 }, // ลำดับ
+        1: { cellWidth: 40 }, // หน่วยงาน
+        2: { cellWidth: 15 }, // รหัสบุคลากร
+        3: { cellWidth: 30 }, // ชื่อ-นามสกุล
+        4: { cellWidth: 10 }, // เพศ
+        5: { cellWidth: 25 }, // ตำแหน่ง
+        6: { cellWidth: 20 }, // ประเภทบุคลากร
+        7: { cellWidth: 15 }, // ประเภทเงิน
+        // 8: { cellWidth: 20 }, // วันที่บรรจุ
+        // 9: { cellWidth: 20 }, // เบอร์โทร
+        // 10: { cellWidth: 30 }, // อีเมล
+      },
+      didDrawPage: (data: any) => {
+        doc.setFontSize(8);
+        doc.text(`หน้า ${data.pageNumber}`, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
+      }
+    });
+
+    doc.save('รายงานรายชื่อบุคลากรตามหน่วยงาน.pdf');
+    Swal.fire('สำเร็จ!', 'ส่งออก PDF เรียบร้อยแล้ว', 'success');
+  }, [allFilteredStaff, facultySummary]);
+
+  const handleExportAllToExcel = useCallback(() => {
+    // Prepare Summary data
+    const summaryDataForExcel = facultySummary.map(row => ({
+      'หน่วยงาน': row.facultyName,
+      'รวม (คน)': row.totalStaff,
+      'สายวิชาการ': row.academicStaffCount,
+      'สายสนับสนุน': row.supportStaffCount,
+      'ชาย': row.maleCount,
+      'หญิง': row.femaleCount,
+    }));
+
+    // Prepare Detailed data
+    const detailDataForExcel = allFilteredStaff.map((staff, index) => ({
+      'ลำดับ': index + 1,
+      'หน่วยงาน': staff.facultyName,
+      'รหัสบุคลากร': staff.staffId,
+      'ชื่อ-นามสกุล': staff.fullNameTh,
+      'เพศ': staff.gender,
+      'ตำแหน่ง': staff.positionName,
+      'ประเภทบุคลากร': staff.staffTypeName,
+      'ประเภทเงิน': staff.budgetName,
+      // 'วันที่บรรจุ': staff.dateOfAppointment, // Add if used
+      // 'เบอร์โทร': staff.phoneNumber, // Add if used
+      // 'อีเมล': staff.email, // Add if used
+    }));
+
+    const workbook = XLSX.utils.book_new();
+
+    // Add Summary sheet
+    const summarySheet = XLSX.utils.json_to_sheet(summaryDataForExcel);
+    XLSX.utils.book_append_sheet(workbook, summarySheet, 'สรุปบุคลากรตามหน่วยงาน');
+
+    // Add Detailed List sheet
+    const detailSheet = XLSX.utils.json_to_sheet(detailDataForExcel);
+    XLSX.utils.book_append_sheet(workbook, detailSheet, 'รายชื่อบุคลากร');
+
+    XLSX.writeFile(workbook, 'รายงานรายชื่อบุคลากรตามหน่วยงาน.xlsx');
+    Swal.fire('สำเร็จ!', 'ส่งออก Excel เรียบร้อยแล้ว', 'success');
+  }, [allFilteredStaff, facultySummary]);
 
   return (
-    <AppCard
-      contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr09.01" />} 
-      action={
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{
-            padding: '3px 10px',
-            borderRadius: 30,
-            '& .MuiSvgIcon-root': {
-              fontSize: 20,
-            },
-          }}
-          startIcon={<AddIcon />}
-          onClick={onOpenAddTask}
-        >
-          เพิ่ม{labeltext()}
-        </Button>
-      }
+    <AppsContent
+      title={<IntlMessages id="sidebar.hr.staffByFacultyReport" />} // New message ID
+      sx={{
+        mb: 2,
+        mt: 2,
+        py: 0,
+        flex: 1,
+        "& .apps-content": {
+          paddingTop: 0,
+          paddingBottom: 0,
+          marginBottom: 0,
+        },
+      }}
     >
-      <Table
-        data={tableData} 
-        setTableData={setTableData} 
-        onView={handleViewData}
-        onEdit={handleEditData}
-        onDelete={handleDeleteData}
-      />
-      <AppDialog
-        dividers
-        maxWidth="md"
-        open={isAddTaskOpen}
-        onClose={onCloseAddTask}
-        title={dialogTitle}
-      >
-        <Box>
-          <TextField
-            label={"รหัส" + labeltext()}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.award_id || ''}
-            name="award_id"
-            onChange={handleInputChange}
-            disabled={dialogMode !== 'add'} 
-          />
-          <TextField
-            fullWidth
-            label="รหัสประจำตัวบุคลากร"
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.staff_id || ''}
-            name="staff_id"
-            type="number"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.staff_id}
-            helperText={errors.staff_id}
-          />
-          <TextField
-            fullWidth
-            label={"ชื่อเครื่องราชอิสริยาภรณ์"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.award_name || ''}
-            name="award_name"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.award_name}
-            helperText={errors.award_name}
-          />
-          <TextField
-            fullWidth
-            label={"วันที่ได้รับเครื่องราชอิสริยาภรณ์"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            type="date" // ใช้ type date
-            InputLabelProps={{ shrink: true }} // ทำให้ label ไม่ทับค่า
-            value={currentData?.award_date || ''}
-            name="award_date"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.award_date}
-            helperText={errors.award_date}
-          />
-                  <TextField
-                          select
-                          fullWidth
-                          label="ประเภทเครื่องราชอิสริยาภรณ์'"
-                          variant="outlined"
-                          margin="normal"
-                          size="small"
-                          value={currentData?.award_type === undefined ? '' : currentData?.award_type}
-                          name="prefixname_id"
-                          onChange={handleInputChange}
-                          disabled={dialogMode === 'view'}
-                          error={!!errors.award_type}
-                          helperText={errors.award_type}
-                        >
-                          {award_typeOptions.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label}
-                            </MenuItem>
-                          ))}
-                        </TextField>
-          <TextField
-            fullWidth
-            label={"รายละเอียดประกาศ"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            multiline // เพิ่ม multiline สำหรับข้อความยาวๆ
-            rows={2}
-            value={currentData?.announcement_details || ''}
-            name="announcement_details"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.announcement_details}
-            helperText={errors.announcement_details}
-          />
-          <TextField
-            fullWidth
-            label={"วันที่ประกาศ"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            value={currentData?.announcement_date || ''}
-            name="announcement_date"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.announcement_date}
-            helperText={errors.announcement_date}
-          />
-          <TextField
-            fullWidth
-            label={"เล่มที่ราชกิจจานุเบกษา"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.gazette_volume || ''}
-            name="gazette_volume"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.gazette_volume}
-            helperText={errors.gazette_volume}
-          />
-          <TextField
-            fullWidth
-            label={"ตอนที่ราชกิจจานุเบกษา"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.gazette_number || ''}
-            name="gazette_number"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.gazette_number}
-            helperText={errors.gazette_number}
-          />
-          <TextField
-            fullWidth
-            label={"หน้าประกาศราชกิจจานุเบกษา"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.gazette_section || ''}
-            name="gazette_section"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.gazette_section}
-            helperText={errors.gazette_section}
-          />
-          <TextField
-            fullWidth
-            label={"วันที่ส่งคืน (ถ้ามี)"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            value={currentData?.return_date || ''}
-            name="return_date"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-          />
-          <TextField
-            fullWidth
-            label={"สถานะเครื่องราชอิสริยาภรณ์"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.award_status || ''}
-            name="award_status"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'}
-            error={!!errors.award_status}
-            helperText={errors.award_status}
-          />
-          <TextField
-            fullWidth
-            label={"ผู้บันทึกข้อมูล (รหัสเจ้าหน้าที่)"}
-            variant="outlined"
-            margin="normal"
-            size="small"
-            value={currentData?.officer_id || ''}
-            name="officer_id"
-            onChange={handleInputChange}
-            disabled={dialogMode === 'view'} 
-          />
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Typography component="h2" variant="h3" sx={{ mb: 4, fontWeight: 'bold' }}>
+          <IntlMessages id="report.staffListByFaculty" /> {/* New message ID */}
+        </Typography>
 
-          <Box mt={2} display="flex" justifyContent="flex-end">
-            <Button onClick={onCloseAddTask} color="secondary">
-              {dialogMode === 'view' ? 'ปิด' : 'ยกเลิก'}
-            </Button>
-            {dialogMode !== 'view' && (
-              <Button variant="contained" color="primary" sx={{ ml: 2 }} onClick={handleSaveData}>
-                บันทึก
-              </Button>
-            )}
-          </Box>
+        {/* Filter Section */}
+        <Box sx={{ display: 'flex', gap: 2, mb: 4, alignItems: 'center' }}>
+          <TextField
+            select
+            label="หน่วยงาน"
+            value={filterFacultyName}
+            onChange={(e) => {
+                setFilterFacultyName(e.target.value);
+                setPage(0); // Reset page on filter change
+            }}
+            variant="outlined"
+            size="small"
+            sx={{ minWidth: 250 }}
+          >
+            <MenuItem value="">-- เลือกทั้งหมด --</MenuItem>
+            {facultyOptions.map((option) => (
+              <MenuItem key={option.value} value={option.label}> {/* Filter by label for now, could be ID */}
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            select
+            label="ประเภทบุคลากร"
+            value={filterStaffType}
+            onChange={(e) => {
+                setFilterStaffType(e.target.value);
+                setPage(0); // Reset page on filter change
+            }}
+            variant="outlined"
+            size="small"
+            sx={{ minWidth: 200 }}
+          >
+            <MenuItem value="">-- เลือกทั้งหมด --</MenuItem>
+            {staffTypeOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            select
+            label="สถานะ"
+            value={filterIsActive}
+            onChange={(e) => {
+                setFilterIsActive(e.target.value);
+                setPage(0); // Reset page on filter change
+            }}
+            variant="outlined"
+            size="small"
+            sx={{ minWidth: 150 }}
+          >
+            <MenuItem value="">-- ทั้งหมด --</MenuItem>
+            <MenuItem value="true">ปกติ</MenuItem>
+            <MenuItem value="false">ไม่ปกติ</MenuItem>
+          </TextField>
+
+          <Button
+            variant="contained"
+            onClick={() => {
+              setFilterFacultyName('');
+              setFilterStaffType('');
+              setFilterIsActive('');
+              setPage(0); // Reset pagination on filter clear
+            }}
+          >
+            ล้างตัวกรอง
+          </Button>
         </Box>
-      </AppDialog>
-    </AppCard>
+
+        {/* Table Component */}
+        <Table
+          filteredStaff={paginatedStaff}
+          totalFilteredCount={allFilteredStaff.length}
+          facultySummary={facultySummary}
+          handleExportAllToPdf={handleExportAllToPdf}
+          handleExportAllToExcel={handleExportAllToExcel}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+        <AppInfoView />
+      </Box>
+    </AppsContent>
   );
 };
 
-export default Hr09Page; 
+export default Hr908Page;

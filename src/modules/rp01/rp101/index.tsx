@@ -4,7 +4,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import AppCard from '@crema/components/AppCard';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
-import Hr904Table from './Table'; // ตรวจสอบว่าชื่อไฟล์และ path ถูกต้อง
+import Rp101Table from './Table'; // ตรวจสอบว่าชื่อไฟล์และ path ถูกต้อง
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -931,7 +931,7 @@ const initialFacultyData: FacultyData[] = [
 ];
 
 
-const Hr904Page = () => {
+const Rp101Page = () => {
   const { messages } = useIntl();
   const [facultyData] = useState<FacultyData[]>(initialFacultyData);
   const [filterFacultyName, setFilterFacultyName] = useState<string>('');
@@ -1127,15 +1127,11 @@ const Hr904Page = () => {
   };
 
   return (
-    <AppsContent
-      title={
-        <IntlMessages id="sidebar.hr09.904" /> // เปลี่ยน id เป็น 904
-      }
-      sx={{
-        mt: 2,
-        height: 1,
-      }}
+    <AppCard
+      contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
+      title={<IntlMessages id="sidebar.rp01.01" />} 
     >
+    <AppsContent>
       <AppInfoView />
 
       {/* Dashboard/Summary Cards */}
@@ -1213,12 +1209,13 @@ const Hr904Page = () => {
       </Box>
 
       {/* Table Component */}
-      <Hr904Table
+      <Rp101Table
         data={filteredData} // ส่งข้อมูลที่ผ่านการกรองไปให้ตาราง
         onView={handleView}
       />
     </AppsContent>
+    </AppCard>
   );
 };
 
-export default Hr904Page;
+export default Rp101Page;
