@@ -447,7 +447,7 @@ const Rp104Page = () => {
 
   return (
     <AppsContent
-      title={<IntlMessages id="sidebar.hr.retiredStaffReport" />}
+      title={<IntlMessages id="sidebar.rp01.04" />}
       sx={{
         mb: 2,
         mt: 2,

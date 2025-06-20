@@ -452,7 +452,7 @@ const Hr908Page = () => {
 
   return (
     <AppsContent
-      title={<IntlMessages id="sidebar.hr.staffByFacultyReport" />} // New message ID
+      title={<IntlMessages id="sidebar.rp01.05" />}
       sx={{
         mb: 2,
         mt: 2,
@@ -467,7 +467,7 @@ const Hr908Page = () => {
     >
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Typography component="h2" variant="h3" sx={{ mb: 4, fontWeight: 'bold' }}>
-          <IntlMessages id="report.staffListByFaculty" /> {/* New message ID */}
+        {<IntlMessages id="sidebar.rp01.05" />}
         </Typography>
 
         {/* Filter Section */}
