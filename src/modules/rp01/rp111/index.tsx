@@ -1,315 +1,528 @@
-// src/pages/hr914/index.tsx
-'use client'; // <-- บรรทัดนี้ต้องอยู่บรรทัดแรกสุดของไฟล์
-
-import React, { useState } from 'react';
-import AppCard from '@crema/components/AppCard';
-import IntlMessages from '@crema/helpers/IntlMessages';
-import { useIntl } from 'react-intl';
+// rp111/index.tsx
+'use client'; 
+import React, { useState, useMemo, useEffect } from 'react';
 import {
+  Box,
+  Typography,
+  Button,
   Table,
-  TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  TableCell,
+  TableBody,
   Paper,
-  Box,
-  Typography,
-  Alert
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Autocomplete,
+  TextField,
+  TablePagination,
 } from '@mui/material';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import DescriptionIcon from '@mui/icons-material/Description';
+import {
+  FacultyData,
+  StaffMember,
+  StaffMemberWithFaculty,
+  Column,
+  EducationHistory,
+} from './types'; // ตรวจสอบว่า path นี้ถูกต้องและมีการ export type เหล่านี้แล้ว
+import {
+  initialFacultyData,
+  processStaffData,
+  handleExportToPdf,
+  handleExportToExcel,
+} from './utils';
+import { jsPDF } from 'jspdf';
+import { addFont } from './utils/fontLoader'; // Ensure this path is correct
 
-// =========================================================
-// 1. กำหนด Interface สำหรับโครงสร้างข้อมูล
-// =========================================================
-interface Staff {
-  staff_id: number;
-  faculty_id: string; // จำเป็นต้องใช้เพื่อเชื่อมโยงกับคณะ
-  // อื่นๆ ที่อาจจะเกี่ยวข้อง เช่น academic_title, position_work, STAFFTYPE_ID
+// Call addFont to load THSarabunNew into jsPDF
+if (typeof window !== 'undefined') {
+  const tempDoc = new jsPDF();
+  addFont(tempDoc);
 }
 
-interface Faculty {
-  FACULTYID: string;
-  FACULTYNAME: string;
-}
+// --- Helper function to simulate education history ---
+const generateEducationHistory = (): EducationHistory[] => {
+  const histories: EducationHistory[] = [];
+  const eduLevels = ['ปริญญาตรี', 'ปริญญาโท', 'ปริญญาเอก'];
+  const degrees = ['วท.บ.', 'ศศ.บ.', 'บธ.บ.', 'วศ.ม.', 'ศศ.ม.', 'บธ.ม.', 'ปร.ด.', 'ด.ร.'];
+  const majors = [
+    'วิทยาการคอมพิวเตอร์', 'วิศวกรรมไฟฟ้า', 'ภาษาไทย', 'บริหารธุรกิจ', 'เคมี', 'ฟิสิกส์',
+    'วิทยาศาสตร์สิ่งแวดล้อม', 'รัฐประศาสนศาสตร์', 'นิติศาสตร์', 'บัญชี', 'การจัดการ', 'เศรษฐศาสตร์'
+  ];
+  const universities = [
+    'มหาวิทยาลัยมหาสารคาม', 'จุฬาลงกรณ์มหาวิทยาลัย', 'มหาวิทยาลัยเกษตรศาสตร์',
+    'มหาวิทยาลัยเชียงใหม่', 'มหาวิทยาลัยขอนแก่น', 'มหาวิทยาลัยธรรมศาสตร์',
+    'สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง', 'มหาวิทยาลัยศิลปากร', 'มหาวิทยาลัยสงขลานครินทร์'
+  ];
 
-interface EducationEntry {
-  staff_id: number;
-  degree: string; // เช่น "ปริญญาเอก", "ปริญญาโท", "ปริญญาตรี", "อนุปริญญา"
-  major: string;
-  university: string;
-  graduation_year: number;
-}
+  const numDegrees = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3 degrees
 
-interface EducationReportData {
-  [facultyName: string]: {
-    [degreeLevel: string]: number;
-  };
-}
+  for (let i = 0; i < numDegrees; i++) {
+    const levelIndex = Math.min(i, eduLevels.length - 1);
+    const degree = degrees[Math.floor(Math.random() * degrees.length)];
+    const major = majors[Math.floor(Math.random() * majors.length)];
+    const university = universities[Math.floor(Math.random() * universities.length)];
+    const gradYear = 1980 + Math.floor(Math.random() * 40) + (i * 3);
 
-// Interface สำหรับ Props ที่จะส่งไปยัง Client Component
-interface HR914EducationReportsProps {
-  educationReport: EducationReportData | null;
-  error: string | null;
-}
-
-// =========================================================
-// 2. ลำดับของวุฒิการศึกษา (สำหรับจัดเรียงและหาวุฒิสูงสุด)
-// =========================================================
-const DEGREE_ORDER: { [key: string]: number } = {
-  'ปริญญาเอก': 4,
-  'ปริญญาโท': 3,
-  'ปริญญาตรี': 2,
-  'อนุปริญญา': 1,
-  'อื่นๆ': 0 // สำหรับวุฒิที่ไม่ตรงกับข้างบน
-};
-
-const ORDERED_DEGREES = ['ปริญญาเอก', 'ปริญญาโท', 'ปริญญาตรี', 'อนุปริญญา', 'อื่นๆ'];
-
-
-// =========================================================
-// 3. getServerSideProps: โค้ดส่วนนี้จะรันบน SERVER
-//    และใช้ข้อมูลจำลอง (Mock Data) สำหรับประวัติการศึกษา
-// =========================================================
-export async function getServerSideProps() {
-  let educationReport: EducationReportData | null = null;
-  let error: string | null = null;
-
-  try {
-    console.log('--- getServerSideProps: เริ่มต้นประมวลผลข้อมูลประวัติการศึกษา (ใช้ข้อมูลจำลอง) ---');
-
-    // *** ข้อมูลจำลอง (MOCK DATA) ***
-    // Mock Faculty Data (ใช้ร่วมกับ hr913)
-    const mockFacultyData = {
-      sys_faculty: [
-        { "FACULTYID": "1", "FACULTYNAME": "คณะวิศวกรรมศาสตร์" },
-        { "FACULTYID": "2", "FACULTYNAME": "คณะวิทยาศาสตร์" },
-        { "FACULTYID": "3", "FACULTYNAME": "สำนักงานอธิการบดี" },
-        { "FACULTYID": "4", "FACULTYNAME": "คณะแพทย์ศาสตร์" },
-        { "FACULTYID": "5", "FACULTYNAME": "คณะศิลปกรรมศาสตร์" },
-      ]
-    };
-
-    // Mock Staff Data (ใช้แค่ staff_id และ faculty_id สำหรับเชื่อมโยง)
-    // ควรเป็นข้อมูลชุดเดียวกับที่ใช้ใน hr913 เพื่อให้เชื่อมโยงกันได้
-    const mockStaffData = {
-        Staff: [
-            { "staff_id": 101, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "ศาสตราจารย์", "STAFFTYPE_ID": "10", "academic_title": "ศ." },
-            { "staff_id": 102, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "ผู้ช่วยศาสตราจารย์", "STAFFTYPE_ID": "10", "academic_title": "ผศ." },
-            { "staff_id": 103, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "นักวิชาการคอมพิวเตอร์", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 104, "faculty_id": "2", "academic_position_id": "0", "support_position_id": "0", "position_work": "อาจารย์", "STAFFTYPE_ID": "10", "academic_title": "อ." },
-            { "staff_id": 105, "faculty_id": "2", "academic_position_id": "0", "support_position_id": "0", "position_work": "เจ้าหน้าที่บริหารงานทั่วไป", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 106, "faculty_id": "3", "academic_position_id": "0", "support_position_id": "0", "position_work": "ลูกจ้างประจำ", "STAFFTYPE_ID": "30", "academic_title": null },
-            { "staff_id": 107, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "นักวิชาการศึกษา", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 108, "faculty_id": "2", "academic_position_id": "0", "support_position_id": "0", "position_work": "นักวิจัย", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 109, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "ผู้ช่วยศาสตราจารย์", "STAFFTYPE_ID": "10", "academic_title": "ผศ." },
-            { "staff_id": 110, "faculty_id": "1", "academic_position_id": "0", "support_position_id": "0", "position_work": "เจ้าหน้าที่บริหาร", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 111, "faculty_id": "Unknown", "academic_position_id": "0", "support_position_id": "0", "position_work": "อาจารย์", "STAFFTYPE_ID": "10", "academic_title": "อ." }, // เคส ไม่ระบุคณะ
-            { "staff_id": 112, "faculty_id": "4", "academic_position_id": "0", "support_position_id": "0", "position_work": "ศาสตราจารย์", "STAFFTYPE_ID": "10", "academic_title": "ศ." },
-            { "staff_id": 113, "faculty_id": "4", "academic_position_id": "0", "support_position_id": "0", "position_work": "พนักงานมหาวิทยาลัย (สายสนับสนุน)", "STAFFTYPE_ID": "20", "academic_title": null },
-            { "staff_id": 114, "faculty_id": "5", "academic_position_id": "0", "support_position_id": "0", "position_work": "อาจารย์", "STAFFTYPE_ID": "10", "academic_title": "อ." },
-            { "staff_id": 115, "faculty_id": "5", "academic_position_id": "0", "support_position_id": "0", "position_work": "ลูกจ้างชั่วคราว", "STAFFTYPE_ID": "30", "academic_title": null },
-        ]
-    };
-
-    // Mock Education History Data
-    const mockEducationHistoryData: EducationEntry[] = [
-      { staff_id: 101, degree: "ปริญญาเอก", major: "วิศวกรรมคอมพิวเตอร์", university: "มหาวิทยาลัยขอนแก่น", graduation_year: 2010 },
-      { staff_id: 101, degree: "ปริญญาโท", major: "วิทยาการคอมพิวเตอร์", university: "จุฬาลงกรณ์มหาวิทยาลัย", graduation_year: 2005 },
-      { staff_id: 102, degree: "ปริญญาเอก", major: "ฟิสิกส์", university: "มหาวิทยาลัยเชียงใหม่", graduation_year: 2012 },
-      { staff_id: 102, degree: "ปริญญาโท", major: "ฟิสิกส์", university: "มหาวิทยาลัยเชียงใหม่", graduation_year: 2008 },
-      { staff_id: 103, degree: "ปริญญาตรี", major: "วิทยาการคอมพิวเตอร์", university: "มหาวิทยาลัยขอนแก่น", graduation_year: 2015 },
-      { staff_id: 104, degree: "ปริญญาเอก", major: "เคมี", university: "มหาวิทยาลัยเกษตรศาสตร์", graduation_year: 2011 },
-      { staff_id: 105, degree: "ปริญญาตรี", major: "บริหารธุรกิจ", university: "มหาวิทยาลัยธรรมศาสตร์", graduation_year: 2014 },
-      { staff_id: 106, degree: "อนุปริญญา", major: "การบัญชี", university: "วิทยาลัยอาชีวศึกษา", graduation_year: 2010 },
-      { staff_id: 107, degree: "ปริญญาโท", major: "การศึกษา", university: "มหาวิทยาลัยศรีนครินทรวิโรฒ", graduation_year: 2018 },
-      { staff_id: 111, degree: "ปริญญาตรี", major: "การจัดการ", university: "มหาวิทยาลัยขอนแก่น", graduation_year: 2016 },
-      { staff_id: 112, degree: "ปริญญาเอก", major: "แพทยศาสตร์", university: "มหาวิทยาลัยมหิดล", graduation_year: 2008 },
-      { staff_id: 113, degree: "ปริญญาตรี", major: "พยาบาลศาสตร์", university: "มหาวิทยาลัยมหิดล", graduation_year: 2017 },
-      { staff_id: 114, degree: "ปริญญาโท", major: "ดนตรีบำบัด", university: "มหาวิทยาลัยศิลปากร", graduation_year: 2019 },
-      { staff_id: 115, degree: "ปริญญาตรี", major: "ทัศนศิลป์", university: "มหาวิทยาลัยศิลปากร", graduation_year: 2016 },
-      // Staff not found in mockStaffData, will be "ไม่ระบุคณะ"
-      { staff_id: 200, degree: "ปริญญาเอก", major: "เศรษฐศาสตร์", university: "มหาวิทยาลัยจุฬา", graduation_year: 2009 },
-      { staff_id: 201, degree: "ปริญญาโท", major: "กฎหมาย", university: "มหาวิทยาลัยรามคำแหง", graduation_year: 2013 },
-      { staff_id: 202, degree: "ปริญญาตรี", major: "วิทยาการคอมพิวเตอร์", university: "มหาวิทยาลัยกรุงเทพ", graduation_year: 2020 },
-    ];
-
-    educationReport = {}; // Initialize the report object
-
-    // สร้าง Map สำหรับค้นหาชื่อคณะจาก FACULTYID
-    const facultiesMap = new Map<string, string>();
-    if (mockFacultyData && Array.isArray(mockFacultyData.sys_faculty)) {
-      mockFacultyData.sys_faculty.forEach((f: Faculty) => {
-        facultiesMap.set(f.FACULTYID, f.FACULTYNAME);
-      });
-      console.log(`สร้าง Map คณะสำเร็จ: มี ${facultiesMap.size} รายการ.`);
-    }
-
-    // สร้าง Map สำหรับค้นหา faculty_id ของ Staff
-    const staffFacultyMap = new Map<number, string>();
-    if (mockStaffData && Array.isArray(mockStaffData.Staff)) {
-        mockStaffData.Staff.forEach((s: Staff) => {
-            staffFacultyMap.set(s.staff_id, s.faculty_id);
-        });
-        console.log(`สร้าง Map บุคลากร-คณะสำเร็จ: มี ${staffFacultyMap.size} รายการ.`);
-    }
-
-    // ประมวลผลข้อมูลประวัติการศึกษาเพื่อหาวุฒิสูงสุดของแต่ละคน
-    const staffHighestDegree = new Map<number, string>(); // Map<staff_id, highest_degree>
-    if (mockEducationHistoryData && Array.isArray(mockEducationHistoryData)) {
-      console.log(`กำลังประมวลผลข้อมูลประวัติการศึกษา ${mockEducationHistoryData.length} รายการ.`);
-      mockEducationHistoryData.forEach((edu: EducationEntry) => {
-        const currentHighestDegree = staffHighestDegree.get(edu.staff_id);
-        const currentHighestOrder = currentHighestDegree ? (DEGREE_ORDER[currentHighestDegree] || 0) : 0;
-        const newDegreeOrder = DEGREE_ORDER[edu.degree] || 0;
-
-        if (newDegreeOrder > currentHighestOrder) {
-          staffHighestDegree.set(edu.staff_id, edu.degree);
-          console.log(`  -> Staff ID ${edu.staff_id}: วุฒิสูงสุดเปลี่ยนเป็น "${edu.degree}"`);
-        } else if (!currentHighestDegree && newDegreeOrder > 0) {
-          staffHighestDegree.set(edu.staff_id, edu.degree); // ถ้ายังไม่มีวุฒิเลย
-          console.log(`  -> Staff ID ${edu.staff_id}: กำหนดวุฒิเริ่มต้นเป็น "${edu.degree}"`);
-        }
-      });
-      console.log(`ประมวลผลหาวุฒิสูงสุดของบุคลากรสำเร็จ: มี ${staffHighestDegree.size} รายการ.`);
-
-      // นับจำนวนบุคลากรตามวุฒิสูงสุดและคณะ
-      staffHighestDegree.forEach((degree, staffId) => {
-        const facultyId = staffFacultyMap.get(staffId);
-        const facultyName = facultiesMap.get(facultyId || '') || 'ไม่ระบุคณะ'; // Default if faculty not found
-
-        if (!educationReport![facultyName]) {
-          educationReport![facultyName] = {};
-        }
-        educationReport![facultyName][degree] = (educationReport![facultyName][degree] || 0) + 1;
-        console.log(`  -> เพิ่มในรายงาน: คณะ "${facultyName}", วุฒิ "${degree}", ปัจจุบัน: ${educationReport![facultyName][degree]}`);
-      });
-
-      console.log('ประมวลผลรายงานประวัติการศึกษาสำเร็จ. รายงานสุดท้าย:');
-      console.log('Final educationReport:', JSON.stringify(educationReport, null, 2));
-
-    } else {
-      console.warn('คำเตือน: mockEducationHistoryData ไม่ใช่ Array หรือไม่มีอยู่. จะไม่มีข้อมูลรายงาน.');
-      educationReport = {};
-    }
-
-  } catch (err: any) {
-    console.error("--- Error ใน getServerSideProps (hr914) ---");
-    console.error("รายละเอียดข้อผิดพลาด:", err);
-    error = `เกิดข้อผิดพลาดภายใน Sever: ${err.message || String(err)}. โปรดตรวจสอบ Server Terminal.`;
-    educationReport = null;
-  } finally {
-    console.log('--- getServerSideProps (hr914): สิ้นสุดการประมวลผล ---');
-    console.log('ข้อมูลที่ส่งไปที่ Client - educationReport:', educationReport ? 'มีข้อมูล' : 'ไม่มีข้อมูล');
-    console.log('ข้อความ Error ที่ส่งไปที่ Client:', error);
+    histories.push({
+      educationLevel: eduLevels[levelIndex],
+      degree,
+      major,
+      university,
+      gradYear,
+    });
   }
 
-  return {
-    props: {
-      educationReport,
-      error,
-    },
+  histories.sort((a, b) => a.gradYear - b.gradYear);
+
+  return histories;
+};
+
+// --- Mock Staff Data (approx. 40 entries) ---
+const mockRawStaffData: any[] = [
+  {
+    "staff_id": 5000001, "citizen_id": "1100400741045", "first_name_th": "สมชาย", "last_name_th": "ใจดี",
+    "academic_title": "ศาสตราจารย์", "academic_standing_id": 1, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "081-111-1111", "email1": "somchai.j@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000002, "citizen_id": "1100400741046", "first_name_th": "สมหญิง", "last_name_th": "มีสุข",
+    "academic_title": "รองศาสตราจารย์", "academic_standing_id": 2, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "081-222-2222", "email1": "somying.m@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000003, "citizen_id": "1100400741047", "first_name_th": "มานะ", "last_name_th": "ขยัน",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "081-333-3333", "email1": "mana.k@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000004, "citizen_id": "1100400741048", "first_name_th": "นารี", "last_name_th": "ศรีสุข",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "081-444-4444", "email1": "naree.s@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000005, "citizen_id": "1100400741049", "first_name_th": "ปรีชา", "last_name_th": "เจริญ",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิชาการศึกษา",
+    "faculty_id": "01", "phone_number": "081-555-5555", "email1": "preecha.j@example.com", "STAFFTYPE_ID": 2, "work_line_id": 101
+  },
+  {
+    "staff_id": 5000006, "citizen_id": "1100400741050", "first_name_th": "กานดา", "last_name_th": "งดงาม",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่บริหารงานทั่วไป",
+    "faculty_id": "01", "phone_number": "081-666-6666", "email1": "kanda.n@example.com", "STAFFTYPE_ID": 2, "work_line_id": 102
+  },
+  {
+    "staff_id": 5000007, "citizen_id": "1100400741051", "first_name_th": "ชูชัย", "last_name_th": "รุ่งเรือง",
+    "academic_title": "ศาสตราจารย์", "academic_standing_id": 1, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "081-777-7777", "email1": "chuchai.r@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000008, "citizen_id": "1100400741052", "first_name_th": "วลัย", "last_name_th": "สดใส",
+    "academic_title": "รองศาสตราจารย์", "academic_standing_id": 2, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "081-888-8888", "email1": "walai.s@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000009, "citizen_id": "1100400741053", "first_name_th": "ทรงพล", "last_name_th": "ยิ่งยง",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "081-999-9999", "email1": "songpol.y@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000010, "citizen_id": "1100400741054", "first_name_th": "อรุณี", "last_name_th": "รัศมี",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "082-000-0000", "email1": "arunee.r@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000011, "citizen_id": "1100400741055", "first_name_th": "บรรจง", "last_name_th": "ดีเลิศ",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิชาการคอมพิวเตอร์",
+    "faculty_id": "02", "phone_number": "082-111-1111", "email1": "banjong.d@example.com", "STAFFTYPE_ID": 2, "work_line_id": 103
+  },
+  {
+    "staff_id": 5000012, "citizen_id": "1100400741056", "first_name_th": "ดารุณี", "last_name_th": "พร้อมเพรียง",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่พัสดุ",
+    "faculty_id": "02", "phone_number": "082-222-2222", "email1": "darunee.p@example.com", "STAFFTYPE_ID": 2, "work_line_id": 104
+  },
+  {
+    "staff_id": 5000013, "citizen_id": "1100400741057", "first_name_th": "วิชัย", "last_name_th": "ตั้งใจ",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิเคราะห์นโยบายและแผน",
+    "faculty_id": "03", "phone_number": "082-333-3333", "email1": "wichai.t@example.com", "STAFFTYPE_ID": 2, "work_line_id": 105
+  },
+  {
+    "staff_id": 5000014, "citizen_id": "1100400741058", "first_name_th": "พรทิพย์", "last_name_th": "โชคดี",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่การเงินและบัญชี",
+    "faculty_id": "03", "phone_number": "082-444-4444", "email1": "porntip.c@example.com", "STAFFTYPE_ID": 2, "work_line_id": 106
+  },
+  {
+    "staff_id": 5000015, "citizen_id": "1100400741059", "first_name_th": "ชาญชัย", "last_name_th": "แข็งขัน",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักประชาสัมพันธ์",
+    "faculty_id": "03", "phone_number": "082-555-5555", "email1": "chanchai.k@example.com", "STAFFTYPE_ID": 2, "work_line_id": 107
+  },
+  {
+    "staff_id": 5000016, "citizen_id": "1100400741060", "first_name_th": "รุ่งฤดี", "last_name_th": "สดใส",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่ธุรการ",
+    "faculty_id": "04", "phone_number": "082-666-6666", "email1": "rungrudee.s@example.com", "STAFFTYPE_ID": 2, "work_line_id": 102
+  },
+  {
+    "staff_id": 5000017, "citizen_id": "1100400741061", "first_name_th": "พิพัฒน์", "last_name_th": "พัฒนา",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิชาการคอมพิวเตอร์",
+    "faculty_id": "04", "phone_number": "082-777-7777", "email1": "pipat.p@example.com", "STAFFTYPE_ID": 2, "work_line_id": 103
+  },
+  {
+    "staff_id": 5000018, "citizen_id": "1100400741062", "first_name_th": "จันทร์เพ็ญ", "last_name_th": "งามยิ่ง",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "05", "phone_number": "082-888-8888", "email1": "janpen.g@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000019, "citizen_id": "1100400741063", "first_name_th": "พงษ์ศักดิ์", "last_name_th": "มั่นคง",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "05", "phone_number": "082-999-9999", "email1": "pongsak.m@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000020, "citizen_id": "1100400741064", "first_name_th": "วิภาดา", "last_name_th": "รุ่งโรจน์",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิชาการเงินและบัญชี",
+    "faculty_id": "05", "phone_number": "083-000-0000", "email1": "wipada.r@example.com", "STAFFTYPE_ID": 2, "work_line_id": 106
+  },
+  {
+    "staff_id": 5000021, "citizen_id": "1100400741065", "first_name_th": "สมคิด", "last_name_th": "สุขสบาย",
+    "academic_title": "ศาสตราจารย์", "academic_standing_id": 1, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "083-111-1111", "email1": "somkid.s@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000022, "citizen_id": "1100400741066", "first_name_th": "จิราพร", "last_name_th": "ชื่นใจ",
+    "academic_title": "รองศาสตราจารย์", "academic_standing_id": 2, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "083-222-2222", "email1": "jiraporn.c@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000023, "citizen_id": "1100400741067", "first_name_th": "ประเสริฐ", "last_name_th": "ศรีไทย",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "083-333-3333", "email1": "prasert.s@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000024, "citizen_id": "1100400741068", "first_name_th": "ดวงพร", "last_name_th": "สุขสันต์",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิทยาศาสตร์",
+    "faculty_id": "01", "phone_number": "083-444-4444", "email1": "duangporn.s@example.com", "STAFFTYPE_ID": 2, "work_line_id": 108
+  },
+  {
+    "staff_id": 5000025, "citizen_id": "1100400741069", "first_name_th": "วีรศักดิ์", "last_name_th": "เจริญยิ่ง",
+    "academic_title": "ศาสตราจารย์", "academic_standing_id": 1, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "083-555-5555", "email1": "weerasak.j@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000026, "citizen_id": "1100400741070", "first_name_th": "สุรีย์พร", "last_name_th": "สุขใจ",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "083-666-6666", "email1": "sureeporn.s@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000027, "citizen_id": "1100400741071", "first_name_th": "ธนพล", "last_name_th": "มีชัย",
+    "academic_title": null, "academic_standing_id": null, "position_work": "ช่างเทคนิค",
+    "faculty_id": "02", "phone_number": "083-777-7777", "email1": "thanapol.m@example.com", "STAFFTYPE_ID": 2, "work_line_id": 109
+  },
+  {
+    "staff_id": 5000028, "citizen_id": "1100400741072", "first_name_th": "เพ็ญศรี", "last_name_th": "งามตา",
+    "academic_title": null, "academic_standing_id": null, "position_work": "ผู้ปฏิบัติงานบริหาร",
+    "faculty_id": "03", "phone_number": "083-888-8888", "email1": "pensri.g@example.com", "STAFFTYPE_ID": 2, "work_line_id": 110
+  },
+  {
+    "staff_id": 5000029, "citizen_id": "1100400741073", "first_name_th": "สุรชัย", "last_name_th": "มั่งมี",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักวิเทศสัมพันธ์",
+    "faculty_id": "03", "phone_number": "083-999-9999", "email1": "surachai.m@example.com", "STAFFTYPE_ID": 2, "work_line_id": 111
+  },
+  {
+    "staff_id": 5000030, "citizen_id": "1100400741074", "first_name_th": "อารีรัตน์", "last_name_th": "สุขเกษม",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่ธุรการ",
+    "faculty_id": "04", "phone_number": "084-000-0000", "email1": "areerat.s@example.com", "STAFFTYPE_ID": 2, "work_line_id": 102
+  },
+  {
+    "staff_id": 5000031, "citizen_id": "1100400741075", "first_name_th": "ไพโรจน์", "last_name_th": "รุ่งเรือง",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "05", "phone_number": "084-111-1111", "email1": "pairoj.r@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000032, "citizen_id": "1100400741076", "first_name_th": "วรรณดี", "last_name_th": "มีทรัพย์",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "05", "phone_number": "084-222-2222", "email1": "wannee.m@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000033, "citizen_id": "1100400741077", "first_name_th": "สมพร", "last_name_th": "เกิดผล",
+    "academic_title": null, "academic_standing_id": null, "position_work": "บรรณารักษ์",
+    "faculty_id": "05", "phone_number": "084-333-3333", "email1": "somporn.k@example.com", "STAFFTYPE_ID": 2, "work_line_id": 112
+  },
+  {
+    "staff_id": 5000034, "citizen_id": "1100400741078", "first_name_th": "เอกชัย", "last_name_th": "บุญทวี",
+    "academic_title": "ศาสตราจารย์", "academic_standing_id": 1, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "084-444-4444", "email1": "ekachai.b@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000035, "citizen_id": "1100400741079", "first_name_th": "ธิดารัตน์", "last_name_th": "มณีรัตน์",
+    "academic_title": "อาจารย์", "academic_standing_id": 4, "position_work": "อาจารย์",
+    "faculty_id": "01", "phone_number": "084-555-5555", "email1": "tidarat.m@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000036, "citizen_id": "1100400741080", "first_name_th": "ณัฐพล", "last_name_th": "สุขเกษม",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักจัดการงานทั่วไป",
+    "faculty_id": "01", "phone_number": "084-666-6666", "email1": "nattapol.s@example.com", "STAFFTYPE_ID": 2, "work_line_id": 113
+  },
+  {
+    "staff_id": 5000037, "citizen_id": "1100400741081", "first_name_th": "กมลพร", "last_name_th": "งามวิไล",
+    "academic_title": "รองศาสตราจารย์", "academic_standing_id": 2, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "084-777-7777", "email1": "kamonporn.n@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000038, "citizen_id": "1100400741082", "first_name_th": "ธวัชชัย", "last_name_th": "เด่นชัย",
+    "academic_title": "ผู้ช่วยศาสตราจารย์", "academic_standing_id": 3, "position_work": "อาจารย์",
+    "faculty_id": "02", "phone_number": "084-888-8888", "email1": "thawatchai.d@example.com", "STAFFTYPE_ID": 1, "work_line_id": null
+  },
+  {
+    "staff_id": 5000039, "citizen_id": "1100400741083", "first_name_th": "รัตนาภรณ์", "last_name_th": "เพลินจิต",
+    "academic_title": null, "academic_standing_id": null, "position_work": "เจ้าหน้าที่การเงิน",
+    "faculty_id": "03", "phone_number": "084-999-9999", "email1": "rattanaporn.p@example.com", "STAFFTYPE_ID": 2, "work_line_id": 106
+  },
+  {
+    "staff_id": 5000040, "citizen_id": "1100400741084", "first_name_th": "ภาคภูมิ", "last_name_th": "ยิ่งเจริญ",
+    "academic_title": null, "academic_standing_id": null, "position_work": "นักทรัพยากรบุคคล",
+    "faculty_id": "04", "phone_number": "085-000-0000", "email1": "pakpoom.y@example.com", "STAFFTYPE_ID": 2, "work_line_id": 114
+  }
+];
+
+
+const Rp111: React.FC = () => {
+  const [selectedFacultyName, setSelectedFacultyName] = useState<string | null>(null);
+  const [facultyNameInput, setFacultyNameInput] = useState<string>('');
+  const [staffTypeFilter, setStaffTypeFilter] = useState<'all' | 'academic' | 'support'>('all');
+  const [staffNameSearch, setStaffNameSearch] = useState<string>(''); // New state for staff name search
+
+  // --- States สำหรับ TablePagination ---
+  const [page, setPage] = useState(0); // หน้าปัจจุบัน (เริ่มต้นที่ 0)
+  const [rowsPerPage, setRowsPerPage] = useState(10); // จำนวนแถวต่อหน้า (เริ่มต้นที่ 10)
+
+  // Use the local mockRawStaffData directly
+  const rawStaffData = useMemo(() => mockRawStaffData, []);
+
+  // Process and combine staff data with faculty info and education history
+  const processedStaffData = useMemo<StaffMemberWithFaculty[]>(() => {
+    // Pass generateEducationHistory as an argument to processStaffData
+    return processStaffData(rawStaffData, initialFacultyData, generateEducationHistory);
+  }, [rawStaffData, initialFacultyData]);
+
+
+  // Create faculty name options for Autocomplete
+  const facultyNameOptions = useMemo(() => {
+    return Array.from(new Set(initialFacultyData.map(f => f.FACULTYNAME)));
+  }, [initialFacultyData]);
+
+  // Filtered staff data based on user selections
+  const filteredStaffData = useMemo(() => {
+    // เมื่อมีการเปลี่ยนตัวกรอง (faculty, staff type, staff name) ให้รีเซ็ต page กลับไปที่ 0
+    setPage(0); // <-- เพิ่มการรีเซ็ต page ที่นี่
+    const lowerCaseSearch = staffNameSearch.toLowerCase();
+    return processedStaffData.filter((staff) => {
+      const matchesFacultyName = selectedFacultyName
+        ? staff.facultyName === selectedFacultyName
+        : staff.facultyName.toLowerCase().includes(facultyNameInput.toLowerCase());
+
+      const matchesStaffType =
+        staffTypeFilter === 'all' ||
+        (staffTypeFilter === 'academic' && staff.staffType === 'สายวิชาการ') ||
+        (staffTypeFilter === 'support' && staff.staffType === 'สายสนับสนุนวิชาการ');
+
+      // New filter for staff name (case-insensitive)
+      const matchesStaffName =
+        !staffNameSearch || // If search field is empty, it always matches
+        staff.first_name_th.toLowerCase().includes(lowerCaseSearch) ||
+        staff.last_name_th.toLowerCase().includes(lowerCaseSearch) ||
+        `${staff.first_name_th} ${staff.last_name_th}`.toLowerCase().includes(lowerCaseSearch);
+
+      return matchesFacultyName && matchesStaffType && matchesStaffName;
+    });
+  }, [processedStaffData, selectedFacultyName, facultyNameInput, staffTypeFilter, staffNameSearch]);
+
+  // --- Handlers สำหรับ TablePagination ---
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
   };
-}
 
-// =========================================================
-// 4. Client Component (ส่วนที่รันบน Browser)
-// =========================================================
-const HR914EducationReports: React.FC<HR914EducationReportsProps> = ({ educationReport: initialEducationReport, error: initialError }) => {
-  const { messages } = useIntl();
-  const [educationReport] = useState<EducationReportData | null>(initialEducationReport);
-  const [error] = useState<string | null>(initialError);
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // รีเซ็ตหน้ากลับไปที่ 0 เมื่อเปลี่ยนจำนวนแถวต่อหน้า
+  };
 
-  const renderReportTable = (report: EducationReportData | null) => {
-    if (error) {
-        return <Alert severity="error" sx={{ m: 2 }}>{messages['common.errorFetchingData'] as string}: {error}</Alert>;
-    }
-    if (!report || Object.keys(report).length === 0) {
-      return <Typography sx={{ p: 2 }}>{messages['common.noData'] as string}</Typography>;
-    }
-
-    const allDegrees: Set<string> = new Set();
-    Object.values(report).forEach(facultyData => {
-      Object.keys(facultyData).forEach(degree => allDegrees.add(degree));
-    });
-
-    // เรียงลำดับวุฒิการศึกษาตามที่กำหนด (ปริญญาเอก -> อนุปริญญา -> อื่นๆ)
-    const orderedDegrees = ORDERED_DEGREES.filter(degree => allDegrees.has(degree));
-    // เพิ่มวุฒิอื่นๆ ที่อาจจะโผล่มาแต่ไม่อยู่ใน ORDERED_DEGREES
-    const otherDegrees = Array.from(allDegrees).filter(degree => !ORDERED_DEGREES.includes(degree)).sort();
-    const finalOrderedDegrees = [...orderedDegrees, ...otherDegrees];
-
-
-    const sortedFacultyNames = Object.keys(report).sort((a, b) => {
-      if (a === 'ไม่ระบุคณะ') return 1;
-      if (b === 'ไม่ระบุคณะ') return -1;
-      return a.localeCompare(b);
-    });
-
-    return (
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="education report table">
-          <TableHead>
-            <TableRow>
-              <TableCell>{messages['common.facultyUnit'] as string}</TableCell>
-              {finalOrderedDegrees.map((degree) => (
-                <TableCell key={degree} align="center">{degree}</TableCell>
-              ))}
-              <TableCell align="center">{messages['common.total'] as string}</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedFacultyNames.map((facultyName) => {
-              const facultyData = report[facultyName];
-              let total = 0;
-              return (
-                <TableRow key={facultyName}>
-                  <TableCell component="th" scope="row">
-                    {facultyName}
-                  </TableCell>
-                  {finalOrderedDegrees.map((degree) => {
-                    const count = facultyData[degree] || 0;
-                    total += count;
-                    return <TableCell key={degree} align="center">{count}</TableCell>;
-                  })}
-                  <TableCell align="center"><strong>{total}</strong></TableCell>
-                </TableRow>
-              );
-            })}
-            {/* Total Row */}
-            <TableRow sx={{ '& > *': { fontWeight: 'bold !important' } }}>
-                <TableCell>{messages['common.grandTotal'] as string}</TableCell>
-                {finalOrderedDegrees.map(degree => {
-                    let colTotal = 0;
-                    Object.values(report).forEach(facultyData => {
-                        colTotal += facultyData[degree] || 0;
-                    });
-                    return <TableCell key={`total-${degree}`} align="center">{colTotal}</TableCell>;
-                })}
-                <TableCell align="center">
-                    {Object.values(report).reduce((accFaculty, facultyData) => {
-                        return accFaculty + Object.values(facultyData).reduce((accPos, count) => accPos + count, 0);
-                    }, 0)}
-                </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+  // --- ข้อมูลที่แสดงในหน้าปัจจุบัน (หลังจากกรองและแบ่งหน้า) ---
+  const displayedStaffData = useMemo(() => {
+    return filteredStaffData.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage
     );
-  };
+  }, [filteredStaffData, page, rowsPerPage]);
+
+
+  const columns: Column[] = [
+    { id: 'staffFullName', label: 'ชื่อ-นามสกุล', minWidth: 150,
+      format: (value: StaffMemberWithFaculty) => `${value.first_name_th} ${value.last_name_th}` },
+    { id: 'staffTypeDisplay', label: 'สายงาน', minWidth: 100,
+      format: (value: StaffMemberWithFaculty) => value.staffType },
+    { id: 'facultyName', label: 'หน่วยงาน', minWidth: 150 },
+    { id: 'degrees', label: 'ประวัติการศึกษา', minWidth: 300,
+      format: (value: StaffMemberWithFaculty) => (
+        <Box sx={{ whiteSpace: 'pre-wrap' }}>
+          {value.educationHistory.map((edu, idx) => (
+            <Typography key={idx} variant="body2">
+              {`${edu.educationLevel}: ${edu.degree} (${edu.major}), ${edu.university} (${edu.gradYear})`}
+            </Typography>
+          ))}
+        </Box>
+      )
+    },
+    { id: 'phone_number', label: 'เบอร์โทร', minWidth: 100 },
+    { id: 'email1', label: 'อีเมล', minWidth: 150 },
+  ];
 
   return (
-    <AppCard
-      title={<IntlMessages id="sidebar.hr.hr914" />}
-      sxStyle={{ width: '100%' }}
-    >
-      <Box sx={{ py: 2 }}>
-        <Typography variant="h6" gutterBottom>
-          {messages['report.staffByHighestDegree'] as string}
-        </Typography>
-        {renderReportTable(educationReport)}
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" component="h1" gutterBottom>
+        รายงานประวัติการศึกษาบุคลากร (RP111)
+      </Typography>
+
+      {/* Filter Controls */}
+      <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
+        <Autocomplete
+          options={facultyNameOptions}
+          value={selectedFacultyName}
+          onInputChange={(_, newInputValue) => {
+            setFacultyNameInput(newInputValue);
+            if (newInputValue === '') {
+              setSelectedFacultyName(null);
+            }
+          }}
+          onChange={(_, newValue: string | null) => {
+            setSelectedFacultyName(newValue);
+            setFacultyNameInput(newValue || '');
+          }}
+          sx={{ minWidth: 200 }}
+          renderInput={(params) => (
+            <TextField {...params} label="ค้นหาชื่อหน่วยงาน" variant="outlined" />
+          )}
+          freeSolo
+        />
+
+        {/* New search field for staff name */}
+        <TextField
+          label="ค้นหาชื่อ-นามสกุลบุคลากร"
+          variant="outlined"
+          value={staffNameSearch}
+          onChange={(e) => setStaffNameSearch(e.target.value)}
+          sx={{ minWidth: 250 }}
+        />
+        
+        {/* สายงาน */}
+        <FormControl sx={{ minWidth: 150 }}>
+          <InputLabel id="staff-type-label">สายงาน</InputLabel>
+          <Select
+            labelId="staff-type-label"
+            value={staffTypeFilter}
+            label="สายงาน"
+            onChange={(e) => setStaffTypeFilter(e.target.value as 'all' | 'academic' | 'support')}
+          >
+            <MenuItem value="all">ทั้งหมด</MenuItem>
+            <MenuItem value="academic">สายวิชาการ</MenuItem>
+            <MenuItem value="support">สายสนับสนุน</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
-    </AppCard>
+
+      {/* Export Buttons */}
+      <Box sx={{ mb: 3, display: 'flex', gap: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<PictureAsPdfIcon />}
+          onClick={() => handleExportToPdf(filteredStaffData, 'N/A', staffTypeFilter, selectedFacultyName || facultyNameInput)}
+        >
+          Export to PDF
+        </Button>
+        <Button
+          variant="contained"
+          color="success"
+          startIcon={<DescriptionIcon />}
+          onClick={() => handleExportToExcel(filteredStaffData, 'N/A', staffTypeFilter, selectedFacultyName || facultyNameInput)}
+        >
+          Export to Excel
+        </Button>
+      </Box>
+
+      {/* Staff Data Table and Pagination wrapped in a Fragment */}
+      <> {/* <-- เพิ่ม Fragment เปิดที่นี่ */}
+        <Typography variant="h5" component="h2" sx={{ mt: 4, mb: 2 }}>
+          ข้อมูลบุคลากร
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table stickyHeader aria-label="staff education history table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id as string}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {displayedStaffData.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={columns.length} align="center">
+                    ไม่พบข้อมูลบุคลากรสำหรับตัวกรองที่เลือก
+                  </TableCell>
+                </TableRow>
+              ) : (
+                displayedStaffData.map((row, index) => (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.staff_id}>
+                    {columns.map((column) => {
+                      let value: any;
+                      if (column.id === 'staffFullName') {
+                        value = row;
+                      } else if (column.id === 'staffTypeDisplay') {
+                        value = row;
+                      } else if (column.id === 'degrees') {
+                        value = row;
+                      } else {
+                        value = row[column.id as keyof StaffMemberWithFaculty];
+                      }
+
+                      return (
+                        <TableCell key={column.id as string} align={column.align}>
+                          {column.format ? column.format(value) : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        
+        {/* TablePagination Component */}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25, 50, { label: 'ทั้งหมด', value: -1 }]}
+          component="div"
+          count={filteredStaffData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="จำนวนบุคลากรต่อหน้า:"
+          labelDisplayedRows={({ from, to, count }) =>
+            `${from}-${to} จาก ${count !== -1 ? count : `มากกว่า ${to}`}`
+          }
+        />
+      </> {/* <-- เพิ่ม Fragment ปิดที่นี่ */}
+    </Box>
   );
 };
 
-export default HR914EducationReports;
+export default Rp111; 

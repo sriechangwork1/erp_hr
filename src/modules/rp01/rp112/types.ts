@@ -1,64 +1,88 @@
-// rp105/types.ts
+// rp112/types.ts
 
-export interface StaffDataRaw {
+// Original Faculty Data Interface (ถ้าจำเป็นต้องใช้ใน rp112 แต่ไม่ควร dependency ข้ามโฟลเดอร์)
+// หาก rp112/index.tsx ยังคงใช้ FacultyData จาก rp103/types.ts ให้ลบส่วนนี้ออก
+// หรือหากต้องการให้ rp112 มี types เป็นของตัวเองทั้งหมด ก็สามารถกำหนด FacultyData ที่นี่ได้
+// สำหรับตอนนี้ ผมจะใส่ไว้ให้ก่อน แต่แนะนำให้พิจารณาว่าจำเป็นต้องมีที่นี่หรือไม่
+export interface FacultyData {
+  FACULTYID: string;
+  FACULTYNAME: string;
+  FACULTYNAMEENG: string | null;
+  FACULTYTYPEID: number;
+  BUILDING: string | null;
+  SUBDISTRICT: string | null;
+  DISTRICT: string | null;
+  PROVINCE: string | null;
+  POSTCODE: number;
+  PHONE: string | null;
+  FAX: string | null;
+  PHONEIN: string | null;
+  EMAIL: string | null;
+  FACSTATUS: string | null;
+  REMARK: string | null;
+  STAFFID: string | null;
+  CREATEDATE: string | null;
+  BUDGETTYPEID: string | null;
+  GROUPID: string | null;
+  REF_FAC: string | null;
+}
+
+// --- Data สำหรับแต่ละตำแหน่งย่อย ---
+export interface PositionStaffing {
+  positionName: string;
+  approved: number; // อัตรากำลังที่ได้รับอนุมัติ
+  actual: number;    // อัตรากำลังที่มีอยู่จริง
+  vacant: number;    // อัตรากำลังว่าง (approved - actual)
+}
+
+// --- Data สำหรับประเภทบุคลากร (สายวิชาการ/สายสนับสนุน) ---
+export interface StaffTypeStaffing {
+  staffType: 'สายวิชาการ' | 'สายสนับสนุนวิชาการ';
+  positions: PositionStaffing[];
+  approvedTotal: number;
+  actualTotal: number;
+  vacantTotal: number;
+}
+
+// --- Data สำหรับแต่ละหน่วยงาน (รวมข้อมูล Faculty และ Staffing) ---
+export interface FacultyStaffingDetail extends FacultyData {
+  staffTypeStaffing: StaffTypeStaffing[];
+  facultyApprovedTotal: number;
+  facultyActualTotal: number;
+  facultyVacantTotal: number;
+}
+
+// **Interface for Raw Staff Data with Salary Fields (ใช้ใน rp112 โดยตรง)**
+export interface RawStaffData {
   staff_id: number;
   citizen_id: string;
-  prefixname_id: number; // e.g., 1=นาย, 2=นาง, 3=นางสาว
-  academic_title: string | null; // ศ., รศ., ผศ.
   first_name_th: string;
   last_name_th: string;
-  middle_name_th: string | null;
-  first_name_en: string | null;
-  last_name_en: string | null;
-  middle_name_en: string | null;
-  gender: string; // "1" for Male, "2" for Female
-  date_of_birth: string; // YYYY-MM-DD
-  faculty_id: number;
-  faculty_name_th: string;
-  STAFFTYPE_ID: number; // e.g., 1=ข้าราชการ, 2=พนักงานมหาวิทยาลัย
-  BUDGET_ID: number; // e.g., 1=งบประมาณ, 2=รายได้
-  position_academic_name_th: string | null;
-  position_admin_name_th: string | null;
-  POSITION_WORK: string | null;
-  // เพิ่ม field ที่อาจจำเป็นสำหรับรายงานนี้ เช่น:
-  date_of_appointment?: string; // วันที่บรรจุ/เริ่มงาน (สมมติว่ามีในข้อมูลจริง)
-  phone_number?: string;
-  email1?: string;
-  is_active?: boolean; // สถานะ Active/Inactive (สมมติว่ามี)
+  academic_title: string | null;
+  academic_standing_id: number | null;
+  position_work: string;
+  faculty_id: string;
+  phone_number: string | null;
+  email1: string | null;
+  STAFFTYPE_ID: number;
+  work_line_id: string | null;
+  base_salary: number;
+  position_allowance: number;
+  other_allowance: number;
+  total_salary: number;
 }
 
-// Data structure for display in the detailed staff table
-export interface StaffDetailByFaculty {
-  id: number; // Unique ID for key prop
-  staffId: number;
-  fullNameTh: string;
-  gender: 'ชาย' | 'หญิง' | 'ไม่ระบุ';
-  positionName: string;
-  staffTypeName: string;
-  budgetName: string;
+// **Interface for Staff Data specifically for Salary Certificate**
+export interface CertificateStaffData {
+  staff_id: number;
+  citizen_id: string;
+  title: string; // คำนำหน้า เช่น ศาสตราจารย์, นาย, นาง
+  firstName: string;
+  lastName: string;
+  position: string;
   facultyName: string;
-  dateOfAppointment?: string; // Optional, if you add this field
-  phoneNumber?: string; // Optional
-  email?: string; // Optional
-}
-
-// Data structure for summary by faculty table
-export interface FacultySummaryRow {
-  facultyName: string;
-  totalStaff: number;
-  academicStaffCount: number;
-  supportStaffCount: number;
-  maleCount: number;
-  femaleCount: number;
-  // อื่นๆ ที่ต้องการสรุป เช่น จำนวนตามประเภทบุคลากรย่อย
-}
-
-// Generic Column definition for tables
-// T will be either StaffDetailByFaculty or FacultySummaryRow
-export interface Column<T> {
-  id: keyof T | 'ลำดับ'; // 'ลำดับ' for index column
-  label: string;
-  minWidth?: number;
-  align?: 'right' | 'left' | 'center';
-  format?: (value: number) => string;
+  baseSalary: number;
+  positionAllowance: number;
+  otherAllowance: number;
+  totalSalary: number;
 }

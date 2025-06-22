@@ -1,4 +1,4 @@
-// hr906/table/index.tsx
+//rp103/table/index.tsx
 import React from 'react';
 import { Box, Typography, Table as MuiTable, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import AppCard from '@crema/components/AppCard';

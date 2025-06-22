@@ -1,4 +1,4 @@
-// hr906/index.tsx
+// rp103/index.tsx
 'use client';
 import React, { useState, useMemo, useCallback } from 'react';
 import IntlMessages from '@crema/helpers/IntlMessages';
@@ -170,7 +170,7 @@ const generateStaffingByPositionData = (facultyId: string): StaffTypeStaffing[] 
   return staffingDetails;
 };
 
-const Hr906Page = () => {
+const Rp103Page = () => {
   const { messages } = useIntl();
   const [filterFacultyName, setFilterFacultyName] = useState<string>('');
   const [filterFacultyTypeId, setFilterFacultyTypeId] = useState<string>('');
@@ -502,4 +502,4 @@ const Hr906Page = () => {
   );
 };
 
-export default Hr906Page;
+export default Rp103Page;

@@ -1,4 +1,4 @@
-// hr906/table/tableitem.tsx
+//rp103/table/tableitem.tsx
 import React from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { FacultyStaffingDetail, Column } from '../types';
