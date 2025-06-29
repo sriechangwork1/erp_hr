@@ -1,0 +1,32 @@
+// src/data/REF_DECORATION.ts
+import { RefDecorationData } from '../interfaces/REF_DECORATION.interface';
+
+export const REF_DECORATION_DATA: RefDecorationData[] = [
+  { DECORATION_ID: '-', DESCRIPTION: 'ไม่มีเครื่องราชอิสริยาภรณ์', ย้อนกลับ: null },
+  { DECORATION_ID: '251', DESCRIPTION: 'เหรียญเงินช้างเผือก (ร.ง.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '252', DESCRIPTION: 'เหรียญทองช้างเผือก (ร.ท.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '253', DESCRIPTION: 'เบญจมาภรณ์ช้างเผือก (บ.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '254', DESCRIPTION: 'จัตุรถาภรณ์ช้างเผือก (จ.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '255', DESCRIPTION: 'ตริตาภรณ์ช้างเผือก (ต.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '256', DESCRIPTION: 'ทวีติยาภรณ์ช้างเผือก (ท.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '257', DESCRIPTION: 'ประถมภรณ์ช้างเผือก (ป.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '258', DESCRIPTION: 'มหาปรมารภรณ์ช้างเผือก (ม.ป.ช.)', ย้อนกลับ: null },
+  { DECORATION_ID: '261', DESCRIPTION: 'เหรียญเงินมงกุฎไทย (ร.ง.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '262', DESCRIPTION: 'เหรียญทองมงกุฎไทย (ร.ท.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '263', DESCRIPTION: 'เบญจมาภรณ์มงกุฎไทย (บ.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '264', DESCRIPTION: 'จัตุรถาภรณ์มงกุฎไทย (จ.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '265', DESCRIPTION: 'ตริตาภรณ์มงกุฎไทย (ต.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '266', DESCRIPTION: 'ทวีติยาภรณ์มงกุฎไทย (ท.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '267', DESCRIPTION: 'ประถมภรณ์มงกุฎไทย (ป.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '268', DESCRIPTION: 'มหาวชิรมงกุฎ (ม.ว.ม.)', ย้อนกลับ: null },
+  { DECORATION_ID: '271', DESCRIPTION: 'เหรียญเงินดิเรกคุณาภรณ์ (ร.ง.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '272', DESCRIPTION: 'เหรียญทองดิเรกคุณาภรณ์ (ร.ท.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '273', DESCRIPTION: 'เบญจมดิเรกคุณาภรณ์ (บ.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '274', DESCRIPTION: 'จตุตถดิเรกคุณาภรณ์ (จ.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '275', DESCRIPTION: 'ตติยดิเรกคุณาภรณ์ (ต.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '276', DESCRIPTION: 'ทุติยดิเรกคุณาภรณ์ (ท.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '277', DESCRIPTION: 'ปฐมดิเรกคุณาภรณ์ (ป.ภ.)', ย้อนกลับ: null },
+  { DECORATION_ID: '421', DESCRIPTION: 'เหรียญดุษฎีมาลาหรือเข็มศิลปวิทยา', ย้อนกลับ: null },
+  { DECORATION_ID: '424', DESCRIPTION: 'เหรียญจักรมาลา', ย้อนกลับ: null },
+  { DECORATION_ID: '425', DESCRIPTION: 'เหรียญจักรพรรดิมาลา', ย้อนกลับ: null },
+];
