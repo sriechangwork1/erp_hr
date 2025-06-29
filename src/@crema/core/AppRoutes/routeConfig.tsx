@@ -698,7 +698,22 @@ const routesConfig = [
             //icon:<MdOutlineFileOpen/>,
             url: '/rp02/rp205',
           },
-
+          {
+            id: 'rp206',
+            title: 'sidebar.rp02',
+            messageId: 'sidebar.rp02.06',
+            type: 'item',
+            //icon:<MdOutlineFileOpen/>,
+            url: '/rp02/rp206',
+          },
+          {
+            id: 'rp207',
+            title: 'sidebar.rp02',
+            messageId: 'sidebar.rp02.07',
+            type: 'item',
+            //icon:<MdOutlineFileOpen/>,
+            url: '/rp02/rp207',
+          },
         ],
       },
 

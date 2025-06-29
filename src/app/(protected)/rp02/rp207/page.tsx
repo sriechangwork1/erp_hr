@@ -1,8 +1,8 @@
 import React from 'react';
-import Rp204 from '../../../../modules/rp02/rp204';
+import Rp207 from '../../../../modules/rp02/rp207';
 
 const Page = () => {
-  return <Rp204 />;
+  return <Rp207 />;
 };
 
 export default Page;
