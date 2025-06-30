@@ -543,6 +543,14 @@ const routesConfig = [
             //icon: <MdOutlineTableRows />,
             url: '/hr10/hr1002',
           },
+          {
+            id: 'hr1003',
+            title: 'sidebar.hr10',
+            messageId: 'sidebar.hr10.03',
+            type: 'item',
+            //icon: <MdOutlineTableRows />,
+            url: '/hr10/hr1003',
+          },
         ],
       },
 
