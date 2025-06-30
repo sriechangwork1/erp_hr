@@ -1,3 +1,4 @@
+//SocialMediaAdvertise/index.tsx
 import React from 'react';
 import SocialMediaGraph from './SocialMediaGraph';
 import Box from '@mui/material/Box';

@@ -1,3 +1,4 @@
+//SocialMediaAdvertise/SocialMediaGraph.tsx
 import React from 'react';
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import Box from '@mui/material/Box';

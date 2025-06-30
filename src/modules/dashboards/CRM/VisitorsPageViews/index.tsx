@@ -1,3 +1,4 @@
+//VisitorsPageViews/index.tsx
 import React from 'react';
 import StatGraphs from './StatGraphs';
 import { useIntl } from 'react-intl';

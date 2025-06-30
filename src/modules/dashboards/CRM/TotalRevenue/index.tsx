@@ -1,3 +1,4 @@
+//TotalRevenue/index.tsx
 import React from 'react';
 import RevenueGraph from './RevenueGraph';
 import IntlMessages from '@crema/helpers/IntlMessages';

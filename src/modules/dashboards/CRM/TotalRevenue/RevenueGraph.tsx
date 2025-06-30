@@ -1,3 +1,4 @@
+//TotalRevenue/RevenueGraph.tsx
 import React from 'react';
 import { Line, LineChart, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
