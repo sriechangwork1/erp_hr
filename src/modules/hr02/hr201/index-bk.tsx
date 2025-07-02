@@ -1,4 +1,4 @@
-//hr202/index.tsx
+//hr201/index.tsx
 'use client';
 import React, { useReducer, useEffect } from 'react';
 import AppCard from '@crema/components/AppCard';
@@ -841,8 +841,8 @@ function a11yProps(index: number) {
   };
 }
 
-// --- Hr202 Component (Main Component) ---
-const Hr202 = () => {
+// --- Hr201 Component (Main Component) ---
+const Hr201 = () => {
   const intl = useIntl();
   const [selectedStaffOption, setSelectedStaffOption] = React.useState<StaffAutoCompleteOption | null>(null);
   const [formData, dispatch] = useReducer(formReducer, initialFormData);
@@ -1038,7 +1038,7 @@ const Hr202 = () => {
   return (
     <AppCard
       contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr02.02" defaultMessage="HR202 ข้อมูลบุคลากร" />}
+      title={<IntlMessages id="sidebar.hr02.02" defaultMessage="Hr201 ข้อมูลบุคลากร" />}
     >
       <SearchStaff
         staffDetail={staffDetail}
@@ -1098,4 +1098,4 @@ const Hr202 = () => {
   );
 };
 
-export default Hr202;
+export default Hr201;

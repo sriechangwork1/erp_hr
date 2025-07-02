@@ -1,4 +1,4 @@
-// hr202/table/index.tsx
+// //hr202/table/index.tsx
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -63,6 +63,18 @@ interface StaffData {
   create_at?: string; 
   update_at?: string; 
   officer_id?: number;
+  faculty_id?: number;
+  department_id?: number;
+  program_id?: number;
+  staff_status?: number;
+  staff_type_id?: number;
+  position_type_id?: number;
+  job_title_id?: number;
+  work_line_id?: number;
+  position_level_id?: number;
+  academic_position_id?: number;
+  support_position_id?: number;
+  admin_position_id?: number;
   [key: string]: any;
 }
 
@@ -287,3 +299,4 @@ const DataTable = ({ data, onView, onEdit, onDelete }: DataTableProps) => {
   );
 }
 export default DataTable;
+  

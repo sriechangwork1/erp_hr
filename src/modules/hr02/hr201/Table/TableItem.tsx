@@ -1,4 +1,4 @@
-// //hr201/table/tableitem/index.tsx
+// hr202/table/tableitem/index.tsx
 import React, { useState, useEffect } from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -70,18 +70,6 @@ interface StaffData {
   create_at?: string; 
   update_at?: string; 
   officer_id?: number;
-  faculty_id?: number;
-  department_id?: number;
-  program_id?: number;
-  staff_status?: number;
-  staff_type_id?: number;
-  position_type_id?: number;
-  job_title_id?: number;
-  work_line_id?: number;
-  position_level_id?: number;
-  academic_position_id?: number;
-  support_position_id?: number;
-  admin_position_id?: number;
   [key: string]: any;
 }
 
@@ -190,4 +178,3 @@ const TableItem = ({ data, onView, onEdit, onDelete, columns }: Props) => {
 };
 
 export default TableItem;
-
