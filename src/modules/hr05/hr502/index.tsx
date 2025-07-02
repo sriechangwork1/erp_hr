@@ -4,14 +4,15 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { useIntl } from 'react-intl';
-import AppSelect from '@crema/components/AppSelect'; 
-import Table from './Table'; 
+import AppSelect from '@crema/components/AppSelect';
+import Table from './Table';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import AppDialog from '@crema/components/AppDialog';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'; // Import icon for CSV import
 
 // --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลการเลื่อนขั้น ---
 interface PromotionData {
@@ -24,8 +25,8 @@ interface PromotionData {
   percentage_increased: number;
   new_salary: number;
   status_view: string;
-  create_at: string; 
-  update_at: string; 
+  create_at: string;
+  update_at: string;
   officer_id: number;
   [key: string]: any;
 }
@@ -118,19 +119,22 @@ const initialPromotionRows: PromotionData[] = [
   },
 ];
 
-
-const Hr502Page = () => { 
+const Hr502Page = () => {
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
   const [dialogMode, setDialogMode] = React.useState<'add' | 'edit' | 'view'>('add');
-  const [currentData, setCurrentData] = React.useState<PromotionData | null>(null); 
-  const [tableData, setTableData] = React.useState<PromotionData[]>(initialPromotionRows); 
+  const [currentData, setCurrentData] = React.useState<PromotionData | null>(null);
+  const [tableData, setTableData] = React.useState<PromotionData[]>(initialPromotionRows);
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+
+  // สถานะใหม่สำหรับควบคุม CSV Import Dialog
+  const [isImportCsvOpen, setImportCsvOpen] = React.useState(false);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
 
   const intl = useIntl();
 
   const labeltext = () => {
-    const label = intl.formatMessage({ id: 'sidebar.hr05.02' }); 
-    const words = label.split("HR502 ");  
+    const label = intl.formatMessage({ id: 'sidebar.hr05.02' });
+    const words = label.split("HR502 ");
     return words[1];
   };
 
@@ -143,8 +147,8 @@ const Hr502Page = () => {
 
   const onOpenAddTask = () => {
     setDialogMode('add');
-    setCurrentData({ 
-      promotion_id: 0, 
+    setCurrentData({
+      promotion_id: 0,
       staff_id: 0,
       evaluation_round_id: 0,
       promotion_date: '',
@@ -155,22 +159,93 @@ const Hr502Page = () => {
       status_view: 'show',
       create_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
       update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
-      officer_id: 0, 
+      officer_id: 0,
     });
     setAddTaskOpen(true);
-    setErrors({}); 
+    setErrors({});
   };
 
   const onCloseAddTask = () => {
     setAddTaskOpen(false);
-    setCurrentData(null); 
-    setErrors({}); 
+    setCurrentData(null);
+    setErrors({});
   };
+
+  // ฟังก์ชันสำหรับเปิด Dialog นำเข้า CSV
+  const onOpenImportCsv = () => {
+    setImportCsvOpen(true);
+    setSelectedFile(null); // รีเซ็ตไฟล์ที่เลือกไว้
+  };
+
+  // ฟังก์ชันสำหรับปิด Dialog นำเข้า CSV
+  const onCloseImportCsv = () => {
+    setImportCsvOpen(false);
+    setSelectedFile(null);
+  };
+
+  // ฟังก์ชันสำหรับจัดการการเลือกไฟล์
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+    } else {
+      setSelectedFile(null);
+    }
+  };
+
+  // ฟังก์ชันสำหรับจำลองการนำเข้าข้อมูล CSV
+  const handleImportCsvData = async () => {
+    if (!selectedFile) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'คำเตือน!',
+        text: 'กรุณาเลือกไฟล์ CSV ที่ต้องการนำเข้า',
+        confirmButtonText: 'ตกลง'
+      });
+      return;
+    }
+
+    // แสดงสถานะกำลังประมวลผล
+    Swal.fire({
+      title: 'กำลังนำเข้าข้อมูล...',
+      text: 'กรุณารอสักครู่',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // จำลองการประมวลผล (เช่น การอ่านไฟล์และเพิ่มข้อมูลลงในตาราง)
+    // ในสถานการณ์จริง คุณจะต้องอ่านไฟล์ CSV และแปลงเป็น PromotionData[]
+    // ตัวอย่างนี้จะแค่จำลองว่าข้อมูลถูกเพิ่มเข้ามา
+    await new Promise(resolve => setTimeout(resolve, 2000)); // จำลองการทำงาน 2 วินาที
+
+    // ตัวอย่าง: เพิ่มข้อมูลจำลอง 1 แถวเพื่อแสดงผลว่ามีการนำเข้า
+    const newId = tableData.length > 0 ? Math.max(...tableData.map(d => d.promotion_id)) + 1 : 1;
+    const importedData: PromotionData = {
+      promotion_id: newId,
+      staff_id: 999, // ข้อมูลจำลองจากการนำเข้า
+      evaluation_round_id: 3,
+      promotion_date: '2025-06-15',
+      amount_increased: 500.00,
+      result_increased: 85.00,
+      percentage_increased: 1.50,
+      new_salary: 28000.00,
+      status_view: 'show',
+      create_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
+      update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
+      officer_id: 680002,
+    };
+    setTableData(prevData => [...prevData, importedData]);
+
+    Swal.fire('สำเร็จ!', 'นำเข้าข้อมูล CSV เรียบร้อยแล้ว', 'success');
+    onCloseImportCsv(); // ปิด Dialog หลังจากนำเข้าสำเร็จ
+  };
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const parsedValue = ['amount_increased', 'result_increased', 'percentage_increased', 'new_salary', 'staff_id', 'evaluation_round_id', 'officer_id'].includes(name)
-      ? parseFloat(value) || 0 
+      ? parseFloat(value) || 0
       : value;
 
     setCurrentData(prevData => ({
@@ -196,20 +271,20 @@ const Hr502Page = () => {
     if (currentData?.percentage_increased === undefined || currentData?.percentage_increased === null) newErrors.percentage_increased = 'กรุณากรอกร้อยละที่เพิ่ม';
     if (currentData?.new_salary === undefined || currentData?.new_salary === null) newErrors.new_salary = 'กรุณากรอกเงินเดือนใหม่';
     if (!currentData?.status_view) newErrors.status_view = 'กรุณากรอกสถานะการแสดงผล';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSaveData = () => {
-     if (!validateData()) {
-       Swal.fire({
-         icon: 'warning',
-         title: 'คำเตือน!',
-         text: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน',
-         confirmButtonText: 'ตกลง'
-       });
-       return;
+    if (!validateData()) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'คำเตือน!',
+        text: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน',
+        confirmButtonText: 'ตกลง'
+      });
+      return;
     }
 
     if (dialogMode === 'add') {
@@ -236,17 +311,17 @@ const Hr502Page = () => {
     onCloseAddTask();
   };
 
-  const handleViewData = (data: PromotionData) => { 
+  const handleViewData = (data: PromotionData) => {
     setDialogMode('view');
     setCurrentData(data);
-    setErrors({}); 
+    setErrors({});
     setAddTaskOpen(true);
   };
 
-  const handleEditData = (data: PromotionData) => { 
+  const handleEditData = (data: PromotionData) => {
     setDialogMode('edit');
     setCurrentData(data);
-    setErrors({}); 
+    setErrors({});
     setAddTaskOpen(true);
   };
 
@@ -261,7 +336,6 @@ const Hr502Page = () => {
       confirmButtonText: 'ใช่, ลบเลย!',
       cancelButtonText: 'ยกเลิก'
     });
-
     if (result.isConfirmed) {
       setTableData(prevData => prevData.filter(data => data.promotion_id !== id));
       Swal.fire(
@@ -275,28 +349,45 @@ const Hr502Page = () => {
   return (
     <AppCard
       contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr05.02" />}  
+      title={<IntlMessages id="sidebar.hr05.02" />}
       action={
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{
-            padding: '3px 10px',
-            borderRadius: 30,
-            '& .MuiSvgIcon-root': {
-              fontSize: 20,
-            },
-          }}
-          startIcon={<AddIcon />}
-          onClick={onOpenAddTask}
-        >
-          เพิ่ม{labeltext()}
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}> {/* ใช้ Box เพื่อจัดเรียงปุ่ม */}
+          <Button
+            variant="contained" // เปลี่ยนเป็น contained เพื่อให้เห็นความแตกต่าง
+            color="success" // ใช้สีเขียวเพื่อสื่อถึงการนำเข้า
+            sx={{
+              padding: '3px 10px',
+              borderRadius: 30,
+              '& .MuiSvgIcon-root': {
+                fontSize: 20,
+              },
+            }}
+            onClick={onOpenImportCsv}
+            startIcon={<CloudUploadIcon />} 
+          >
+            นำเข้าข้อมูล CSV
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{
+              padding: '3px 10px',
+              borderRadius: 30,
+              '& .MuiSvgIcon-root': {
+                fontSize: 20,
+              },
+            }}
+            startIcon={<AddIcon />}
+            onClick={onOpenAddTask}
+          >
+            เพิ่ม{labeltext()}
+          </Button>
+        </Box>
       }
     >
       <Table
-        data={tableData} 
-        setTableData={setTableData} 
+        data={tableData}
+        setTableData={setTableData}
         onView={handleViewData}
         onEdit={handleEditData}
         onDelete={handleDeleteData}
@@ -317,7 +408,7 @@ const Hr502Page = () => {
             value={currentData?.promotion_id || ''}
             name="promotion_id"
             onChange={handleInputChange}
-            disabled={dialogMode !== 'add'} 
+            disabled={dialogMode !== 'add'}
           />
           <TextField
             fullWidth
@@ -325,7 +416,7 @@ const Hr502Page = () => {
             variant="outlined"
             margin="normal"
             size="small"
-            type="number" 
+            type="number"
             value={currentData?.staff_id || ''}
             name="staff_id"
             onChange={handleInputChange}
@@ -339,7 +430,7 @@ const Hr502Page = () => {
             variant="outlined"
             margin="normal"
             size="small"
-            type="number" 
+            type="number"
             value={currentData?.evaluation_round_id || ''}
             name="evaluation_round_id"
             onChange={handleInputChange}
@@ -460,14 +551,13 @@ const Hr502Page = () => {
             variant="outlined"
             margin="normal"
             size="small"
-            type="number" 
+            type="number"
             value={currentData?.officer_id || ''}
             name="officer_id"
             onChange={handleInputChange}
-            disabled={dialogMode === 'view'} 
+            disabled={dialogMode === 'view'}
           />
 
-        
 
           <Box mt={2} display="flex" justifyContent="flex-end">
             <Button onClick={onCloseAddTask} color="secondary">
@@ -481,6 +571,46 @@ const Hr502Page = () => {
           </Box>
         </Box>
       </AppDialog>
+
+      {/* Dialog สำหรับนำเข้า CSV */}
+      <AppDialog
+        dividers
+        maxWidth="sm"
+        open={isImportCsvOpen}
+        onClose={onCloseImportCsv}
+        title="นำเข้าข้อมูลจากไฟล์ CSV"
+      >
+        <Box sx={{ p: 2 }}>
+          <Button
+            variant="outlined"
+            component="label"
+            sx={{ mb: 2 }}
+            startIcon={<CloudUploadIcon />}
+          >
+            เลือกไฟล์ CSV
+            <input
+              type="file"
+              hidden
+              accept=".csv"
+              onChange={handleFileChange}
+            />
+          </Button>
+          {selectedFile && (
+            <Box sx={{ mb: 2, color: 'text.secondary' }}>
+              ไฟล์ที่เลือก: {selectedFile.name}
+            </Box>
+          )}
+          <Box mt={2} display="flex" justifyContent="flex-end">
+            <Button onClick={onCloseImportCsv} color="secondary">
+              ยกเลิก
+            </Button>
+            <Button variant="contained" color="primary" sx={{ ml: 2 }} onClick={handleImportCsvData}>
+              นำเข้าข้อมูล
+            </Button>
+          </Box>
+        </Box>
+      </AppDialog>
+
     </AppCard>
   );
 };

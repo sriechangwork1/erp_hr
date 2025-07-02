@@ -1,4 +1,4 @@
- //hr901/index.tsx
+//hr901/index.tsx
 'use client';
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
@@ -12,7 +12,9 @@ import AppDialog from '@crema/components/AppDialog';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
-import MenuItem from '@mui/material/MenuItem'; // สำหรับ Select/Dropdown
+import MenuItem from '@mui/material/MenuItem';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'; // Import icon for CSV import
+// สำหรับ Select/Dropdown
 
 // --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตารางสำหรับข้อมูลเครื่องราชอิสริยาภรณ์ ---
 interface AwardData {
@@ -36,7 +38,7 @@ interface AwardData {
 
 // ข้อมูลจำลองเริ่มต้นสำหรับตาราง erp_hr."Award"
 const initialAwardRows: AwardData[] = [
- {
+  {
     award_id: 1,
     staff_id: 101,
     award_name: 'เครื่องราชอิสริยาภรณ์อันเป็นที่เชิดชูยิ่งช้างเผือก ชั้นที่ 1 ประถมาภรณ์ช้างเผือก (ป.ช.)',
@@ -139,20 +141,23 @@ const initialAwardRows: AwardData[] = [
     award_status: 'ได้รับแล้ว',
   },
 ];
-
-
 const Hr09Page = () => { // เปลี่ยนชื่อ Component เป็น Hr02Page
   const [isAddTaskOpen, setAddTaskOpen] = React.useState(false);
   const [dialogMode, setDialogMode] = React.useState<'add' | 'edit' | 'view'>('add');
-  const [currentData, setCurrentData] = React.useState<AwardData | null>(null); // ใช้ AwardData
+  const [currentData, setCurrentData] = React.useState<AwardData | null>(null);
+  // ใช้ AwardData
   const [tableData, setTableData] = React.useState<AwardData[]>(initialAwardRows); // ใช้ initialAwardRows
   const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+
+  // สถานะใหม่สำหรับควบคุม CSV Import Dialog
+  const [isImportCsvOpen, setImportCsvOpen] = React.useState(false);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
 
   const intl = useIntl();
 
   // ฟังก์ชันสำหรับดึงข้อความ label จาก intl
   const labeltext = () => {
-    const label = intl.formatMessage({ id: 'sidebar.hr09.01' }); 
+    const label = intl.formatMessage({ id: 'sidebar.hr09.01' });
     const words = label.split("HR901 ");
     return words[1];
   };
@@ -163,7 +168,6 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
     if (dialogMode === 'view') return "รายละเอียด" + labeltext();
     return "";
   }, [dialogMode, labeltext]);
-
   const onOpenAddTask = () => {
     setDialogMode('add');
     setCurrentData({ // กำหนดค่าเริ่มต้นสำหรับข้อมูลใหม่
@@ -189,9 +193,84 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
 
   const onCloseAddTask = () => {
     setAddTaskOpen(false);
-    setCurrentData(null); // เคลียร์ข้อมูลเมื่อปิด Dialog
+    setCurrentData(null);
+    // เคลียร์ข้อมูลเมื่อปิด Dialog
     setErrors({}); // เคลียร์ข้อผิดพลาดเมื่อปิด Dialog
   };
+
+  // ฟังก์ชันสำหรับเปิด Dialog นำเข้า CSV
+  const onOpenImportCsv = () => {
+    setImportCsvOpen(true);
+    setSelectedFile(null); // รีเซ็ตไฟล์ที่เลือกไว้
+  };
+
+  // ฟังก์ชันสำหรับปิด Dialog นำเข้า CSV
+  const onCloseImportCsv = () => {
+    setImportCsvOpen(false);
+    setSelectedFile(null);
+  };
+
+  // ฟังก์ชันสำหรับจัดการการเลือกไฟล์
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+    } else {
+      setSelectedFile(null);
+    }
+  };
+
+  // ฟังก์ชันสำหรับจำลองการนำเข้าข้อมูล CSV
+  const handleImportCsvData = async () => {
+    if (!selectedFile) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'คำเตือน!',
+        text: 'กรุณาเลือกไฟล์ CSV ที่ต้องการนำเข้า',
+        confirmButtonText: 'ตกลง'
+      });
+      return;
+    }
+
+    // แสดงสถานะกำลังประมวลผล
+    Swal.fire({
+      title: 'กำลังนำเข้าข้อมูล...',
+      text: 'กรุณารอสักครู่',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // จำลองการประมวลผล (เช่น การอ่านไฟล์และเพิ่มข้อมูลลงในตาราง)
+    // ในสถานการณ์จริง คุณจะต้องอ่านไฟล์ CSV และแปลงเป็น AwardData[]
+    // ตัวอย่างนี้จะแค่จำลองว่าข้อมูลถูกเพิ่มเข้ามา
+    await new Promise(resolve => setTimeout(resolve, 2000)); // จำลองการทำงาน 2 วินาที
+
+    // ตัวอย่าง: เพิ่มข้อมูลจำลอง 1 แถวเพื่อแสดงผลว่ามีการนำเข้า
+    const newId = tableData.length > 0 ? Math.max(...tableData.map(d => d.award_id)) + 1 : 1;
+    const importedData: AwardData = {
+      award_id: newId,
+      staff_id: 999, // ข้อมูลจำลองจากการนำเข้า
+      award_name: 'เครื่องราชฯ จากการนำเข้า CSV',
+      award_date: '2025-01-01',
+      award_type: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ',
+      announcement_details: 'ประกาศจำลองจากการนำเข้า',
+      announcement_date: '2025-02-01',
+      gazette_volume: '143',
+      gazette_number: '1 ข',
+      gazette_section: 'หน้า 1',
+      return_date: undefined,
+      create_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
+      update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' }),
+      officer_id: 999999,
+      award_status: 'ได้รับแล้ว',
+    };
+    setTableData(prevData => [...prevData, importedData]);
+
+    Swal.fire('สำเร็จ!', 'นำเข้าข้อมูล CSV เรียบร้อยแล้ว', 'success');
+    onCloseImportCsv(); // ปิด Dialog หลังจากนำเข้าสำเร็จ
+  };
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -245,19 +324,20 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
   };
 
   const handleSaveData = () => {
-     if (!validateData()) {
-       Swal.fire({
-         icon: 'warning',
-         title: 'คำเตือน!',
-         text: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน',
-         confirmButtonText: 'ตกลง'
-       });
-       return;
+    if (!validateData()) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'คำเตือน!',
+        text: 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน',
+        confirmButtonText: 'ตกลง'
+      });
+      return;
     }
 
     if (dialogMode === 'add') {
       // เพิ่มข้อมูลใหม่
-      const newId = tableData.length > 0 ? Math.max(...tableData.map(d => d.award_id)) + 1 : 1;
+      const newId = tableData.length > 0 ?
+        Math.max(...tableData.map(d => d.award_id)) + 1 : 1;
       const newData: AwardData = {
         ...currentData!,
         award_id: newId,
@@ -274,6 +354,7 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
             ...currentData!,
             update_at: new Date().toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: '2-digit', timeZone: 'Asia/Bangkok' })
           } : data
+
         )
       );
       Swal.fire('สำเร็จ!', 'แก้ไขข้อมูลเรียบร้อยแล้ว', 'success');
@@ -284,14 +365,14 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
   const handleViewData = (data: AwardData) => { // ใช้ AwardData
     setDialogMode('view');
     setCurrentData(data);
-    setErrors({}); 
+    setErrors({});
     setAddTaskOpen(true);
   };
 
   const handleEditData = (data: AwardData) => { // ใช้ AwardData
     setDialogMode('edit');
     setCurrentData(data);
-    setErrors({}); 
+    setErrors({});
     setAddTaskOpen(true);
   };
 
@@ -306,7 +387,6 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
       confirmButtonText: 'ใช่, ลบเลย!',
       cancelButtonText: 'ยกเลิก'
     });
-
     if (result.isConfirmed) {
       setTableData(prevData => prevData.filter(data => data.award_id !== id));
       Swal.fire(
@@ -317,39 +397,55 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
     }
   };
 
-    const award_typeOptions = [
+  const award_typeOptions = [
     { value: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น', label: 'ประเภทข้าราชการ บัญชี 15 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ข้าราชการ ยกเว้นที่ปรากฏในบัญชีอื่น' },
     { value: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ', label: 'ประเภทพนักงานมหาวิทยาลัย บัญชี 29 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ผู้ดำรงตำแหน่งในสถาบันอุดมศึกษาของรัฐ ที่ไม่เป็นข้าราชการ' },
     { value: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ', label: 'ประเภทลูกจ้างประจำ บัญชี 25 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่ลูกจ้างประจำของส่วนราชการ' },
     { value: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ', label: 'ประเภทพนักงานราชการ บัญชี 26 การขอพระราชทานเครื่องราชอิสริยาภรณ์ให้แก่พนักงานราชการ' },
 
   ];
-
   return (
     <AppCard
       contentStyle={{ paddingLeft: 0, paddingRight: 0, paddingBottom: 8 }}
-      title={<IntlMessages id="sidebar.hr09.01" />} 
+      title={<IntlMessages id="sidebar.hr09.01" />}
       action={
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{
-            padding: '3px 10px',
-            borderRadius: 30,
-            '& .MuiSvgIcon-root': {
-              fontSize: 20,
-            },
-          }}
-          startIcon={<AddIcon />}
-          onClick={onOpenAddTask}
-        >
-          เพิ่ม{labeltext()}
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}> {/* ใช้ Box เพื่อจัดเรียงปุ่ม */}
+          <Button
+            variant="contained" // เปลี่ยนเป็น contained เพื่อให้เห็นความแตกต่าง
+            color="success" // ใช้สีเขียวเพื่อสื่อถึงการนำเข้า
+            sx={{
+              padding: '3px 10px',
+              borderRadius: 30,
+              '& .MuiSvgIcon-root': {
+                fontSize: 20,
+              },
+            }}
+            startIcon={<CloudUploadIcon />}
+            onClick={onOpenImportCsv}
+          >
+            นำเข้าข้อมูล CSV
+          </Button>
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{
+              padding: '3px 10px',
+              borderRadius: 30,
+              '& .MuiSvgIcon-root': {
+                fontSize: 20,
+              },
+            }}
+            startIcon={<AddIcon />}
+            onClick={onOpenAddTask}
+          >
+            เพิ่ม{labeltext()}
+          </Button>
+        </Box>
       }
     >
       <Table
-        data={tableData} 
-        setTableData={setTableData} 
+        data={tableData}
+        setTableData={setTableData}
         onView={handleViewData}
         onEdit={handleEditData}
         onDelete={handleDeleteData}
@@ -370,7 +466,7 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
             value={currentData?.award_id || ''}
             name="award_id"
             onChange={handleInputChange}
-            disabled={dialogMode !== 'add'} 
+            disabled={dialogMode !== 'add'}
           />
           <TextField
             fullWidth
@@ -414,26 +510,26 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
             error={!!errors.award_date}
             helperText={errors.award_date}
           />
-                  <TextField
-                          select
-                          fullWidth
-                          label="ประเภทเครื่องราชอิสริยาภรณ์'"
-                          variant="outlined"
-                          margin="normal"
-                          size="small"
-                          value={currentData?.award_type === undefined ? '' : currentData?.award_type}
-                          name="prefixname_id"
-                          onChange={handleInputChange}
-                          disabled={dialogMode === 'view'}
-                          error={!!errors.award_type}
-                          helperText={errors.award_type}
-                        >
-                          {award_typeOptions.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                              {option.label}
-                            </MenuItem>
-                          ))}
-                        </TextField>
+          <TextField
+            select
+            fullWidth
+            label="ประเภทเครื่องราชอิสริยาภรณ์'"
+            variant="outlined"
+            margin="normal"
+            size="small"
+            value={currentData?.award_type === undefined ? '' : currentData?.award_type}
+            name="award_type" // เปลี่ยนชื่อ name เป็น award_type
+            onChange={handleInputChange}
+            disabled={dialogMode === 'view'}
+            error={!!errors.award_type}
+            helperText={errors.award_type}
+          >
+            {award_typeOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <TextField
             fullWidth
             label={"รายละเอียดประกาศ"}
@@ -538,7 +634,7 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
             value={currentData?.officer_id || ''}
             name="officer_id"
             onChange={handleInputChange}
-            disabled={dialogMode === 'view'} 
+            disabled={dialogMode === 'view'}
           />
 
           <Box mt={2} display="flex" justifyContent="flex-end">
@@ -553,8 +649,49 @@ const Hr09Page = () => { // เปลี่ยนชื่อ Component เป�
           </Box>
         </Box>
       </AppDialog>
+
+      {/* Dialog สำหรับนำเข้า CSV */}
+      <AppDialog
+        dividers
+        maxWidth="sm"
+        open={isImportCsvOpen}
+        onClose={onCloseImportCsv}
+        title="นำเข้าข้อมูลจากไฟล์ CSV"
+      >
+        <Box sx={{ p: 2 }}>
+          <Button
+            variant="outlined"
+            component="label"
+            sx={{ mb: 2 }}
+            startIcon={<CloudUploadIcon />}
+          >
+            เลือกไฟล์ CSV
+            <input
+              type="file"
+              hidden
+              accept=".csv"
+              onChange={handleFileChange}
+              
+            />
+          </Button>
+          {selectedFile && (
+            <Box sx={{ mb: 2, color: 'text.secondary' }}>
+              ไฟล์ที่เลือก: {selectedFile.name}
+            </Box>
+          )}
+          <Box mt={2} display="flex" justifyContent="flex-end">
+            <Button onClick={onCloseImportCsv} color="secondary">
+              ยกเลิก
+            </Button>
+            <Button variant="contained" color="primary" sx={{ ml: 2 }} onClick={handleImportCsvData}>
+              นำเข้าข้อมูล
+            </Button>
+          </Box>
+        </Box>
+      </AppDialog>
+
     </AppCard>
   );
 };
 
-export default Hr09Page; 
+export default Hr09Page;

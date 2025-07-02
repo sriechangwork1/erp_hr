@@ -36,7 +36,7 @@ const initialContractRows: ContractData[] = [
     end_date: '2024-12-31',
     create_at: '2023-12-20',
     update_at: '2024-01-01',
-    officer_id: 1,
+    officer_id: 680001,
   },
   {
     contract_id: 2,
@@ -46,7 +46,7 @@ const initialContractRows: ContractData[] = [
     end_date: '2024-08-31',
     create_at: '2024-02-15',
     update_at: '2024-03-01',
-    officer_id: 2,
+    officer_id: 680001,
   },
   {
     contract_id: 3,
@@ -56,7 +56,7 @@ const initialContractRows: ContractData[] = [
     end_date: '2026-06-30',
     create_at: '2023-06-20',
     update_at: '2023-07-01',
-    officer_id: 3,
+    officer_id: 680001,
   },
   {
     contract_id: 4,
@@ -66,7 +66,7 @@ const initialContractRows: ContractData[] = [
     end_date: '2025-12-31',
     create_at: '2024-12-10',
     update_at: '2025-01-01',
-    officer_id: 1,
+    officer_id: 680001,
   },
   {
     contract_id: 5,
@@ -76,7 +76,7 @@ const initialContractRows: ContractData[] = [
     end_date: '2025-05-14', // สัญญาต่อเนื่อง 1 ปี เพื่อเป็นตัวอย่าง
     create_at: '2024-05-10',
     update_at: '2024-05-15',
-    officer_id: 4,
+    officer_id: 680001,
   },
 ];
 
