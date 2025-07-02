@@ -18,6 +18,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+import { MdAccountCircle } from 'react-icons/md'; // Import the default icon
+import Avatar from '@mui/material/Avatar';
 
 // --- กำหนดประเภทข้อมูลสำหรับแต่ละแถวในตาราง (จาก Staff model) ---
 interface StaffData {
@@ -1281,6 +1283,19 @@ const Hr201 = () => {
           </Toolbar>
         </AppBar>
         <Box sx={{ p: 3 }}>
+        <Grid container spacing={2}></Grid>
+        <Avatar
+              src={currentData?.profile_picture || ''}
+              sx={{
+                width: 80,// เพิ่มขนาดเป็น 80px
+                height: 80,// เพิ่มขนาดเป็น 80px
+                marginRight: '16px',
+                border: '2px solid #f0f0f0',
+                borderRadius: '50%',
+              }}
+            >
+              {!currentData?.profile_picture && <MdAccountCircle style={{fontSize: '4rem',color: '#757575' }} />}
+            </Avatar>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField

@@ -81,11 +81,12 @@ const SearchStaff: React.FC<SearchStaffProps> = ({
   onStaffSelect,
 }) => {
   return (
-    <Box sx={{ p: 3, border: '1px solid #e0e0e0', borderRadius: '8px', mb: 3 }}>
+    <Box sx={{ p: 3, border: '1px solid #e0e0e0', borderRadius: '8px', mb: 12 }}>
       <IntlMessages id="common.searchStaff" defaultMessage="ค้นหาบุคลากร" />
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={6}>
+      <Grid  xs={6} sm={6} spacing={1} alignItems="center">{/*container*/}
+       <Grid item xs={12}>
           <Autocomplete
+            fullWidth
             options={staffDetail}
             getOptionLabel={(option) => `${option.prefixname_id || ''} ${option.first_name_th} ${option.last_name_th}`}
             onChange={onStaffSelect}
@@ -97,13 +98,13 @@ const SearchStaff: React.FC<SearchStaffProps> = ({
                 label="ค้นหาบุคลากร (ชื่อ-นามสกุล)"
                 variant="outlined"
                 margin="normal"
-                size="small"
+                size="medium"
                 fullWidth
               />
             )}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>  
           {/* สามารถเพิ่มปุ่มค้นหาหรือส่วนอื่น ๆ ที่เกี่ยวข้องกับการค้นหาได้ที่นี่ */}
         </Grid>
       </Grid>
