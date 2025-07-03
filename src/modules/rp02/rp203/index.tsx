@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import IntlMessagesMain from '@crema/helpers/IntlMessages';
 import {
   Container,
   Typography,
@@ -259,7 +260,7 @@ const UocStaffManagement: React.FC = () => {
 
   return (
     <AppsContent>
-      <AppCard title={<CustomIntlMessages id="staff_management_title" defaultMessage="ข้อมูลพื้นฐานบุคลากร (UOC Staff)" />}>
+      <AppCard title={<IntlMessagesMain id="sidebar.rp02.03"/>}>
         <Box
           sx={{
             display: 'flex',

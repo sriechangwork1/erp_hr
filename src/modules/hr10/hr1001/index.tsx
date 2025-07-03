@@ -123,7 +123,7 @@ const PermissionManagementPage: React.FC = () => {
 
   return (
     <AppsContent
-      title={<IntlMessages id="common.permissionManagement" defaultMessage="กำหนดสิทธิ์การเข้าถึง" />}
+      title={<IntlMessages id="sidebar.hr10.01"/>}
       sx={{
         mb: 2,
         mt: 2,
@@ -138,7 +138,7 @@ const PermissionManagementPage: React.FC = () => {
     >
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Typography component="h2" variant="h3" sx={{ mb: 4, fontWeight: 'bold' }}>
-          <IntlMessages id="common.permissionManagement" defaultMessage="กำหนดสิทธิ์การเข้าถึงข้อมูล" />
+          <IntlMessages id="sidebar.hr10.01" />
         </Typography>
 
         <Grid container spacing={3} sx={{ flexGrow: 1 }}>
