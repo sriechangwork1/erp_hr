@@ -6,7 +6,7 @@ import Image from 'next/image';
 import './index.css';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 import { initialUrl } from '@crema/constants/AppConst';
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
 const menuItems = [

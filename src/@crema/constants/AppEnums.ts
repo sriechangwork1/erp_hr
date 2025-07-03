@@ -70,6 +70,7 @@ export enum Fonts {
   MEDIUM = '500',
   SEMI_BOLD = '600',
   BOLD = '700',
+  PRIMARY = ''
 }
 
 export enum AuthType {

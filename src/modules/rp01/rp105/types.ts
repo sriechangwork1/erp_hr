@@ -56,7 +56,7 @@ export interface FacultySummaryRow {
 // Generic Column definition for tables
 // T will be either StaffDetailByFaculty or FacultySummaryRow
 export interface Column<T> {
-  id: keyof T | 'ลำดับ'; // 'ลำดับ' for index column
+  id: keyof T | string; // 'ลำดับ' for index column
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';

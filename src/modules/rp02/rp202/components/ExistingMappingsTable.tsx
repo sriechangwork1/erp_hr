@@ -6,9 +6,13 @@ import { Box, Typography } from '@mui/material';
 interface ExistingMappingsTableProps {
   data: MappedStaff[];
 }
-
+interface Column<T> {
+  key: keyof T;
+  header: string;
+  render?: (item: T) => React.ReactNode;
+}
 const ExistingMappingsTable: React.FC<ExistingMappingsTableProps> = ({ data }) => {
-  const columns = [
+  const columns: Column<MappedStaff>[] = [
     { key: 'sourceStaff', header: 'รหัสบุคลากร (Staff)', render: (item: MappedStaff) => item.sourceStaff.staff_id },
     { key: 'sourceName', header: 'ชื่อ (Staff)', render: (item: MappedStaff) => `${item.sourceStaff.first_name_th} ${item.sourceStaff.last_name_th}` },
     { key: 'uocStaff', header: 'รหัสบุคลากร (UOC)', render: (item: MappedStaff) => item.uocStaff.ds2001_id },

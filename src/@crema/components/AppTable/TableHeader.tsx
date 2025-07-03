@@ -33,6 +33,3 @@ const TableHeader: React.FC<TableHeaderProps> = ({ children, ...rest }) => {
 };
 
 export default TableHeader;
-TableHeader.propTypes = {
-  children: PropTypes.node,
-};

@@ -34,13 +34,13 @@ const MappingPreviewTable: React.FC<MappingPreviewTableProps> = ({
           uocCitizenId: matchedUOC.citizen_id,
           status: 'จับคู่โดยเลขบัตรประชาชน',
         });
-        matchedCitizenIds.add(sourceStaff.citizen_id);
+        matchedCitizenIds.add(sourceStaff.citizen_id?sourceStaff.citizen_id:'');
       }
     });
 
     // Step 2: เพิ่มรายการที่เหลือที่ไม่มีการจับคู่ตาม citizen_id (ถ้ามี)
     selectedSourceStaffs.forEach(sourceStaff => {
-      if (!matchedCitizenIds.has(sourceStaff.citizen_id)) {
+      if (!matchedCitizenIds.has(sourceStaff.citizen_id?sourceStaff.citizen_id:'')) {
         data.push({
           previewId: `p-${sourceStaff.staff_id}-unmatched`,
           sourceStaffId: sourceStaff.staff_id,
@@ -55,7 +55,7 @@ const MappingPreviewTable: React.FC<MappingPreviewTableProps> = ({
     });
 
     selectedUOCStaffs.forEach(uocStaff => {
-      if (!matchedCitizenIds.has(uocStaff.citizen_id)) {
+      if (!matchedCitizenIds.has(uocStaff.citizen_id??'')) {
         data.push({
           previewId: `p-unmatched-${uocStaff.ds2001_id}`,
           sourceStaffId: 'ยังไม่ได้เลือก',

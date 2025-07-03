@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuthMethod, useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthMethod, useAuthUser } from '@/hooks/AuthHooks';
 import { Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -30,10 +30,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
   };
 
   const getUserAvatar = () => {
-    if (user.displayName) {
-      return user.displayName.charAt(0).toUpperCase();
+    if (user?.name) {
+      return user.name.charAt(0).toUpperCase();
     }
-    if (user.email) {
+    if (user?.email) {
       return user.email.charAt(0).toUpperCase();
     }
   };
@@ -106,7 +106,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ color = 'text.secondary' }) => {
               }}
               component="span"
             >
-              {user.displayName ? user.displayName : ''}
+              {user.name ? user.name : ''}
             </Box>
             <Box
               sx={{

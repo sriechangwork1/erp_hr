@@ -85,7 +85,3 @@ const SidebarContextProvider: React.FC<SidebarContextProviderProps> = ({ childre
 };
 
 export default SidebarContextProvider;
-
-SidebarContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

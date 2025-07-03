@@ -1,14 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 
-const BACKEND_URL = 'http://localhost:4000';
+const BACKEND_URL = 'http://localhost:4005';
 
-export async function handler(req: NextRequest, {
-  params,
-}: {
-  params: { proxy: string[] };
-}) {
-  const method = req.method;
+// ✅ สร้างฟังก์ชัน proxy สำหรับทุก method
+async function handleRequest(method: string, req: NextRequest, params: { proxy: string[] }) {
   const path = '/' + params.proxy.join('/');
   const url = `${BACKEND_URL}${path}`;
   const headers = getForwardedHeaders(req);
@@ -17,19 +13,19 @@ export async function handler(req: NextRequest, {
   if (req.headers.get('content-type')?.includes('application/json')) {
     try {
       body = await req.json();
-    } catch {}
+    } catch {
+      // Ignore JSON parse error
+    }
   }
 
   try {
-    const axiosConfig = {
+    const axiosResponse = await axios({
       method,
       url,
       headers,
       data: body,
       params: Object.fromEntries(req.nextUrl.searchParams),
-    };
-
-    const axiosResponse = await axios(axiosConfig);
+    });
 
     return NextResponse.json(axiosResponse.data, { status: axiosResponse.status });
   } catch (error: any) {
@@ -39,12 +35,28 @@ export async function handler(req: NextRequest, {
   }
 }
 
-export { handler as GET, handler as POST, handler as PUT, handler as DELETE };
+// ✅ Export ฟังก์ชันแยกตาม HTTP method
+export async function GET(req: NextRequest, { params }: { params: { proxy: string[] } }) {
+  return handleRequest('GET', req, params);
+}
 
+export async function POST(req: NextRequest, { params }: { params: { proxy: string[] } }) {
+  return handleRequest('POST', req, params);
+}
+
+export async function PUT(req: NextRequest, { params }: { params: { proxy: string[] } }) {
+  return handleRequest('PUT', req, params);
+}
+
+export async function DELETE(req: NextRequest, { params }: { params: { proxy: string[] } }) {
+  return handleRequest('DELETE', req, params);
+}
+
+// ✅ ฟังก์ชันคัดกรอง header ที่จะ forward
 function getForwardedHeaders(req: NextRequest): Record<string, string> {
   const headers: Record<string, string> = {};
   req.headers.forEach((value, key) => {
-    if (!['host', 'content-length'].includes(key)) {
+    if (!['host', 'content-length'].includes(key.toLowerCase())) {
       headers[key] = value;
     }
   });

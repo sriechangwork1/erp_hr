@@ -75,7 +75,3 @@ const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children })
 };
 
 export default ThemeContextProvider;
-
-ThemeContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

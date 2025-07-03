@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
+import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuthUser } from '../../@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 import AppLoader from '@crema/components/AppLoader';
 import routesConfig from '@crema/core/AppRoutes/routeConfig';
 import { Layouts } from '@crema/components/AppLayout';
@@ -27,7 +28,11 @@ export default function RootLayout({ children }: any) {
 
   useEffect(() => {
     if (!user && !isLoading) {
-      router.push('/signin' + (queryParams ? '?' + queryParams : ''));
+      // console.log({user,isLoading});
+      
+      signIn("keycloak");
+
+      // window.location.href = "http://localhost:3000";
     }
   }, [user, isLoading, queryParams]);
 
@@ -35,7 +40,7 @@ export default function RootLayout({ children }: any) {
     if (layout) updateNavStyle(layout);
     if (menuStyle) updateMenuStyle(menuStyle);
     if (sidebarImage) setSidebarBgImage(true);
-  }, []);
+  }, [ layout, menuStyle, sidebarImage, updateNavStyle, updateMenuStyle, setSidebarBgImage ]);
 
   if (!user || isLoading) return <AppLoader />;
 

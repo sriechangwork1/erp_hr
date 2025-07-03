@@ -31,7 +31,7 @@ export const exportGp7ToPdf = (staffData: Gp7StaffData) => {
   const checkPageBreak = (heightNeeded: number) => {
     if (currentY + heightNeeded > doc.internal.pageSize.height - margin) {
       doc.addPage();
-      addHeader(doc.internal.getNumberOfPages());
+      addHeader(doc.getNumberOfPages());
     }
   };
 

@@ -4,7 +4,7 @@ import VerticalCollapse from '../VerticalCollapse';
 import VerticalItem from '../VerticalItem';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { checkPermission } from '@crema/helpers/RouteHelper';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import VerticalNavGroupItem from './VerticalNavGroupItem';
 import { RouterConfigData } from '@crema/types/models/Apps';

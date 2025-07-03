@@ -288,7 +288,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="prefix_name_id"
                 value={formData.prefix_name_id}
                 label={<CustomIntlMessages id="prefix_name_id" defaultMessage="คำนำหน้า" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">นาย</MenuItem>
                 <MenuItem value="2">นาง</MenuItem>
@@ -377,7 +377,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="gender_id"
                 value={formData.gender_id}
                 label={<CustomIntlMessages id="gender_id" defaultMessage="เพศ" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1"><CustomIntlMessages id="gender_male" defaultMessage="ชาย" /></MenuItem>
                 <MenuItem value="2"><CustomIntlMessages id="gender_female" defaultMessage="หญิง" /></MenuItem>
@@ -428,7 +428,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="academic_year"
                 value={formData.academic_year}
                 label={<CustomIntlMessages id="academic_year" defaultMessage="ปีการศึกษา" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 {/* ใช้ academicYears ที่ส่งมาจาก prop */}
                 {academicYears.map((year) => (
@@ -449,7 +449,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="semester"
                 value={formData.semester}
                 label={<CustomIntlMessages id="semester" defaultMessage="ภาคเรียน" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">1</MenuItem>
                 <MenuItem value="2">2</MenuItem>
@@ -493,7 +493,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="stafftype_id"
                 value={formData.stafftype_id}
                 label={<CustomIntlMessages id="stafftype_id" defaultMessage="ประเภทบุคลากร" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1"><CustomIntlMessages id="staff_type_lecturer" defaultMessage="อาจารย์" /></MenuItem>
                 <MenuItem value="2"><CustomIntlMessages id="staff_type_support" defaultMessage="สายสนับสนุน" /></MenuItem>
@@ -589,7 +589,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="time_contact_id"
                 value={formData.time_contact_id}
                 label={<CustomIntlMessages id="time_contact_id" defaultMessage="ประเภทการติดต่อ" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">เต็มเวลา</MenuItem>
                 <MenuItem value="2">ไม่เต็มเวลา</MenuItem>
@@ -605,7 +605,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="budget_id"
                 value={formData.budget_id}
                 label={<CustomIntlMessages id="budget_id" defaultMessage="ประเภทงบประมาณ" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">งบประมาณแผ่นดิน</MenuItem>
                 <MenuItem value="2">งบประมาณรายได้</MenuItem>
@@ -620,7 +620,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="substafftype_id"
                 value={formData.substafftype_id}
                 label={<CustomIntlMessages id="substafftype_id" defaultMessage="ประเภทบุคลากรย่อย" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">ข้าราชการ</MenuItem>
                 <MenuItem value="2">พนักงานมหาวิทยาลัย</MenuItem>
@@ -679,7 +679,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="position_type_id"
                 value={formData.position_type_id}
                 label={<CustomIntlMessages id="position_type_id" defaultMessage="ประเภทตำแหน่ง" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">วิชาการ</MenuItem>
                 <MenuItem value="2">บริหาร</MenuItem>
@@ -761,7 +761,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="work_status_id"
                 value={formData.work_status_id}
                 label={<CustomIntlMessages id="work_status_id" defaultMessage="สถานะการทำงาน" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">ปกติ</MenuItem>
                 <MenuItem value="2">ลาออก</MenuItem>
@@ -777,7 +777,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="tax_status_id"
                 value={formData.tax_status_id}
                 label={<CustomIntlMessages id="tax_status_id" defaultMessage="สถานะภาษี" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">มีภาษี</MenuItem>
                 <MenuItem value="2">ไม่มีภาษี</MenuItem>
@@ -814,7 +814,7 @@ const StaffFormDialog: React.FC<StaffFormDialogProps> = ({ open, onClose, onSave
                 name="status_id"
                 value={formData.status_id}
                 label={<CustomIntlMessages id="status_id" defaultMessage="สถานะ (ในระบบ)" />}
-                onChange={handleChange}
+                //onChange={handleChange}
               >
                 <MenuItem value="1">ใช้งาน</MenuItem>
                 <MenuItem value="0">ไม่ใช้งาน</MenuItem>

@@ -312,7 +312,7 @@ const Hr903Page = () => {
 
     (doc as any).autoTable({
       head: [columns.map(col => col.header)],
-      body: rows.map(row => columns.map(col => row[col.dataKey as keyof AwardData])),
+      //body: rows.map(row => columns.map(col => row[col.dataKey as keyof AwardData])),
       startY: 20,
       styles: {
         font: 'THSarabunNew', // ชี้ไปที่ชื่อ Font ที่คุณเพิ่มเข้าไป

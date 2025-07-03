@@ -557,7 +557,7 @@ const StatCard: React.FC<{ title: string; value: string | number; description?: 
           sx={{
             margin: 0,
             color: '#333',
-            fontFamily: Fonts.PRIMARY,
+            //fontFamily: Fonts.PRIMARY,
             flexGrow: 1,
           }}
         >
@@ -570,7 +570,7 @@ const StatCard: React.FC<{ title: string; value: string | number; description?: 
           fontWeight: 'bold',
           margin: '10px 0',
           color: color,
-          fontFamily: Fonts.PRIMARY,
+          //fontFamily: Fonts.PRIMARY,
         }}
       >
         {value}
@@ -582,7 +582,7 @@ const StatCard: React.FC<{ title: string; value: string | number; description?: 
             fontSize: '0.9em',
             color: '#666',
             marginTop: '5px',
-            fontFamily: Fonts.PRIMARY,
+            //fontFamily: Fonts.PRIMARY,
           }}
         >
           {description}
@@ -601,7 +601,9 @@ const TablePlaceholder: React.FC<{ title: string; data: any[] }> = ({ title, dat
       margin: '0',
     }}
   >
-    <Typography variant="h6" sx={{ margin: '0 0 15px 0', color: '#333', fontFamily: Fonts.PRIMARY }}>
+    <Typography variant="h6" sx={{ margin: '0 0 15px 0', color: '#333', 
+      //fontFamily: Fonts.PRIMARY 
+      }}>
       {title}
     </Typography>
     <Box sx={{ maxHeight: '300px', overflowY: 'auto' }}>
@@ -614,7 +616,9 @@ const TablePlaceholder: React.FC<{ title: string; data: any[] }> = ({ title, dat
                   key={key}
                   component="th"
                   scope="col"
-                  sx={{ padding: '8px', borderBottom: '1px solid #ddd', textAlign: 'left', fontFamily: Fonts.PRIMARY }}
+                  sx={{ padding: '8px', borderBottom: '1px solid #ddd', textAlign: 'left', 
+                    //fontFamily: Fonts.PRIMARY 
+                  }}
                 >
                   {key}
                 </TableCell>
@@ -627,7 +631,9 @@ const TablePlaceholder: React.FC<{ title: string; data: any[] }> = ({ title, dat
                 {Object.values(row).map((val: any, idx) => (
                   <TableCell
                     key={idx}
-                    sx={{ padding: '8px', borderBottom: '1px solid #eee', fontFamily: Fonts.PRIMARY }}
+                    sx={{ padding: '8px', borderBottom: '1px solid #eee', 
+                      //fontFamily: Fonts.PRIMARY 
+                    }}
                   >
                     {typeof val === 'boolean' ? (val ? 'Yes' : 'No') : val}
                   </TableCell>
@@ -637,11 +643,15 @@ const TablePlaceholder: React.FC<{ title: string; data: any[] }> = ({ title, dat
           </TableBody>
         </Table>
       ) : (
-        <Typography sx={{ fontFamily: Fonts.PRIMARY }}>ไม่มีข้อมูล</Typography>
+        <Typography sx={{ 
+          //fontFamily: Fonts.PRIMARY
+        }}>ไม่มีข้อมูล</Typography>
       )}
     </Box>
     {data.length > 5 && (
-      <Typography variant="body2" sx={{ fontSize: '0.9em', color: '#888', marginTop: '10px', fontFamily: Fonts.PRIMARY }}>
+      <Typography variant="body2" sx={{ fontSize: '0.9em', color: '#888', marginTop: '10px', 
+      //fontFamily: Fonts.PRIMARY 
+      }}>
         * แสดงข้อมูล {data.slice(0, 5).length} รายการจากทั้งหมด {data.length} รายการ
       </Typography>
     )}
@@ -697,7 +707,9 @@ const HRDashboard: React.FC = () => {
 
   return (
     <Box sx={{ fontFamily: 'Arial, sans-serif', padding: '20px', backgroundColor: '#f4f7f6' }}>
-      <Typography variant="h4" sx={{ color: '#2c3e50', marginBottom: '30px', fontFamily: Fonts.PRIMARY }}>
+      <Typography variant="h4" sx={{ color: '#2c3e50', marginBottom: '30px', 
+        //fontFamily: Fonts.PRIMARY 
+        }}>
         ภาพรวมระบบบริหารงานบุคคล
       </Typography>
 
@@ -705,7 +717,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px',
+            //fontFamily: Fonts.PRIMARY 
+          }}
         >
           ภาพรวมบุคลากร
         </Typography>
@@ -747,7 +761,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
+            //fontFamily: Fonts.PRIMARY 
+          }}
         >
           อัตรากำลังและการสรรหา
         </Typography>
@@ -771,7 +787,7 @@ const HRDashboard: React.FC = () => {
           <Grid item xs={12} md={6}>
             <ChartPlaceholder title="กราฟอัตราการลาออกรายเดือน" />
           </Grid> */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{pt:5}}>
             <TablePlaceholder title="รายการตำแหน่งว่าง" data={jobVacancies.filter((v) => v.STATUS === 'เปิดรับสมัคร')} />
           </Grid>
         {/* </Grid> */}
@@ -781,7 +797,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
+           //fontFamily: Fonts.PRIMARY 
+          }}
         >
           การบริหารจัดการการลา
         </Typography>
@@ -800,7 +818,7 @@ const HRDashboard: React.FC = () => {
           <Grid item xs={12} md={6}>
             <ChartPlaceholder title="กราฟสถิติประเภทการลา" />
           </Grid> */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{pt:5}}>
             <TablePlaceholder title="รายการคำขอลาล่าสุด" data={leaveRequests.slice(0, 5)} />
           </Grid>
         {/* </Grid> */}
@@ -810,7 +828,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
+            //fontFamily: Fonts.PRIMARY 
+            }}
         >
           การประเมินผลการปฏิบัติงาน
         </Typography>
@@ -833,7 +853,7 @@ const HRDashboard: React.FC = () => {
           <Grid item xs={12} md={6}>
             <ChartPlaceholder title="กราฟการกระจายเกรดการประเมิน" />
           </Grid> */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{pt:5}}>
             <TablePlaceholder title="รายการประเมินล่าสุด" data={evaluations} />
           </Grid>
         {/* </Grid> */}
@@ -843,7 +863,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
+            //fontFamily: Fonts.PRIMARY
+           }}
         >
           การฝึกอบรมและพัฒนา
         </Typography>
@@ -879,7 +901,9 @@ const HRDashboard: React.FC = () => {
       <Box component="section" sx={{ marginBottom: '40px' }}>
         <Typography
           variant="h5"
-          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', fontFamily: Fonts.PRIMARY }}
+          sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
+            //fontFamily: Fonts.PRIMARY 
+            }}
         >
           โครงสร้างองค์กร
         </Typography>

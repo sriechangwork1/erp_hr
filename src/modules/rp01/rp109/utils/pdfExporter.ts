@@ -3,6 +3,7 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { GroupedAdminPositionRow } from '../types';
+import Swal from 'sweetalert2';
 
 // Optional: If you have THSarabunNew font loaded, uncomment this
 // import 'jspdf-autotable-font-loader/font/THSarabunNew';

@@ -53,7 +53,7 @@ const MiniSidebar = ({ children, routesConfig }: Props) => {
           <AppContentView>{children}</AppContentView>
           <AppFixedFooter />
         </Box>
-        <AppThemeSetting />
+        {/* <AppThemeSetting /> */}
       </MiniSidebarWrapper>
     </MiniSidebarContainer>
   );

@@ -684,6 +684,8 @@ const WorkHistory: React.FC<WorkHistoryProps> = ({ selectedStaffIdProp }) => {
         data={tableData}
         onView={handleViewData}
         selectedStaffId={selectedStaffIdProp}
+        onEdit={()=>{}}
+        onDelete={()=>{}}
       />
 
       <AppDialog

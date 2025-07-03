@@ -16,7 +16,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
 // Mock components from @crema (ensure these are correctly handled or replaced)
-const AppCard: React.FC<{ children: React.ReactNode; title?: string; sx?: any }> = ({
+const AppCard: React.FC<{ children: React.ReactNode; title?: React.ReactNode; sx?: any }> = ({
   children,
   title,
   sx,

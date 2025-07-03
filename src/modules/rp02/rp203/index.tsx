@@ -33,7 +33,7 @@ import StaffFormDialog from './components/StaffFormDialog';
 import { StaffData, allStaffData } from './types/StaffData';
 
 // --- จำลองคอมโพเนนต์พื้นฐานที่อาจมาจากไลบรารีอื่น (เช่น @crema) ---
-const AppCard: React.FC<{ children: React.ReactNode; title?: string; sx?: any }> = ({ children, title, sx }) => {
+const AppCard: React.FC<{ children: React.ReactNode; title?: React.ReactNode; sx?: any }> = ({ children, title, sx }) => {
   return (
     <Paper sx={{ p: 4, ...sx }}>
       {title && (
@@ -148,8 +148,8 @@ const UocStaffManagement: React.FC = () => {
         staff.stf_fname.toLowerCase().includes(lowerCaseSearchTerm) ||
         (staff.stf_mname && staff.stf_mname.toLowerCase().includes(lowerCaseSearchTerm)) ||
         staff.stf_lname.toLowerCase().includes(lowerCaseSearchTerm) ||
-        staff.stf_email.toLowerCase().includes(lowerCaseSearchTerm) ||
-        staff.stf_phone.toLowerCase().includes(lowerCaseSearchTerm)
+        staff.email.toLowerCase().includes(lowerCaseSearchTerm) ||
+        staff.telephone.toLowerCase().includes(lowerCaseSearchTerm)
       : true;
 
     return matchesYear && matchesSemester && matchesStatus && matchesSearch;

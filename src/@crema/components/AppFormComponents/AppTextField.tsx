@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldHookConfig, useField } from 'formik';
 import TextField from '@mui/material/TextField';
-import { TextFieldProps } from '@mui/material/TextField/TextField';
+import { TextFieldProps } from '@mui/material/TextField';
 
 const AppTextField = (props: TextFieldProps & FieldHookConfig<string>) => {
   const [field, meta] = useField(props);

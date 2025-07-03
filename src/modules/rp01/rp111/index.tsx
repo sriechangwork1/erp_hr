@@ -303,7 +303,7 @@ const Rp111: React.FC = () => {
   // Process and combine staff data with faculty info and education history
   const processedStaffData = useMemo<StaffMemberWithFaculty[]>(() => {
     // Pass generateEducationHistory as an argument to processStaffData
-    return processStaffData(rawStaffData, initialFacultyData, generateEducationHistory);
+    return processStaffData(rawStaffData, initialFacultyData);
   }, [rawStaffData, initialFacultyData]);
 
 

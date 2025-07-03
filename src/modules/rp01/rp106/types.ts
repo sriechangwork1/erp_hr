@@ -52,7 +52,7 @@ export interface StaffTypeSummaryRow {
 
 // Generic Column definition for tables
 export interface Column<T> {
-  id: keyof T | 'ลำดับ'; // 'ลำดับ' for index column
+  id: keyof T | string; // 'ลำดับ' for index column
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';

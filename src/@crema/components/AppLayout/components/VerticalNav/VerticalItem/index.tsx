@@ -5,7 +5,7 @@ import AppBadge from '../../../../AppBadge';
 import Box from '@mui/material/Box';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { checkPermission } from '@crema/helpers/RouteHelper';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 import VerticalNavItem from './VerticalNavItem';
 import { RouterConfigData } from '@crema/types/models/Apps';
 import Link from 'next/link';
@@ -32,7 +32,7 @@ const VerticalItem: React.FC<VerticalItemProps> = ({ level, item }) => {
         }
       }, 1);
     }
-  }, [pathname]);
+  }, [pathname, item]);
 
   if (!hasPermission) {
     return null;

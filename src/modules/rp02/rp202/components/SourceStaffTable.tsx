@@ -35,7 +35,7 @@ const SourceStaffTable: React.FC<SourceStaffTableProps> = ({
     return data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [data, page, rowsPerPage]);
 
-  const columns = [
+  const columns: { key: keyof Staff; header: string }[] = [
     { key: 'staff_id', header: 'รหัสบุคลากร' },
     { key: 'citizen_id', header: 'เลขบัตรประชาชน' },
     { key: 'first_name_th', header: 'ชื่อ' },

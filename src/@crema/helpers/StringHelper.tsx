@@ -1,5 +1,5 @@
 import { Box, Tooltip } from '@mui/material';
-import type { TooltipProps } from '@mui/material/Tooltip/Tooltip';
+import type { TooltipProps } from '@mui/material/Tooltip';
 
 export const getStringFromHtml = (htmlContent: string) => {
   return htmlContent.replace(/(<([^>]+)>)/gi, '');

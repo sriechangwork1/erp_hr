@@ -1055,7 +1055,8 @@ const Hr201 = () => {
         <TabPanel value={currentTab} index={0}>
           <StaffDetailForm
             formData={formData}
-            handleInputChange={handleInputChange}
+            //handleInputChange={handleInputChange}
+            setFormData={()=>{}}
             handleSave={handleSave}
             handleCancel={handleCancel}
           />

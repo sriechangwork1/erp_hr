@@ -134,7 +134,7 @@ const initialStaffData: StaffDataRaw[] = generateSimulatedStaffData(200); // Gen
 const mapGender = (genderCode: string): 'ชาย' | 'หญิง' | 'ไม่ระบุ' => {
   if (genderCode === '1') return 'ชาย';
   if (genderCode === '2') return 'หญิง';
-  return 'ไม่ระระบุ';
+  return 'ไม่ระบุ';
 };
 const mapStaffType = (staffTypeId: number): string => {
   switch (staffTypeId) {

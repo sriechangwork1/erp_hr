@@ -35,7 +35,7 @@ const UOCStaffTable: React.FC<UOCStaffTableProps> = ({
     return data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
   }, [data, page, rowsPerPage]);
 
-  const columns = [
+  const columns: { key: keyof UOCStaff; header: string }[] = [
     { key: 'ds2001_id', header: 'รหัส UOC' },
     { key: 'citizen_id', header: 'เลขบัตรประชาชน' },
     { key: 'stf_fname', header: 'ชื่อ (UOC)' },

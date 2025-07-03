@@ -81,7 +81,3 @@ const LayoutContextProvider: React.FC<LayoutContextProviderProps> = ({ children 
 };
 
 export default LayoutContextProvider;
-
-LayoutContextProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

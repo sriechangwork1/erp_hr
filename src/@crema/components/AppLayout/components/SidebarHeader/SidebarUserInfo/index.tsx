@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { alpha, Typography } from '@mui/material';
-import { useAuthMethod, useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthMethod, useAuthUser } from '@/hooks/AuthHooks';
 import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import { Fonts } from '@crema/constants/AppEnums';
 import Status from './Status';
@@ -30,10 +30,10 @@ const SidebarUserInfo = () => {
   };
 
   const getUserAvatar = () => {
-    if (user.displayName) {
+    if (user?.displayName) {
       return user.displayName.charAt(0).toUpperCase();
     }
-    if (user.email) {
+    if (user?.email) {
       return user.email.charAt(0).toUpperCase();
     }
   };

@@ -2,6 +2,7 @@
 
 import * as XLSX from 'xlsx';
 import { GroupedAdminPositionRow } from '../types';
+import Swal from 'sweetalert2';
 
 export const exportAdminPositionsToExcel = (data: GroupedAdminPositionRow[]) => {
   const worksheetData: any[] = [];

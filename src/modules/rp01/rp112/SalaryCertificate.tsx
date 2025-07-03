@@ -22,13 +22,13 @@ const SalaryCertificate: React.FC<SalaryCertificateProps> = ({ staffId }) => {
       if (staffData) {
         // กำหนดคำนำหน้าชื่อ (ตัวอย่าง)
         let prefixName = '';
-        if (staffData.gender === '1') { // สมมติว่า '1' คือชาย
+        if (staffData.STAFFTYPE_ID === 1) { // สมมติว่า '1' คือชาย
           if (staffData.academic_title) {
             prefixName = staffData.academic_title; // ใช้ academic_title ถ้ามี
           } else {
             prefixName = 'นาย';
           }
-        } else if (staffData.gender === '2') { // สมมติว่า '2' คือหญิง
+        } else if (staffData.STAFFTYPE_ID === 2) { // สมมติว่า '2' คือหญิง
           if (staffData.academic_title) {
             prefixName = staffData.academic_title; // ใช้ academic_title ถ้ามี
           } else {

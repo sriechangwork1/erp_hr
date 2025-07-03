@@ -69,7 +69,6 @@ export interface StaffData {
   academic_position_id?: number;
   support_position_id?: number;
   admin_position_id?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -228,7 +227,6 @@ const StaffDetailForm: React.FC<StaffDetailFormProps> = ({
 
       setFormData((prev) => ({
         ...prev,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         [name]: newValue,
       }));
     }

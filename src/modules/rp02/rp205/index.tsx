@@ -35,7 +35,7 @@ import 'jspdf-autotable';
 // import 'jspdf-autotable-font-loader/font/THSarabunNew'; // อย่าลืมติดตั้งและตั้งค่า Font จริงๆ
 
 // --- จำลองคอมโพเนนต์จาก @crema (ถ้าคุณไม่ได้ติดตั้งไลบรารี @crema จริงๆ) ---
-const AppCard: React.FC<{ children: React.ReactNode; title?: string; sx?: any }> = ({
+const AppCard: React.FC<{ children: React.ReactNode; title?: React.ReactNode; sx?: any }> = ({
   children,
   title,
   sx,

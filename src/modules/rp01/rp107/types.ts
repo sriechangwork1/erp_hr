@@ -52,7 +52,7 @@ export interface PositionByFacultySummaryRow {
 
 // Generic Column definition for tables (reused)
 export interface Column<T> {
-  id: keyof T | 'ลำดับ';
+  id: keyof T | string;
   label: string;
   minWidth?: number;
   align?: 'right' | 'left' | 'center';

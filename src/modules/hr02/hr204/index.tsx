@@ -355,7 +355,7 @@ const Hr204Page = () => {
     >
       <Table
         data={tableData}
-        setTableData={setTableData}
+        //setTableData={setTableData}
         onView={handleViewData}
         onEdit={handleEditData}
         onDelete={handleDeleteData}

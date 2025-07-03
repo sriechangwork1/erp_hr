@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import AppLoader from './AppLoader';
 import PropTypes from 'prop-types';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 
 type AuthRoutesProps = {
   children: ReactNode;
@@ -13,7 +13,3 @@ const AuthRoutes: React.FC<AuthRoutesProps> = ({ children }) => {
 };
 
 export default AuthRoutes;
-
-AuthRoutes.propTypes = {
-  children: PropTypes.node.isRequired,
-};

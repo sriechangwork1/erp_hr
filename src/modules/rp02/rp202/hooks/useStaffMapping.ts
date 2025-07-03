@@ -756,18 +756,18 @@ const useStaffMapping = () => {
 
   const filteredSourceStaffs = useMemo(() => {
     return sourceStaffs.filter((staff) =>
-      staff.first_name_th.toLowerCase().includes(sourceSearchTerm.toLowerCase()) ||
-      staff.last_name_th.toLowerCase().includes(sourceSearchTerm.toLowerCase()) ||
-      staff.citizen_id.includes(sourceSearchTerm) ||
+      (staff.first_name_th??'').toLowerCase().includes(sourceSearchTerm.toLowerCase()) ||
+      (staff.last_name_th??'').toLowerCase().includes(sourceSearchTerm.toLowerCase()) ||
+      (staff.citizen_id??'').includes(sourceSearchTerm) ||
       staff.staff_id.includes(sourceSearchTerm)
     );
   }, [sourceStaffs, sourceSearchTerm]);
 
   const filteredUOCStaffs = useMemo(() => {
     return uocStaffs.filter((uocStaff) =>
-      uocStaff.stf_fname.toLowerCase().includes(uocSearchTerm.toLowerCase()) ||
-      uocStaff.stf_lname.toLowerCase().includes(uocSearchTerm.toLowerCase()) ||
-      uocStaff.citizen_id.includes(uocSearchTerm) ||
+      (uocStaff.stf_fname??'').toLowerCase().includes(uocSearchTerm.toLowerCase()) ||
+      (uocStaff.stf_lname??'').toLowerCase().includes(uocSearchTerm.toLowerCase()) ||
+      (uocStaff.citizen_id??'').includes(uocSearchTerm) ||
       uocStaff.ds2001_id.includes(uocSearchTerm)
     );
   }, [uocStaffs, uocSearchTerm]);
@@ -811,7 +811,9 @@ const useStaffMapping = () => {
                 newMappings.push({
                   id: `map-${Date.now()}-${Math.random()}`, // สร้าง ID ชั่วคราว
                   sourceStaff: sourceStaff,
+                  sourceName: '',
                   uocStaff: uocStaff,
+                  uocName: '',
                   mappedDate: new Date().toLocaleDateString('th-TH'),
                   mappedBy: ''
                 });

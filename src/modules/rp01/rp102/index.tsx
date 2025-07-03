@@ -270,7 +270,7 @@ const Hr905Page = () => {
 
     (doc as any).autoTable({
       head: [columns.map(col => col.header)],
-      body: rows.map(row => columns.map(col => row[col.dataKey as keyof CombinedStaffingData])),
+      //body: rows.map(row => columns.map(col => row[col.dataKey as keyof CombinedStaffingData])),
       startY: 20,
       styles: {
         font: 'THSarabunNew',

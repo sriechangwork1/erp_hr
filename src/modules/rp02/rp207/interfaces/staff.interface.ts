@@ -61,4 +61,13 @@ export interface IStaff {
     support_expertise: ISupportExpertise[];
     document: IDocument[];
     contract: IContract[];
+    social_media_links?: string|null;
+    emergency_contact?: string|null;
+    job_start_date?: string|null;
+    job_end_date?: string|null;
+    status: "Active"|"Inactive"|"On Leave"
+    profile_picture_url?: string|null;
+    cv_url?: string|null;
+    joining_date?: string|null;
+    retirement_date?: string|null;
 }

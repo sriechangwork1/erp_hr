@@ -119,6 +119,7 @@ const generateRandomStaff = (id: number): IStaff => {
         passport_number: `AB${getRandomNumber(1000000, 9999999)}`,
         issue_date: getRandomDate(new Date(2020, 0, 1), new Date(2023, 11, 31)),
         expiry_date: getRandomDate(new Date(2025, 0, 1), new Date(2030, 11, 31)),
+        issue_place: getRandomItem(provinces),
         country_of_issue: getRandomItem(nationalities),
         create_at: getRandomDate(new Date(2020, 0, 1), new Date(2024, 11, 31)),
         update_at: getRandomDate(new Date(2023, 0, 1), new Date(2024, 11, 31)),
@@ -165,7 +166,9 @@ const generateRandomStaff = (id: number): IStaff => {
     const document: IDocument[] = Array.from({ length: numDocuments }).map(() => ({
         // ลบ staff_id
         document_name: `เอกสาร ${getRandomNumber(1, 5)}`,
+        document_type: getRandomItem(['pdf', 'doc', 'image', 'other']),
         document_path: `/docs/staff_${id}_doc${getRandomNumber(1, 5)}.pdf`,
+        document_url: `https://example.com/docs/staff_${id}_doc${getRandomNumber(1, 5)}.pdf`,
         upload_date: getRandomDate(new Date(2020, 0, 1), new Date(2024, 11, 31)),
         create_at: getRandomDate(new Date(2020, 0, 1), new Date(2024, 11, 31)),
         update_at: getRandomDate(new Date(2023, 0, 1), new Date(2024, 11, 31)),
@@ -178,6 +181,7 @@ const generateRandomStaff = (id: number): IStaff => {
         contract_type: getRandomItem(contractTypes),
         start_date: getRandomDate(new Date(2020, 0, 1), new Date(2023, 11, 31)),
         end_date: getRandomDate(new Date(2024, 0, 1), new Date(2026, 11, 31)),
+        contract_url: `https://example.com/contracts/staff_${id}_contract.pdf`,
         create_at: getRandomDate(new Date(2020, 0, 1), new Date(2024, 11, 31)),
         update_at: getRandomDate(new Date(2023, 0, 1), new Date(2024, 11, 31)),
         officer_id: getRandomNumber(1, 10)
@@ -240,6 +244,13 @@ const generateRandomStaff = (id: number): IStaff => {
         create_at: getRandomDate(new Date(2010, 0, 1), new Date(2023, 11, 31)),
         update_at: getRandomDate(new Date(2023, 0, 1), new Date(2024, 11, 31)),
         officer_id: getRandomNumber(1, 10),
+
+        // Add missing IStaff fields
+        date_of_hire: getRandomDate(new Date(2010, 0, 1), new Date(2023, 0, 1)),
+        work_status: getRandomItem(["ปฏิบัติงาน", "ลาออก", "เกษียณ"]),
+        emergency_contact_name: `${getRandomItem(firstNamesTh)} ${getRandomItem(lastNamesTh)}`,
+        emergency_contact_relationship: getRandomItem(familyRelationships),
+        emergency_contact_phone: `0${getRandomNumber(800000000, 999999999)}`,
 
         education: education,
         salary: salary,

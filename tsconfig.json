@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@crema/*": ["./src/@crema/*"]
+      "@crema/*": ["./src/@crema/*"],
+      "@/*": ["./src/*"]
     },
     "types": [
       "node",

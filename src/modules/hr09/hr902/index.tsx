@@ -325,7 +325,7 @@ const Hr902Page = () => {
     // ตั้งค่า AutoTable
     (doc as any).autoTable({
       head: [columns.map(col => col.header)],
-      body: rows.map(row => columns.map(col => row[col.dataKey as keyof AwardData])), // แก้ไข Type Error ตรงนี้
+      //body: rows.map(row => columns.map(col => row[col.dataKey as keyof AwardData])), // แก้ไข Type Error ตรงนี้
       startY: 20,
       styles: {
         font: 'THSarabunNew', // ชี้ไปที่ชื่อ Font ที่คุณเพิ่มเข้าไปและตั้งค่าด้านบน

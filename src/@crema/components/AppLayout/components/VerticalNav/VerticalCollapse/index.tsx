@@ -6,7 +6,7 @@ import VerticalItem from '../VerticalItem';
 import Box from '@mui/material/Box';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import { checkPermission } from '@crema/helpers/RouteHelper';
-import { useAuthUser } from '@crema/hooks/AuthHooks';
+import { useAuthUser } from '@/hooks/AuthHooks';
 import { useThemeContext } from '@crema/context/AppContextProvider/ThemeContextProvider';
 import { useSidebarContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import VerticalCollapseItem from './VerticalCollapseItem';

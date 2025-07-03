@@ -63,7 +63,7 @@ export interface OverallPositionSummary {
 
 // --- สำหรับกำหนดคอลัมน์ของตาราง ---
 export interface Column {
-  id: 'positionName' | 'approved' | 'actual' | 'vacant' | 'utilizationRate';
+  id: string;//id: 'positionName' | 'approved' | 'actual' | 'vacant' | 'utilizationRate';
   label: string;
   minWidth?: number;
   align?: 'right' | 'center' | 'left';

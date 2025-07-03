@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldHookConfig, useField } from 'formik';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
-import { SelectProps } from '@mui/material/Select/Select';
+import { SelectProps } from '@mui/material/Select';
 
 const AppSelectField = (props: SelectProps & FieldHookConfig<string>) => {
   const [field, meta] = useField(props);

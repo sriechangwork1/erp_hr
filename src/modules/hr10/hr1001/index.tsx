@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 import UserGroupList from './UserGroupList';
 import ReportPagePermission from './ReportPagePermission';
-import { UserGroup, ReportPage, UserGroupPermission } from '.types';
+import { UserGroup, ReportPage, UserGroupPermission } from './types';
 
 // --- ข้อมูลจำลอง (Mock Data) ---
 // ในแอปพลิเคชันจริง ข้อมูลเหล่านี้จะมาจาก API หรือ Redux/Context
@@ -156,7 +156,7 @@ const PermissionManagementPage: React.FC = () => {
               onToggleReportPage={handleToggleReportPage}
               onSavePermissions={handleSavePermissions}
               isSaving={isSaving}
-              selectedGroupName={selectedGroupName}
+              selectedGroupName={selectedGroupName?selectedGroupName:''}
             />
           </Grid>
         </Grid>
