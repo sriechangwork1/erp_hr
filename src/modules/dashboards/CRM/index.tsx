@@ -382,7 +382,7 @@ const HRDashboard: React.FC = () => {
                             <XAxis
                             dataKey="name"
                             interval={0}
-                            tick={{ fill: '#555', angle: -45, textAnchor: 'end' }}
+                            tick={{ fill: '#555', textAnchor: 'end' }}
                             height={60}
                             />
                     <YAxis tick={{ fill: '#555' }} />
@@ -487,7 +487,7 @@ const HRDashboard: React.FC = () => {
         <Typography
           variant="h5"
           sx={{ color: '#34495e', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '20px', 
-          display: 'flex', alignItems: 'center', mb: 3, color: '#333' 
+          display: 'flex', alignItems: 'center', mb: 3,
           }}
         >
           <AccessTimeFilledIcon sx={{mr:1}}/>

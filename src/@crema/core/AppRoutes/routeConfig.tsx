@@ -477,6 +477,23 @@ const routesConfig = [
           },
         ],
       },
+
+       {
+        id: 'hr11',
+        title: 'sidebar.hr11',
+        messageId: 'sidebar.hr11',
+        type: 'collapse',
+        icon: <MdContactEmergency />,
+        children: [
+          {
+            id: 'hr1101',
+            title: 'sidebar.hr11',
+            messageId: 'sidebar.hr11.01',
+            type: 'item',
+            url: '/hr11/hr1101',
+          },
+        ],
+      },
  
 
     ],
